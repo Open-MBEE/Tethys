@@ -1,0 +1,19 @@
+name: check
+on:
+  pull_request:
+  push:
+    branches: [develop, main]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '21' }
+      - name: Fetch OpenSysML nightly
+        run: curl -fsSL https://raw.githubusercontent.com/Open-MBEE/OpenSysML/develop/install.sh | sh -s -- --version nightly --tools sysml --prefix "$PWD/build/opensysml"
+      - name: Fetch the pinned pilot validator
+        run: |
+          git clone --depth 1 https://github.com/Open-MBEE/OpenSysML build/opensysml-src
+          (cd build/opensysml-src && ./scripts/download-pilot-validator.sh) && cp -r build/opensysml-src/build/pilot-validator build/
+      - run: make check
