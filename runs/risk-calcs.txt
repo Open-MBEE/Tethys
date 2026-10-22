@@ -1,0 +1,49 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysHouseRules
+✓ TethysRisk::Score(TethysRisk::Likelihood::moderate, TethysRisk::Consequence::catastrophic)
+  = [15]
+  standing: value (observed: 1 run under reverse)
+✓ TethysRisk::Score(TethysRisk::Likelihood::low, TethysRisk::Consequence::catastrophic)
+  = [10]
+  standing: value (observed: 1 run under reverse)
+✓ TethysRisk::Score(TethysRisk::Likelihood::veryLow, TethysRisk::Consequence::catastrophic)
+  = [5]
+  standing: value (observed: 1 run under reverse)
+✓ TethysRisk::Score(TethysRisk::Likelihood::high, TethysRisk::Consequence::major)
+  = [16]
+  standing: value (observed: 1 run under reverse)
+✓ TethysRisk::Score(TethysRisk::Likelihood::moderate, TethysRisk::Consequence::major)
+  = [12]
+  standing: value (observed: 1 run under reverse)
+✓ TethysRisk::RatingOf(TethysRisk::Likelihood::veryLow, TethysRisk::Consequence::catastrophic)
+  = [Rating::green]
+  standing: value (observed: 1 run under reverse)
+✓ TethysRisk::RatingOf(TethysRisk::Likelihood::moderate, TethysRisk::Consequence::catastrophic)
+  = [Rating::red]
+  standing: value (observed: 1 run under reverse)
+✓ TethysRisk::RatingOf(TethysRisk::Likelihood::moderate, TethysRisk::Consequence::major)
+  = [Rating::yellow]
+  standing: value (observed: 1 run under reverse)
+✓ TethysRisk::RatingOf(TethysRisk::Likelihood::low, TethysRisk::Consequence::moderate)
+  = [Rating::green]
+  standing: value (observed: 1 run under reverse)
+✓ TethysRisk::RatingOf(TethysRisk::Likelihood::veryHigh, TethysRisk::Consequence::negligible)
+  = [Rating::green]
+  standing: value (observed: 1 run under reverse)
+✓ TethysRisk::ToLevel(4)
+  = [0.8]
+  standing: value (observed: 1 run under reverse)

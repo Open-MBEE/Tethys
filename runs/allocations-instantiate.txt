@@ -1,0 +1,22 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysHouseRules
+✓ Created instance of TethysAllocations::missionFunctions
+  ID: 1
+  Use %features TethysAllocations::missionFunctions to inspect
+✓ Created instance of TethysAllocations::sourcingRecord
+  ID: 23
+  Use %features TethysAllocations::sourcingRecord to inspect

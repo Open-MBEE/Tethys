@@ -1,0 +1,25 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysHouseRules
+✓ Created instance of TethysRisk::riskRegister
+  ID: 1
+  Use %features TethysRisk::riskRegister to inspect
+✓ Created instance of TethysRisk::marginIndicators
+  ID: 102
+  Use %features TethysRisk::marginIndicators to inspect
+✓ Created instance of TethysRisk::lessonsLearned
+  ID: 106
+  Use %features TethysRisk::lessonsLearned to inspect
