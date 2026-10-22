@@ -11,6 +11,7 @@
 ✓ package TethysSystem
 ✓ package TethysSafety
 ✓ package TethysRisk
+✓ package TethysAllocations
 ✓ package TethysHouseRules
 ✓ Constraint TethysRisk::riskRegister::noUnownedRedRisk passed
   standing: holds (observed: 1 run under reverse)

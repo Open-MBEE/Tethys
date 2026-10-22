@@ -1,0 +1,38 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocations
+✓ package TethysHouseRules
+✓ package 'F-005-allocation-queries'
+✓ Query 'F-005-allocation-queries'::UnallocatedFunctions returned 0 rows
+✓ Query 'F-005-allocation-queries'::UnallocatedRequirements returned 0 rows
+✓ Query 'F-005-allocation-queries'::UnallocatedFunctions returned 14 rows
+  Row 1: TethysRisk::riskRegister::earthImpactRisk::mitigationActions
+  Row 2: TethysRisk::riskRegister::targetSizeRisk::mitigationActions
+  Row 3: TethysRisk::riskRegister::thrusterLifeRisk::mitigationActions
+  Row 4: TethysRisk::riskRegister::proximityOperationsRisk::mitigationActions
+  Row 5: TethysRisk::riskRegister::xenonMarginRisk::mitigationActions
+  Row 6: TethysRisk::riskRegister::captureBagTechnology::mitigationActions
+  Row 7: TethysRisk::riskRegister::earthImpactRisk::mitigationActions::dispersionAnalysis
+  Row 8: TethysRisk::riskRegister::earthImpactRisk::mitigationActions::commandPathDemo
+  Row 9: TethysRisk::riskRegister::targetSizeRisk::mitigationActions::radarCampaign
+  Row 10: TethysRisk::riskRegister::targetSizeRisk::mitigationActions::inspectorSurveyBeforeCommit
+  Row 11: TethysRisk::riskRegister::thrusterLifeRisk::mitigationActions::lifeTest
+  Row 12: TethysRisk::riskRegister::proximityOperationsRisk::mitigationActions::hardwareInTheLoopCampaign
+  Row 13: TethysRisk::riskRegister::xenonMarginRisk::mitigationActions::tankGrowthOption
+  Row 14: TethysRisk::riskRegister::captureBagTechnology::mitigationActions::vacuumDeploymentTest
+✓ Query 'F-005-allocation-queries'::AllocationTargets returned 1 row
+  Row 1: TethysTug::argent::sep
+✓ Query 'F-005-allocation-queries'::AllocationTargets returned 2 rows
+  Row 1: TethysTug::Tug::gnc
+  Row 2: TethysGround::GroundNetwork::fdf

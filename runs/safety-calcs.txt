@@ -11,6 +11,7 @@
 ✓ package TethysSystem
 ✓ package TethysSafety
 ✓ package TethysRisk
+✓ package TethysAllocations
 ✓ package TethysHouseRules
 ✓ TethysSafety::EnvelopeMargin(10.0, 5.0)
   = [0.5]

@@ -11,6 +11,7 @@
 ✓ package TethysSystem
 ✓ package TethysSafety
 ✓ package TethysRisk
+✓ package TethysAllocations
 ✓ package TethysHouseRules
 ✓ Created instance of TethysSafety::fmeca
   ID: 1

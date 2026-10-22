@@ -20,4 +20,8 @@ run risk-calcs $SYSML -calc "TethysRisk::Score(TethysRisk::Likelihood::moderate,
 run risk-instantiate $SYSML -instantiate TethysRisk::riskRegister -instantiate TethysRisk::marginIndicators -instantiate TethysRisk::lessonsLearned $MODEL
 run risk-register-view $SYSML -render TethysRisk::riskRegisterView -render-form csv $MODEL
 run risk-f004-probe $SYSML -constraint "'F-004-snapshot-inherited-values'::reader::snapshotProduct" model/probes/F-004-snapshot-inherited-values.sysml
+run allocations-queries $SYSML -run-query "'F-005-allocation-queries'::UnallocatedFunctions root=TethysAllocations::missionFunctions" -run-query "'F-005-allocation-queries'::UnallocatedRequirements root=TethysRequirements" -run-query "'F-005-allocation-queries'::UnallocatedFunctions root=TethysRisk::riskRegister" -run-query "'F-005-allocation-queries'::AllocationTargets origin=TethysAllocations::missionFunctions::produceHeliocentricThrust" -run-query "'F-005-allocation-queries'::AllocationTargets origin=TethysRequirements::cislunarSafety" $MODEL model/probes/F-005-allocation-queries.sysml
+run allocations-matrix $SYSML -render TethysAllocations::functionAllocationMatrix -render-form csv $MODEL
+run allocations-requirement-matrix $SYSML -render TethysAllocations::requirementAllocationMatrix -render-form csv $MODEL
+run allocations-instantiate $SYSML -instantiate TethysAllocations::missionFunctions -instantiate TethysAllocations::sourcingRecord $MODEL
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi
