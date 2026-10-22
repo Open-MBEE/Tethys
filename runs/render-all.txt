@@ -1,4 +1,4 @@
-loaded 50 files:
+loaded 51 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -29,6 +29,7 @@ loaded 50 files:
   model/60-modes.sysml
   model/61-sequence.sysml
   model/62-fdir.sysml
+  model/63-flight-software.sysml
   model/70-analyses.sysml
   model/71-trades.sysml
   model/72-montecarlo.sysml
@@ -79,6 +80,7 @@ loaded 50 files:
 ✓ package TethysModes
 ✓ package TethysSequence
 ✓ package TethysFdir
+✓ package TethysFlightSoftware
 ✓ package TethysAnalyses
 ✓ package TethysTrades
 ✓ package TethysMonteCarlo
@@ -110,7 +112,8 @@ wrote build/runs/views/TethysRisk.RiskRegisterView~1798bcd41eb23fe6.md (markdown
 wrote build/runs/views/TethysRisk.riskRegisterView~de4a5ee31ff27b8d.md (markdown, 10521 bytes)
 TethysAllocations::AllocationMatrixView: note: renders empty
 wrote build/runs/views/TethysAllocations.AllocationMatrixView.md (markdown, 140 bytes)
-wrote build/runs/views/TethysAllocations.functionAllocationMatrix.md (markdown, 3115 bytes)
+wrote build/runs/views/TethysAllocations.functionAllocationMatrix.md (markdown, 4406 bytes)
+wrote build/runs/views/TethysAllocations.softwareDeploymentMatrix.md (markdown, 5399 bytes)
 wrote build/runs/views/TethysAllocations.requirementAllocationMatrix.md (markdown, 1348 bytes)
 TethysViews::RequirementsTreeView: note: renders empty
 wrote build/runs/views/TethysViews.RequirementsTreeView.mmd (mermaid, 830 bytes)

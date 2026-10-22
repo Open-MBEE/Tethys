@@ -23,6 +23,13 @@ package TethysHouseRules {
         not r.text->isEmpty()
     }
 
+    constraint def allocationUsageIsTyped {
+        doc /* Every allocation usage is typed by an allocation def, so each allocation matrix
+             * reads by kind and the deployment chain of the flight software is explicit. */
+        in a : SysML::AllocationUsage;
+        not a.allocationDefinition->isEmpty()
+    }
+
     constraint def portUsageIsTyped {
         doc /* Every port usage is typed by a port def from TethysInterfaces, so an ICD
              * can be written against it. */

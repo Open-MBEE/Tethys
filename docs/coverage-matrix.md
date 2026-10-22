@@ -237,3 +237,22 @@ CLI, REPL and `-run-query` surfaces are exercised by every package through `scri
 ## 6. Status
 
 Filled in per row by the work packages as they land: `docs/coverage/<WP>.md` holds the owner's row → construct → proving command table; this file stays the index.
+
+## 7. Software rows by owner
+
+Rows from the software scope review (`SW-###`), covered package by package in
+`docs/coverage/WP-SW-*.md`.
+
+| Row | Owner | Status |
+| --- | --- | --- |
+| SW-001 board support package | WP-SW-1 flight software architecture | sat — `docs/coverage/WP-SW-1.md` |
+| SW-002 real-time executive | WP-SW-1 | sat |
+| SW-006 file and data management | WP-SW-1 | sat |
+| SW-012 partitioning / fault containment | WP-SW-1 | sat |
+| SW-014 redundancy management | WP-SW-1 (structure), WP-SW-3 (fail-over behaviour) | partial |
+| SW-036 software-to-processor allocation | WP-SW-1 | sat |
+| SW-241 flight software attached to C&DH | WP-SW-1 | sat |
+| SW-245 `FlightComputer` image and bus ports | WP-SW-1 (WP-SW-4 binds the load figures) | sat |
+| SW-252 `SoftwareDeployment` and new `SoftwareFunction` leaves | WP-SW-1 | sat |
+| SW-254 house rules: every application allocated | WP-SW-1 (WP-SW-2 and WP-SW-5 add theirs) | sat |
+| SW-255 coverage and findings files | each software package | sat for WP-SW-1 |

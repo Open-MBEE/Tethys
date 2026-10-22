@@ -16,6 +16,7 @@ package TethysTugStructure {
     private import TethysInterfaces::MechanicalLoad;
     private import TethysInterfaces::Telemetry;
     private import TethysInterfaces::RfCarrier;
+    private import TethysInterfaces::DataBusPort;
     private import TethysTug::*;
     private import TethysMarginPolicy::*;
 
@@ -428,7 +429,9 @@ package TethysTugStructure {
     // ---- command and data handling ------------------------------------------------------------
     part def FlightComputer :> ElectronicUnit {
         doc /* A flight computer: one runs, the other is a cold spare taking over on a
-             * watchdog trip. Processor and memory capacities carry the software margins. */
+             * watchdog trip. Processor and memory capacities carry the software margins; the
+             * image slots hold the software images, the bus port is its node on the on-board
+             * data bus and the cross-strap port joins it to the other computer. */
         attribute :>> mass = 11 [kg];
         attribute :>> maturity = Maturity::heritage;
         attribute :>> required = 1;
@@ -441,6 +444,9 @@ package TethysTugStructure {
         attribute processorLoadMips : Real = 560.0;
         attribute memoryCapacity : StorageCapacityValue = 4.0e9 [B];
         attribute memoryAllocated : StorageCapacityValue = 1.9e9 [B];
+        attribute imageSlots : Natural = 2;
+        port bus : DataBusPort;
+        port crossStrap : DataBusPort;
     }
     part def MassMemory :> ElectronicUnit {
         doc /* Solid-state recorder for characterisation imagery and lidar data. */
