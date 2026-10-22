@@ -50,7 +50,7 @@ versus the base `integration/phase-6` (one warm run each, nothing else running):
 | `sysml -validate -strict -warnings-as-errors model/*.sysml` | 4.2 s | 6.9 s |
 | `make pilot-mission` | 48 s (measured while another job ran, so an upper bound) | 2 min 33 s |
 | `make runs` (record, 143 runs) | — | 13 min 44 s |
-| `make check` | BASE_CHECK | 22 min 16 s |
+| `make check` | 11 min 04 s (in a worktree sharing `build/`; the timing stands, its runs diff did not come out clean there) | 22 min 16 s (exit 0, empty runs diff) |
 
 Of the eight new runs the document render (8.4 s) and the counts evaluation are the costly ones; the rest
 of the growth is the two extra files each of the 135 pre-existing runs now loads.
