@@ -11,6 +11,7 @@
 ✓ package TethysSystem
 ✓ package TethysModes
 ✓ package TethysSequence
+✓ package TethysFdir
 ✓ package TethysHouseRules
 ✓ Created instance of TethysSequence::smallTargetCampaign
   ID: 1

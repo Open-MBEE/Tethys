@@ -86,7 +86,13 @@ package TethysModes {
         doc /* Stack rate below the control threshold after despin. */
     }
     item def SafeModeRequest :> OnBoardEvent {
-        doc /* A fault response (TethysFdir) or a ground command demanding safe mode. */
+        doc /* A fault response raised on board (TethysFdir) demanding safe mode. */
+        attribute reason : String;
+    }
+    item def AbortReturn :> OnBoardEvent {
+        doc /* The Earth-impact exclusion monitor (TethysFdir) has found the return trajectory
+             * outside its corridor: thrust is inhibited and the stack is retargeted away
+             * from Earth; only a ground SafeModeExit after a replanned trajectory recovers. */
         attribute reason : String;
     }
     item def CollisionRisk :> OnBoardEvent {
@@ -114,7 +120,7 @@ package TethysModes {
         doc /* The tug's flight modes. Free-flight modes before capture, stacked modes after
              * it, and safe mode reachable from every operating mode. */
         launch; coast; thrust; approach; proximityOperations; retreat; capture;
-        despin; stackCoast; stackThrust; droHold; dockedPassive; disposal; safe;
+        despin; stackCoast; stackThrust; droHold; dockedPassive; disposal; safe; abortHold;
     }
     attribute def SubsystemConfiguration {
         doc /* One row of the mode × subsystem matrix: what each subsystem does in a mode and
@@ -201,9 +207,14 @@ package TethysModes {
             :>> highGainAntennaOn = false; :>> proximityLinkOn = false; :>> wheelControl = false;
             :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 1.1 [kW];
         }
-        attribute rows : SubsystemConfiguration[14] = (launch, coast, thrust, approach,
+        attribute abortHold : SubsystemConfiguration {
+            :>> mode = TugMode::abortHold; :>> sepThrusting = false; :>> highVoltageBusOn = false;
+            :>> highGainAntennaOn = true; :>> proximityLinkOn = false; :>> wheelControl = true;
+            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 1.6 [kW];
+        }
+        attribute rows : SubsystemConfiguration[15] = (launch, coast, thrust, approach,
             proximityOperations, retreat, capture, despin, stackCoast, stackThrust, droHold,
-            dockedPassive, disposal, safe);
+            dockedPassive, disposal, safe, abortHold);
         assert constraint safeModeShedsLoads {
             doc /* Safe mode draws no more than any operating mode and keeps the high-voltage
                  * bus, the capture system and the thrusters off. */
@@ -235,8 +246,10 @@ package TethysModes {
              * whole — free-flight modes before capture, stacked modes after, safe mode from
              * any operating mode and recovery back to the right family; the other regions are
              * the subsystem machines that follow the same commands (SEP string, telecom,
-             * attitude control, capture mechanism). Every command arrives on `command`; the
-             * exhibiting tug's port of the same name is the connected end. */
+             * attitude control, capture mechanism). Every command arrives on `command`, the
+             * exhibiting tug's port of the same name being the connected end; SafeModeRequest
+             * and AbortReturn are raised on board (TethysFdir) and accepted from the tug
+             * itself, not from the port. */
         port command : CommandPort;
         attribute envelope : CaptureEnvelope {
             :>> maximumBodyMass = 1000.0e3 [kg];
@@ -248,6 +261,7 @@ package TethysModes {
         attribute captured : Boolean = false;
         attribute thrustArcsStarted : Natural = 0;
         attribute safeModeEntries : Natural = 0;
+        attribute abortEntries : Natural = 0;
         attribute lastSafeModeReason : String = "";
 
         state flightMode {
@@ -314,14 +328,21 @@ package TethysModes {
                      * ground recovery. */
                 entry assign safeModeEntries := safeModeEntries + 1;
             }
+            state abortHold {
+                doc /* Return aborted by the Earth-impact exclusion monitor: thrust inhibited,
+                     * attitude held, high-gain link up, waiting for a replanned trajectory. */
+                entry assign abortEntries := abortEntries + 1;
+            }
             transition first launch then freeFlight;
             transition first freeFlight if captured then stacked;
             transition first stacked then done;
-            transition first launch accept r : SafeModeRequest via command do assign lastSafeModeReason := r.reason then safe;
-            transition first freeFlight accept r : SafeModeRequest via command do assign lastSafeModeReason := r.reason then safe;
-            transition first stacked accept r : SafeModeRequest via command do assign lastSafeModeReason := r.reason then safe;
+            transition first launch accept r : SafeModeRequest do assign lastSafeModeReason := r.reason then safe;
+            transition first freeFlight accept r : SafeModeRequest do assign lastSafeModeReason := r.reason then safe;
+            transition first stacked accept r : SafeModeRequest do assign lastSafeModeReason := r.reason then safe;
             transition first safe accept SafeModeExit via command if not captured then freeFlight;
             transition first safe accept SafeModeExit via command if captured then stacked;
+            transition first stacked accept a : AbortReturn do assign lastSafeModeReason := a.reason then abortHold;
+            transition first abortHold accept SafeModeExit via command then stacked;
         }
 
         state sepString {
@@ -339,8 +360,9 @@ package TethysModes {
             transition first standby accept ReturnThrustGo via command then thrusting;
             transition first standby accept DisposalGo via command then thrusting;
             transition first thrusting accept ThrustArcEnd via command then standby;
-            transition first standby accept SafeModeRequest via command then off;
-            transition first thrusting accept SafeModeRequest via command then off;
+            transition first standby accept SafeModeRequest then off;
+            transition first thrusting accept SafeModeRequest then off;
+            transition first thrusting accept AbortReturn then off;
             transition first off accept SafeModeExit via command then standby;
         }
 
@@ -354,8 +376,8 @@ package TethysModes {
             transition first lowGain accept ArraysDeployed via command then highGain;
             transition first highGain accept InspectorReleaseGo via command then relaying;
             transition first relaying accept InspectorRetireGo via command then highGain;
-            transition first highGain accept SafeModeRequest via command then lowGain;
-            transition first relaying accept SafeModeRequest via command then lowGain;
+            transition first highGain accept SafeModeRequest then lowGain;
+            transition first relaying accept SafeModeRequest then lowGain;
             transition first lowGain accept SafeModeExit via command then highGain;
         }
 
@@ -370,7 +392,7 @@ package TethysModes {
             transition first thrusters accept DespinComplete via command then wheels;
             transition first wheels accept DockingGo via command then thrusters;
             transition first thrusters accept DisposalGo via command then wheels;
-            transition first wheels accept SafeModeRequest via command then thrusters;
+            transition first wheels accept SafeModeRequest then thrusters;
             transition first thrusters accept SafeModeExit via command then wheels;
         }
 
@@ -425,7 +447,7 @@ package TethysModes {
         transition first stowed accept InspectorCheckoutGo via command then checkout;
         transition first checkout accept after checkoutDuration then stowed;
         transition first stowed accept InspectorReleaseGo via command if checkedOut then freeFlight;
-        transition first freeFlight accept SafeModeRequest via command then safe;
+        transition first freeFlight accept SafeModeRequest then safe;
         transition first safe accept SafeModeExit via command then freeFlight;
         transition first freeFlight accept InspectorRetireGo via command then retired;
         transition first retired then done;

@@ -222,7 +222,7 @@ package TethysSequence {
              * post-assist trajectory is checked against the insertion corridor, the
              * insertion arc is executed, and a miss leaves the stack in the backup
              * heliocentric loiter orbit rather than in cislunar space. The arc length is an
-             * owned attribute, not a parameter: see docs/findings.md F-004. */
+             * owned attribute, not a parameter: see docs/findings/WP-E.md F-E02. */
         in corridorError : LengthValue;
         in corridorHalfWidth : LengthValue;
         attribute insertionArcDuration : DurationValue = 20.0 [d];

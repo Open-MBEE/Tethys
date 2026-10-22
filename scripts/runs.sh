@@ -27,4 +27,19 @@ run sequence-small-target $SYSML -quiet -instantiate TethysSequence::smallTarget
 run sequence-nominal $SYSML -quiet -instantiate TethysSequence::nominalCampaign -action "TethysSequence::FlightCampaign::mission TethysSequence::nominalCampaign" -advance 190080000 $MODEL
 run sequence-large-target $SYSML -quiet -instantiate TethysSequence::largeTargetCampaign -action "TethysSequence::FlightCampaign::mission TethysSequence::largeTargetCampaign" -advance 190080000 $MODEL
 run sequence-nominal-trace $SYSML -quiet -instantiate TethysSequence::nominalCampaign -action "TethysSequence::FlightCampaign::mission TethysSequence::nominalCampaign" -advance 190080000 -trace $MODEL
+# WP-E — FDIR (model/62-fdir.sysml): the supervisor and the mode machine under three fault-injection campaigns (compressed day clock), and the inhibit chain under the schedule checker and the SMT engine.
+run fdir-command-loss-expired $SYSML -quiet -instantiate TethysFdir::commandLossScenario -state TethysFdir::commandLossScenario.tug.fdir -advance 1555200 $MODEL
+run fdir-command-loss-modes-safe $SYSML -quiet -instantiate TethysFdir::commandLossScenario -state TethysFdir::commandLossScenario.tug.modes -advance 1555200 $MODEL
+run fdir-command-loss-recovered $SYSML -quiet -instantiate TethysFdir::commandLossScenario -state TethysFdir::commandLossScenario.tug.modes -advance 2160000 $MODEL
+run fdir-thruster-restarting $SYSML -quiet -instantiate TethysFdir::thrusterFaultScenario -state TethysFdir::thrusterFaultScenario.tug.fdir -advance 876960 -trace $MODEL
+run fdir-thruster-on-spare $SYSML -quiet -instantiate TethysFdir::thrusterFaultScenario -state TethysFdir::thrusterFaultScenario.tug.fdir -advance 1900800 $MODEL
+run fdir-thruster-ppu-cross-strapped $SYSML -quiet -instantiate TethysFdir::thrusterFaultScenario -state TethysFdir::thrusterFaultScenario.tug.fdir -advance 2332800 $MODEL
+run fdir-thruster-string-lost $SYSML -quiet -instantiate TethysFdir::thrusterFaultScenario -state TethysFdir::thrusterFaultScenario.tug.fdir -advance 2764800 $MODEL
+run fdir-thruster-modes-safe $SYSML -quiet -instantiate TethysFdir::thrusterFaultScenario -state TethysFdir::thrusterFaultScenario.tug.modes -advance 2764800 $MODEL
+run fdir-earth-impact-nominal-return $SYSML -quiet -instantiate TethysFdir::earthImpactScenario -state TethysFdir::earthImpactScenario.tug.modes -advance 2160000 $MODEL
+run fdir-earth-impact-aborted $SYSML -quiet -instantiate TethysFdir::earthImpactScenario -state TethysFdir::earthImpactScenario.tug.fdir -advance 2592000 $MODEL
+run fdir-earth-impact-abort-hold $SYSML -quiet -instantiate TethysFdir::earthImpactScenario -state TethysFdir::earthImpactScenario.tug.modes -advance 2592000 $MODEL
+run fdir-inhibit-chain-held $SYSML -quiet -instantiate TethysFdir::inhibitedChain -action "TethysFdir::InhibitChain::cinch TethysFdir::inhibitedChain" $MODEL
+run fdir-inhibit-chain-check $SYSML -quiet -engine check -instantiate TethysFdir::armedChain -action "TethysFdir::InhibitChain::cinch TethysFdir::armedChain" -check-property TethysFdir::InhibitChain::noFireWithoutInhibitsRemoved $MODEL
+run fdir-inhibit-chain-smt $SYSML -quiet -engine smt -instantiate TethysFdir::armedChain -action "TethysFdir::InhibitChain::cinch TethysFdir::armedChain" -check-input armCommanded -check-input groundEnable -check-input inCaptureMode -check-property TethysFdir::InhibitChain::noFireWithoutInhibitsRemoved $MODEL
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi

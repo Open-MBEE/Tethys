@@ -1,10 +1,10 @@
-// Probe for docs/findings.md F-004: `accept after` on a duration that arrived through an `in`
+// Probe for docs/findings/WP-E.md F-E02: `accept after` on a duration that arrived through an `in`
 // parameter is refused at instantiation, while the same wait on an owned attribute with a
 // literal value runs. Run:
-//   sysml -quiet -instantiate ProbeF004::hostA -action "ProbeF004::HostA::a ProbeF004::hostA" -advance 2000000 model/probes/F-004-accept-after-parameter.sysml
-//   sysml -quiet -instantiate ProbeF004::hostC -action "ProbeF004::HostC::c ProbeF004::hostC" -advance 2000000 model/probes/F-004-accept-after-parameter.sysml
+//   sysml -quiet -instantiate ProbeFE02::hostA -action "ProbeFE02::HostA::a ProbeFE02::hostA" -advance 2000000 model/probes/F-E02-accept-after-parameter.sysml
+//   sysml -quiet -instantiate ProbeFE02::hostC -action "ProbeFE02::HostC::c ProbeFE02::hostC" -advance 2000000 model/probes/F-E02-accept-after-parameter.sysml
 // Observed: hostA — "accept after howLong must be constant, got sequence"; hostC — finished = [true].
-package ProbeF004 {
+package ProbeFE02 {
     private import ScalarValues::*;
     private import ISQ::*;
     private import SI::*;

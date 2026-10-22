@@ -1,0 +1,681 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysHouseRules
+[trace] materialize: thrusterFaultScenario #1
+[trace] materialize: ThrusterFaultInjector #2
+[trace] start: performed action campaign of #2
+[trace] materialize: campaign #3
+[trace] materialize: FdirTug #4
+[trace] start: exhibited state machine fdir of #4
+[trace] materialize: FdirSupervisor #5
+[trace] materialize: cruiseLimits #6
+[trace] eval feature cruiseLimits -> instance#6
+[trace]   eval literal 400000.0 -> 400000.0
+[trace] eval index -> 400000.0 [km]
+[trace] choice entering FdirSupervisor: next armed(entry), thrusterHealth.nominal(entry), ppuHealth.nominal(entry), powerHealth.nominal(entry), attitudeHealth.nominal(entry), monitoring(entry) (unordered; took armed(entry) first; independent)
+[trace] enter: armed
+[trace] choice entering FdirSupervisor: next thrusterHealth.nominal(entry), ppuHealth.nominal(entry), powerHealth.nominal(entry), attitudeHealth.nominal(entry), monitoring(entry) (unordered; took thrusterHealth.nominal(entry) first; independent)
+[trace] enter: nominal
+[trace] choice entering FdirSupervisor: next ppuHealth.nominal(entry), powerHealth.nominal(entry), attitudeHealth.nominal(entry), monitoring(entry) (unordered; took ppuHealth.nominal(entry) first; independent)
+[trace] enter: nominal
+[trace] choice entering FdirSupervisor: next powerHealth.nominal(entry), attitudeHealth.nominal(entry), monitoring(entry) (unordered; took powerHealth.nominal(entry) first; independent)
+[trace] enter: nominal
+[trace] choice entering FdirSupervisor: next attitudeHealth.nominal(entry), monitoring(entry) (unordered; took attitudeHealth.nominal(entry) first; independent)
+[trace] enter: nominal
+[trace] enter: monitoring
+[trace]   eval feature limits -> instance#6
+[trace]     eval literal 7.0 -> 7.0
+[trace]   eval index -> 7.0 [d]
+[trace] eval chain commandLossTimeout -> 7.0 [d]
+[trace] start: exhibited state machine modes of #4
+[trace] materialize: TugModes #7
+[trace] materialize: envelope #8
+[trace]   eval literal 50.0 -> 50.0
+[trace] eval index -> 50.0 [km]
+[trace]   eval literal 2.0 -> 2.0
+[trace] eval index -> 2.0 [h]
+[trace]   eval literal 30.0 -> 30.0
+[trace] eval index -> 30.0 [d]
+[trace] eval literal "" -> ""
+[trace] choice entering TugModes: next launch(entry), off(entry), lowGain(entry), thrusters(entry), stowed(entry) (unordered; took launch(entry) first; independent)
+[trace] enter: launch
+[trace] enter: onLauncher
+[trace] choice entering TugModes: next off(entry), lowGain(entry), thrusters(entry), stowed(entry) (unordered; took off(entry) first; independent)
+[trace] enter: off
+[trace] choice entering TugModes: next lowGain(entry), thrusters(entry), stowed(entry) (unordered; took lowGain(entry) first; independent)
+[trace] enter: lowGain
+[trace] choice entering TugModes: next thrusters(entry), stowed(entry) (unordered; took thrusters(entry) first; independent)
+[trace] enter: thrusters
+[trace] enter: stowed
+[trace] run: performed action campaign of #2
+[trace] step 1: token 1@toSeparation
+[trace]   eval literal 0.05 -> 0.05
+[trace] eval index -> 0.05 [d]
+[trace] run: exhibited state machine fdir of #4
+[trace] run: exhibited state machine modes of #4
+✓ Created instance of TethysFdir::thrusterFaultScenario
+  ID: 1
+  Use %features TethysFdir::thrusterFaultScenario to inspect
+[trace] materialize: toSeparation #9
+[trace] materialize: separation #10
+[trace] materialize: toDeployment #11
+[trace] materialize: deployment #12
+[trace] materialize: commissioning #13
+[trace] materialize: pass0 #14
+[trace] materialize: arc #15
+[trace] materialize: run1 #16
+[trace] materialize: pass1 #17
+[trace] materialize: flameout1 #18
+[trace] materialize: run2 #19
+[trace] materialize: pass2 #20
+[trace] materialize: flameout2 #21
+[trace] materialize: run3 #22
+[trace] materialize: pass3 #23
+[trace] materialize: flameout3 #24
+[trace] materialize: run4 #25
+[trace] materialize: pass4 #26
+[trace] materialize: ppuTrip #27
+[trace] materialize: run5 #28
+[trace] materialize: pass5 #29
+[trace] materialize: flameout4 #30
+[trace] materialize: safeHold #31
+[trace] materialize: CommandPort #32
+[trace] materialize: GroundCommand #33
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: OnBoardEvent #34
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: CommandPort #35
+[trace] materialize: GroundCommand #36
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: OnBoardEvent #37
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace]   eval literal 2.0 -> 2.0
+[trace] eval index -> 2.0 [h]
+[trace]   eval literal 63781.37 -> 63781.37
+[trace] eval index -> 63781.37 [km]
+[trace] materialize: commandLossTimer #38
+[trace] materialize: thrusterHealth #39
+[trace] materialize: ppuHealth #40
+[trace] materialize: powerHealth #41
+[trace] materialize: attitudeHealth #42
+[trace] materialize: earthImpactExclusion #43
+[trace] materialize: entryAction #44
+[trace] materialize: Action #45
+[trace] materialize: Action #46
+[trace] materialize: CommandPort #47
+[trace] materialize: GroundCommand #48
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: OnBoardEvent #49
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: CommandPort #50
+[trace] materialize: GroundCommand #51
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: OnBoardEvent #52
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace]   eval literal 1000.0e3 -> 1000000.0
+[trace] eval index -> 1000000.0 [kg]
+[trace]   eval literal 10.0 -> 10.0
+[trace] eval index -> 10.0 [m]
+[trace] materialize: flightMode #53
+[trace] materialize: sepString #54
+[trace] materialize: telecom #55
+[trace] materialize: attitudeControl #56
+[trace] materialize: captureMechanism #57
+[trace] materialize: entryAction #58
+[trace] materialize: Action #59
+[trace] materialize: Action #60
+[trace] materialize: MassValue #61
+[trace] materialize: MassValue #62
+[trace] materialize: StructureAndMechanisms #63
+[trace] materialize: MechanicalPort #64
+[trace] materialize: MechanicalLoad #65
+[trace] materialize: AccelerationValue #66
+[trace] materialize: ForceValue #67
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Boolean #68
+[trace] materialize: MechanicalPort #69
+[trace] materialize: MechanicalLoad #70
+[trace] materialize: AccelerationValue #71
+[trace] materialize: ForceValue #72
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Boolean #73
+[trace] materialize: DockingPort #74
+[trace] materialize: MechanicalLoad #75
+[trace] materialize: AccelerationValue #76
+[trace] materialize: ForceValue #77
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: ElectricalPower #78
+[trace] materialize: ElectricPotentialValue #79
+[trace] materialize: PowerValue #80
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telemetry #81
+[trace] materialize: Real #82
+[trace] materialize: Real #83
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: MassValue #84
+[trace] materialize: PowerOutlet #85
+[trace] materialize: ElectricalPower #86
+[trace] materialize: ElectricPotentialValue #87
+[trace] materialize: PowerValue #88
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: DataBusPort #89
+[trace] materialize: Telemetry #90
+[trace] materialize: Real #91
+[trace] materialize: Real #92
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telecommand #93
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: ThermalControl #94
+[trace] materialize: ThermalPort #95
+[trace] materialize: Heat #96
+[trace] materialize: PowerValue #97
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: MassValue #98
+[trace] materialize: PowerOutlet #99
+[trace] materialize: ElectricalPower #100
+[trace] materialize: ElectricPotentialValue #101
+[trace] materialize: PowerValue #102
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: DataBusPort #103
+[trace] materialize: Telemetry #104
+[trace] materialize: Real #105
+[trace] materialize: Real #106
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telecommand #107
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: ElectricalPower #108
+[trace] materialize: PowerValue #109
+[trace] materialize: PowerOutlet #110
+[trace] materialize: ElectricalPower #111
+[trace] materialize: ElectricPotentialValue #112
+[trace] materialize: PowerValue #113
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: PowerOutlet #114
+[trace] materialize: ElectricalPower #115
+[trace] materialize: ElectricPotentialValue #116
+[trace] materialize: PowerValue #117
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: UmbilicalPort #118
+[trace] materialize: ElectricalPower #119
+[trace] materialize: ElectricPotentialValue #120
+[trace] materialize: PowerValue #121
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telemetry #122
+[trace] materialize: Real #123
+[trace] materialize: Real #124
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: MassValue #125
+[trace] materialize: PowerOutlet #126
+[trace] materialize: ElectricalPower #127
+[trace] materialize: ElectricPotentialValue #128
+[trace] materialize: PowerValue #129
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: DataBusPort #130
+[trace] materialize: Telemetry #131
+[trace] materialize: Real #132
+[trace] materialize: Real #133
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telecommand #134
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: CommandAndDataHandling #135
+[trace] materialize: DataBusPort #136
+[trace] materialize: Telemetry #137
+[trace] materialize: Real #138
+[trace] materialize: Real #139
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telecommand #140
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: MassValue #141
+[trace] materialize: PowerOutlet #142
+[trace] materialize: ElectricalPower #143
+[trace] materialize: ElectricPotentialValue #144
+[trace] materialize: PowerValue #145
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: DataBusPort #146
+[trace] materialize: Telemetry #147
+[trace] materialize: Real #148
+[trace] materialize: Real #149
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telecommand #150
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telecommunications #151
+[trace] materialize: RfPort #152
+[trace] materialize: RfCarrier #153
+[trace] materialize: FrequencyValue #154
+[trace] materialize: PowerValue #155
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: RfPort #156
+[trace] materialize: RfCarrier #157
+[trace] materialize: FrequencyValue #158
+[trace] materialize: PowerValue #159
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: MassValue #160
+[trace] materialize: PowerOutlet #161
+[trace] materialize: ElectricalPower #162
+[trace] materialize: ElectricPotentialValue #163
+[trace] materialize: PowerValue #164
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: DataBusPort #165
+[trace] materialize: Telemetry #166
+[trace] materialize: Real #167
+[trace] materialize: Real #168
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telecommand #169
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: GuidanceNavigationControl #170
+[trace] materialize: MassValue #171
+[trace] materialize: PowerOutlet #172
+[trace] materialize: ElectricalPower #173
+[trace] materialize: ElectricPotentialValue #174
+[trace] materialize: PowerValue #175
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: DataBusPort #176
+[trace] materialize: Telemetry #177
+[trace] materialize: Real #178
+[trace] materialize: Real #179
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telecommand #180
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: SolarElectricPropulsion #181
+[trace] materialize: MassValue #182
+[trace] materialize: Natural #183
+[trace] materialize: Natural #184
+[trace] materialize: DurationValue #185
+[trace] materialize: PowerValue #186
+[trace] materialize: FluidPort #187
+[trace] materialize: Propellant #188
+[trace] materialize: MassValue #189
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: MassValue #190
+[trace] materialize: PowerOutlet #191
+[trace] materialize: ElectricalPower #192
+[trace] materialize: ElectricPotentialValue #193
+[trace] materialize: PowerValue #194
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: DataBusPort #195
+[trace] materialize: Telemetry #196
+[trace] materialize: Real #197
+[trace] materialize: Real #198
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telecommand #199
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: ReactionControl #200
+[trace] materialize: MassValue #201
+[trace] materialize: FluidPort #202
+[trace] materialize: Propellant #203
+[trace] materialize: MassValue #204
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: MassValue #205
+[trace] materialize: PowerOutlet #206
+[trace] materialize: ElectricalPower #207
+[trace] materialize: ElectricPotentialValue #208
+[trace] materialize: PowerValue #209
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: DataBusPort #210
+[trace] materialize: Telemetry #211
+[trace] materialize: Real #212
+[trace] materialize: Real #213
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telecommand #214
+warning: TethysFdir::thrusterFaultScenario: materialization is bounded; not every feature value was checked
+[trace] run: performed action campaign of #2
+[trace] step 2: token 1@separation
+[trace] stmt send
+[trace] materialize: SeparationConfirmed #215
+[trace] step 3: token 1@toDeployment
+[trace]   eval literal 0.05 -> 0.05
+[trace] eval index -> 0.05 [d]
+[trace] run: exhibited state machine modes of #4
+[trace] exit: onLauncher
+[trace] enter: deploying
+[trace] eval feature arraysDeploymentTimeout -> 2.0 [h]
+[trace] transition: onLauncher -> deploying (event: accept SeparationConfirmed)
+[trace] run: performed action campaign of #2
+[trace] step 4: token 1@deployment
+[trace] stmt send
+[trace] materialize: ArraysDeployed #216
+[trace] step 5: token 1@commissioning
+[trace]   eval literal 5.0 -> 5.0
+[trace] eval index -> 5.0 [d]
+[trace] run: exhibited state machine modes of #4
+[trace] choice on accept ArraysDeployed: next deploying(exit), off(exit), lowGain(exit), thrusters(exit) (unordered; took deploying(exit) first; independent)
+[trace] exit: deploying
+[trace] enter: done
+[trace] transition: deploying -> done (event: accept ArraysDeployed)
+[trace] choice on accept ArraysDeployed: next off(exit), lowGain(exit), thrusters(exit) (unordered; took off(exit) first; independent)
+[trace] exit: off
+[trace] enter: standby
+[trace] transition: off -> standby (event: accept ArraysDeployed)
+[trace] choice on accept ArraysDeployed: next lowGain(exit), thrusters(exit) (unordered; took lowGain(exit) first; independent)
+[trace] exit: lowGain
+[trace] enter: highGain
+[trace] transition: lowGain -> highGain (event: accept ArraysDeployed)
+[trace] exit: thrusters
+[trace] enter: wheels
+[trace] transition: thrusters -> wheels (event: accept ArraysDeployed)
+[trace] exit: done
+[trace] exit: launch
+[trace] enter: freeFlight
+[trace] enter: coast
+[trace] transition: done -> freeFlight
+[trace] run: performed action campaign of #2
+[trace] step 6: token 1@pass0
+[trace] stmt send
+[trace] materialize: GroundContact #217
+[trace] step 7: token 1@arc
+[trace] stmt send
+[trace]     eval literal 200.0 -> 200.0
+[trace]   eval index -> 200.0 [d]
+[trace] materialize: ThrustArcGo #218
+[trace] step 8: token 1@run1
+[trace]   eval literal 5.0 -> 5.0
+[trace] eval index -> 5.0 [d]
+[trace] choice at t=440640.0: due state machine FdirSupervisor of object #4, state machine TugModes of object #4 (unordered; ran state machine TugModes of object #4 first; order-dependent: abortEntries, captured, flameoutRetries, healthyThrusters, lastEarthClosestApproach, lastImpactProbability, lastSafeModeReason, ppuTrips, safeModeEntries, safeModeRequests, thrustArcsStarted)
+[trace] run: exhibited state machine modes of #4
+[trace] choice on accept ThrustArcGo: next coast(exit), standby(exit) (unordered; took coast(exit) first; independent)
+[trace] exit: coast
+[trace] enter: thrust (entry action)
+[trace] stmt assign thrustArcsStarted
+[trace]     eval feature thrustArcsStarted -> 0
+[trace]     eval literal 1 -> 1
+[trace]   eval operator + -> 1
+[trace] transition: coast -> thrust (event: accept ThrustArcGo)
+[trace] exit: standby
+[trace] enter: thrusting
+[trace] transition: standby -> thrusting (event: accept ThrustArcGo)
+[trace] run: exhibited state machine fdir of #4
+[trace] exit: armed
+[trace] enter: armed
+[trace]   eval feature limits -> instance#6
+[trace] eval chain commandLossTimeout -> 7.0 [d]
+[trace] transition: armed -> armed (event: accept GroundContact)
+[trace] run: performed action campaign of #2
+[trace] step 9: token 1@pass1
+[trace] stmt send
+[trace] materialize: GroundContact #219
+[trace] step 10: token 1@flameout1
+[trace] stmt send
+[trace]   eval feature FdirLevel::subsystem -> FdirLevel::subsystem
+[trace]   eval literal 2 -> 2
+[trace] materialize: ThrusterFlameout #220
+[trace] step 11: token 1@run2
+[trace]   eval literal 5.0 -> 5.0
+[trace] eval index -> 5.0 [d]
+[trace] run: exhibited state machine fdir of #4
+[trace] exit: armed
+[trace] enter: armed
+[trace]   eval feature limits -> instance#6
+[trace] eval chain commandLossTimeout -> 7.0 [d]
+[trace] transition: armed -> armed (event: accept GroundContact)
+[trace]   eval feature flameoutRetries -> 0
+[trace]     eval feature limits -> instance#6
+[trace]   eval chain maximumFlameoutRetries -> 2
+[trace] eval operator < -> true
+[trace]   eval feature flameoutRetries -> 0
+[trace]     eval feature limits -> instance#6
+[trace]   eval chain maximumFlameoutRetries -> 2
+[trace] eval operator < -> true
+[trace] exit: nominal
+[trace] stmt assign flameoutRetries
+[trace]     eval feature flameoutRetries -> 0
+[trace]     eval literal 1 -> 1
+[trace]   eval operator + -> 1
+[trace] enter: restarting
+[trace]   eval feature limits -> instance#6
+[trace] eval chain thrusterRestartDelay -> 2.0 [h]
+[trace] transition: nominal -> restarting (event: accept ThrusterFlameout)
+✓ Debugging state machine "fdir" exhibited by object #4 of "TethysFdir::thrusterFaultScenario.tug"
+  Current state: armed | nominal | nominal | nominal | nominal | monitoring
+  Time: 0.0
+  Events: 1
+✓ Advanced to 876960.0 (7 event(s) processed)
+  Current state: armed | restarting | nominal | nominal | nominal | monitoring
+  Last event at: 872640.0
+  Remaining events: 2
+  5 choice points (4 independent)
+  Action steps taken: 10
+  Waiting on the clock:
+    t=879840.0: state machine FdirSupervisor of object #4, time -> nominal
+    t=1304640.0: action campaign of object #2, accept after waiting since step 12 for the clock to reach t=1304640.0
+    t=1477440.0: state machine FdirSupervisor of object #4, time -> expired
+  standing: value (observed: 1 run under reverse)

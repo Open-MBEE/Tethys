@@ -1,0 +1,33 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysHouseRules
+✓ Created instance of TethysFdir::earthImpactScenario
+  ID: 1
+  Use %features TethysFdir::earthImpactScenario to inspect
+warning: TethysFdir::earthImpactScenario: materialization is bounded; not every feature value was checked
+✓ Debugging state machine "fdir" exhibited by object #4 of "TethysFdir::earthImpactScenario.tug"
+  Current state: armed | nominal | nominal | nominal | nominal | monitoring
+  Time: 0.0
+  Events: 1
+✓ Advanced to 2592000.0 (19 event(s) processed)
+  Current state: armed | nominal | nominal | nominal | nominal | aborted
+  Last event at: 2427840.0
+  Remaining events: 1
+  16 choice points (12 independent); %trace on to see them
+  Action steps taken: 24
+  Waiting on the clock:
+    t=2600640.0: action campaign of object #2, accept after waiting since step 26 for the clock to reach t=2600640.0
+    t=3032640.0: state machine FdirSupervisor of object #4, time -> expired
+  standing: value (observed: 1 run under reverse)
