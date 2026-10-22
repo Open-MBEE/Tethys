@@ -31,6 +31,7 @@
 ✓ package TethysFlightSoftware
 ✓ package TethysFlightDictionaryDocuments
 ✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
@@ -69,7 +70,9 @@ note: object #1 of "TethysSequence::largeTargetCampaign" already performs "Tethy
   Results:
     captureAndDespin.despin.initialSpinPeriod = [900.0 [s]]
     captureAndDespin.despin.pulseTrains = 5
+    captureAndDespin.despin.sequenceId = 2
     captureAndDespin.despin.spinPeriod = 9437.184 [s]
+    captureAndDespin.despin.timeTagged = true
     captureAndDespin.despin.wheelTakeoverPeriod = [7200.0 [s]]
     captured = [true]
     droCheckout.controlBox = [10.0 [km]]
@@ -77,6 +80,8 @@ note: object #1 of "TethysSequence::largeTargetCampaign" already performs "Tethy
     droCheckout.drift = 4.608 [km]
     droCheckout.hydrazineUsed = [4.5 [kg]]
     droCheckout.initialDrift = [180.0 [km]]
+    droCheckout.sequenceId = 5
+    droCheckout.timeTagged = true
     droCheckout.trimPerCycle = 1.5 [kg]
     droCheckout.trims = [4]
     droInsertion.corridorError = [1200.0 [km]]
@@ -84,12 +89,16 @@ note: object #1 of "TethysSequence::largeTargetCampaign" already performs "Tethy
     droInsertion.inserted = [true]
     droInsertion.insertionArcDuration = 20.0 [d]
     droInsertion.outcome = ["inserted into the DRO"]
+    droInsertion.sequenceId = 4
+    droInsertion.timeTagged = true
     envelope = [Instance(ID: 4)]
     inserted = [true]
     inspectorRelease.checkoutPassed = [true]
     inspectorRelease.groundGo = [true]
     inspectorRelease.holdReason = [""]
     inspectorRelease.released = [true]
+    inspectorRelease.sequenceId = 3
+    inspectorRelease.timeTagged = true
     inspectorRelease.umbilicalDisconnected = true
     inspectorReleased = true
     lunarAssistAt = 11707200.0 [s]
@@ -98,7 +107,9 @@ note: object #1 of "TethysSequence::largeTargetCampaign" already performs "Tethy
     outcome = ["disposed after 7 thrust arcs"]
     returnArcPlan = [4]
     returnArcs = 4
+    sequenceId = 6
     target = [Instance(ID: 3)]
+    timeTagged = true
     xenonRemaining = 955.0 [kg]
     xenonReserve = 132.0 [kg]
   standing: value (observed: 1 run under reverse)

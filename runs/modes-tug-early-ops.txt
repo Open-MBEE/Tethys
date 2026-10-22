@@ -31,6 +31,7 @@
 ✓ package TethysFlightSoftware
 ✓ package TethysFlightDictionaryDocuments
 ✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
@@ -67,6 +68,7 @@
 [trace] eval index -> 2.0 [h]
 [trace]   eval literal 30.0 -> 30.0
 [trace] eval index -> 30.0 [d]
+[trace] eval literal "" -> ""
 [trace] eval literal "" -> ""
 [trace] choice entering TugModes: next launch(entry), off(entry), lowGain(entry), thrusters(entry), stowed(entry) (unordered; took launch(entry) first; independent)
 [trace] enter: launch

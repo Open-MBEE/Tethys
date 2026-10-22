@@ -31,6 +31,7 @@
 ✓ package TethysFlightSoftware
 ✓ package TethysFlightDictionaryDocuments
 ✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses

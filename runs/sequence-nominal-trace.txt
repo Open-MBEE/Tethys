@@ -31,6 +31,7 @@
 ✓ package TethysFlightSoftware
 ✓ package TethysFlightDictionaryDocuments
 ✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
@@ -655,9 +656,11 @@
 [trace]         eval literal 215.0 -> 215.0
 [trace]       eval index -> 215.0 [kg]
 [trace]       eval feature xenonRemaining -> 6600.0 [kg]
+[trace]       eval literal 1 -> 1
 [trace]         eval feature xenonBefore -> (6600.0 [kg])
 [trace]         eval feature xenonPerArc -> (215.0 [kg])
 [trace]       eval operator - -> 6385.0 [kg]
+[trace]       eval literal true -> true
 [trace]       stmt assign xenonRemaining
 [trace]         eval chain xenonAfter -> (6385.0 [kg])
 [trace]       stmt assign outboundArcs
@@ -680,9 +683,11 @@
 [trace]         eval literal 215.0 -> 215.0
 [trace]       eval index -> 215.0 [kg]
 [trace]       eval feature xenonRemaining -> 6385.0 [kg]
+[trace]       eval literal 1 -> 1
 [trace]         eval feature xenonBefore -> (6385.0 [kg])
 [trace]         eval feature xenonPerArc -> (215.0 [kg])
 [trace]       eval operator - -> 6170.0 [kg]
+[trace]       eval literal true -> true
 [trace]       stmt assign xenonRemaining
 [trace]         eval chain xenonAfter -> (6170.0 [kg])
 [trace]       stmt assign outboundArcs
@@ -704,9 +709,11 @@
 [trace]         eval literal 215.0 -> 215.0
 [trace]       eval index -> 215.0 [kg]
 [trace]       eval feature xenonRemaining -> 6170.0 [kg]
+[trace]       eval literal 1 -> 1
 [trace]         eval feature xenonBefore -> (6170.0 [kg])
 [trace]         eval feature xenonPerArc -> (215.0 [kg])
 [trace]       eval operator - -> 5955.0 [kg]
+[trace]       eval literal true -> true
 [trace]       stmt assign xenonRemaining
 [trace]         eval chain xenonAfter -> (5955.0 [kg])
 [trace]       stmt assign outboundArcs
@@ -732,9 +739,11 @@
 [trace] step 7: token 1@inspectorRelease
 [trace] eval literal true -> true
 [trace] eval literal true -> true
+[trace] eval literal 3 -> 3
 [trace] eval literal false -> false
 [trace] eval literal false -> false
 [trace] eval literal "" -> ""
+[trace] eval literal true -> true
 [trace] step 1: token 1@checkoutGate
 [trace] eval feature checkoutPassed -> (true)
 [trace] step 2: token 1@disconnectUmbilical
@@ -791,8 +800,10 @@
 [trace] eval index -> 900.0 [s]
 [trace]   eval literal 7200.0 -> 7200.0
 [trace] eval index -> 7200.0 [s]
+[trace] eval literal 2 -> 2
 [trace] eval feature initialSpinPeriod -> (900.0 [s])
 [trace] eval literal 0 -> 0
+[trace] eval literal true -> true
 [trace] step 1: token 1@while
 [trace] stmt while
 [trace]   iteration 1
@@ -890,9 +901,11 @@
 [trace]         eval literal 1250.0 -> 1250.0
 [trace]       eval index -> 1250.0 [kg]
 [trace]       eval feature xenonRemaining -> 5955.0 [kg]
+[trace]       eval literal 1 -> 1
 [trace]         eval feature xenonBefore -> (5955.0 [kg])
 [trace]         eval feature xenonPerArc -> (1250.0 [kg])
 [trace]       eval operator - -> 4705.0 [kg]
+[trace]       eval literal true -> true
 [trace]       stmt assign xenonRemaining
 [trace]         eval chain xenonAfter -> (4705.0 [kg])
 [trace]       stmt assign returnArcs
@@ -911,9 +924,11 @@
 [trace]         eval literal 1250.0 -> 1250.0
 [trace]       eval index -> 1250.0 [kg]
 [trace]       eval feature xenonRemaining -> 4705.0 [kg]
+[trace]       eval literal 1 -> 1
 [trace]         eval feature xenonBefore -> (4705.0 [kg])
 [trace]         eval feature xenonPerArc -> (1250.0 [kg])
 [trace]       eval operator - -> 3455.0 [kg]
+[trace]       eval literal true -> true
 [trace]       stmt assign xenonRemaining
 [trace]         eval chain xenonAfter -> (3455.0 [kg])
 [trace]       stmt assign returnArcs
@@ -932,9 +947,11 @@
 [trace]         eval literal 1250.0 -> 1250.0
 [trace]       eval index -> 1250.0 [kg]
 [trace]       eval feature xenonRemaining -> 3455.0 [kg]
+[trace]       eval literal 1 -> 1
 [trace]         eval feature xenonBefore -> (3455.0 [kg])
 [trace]         eval feature xenonPerArc -> (1250.0 [kg])
 [trace]       eval operator - -> 2205.0 [kg]
+[trace]       eval literal true -> true
 [trace]       stmt assign xenonRemaining
 [trace]         eval chain xenonAfter -> (2205.0 [kg])
 [trace]       stmt assign returnArcs
@@ -953,9 +970,11 @@
 [trace]         eval literal 1250.0 -> 1250.0
 [trace]       eval index -> 1250.0 [kg]
 [trace]       eval feature xenonRemaining -> 2205.0 [kg]
+[trace]       eval literal 1 -> 1
 [trace]         eval feature xenonBefore -> (2205.0 [kg])
 [trace]         eval feature xenonPerArc -> (1250.0 [kg])
 [trace]       eval operator - -> 955.0 [kg]
+[trace]       eval literal true -> true
 [trace]       stmt assign xenonRemaining
 [trace]         eval chain xenonAfter -> (955.0 [kg])
 [trace]       stmt assign returnArcs
@@ -987,10 +1006,12 @@
 [trace] eval index -> 1200.0 [km]
 [trace]   eval literal 5000.0 -> 5000.0
 [trace] eval index -> 5000.0 [km]
+[trace] eval literal 4 -> 4
 [trace]   eval literal 20.0 -> 20.0
 [trace] eval index -> 20.0 [d]
 [trace] eval literal false -> false
 [trace] eval literal "" -> ""
+[trace] eval literal true -> true
 [trace] step 1: token 1@corridorGate
 [trace]   eval feature corridorError -> (1200.0 [km])
 [trace]   eval feature corridorHalfWidth -> (5000.0 [km])
@@ -1020,12 +1041,14 @@
 [trace]   eval literal 10.0 -> 10.0
 [trace] eval index -> 10.0 [km]
 [trace] eval literal 3 -> 3
+[trace] eval literal 5 -> 5
 [trace] eval feature initialDrift -> (180.0 [km])
 [trace]   eval literal 1.5 -> 1.5
 [trace] eval index -> 1.5 [kg]
 [trace] eval literal 0 -> 0
 [trace]   eval literal 0.0 -> 0.0
 [trace] eval index -> 0.0 [kg]
+[trace] eval literal true -> true
 [trace] step 1: token 1@loop until
 [trace] stmt loop until
 [trace]   iteration 1
@@ -1161,7 +1184,9 @@ note: object #1 of "TethysSequence::nominalCampaign" already performs "TethysSeq
   Results:
     captureAndDespin.despin.initialSpinPeriod = [900.0 [s]]
     captureAndDespin.despin.pulseTrains = 5
+    captureAndDespin.despin.sequenceId = 2
     captureAndDespin.despin.spinPeriod = 9437.184 [s]
+    captureAndDespin.despin.timeTagged = true
     captureAndDespin.despin.wheelTakeoverPeriod = [7200.0 [s]]
     captured = [true]
     droCheckout.controlBox = [10.0 [km]]
@@ -1169,6 +1194,8 @@ note: object #1 of "TethysSequence::nominalCampaign" already performs "TethysSeq
     droCheckout.drift = 4.608 [km]
     droCheckout.hydrazineUsed = [4.5 [kg]]
     droCheckout.initialDrift = [180.0 [km]]
+    droCheckout.sequenceId = 5
+    droCheckout.timeTagged = true
     droCheckout.trimPerCycle = 1.5 [kg]
     droCheckout.trims = [4]
     droInsertion.corridorError = [1200.0 [km]]
@@ -1176,12 +1203,16 @@ note: object #1 of "TethysSequence::nominalCampaign" already performs "TethysSeq
     droInsertion.inserted = [true]
     droInsertion.insertionArcDuration = 20.0 [d]
     droInsertion.outcome = ["inserted into the DRO"]
+    droInsertion.sequenceId = 4
+    droInsertion.timeTagged = true
     envelope = [Instance(ID: 4)]
     inserted = [true]
     inspectorRelease.checkoutPassed = [true]
     inspectorRelease.groundGo = [true]
     inspectorRelease.holdReason = [""]
     inspectorRelease.released = [true]
+    inspectorRelease.sequenceId = 3
+    inspectorRelease.timeTagged = true
     inspectorRelease.umbilicalDisconnected = true
     inspectorReleased = true
     lunarAssistAt = 11707200.0 [s]
@@ -1190,7 +1221,9 @@ note: object #1 of "TethysSequence::nominalCampaign" already performs "TethysSeq
     outcome = ["disposed after 7 thrust arcs"]
     returnArcPlan = [4]
     returnArcs = 4
+    sequenceId = 6
     target = [Instance(ID: 3)]
+    timeTagged = true
     xenonRemaining = 955.0 [kg]
     xenonReserve = 132.0 [kg]
   standing: value (observed: 1 run under reverse)
