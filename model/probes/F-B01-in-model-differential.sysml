@@ -1,5 +1,5 @@
 // F-B01 probe. Load with the whole model and evaluate each attribute in its own process:
-//   sysml -e "ProbeEnumMembership::viaNamedSet" model/*.sysml model/probes/F-B01-enum-membership-by-access-path.sysml
+//   sysml -e "ProbeEnumMembership::viaNamedSet" model/*.sysml model/probes/F-B01-in-model-differential.sysml
 // Expected (KerML 8.4.4.6 SequenceFunctions::includes, 7.4.9 Expressions): every attribute below
 // reads the same unit values, so viaNamedSet = viaAllUnits = inPart.viaNamedSet = 42 W and
 // twoTerms = 280 W. Observed on OpenSysML v0.10.1-2054-g0a5fa2d94: viaNamedSet = 42 W,
