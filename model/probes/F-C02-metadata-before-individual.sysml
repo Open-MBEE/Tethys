@@ -1,4 +1,4 @@
-package 'F-004' {
+package 'F-C02' {
     doc /* Prefix metadata placed before `individual`, which the textual notation does not
          * allow (the PrefixMetadataMember follows `individual`). */
     metadata def Tag;

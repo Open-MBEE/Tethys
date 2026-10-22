@@ -1,4 +1,4 @@
-package 'F-005' {
+package 'F-C03' {
     doc /* A usage redefines an `in` parameter of its definition without restating the
          * direction; the redefining feature's direction must conform. */
     private import ScalarValues::*;

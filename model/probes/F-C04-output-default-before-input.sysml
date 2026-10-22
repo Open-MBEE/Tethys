@@ -1,4 +1,4 @@
-package 'F-006' {
+package 'F-C04' {
     doc /* An action's `out` parameter with a default computed from its `in` parameter,
          * invoked in a sequence whose input is bound through a `bind` in the context. */
     private import ScalarValues::*;

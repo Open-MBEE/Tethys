@@ -1,4 +1,4 @@
-package 'F-003' {
+package 'F-C01' {
     doc /* IndividualDefinition with prefix metadata between `individual` and `def`
          * (SysML v2 textual notation: `individual` EmptyMultiplicityMember
          * DefinitionExtensionKeyword* `def`). */
