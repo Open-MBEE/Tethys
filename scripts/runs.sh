@@ -156,6 +156,6 @@ run render-segment-interfaces-dot $SYSML -render TethysViews::segmentInterfaces 
 run render-mass-budget-csv $SYSML -render TethysViews::massBudget -render-form csv -quiet $MODEL
 run render-documents-md $SYSML -render-documents "$out/documents" -quiet $MODEL
 run render-documents-html $SYSML -render-documents "$out/documents-html" -doc-form html -quiet $MODEL
-run tool-version sh -c "\"$SYSML\" -version | grep -v 'Build time:'"
+run tool-version sh -c "\"$SYSML\" -version | awk '/^ *Commit:/ { print \"  Commit:     \" substr(\$2, 1, 9) } /^ *Go version:/ { print }'"
 run document-queries $SYSML -run-query TethysDocuments::MissionRequirements -run-query TethysDocuments::InterfaceEnds -run-query TethysDocuments::FlightPhases -run-query TethysDocuments::Risks -quiet $MODEL
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi
