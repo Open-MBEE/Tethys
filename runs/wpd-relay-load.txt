@@ -13,6 +13,7 @@
 ✓ package TethysIcds
 ✓ package TethysLinkBudgets
 ✓ package TethysOperations
+✓ package TethysIcdDocuments
 ✓ package TethysHouseRules
 ✓ TethysLinkBudgets::CharacterisationDataVolume(4.0, 0.005, 40.0, 12.0)
   = [965097263.1827835]

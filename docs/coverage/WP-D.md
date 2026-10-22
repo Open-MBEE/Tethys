@@ -2,7 +2,8 @@
 
 Files: `model/50-ground.sysml` (`TethysMeridian`), `model/51-icds.sysml` (`TethysIcds`),
 `model/52-link-budgets.sysml` (`TethysLinkBudgets`), `model/53-operations.sysml`
-(`TethysOperations`); all four are mission tier (no OpenSysML library package is referenced).
+(`TethysOperations`) are mission tier (no OpenSysML library package is referenced);
+`model/54-icds-tooling.sysml` (`TethysIcdDocuments`) is the one tool-tier file (`DocumentQueries`, SE-112 only).
 Proving commands are the `wpd-*` lines of `scripts/runs.sh`; their pinned output is `runs/wpd-*.txt`,
 recorded with OpenSysML built from `develop` at `0a5fa2d94` (`v0.10.1-2054-g0a5fa2d94`). `$M` below is
 `model/*.sysml`; every construct also passes `make validate`, `make pilot` (both tiers) and `make house-rules`.
@@ -22,7 +23,7 @@ recorded with OpenSysML built from `develop` at `0a5fa2d94` (`v0.10.1-2054-g0a5f
 | SE-109 | must | `51 : verification def InterfaceVerification`; 11 `verification` usages (`umbilicalTest` … `subsystemInterfaceTests`), each `objective { verify <'TI-1nn'> }` against an `InterfaceRequirement` | `make validate`, `make pilot` | satisfied — every ICD class has a verification case |
 | SE-110 | should | `51 : SpacePacket`, `TelemetryPacket`, `CommandPacket`, `PacketPort`, `PacketInterface <'TI-010'>`; `50 : EndToEndDataFlow` `message commandRelease of Telecommand`, `message frameDelivery of RawFrames`; `53 : Command`/`TelemetryPoint` dictionary | `make validate`; `run wpd-thrust-arc-procedure` | satisfied — the procedure run's sequence rendering shows six packets exchanged (`runs/wpd-thrust-arc-procedure.txt`) |
 | SE-111 | must | `51` : `bind a.x = b.x` across the two ends plus `binding bind end.x = icdAttribute` in every ICD (`TugInspectorIcd`, `LaunchIcd`, `SpaceGroundIcd`, `InspectorRelayIcd`, `CaptureIcd`, `DockingIcd`, `PowerIcd`, `HighVoltagePowerIcd`, `DataBusIcd`, `ThermalIcd`, `InspectorDispenserIcd`, `InspectorThermalIcd`, `PropellantFeedIcd`); `assert constraint`s on ordered ranges | `make validate` (no binding/type conflict); `make pilot` | satisfied |
-| SE-112 | should | — | `-render-document` needs a `DocumentQueries` document definition (OpenSysML library, tool tier) | open — not attempted in the mission tier; a `model/5N-icds-tooling.sysml` tool-tier file is the place for it |
+| SE-112 | should | `54 : TethysIcdDocuments` (tool tier, `DocumentQueries`): `IcdRegisterDocument` (register, requirements and verification tables over `TethysIcds`) and one `…IcdDocument :> Document` per ICD class (14) with ends and parameter tables fed by `IcdEnds`/`IcdParameters` queries | `run wpd-icd-register-document` = `-render-document TethysIcdDocuments::IcdRegisterDocument $M`; `run wpd-space-ground-icd-document`; `-render-documents <dir>` writes the linked set of 15 | satisfied — non-empty tables (14 ICD rows, 11 requirements, 11 verification cases; 2 ends + 13 parameters for ICD-003); parameter *values* cannot be projected (F-D04) |
 | SE-271 | must | `53` : `Command :> CommandPacket` with 8 specialisations (`SetMode` … `LoadSequence`), argument ranges as `assert constraint`s (`StartThrustArc::throttleInRange`, `AbortToRetreat::speedInRange`); 7 `TelemetryPoint`s with ISQ-typed values and ordered limits; `HousekeepingPacket`/`PropulsionPacket`; `ApidTable`; `CommandExecutiveCoverage` accepts every command; `TG-010 dictionaryConsistent` (distinct APIDs in range) | `run wpd-operations-satisfy` = `-satisfy=TethysOperations` | satisfied — TG-010 holds; FDIR monitors are WP-E's and not yet present to cross-check |
 | SE-272 | must | `53 : OperationsScenario` — `moc` performs `thrustArcProcedure` (three `send`s, three `accept`s of `CommandAcknowledge`), `tug` performs `commandExecutive` (accepts, applies, acknowledges) | `run wpd-thrust-arc-procedure` = `-instantiate TethysOperations::scenario -action "TethysOperations::OperationsScenario::moc::thrustArcProcedure scenario.moc" -advance 10 -render-run sequence=- $M` | satisfied — completes; six messages in the sequence rendering |
 | SE-273 | must | `53` : `NoThrustDuringRelay` (FR-001), `ApproachKeepOut` (FR-002), `SunExclusion` (FR-003), `BatteryDepthOfDischarge` (FR-004) as `constraint def`s with `FR-00n` requirements; `RelayThenThrustProcedure` asserts FR-001 and FR-004 | `run wpd-flight-rules` = `-engine check -action TethysOperations::RelayThenThrustProcedure -check-property TethysOperations::RelayThenThrustProcedure::noThrustDuringRelay -check-property …::batteryFloor $M` | satisfied — both hold over 7 states / 6 moves; FR-002/FR-003 are stated but not yet checked over a procedure that moves range or sun angle |
@@ -53,6 +54,7 @@ recorded with OpenSysML built from `develop` at `0a5fa2d94` (`v0.10.1-2054-g0a5f
 
 `docs/findings/WP-D.md`: F-D01 (positional parameter redefinition not diagnosed by OpenSysML),
 F-D02 (constructor argument overriding a bound value not diagnosed by OpenSysML), F-D03 (pilot
-rejects an owned `action` as an allocation end). Also observed, not a defect: `#matrix` renders
+rejects an owned `action` as an allocation end), F-D04 (DocumentQueries cannot project an attribute
+usage's bound value). Also observed, not a defect: `#matrix` renders
 only interfaces whose usage restates its `connect`; `-render-run timeline` records states, not
 action steps, so the operations timeline is a state machine.

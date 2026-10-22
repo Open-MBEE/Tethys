@@ -13,6 +13,7 @@
 ✓ package TethysIcds
 ✓ package TethysLinkBudgets
 ✓ package TethysOperations
+✓ package TethysIcdDocuments
 ✓ package TethysHouseRules
 ✓ Action TethysOperations::RelayThenThrustProcedure: no violation, exhaustive (7 states, 6 moves, depth 6)
   outcome: relayActive = false; stateOfCharge = 0.55; thrusting = false

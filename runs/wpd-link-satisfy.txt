@@ -13,6 +13,7 @@
 ✓ package TethysIcds
 ✓ package TethysLinkBudgets
 ✓ package TethysOperations
+✓ package TethysIcdDocuments
 ✓ package TethysHouseRules
 ✓ satisfy xDownlinkCloses by xDownlinkAtMaximumRange holds (on TethysLinkBudgets::xDownlinkAtMaximumRange ID: 1)
   standing: holds (observed: 1 run under reverse)

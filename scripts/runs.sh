@@ -20,5 +20,7 @@ run wpd-relay-load $SYSML -calc "TethysLinkBudgets::CharacterisationDataVolume(4
 run wpd-operations-satisfy $SYSML -satisfy=TethysOperations $MODEL
 run wpd-thrust-arc-procedure $SYSML -instantiate TethysOperations::scenario -action "TethysOperations::OperationsScenario::moc::thrustArcProcedure scenario.moc" -advance 10 -render-run sequence=- $MODEL
 run wpd-flight-rules $SYSML -engine check -action TethysOperations::RelayThenThrustProcedure -check-property TethysOperations::RelayThenThrustProcedure::noThrustDuringRelay -check-property TethysOperations::RelayThenThrustProcedure::batteryFloor $MODEL
+run wpd-icd-register-document $SYSML -render-document TethysIcdDocuments::IcdRegisterDocument $MODEL
+run wpd-space-ground-icd-document $SYSML -render-document TethysIcdDocuments::SpaceGroundIcdDocument $MODEL
 run wpd-operations-timeline $SYSML -instantiate TethysOperations::opsTimeline -state "TethysOperations::OperationsTimeline::day TethysOperations::opsTimeline" -advance 50000 -render-run timeline=- $MODEL
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi

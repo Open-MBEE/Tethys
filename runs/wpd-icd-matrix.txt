@@ -1,4 +1,4 @@
-loaded 16 files:
+loaded 17 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -14,6 +14,7 @@ loaded 16 files:
   model/51-icds.sysml
   model/52-link-budgets.sysml
   model/53-operations.sysml
+  model/54-icds-tooling.sysml
   model/99-house-rules.sysml
 ✓ package Tethys
 ✓ package TethysEnvironment
@@ -30,6 +31,7 @@ loaded 16 files:
 ✓ package TethysIcds
 ✓ package TethysLinkBudgets
 ✓ package TethysOperations
+✓ package TethysIcdDocuments
 ✓ package TethysHouseRules
 <!-- matrix rendering (no view declared; rendering TethysIcds::icdSystem directly) -->
 | Source / Target | TethysLaunch::LaunchVehicle::payloadAdapter | TethysGround::DeepSpaceStation::uplinkDownlink | TethysTarget::SmallBody::surface | TethysSystem::VisitingVehicle::docking |
