@@ -1,0 +1,23 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysHouseRules
+✓ Requirement TethysInspectorDetail::circumnavigationDeltaV satisfied
+  standing: holds (observed: 1 run under reverse)
+✓ Requirement TethysCaptureSystem::contactSpeed satisfied
+  standing: holds (observed: 1 run under reverse)
+✓ Requirement TethysCaptureSystem::despinTorque satisfied
+  standing: holds (observed: 1 run under reverse)
+✓ Requirement TethysProximityOps::retreatRange satisfied
+  standing: holds (observed: 1 run under reverse)

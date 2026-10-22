@@ -1,0 +1,17 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysHouseRules
+sysml: instantiation failed: performed action capture of object #1: invoke action CommitDecision: initialize action: initialize attributes: eval attribute default go: type mismatch: operator '<=' is not defined for a sequence and a quantity; DataFunctions::'<=' takes one DataValue per operand
+exit 2

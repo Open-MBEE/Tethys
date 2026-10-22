@@ -1,0 +1,25 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysHouseRules
+✓ Constraint TethysCaptureSystem::smallTargetCase::fits passed
+  standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysCaptureSystem::nominalTargetCase::fits passed
+  standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysCaptureSystem::largeTargetCase::fits passed
+  standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysCaptureSystem::fastSpinTargetCase::fits passed
+  standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysCaptureSystem::tumblingTargetCase::fits passed
+  standing: holds (observed: 1 run under reverse)

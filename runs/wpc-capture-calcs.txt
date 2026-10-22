@@ -1,0 +1,42 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysHouseRules
+✓ TethysCaptureSystem::SphereMomentOfInertia(362.0e3, 6.8)
+  = [1673888.0]
+  standing: value (observed: 1 run under reverse)
+✓ TethysCaptureSystem::AngularMomentum(1.674e6, 252.0)
+  = [41738.302397692925]
+  standing: value (observed: 1 run under reverse)
+✓ TethysCaptureSystem::EquatorialSurfaceSpeed(6.8, 252.0)
+  = [0.08477313509686735]
+  standing: value (observed: 1 run under reverse)
+✓ TethysCaptureSystem::DespinDuration(4.17e4, 120.0)
+  = [347.5]
+  standing: value (observed: 1 run under reverse)
+✓ TethysCaptureSystem::DespinPropellant(4.17e4, 3.0, 220.0)
+  = [6.442752436542365]
+  standing: value (observed: 1 run under reverse)
+✓ TethysCaptureSystem::ContactForce(362.0e3, 0.10, 0.5)
+  = [3620.0]
+  standing: value (observed: 1 run under reverse)
+✓ TethysCaptureSystem::ContactForce(1000.0e3, 0.10, 0.5)
+  = [10000.0]
+  standing: value (observed: 1 run under reverse)
+✓ TethysCaptureSystem::MinimumRotationPeriod(6.0e4, 1000.0e3, 10.0)
+  = [1047.1975511965966]
+  standing: value (observed: 1 run under reverse)
+✓ TethysCaptureSystem::MinimumRotationPeriod(6.0e4, 362.0e3, 6.8)
+  = [175.2891414577369]
+  standing: value (observed: 1 run under reverse)

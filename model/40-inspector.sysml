@@ -310,7 +310,7 @@ package TethysInspectorDetail {
         }
     }
 
-    individual campaign : WrenCampaign {
+    individual #FlightMeasured campaign : WrenCampaign {
         doc /* The Amaranth campaign: 50 m orbits of 6 h, 96 of them over 24 days with 2 cm/s
              * station-keeping against SRP; the Δv is bounded by CampaignDeltaV against
              * ColdGasDeltaV below. */

@@ -78,6 +78,11 @@ package TethysProximityOps {
         succession separation first beforeRelease then afterRelease;
     }
 
+    action def CollectData {
+        doc /* Gather Wren's frames and echoes off the proximity link for the characterisation. */
+        out item imagery : ImageFrame [*] ordered;
+        out item radar : RadarEcho [*] ordered;
+    }
     action def Characterise {
         doc /* Turn Wren's frames and echoes into the shape, spin and mass solution. */
         in item imagery : ImageFrame [*] ordered;
@@ -124,6 +129,9 @@ package TethysProximityOps {
              * body. Contact is the event the sequence waits on; the despin runs to its
              * computed duration. */
         in system : CaptureMechanism;
+        action collect : CollectData;
+        succession flow imageryToCharacterise of ImageFrame from collect.imagery to characterise.imagery;
+        flow of RadarEcho from collect.radar to characterise.radar;
         action characterise : Characterise;
         then action commit : CommitDecision {
             in characterisation = characterise.characterisation;
