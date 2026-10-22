@@ -14,7 +14,7 @@ Same columns as [../findings.md](../findings.md). Every row has its smallest con
 ## Observations that are not tool defects
 
 - The DeciSym pilot wrapper (`validate-sysml`) resolves cross-file references only to files given *earlier* on its command line, which is why `make pilot-mission` depends on the numeric file order (a mission-tier file may import only lower-numbered packages).
-- An `-analysis` of a `Simulation::MonteCarlo` case needs `-runs`; `-draws min|max` alone reports `output never assigned: output runs`. The corner runs are `-draws min -runs 1` / `-draws max -runs 1` (`runs/tooling-montecarlo-corners.txt`).
+- An `-analysis` of a `Simulation::MonteCarlo` case needs `-runs`; `-draws min|max` alone reports `output never assigned: output runs`. The corner runs are `-draws min -runs 1` / `-draws max -runs 1` (`runs/tooling-montecarlo-min.txt`, `runs/tooling-montecarlo-max.txt`).
 - `-sweep`/`-samples`/`-runs` tables carry a wall-time column and no flag suppresses it; `scripts/runs.sh` strips it (`runt`) so the tables pin.
 - `OPENSYSML_TOOLS` refuses a manifest directory inside the working tree (by design: a model must not register a program); `-tool-dry-run` output names that directory and the executable path, so it is documented but not pinned.
 - `SampledFunctions::Sample(SolarFlux, (…))` with a calc *def* as the `calculation` argument is rejected by the pilot (`Must be a valid feature`) and accepted by OpenSysML; the model tabulates with explicit `SamplePair`s instead and the row stays open (LIB-883).

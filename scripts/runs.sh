@@ -31,7 +31,8 @@ runt dynamics-array-sweep $SYSML -analysis TethysDynamics::arrayPowerAtAphelionE
 run dynamics-standard $SYSML -action TethysDynamics::droRevolution -action TethysDynamics::firstThrustArc -action TethysDynamics::despinNominal -analysis TethysDynamics::droStability $MODEL
 runt tooling-montecarlo $SYSML -analysis TethysAnalysesTooling::returnOverTargetCases -runs 200 -seed 7 $MODEL
 runt tooling-montecarlo-continuous $SYSML -analysis TethysAnalysesTooling::returnOverContinuousMass -runs 200 -seed 7 $MODEL
-runt tooling-montecarlo-corners $SYSML -analysis TethysAnalysesTooling::returnOverContinuousMass -draws min -runs 1 -analysis TethysAnalysesTooling::returnOverContinuousMass -draws max -runs 1 $MODEL
+runt tooling-montecarlo-min $SYSML -analysis TethysAnalysesTooling::returnOverContinuousMass -draws min -runs 1 $MODEL
+runt tooling-montecarlo-max $SYSML -analysis TethysAnalysesTooling::returnOverContinuousMass -draws max -runs 1 $MODEL
 run tooling-dynamics $SYSML -action TethysAnalysesTooling::droRevolutionRk4 -action TethysAnalysesTooling::firstThrustArcRk4 $MODEL
 run probe-F-F01 $SYSML -analysis TethysDynamicsIntegratorProbe::droStabilityRk4 $MODEL model/probes/F-F01-state-space-integrator.sysml
 run probe-F-F02 $SYSML -analysis TethysVariantSubjectProbe::viaVariant -analysis TethysVariantSubjectProbe::viaConfiguration -analysis TethysVariantSubjectProbe::viaPlainPart $MODEL model/probes/F-F02-variant-as-subject.sysml
