@@ -1,0 +1,73 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightBehaviour
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysFlightBehaviour::softwareNominalFlight
+  ID: 1
+  Use %features TethysFlightBehaviour::softwareNominalFlight to inspect
+warning: TethysFlightBehaviour::softwareNominalFlight: materialization is bounded; not every feature value was checked
+✓ Debugging state machine "dispatcher" exhibited by object #50 of "TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement"
+note: object #50 of "TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement" already exhibits "TethysFlightBehaviour::ModeManagementSoftware::dispatcher", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement` would)
+  Current state: dispatching
+  Time: 0.0
+  Events: 0
+✓ Advanced to 129600000.0 (69 event(s) processed)
+  Current state: dispatching
+  Last event at: 97899840.0
+  Remaining events: 0
+  38 choice points (16 independent); %trace on to see them
+  Do behavior actions run: 4
+  Action steps taken: 43
+  InspectorReleaseGo was consumed by no transition: since it was sent, the state or the data its guards read had changed
+  standing: value (observed: 1 run under reverse)
+wrote build/runs/sw-mode-manager-dispatch-sequence.txt (text, 25850 bytes)

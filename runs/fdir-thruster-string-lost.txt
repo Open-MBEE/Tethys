@@ -29,6 +29,7 @@
 ✓ package TethysSequence
 ✓ package TethysFdir
 ✓ package TethysFlightSoftware
+✓ package TethysFlightBehaviour
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
@@ -63,7 +64,7 @@ warning: TethysFdir::thrusterFaultScenario: materialization is bounded; not ever
   Current state: armed | stringLost | crossStrapped | nominal | nominal | monitoring
   Last event at: 2600640.0
   Remaining events: 1
-  9 choice points (8 independent); %trace on to see them
+  10 choice points (9 independent); %trace on to see them
   Do behavior actions run: 2
   Action steps taken: 22
   Waiting on the clock:

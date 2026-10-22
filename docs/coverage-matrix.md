@@ -249,7 +249,13 @@ Rows from the software scope review (`SW-###`), covered package by package in
 | SW-002 real-time executive | WP-SW-1 | sat |
 | SW-006 file and data management | WP-SW-1 | sat |
 | SW-012 partitioning / fault containment | WP-SW-1 | sat |
-| SW-014 redundancy management | WP-SW-1 (structure), WP-SW-3 (fail-over behaviour) | partial |
+| SW-004 event service: reports, severity, event-to-response hooks | WP-SW-3 | sat — `docs/coverage/WP-SW-3.md` |
+| SW-013 boot and software update | WP-SW-3 | sat |
+| SW-014 redundancy management | WP-SW-1 (structure), WP-SW-3 (fail-over behaviour) | sat |
+| SW-015–SW-026 application behaviour (C&DH, GN&C, SEP, power, thermal, telecom, inspector, capture, autonomy, FDIR, modes, safe mode) | WP-SW-3 | sat (SW-016 partial: GN&C laws stay in 73) |
+| SW-028 software update / patch | WP-SW-3 | sat |
+| SW-249 `TugModes` entry/exit actions name the applications; `SubsystemConfiguration` application activity | WP-SW-3 | sat |
+| SW-250 `FdirSupervisor` exhibited by the FDIR application; thresholds from a table | WP-SW-3 | sat (table local until WP-SW-2) |
 | SW-036 software-to-processor allocation | WP-SW-1 | sat |
 | SW-241 flight software attached to C&DH | WP-SW-1 | sat |
 | SW-245 `FlightComputer` image and bus ports | WP-SW-1 (WP-SW-4 binds the load figures) | sat |

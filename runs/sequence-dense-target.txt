@@ -29,6 +29,7 @@
 ✓ package TethysSequence
 ✓ package TethysFdir
 ✓ package TethysFlightSoftware
+✓ package TethysFlightBehaviour
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
@@ -72,6 +73,8 @@ note: object #1 of "TethysSequence::denseTargetCampaign" already performs "Tethy
     inspectorRelease.groundGo = [true]
     inspectorRelease.holdReason = [""]
     inspectorRelease.released = [true]
+    inspectorRelease.sequenceId = 3
+    inspectorRelease.timeTagged = true
     inspectorRelease.umbilicalDisconnected = true
     inspectorReleased = true
     lunarAssistAt = <unset>
@@ -80,7 +83,9 @@ note: object #1 of "TethysSequence::denseTargetCampaign" already performs "Tethy
     outcome = ["capture refused: target estimate outside the capture-commit envelope"]
     returnArcPlan = [4]
     returnArcs = 0
+    sequenceId = 6
     target = [Instance(ID: 3)]
+    timeTagged = true
     xenonRemaining = 5955.0 [kg]
     xenonReserve = 132.0 [kg]
   standing: value (observed: 1 run under reverse)

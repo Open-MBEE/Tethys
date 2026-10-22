@@ -1,0 +1,9 @@
+run - sequence rendering (the trace of a run to t = 10)
+
+object FS01::viaPartPort.a : InlineSender
+object FS01::viaPartPort.b : ReceiverPart
+object FS01::viaPartPort.c : SecondReceiverPart
+
+messages:
+  FS01::viaPartPort.a => FS01::viaPartPort.b: t=1 Ping (n = 7)
+  FS01::viaPartPort.a => FS01::viaPartPort.c: t=1 Ping (n = 7)

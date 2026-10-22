@@ -1,0 +1,10 @@
+run - sequence rendering (the trace of a run to t = 600)
+
+object TethysFlightBehaviour::failoverScenario.conductor : FailoverConductor
+object TethysFlightBehaviour::failoverScenario.cdh : BehaviouralCdh
+
+messages:
+  TethysFlightBehaviour::failoverScenario.conductor => TethysFlightBehaviour::failoverScenario.cdh: t=30 Heartbeat (computer = 1)
+  TethysFlightBehaviour::failoverScenario.conductor => TethysFlightBehaviour::failoverScenario.cdh: t=60 Heartbeat (computer = 1)
+  TethysFlightBehaviour::failoverScenario.conductor => TethysFlightBehaviour::failoverScenario.cdh: t=90 ProcessorReset (level = FdirLevel::system)
+  TethysFlightBehaviour::failoverScenario.conductor => TethysFlightBehaviour::failoverScenario.cdh: t=150 Heartbeat (computer = 2)

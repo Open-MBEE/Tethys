@@ -1,0 +1,69 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightBehaviour
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysFlightBehaviour::captureNominal
+  ID: 1
+  Use %features TethysFlightBehaviour::captureNominal to inspect
+✓ Debugging state machine "controller" exhibited by object #4 of "TethysFlightBehaviour::captureNominal.captureControl"
+note: object #4 of "TethysFlightBehaviour::captureNominal.captureControl" already exhibits "TethysFlightBehaviour::CaptureControlSoftware::controller", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysFlightBehaviour::captureNominal.captureControl` would)
+  Current state: characterising
+  Time: 0.0
+  Events: 0
+✓ Advanced to 20000.0 (6 event(s) processed)
+  Current state: captured
+  Last event at: 10980.0
+  Remaining events: 0
+  Action steps taken: 9
+  standing: value (observed: 1 run under reverse)
+wrote build/runs/sw-capture-controller-sequence.txt (text, 821 bytes)
