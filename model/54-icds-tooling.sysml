@@ -31,10 +31,14 @@ package TethysIcdDocuments {
         )
     }
     calc def IcdEnds :> Query {
-        doc /* The ends of the named ICD with their port types. */
+        doc /* The ends of the named ICD with their port types: its own ends and those it
+             * inherits from the backbone interface definition it specialises. */
         in icd : String;
         Project(
-            source = WhereType(source = OwnedElements(source = Named(qualifiedName = icd)), type = "PortUsage"),
+            source = WhereType(
+                source = OwnedElements(source = (Named(qualifiedName = icd), RelatedElements(
+                    source = Named(qualifiedName = icd), relationshipKind = "specialization", direction = "outgoing", maxDepth = 1))),
+                type = "PortUsage"),
             properties = ("name", "type")
         )
     }
