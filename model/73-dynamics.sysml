@@ -252,10 +252,11 @@ package TethysDynamics {
         attribute period : DurationValue = (dro70000.periodTimeUnits * earthMoon.timeUnitS) [s];
         attribute revolutionsInHorizon : Real = destinationDro.stabilityHorizon / period;
         action revolution : ThreeBodyDynamics {
+            doc /* The integrator is bound by each analysis usage: the model's own RungeKutta4
+                 * below, or a tool's integrator in the tool tier. */
             :>> stateSpace = VectorOf((dro70000.x0, 0.0, 0.0, dro70000.vy0));
             :>> timeStep = (dro70000.periodTimeUnits / 320.0) [s];
             :>> stopTime = dro70000.periodTimeUnits [s];
-            calc :>> getNextState { calc :>> integrate : RungeKutta4; }
         }
         return closure : LengthValue = (earthMoon.lengthUnitKm
             * sqrt((revolution.stateSpace.elements#(1) - dro70000.x0) ** 2 + revolution.stateSpace.elements#(2) ** 2)) [km];
@@ -271,7 +272,10 @@ package TethysDynamics {
         }
     }
     metadata CredibilityAssessment about DroStabilityAnalysis { verificationFactor = 2; validation = 2; inputPedigree = 3; resultsUncertainty = 1; resultsRobustness = 1; useHistory = 2; managementProcess = 2; peopleQualification = 3; }
-    analysis droStability : DroStabilityAnalysis { subject :>> tug = argent; }
+    analysis droStability : DroStabilityAnalysis {
+        subject :>> tug = argent;
+        action :>> revolution { calc :>> getNextState { calc :>> integrate : RungeKutta4; } }
+    }
 
     // ---- Heliocentric thrust and coast -------------------------------------------------------
 
