@@ -1,0 +1,83 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysFlightSoftware::ArgentFlightSoftware
+  ID: 1
+  Use %features TethysFlightSoftware::ArgentFlightSoftware to inspect
+warning: TethysFlightSoftware::ArgentFlightSoftware: materialization is bounded; not every feature value was checked
+✓ size(TethysFlightSoftware::argentSoftware.cdh.software.components)
+  = 23
+✓ TethysFlightSoftware::argentSoftware.cdh.software.processorLoadMips
+  = 442.0
+✓ TethysFlightSoftware::argentSoftware.cdh.software.budgetedLoadMips
+  = 560.0
+✓ TethysFlightSoftware::argentSoftware.cdh.software.codeSize
+  = 18700000.0 [B]
+✓ TethysFlightSoftware::argentSoftware.cdh.software.dataSize
+  = 78000000.0 [B]
+✓ TethysFlightSoftware::argentSoftware.cdh.software.budgetedMemory
+  = 1900000000.0 [B]
+✓ TethysFlightSoftware::argentSoftware.cdh.software.executive.scheduledWindows
+  = 1.0 [s]
+✓ TethysFlightSoftware::argentSoftware.cdh.software.executive.majorFramePeriod
+  = 1.0 [s]
+✓ TethysFlightSoftware::argentSoftware.cdh.software.executive.partitionMemory
+  = 1024000000.0 [B]
+✓ TethysFlightSoftware::argentSoftware.cdh.software.flightImage.imageSize
+  = 18700000.0 [B]
+✓ TethysFlightSoftware::argentSoftware.cdh.software.safeImage.imageSize
+  = 11700000.0 [B]
+✓ TethysFlightSoftware::argentSoftware.cdh.software.dataStore.capacity
+  = 4000000000000.0 [B]
+✓ TethysFlightSoftware::argentSoftware.cdh.prime.image.version
+  = "1.0"
+✓ TethysFlightSoftware::argentSoftware.cdh.redundant.image.version
+  = "1.0"

@@ -1,0 +1,73 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Query TethysAllocationQueries::UnallocatedFunctions returned 0 rows
+✓ Query TethysAllocationQueries::UnallocatedApplications returned 0 rows
+✓ Query TethysAllocationQueries::AllocatedApplications returned 12 rows
+  Row 1: TethysFlightSoftware::ArgentFlightSoftware::cdh
+  Row 2: TethysFlightSoftware::ArgentFlightSoftware::gnc
+  Row 3: TethysFlightSoftware::ArgentFlightSoftware::sepControl
+  Row 4: TethysFlightSoftware::ArgentFlightSoftware::powerManagement
+  Row 5: TethysFlightSoftware::ArgentFlightSoftware::thermalControl
+  Row 6: TethysFlightSoftware::ArgentFlightSoftware::telecom
+  Row 7: TethysFlightSoftware::ArgentFlightSoftware::inspectorHandling
+  Row 8: TethysFlightSoftware::ArgentFlightSoftware::captureControl
+  Row 9: TethysFlightSoftware::ArgentFlightSoftware::autonomy
+  Row 10: TethysFlightSoftware::ArgentFlightSoftware::fdir
+  Row 11: TethysFlightSoftware::ArgentFlightSoftware::modeManagement
+  Row 12: TethysFlightSoftware::ArgentFlightSoftware::parameterBootUpdate
+✓ Query TethysAllocationQueries::UnallocatedPartitions returned 0 rows
+✓ Query TethysAllocationQueries::AllocatedPartitions returned 5 rows
+  Row 1: TethysFlightSoftware::ArgentFlightSoftware::executive::platformPartition
+  Row 2: TethysFlightSoftware::ArgentFlightSoftware::executive::gncPartition
+  Row 3: TethysFlightSoftware::ArgentFlightSoftware::executive::subsystemPartition
+  Row 4: TethysFlightSoftware::ArgentFlightSoftware::executive::autonomyPartition
+  Row 5: TethysFlightSoftware::ArgentFlightSoftware::executive::payloadPartition

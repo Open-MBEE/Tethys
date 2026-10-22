@@ -28,6 +28,7 @@
 ✓ package TethysModes
 ✓ package TethysSequence
 ✓ package TethysFdir
+✓ package TethysFlightSoftware
 ✓ package TethysAnalyses
 ✓ package TethysTrades
 ✓ package TethysMonteCarlo
@@ -52,5 +53,5 @@
   ID: 1
   Use %features TethysAllocations::missionFunctions to inspect
 ✓ Created instance of TethysAllocations::sourcingRecord
-  ID: 23
+  ID: 34
   Use %features TethysAllocations::sourcingRecord to inspect
