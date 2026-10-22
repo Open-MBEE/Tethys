@@ -243,8 +243,11 @@ package TethysViews {
         }
     }
     view interfaceDefinitions {
-        doc /* Every interface definition an ICD is written against, with its ports and items. */
-        expose TethysInterfaces::*;
+        doc /* Every interface definition an ICD is written against, with its ports and items.
+             * The expose is filtered to the package's own definitions: an Expose imports all
+             * memberships regardless of visibility, so an unfiltered expose would also list
+             * the ISQ and SI members TethysInterfaces imports privately. */
+        expose TethysInterfaces::*[@SysML::InterfaceDefinition or @SysML::PortDefinition or @SysML::ItemDefinition];
         render asElementTable;
         satisfy interfaceViewpoint {
             doc /* This view answers the interfaceViewpoint. */
