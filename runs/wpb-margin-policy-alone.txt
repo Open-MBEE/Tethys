@@ -1,0 +1,4 @@
+✓ package TethysMarginPolicy
+✓ TethysMarginPolicy::ContingencyFor(TethysMarginPolicy::Maturity::modified, TethysMarginPolicy::activePolicy)
+  = [0.1]
+  standing: value (observed: 1 run under reverse)

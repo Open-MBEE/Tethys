@@ -9,6 +9,9 @@
 ✓ package TethysLaunch
 ✓ package TethysGround
 ✓ package TethysSystem
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
 ✓ package TethysHouseRules
 ✓ Created instance of TethysSystem::tethysSystem
   ID: 1

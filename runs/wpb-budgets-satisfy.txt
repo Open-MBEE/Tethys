@@ -1,0 +1,43 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysHouseRules
+✓ satisfy massBudgetCloses by massBudget holds (on TethysBudgets::massBudget ID: 1)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy powerBudgetCloses by powerBudget holds (on TethysBudgets::powerBudget ID: 143)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy energyBudgetCloses by energyBudget holds (on TethysBudgets::energyBudget ID: 146)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy inspectorEnergyBudgetCloses by inspectorEnergyBudget holds (on TethysBudgets::inspectorEnergyBudget ID: 147)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy dataBudgetCloses by dataBudget holds (on TethysBudgets::dataBudget ID: 148)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy propellantBudgetCloses by propellantBudget holds (on TethysBudgets::propellantBudget ID: 149)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy hydrazineBudgetCloses by hydrazineBudget holds (on TethysBudgets::hydrazineBudget ID: 153)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy pointingBudgetCloses by pointingBudget holds (on TethysBudgets::pointingBudget ID: 154)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy thermalBudgetCloses by thermalBudget holds (on TethysBudgets::thermalBudget ID: 155)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy captureLoadBudgetCloses by captureLoadBudget holds (on TethysBudgets::captureLoadBudget ID: 156)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy radiationBudgetCloses by radiationBudget holds (on TethysBudgets::radiationBudget ID: 157)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy magneticCleanlinessCloses by magneticCleanlinessBudget holds (on TethysBudgets::magneticCleanlinessBudget ID: 158)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy reliabilityBudgetCloses by reliabilityBudget holds (on TethysBudgets::reliabilityBudget ID: 159)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy processorBudgetCloses by processorBudget holds (on TethysBudgets::processorBudget ID: 161)
+  standing: holds (observed: 1 run under reverse)
