@@ -13,8 +13,8 @@
 
 *Parameters both sides agree on*
 
-| name | type |
-| --- | --- |
-| keepAliveVoltage | ISQElectromagnetism::ElectricPotentialValue |
-| keepAlivePower | ISQMechanics::PowerValue |
-| checkoutDataRate | ISQInformation::BinaryDigitRateValue |
+| name | type | valuation |
+| --- | --- | --- |
+| keepAliveVoltage | ISQElectromagnetism::ElectricPotentialValue | 28 \[V\] |
+| keepAlivePower | ISQMechanics::PowerValue | 15 \[W\] |
+| checkoutDataRate | ISQInformation::BinaryDigitRateValue | 9600 \[bit/s\] |

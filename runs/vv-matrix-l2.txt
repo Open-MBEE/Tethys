@@ -49,10 +49,13 @@
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
 ✓ Query TethysVerificationTooling::VvMatrix returned 28 rows
-  Columns: shortName, name, verifiedBy, cases, satisfiedBy, derivedFrom
+  Columns: shortName, name, Verification::method, Verification::level, Verification::stage, verifiedBy, cases, satisfiedBy, derivedFrom
   Row 1: TethysRequirementsL2::captureEnvelope
     shortName = "TS-001"
     name = "captureEnvelope"
+    Verification::method = VerificationCases::VerificationMethodKind::test
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::CaptureEnvelopeTest
     cases = 1
     satisfiedBy = TethysTug::argent
@@ -60,6 +63,9 @@
   Row 2: TethysRequirementsL2::deliveredMass
     shortName = "TS-002"
     name = "deliveredMass"
+    Verification::method = VerificationCases::VerificationMethodKind::analyze
+    Verification::level = TethysRequirements::VerificationLevel::mission
+    Verification::stage = TethysRequirements::VerificationStage::inFlight
     verifiedBy = TethysVerification::DeliveryAnalysis
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::flight
@@ -67,6 +73,9 @@
   Row 3: TethysRequirementsL2::transferDuration
     shortName = "TS-003"
     name = "transferDuration"
+    Verification::method = VerificationCases::VerificationMethodKind::analyze
+    Verification::level = TethysRequirements::VerificationLevel::mission
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::PowerAnalysis
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::flight
@@ -74,6 +83,9 @@
   Row 4: TethysRequirementsL2::propellantCapacity
     shortName = "TS-004"
     name = "propellantCapacity"
+    Verification::method = VerificationCases::VerificationMethodKind::analyze
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::PropellantAnalysis
     cases = 1
     satisfiedBy = TethysTug::argent
@@ -81,6 +93,9 @@
   Row 5: TethysRequirementsL2::characterisationProducts
     shortName = "TS-005"
     name = "characterisationProducts"
+    Verification::method = VerificationCases::VerificationMethodKind::analyze
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::inFlight
     verifiedBy = TethysVerification::CharacterisationAnalysis
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::flight
@@ -88,6 +103,9 @@
   Row 6: TethysRequirementsL2::launchCompatibility
     shortName = "TS-006"
     name = "launchCompatibility"
+    Verification::method = VerificationCases::VerificationMethodKind::inspect
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::preLaunch
     verifiedBy = TethysVerification::MassBudgetAnalysis
     cases = 1
     satisfiedBy = (none)
@@ -95,6 +113,9 @@
   Row 7: TethysRequirementsL2::deepSpaceLink
     shortName = "TS-007"
     name = "deepSpaceLink"
+    Verification::method = VerificationCases::VerificationMethodKind::test
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::preLaunch
     verifiedBy = TethysVerification::LinkBudgetTest
     cases = 1
     satisfiedBy = (none)
@@ -102,6 +123,9 @@
   Row 8: TethysRequirementsL2::earthImpactExclusion
     shortName = "TS-008"
     name = "earthImpactExclusion"
+    Verification::method = VerificationCases::VerificationMethodKind::analyze
+    Verification::level = TethysRequirements::VerificationLevel::mission
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::ReturnSafetyAnalysis
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::flight
@@ -109,6 +133,9 @@
   Row 9: TethysRequirementsL2::droStability
     shortName = "TS-009"
     name = "droStability"
+    Verification::method = VerificationCases::VerificationMethodKind::analyze
+    Verification::level = TethysRequirements::VerificationLevel::mission
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::ReturnSafetyAnalysis
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::flight
@@ -116,6 +143,9 @@
   Row 10: TethysRequirementsL2::thrustRedundancy
     shortName = "TS-010"
     name = "thrustRedundancy"
+    Verification::method = VerificationCases::VerificationMethodKind::inspect
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = [TethysVerification::RedundancyInspection, TethysVerification::SepCommissioning]
     cases = 2
     satisfiedBy = TethysTug::argent
@@ -123,6 +153,9 @@
   Row 11: TethysRequirementsL2::deflectionMeasurement
     shortName = "TS-011"
     name = "deflectionMeasurement"
+    Verification::method = VerificationCases::VerificationMethodKind::analyze
+    Verification::level = TethysRequirements::VerificationLevel::mission
+    Verification::stage = TethysRequirements::VerificationStage::inFlight
     verifiedBy = TethysVerification::DeflectionAnalysis
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::flight
@@ -130,6 +163,9 @@
   Row 12: TethysRequirementsL2::visitorDocking
     shortName = "TS-012"
     name = "visitorDocking"
+    Verification::method = VerificationCases::VerificationMethodKind::demo
+    Verification::level = TethysRequirements::VerificationLevel::mission
+    Verification::stage = TethysRequirements::VerificationStage::inFlight
     verifiedBy = TethysVerification::DockingDemo
     cases = 1
     satisfiedBy = (none)
@@ -137,6 +173,9 @@
   Row 13: TethysRequirementsL2::autonomousSurvival
     shortName = "TS-013"
     name = "autonomousSurvival"
+    Verification::method = VerificationCases::VerificationMethodKind::test
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::AutonomyTest
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::flight
@@ -144,6 +183,9 @@
   Row 14: TethysRequirementsL2::proximityContactEnvironment
     shortName = "TS-014"
     name = "proximityContactEnvironment"
+    Verification::method = VerificationCases::VerificationMethodKind::test
+    Verification::level = TethysRequirements::VerificationLevel::subsystem
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::ContactSpeedTest
     cases = 1
     satisfiedBy = TethysTug::argent
@@ -151,6 +193,9 @@
   Row 15: TethysRequirementsL2::faultResponse
     shortName = "TS-015"
     name = "faultResponse"
+    Verification::method = VerificationCases::VerificationMethodKind::test
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::FaultResponseTest
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::flight
@@ -158,6 +203,9 @@
   Row 16: TethysRequirementsL2::massBudget
     shortName = "TS-016"
     name = "massBudget"
+    Verification::method = VerificationCases::VerificationMethodKind::analyze
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::acceptance
     verifiedBy = TethysVerification::MassBudgetAnalysis
     cases = 1
     satisfiedBy = TethysTug::argent
@@ -165,6 +213,9 @@
   Row 17: TethysRequirementsL2::captureQualification
     shortName = "TS-017"
     name = "captureQualification"
+    Verification::method = VerificationCases::VerificationMethodKind::test
+    Verification::level = TethysRequirements::VerificationLevel::subsystem
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::CaptureEnvelopeTest
     cases = 1
     satisfiedBy = (none)
@@ -172,6 +223,9 @@
   Row 18: TethysRequirementsL2::inspectorDeployment
     shortName = "TS-018"
     name = "inspectorDeployment"
+    Verification::method = VerificationCases::VerificationMethodKind::test
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::acceptance
     verifiedBy = TethysVerification::SeparationTest
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::flight
@@ -179,6 +233,9 @@
   Row 19: TethysRequirementsL2::despinCapacity
     shortName = "TS-019"
     name = "despinCapacity"
+    Verification::method = VerificationCases::VerificationMethodKind::analyze
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::DespinAnalysis
     cases = 1
     satisfiedBy = TethysTug::argent
@@ -186,6 +243,9 @@
   Row 20: TethysRequirementsL2::groundCoverage
     shortName = "TS-020"
     name = "groundCoverage"
+    Verification::method = VerificationCases::VerificationMethodKind::demo
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::preLaunch
     verifiedBy = TethysVerification::GroundReadinessDemo
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::ground
@@ -193,6 +253,9 @@
   Row 21: TethysRequirementsL2::commandLatency
     shortName = "TS-021"
     name = "commandLatency"
+    Verification::method = VerificationCases::VerificationMethodKind::demo
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::preLaunch
     verifiedBy = TethysVerification::GroundReadinessDemo
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::ground
@@ -200,6 +263,9 @@
   Row 22: TethysRequirementsL2::operatorWorkload
     shortName = "TS-022"
     name = "operatorWorkload"
+    Verification::method = VerificationCases::VerificationMethodKind::demo
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::preLaunch
     verifiedBy = TethysVerification::GroundReadinessDemo
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::ground
@@ -207,6 +273,9 @@
   Row 23: TethysRequirementsL2::flightPerformanceRequirements
     shortName = (none)
     name = "flightPerformanceRequirements"
+    Verification::method = VerificationCases::VerificationMethodKind::inspect
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::DocumentInspection
     cases = 1
     satisfiedBy = (none)
@@ -214,6 +283,9 @@
   Row 24: TethysRequirementsL2::flightSafetyAndAutonomyRequirements
     shortName = (none)
     name = "flightSafetyAndAutonomyRequirements"
+    Verification::method = VerificationCases::VerificationMethodKind::inspect
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::DocumentInspection
     cases = 1
     satisfiedBy = (none)
@@ -221,6 +293,9 @@
   Row 25: TethysRequirementsL2::flightEnvironmentAndBudgetRequirements
     shortName = (none)
     name = "flightEnvironmentAndBudgetRequirements"
+    Verification::method = VerificationCases::VerificationMethodKind::inspect
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::DocumentInspection
     cases = 1
     satisfiedBy = (none)
@@ -228,6 +303,9 @@
   Row 26: TethysRequirementsL2::interfaceRequirements
     shortName = (none)
     name = "interfaceRequirements"
+    Verification::method = VerificationCases::VerificationMethodKind::inspect
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::DocumentInspection
     cases = 1
     satisfiedBy = (none)
@@ -235,6 +313,9 @@
   Row 27: TethysRequirementsL2::groundSegmentRequirements
     shortName = (none)
     name = "groundSegmentRequirements"
+    Verification::method = VerificationCases::VerificationMethodKind::inspect
+    Verification::level = TethysRequirements::VerificationLevel::system
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::DocumentInspection
     cases = 1
     satisfiedBy = (none)
@@ -242,6 +323,9 @@
   Row 28: TethysRequirementsL2::safetyRequirements
     shortName = (none)
     name = "safetyRequirements"
+    Verification::method = VerificationCases::VerificationMethodKind::inspect
+    Verification::level = TethysRequirements::VerificationLevel::mission
+    Verification::stage = TethysRequirements::VerificationStage::qualification
     verifiedBy = TethysVerification::DocumentInspection
     cases = 1
     satisfiedBy = (none)

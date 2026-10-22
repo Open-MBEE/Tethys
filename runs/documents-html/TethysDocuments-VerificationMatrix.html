@@ -12,7 +12,7 @@
 <p class="sysml-paragraph" data-content="paragraph" data-name="intro">One row per requirement. The verification cases that close each row are added by the verification package; a requirement without one stays visible here as uncovered.</p>
 <section class="sysml-section" id="matrix" data-content="section" data-name="matrix">
 <h2>Requirements</h2>
-<table class="sysml-table" data-content="table" data-name="table" data-query="TethysDocuments::MissionRequirements">
+<table class="sysml-table sysml-table-landscape" data-content="table" data-name="table" data-query="TethysDocuments::MissionRequirements">
 <caption class="sysml-caption">L1 requirements</caption>
 <thead>
 <tr>
@@ -20,6 +20,9 @@
 <th scope="col" data-column="name">Name</th>
 <th scope="col" data-column="documentation">Statement</th>
 <th scope="col" data-column="tier">Tier</th>
+<th scope="col" data-column="Verification::method">Method</th>
+<th scope="col" data-column="Verification::level">Level</th>
+<th scope="col" data-column="Verification::stage">Stage</th>
 </tr>
 </thead>
 <tbody>
@@ -28,54 +31,81 @@
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">retrieval</span></td>
 <td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The mission shall deliver the target body 2031 QX, intact and with a mass of at least 100 t, into the designated lunar distant retrograde orbit.</span></td>
 <td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::mission" data-element-kind="enumUsage">mission</span></td>
+<td class="sysml-cell" data-column="Verification::stage" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationStage::inFlight" data-element-kind="enumUsage">inFlight</span></td>
 </tr>
 <tr class="sysml-row" data-element="TethysRequirements::missionDuration" data-element-kind="requirementUsage">
 <td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-002</span></td>
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">missionDuration</span></td>
 <td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The mission shall complete the insertion of the target into the distant retrograde orbit within 2 200 days of launch (TethysMission::tethys.nominalDuration).</span></td>
 <td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::mission" data-element-kind="enumUsage">mission</span></td>
+<td class="sysml-cell" data-column="Verification::stage" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationStage::inFlight" data-element-kind="enumUsage">inFlight</span></td>
 </tr>
 <tr class="sysml-row" data-element="TethysRequirements::characterisation" data-element-kind="requirementUsage">
 <td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-003</span></td>
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">characterisation</span></td>
 <td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Before committing to capture, the mission shall determine the target&#39;s shape, mass to within 10 % and spin state, and shall confirm that each lies within the capture system&#39;s design envelope.</span></td>
 <td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::mission" data-element-kind="enumUsage">mission</span></td>
+<td class="sysml-cell" data-column="Verification::stage" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationStage::inFlight" data-element-kind="enumUsage">inFlight</span></td>
 </tr>
 <tr class="sysml-row" data-element="TethysRequirements::launchCompatibility" data-element-kind="requirementUsage">
 <td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-004</span></td>
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">launchCompatibility</span></td>
 <td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The flight system shall be compatible with the Arcturus-5H launch vehicle and its direct injection to an Earth-escape trajectory.</span></td>
 <td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::system" data-element-kind="enumUsage">system</span></td>
+<td class="sysml-cell" data-column="Verification::stage" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationStage::acceptance" data-element-kind="enumUsage">acceptance</span></td>
 </tr>
 <tr class="sysml-row" data-element="TethysRequirements::groundCompatibility" data-element-kind="requirementUsage">
 <td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-005</span></td>
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">groundCompatibility</span></td>
 <td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The flight system shall communicate through the Meridian deep-space network at every Earth range of the mission.</span></td>
 <td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::system" data-element-kind="enumUsage">system</span></td>
+<td class="sysml-cell" data-column="Verification::stage" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationStage::preLaunch" data-element-kind="enumUsage">preLaunch</span></td>
 </tr>
 <tr class="sysml-row" data-element="TethysRequirements::cislunarSafety" data-element-kind="requirementUsage">
 <td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-006</span></td>
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">cislunarSafety</span></td>
 <td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The target body shall be placed in an orbit that remains bound to the Moon for at least 100 years without station-keeping, and no credible failure during the return shall place it on an Earth-impact trajectory.</span></td>
 <td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::mission" data-element-kind="enumUsage">mission</span></td>
+<td class="sysml-cell" data-column="Verification::stage" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationStage::qualification" data-element-kind="enumUsage">qualification</span></td>
 </tr>
 <tr class="sysml-row" data-element="TethysRequirements::missionClass" data-element-kind="requirementUsage">
 <td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-007</span></td>
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">missionClass</span></td>
 <td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The flight system shall carry no single-point failure that ends the mission.</span></td>
 <td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::system" data-element-kind="enumUsage">system</span></td>
+<td class="sysml-cell" data-column="Verification::stage" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationStage::qualification" data-element-kind="enumUsage">qualification</span></td>
 </tr>
 <tr class="sysml-row" data-element="TethysRequirements::deflectionDemonstration" data-element-kind="requirementUsage">
 <td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-008</span></td>
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">deflectionDemonstration</span></td>
 <td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">While attached to the target, the mission shall demonstrate a slow-push deflection and shall measure the resulting change in the target&#39;s heliocentric velocity to an accuracy of 1 mm/s.</span></td>
 <td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::demo" data-element-kind="enumUsage">demo</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::mission" data-element-kind="enumUsage">mission</span></td>
+<td class="sysml-cell" data-column="Verification::stage" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationStage::inFlight" data-element-kind="enumUsage">inFlight</span></td>
 </tr>
 <tr class="sysml-row" data-element="TethysRequirements::utilisationAccess" data-element-kind="requirementUsage">
 <td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-009</span></td>
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">utilisationAccess</span></td>
 <td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">After delivery, the tug shall hold the target in an attitude and with a docking interface that lets the visiting vehicle Lantern dock and reach the target&#39;s surface.</span></td>
 <td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::demo" data-element-kind="enumUsage">demo</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::mission" data-element-kind="enumUsage">mission</span></td>
+<td class="sysml-cell" data-column="Verification::stage" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationStage::inFlight" data-element-kind="enumUsage">inFlight</span></td>
 </tr>
 </tbody>
 </table>
