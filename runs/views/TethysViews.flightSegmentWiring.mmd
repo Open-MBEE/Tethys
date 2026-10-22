@@ -1,0 +1,159 @@
+---
+config:
+  fontFamily: "Helvetica, Arial, sans-serif"
+  theme: base
+  themeCSS: ".edgeLabel rect { opacity: 1 !important; } .cluster-label .nodeLabel { text-align: center; }"
+  themeVariables:
+    fontFamily: "Helvetica, Arial, sans-serif"
+    fontSize: "14px"
+    primaryColor: "#FFFFFF"
+    secondaryColor: "#FFFFFF"
+    tertiaryColor: "#FFFFFF"
+    background: "#FFFFFF"
+    primaryBorderColor: "#181818"
+    primaryTextColor: "#000000"
+    lineColor: "#181818"
+    textColor: "#000000"
+    noteBkgColor: "#FEFFDD"
+    noteBorderColor: "#181818"
+    noteTextColor: "#000000"
+    clusterBkg: "#FFFFFF"
+    clusterBorder: "#181818"
+    edgeLabelBackground: "#FFFFFF"
+---
+%% TethysViews::flightSegmentWiring — interconnection rendering (view def InterconnectionView)
+flowchart LR
+  subgraph n0 ["`*«part def»* **TethysFlightSegment**`"]
+    direction LR
+    subgraph n1 ["`*«part»* **tug**`"]
+      direction LR
+      n2("`*«attribute»*
+**dryMass**`")
+      n3("`*«attribute»*
+**wetMass**`")
+      subgraph n4 ["`*«part»* **structure**`"]
+        direction LR
+        n5("`*«attribute»*
+**mass**`")
+      end
+      subgraph n6 ["`*«part»* **thermal**`"]
+        direction LR
+        n6.1["power"]
+        n7("`*«attribute»*
+**mass**`")
+      end
+      subgraph n8 ["`*«part»* **eps**`"]
+        direction LR
+        n8.0["mainBus"]
+        n8.1["highVoltageBus"]
+        n8.2["inspectorKeepAlive"]
+        n9("`*«attribute»*
+**arrayPowerAtOneAu**`")
+        n10("`*«attribute»*
+**mass**`")
+      end
+      subgraph n11 ["`*«part»* **cdh**`"]
+        direction LR
+        n11.1["power"]
+        n12("`*«attribute»*
+**mass**`")
+      end
+      subgraph n13 ["`*«part»* **telecom**`"]
+        direction LR
+        n13.1["proximity"]
+        n13.2["power"]
+        n14("`*«attribute»*
+**mass**`")
+      end
+      subgraph n15 ["`*«part»* **gnc**`"]
+        direction LR
+        n15.0["power"]
+        n16("`*«attribute»*
+**mass**`")
+      end
+      subgraph n17 ["`*«part»* **sep**`"]
+        direction LR
+        n17.1["power"]
+        n18("`*«attribute»*
+**xenonMass**`")
+        n19("`*«attribute»*
+**thrusterCount**`")
+        n20("`*«attribute»*
+**operatingThrusters**`")
+        n21("`*«attribute»*
+**specificImpulse**`")
+        n22("`*«attribute»*
+**maximumPower**`")
+        n23("`*«attribute»*
+**mass**`")
+      end
+      subgraph n24 ["`*«part»* **rcs**`"]
+        direction LR
+        n24.1["power"]
+        n25("`*«attribute»*
+**hydrazineMass**`")
+        n26("`*«attribute»*
+**mass**`")
+      end
+      subgraph n27 ["`*«part»* **captureSystem**`"]
+        direction LR
+        n27.1["power"]
+        n28("`*«attribute»*
+**maximumBodyDiameter**`")
+        n29("`*«attribute»*
+**maximumBodyMass**`")
+        n30("`*«attribute»*
+**mass**`")
+      end
+      subgraph n31 ["`*«part»* **sensors**`"]
+        direction LR
+        n31.0["power"]
+        n32("`*«attribute»*
+**mass**`")
+      end
+    end
+    subgraph n33 ["`*«part»* **inspector**`"]
+      direction LR
+      n34("`*«attribute»*
+**wetMass**`")
+      subgraph n35 ["`*«part»* **bus**`"]
+        direction LR
+        n35.0["proximity"]
+        n35.1["umbilical"]
+        n36("`*«attribute»*
+**mass**`")
+      end
+      subgraph n37 ["`*«part»* **payload**`"]
+        direction LR
+        n38("`*«attribute»*
+**mass**`")
+      end
+      subgraph n39 ["`*«part»* **propulsion**`"]
+        direction LR
+        n40("`*«attribute»*
+**mass**`")
+        n41("`*«attribute»*
+**propellantMass**`")
+      end
+    end
+  end
+  n8.0 === n11.1
+  n8.0 === n13.2
+  n8.0 === n15.0
+  n8.0 === n6.1
+  n8.0 === n24.1
+  n8.0 === n27.1
+  n8.0 === n31.0
+  n8.1 === n17.1
+  n8.2 === n35.1
+  n35.0 === n13.1
+  linkStyle 0 stroke-width:3px
+  linkStyle 1 stroke-width:3px
+  linkStyle 2 stroke-width:3px
+  linkStyle 3 stroke-width:3px
+  linkStyle 4 stroke-width:3px
+  linkStyle 5 stroke-width:3px
+  linkStyle 6 stroke-width:3px
+  linkStyle 7 stroke-width:3px
+  linkStyle 8 stroke-width:3px
+  linkStyle 9 stroke-width:3px

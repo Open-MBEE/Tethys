@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tethys Retrieval — Interface Control Documents</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysDocuments::InterfaceControlDocuments">
+<h1 class="sysml-title">Tethys Retrieval — Interface Control Documents</h1>
+<p class="sysml-paragraph" data-content="paragraph" data-name="intro">Every boundary in the mission is controlled by one interface definition in <code>TethysInterfaces</code>; the segment-level usages are drawn in the <a class="sysml-ref" href="TethysDocuments-SystemDescription.html#system" data-document="TethysDocuments::SystemDescription">The system</a></p>
+<section class="sysml-section" id="interfaces" data-content="section" data-name="interfaces">
+<h2>Interface definitions</h2>
+<table class="sysml-table" data-content="table" data-name="list" data-query="TethysDocuments::InterfaceDefinitions">
+<caption class="sysml-caption">Interface definitions, one ICD each</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysInterfaces::TugInspectorInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TugInspectorInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ inspector before release: mechanical dispenser, umbilical and thermal. The relay link takes over after release.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::SpacecraftLauncherInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SpacecraftLauncherInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Stack ↔ launcher: adapter, loads, umbilical and separation.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::SpaceGroundLink" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SpaceGroundLink</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ ground station: X/Ka-band telemetry, telecommand and ranging.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::InspectorRelayLink" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InspectorRelayLink</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Inspector ↔ tug proximity link: imagery and radar data up, commands down.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::CaptureInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">CaptureInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ target body: the contact loads through the capture mechanism during capture, despin and the return thrust arcs.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::DockingInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">DockingInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ visiting vehicle in the distant retrograde orbit.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::PowerInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PowerInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A unit on the power bus.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::DataBusInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">DataBusInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Two nodes on an on-board data bus.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::ThermalInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ThermalInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Two units coupled by a strap, a radiator or a mount.</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="ends" data-query="TethysDocuments::InterfaceEnds" data-group-by="owner">
+<caption class="sysml-caption">Interface ends and the port type at each</caption>
+<thead>
+<tr>
+<th scope="col" data-column="owner">owner</th>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+</tr>
+</thead>
+<tbody class="sysml-group" data-group="owner" data-group-key="TethysInterfaces::TugInspectorInterface">
+<tr class="sysml-group-heading"><th scope="rowgroup" colspan="3"><span class="sysml-group-column">owner</span>: <span class="sysml-group-key">TethysInterfaces::TugInspectorInterface</span></th></tr>
+<tr class="sysml-row" data-element="TethysInterfaces::TugInspectorInterface::tugSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::TugInspectorInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">tugSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::UmbilicalPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::TugInspectorInterface::inspectorSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::TugInspectorInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::UmbilicalPort</span></td>
+</tr>
+</tbody>
+<tbody class="sysml-group" data-group="owner" data-group-key="TethysInterfaces::SpacecraftLauncherInterface">
+<tr class="sysml-group-heading"><th scope="rowgroup" colspan="3"><span class="sysml-group-column">owner</span>: <span class="sysml-group-key">TethysInterfaces::SpacecraftLauncherInterface</span></th></tr>
+<tr class="sysml-row" data-element="TethysInterfaces::SpacecraftLauncherInterface::spacecraftSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::SpacecraftLauncherInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">spacecraftSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::MechanicalPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::SpacecraftLauncherInterface::launcherSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::SpacecraftLauncherInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">launcherSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::MechanicalPort</span></td>
+</tr>
+</tbody>
+<tbody class="sysml-group" data-group="owner" data-group-key="TethysInterfaces::SpaceGroundLink">
+<tr class="sysml-group-heading"><th scope="rowgroup" colspan="3"><span class="sysml-group-column">owner</span>: <span class="sysml-group-key">TethysInterfaces::SpaceGroundLink</span></th></tr>
+<tr class="sysml-row" data-element="TethysInterfaces::SpaceGroundLink::spacecraftSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::SpaceGroundLink</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">spacecraftSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::RfPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::SpaceGroundLink::groundSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::SpaceGroundLink</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">groundSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::RfPort</span></td>
+</tr>
+</tbody>
+<tbody class="sysml-group" data-group="owner" data-group-key="TethysInterfaces::InspectorRelayLink">
+<tr class="sysml-group-heading"><th scope="rowgroup" colspan="3"><span class="sysml-group-column">owner</span>: <span class="sysml-group-key">TethysInterfaces::InspectorRelayLink</span></th></tr>
+<tr class="sysml-row" data-element="TethysInterfaces::InspectorRelayLink::inspectorSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::InspectorRelayLink</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::RfPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::InspectorRelayLink::tugSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::InspectorRelayLink</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">tugSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::RfPort</span></td>
+</tr>
+</tbody>
+<tbody class="sysml-group" data-group="owner" data-group-key="TethysInterfaces::CaptureInterface">
+<tr class="sysml-group-heading"><th scope="rowgroup" colspan="3"><span class="sysml-group-column">owner</span>: <span class="sysml-group-key">TethysInterfaces::CaptureInterface</span></th></tr>
+<tr class="sysml-row" data-element="TethysInterfaces::CaptureInterface::tugSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::CaptureInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">tugSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::MechanicalPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::CaptureInterface::bodySide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::CaptureInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">bodySide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::MechanicalPort</span></td>
+</tr>
+</tbody>
+<tbody class="sysml-group" data-group="owner" data-group-key="TethysInterfaces::DockingInterface">
+<tr class="sysml-group-heading"><th scope="rowgroup" colspan="3"><span class="sysml-group-column">owner</span>: <span class="sysml-group-key">TethysInterfaces::DockingInterface</span></th></tr>
+<tr class="sysml-row" data-element="TethysInterfaces::DockingInterface::tugSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::DockingInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">tugSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::DockingPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::DockingInterface::visitorSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::DockingInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">visitorSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::DockingPort</span></td>
+</tr>
+</tbody>
+<tbody class="sysml-group" data-group="owner" data-group-key="TethysInterfaces::PowerInterface">
+<tr class="sysml-group-heading"><th scope="rowgroup" colspan="3"><span class="sysml-group-column">owner</span>: <span class="sysml-group-key">TethysInterfaces::PowerInterface</span></th></tr>
+<tr class="sysml-row" data-element="TethysInterfaces::PowerInterface::source" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::PowerInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">source</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::PowerOutlet</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::PowerInterface::load" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::PowerInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">load</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::PowerOutlet</span></td>
+</tr>
+</tbody>
+<tbody class="sysml-group" data-group="owner" data-group-key="TethysInterfaces::DataBusInterface">
+<tr class="sysml-group-heading"><th scope="rowgroup" colspan="3"><span class="sysml-group-column">owner</span>: <span class="sysml-group-key">TethysInterfaces::DataBusInterface</span></th></tr>
+<tr class="sysml-row" data-element="TethysInterfaces::DataBusInterface::a" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::DataBusInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">a</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::DataBusPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::DataBusInterface::b" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::DataBusInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">b</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::DataBusPort</span></td>
+</tr>
+</tbody>
+<tbody class="sysml-group" data-group="owner" data-group-key="TethysInterfaces::ThermalInterface">
+<tr class="sysml-group-heading"><th scope="rowgroup" colspan="3"><span class="sysml-group-column">owner</span>: <span class="sysml-group-key">TethysInterfaces::ThermalInterface</span></th></tr>
+<tr class="sysml-row" data-element="TethysInterfaces::ThermalInterface::hot" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::ThermalInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">hot</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::ThermalPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::ThermalInterface::cold" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::ThermalInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">cold</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::ThermalPort</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="usages" data-query="TethysDocuments::SystemInterfaces">
+<caption class="sysml-caption">System-level interface usages</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSystem::tethysSystem::launchAdapter" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">launchAdapter</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSystem::tethysSystem::deepSpaceLink" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">deepSpaceLink</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSystem::tethysSystem::capture" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">capture</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSystem::tethysSystem::visitorDocking" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">visitorDocking</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="ports" data-content="section" data-name="ports">
+<h2>Ports</h2>
+<table class="sysml-table" data-content="table" data-name="table" data-query="TethysDocuments::Ports">
+<caption class="sysml-caption">Port definitions</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysInterfaces::PowerOutlet" data-element-kind="portDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PowerOutlet</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A power source port: power flows out, a load-current demand is reported back.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::DataBusPort" data-element-kind="portDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">DataBusPort</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A node on an on-board data bus.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::RfPort" data-element-kind="portDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">RfPort</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">An antenna or transponder port.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::ThermalPort" data-element-kind="portDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ThermalPort</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A conductive or radiative thermal interface.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::MechanicalPort" data-element-kind="portDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MechanicalPort</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A structural attachment: loads cross it, a separation signal may end it.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::UmbilicalPort" data-element-kind="portDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">UmbilicalPort</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The electrical umbilical across a separable interface: keep-alive power, checkout data and separation signals.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::FluidPort" data-element-kind="portDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">FluidPort</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A propellant or pressurant line interface.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::DockingPort" data-element-kind="portDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">DockingPort</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">An androgynous docking interface: structural latch, power and data pass-through for the visiting vehicle.</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="items" data-content="section" data-name="items">
+<h2>Items crossing the interfaces</h2>
+<table class="sysml-table" data-content="table" data-name="table" data-query="TethysDocuments::Items">
+<caption class="sysml-caption">Item definitions</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysInterfaces::ElectricalPower" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ElectricalPower</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Regulated or unregulated DC power on a bus.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::Telemetry" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Telemetry</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Housekeeping or science data framed for a downlink or an on-board bus.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::Telecommand" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Telecommand</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A command packet or a command file.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::RfCarrier" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">RfCarrier</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A radio-frequency carrier with its modulation and power.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::Heat" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Heat</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Conducted or radiated thermal power.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::MechanicalLoad" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MechanicalLoad</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Quasi-static, sine, random, shock or contact load at a mechanical interface.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::Propellant" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Propellant</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Pressurised propellant: xenon for the electric thrusters, hydrazine for the reaction control thrusters, pressurant gas for either.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::TugInspectorInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TugInspectorInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ inspector before release: mechanical dispenser, umbilical and thermal. The relay link takes over after release.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::SpacecraftLauncherInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SpacecraftLauncherInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Stack ↔ launcher: adapter, loads, umbilical and separation.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::SpaceGroundLink" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SpaceGroundLink</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ ground station: X/Ka-band telemetry, telecommand and ranging.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::InspectorRelayLink" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InspectorRelayLink</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Inspector ↔ tug proximity link: imagery and radar data up, commands down.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::CaptureInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">CaptureInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ target body: the contact loads through the capture mechanism during capture, despin and the return thrust arcs.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::DockingInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">DockingInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ visiting vehicle in the distant retrograde orbit.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::PowerInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PowerInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A unit on the power bus.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::DataBusInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">DataBusInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Two nodes on an on-board data bus.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::ThermalInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ThermalInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Two units coupled by a strap, a radiator or a mount.</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="drawing" data-content="section" data-name="drawing">
+<h2>Flight segment interfaces</h2>
+<figure class="sysml-diagram" data-content="diagram" data-name="wiring" data-view="TethysViews::flightSegmentWiring" data-diagram-kind="interconnection">
+<pre class="mermaid">---
+config:
+  fontFamily: &#34;Helvetica, Arial, sans-serif&#34;
+  theme: base
+  themeCSS: &#34;.edgeLabel rect { opacity: 1 !important; } .cluster-label .nodeLabel { text-align: center; }&#34;
+  themeVariables:
+    fontFamily: &#34;Helvetica, Arial, sans-serif&#34;
+    fontSize: &#34;14px&#34;
+    primaryColor: &#34;#FFFFFF&#34;
+    secondaryColor: &#34;#FFFFFF&#34;
+    tertiaryColor: &#34;#FFFFFF&#34;
+    background: &#34;#FFFFFF&#34;
+    primaryBorderColor: &#34;#181818&#34;
+    primaryTextColor: &#34;#000000&#34;
+    lineColor: &#34;#181818&#34;
+    textColor: &#34;#000000&#34;
+    noteBkgColor: &#34;#FEFFDD&#34;
+    noteBorderColor: &#34;#181818&#34;
+    noteTextColor: &#34;#000000&#34;
+    clusterBkg: &#34;#FFFFFF&#34;
+    clusterBorder: &#34;#181818&#34;
+    edgeLabelBackground: &#34;#FFFFFF&#34;
+---
+%% TethysViews::flightSegmentWiring — interconnection rendering (view def InterconnectionView)
+flowchart LR
+  subgraph n0 [&#34;`*«part def»* **TethysFlightSegment**`&#34;]
+    direction LR
+    subgraph n1 [&#34;`*«part»* **tug**`&#34;]
+      direction LR
+      n2(&#34;`*«attribute»*
+**dryMass**`&#34;)
+      n3(&#34;`*«attribute»*
+**wetMass**`&#34;)
+      subgraph n4 [&#34;`*«part»* **structure**`&#34;]
+        direction LR
+        n5(&#34;`*«attribute»*
+**mass**`&#34;)
+      end
+      subgraph n6 [&#34;`*«part»* **thermal**`&#34;]
+        direction LR
+        n6.1[&#34;power&#34;]
+        n7(&#34;`*«attribute»*
+**mass**`&#34;)
+      end
+      subgraph n8 [&#34;`*«part»* **eps**`&#34;]
+        direction LR
+        n8.0[&#34;mainBus&#34;]
+        n8.1[&#34;highVoltageBus&#34;]
+        n8.2[&#34;inspectorKeepAlive&#34;]
+        n9(&#34;`*«attribute»*
+**arrayPowerAtOneAu**`&#34;)
+        n10(&#34;`*«attribute»*
+**mass**`&#34;)
+      end
+      subgraph n11 [&#34;`*«part»* **cdh**`&#34;]
+        direction LR
+        n11.1[&#34;power&#34;]
+        n12(&#34;`*«attribute»*
+**mass**`&#34;)
+      end
+      subgraph n13 [&#34;`*«part»* **telecom**`&#34;]
+        direction LR
+        n13.1[&#34;proximity&#34;]
+        n13.2[&#34;power&#34;]
+        n14(&#34;`*«attribute»*
+**mass**`&#34;)
+      end
+      subgraph n15 [&#34;`*«part»* **gnc**`&#34;]
+        direction LR
+        n15.0[&#34;power&#34;]
+        n16(&#34;`*«attribute»*
+**mass**`&#34;)
+      end
+      subgraph n17 [&#34;`*«part»* **sep**`&#34;]
+        direction LR
+        n17.1[&#34;power&#34;]
+        n18(&#34;`*«attribute»*
+**xenonMass**`&#34;)
+        n19(&#34;`*«attribute»*
+**thrusterCount**`&#34;)
+        n20(&#34;`*«attribute»*
+**operatingThrusters**`&#34;)
+        n21(&#34;`*«attribute»*
+**specificImpulse**`&#34;)
+        n22(&#34;`*«attribute»*
+**maximumPower**`&#34;)
+        n23(&#34;`*«attribute»*
+**mass**`&#34;)
+      end
+      subgraph n24 [&#34;`*«part»* **rcs**`&#34;]
+        direction LR
+        n24.1[&#34;power&#34;]
+        n25(&#34;`*«attribute»*
+**hydrazineMass**`&#34;)
+        n26(&#34;`*«attribute»*
+**mass**`&#34;)
+      end
+      subgraph n27 [&#34;`*«part»* **captureSystem**`&#34;]
+        direction LR
+        n27.1[&#34;power&#34;]
+        n28(&#34;`*«attribute»*
+**maximumBodyDiameter**`&#34;)
+        n29(&#34;`*«attribute»*
+**maximumBodyMass**`&#34;)
+        n30(&#34;`*«attribute»*
+**mass**`&#34;)
+      end
+      subgraph n31 [&#34;`*«part»* **sensors**`&#34;]
+        direction LR
+        n31.0[&#34;power&#34;]
+        n32(&#34;`*«attribute»*
+**mass**`&#34;)
+      end
+    end
+    subgraph n33 [&#34;`*«part»* **inspector**`&#34;]
+      direction LR
+      n34(&#34;`*«attribute»*
+**wetMass**`&#34;)
+      subgraph n35 [&#34;`*«part»* **bus**`&#34;]
+        direction LR
+        n35.0[&#34;proximity&#34;]
+        n35.1[&#34;umbilical&#34;]
+        n36(&#34;`*«attribute»*
+**mass**`&#34;)
+      end
+      subgraph n37 [&#34;`*«part»* **payload**`&#34;]
+        direction LR
+        n38(&#34;`*«attribute»*
+**mass**`&#34;)
+      end
+      subgraph n39 [&#34;`*«part»* **propulsion**`&#34;]
+        direction LR
+        n40(&#34;`*«attribute»*
+**mass**`&#34;)
+        n41(&#34;`*«attribute»*
+**propellantMass**`&#34;)
+      end
+    end
+  end
+  n8.0 === n11.1
+  n8.0 === n13.2
+  n8.0 === n15.0
+  n8.0 === n6.1
+  n8.0 === n24.1
+  n8.0 === n27.1
+  n8.0 === n31.0
+  n8.1 === n17.1
+  n8.2 === n35.1
+  n35.0 === n13.1
+  linkStyle 0 stroke-width:3px
+  linkStyle 1 stroke-width:3px
+  linkStyle 2 stroke-width:3px
+  linkStyle 3 stroke-width:3px
+  linkStyle 4 stroke-width:3px
+  linkStyle 5 stroke-width:3px
+  linkStyle 6 stroke-width:3px
+  linkStyle 7 stroke-width:3px
+  linkStyle 8 stroke-width:3px
+  linkStyle 9 stroke-width:3px</pre>
+<figcaption class="sysml-caption">Tug ↔ inspector: carrier umbilical and relay link</figcaption>
+</figure>
+</section>
+</article>
+</body>
+</html>

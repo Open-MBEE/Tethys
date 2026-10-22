@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tethys Retrieval — Verification Matrix</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysDocuments::VerificationMatrix">
+<h1 class="sysml-title">Tethys Retrieval — Verification Matrix</h1>
+<p class="sysml-paragraph" data-content="paragraph" data-name="intro">One row per requirement. The verification cases that close each row are added by the verification package; a requirement without one stays visible here as uncovered.</p>
+<section class="sysml-section" id="matrix" data-content="section" data-name="matrix">
+<h2>Requirements</h2>
+<table class="sysml-table" data-content="table" data-name="table" data-query="TethysDocuments::MissionRequirements">
+<caption class="sysml-caption">L1 requirements</caption>
+<thead>
+<tr>
+<th scope="col" data-column="shortName">Id</th>
+<th scope="col" data-column="name">Name</th>
+<th scope="col" data-column="documentation">Statement</th>
+<th scope="col" data-column="tier">Tier</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysRequirements::retrieval" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-001</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">retrieval</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The mission shall deliver the target body 2031 QX, intact and with a mass of at least 100 t, into the designated lunar distant retrograde orbit.</span></td>
+<td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::missionDuration" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-002</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">missionDuration</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The mission shall complete the insertion of the target into the distant retrograde orbit within 1 300 days of launch.</span></td>
+<td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::characterisation" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-003</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">characterisation</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Before committing to capture, the mission shall determine the target&#39;s shape, mass to within 10 % and spin state, and shall confirm that each lies within the capture system&#39;s design envelope.</span></td>
+<td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::launchCompatibility" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-004</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">launchCompatibility</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The flight system shall be compatible with the Arcturus-5H launch vehicle and its direct injection to an Earth-escape trajectory.</span></td>
+<td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::groundCompatibility" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-005</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">groundCompatibility</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The flight system shall communicate through the Meridian deep-space network at every Earth range of the mission.</span></td>
+<td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::cislunarSafety" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-006</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">cislunarSafety</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The target body shall be placed in an orbit that remains bound to the Moon for at least 100 years without station-keeping, and no credible failure during the return shall place it on an Earth-impact trajectory.</span></td>
+<td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::missionClass" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-007</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">missionClass</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The flight system shall carry no single-point failure that ends the mission.</span></td>
+<td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::deflectionDemonstration" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-008</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">deflectionDemonstration</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">While attached to the target, the mission shall demonstrate a slow-push deflection and shall measure the resulting change in the target&#39;s heliocentric velocity to an accuracy of 1 mm/s.</span></td>
+<td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::utilisationAccess" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-009</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">utilisationAccess</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">After delivery, the tug shall hold the target in an attitude and with a docking interface that lets the visiting vehicle Lantern dock and reach the target&#39;s surface.</span></td>
+<td class="sysml-cell" data-column="tier" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::RequirementTier::mission" data-element-kind="enumUsage">mission</span></td>
+</tr>
+</tbody>
+</table>
+<figure class="sysml-diagram" data-content="diagram" data-name="drawn" data-view="TethysViews::requirementsTable" data-diagram-kind="table">
+<table class="sysml-table" data-content="table">
+<thead>
+<tr>
+<th scope="col" data-column="Element">Element</th>
+<th scope="col" data-column="Kind">Kind</th>
+<th scope="col" data-column="Type">Type</th>
+<th scope="col" data-column="Declared in">Declared in</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">TethysRequirements::retrieval</td>
+<td class="sysml-cell" data-column="Kind">requirement</td>
+<td class="sysml-cell" data-column="Type">MissionRequirement</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">deliveredMass</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">MassValue</td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::retrieval</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::retrieval</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">method</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationMethodKind</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">level</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationLevel</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">stage</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationStage</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::retrieval</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">require constraint</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::retrieval</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">TethysRequirements::missionDuration</td>
+<td class="sysml-cell" data-column="Kind">requirement</td>
+<td class="sysml-cell" data-column="Type">MissionRequirement</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">nominalDuration</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">DurationValue</td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::missionDuration</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::missionDuration</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">method</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationMethodKind</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">level</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationLevel</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">stage</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationStage</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::missionDuration</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">require constraint</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::missionDuration</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">TethysRequirements::characterisation</td>
+<td class="sysml-cell" data-column="Kind">requirement</td>
+<td class="sysml-cell" data-column="Type">MissionRequirement</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::characterisation</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">method</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationMethodKind</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">level</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationLevel</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">stage</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationStage</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::characterisation</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">TethysRequirements::launchCompatibility</td>
+<td class="sysml-cell" data-column="Kind">requirement</td>
+<td class="sysml-cell" data-column="Type">MissionRequirement</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::launchCompatibility</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">method</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationMethodKind</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">level</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationLevel</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">stage</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationStage</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::launchCompatibility</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">TethysRequirements::groundCompatibility</td>
+<td class="sysml-cell" data-column="Kind">requirement</td>
+<td class="sysml-cell" data-column="Type">MissionRequirement</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::groundCompatibility</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">method</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationMethodKind</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">level</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationLevel</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">stage</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationStage</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::groundCompatibility</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">TethysRequirements::cislunarSafety</td>
+<td class="sysml-cell" data-column="Kind">requirement</td>
+<td class="sysml-cell" data-column="Type">MissionRequirement</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">stabilityHorizon</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">DurationValue</td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::cislunarSafety</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::cislunarSafety</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">method</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationMethodKind</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">level</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationLevel</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">stage</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationStage</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::cislunarSafety</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">require constraint</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::cislunarSafety</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">TethysRequirements::missionClass</td>
+<td class="sysml-cell" data-column="Kind">requirement</td>
+<td class="sysml-cell" data-column="Type">MissionRequirement</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::missionClass</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">method</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationMethodKind</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">level</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationLevel</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">stage</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationStage</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::missionClass</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">TethysRequirements::deflectionDemonstration</td>
+<td class="sysml-cell" data-column="Kind">requirement</td>
+<td class="sysml-cell" data-column="Type">MissionRequirement</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::deflectionDemonstration</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">method</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationMethodKind</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">level</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationLevel</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">stage</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationStage</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::deflectionDemonstration</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">TethysRequirements::utilisationAccess</td>
+<td class="sysml-cell" data-column="Kind">requirement</td>
+<td class="sysml-cell" data-column="Type">MissionRequirement</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::utilisationAccess</td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">method</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationMethodKind</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">level</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationLevel</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element">stage</td>
+<td class="sysml-cell" data-column="Kind">attribute</td>
+<td class="sysml-cell" data-column="Type">VerificationStage</td>
+<td class="sysml-cell" data-column="Declared in"></td>
+</tr>
+<tr class="sysml-row">
+<td class="sysml-cell" data-column="Element"></td>
+<td class="sysml-cell" data-column="Kind">metadata usage</td>
+<td class="sysml-cell" data-column="Type"></td>
+<td class="sysml-cell" data-column="Declared in">TethysRequirements::utilisationAccess</td>
+</tr>
+</tbody>
+</table>
+<figcaption class="sysml-caption">The same requirements as an element table</figcaption>
+</figure>
+</section>
+</article>
+</body>
+</html>

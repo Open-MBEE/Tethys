@@ -1,0 +1,126 @@
+---
+config:
+  fontFamily: "Helvetica, Arial, sans-serif"
+  theme: base
+  themeCSS: ".edgeLabel rect { opacity: 1 !important; } .cluster-label .nodeLabel { text-align: center; }"
+  themeVariables:
+    fontFamily: "Helvetica, Arial, sans-serif"
+    fontSize: "14px"
+    primaryColor: "#FFFFFF"
+    secondaryColor: "#FFFFFF"
+    tertiaryColor: "#FFFFFF"
+    background: "#FFFFFF"
+    primaryBorderColor: "#181818"
+    primaryTextColor: "#000000"
+    lineColor: "#181818"
+    textColor: "#000000"
+    noteBkgColor: "#FEFFDD"
+    noteBorderColor: "#181818"
+    noteTextColor: "#000000"
+    clusterBkg: "#FFFFFF"
+    clusterBorder: "#181818"
+    edgeLabelBackground: "#FFFFFF"
+---
+%% TethysViews::tugPowerBus — interconnection rendering (view def InterconnectionView)
+flowchart LR
+  subgraph n0 ["`*«part def»* **Tug**`"]
+    direction LR
+    n1("`*«attribute»*
+**dryMass**`")
+    n2("`*«attribute»*
+**wetMass**`")
+    subgraph n3 ["`*«part»* **structure**`"]
+      direction LR
+      n4("`*«attribute»*
+**mass**`")
+    end
+    subgraph n5 ["`*«part»* **thermal**`"]
+      direction LR
+      n5.1["power"]
+      n6("`*«attribute»*
+**mass**`")
+    end
+    subgraph n7 ["`*«part»* **eps**`"]
+      direction LR
+      n7.0["mainBus"]
+      n7.1["highVoltageBus"]
+      n8("`*«attribute»*
+**arrayPowerAtOneAu**`")
+      n9("`*«attribute»*
+**mass**`")
+    end
+    subgraph n10 ["`*«part»* **cdh**`"]
+      direction LR
+      n10.1["power"]
+      n11("`*«attribute»*
+**mass**`")
+    end
+    subgraph n12 ["`*«part»* **telecom**`"]
+      direction LR
+      n12.2["power"]
+      n13("`*«attribute»*
+**mass**`")
+    end
+    subgraph n14 ["`*«part»* **gnc**`"]
+      direction LR
+      n14.0["power"]
+      n15("`*«attribute»*
+**mass**`")
+    end
+    subgraph n16 ["`*«part»* **sep**`"]
+      direction LR
+      n16.1["power"]
+      n17("`*«attribute»*
+**xenonMass**`")
+      n18("`*«attribute»*
+**thrusterCount**`")
+      n19("`*«attribute»*
+**operatingThrusters**`")
+      n20("`*«attribute»*
+**specificImpulse**`")
+      n21("`*«attribute»*
+**maximumPower**`")
+      n22("`*«attribute»*
+**mass**`")
+    end
+    subgraph n23 ["`*«part»* **rcs**`"]
+      direction LR
+      n23.1["power"]
+      n24("`*«attribute»*
+**hydrazineMass**`")
+      n25("`*«attribute»*
+**mass**`")
+    end
+    subgraph n26 ["`*«part»* **captureSystem**`"]
+      direction LR
+      n26.1["power"]
+      n27("`*«attribute»*
+**maximumBodyDiameter**`")
+      n28("`*«attribute»*
+**maximumBodyMass**`")
+      n29("`*«attribute»*
+**mass**`")
+    end
+    subgraph n30 ["`*«part»* **sensors**`"]
+      direction LR
+      n30.0["power"]
+      n31("`*«attribute»*
+**mass**`")
+    end
+  end
+  n7.0 === n10.1
+  n7.0 === n12.2
+  n7.0 === n14.0
+  n7.0 === n5.1
+  n7.0 === n23.1
+  n7.0 === n26.1
+  n7.0 === n30.0
+  n7.1 === n16.1
+  linkStyle 0 stroke-width:3px
+  linkStyle 1 stroke-width:3px
+  linkStyle 2 stroke-width:3px
+  linkStyle 3 stroke-width:3px
+  linkStyle 4 stroke-width:3px
+  linkStyle 5 stroke-width:3px
+  linkStyle 6 stroke-width:3px
+  linkStyle 7 stroke-width:3px

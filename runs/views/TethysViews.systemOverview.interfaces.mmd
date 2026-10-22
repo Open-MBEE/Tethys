@@ -1,0 +1,61 @@
+---
+config:
+  fontFamily: "Helvetica, Arial, sans-serif"
+  theme: base
+  themeCSS: ".edgeLabel rect { opacity: 1 !important; } .cluster-label .nodeLabel { text-align: center; }"
+  themeVariables:
+    fontFamily: "Helvetica, Arial, sans-serif"
+    fontSize: "14px"
+    primaryColor: "#FFFFFF"
+    secondaryColor: "#FFFFFF"
+    tertiaryColor: "#FFFFFF"
+    background: "#FFFFFF"
+    primaryBorderColor: "#181818"
+    primaryTextColor: "#000000"
+    lineColor: "#181818"
+    textColor: "#000000"
+    noteBkgColor: "#FEFFDD"
+    noteBorderColor: "#181818"
+    noteTextColor: "#000000"
+    clusterBkg: "#FFFFFF"
+    clusterBorder: "#181818"
+    edgeLabelBackground: "#FFFFFF"
+---
+%% TethysViews::systemOverview::interfaces — interconnection rendering (view def InterconnectionView)
+%% not represented: 2 node(s) without a position, left undrawn
+%% layout: n1 x=370 y=60 w=220 h=120 collapsed
+%% layout: n2 x=40 y=60 w=220 h=120 collapsed
+%% layout: n3 x=370 y=340 w=220 h=120 collapsed
+%% layout: n4 x=700 y=60 w=220 h=120 collapsed
+%% layout: n5 x=700 y=340 w=220 h=120 collapsed
+%% route: n1->n2 260,120 370,120
+%% route: n1->n3 480,180 480,340
+%% route: n1->n4 590,120 700,120
+%% route: n1->n5 590,150 810,340
+flowchart LR
+  subgraph n0 ["`*«part»* **tethysSystem**`"]
+    direction LR
+    n1("`*«part»*
+**flight**`")
+    n2("`*«part»*
+**launch**`")
+    n3("`*«part»*
+**ground**`")
+    subgraph n4 ["`*«part»* **target**`"]
+      direction LR
+      n4.0["surface"]
+    end
+    subgraph n5 ["`*«part»* **visitor**`"]
+      direction LR
+      n5.0["docking"]
+    end
+  end
+  n1 === n2
+  n1 === n3
+  n1 === n4.0
+  n1 === n5.0
+  style n4 fill:#F4E3C1,stroke:#8A6D3B
+  linkStyle 0 stroke-width:3px
+  linkStyle 1 stroke-width:3px
+  linkStyle 2 stroke-width:3px
+  linkStyle 3 stroke-width:3px

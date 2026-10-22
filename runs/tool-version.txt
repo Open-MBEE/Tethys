@@ -1,0 +1,4 @@
+sysml nightly-20261021-b60a18c20
+  Commit:     b60a18c20
+  Build time: 2026-10-21_08:49:18
+  Go version: go1.25.11

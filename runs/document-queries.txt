@@ -1,0 +1,215 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysHouseRules
+✓ Query TethysDocuments::MissionRequirements returned 9 rows
+  Columns: shortName, name, documentation, tier
+  Row 1: TethysRequirements::retrieval
+    shortName = "TR-001"
+    name = "retrieval"
+    documentation = "The mission shall deliver the target body 2031 QX, intact and with a mass of at\nleast 100 t, into the designated lunar distant retrograde orbit."
+    tier = TethysRequirements::RequirementTier::mission
+  Row 2: TethysRequirements::missionDuration
+    shortName = "TR-002"
+    name = "missionDuration"
+    documentation = "The mission shall complete the insertion of the target into the distant\nretrograde orbit within 1 300 days of launch."
+    tier = TethysRequirements::RequirementTier::mission
+  Row 3: TethysRequirements::characterisation
+    shortName = "TR-003"
+    name = "characterisation"
+    documentation = "Before committing to capture, the mission shall determine the target's shape,\nmass to within 10 % and spin state, and shall confirm that each lies within the\ncapture system's design envelope."
+    tier = TethysRequirements::RequirementTier::mission
+  Row 4: TethysRequirements::launchCompatibility
+    shortName = "TR-004"
+    name = "launchCompatibility"
+    documentation = "The flight system shall be compatible with the Arcturus-5H launch vehicle and its\ndirect injection to an Earth-escape trajectory."
+    tier = TethysRequirements::RequirementTier::mission
+  Row 5: TethysRequirements::groundCompatibility
+    shortName = "TR-005"
+    name = "groundCompatibility"
+    documentation = "The flight system shall communicate through the Meridian deep-space network at\nevery Earth range of the mission."
+    tier = TethysRequirements::RequirementTier::mission
+  Row 6: TethysRequirements::cislunarSafety
+    shortName = "TR-006"
+    name = "cislunarSafety"
+    documentation = "The target body shall be placed in an orbit that remains bound to the Moon for at\nleast 100 years without station-keeping, and no credible failure during the return\nshall place it on an Earth-impact trajectory."
+    tier = TethysRequirements::RequirementTier::mission
+  Row 7: TethysRequirements::missionClass
+    shortName = "TR-007"
+    name = "missionClass"
+    documentation = "The flight system shall carry no single-point failure that ends the mission."
+    tier = TethysRequirements::RequirementTier::mission
+  Row 8: TethysRequirements::deflectionDemonstration
+    shortName = "TR-008"
+    name = "deflectionDemonstration"
+    documentation = "While attached to the target, the mission shall demonstrate a slow-push\ndeflection and shall measure the resulting change in the target's heliocentric\nvelocity to an accuracy of 1 mm/s."
+    tier = TethysRequirements::RequirementTier::mission
+  Row 9: TethysRequirements::utilisationAccess
+    shortName = "TR-009"
+    name = "utilisationAccess"
+    documentation = "After delivery, the tug shall hold the target in an attitude and with a docking\ninterface that lets the visiting vehicle Lantern dock and reach the target's\nsurface."
+    tier = TethysRequirements::RequirementTier::mission
+✓ Query TethysDocuments::InterfaceEnds returned 18 rows
+  Columns: owner, name, type
+  Row 1: TethysInterfaces::TugInspectorInterface::tugSide
+    owner = "TethysInterfaces::TugInspectorInterface"
+    name = "tugSide"
+    type = "TethysInterfaces::UmbilicalPort"
+  Row 2: TethysInterfaces::TugInspectorInterface::inspectorSide
+    owner = "TethysInterfaces::TugInspectorInterface"
+    name = "inspectorSide"
+    type = "TethysInterfaces::UmbilicalPort"
+  Row 3: TethysInterfaces::SpacecraftLauncherInterface::spacecraftSide
+    owner = "TethysInterfaces::SpacecraftLauncherInterface"
+    name = "spacecraftSide"
+    type = "TethysInterfaces::MechanicalPort"
+  Row 4: TethysInterfaces::SpacecraftLauncherInterface::launcherSide
+    owner = "TethysInterfaces::SpacecraftLauncherInterface"
+    name = "launcherSide"
+    type = "TethysInterfaces::MechanicalPort"
+  Row 5: TethysInterfaces::SpaceGroundLink::spacecraftSide
+    owner = "TethysInterfaces::SpaceGroundLink"
+    name = "spacecraftSide"
+    type = "TethysInterfaces::RfPort"
+  Row 6: TethysInterfaces::SpaceGroundLink::groundSide
+    owner = "TethysInterfaces::SpaceGroundLink"
+    name = "groundSide"
+    type = "TethysInterfaces::RfPort"
+  Row 7: TethysInterfaces::InspectorRelayLink::inspectorSide
+    owner = "TethysInterfaces::InspectorRelayLink"
+    name = "inspectorSide"
+    type = "TethysInterfaces::RfPort"
+  Row 8: TethysInterfaces::InspectorRelayLink::tugSide
+    owner = "TethysInterfaces::InspectorRelayLink"
+    name = "tugSide"
+    type = "TethysInterfaces::RfPort"
+  Row 9: TethysInterfaces::CaptureInterface::tugSide
+    owner = "TethysInterfaces::CaptureInterface"
+    name = "tugSide"
+    type = "TethysInterfaces::MechanicalPort"
+  Row 10: TethysInterfaces::CaptureInterface::bodySide
+    owner = "TethysInterfaces::CaptureInterface"
+    name = "bodySide"
+    type = "TethysInterfaces::MechanicalPort"
+  Row 11: TethysInterfaces::DockingInterface::tugSide
+    owner = "TethysInterfaces::DockingInterface"
+    name = "tugSide"
+    type = "TethysInterfaces::DockingPort"
+  Row 12: TethysInterfaces::DockingInterface::visitorSide
+    owner = "TethysInterfaces::DockingInterface"
+    name = "visitorSide"
+    type = "TethysInterfaces::DockingPort"
+  Row 13: TethysInterfaces::PowerInterface::source
+    owner = "TethysInterfaces::PowerInterface"
+    name = "source"
+    type = "TethysInterfaces::PowerOutlet"
+  Row 14: TethysInterfaces::PowerInterface::load
+    owner = "TethysInterfaces::PowerInterface"
+    name = "load"
+    type = "TethysInterfaces::PowerOutlet"
+  Row 15: TethysInterfaces::DataBusInterface::a
+    owner = "TethysInterfaces::DataBusInterface"
+    name = "a"
+    type = "TethysInterfaces::DataBusPort"
+  Row 16: TethysInterfaces::DataBusInterface::b
+    owner = "TethysInterfaces::DataBusInterface"
+    name = "b"
+    type = "TethysInterfaces::DataBusPort"
+  Row 17: TethysInterfaces::ThermalInterface::hot
+    owner = "TethysInterfaces::ThermalInterface"
+    name = "hot"
+    type = "TethysInterfaces::ThermalPort"
+  Row 18: TethysInterfaces::ThermalInterface::cold
+    owner = "TethysInterfaces::ThermalInterface"
+    name = "cold"
+    type = "TethysInterfaces::ThermalPort"
+✓ Query TethysDocuments::FlightPhases returned 25 rows
+  Columns: name, type
+  Row 1: TethysMission::flightTimeline::liftOff
+    name = "liftOff"
+    type = (none)
+  Row 2: TethysMission::flightTimeline::separationFromLauncher
+    name = "separationFromLauncher"
+    type = (none)
+  Row 3: TethysMission::flightTimeline::arraysDeployed
+    name = "arraysDeployed"
+    type = (none)
+  Row 4: TethysMission::flightTimeline::firstThrustArc
+    name = "firstThrustArc"
+    type = (none)
+  Row 5: TethysMission::flightTimeline::rendezvous
+    name = "rendezvous"
+    type = (none)
+  Row 6: TethysMission::flightTimeline::inspectorRelease
+    name = "inspectorRelease"
+    type = (none)
+  Row 7: TethysMission::flightTimeline::captureCommit
+    name = "captureCommit"
+    type = (none)
+  Row 8: TethysMission::flightTimeline::captureComplete
+    name = "captureComplete"
+    type = (none)
+  Row 9: TethysMission::flightTimeline::despinComplete
+    name = "despinComplete"
+    type = (none)
+  Row 10: TethysMission::flightTimeline::departureFromTarget
+    name = "departureFromTarget"
+    type = (none)
+  Row 11: TethysMission::flightTimeline::lunarGravityAssist
+    name = "lunarGravityAssist"
+    type = (none)
+  Row 12: TethysMission::flightTimeline::droInsertion
+    name = "droInsertion"
+    type = (none)
+  Row 13: TethysMission::flightTimeline::visitingVehicleDocking
+    name = "visitingVehicleDocking"
+    type = (none)
+  Row 14: TethysMission::flightTimeline::tugSeparation
+    name = "tugSeparation"
+    type = (none)
+  Row 15: TethysMission::flightTimeline::tugDisposalBurn
+    name = "tugDisposalBurn"
+    type = (none)
+  Row 16: TethysMission::flightTimeline::launchAndEarlyOperations
+    name = "launchAndEarlyOperations"
+    type = "TethysMission::MissionPhase"
+  Row 17: TethysMission::flightTimeline::outboundCruise
+    name = "outboundCruise"
+    type = "TethysMission::MissionPhase"
+  Row 18: TethysMission::flightTimeline::approachAndRendezvous
+    name = "approachAndRendezvous"
+    type = "TethysMission::MissionPhase"
+  Row 19: TethysMission::flightTimeline::characterisation
+    name = "characterisation"
+    type = "TethysMission::MissionPhase"
+  Row 20: TethysMission::flightTimeline::capture
+    name = "capture"
+    type = "TethysMission::MissionPhase"
+  Row 21: TethysMission::flightTimeline::returnCruise
+    name = "returnCruise"
+    type = "TethysMission::MissionPhase"
+  Row 22: TethysMission::flightTimeline::droInsertionAndCheckout
+    name = "droInsertionAndCheckout"
+    type = "TethysMission::MissionPhase"
+  Row 23: TethysMission::flightTimeline::utilisation
+    name = "utilisation"
+    type = "TethysMission::MissionPhase"
+  Row 24: TethysMission::flightTimeline::extendedMission
+    name = "extendedMission"
+    type = "TethysMission::MissionPhase"
+  Row 25: TethysMission::flightTimeline::disposal
+    name = "disposal"
+    type = "TethysMission::MissionPhase"
+✓ Query TethysDocuments::Risks returned 0 rows
+  Columns: name, documentation

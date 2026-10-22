@@ -1,0 +1,58 @@
+loaded 15 files:
+  model/00-tethys.sysml
+  model/01-environment.sysml
+  model/02-mission.sysml
+  model/03-interfaces.sysml
+  model/04-requirements.sysml
+  model/05-tug.sysml
+  model/06-inspector.sysml
+  model/07-target.sysml
+  model/08-launch.sysml
+  model/09-ground.sysml
+  model/10-system.sysml
+  model/90-views.sysml
+  model/91-documents.sysml
+  model/92-layout.sysml
+  model/99-house-rules.sysml
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysHouseRules
+TethysViews::RequirementsTreeView: note: renders empty
+wrote build/runs/views/TethysViews.RequirementsTreeView.mmd (mermaid, 830 bytes)
+TethysViews::RequirementsTableView: note: renders empty
+wrote build/runs/views/TethysViews.RequirementsTableView.md (markdown, 138 bytes)
+TethysViews::InterfaceView: note: renders empty
+wrote build/runs/views/TethysViews.InterfaceView.mmd (mermaid, 842 bytes)
+TethysViews::BudgetView: note: renders empty
+wrote build/runs/views/TethysViews.BudgetView.md (markdown, 124 bytes)
+TethysViews::TimelineView: note: renders empty
+wrote build/runs/views/TethysViews.TimelineView.mmd (mermaid, 799 bytes)
+TethysViews::ModeView: note: renders empty
+wrote build/runs/views/TethysViews.ModeView.mmd (mermaid, 1001 bytes)
+wrote build/runs/views/TethysViews.requirementsTree.mmd (mermaid, 1204 bytes)
+wrote build/runs/views/TethysViews.requirementsTable.md (markdown, 3722 bytes)
+wrote build/runs/views/TethysViews.segmentInterfaces.mmd (mermaid, 2010 bytes)
+wrote build/runs/views/TethysViews.flightSegmentWiring.mmd (mermaid, 4050 bytes)
+wrote build/runs/views/TethysViews.tugPowerBus.mmd (mermaid, 3090 bytes)
+wrote build/runs/views/TethysViews.interfaceDefinitions.md (markdown, 449213 bytes)
+wrote build/runs/views/TethysViews.massBudget.md (markdown, 1096 bytes)
+wrote build/runs/views/TethysViews.missionTimeline.mmd (mermaid, 3326 bytes)
+wrote build/runs/views/TethysViews.projectLifecycle.mmd (mermaid, 1828 bytes)
+TethysViews::modeMachine: note: renders empty
+TethysViews::modeMachine: note: part def TethysTug::Tug is no state machine; a state rendering does not show it
+wrote build/runs/views/TethysViews.modeMachine.mmd (mermaid, 1131 bytes)
+TethysViews::environmentText: skipped: textual rendering (render asTextualNotation) is not supported; the notation itself is written by `sysml <model> -convert sysml`
+wrote build/runs/views/TethysViews.systemOverview.mmd (mermaid, 1706 bytes)
+wrote build/runs/views/TethysViews.systemOverview.interfaces.mmd (mermaid, 1798 bytes)
