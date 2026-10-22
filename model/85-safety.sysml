@@ -13,6 +13,7 @@ package TethysSafety {
     private import TethysTug::*;
     private import TethysInspector::*;
     private import TethysMission::*;
+    private import TethysTarget::targetCases;
     private import TethysRequirements::*;
     private import VerificationCases::*;
     private import ModelingMetadata::*;
@@ -304,15 +305,22 @@ package TethysSafety {
     }
 
     part envelopeCases {
-        doc /* The small, nominal and large target cases against the Phase B bag (10 m). The large
-             * case is the characterisation envelope's upper bound, not the nominal 6.8 m body. */
-        attribute smallTargetDiameter : LengthValue = 5.0 [m];
-        attribute nominalTargetDiameter : LengthValue = argent.captureSystem.maximumBodyDiameter * 0.68;
-        attribute largeTargetDiameter : LengthValue = 7.7 [m];
-        attribute smallMargin : Real = EnvelopeMargin(10.0, 5.0);
-        attribute nominalMargin : Real = EnvelopeMargin(10.0, 6.8);
-        attribute largeMargin : Real = EnvelopeMargin(10.0, 7.7);
+        doc /* The small, nominal and large design cases of TethysTarget::targetCases against
+             * Argent's bag; the large case (7.6 m) is the characterisation envelope's upper bound
+             * TS-804 sizes the bag from, 1.3 times which is the 10 m bag. */
+        attribute maximumBodyDiameter : LengthValue = argent.captureSystem.maximumBodyDiameter;
+        attribute smallTargetDiameter : LengthValue = targetCases.small.meanDiameter;
+        attribute nominalTargetDiameter : LengthValue = targetCases.nominal.meanDiameter;
+        attribute largeTargetDiameter : LengthValue = targetCases.large.meanDiameter;
+        attribute smallMargin : Real = EnvelopeMargin(maximumBodyDiameter / (1 [m]), smallTargetDiameter / (1 [m]));
+        attribute nominalMargin : Real = EnvelopeMargin(maximumBodyDiameter / (1 [m]), nominalTargetDiameter / (1 [m]));
+        attribute largeMargin : Real = EnvelopeMargin(maximumBodyDiameter / (1 [m]), largeTargetDiameter / (1 [m]));
+        attribute largeCaseFactor : Real = (maximumBodyDiameter / (1 [m])) / (largeTargetDiameter / (1 [m]));
         assert constraint largeCaseFits { largeMargin >= 0.0 }
+        assert constraint largeCaseFactorMet {
+            doc /* TS-804: the bag takes 1.3 times the large case's diameter. */
+            largeCaseFactor >= 1.3
+        }
     }
 
     // ---------------------------------------------------------------- FMECA (SE-172, SE-174, SE-177)

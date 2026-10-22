@@ -18,6 +18,7 @@ package TethysDynamics {
     private import TethysEnvironment::*;
     private import TethysTug::*;
     private import TethysAnalyses::*;
+    private import TethysTarget::targetCases;
 
     // ---- Sampled functions -------------------------------------------------------------------
 
@@ -369,9 +370,9 @@ package TethysDynamics {
     action despinNominal : DespinDynamics {
         doc /* The nominal body (I = 1.67 × 10⁶ kg·m², 252 s period) despun by 60 s pulses of
              * two 22 N thrusters on a 3 m arm: 316 s of firing in six pulses, 6.5 kg. */
-        :>> momentOfInertiaKgM2 = 0.4 * (nominalTarget.mass / 1 [kg]) * (nominalTarget.meanDiameter / 1 [m] / 2.0) ** 2;
+        :>> momentOfInertiaKgM2 = 0.4 * (targetCases.nominal.mass / 1 [kg]) * (targetCases.nominal.meanDiameter / 1 [m] / 2.0) ** 2;
         in :>> input = VectorOf((2.0 * 22.0 * 3.0, 60.0, 2.0 * 22.0 / (220.0 * standardGravityMPerS2)));
-        :>> stateSpace = VectorOf((2.0 * pi / (nominalTarget.rotationPeriod / 1 [s]), 0.0));
+        :>> stateSpace = VectorOf((2.0 * pi / (targetCases.nominal.rotationPeriod / 1 [s]), 0.0));
         :>> timeStep = 60 [s];
         :>> stopTime = 360 [s];
     }

@@ -12,6 +12,7 @@ package TethysTrades {
     private import TethysEnvironment::*;
     private import TethysTug::*;
     private import TethysAnalyses::*;
+    private import TethysTarget::targetCases;
     private import TethysMission::transferBook;
 
     // ---- T3: array power against trip time ---------------------------------------------------
@@ -116,7 +117,7 @@ package TethysTrades {
             in part option :>> alternative : ThrusterOption;
             attribute ispS : Real = option.specificImpulse / 1 [s];
             attribute outboundXenonKg : Real = PropellantForDeltaV(outboundDeltaVMPerS, argent.wetMass / 1 [kg], ispS);
-            attribute stackKg : Real = argent.wetMass / 1 [kg] - outboundXenonKg + nominalTarget.mass / 1 [kg];
+            attribute stackKg : Real = argent.wetMass / 1 [kg] - outboundXenonKg + targetCases.nominal.mass / 1 [kg];
             attribute returnXenonKg : Real = PropellantForDeltaV(returnDeltaVMPerS, stackKg, ispS);
             attribute xenonKg : Real = outboundXenonKg + returnXenonKg;
             attribute thrustN : Real = SepThrust(argent.sep.maximumPower / 1 [W], ispS, option.efficiency);

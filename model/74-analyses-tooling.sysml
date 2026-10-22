@@ -15,6 +15,7 @@ package TethysAnalysesTooling {
     private import TethysEnvironment::*;
     private import TethysTug::*;
     private import TethysAnalyses::*;
+    private import TethysTarget::targetCases;
     private import TethysMonteCarlo::*;
     private import TethysDynamics::*;
     private import TethysMission::transferBook;
@@ -25,9 +26,9 @@ package TethysAnalysesTooling {
         doc /* One target case per run, weighted by the pre-arrival belief: small 25 %, nominal
              * 50 %, large 25 %. */
         out bodyMassKg : Real;
-        action small assign bodyMassKg := smallTarget.mass / 1 [kg];
-        action nominal assign bodyMassKg := nominalTarget.mass / 1 [kg];
-        action large assign bodyMassKg := largeTarget.mass / 1 [kg];
+        action small assign bodyMassKg := targetCases.small.mass / 1 [kg];
+        action nominal assign bodyMassKg := targetCases.nominal.mass / 1 [kg];
+        action large assign bodyMassKg := targetCases.large.mass / 1 [kg];
         first start; then decide pick;
         then small { @Probability { p = 0.25; } }
         then nominal { @Probability { p = 0.50; } }
@@ -61,7 +62,7 @@ package TethysAnalysesTooling {
              * small–nominal–large range; `-draws min -runs 1` and `-draws max -runs 1` give the
              * worst-case corners. */
         subject :>> analysed : Tug;
-        attribute bodyMassKg : Real = triangular(smallTarget.mass / 1 [kg], nominalTarget.mass / 1 [kg], largeTarget.mass / 1 [kg]);
+        attribute bodyMassKg : Real = triangular(targetCases.small.mass / 1 [kg], targetCases.nominal.mass / 1 [kg], targetCases.large.mass / 1 [kg]);
         analysis dispersion : ReturnDispersion {
             subject :>> tug = analysed;
             in bodyMassKg = bodyMassKg;

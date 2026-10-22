@@ -10,6 +10,9 @@ package TethysModes {
     private import TethysInterfaces::*;
     private import TethysTug::Tug;
     private import TethysInspector::Inspector;
+    private import TethysTarget::targetCases;
+    private import TethysBudgets::CaptureCommitEnvelope;
+    private import TethysBudgets::captureCommitEnvelope;
 
     // ---- 1. Command and event vocabulary ------------------------------------------------
     item def GroundCommand :> Telecommand {
@@ -31,7 +34,8 @@ package TethysModes {
     }
     item def CaptureGo :> GroundCommand {
         doc /* Commit to capture with the characterised target estimate; the mode machine
-             * refuses it when the estimate exceeds the capture-system envelope. */
+             * refuses it when the estimate exceeds the capture-commit envelope (the bag and the
+             * return propellant, TethysBudgets::captureCommitEnvelope). */
         attribute estimatedMass : MassValue;
         attribute estimatedDiameter : LengthValue;
     }
@@ -234,13 +238,6 @@ package TethysModes {
     }
 
     // ---- 3. Tug mode machine with subsystem regions -------------------------------------
-    attribute def CaptureEnvelope {
-        doc /* The capture-system envelope the CaptureGo guard checks the target estimate
-             * against; Argent's values are those of its capture system (TethysTug::argent). */
-        attribute maximumBodyMass : MassValue;
-        attribute maximumBodyDiameter : LengthValue;
-    }
-
     state def TugModes parallel {
         doc /* The Argent mode machine. Region `flightMode` is the mode of the vehicle as a
              * whole — free-flight modes before capture, stacked modes after, safe mode from
@@ -251,9 +248,9 @@ package TethysModes {
              * and AbortReturn are raised on board (TethysFdir) and accepted from the tug
              * itself, not from the port. */
         port command : CommandPort;
-        attribute envelope : CaptureEnvelope {
-            :>> maximumBodyMass = 1000.0e3 [kg];
-            :>> maximumBodyDiameter = 10.0 [m];
+        attribute envelope : CaptureCommitEnvelope {
+            :>> maximumBodyMass = captureCommitEnvelope.maximumBodyMass;
+            :>> maximumBodyDiameter = captureCommitEnvelope.maximumBodyDiameter;
         }
         attribute rendezvousRange : LengthValue = 50.0 [km];
         attribute arraysDeploymentTimeout : DurationValue = 2.0 [h];
@@ -474,26 +471,32 @@ package TethysModes {
     }
 
     attribute def TargetEstimate {
-        doc /* A characterised target estimate as delivered to CaptureGo: one of the small,
-             * nominal and large cases of the pre-arrival uncertainty (domain list §7). */
+        doc /* A characterised target estimate as delivered to CaptureGo: the mass and diameter
+             * of one case of the target-case table (TethysTarget::targetCases). */
         attribute estimatedDiameter : LengthValue;
         attribute estimatedMass : MassValue;
     }
     attribute smallTarget : TargetEstimate {
-        doc /* Small case: 4.5 m, about 105 t at the nominal bulk density. */
-        :>> estimatedDiameter = 4.5 [m];
-        :>> estimatedMass = 105.0e3 [kg];
+        doc /* The small design case: 5.7 m, about 213 t. */
+        :>> estimatedDiameter = targetCases.small.meanDiameter;
+        :>> estimatedMass = targetCases.small.mass;
     }
     attribute nominalTarget : TargetEstimate {
-        doc /* Nominal case: Amaranth as catalogued, 6.8 m and 362 t. */
-        :>> estimatedDiameter = 6.8 [m];
-        :>> estimatedMass = 362.0e3 [kg];
+        doc /* The nominal case: Amaranth as catalogued, 6.8 m and 362 t. */
+        :>> estimatedDiameter = targetCases.nominal.meanDiameter;
+        :>> estimatedMass = targetCases.nominal.mass;
     }
     attribute largeTarget : TargetEstimate {
-        doc /* Large case: 10.5 m, about 1 335 t — over the capture envelope in both
-             * dimensions, so the mode machine refuses CaptureGo and retreats. */
-        :>> estimatedDiameter = 10.5 [m];
-        :>> estimatedMass = 1335.0e3 [kg];
+        doc /* The large design case: 7.6 m, about 506 t — inside the commit envelope, so the
+             * mode machine accepts CaptureGo. */
+        :>> estimatedDiameter = targetCases.large.meanDiameter;
+        :>> estimatedMass = targetCases.large.mass;
+    }
+    attribute denseTarget : TargetEstimate {
+        doc /* The densest knowledge bound: 6.8 m, about 576 t — inside the bag but over the
+             * return envelope, so the mode machine refuses CaptureGo and retreats. */
+        :>> estimatedDiameter = targetCases.densest.meanDiameter;
+        :>> estimatedMass = targetCases.densest.mass;
     }
 
     part def OperationsCentre {
@@ -503,9 +506,9 @@ package TethysModes {
         port tugUplink : ~CommandPort;
         port inspectorUplink : ~CommandPort;
         attribute target : TargetEstimate;
-        attribute envelope : CaptureEnvelope {
-            :>> maximumBodyMass = 1000.0e3 [kg];
-            :>> maximumBodyDiameter = 10.0 [m];
+        attribute envelope : CaptureCommitEnvelope {
+            :>> maximumBodyMass = captureCommitEnvelope.maximumBodyMass;
+            :>> maximumBodyDiameter = captureCommitEnvelope.maximumBodyDiameter;
         }
 
         perform action nominalCampaign {
@@ -577,9 +580,9 @@ package TethysModes {
         doc /* The nominal campaign against the nominal target estimate: capture is accepted. */
         part :>> operations { attribute :>> target = nominalTarget; }
     }
-    part largeTargetFlight : FlightScenario {
-        doc /* The same campaign against the large target estimate: CaptureGo is refused and
-             * the tug retreats; the stacked modes are never entered. */
-        part :>> operations { attribute :>> target = largeTarget; }
+    part denseTargetFlight : FlightScenario {
+        doc /* The same campaign against the densest target estimate: CaptureGo is refused on
+             * the return envelope and the tug retreats; the stacked modes are never entered. */
+        part :>> operations { attribute :>> target = denseTarget; }
     }
 }

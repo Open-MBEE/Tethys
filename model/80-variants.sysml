@@ -21,47 +21,10 @@ package TethysVariants {
     private import TethysBudgets::PropellantFor;
     private import TethysBudgets::massBudget;
     private import TethysBudgets::propellantBudget;
+    private import TethysMarginPolicy::activePolicy;
 
-    variation part def TargetCase :> SmallBody {
-        doc /* The bounding cases of the target envelope. Each case fixes the diameter, bulk
-             * density and rotation period; the mass follows from the sphere model of
-             * TethysEnvironment so that no case carries an independent mass number. */
-
-        variant part small : SmallBody {
-            doc /* Smallest body the survey cannot rule out: a low-density rubble pile that spins
-                 * slowly. Cheapest to return, hardest to detect in the capture sensors. */
-            attribute :>> meanDiameter = 5.4 [m];
-            attribute :>> bulkDensity = 1900.0 ['kg⋅m⁻³'];
-            attribute :>> mass = SphereMass(5.4, 1900.0) [kg];
-            attribute :>> rotationPeriod = 420.0 [s];
-        }
-
-        variant part nominal : SmallBody {
-            doc /* The survey's best estimate, equal to TethysEnvironment::amaranth. */
-            attribute :>> meanDiameter = amaranth.meanDiameter;
-            attribute :>> bulkDensity = amaranth.bulkDensity;
-            attribute :>> mass = amaranth.mass;
-            attribute :>> rotationPeriod = amaranth.rotationPeriod;
-        }
-
-        variant part large : SmallBody {
-            doc /* Largest and densest body within the photometric error: near the capture
-                 * system's diameter limit and heavy enough to stretch the return propellant. */
-            attribute :>> meanDiameter = 8.2 [m];
-            attribute :>> bulkDensity = 2800.0 ['kg⋅m⁻³'];
-            attribute :>> mass = SphereMass(8.2, 2800.0) [kg];
-            attribute :>> rotationPeriod = 180.0 [s];
-        }
-
-        variant part fastSpin : SmallBody {
-            doc /* The nominal body spinning faster than the grapple can follow: a case the
-                 * configuration constraints must reject rather than one the design absorbs. */
-            attribute :>> meanDiameter = amaranth.meanDiameter;
-            attribute :>> bulkDensity = amaranth.bulkDensity;
-            attribute :>> mass = amaranth.mass;
-            attribute :>> rotationPeriod = 95.0 [s];
-        }
-    }
+    // The target is one case of the one target-case table, TethysTarget::targetCases; the
+    // configurations read the plain parts rather than the CaptureTargetCase variants (finding F-F02).
 
     variation attribute def ArrayPowerChoice :> PowerValue {
         doc /* Solar-array size at 1 AU: the three wing builds of the array trade (domain list
@@ -127,7 +90,7 @@ package TethysVariants {
              * configuration constraints judge. Argent's dry mass, xenon load, specific impulse
              * and per-string power are taken from TethysTug and held fixed across variants. */
 
-        part target : TargetCase;
+        part target : SmallBody;
         attribute arrayPower : ArrayPowerChoice;
         attribute thrusterCount : ThrusterCountChoice;
         attribute xenonLoad : XenonLoadChoice;
@@ -165,17 +128,18 @@ package TethysVariants {
         attribute tugAloneMass : MassValue = stackMass - massBudget.adapterSeparated {
             doc /* The stack after the adapter separates: what the outbound arc accelerates. */
         }
-        attribute outboundXenon : MassValue = PropellantFor(transferBook.deltaVOutbound / 1 ['m/s'], tugAloneMass, argent.sep.specificImpulse) {
-            doc /* Xenon the outbound arc of the transfer book (TethysMission::transferBook) spends
-                 * on the tug alone, by the rocket equation; no target case changes it. */
+        attribute tugAloneXenon : MassValue = PropellantFor(
+            (transferBook.deltaVOutbound + transferBook.deltaVRendezvous) / 1 ['m/s'], tugAloneMass, argent.sep.specificImpulse) {
+            doc /* Xenon the outbound and rendezvous arcs of the transfer book
+                 * (TethysMission::transferBook) spend on the tug alone: flown back to back, their
+                 * Δv sums in the rocket equation. No target case changes it. */
         }
-        attribute rendezvousXenon : MassValue = PropellantFor(transferBook.deltaVRendezvous / 1 ['m/s'], tugAloneMass - outboundXenon, argent.sep.specificImpulse) {
-            doc /* Xenon the rendezvous arc of the transfer book spends. */
-        }
-        attribute returnXenon : MassValue = xenonLoad * (1.0 - propellantBudget.residualFraction) / (1.0 + transferBook.missedThrustMargin)
-            - outboundXenon - rendezvousXenon {
-            doc /* Xenon left for the return with the body attached: the load less residuals and the
-                 * missed-thrust allowance of the book, less the two arcs flown alone. */
+        attribute returnXenon : MassValue = xenonLoad * (1.0 - propellantBudget.residualFraction)
+            / ((1.0 + activePolicy.systemMargin) * (1.0 + transferBook.missedThrustMargin))
+            - tugAloneXenon {
+            doc /* Xenon left for the return with the body attached: the load less residuals, the
+                 * active policy's system margin and the missed-thrust allowance of the book, less
+                 * the two arcs flown alone — the closure TethysBudgets::propellantBudget applies. */
         }
         attribute returnDeltaV : SpeedValue = RocketEquationDeltaV(argent.sep.specificImpulse.num,
             argent.dryMass.num + target.mass.num + returnXenon.num,
@@ -239,7 +203,7 @@ package TethysVariants {
     part baselineConfiguration : RetrievalArchitecture {
         doc /* The Argent baseline against the nominal target: 48 kW, four strings, 6 600 kg of
              * xenon, Wren carried, Arcturus-5H. Every configuration constraint holds. */
-        part :>> target = target::nominal;
+        part :>> target = targetCases.nominal;
         attribute :>> arrayPower = arrayPower::baseline;
         attribute :>> thrusterCount = thrusterCount::fourStrings;
         attribute :>> xenonLoad = xenonLoad::baseline;
@@ -250,7 +214,7 @@ package TethysVariants {
     part smallTargetTugOnly : RetrievalArchitecture {
         doc /* The small target returned by a compact tug without an inspector on the smaller
              * launcher: the low-cost corner of the space. Every configuration constraint holds. */
-        part :>> target = target::small;
+        part :>> target = targetCases.small;
         attribute :>> arrayPower = arrayPower::compact;
         attribute :>> thrusterCount = thrusterCount::threeStrings;
         attribute :>> xenonLoad = xenonLoad::light;
@@ -259,13 +223,12 @@ package TethysVariants {
     }
 
     part largeTargetStudy : RetrievalArchitecture {
-        doc /* The large target with everything the architecture space offers: extended array,
-             * five strings, the heavy xenon load, Arcturus-5H. It is expected to fail
-             * returnCloses — 7 220 kg of return xenon buys about 250 m/s with an 810 t body
-             * attached — which is the envelope's open corner: a body at the top of the
-             * photometric error cannot be returned by this tug family, and the survey must
-             * close the size before commitment. */
-        part :>> target = target::large;
+        doc /* The densest body (576 t) with everything the architecture space offers: extended
+             * array, five strings, the heavy xenon load, Arcturus-5H. The baseline cannot return
+             * this body (TethysBudgets::captureCommitEnvelope refuses it); the heavy load buys
+             * about 250 m/s with it attached, so returnCloses holds here — the architecture option
+             * that closes the corner of the envelope the survey would otherwise have to exclude. */
+        part :>> target = targetCases.densest;
         attribute :>> arrayPower = arrayPower::extended;
         attribute :>> thrusterCount = thrusterCount::fiveStrings;
         attribute :>> xenonLoad = xenonLoad::heavy;
@@ -277,7 +240,7 @@ package TethysVariants {
         doc /* The baseline against the fast-spinning nominal body. It is expected to fail
              * spinWithinGrappleRate and nothing else: the case is excluded by the grapple, not
              * by propulsion or launch. */
-        part :>> target = target::fastSpin;
+        part :>> target = targetCases.fastSpin;
         attribute :>> arrayPower = arrayPower::baseline;
         attribute :>> thrusterCount = thrusterCount::fourStrings;
         attribute :>> xenonLoad = xenonLoad::baseline;

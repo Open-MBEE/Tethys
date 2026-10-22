@@ -14,12 +14,14 @@ package TethysAnalyses {
     private import TethysEnvironment::*;
     private import TethysTug::*;
     private import TethysTarget::SmallBody;
+    private import TethysTarget::targetCases;
     private import TethysMission::tethys;
     private import TethysMission::transferBook;
     private import TethysInspector::wren;
     private import TethysBudgets::massBudget;
     private import TethysBudgets::propellantBudget;
     private import TethysRequirements::*;
+    private import TethysMarginPolicy::activePolicy;
 
     metadata def CredibilityAssessment {
         doc /* The eight modelling-and-simulation credibility factors of NASA-STD-7009B
@@ -42,53 +44,10 @@ package TethysAnalyses {
     metadata CredibilityAssessment about ExternalTransferAnalysis { verificationFactor = 2; validation = 2; inputPedigree = 2; resultsUncertainty = 1; resultsRobustness = 2; useHistory = 1; managementProcess = 2; peopleQualification = 3; }
 
     // ---- Target cases ------------------------------------------------------------------------
-
-    part def TargetCaseBody :> SmallBody {
-        doc /* A pre-arrival design case for the target body: its mass is never typed in but
-             * follows from the diameter and bulk density through SphereMass, so a case is two
-             * numbers and the rest derives. */
-        attribute :>> mass = SphereMass(meanDiameter / 1 [m], bulkDensity / 1 ['kg⋅m⁻³']) [kg];
-    }
-
-    part smallTarget : TargetCaseBody {
-        doc /* Small case: 5.9 m at 2 000 kg/m³, about 215 t — the bottom of the S-type density
-             * range at the small end of the size estimate; the return Δv driver is easiest, the
-             * delivered-mass requirement (TR-001) hardest. */
-        attribute :>> meanDiameter = 5.9 [m];
-        attribute :>> bulkDensity = 2000.0 ['kg⋅m⁻³'];
-        attribute :>> rotationPeriod = 252.0 [s];
-    }
-    part nominalTarget : TargetCaseBody {
-        doc /* Nominal case: the TethysEnvironment estimate, 6.8 m at 2 200 kg/m³, about 362 t,
-             * 252 s rotation. */
-        attribute :>> meanDiameter = amaranth.meanDiameter;
-        attribute :>> bulkDensity = amaranth.bulkDensity;
-        attribute :>> rotationPeriod = amaranth.rotationPeriod;
-    }
-    part largeTarget : TargetCaseBody {
-        doc /* Large case: 7.6 m at 2 800 kg/m³, about 644 t — a dense monolith at the top of
-             * the size estimate; the thrust-time and return-Δv driver. */
-        attribute :>> meanDiameter = 7.6 [m];
-        attribute :>> bulkDensity = 2800.0 ['kg⋅m⁻³'];
-        attribute :>> rotationPeriod = 252.0 [s];
-    }
-    part fastSpinTarget : TargetCaseBody {
-        doc /* Fast-spin case: the nominal body rotating in 120 s — the despin propellant and
-             * contact-speed driver. */
-        attribute :>> meanDiameter = amaranth.meanDiameter;
-        attribute :>> bulkDensity = amaranth.bulkDensity;
-        attribute :>> rotationPeriod = 120.0 [s];
-    }
-
-    variation part def TargetCase :> SmallBody {
-        doc /* The target-uncertainty table as a variation: one variant per design case, each
-             * bound to the case above so a configuration selects a case by name
-             * (`part :>> target = TargetCase::large`). */
-        variant part small : TargetCaseBody = smallTarget;
-        variant part nominal : TargetCaseBody = nominalTarget;
-        variant part large : TargetCaseBody = largeTarget;
-        variant part fastSpin : TargetCaseBody = fastSpinTarget;
-    }
+    // The analyses run over the design cases of the one target-case table,
+    // TethysTarget::targetCases; `TargetCase` is its variation under the name the analysis
+    // configurations select by (`part :>> target = TargetCase::large`).
+    alias TargetCase for TethysTarget::CaptureTargetCase;
 
     // ---- Solar-electric transfer and return --------------------------------------------------
 
@@ -164,6 +123,11 @@ package TethysAnalyses {
         in attribute missedThrustMargin : Real default = transferBook.missedThrustMargin {
             doc /* Unplanned-coast allowance held back on every arc, from the transfer book. */
         }
+        in attribute systemMargin : Real default = activePolicy.systemMargin {
+            doc /* The system margin of the active margin policy, held back from the usable xenon
+                 * exactly as TethysBudgets::propellantBudget closes it, so this book and the
+                 * budget agree on which bodies return. */
+        }
         in attribute thrustDayAllowance : Real default = transferBook.thrustingTimeAllowed / 1 [d] {
             doc /* Thrusting days the timeline allows, from the transfer book. */
         }
@@ -177,9 +141,10 @@ package TethysAnalyses {
         attribute usableXenonKg : Real = propellantBudget.usable / 1 [kg];
         attribute outboundXenonKg : Real = PropellantForDeltaV(outboundDeltaVMPerS, startMassKg, tug.sep.specificImpulse / 1 [s]);
         attribute rendezvousXenonKg : Real = PropellantForDeltaV(rendezvousDeltaVMPerS, startMassKg - outboundXenonKg, tug.sep.specificImpulse / 1 [s]);
-        attribute returnXenonKg : Real = usableXenonKg / (1.0 + missedThrustMargin) - outboundXenonKg - rendezvousXenonKg {
-            doc /* Xenon the stack may spend coming home: the usable load less the missed-thrust
-                 * allowance and the two arcs flown alone. */
+        attribute returnXenonKg : Real =
+            usableXenonKg / ((1.0 + systemMargin) * (1.0 + missedThrustMargin)) - outboundXenonKg - rendezvousXenonKg {
+            doc /* Xenon the stack may spend coming home: the usable load less the policy's system
+                 * margin, the missed-thrust allowance and the two arcs flown alone. */
         }
         attribute stackMassKg : Real = startMassKg - outboundXenonKg - rendezvousXenonKg - wren.wetMass / 1 [kg] + target.mass / 1 [kg];
         return returnDeltaVMPerS : Real =
@@ -203,10 +168,16 @@ package TethysAnalyses {
     analysis transferNominal : LowThrustTransferAnalysis {
         doc /* Argent against the nominal target. */
         subject :>> tug = argent;
-        in :>> target = nominalTarget;
+        in :>> target = targetCases.nominal;
     }
-    analysis transferSmall : LowThrustTransferAnalysis { subject :>> tug = argent; in :>> target = smallTarget; }
-    analysis transferLarge : LowThrustTransferAnalysis { subject :>> tug = argent; in :>> target = largeTarget; }
+    analysis transferSmall : LowThrustTransferAnalysis { subject :>> tug = argent; in :>> target = targetCases.small; }
+    analysis transferLarge : LowThrustTransferAnalysis { subject :>> tug = argent; in :>> target = targetCases.large; }
+    analysis transferDensest : LowThrustTransferAnalysis {
+        doc /* Argent against the densest knowledge bound (576 t): over the return envelope with
+             * the margin policy, which is why the commit gate refuses it. */
+        subject :>> tug = argent;
+        in :>> target = targetCases.densest;
+    }
 
     // ---- Capture and despin ------------------------------------------------------------------
 
@@ -264,9 +235,9 @@ package TethysAnalyses {
         }
     }
 
-    analysis captureNominal : CaptureDynamicsAnalysis { subject :>> tug = argent; in :>> target = nominalTarget; }
-    analysis captureLarge : CaptureDynamicsAnalysis { subject :>> tug = argent; in :>> target = largeTarget; }
-    analysis captureFastSpin : CaptureDynamicsAnalysis { subject :>> tug = argent; in :>> target = fastSpinTarget; }
+    analysis captureNominal : CaptureDynamicsAnalysis { subject :>> tug = argent; in :>> target = targetCases.nominal; }
+    analysis captureLarge : CaptureDynamicsAnalysis { subject :>> tug = argent; in :>> target = targetCases.large; }
+    analysis captureFastSpin : CaptureDynamicsAnalysis { subject :>> tug = argent; in :>> target = targetCases.fastSpin; }
 
     // ---- External trajectory tool ------------------------------------------------------------
 
@@ -348,6 +319,6 @@ package TethysAnalyses {
             PassIf(transfer.totalThrustDays + nonThrustDays <= tethys.nominalDuration / 1 [d]);
     }
 
-    verification verifyDurationNominal : MissionDurationByAnalysis { subject :>> tug = argent; in :>> target = nominalTarget; }
-    verification verifyDurationLarge : MissionDurationByAnalysis { subject :>> tug = argent; in :>> target = largeTarget; }
+    verification verifyDurationNominal : MissionDurationByAnalysis { subject :>> tug = argent; in :>> target = targetCases.nominal; }
+    verification verifyDurationLarge : MissionDurationByAnalysis { subject :>> tug = argent; in :>> target = targetCases.large; }
 }

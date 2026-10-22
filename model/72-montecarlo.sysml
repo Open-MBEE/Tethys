@@ -14,10 +14,12 @@ package TethysMonteCarlo {
     private import TethysEnvironment::*;
     private import TethysTug::*;
     private import TethysAnalyses::*;
+    private import TethysTarget::targetCases;
     private import TethysMission::transferBook;
     private import TethysInspector::wren;
     private import TethysBudgets::massBudget;
     private import TethysBudgets::propellantBudget;
+    private import TethysMarginPolicy::activePolicy;
 
     // ---- Return against the target mass ------------------------------------------------------
 
@@ -26,7 +28,7 @@ package TethysMonteCarlo {
              * as a drawn input instead of a design case: the dispersion that sizes the xenon
              * reserve and bounds the capturable body. */
         subject tug : Tug;
-        in attribute bodyMassKg : Real default = nominalTarget.mass / 1 [kg];
+        in attribute bodyMassKg : Real default = targetCases.nominal.mass / 1 [kg];
         in attribute outboundDeltaVMPerS : Real default = transferBook.deltaVOutbound / 1 ['m/s'];
         in attribute rendezvousDeltaVMPerS : Real default = transferBook.deltaVRendezvous / 1 ['m/s'];
         in attribute requiredReturnDeltaVMPerS : Real default = transferBook.deltaVRequiredReturn / 1 ['m/s'];
@@ -39,7 +41,8 @@ package TethysMonteCarlo {
         attribute startMassKg : Real = (massBudget.launchMass - massBudget.adapterSeparated) / 1 [kg];
         attribute outboundXenonKg : Real = PropellantForDeltaV(outboundDeltaVMPerS, startMassKg, ispS);
         attribute rendezvousXenonKg : Real = PropellantForDeltaV(rendezvousDeltaVMPerS, startMassKg - outboundXenonKg, ispS);
-        attribute returnXenonKg : Real = propellantBudget.usable / 1 [kg] / (1.0 + missedThrustMargin) - outboundXenonKg - rendezvousXenonKg;
+        attribute returnXenonKg : Real =
+            propellantBudget.usable / 1 [kg] / ((1.0 + activePolicy.systemMargin) * (1.0 + missedThrustMargin)) - outboundXenonKg - rendezvousXenonKg;
         attribute stackMassKg : Real = startMassKg - outboundXenonKg - rendezvousXenonKg - wren.wetMass / 1 [kg] + bodyMassKg;
         return returnDeltaVMPerS : Real = RocketEquationDeltaV(ispS, stackMassKg, stackMassKg - returnXenonKg);
         out totalThrustDays : Real = ThrustDays(
