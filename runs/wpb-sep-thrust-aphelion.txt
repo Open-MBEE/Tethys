@@ -100,4 +100,4 @@ loaded 50 files:
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
 ✓ TethysBudgets::propellantBudget.thrustAtAphelion
-  = 1.7264639114426235 [N]
+  = 1.6926786035489827 [N]

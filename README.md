@@ -31,7 +31,7 @@ The model is written in standard SysML v2 and exists for two purposes:
 ## Running it
 
 ```bash
-make tools      # fetch OpenSysML (nightly + sources) and the pinned OMG pilot validators into build/
+make tools      # build OpenSysML from source at the pinned commit (scripts/fetch-tools.sh) and fetch the pinned OMG pilot validators into build/
 make check      # every gate: validate (strict), pilot (mission tier standalone, all files batch), house rules, runs/ diff
 make runs       # re-record runs/ after an intentional model change
 ```
