@@ -1,0 +1,44 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysHouseRules
+✓ Created instance of TethysOperations::opsTimeline
+  ID: 1
+  Use %features TethysOperations::opsTimeline to inspect
+✓ Debugging state machine "day" exhibited by object #1 of "TethysOperations::opsTimeline"
+note: object #1 of "TethysOperations::opsTimeline" already exhibits "TethysOperations::OperationsTimeline::day", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysOperations::opsTimeline` would)
+  Current state: morningPass
+  Time: 0.0
+  Events: 1
+✓ Advanced to 50000.0 (5 event(s) processed)
+  Current state: eveningPass
+  Last event at: 46800.0
+  Remaining events: 0
+  standing: value (observed: 1 run under reverse)
+run - timeline rendering (the trace of a run to t = 50000)
+
+TethysOperations::opsTimeline.day
+  0 .. 7200       morningPass
+  7200 .. 14400   relayWindow (time)
+  14400 .. 25200  middayPass (time)
+  25200 .. 32400  coastAndTrack (time)
+  32400 .. 46800  thrustArc (time)
+  46800 .. 50000  eveningPass (time)  (held at the end)
+  transitions:
+    t=7200 morningPass -> relayWindow (time)
+    t=14400 relayWindow -> middayPass (time)
+    t=25200 middayPass -> coastAndTrack (time)
+    t=32400 coastAndTrack -> thrustArc (time)
+    t=46800 thrustArc -> eveningPass (time)

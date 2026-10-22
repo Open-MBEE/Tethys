@@ -1,0 +1,37 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysHouseRules
+✓ TethysLinkBudgets::Log10(1000.0)
+  = [3.0000000000000075]
+  standing: value (observed: 1 run under reverse)
+✓ TethysLinkBudgets::DecibelsFromRatio(2.0)
+  = [3.0102999566398516]
+  standing: value (observed: 1 run under reverse)
+✓ TethysLinkBudgets::RatioFromDecibels(30.0)
+  = [1000.0]
+  standing: value (observed: 1 run under reverse)
+✓ TethysLinkBudgets::FreeSpaceLossDb(60.0e9, 8.445e9)
+  = [266.54280130752505]
+  standing: value (observed: 1 run under reverse)
+✓ TethysLinkBudgets::DishGainDbi(32.0, 8.445e9, 0.6)
+  = [66.8230885436991]
+  standing: value (observed: 1 run under reverse)
+✓ TethysLinkBudgets::DishGainDbi(2.4, 32.05e9, 0.6)
+  = [55.90888141048934]
+  standing: value (observed: 1 run under reverse)
+✓ TethysLinkBudgets::GainToNoiseTemperatureDbPerK(66.823, 25.0)
+  = [52.84359991327958]
+  standing: value (observed: 1 run under reverse)

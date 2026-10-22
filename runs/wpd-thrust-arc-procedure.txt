@@ -1,0 +1,47 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysHouseRules
+✓ Created instance of TethysOperations::scenario
+  ID: 1
+  Use %features TethysOperations::scenario to inspect
+✓ Debugging action "thrustArcProcedure" performed by object #2 of "TethysOperations::scenario.moc"
+note: object #2 of "TethysOperations::scenario.moc" already performs "TethysOperations::OperationsScenario::moc::thrustArcProcedure", so this session attaches to that running performance rather than starting a second one (as `%action TethysOperations::OperationsScenario::moc::thrustArcProcedure` would)
+  State: Completed
+  Tokens: 0
+✓ Advanced to 10.0 (0 event(s) processed)
+  Action state: Completed
+  Tokens: 0
+✓ Action completed
+  Results:
+    a1 = [Instance(ID: 7)]
+    a2 = [Instance(ID: 9)]
+    a3 = [Instance(ID: 11)]
+    ackArc.a3 = [Instance(ID: 11)]
+    ackMode.a2 = [Instance(ID: 9)]
+    ackRelay.a1 = [Instance(ID: 7)]
+  standing: value (observed: 1 run under reverse)
+run - sequence rendering (the trace of a run to t = 10)
+
+object TethysOperations::scenario.moc : moc
+object TethysOperations::scenario.tug : tug
+
+messages:
+  TethysOperations::scenario.moc => TethysOperations::scenario.tug: t=0 DisableRelay (apid = 5, length = 16.0 [B], sequenceCount = 1)
+  TethysOperations::scenario.tug => TethysOperations::scenario.moc: t=0 CommandAcknowledge (acceptedOpcode = "DISABLE_RELAY")
+  TethysOperations::scenario.moc => TethysOperations::scenario.tug: t=0 SetMode (apid = 1, length = 17.0 [B], mode = CommandedMode::thrust, sequenceCount = 2)
+  TethysOperations::scenario.tug => TethysOperations::scenario.moc: t=0 CommandAcknowledge (acceptedOpcode = "SET_MODE")
+  TethysOperations::scenario.moc => TethysOperations::scenario.tug: t=0 StartThrustArc (apid = 3, arcDuration = 48.0 [h], length = 24.0 [B], sequenceCount = 3, throttle = 0.9)
+  TethysOperations::scenario.tug => TethysOperations::scenario.moc: t=0 CommandAcknowledge (acceptedOpcode = "START_THRUST_ARC")

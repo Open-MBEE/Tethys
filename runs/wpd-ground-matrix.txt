@@ -1,0 +1,40 @@
+loaded 16 files:
+  model/00-tethys.sysml
+  model/01-environment.sysml
+  model/02-mission.sysml
+  model/03-interfaces.sysml
+  model/04-requirements.sysml
+  model/05-tug.sysml
+  model/06-inspector.sysml
+  model/07-target.sysml
+  model/08-launch.sysml
+  model/09-ground.sysml
+  model/10-system.sysml
+  model/50-ground.sysml
+  model/51-icds.sysml
+  model/52-link-budgets.sysml
+  model/53-operations.sysml
+  model/99-house-rules.sysml
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysHouseRules
+<!-- matrix rendering (no view declared; rendering TethysMeridian::MeridianNetwork directly) -->
+| Source / Target | TethysMeridian::MeridianStation::backhaul | TethysMeridian::MeridianOperationsCentre::stationFeed | TethysMeridian::MeridianFlightDynamics::fromOperations | TethysMeridian::MeridianScienceDataSystem::fromOperations | TethysMeridian::MeridianScienceDataSystem::fromFlightDynamics |
+| --- | --- | --- | --- | --- | --- |
+| TethysMeridian::MeridianStation::backhaul | connect | connect |  |  |  |
+| TethysMeridian::MeridianOperationsCentre::toFlightDynamics |  |  | connect |  |  |
+| TethysMeridian::MeridianOperationsCentre::toScience |  |  |  | connect |  |
+| TethysMeridian::MeridianFlightDynamics::toScience |  |  |  |  | connect |
