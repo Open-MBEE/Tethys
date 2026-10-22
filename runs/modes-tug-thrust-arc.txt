@@ -1,0 +1,30 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysModes
+✓ package TethysHouseRules
+✓ Created instance of TethysModes::nominalFlight
+  ID: 1
+  Use %features TethysModes::nominalFlight to inspect
+warning: TethysModes::nominalFlight: materialization is bounded; not every feature value was checked
+✓ Debugging state machine "modes" exhibited by object #4 of "TethysModes::nominalFlight.tug"
+  Current state: onLauncher | off | lowGain | thrusters | stowed
+  Time: 0.0
+  Events: 0
+✓ Advanced to 2678400.0 (4 event(s) processed)
+  Current state: thrust | thrusting | highGain | wheels | stowed
+  Last event at: 2600640.0
+  Remaining events: 0
+  4 choice points (4 independent); %trace on to see them
+  Action steps taken: 6
+  Waiting on the clock:
+    t=19880640.0: action nominalCampaign of object #2, accept after waiting since step 8 for the clock to reach t=19880640.0
+  standing: value (observed: 1 run under reverse)

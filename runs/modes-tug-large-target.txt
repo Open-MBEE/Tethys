@@ -1,0 +1,28 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysModes
+✓ package TethysHouseRules
+✓ Created instance of TethysModes::largeTargetFlight
+  ID: 1
+  Use %features TethysModes::largeTargetFlight to inspect
+warning: TethysModes::largeTargetFlight: materialization is bounded; not every feature value was checked
+✓ Debugging state machine "modes" exhibited by object #4 of "TethysModes::largeTargetFlight.tug"
+  Current state: onLauncher | off | lowGain | thrusters | stowed
+  Time: 0.0
+  Events: 0
+✓ Advanced to 129600000.0 (19 event(s) processed)
+  Current state: retreat | standby | highGain | thrusters | deployed
+  Last event at: 38888640.0
+  Remaining events: 0
+  14 choice points (11 independent); %trace on to see them
+  Action steps taken: 28
+  standing: value (observed: 1 run under reverse)
