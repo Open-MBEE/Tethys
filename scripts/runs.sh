@@ -138,9 +138,9 @@ run probe-F-S03 $SYSML -quiet -instantiate FS03::twoBound -state "FS03::TwoBound
 run probe-F-S03-alone $SYSML -quiet -instantiate FS03::alone -state "FS03::Alone::regions FS03::alone.host" -advance 10 model/probes/F-S03-one-consumer-per-port.sysml
 run probe-F-S04 $SYSML -quiet -instantiate FS04::redefined -state "FS04::Vehicle::m FS04::redefined.vehicle" -advance 10 model/probes/F-S04-redefined-interface-end.sysml
 run probe-F-S05 $SYSML -quiet -instantiate FS05::mismatched -state "FS05::MismatchedHost::m FS05::mismatched.host" -advance 10 model/probes/F-S05-bind-port-name-mismatch.sysml
-run probe-SW-187 $SYSML -quiet -instantiate SW187::scenario -state "SW187::Host::supervisor SW187::scenario.host" -advance 90000 model/probes/SW-187-twenty-region-supervisor.sysml
-run probe-SW-191 $SYSML -quiet -instantiate SW191::host -action "SW191::Host::parameterised SW191::host" -action "SW191::Host::literal SW191::host" -advance 100 model/probes/SW-191-accept-after-parameter-and-latency-chain.sysml
-run probe-SW-191-chain $SYSML -quiet -instantiate SW191::chain -validate=SW191::chain -e "SW191::chain.endToEnd" model/probes/SW-191-accept-after-parameter-and-latency-chain.sysml
+run probe-F-S09 $SYSML -quiet -instantiate FS09::scenario -state "FS09::Host::supervisor FS09::scenario.host" -advance 90000 model/probes/F-S09-twenty-region-supervisor.sysml
+run probe-F-S10 $SYSML -quiet -instantiate FS10::host -action "FS10::Host::parameterised FS10::host" -action "FS10::Host::literal FS10::host" -advance 100 model/probes/F-S10-accept-after-parameter-and-latency-chain.sysml
+run probe-F-S10-chain $SYSML -quiet -instantiate FS10::chain -validate=FS10::chain -e "FS10::chain.endToEnd" model/probes/F-S10-accept-after-parameter-and-latency-chain.sysml
 run fdir-inhibit-chain-smt $SYSML -quiet -engine smt -instantiate TethysFdir::armedChain -action "TethysFdir::InhibitChain::cinch TethysFdir::armedChain" -check-input armCommanded -check-input groundEnable -check-input inCaptureMode -check-property TethysFdir::InhibitChain::noFireWithoutInhibitsRemoved $MODEL
 run fdir-command-loss-timeline $SYSML -quiet -instantiate TethysFdir::commandLossScenario -state TethysFdir::commandLossScenario.tug.fdir -advance 2160000 -render-run timeline=- -render-form text $MODEL
 # Analyses, trades, Monte Carlo, dynamics (TethysAnalyses, TethysTrades, TethysMonteCarlo,

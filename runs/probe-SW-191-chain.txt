@@ -1,9 +1,0 @@
-✓ package SW191
-✓ Created instance of SW191::chain
-  ID: 1
-  Use %features SW191::chain to inspect
-✓ SW191::chain.endToEnd
-  = 249.375 [s]
-✓ assert constraint latency holds (on SW191::chain ID: 1)
-✓ SW191::chain is valid: its 1 assertion holds
-  standing: holds (observed: 1 run under reverse)

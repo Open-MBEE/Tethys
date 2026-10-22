@@ -35,9 +35,9 @@ injectors of the system-level runs. Runs are pinned as `runs/sw-*.txt`; findings
 
 | Probe | File | Finding |
 | --- | --- | --- |
-| SW-187 twenty parallel regions, `-advance` and `-engine check` time | `model/probes/SW-187-twenty-region-supervisor.sysml` | F-S08, F-S09 |
+| SW-187 twenty parallel regions, `-advance` and `-engine check` time | `model/probes/F-S09-twenty-region-supervisor.sysml` | F-S08, F-S09 |
 | SW-190 send/accept between two exhibiting parts over an interface, rendered as a sequence | `model/probes/F-S01-send-via-state-definition-port.sysml` | F-S01 |
-| SW-191 `accept after` parameter vs constant; latency chain with units | `model/probes/SW-191-accept-after-parameter-and-latency-chain.sysml` | F-S10 |
+| SW-191 `accept after` parameter vs constant; latency chain with units | `model/probes/F-S10-accept-after-parameter-and-latency-chain.sysml` | F-S10 |
 | SW-196 attribute writes from transition effects through a two-level `exhibit` | `model/probes/F-S02-nested-state-redefinition-entry.sysml` | F-S02 |
 
 Found on the way: F-S03 (one consumer per port), F-S04 (redefined interface end), F-S05 (bind by

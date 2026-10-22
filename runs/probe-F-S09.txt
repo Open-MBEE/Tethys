@@ -1,9 +1,9 @@
-✓ package SW187
-✓ Created instance of SW187::scenario
+✓ package FS09
+✓ Created instance of FS09::scenario
   ID: 1
-  Use %features SW187::scenario to inspect
-✓ Debugging state machine "supervisor" exhibited by object #4 of "SW187::scenario.host"
-note: object #4 of "SW187::scenario.host" already exhibits "SW187::Host::supervisor", so this session attaches to that running machine rather than starting a second performance of it (as `%state SW187::scenario.host` would)
+  Use %features FS09::scenario to inspect
+✓ Debugging state machine "supervisor" exhibited by object #4 of "FS09::scenario.host"
+note: object #4 of "FS09::scenario.host" already exhibits "FS09::Host::supervisor", so this session attaches to that running machine rather than starting a second performance of it (as `%state FS09::scenario.host` would)
   Current state: nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal
   Time: 0.0
   Events: 20

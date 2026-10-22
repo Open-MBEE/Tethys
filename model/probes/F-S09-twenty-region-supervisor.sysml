@@ -1,12 +1,12 @@
-// Probe for docs/findings/WP-SW-3.md F-S06 (scale): a supervisor of twenty parallel monitor regions,
+// Probe for docs/findings/WP-SW-3.md F-S09 (scale): a supervisor of twenty parallel monitor regions,
 // each with a timer and a reset, driven by a conductor sending one reset an hour for a day. Measures
 // `-advance` and `-engine check` against the `make check` budget. The assertion sits on the host:
 // inside a parallel state definition it is refused ("parallel state body contains unsupported
 // member the constraint usage"). Run (time each):
-//   sysml -quiet -instantiate SW187::scenario -state "SW187::Host::supervisor SW187::scenario.host" -advance 90000 model/probes/SW-187-twenty-region-supervisor.sysml
-//   timeout 900 sysml -quiet -engine check -instantiate SW187::scenario -state "SW187::Host::supervisor SW187::scenario.host" -advance 90000 -check-property SW187::Host::tripsBounded model/probes/SW-187-twenty-region-supervisor.sysml
+//   sysml -quiet -instantiate FS09::scenario -state "FS09::Host::supervisor FS09::scenario.host" -advance 90000 model/probes/F-S09-twenty-region-supervisor.sysml
+//   timeout 900 sysml -quiet -engine check -instantiate FS09::scenario -state "FS09::Host::supervisor FS09::scenario.host" -advance 90000 -check-property FS09::Host::tripsBounded model/probes/F-S09-twenty-region-supervisor.sysml
 // Observed: -advance 0.14 s wall, every region tripped; -engine check killed by the timeout after 15 min with no verdict.
-package SW187 {
+package FS09 {
     private import ScalarValues::*;
     private import ISQ::*;
     private import SI::*;
