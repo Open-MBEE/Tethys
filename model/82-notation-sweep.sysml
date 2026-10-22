@@ -138,6 +138,9 @@
          * | inspectorCollision | critical |
          * | ejectaStrike | marginal | */
 
+    language "text"
+        /* Severity is assigned by the worst credible outcome, not the most likely one. */
+
     rep RegisterQuery language "sql"
         /* SELECT cause, severity FROM hazards WHERE severity IN ('critical', 'catastrophic') */
 
@@ -147,6 +150,17 @@
     }
 
     dependency from ejectaStrike to TethysTug::CaptureSystem;
+
+    package ReviewedHazards {
+        doc /* The hazards the review has stamped: a filtered import of the register. */
+        private import TethysNotation::*[@Reviewed];
+    }
+
+    package CriticalFindings {
+        doc /* Everything in the vocabulary package that is a finding, by element filter. */
+        private import ReviewVocabulary::*;
+        filter @Finding;
+    }
 
     attribute def ReturnWindow {
         doc /* A return opportunity as the days after departure between which the body must be
@@ -162,6 +176,9 @@
              * whether the string count leaves one spare, and the return window. */
 
         part configuration : RetrievalArchitecture;
+        protected attribute exclusionRadius : LengthValue = 200.0 [m] {
+            doc /* The inspector's exclusion sphere, visible to readiness subtypes only. */
+        }
         attribute radarSpinPeriod : DurationValue[0..1] = null {
             doc /* Spin period from radar, when a radar apparition has been observed. */
         }

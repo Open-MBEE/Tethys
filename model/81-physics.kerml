@@ -323,6 +323,7 @@ library package TethysPhysics {
             connector feedLine ([1] processor, [1] thruster, [1] tank);
             binding of thruster.inputPower = processor.outputPower;
             binding all of thruster.fedBy = tank;
+            flow all tank.remaining to thruster.xenonIn;
             succession flow xenonFeed of Real from tank.remaining to thruster.xenonIn;
         }
 
@@ -343,8 +344,8 @@ library package TethysPhysics {
                  * any thruster, so a stuck valve is a failure of the manifold rather than of a
                  * tank. */
             feature valveCount : Natural;
-            const end feature manifoldTank;
-            end feature manifoldThruster;
+            const end feature manifoldTank : PropellantTank[1];
+            end feature manifoldThruster : Thruster[1] => manifoldTank.feeds;
         }
 
         interaction XenonTransfer :> Feeds {
@@ -373,9 +374,17 @@ library package TethysPhysics {
             in duration : Real;
         }
 
-        behavior CoastArcAsSeen {
-            doc /* The coast arc from the power side; conjugated by a standalone statement in
-                 * the Relationships namespace. */
+        behavior CoastArcAsSeen conjugates CoastArc {
+            doc /* The coast arc from the power side. */
+        }
+
+        behavior PowerSideArc {
+            doc /* The thrust arc as the power subsystem schedules it; conjugated to ThrustArc by
+                 * a standalone statement in the Relationships namespace. */
+        }
+
+        behavior PowerSideCoast {
+            doc /* The coast arc as the power subsystem schedules it; conjugated likewise. */
         }
 
         behavior ThrustArcAsSeen ~ ThrustArc {
@@ -390,6 +399,7 @@ library package TethysPhysics {
 
         function Thrust {
             doc /* Thrust F = 2·η·P/vₑ in newtons from input power P and exhaust velocity. */
+            language "python" /* def thrust(power, isp, efficiency): return 2.0 * efficiency * power / (9.80665 * isp) */
             in inputPower : Real;
             in specificImpulse : Real;
             in efficiency : Real;
@@ -447,24 +457,32 @@ library package TethysPhysics {
             derived feature mass : Real = SphereMass(diameter, density);
         }
 
-        class SlowRotator :> Body {
-            doc /* Bodies whose spin period exceeds the cohesionless break-up period. */
+        class RubblePile :> Body {
+            doc /* Bodies spinning slower than the cohesionless break-up period, which may be
+                 * held together by gravity alone and may shed material when grappled. */
             inv { spinPeriod > BreakupPeriod(density) }
         }
 
-        class FastRotator :> Body disjoint from SlowRotator {
-            doc /* Bodies spinning faster than the break-up period, which must be monolithic to
-                 * exist and are therefore outside the capture envelope. */
+        class Monolith :> Body disjoint from RubblePile {
+            doc /* Bodies spinning faster than the break-up period, which must have tensile
+                 * strength to exist: Amaranth's 252 s period against an 8 000 s break-up period
+                 * puts it here, which is why the grapple may bear on it. */
+        }
+
+        class GrappleFollowable :> Body {
+            doc /* Bodies rotating slowly enough for the capture mechanism to follow while it
+                 * closes: the same 120 s bound TethysVariants applies. */
+            inv true { spinPeriod >= 120.0 }
         }
 
         class DespunBody :> Body {
-            doc /* A fast rotator slowed below break-up by an external torque before capture. */
+            doc /* A body slowed into the followable band by an external torque before capture. */
             feature despinTorque : Real;
         }
 
-        class Capturable unions SlowRotator, DespunBody {
-            doc /* The class of bodies a capture system can take: the slow rotators and the
-                 * bodies despun on arrival. */
+        class Capturable unions GrappleFollowable, DespunBody {
+            doc /* The class of bodies a capture system can take: those the grapple can follow
+                 * and those despun on arrival. */
         }
 
         function SphereMass {
@@ -515,16 +533,26 @@ library package TethysPhysics {
         feature spareThruster {
             doc /* The cold spare, typed by the standalone typing statement below. */
         }
+        feature spareProcessor {
+            doc /* The spare power processor, typed by the short typing statement below. */
+        }
+        feature powerSideString ~ referenceString {
+            doc /* The reference string seen from the power side: its inputs are outputs. */
+        }
         specialization subclassifier SmallBodies::Body :> Occurrence;
         specialization Tankage subtype ElectricPropulsion::PropellantTank specializes Object;
         specialization typing spareThruster typed by ElectricPropulsion::Thruster;
+        typing spareProcessor : ElectricPropulsion::PowerProcessor;
+        specialization subtype ElectricPropulsion::OperatingString :> Objects::Object;
+        subclassifier SmallBodies::DespunBody specializes Occurrence;
+        disjoint SmallBodies::GrappleFollowable from SmallBodies::DespunBody;
         specialization subset referenceString.tank :> Objects::objects;
         specialization subtype referenceString.thruster specializes Occurrences::occurrences;
-        specialization redefinition ElectricPropulsion::CrossFeed::manifoldTank :>> ElectricPropulsion::Feeds::tank;
-        redefinition ElectricPropulsion::CrossFeed::manifoldThruster redefines ElectricPropulsion::Feeds::thruster;
-        conjugation ArcView conjugate ElectricPropulsion::ThrustArcAsSeen ~ ElectricPropulsion::ThrustArc;
-        conjugate ElectricPropulsion::CoastArcAsSeen conjugates ElectricPropulsion::CoastArc;
-        disjoining RotatorClasses disjoint SmallBodies::FastRotator from SmallBodies::SlowRotator;
+        redefinition ElectricPropulsion::CrossFeed::manifoldTank :>> ElectricPropulsion::Feeds::tank;
+        specialization redefinition ElectricPropulsion::CrossFeed::manifoldThruster redefines ElectricPropulsion::Feeds::thruster;
+        conjugation ArcView conjugate ElectricPropulsion::PowerSideArc ~ ElectricPropulsion::ThrustArc;
+        conjugate ElectricPropulsion::PowerSideCoast conjugates ElectricPropulsion::CoastArc;
+        disjoining StrengthClasses disjoint SmallBodies::Monolith from SmallBodies::RubblePile;
         featuring Arcs of ElectricPropulsion::ThrustArc::hold by ElectricPropulsion::ThrustArc;
         inverting FeedEnds inverse ElectricPropulsion::Feeds::tank of ElectricPropulsion::Feeds::thruster;
     }

@@ -64,8 +64,6 @@
 ✓ TethysPhysics::ElectricPropulsion::ArrayPowerAtDistance(48000.0, 1.034, 0.97)
   = [43548.368993860575]
   standing: value (observed: 1 run under reverse)
-sysml: not a calc: TethysPhysics::ElectricPropulsion::PowerCloses is a predicate usage, not a calc definition or usage
-  standing: not covered (not a calc: TethysPhysics::ElectricPropulsion::PowerCloses is a predicate usage, not a calc definition or usage)
 ✓ TethysPhysics::SmallBodies::SphereMass(6.8, 2200.0)
   = [362199.6624596334]
   standing: value (observed: 1 run under reverse)
@@ -78,4 +76,3 @@ sysml: not a calc: TethysPhysics::ElectricPropulsion::PowerCloses is a predicate
 ✓ TethysPhysics::SmallBodies::EquatorialAcceleration(252.0, 3.4)
   = [0.0021136718923975696]
   standing: value (observed: 1 run under reverse)
-exit 2

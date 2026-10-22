@@ -1,0 +1,18 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysHouseRules
+sysml: not a calc: TethysPhysics::ElectricPropulsion::PowerCloses is a predicate usage, not a calc definition or usage
+  standing: not covered (not a calc: TethysPhysics::ElectricPropulsion::PowerCloses is a predicate usage, not a calc definition or usage)
+exit 2
