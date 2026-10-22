@@ -48,20 +48,20 @@
 ✓ package TethysImportedData
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
-✓ TethysCaptureSystem::SphereMomentOfInertia(181.0e3, 5.4)
-  = [527796.0]
+✓ TethysCaptureSystem::SphereMomentOfInertia(213.3e3, 5.7)
+  = [693011.7000000001]
   standing: value (observed: 1 run under reverse)
-✓ TethysCaptureSystem::SphereMomentOfInertia(1010.0e3, 8.2)
-  = [6791239.999999998]
+✓ TethysCaptureSystem::SphereMomentOfInertia(987.6e3, 9.5)
+  = [8913090.0]
   standing: value (observed: 1 run under reverse)
-✓ TethysCaptureSystem::AngularMomentum(5.278e5, 252.0)
-  = [13159.78256003723]
+✓ TethysCaptureSystem::AngularMomentum(6.931e+05, 252.0)
+  = [17281.252922246695]
   standing: value (observed: 1 run under reverse)
 ✓ TethysCaptureSystem::AngularMomentum(1.674e6, 252.0)
   = [41738.302397692925]
   standing: value (observed: 1 run under reverse)
-✓ TethysCaptureSystem::AngularMomentum(6.791e6, 252.0)
-  = [169321.8707184783]
+✓ TethysCaptureSystem::AngularMomentum(8.913e+06, 100.0)
+  = [560020.3064289159]
   standing: value (observed: 1 run under reverse)
 ✓ TethysCaptureSystem::AngularMomentum(1.674e6, 120.0)
   = [87650.43503515514]

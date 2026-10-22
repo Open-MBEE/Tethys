@@ -100,4 +100,4 @@ loaded 50 files:
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
 ✓ TethysBudgets::propellantBudget.thrustingTimeLarge
-  = 88141396.06732428 [s]
+  = 87971755.89378008 [s]

@@ -140,8 +140,8 @@ run probe-F-F07 $SYSML -e "TethysNestedChainProbe::baselineChained.chainedReturn
 run probe-F-F03 $SYSML -analysis TethysMetadataInBodyProbe::inline -analysis TethysMetadataInBodyProbe::outside $MODEL model/probes/F-F03-metadata-in-analysis-body.sysml
 run probe-F-F05 $SYSML -action NestedStateSpaceProbe::fall -analysis NestedStateSpaceProbe::drop model/probes/F-F05-nested-state-space-action.sysml
 run probe-F-F04 $SYSML -calc "TethysAmbiguousMinProbe::Smaller(2.0, 3.0)" -calc "TethysAmbiguousMinProbe::Larger(2.0, 3.0)" model/probes/F-F04-ambiguous-min.sysml
-run probe-F-F08 $SYSML -analysis TethysSweepQuantityProbe::typed -sweep "speed=1.0..3.0:1.0" model/probes/F-F08-sweep-quantity-range.sysml
-run probe-F-F08-plain $SYSML -analysis TethysSweepQuantityProbe::plain -sweep "speedMPerS=1.0..3.0:1.0" model/probes/F-F08-sweep-quantity-range.sysml
+runt probe-F-F08 $SYSML -analysis TethysSweepQuantityProbe::typed -sweep "speed=1.0..3.0:1.0" model/probes/F-F08-sweep-quantity-range.sysml
+runt probe-F-F08-plain $SYSML -analysis TethysSweepQuantityProbe::plain -sweep "speedMPerS=1.0..3.0:1.0" model/probes/F-F08-sweep-quantity-range.sysml
 run probe-F-F06 env OPENSYSML_TOOLS="$TOOLS" $SYSML -analysis TethysToolMultiplicityProbe::unmultipliedTransfer $MODEL model/probes/F-F06-tool-output-multiplicity.sysml
 run variants-configurations $SYSML -instantiate TethysVariants::baselineConfiguration -validate=TethysVariants::baselineConfiguration -instantiate TethysVariants::smallTargetTugOnly -validate=TethysVariants::smallTargetTugOnly -instantiate TethysVariants::largeTargetStudy -validate=TethysVariants::largeTargetStudy -instantiate TethysVariants::fastSpinStudy -validate=TethysVariants::fastSpinStudy $MODEL
 run variants-calcs $SYSML -calc "TethysVariants::ReturnDeltaV(156700.0, 3020.0)" -calc "TethysVariants::ReturnDeltaV(362000.0, 5420.0)" -calc "TethysVariants::ReturnDeltaV(808000.0, 7220.0)" -calc "TethysVariants::ThrustTimeDays(4200.0, 2)" -calc "TethysVariants::ThrustTimeDays(6600.0, 3)" -calc "TethysVariants::ThrustTimeDays(8400.0, 4)" $MODEL

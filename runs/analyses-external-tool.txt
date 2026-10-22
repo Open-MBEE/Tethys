@@ -49,23 +49,23 @@
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
 ✓ TethysAnalyses::externalTransfer
-  thrustDays = [54.583138065179746]
-  deltaVMPerS = [692.7315385190694]
-  propellantKg = [303.20631301965994]
+  thrustTime = [54.583138065179746 [d]]
+  deltaV = [692.7315385190694 ['m/s']]
+  propellant = [303.20631301965994 [kg]]
   objective fitsAllowance: satisfied
   standing: value (observed: 1 run under reverse)
 ✓ TethysAnalyses::externalTransfer
-  thrustDays = [54.583138065179746]
-  deltaVMPerS = [692.7315385190694]
-  propellantKg = [303.20631301965994]
+  thrustTime = [54.583138065179746 [d]]
+  deltaV = [692.7315385190694 ['m/s']]
+  propellant = [303.20631301965994 [kg]]
   objective fitsAllowance: satisfied
   standing: value (observed: 1 run under reverse)
   recorded Records::externalTransfer_run1 (Records::ExternalTransferRun)
 ✓ TethysAnalyses::transferNominal
-  returnDeltaVMPerS = [417.0981974800674]
-  outboundThrustDays = [154.03545065123998]
-  returnThrustDays = [980.0892527098525]
-  totalThrustDays = [1134.1247033610925]
+  returnDeltaV = [297.21660126501666 ['m/s']]
+  outboundThrustTime = [258.4854522189743 [d]]
+  returnThrustTime = [548.564792202807 [d]]
+  totalThrustTime = [807.0502444217813 [d]]
   objective canReturn: satisfied
   standing: value (observed: 1 run under reverse)
   recorded Records::transferNominal_run1 (Records::TransferNominalRun)
