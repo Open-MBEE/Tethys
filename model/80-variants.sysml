@@ -18,6 +18,9 @@ package TethysVariants {
     private import TethysInspector::*;
     private import TethysTarget::*;
     private import TethysLaunch::*;
+    private import TethysBudgets::PropellantFor;
+    private import TethysBudgets::massBudget;
+    private import TethysBudgets::propellantBudget;
 
     variation part def TargetCase :> SmallBody {
         doc /* The bounding cases of the target envelope. Each case fixes the diameter, bulk
@@ -159,34 +162,42 @@ package TethysVariants {
         attribute exhaustVelocity : SpeedValue = 9.80665 * argent.sep.specificImpulse.num ['m/s'] {
             doc /* Effective exhaust velocity g₀·Isp. */
         }
-        attribute outboundXenon : MassValue = 1180.0 [kg] {
-            doc /* Xenon spent reaching the target: the rocket equation over the 2 800 m/s
-                 * outbound Δv of the tug alone, which no target case changes. */
+        attribute tugAloneMass : MassValue = stackMass - massBudget.adapterSeparated {
+            doc /* The stack after the adapter separates: what the outbound arc accelerates. */
         }
-        attribute returnXenon : MassValue = xenonLoad - outboundXenon {
-            doc /* Xenon left for the return with the body attached. */
+        attribute outboundXenon : MassValue = PropellantFor(transferBook.deltaVOutbound / 1 ['m/s'], tugAloneMass, argent.sep.specificImpulse) {
+            doc /* Xenon the outbound arc of the transfer book (TethysMission::transferBook) spends
+                 * on the tug alone, by the rocket equation; no target case changes it. */
+        }
+        attribute rendezvousXenon : MassValue = PropellantFor(transferBook.deltaVRendezvous / 1 ['m/s'], tugAloneMass - outboundXenon, argent.sep.specificImpulse) {
+            doc /* Xenon the rendezvous arc of the transfer book spends. */
+        }
+        attribute returnXenon : MassValue = xenonLoad * (1.0 - propellantBudget.residualFraction) / (1.0 + transferBook.missedThrustMargin)
+            - outboundXenon - rendezvousXenon {
+            doc /* Xenon left for the return with the body attached: the load less residuals and the
+                 * missed-thrust allowance of the book, less the two arcs flown alone. */
         }
         attribute returnDeltaV : SpeedValue = RocketEquationDeltaV(argent.sep.specificImpulse.num,
             argent.dryMass.num + target.mass.num + returnXenon.num,
             argent.dryMass.num + target.mass.num) ['m/s'] {
             doc /* Δv the return xenon buys with the body attached, by the rocket equation. */
         }
-        attribute requiredReturnDeltaV : SpeedValue = 400.0 ['m/s'] {
-            doc /* Low-thrust return from the target orbit to the storage orbit: the impulsive
-                 * Hohmann floor from 1.034 AU to 1 AU is 493 m/s, the lunar flyby capture
-                 * returns most of it, and the inclination change costs the rest. */
+        attribute requiredReturnDeltaV : SpeedValue = transferBook.deltaVRequiredReturn {
+            doc /* The return and insertion arcs of the transfer book: low-thrust from the target
+                 * orbit to the lunar gravity assist, which returns most of the 493 m/s impulsive
+                 * Hohmann floor from 1.034 AU, then into the storage orbit. */
         }
         attribute thrustTime : DurationValue = (xenonLoad.num / (thrust.num / exhaustVelocity.num) / 86400.0) [d] {
             doc /* Total thrusting time to spend the xenon load at full throttle. */
         }
-        attribute thrustTimeAllowance : DurationValue = 0.55 * tethys.nominalDuration {
-            doc /* Fraction of the nominal duration that may be spent thrusting: the rest is
-                 * coast, proximity operations and margin. */
+        attribute thrustTimeAllowance : DurationValue = transferBook.thrustingTimeAllowed {
+            doc /* Thrusting days the timeline allows, from the transfer book; the rest of the
+                 * nominal duration is coast, proximity operations and margin. */
         }
         attribute stackMass : MassValue = argent.dryMass + xenonLoad + argent.rcs.hydrazineMass +
-            (if inspector->isEmpty() ? 0.0 [kg] else wren.wetMass) + 180.0 [kg] {
-            doc /* Launch mass: dry tug, xenon load, hydrazine, inspector when carried, and a
-                 * 180 kg adapter. */
+            (if inspector->isEmpty() ? 0.0 [kg] else wren.wetMass) + massBudget.adapterSeparated {
+            doc /* Launch mass: dry tug, xenon load, hydrazine, inspector when carried, and the
+                 * mass budget's launch adapter. */
         }
         attribute minimumRotationPeriod : DurationValue = 120.0 [s] {
             doc /* Slowest rotation the grapple can follow while closing. */

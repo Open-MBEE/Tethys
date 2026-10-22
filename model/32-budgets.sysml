@@ -12,6 +12,7 @@ package TethysBudgets {
     private import RealFunctions::sqrt;
     private import TethysEnvironment::*;
     private import TethysMission::tethys;
+    private import TethysMission::transferBook;
     private import TethysLaunch::arcturus5H;
     private import TethysInspector::wren;
     private import TethysTug::argent;
@@ -400,23 +401,21 @@ package TethysBudgets {
         attribute insertion : MassValue = PropellantFor(deltaVInsertion, stack - returnLeg, isp);
         return xenon : MassValue = (outbound + rendezvous + returnLeg + insertion) * (1.0 + missedThrustMargin);
     }
-    attribute deltaVOutbound : Real = 2800.0 {
-        doc /* Low-thrust Δv in m/s from the escape asymptote to the target's orbit. */
+    attribute deltaVOutbound : Real = transferBook.deltaVOutbound / (1 ['m/s']) {
+        doc /* Outbound Δv in m/s, read from the mission's transfer book (TethysMission::transferBook),
+             * the one place the arc allocations are defined. */
     }
-    attribute deltaVRendezvous : Real = 150.0 {
-        doc /* Δv in m/s for the approach, station-keeping and the capture manoeuvres. */
+    attribute deltaVRendezvous : Real = transferBook.deltaVRendezvous / (1 ['m/s']) {
+        doc /* Rendezvous Δv in m/s, from the transfer book. */
     }
-    attribute deltaVReturn : Real = 160.0 {
-        doc /* Low-thrust Δv in m/s from the target's orbit to the lunar gravity assist: the
-             * allocation the xenon left after rendezvous can give the heaviest stack, which the
-             * return trajectory design (TethysAnalyses) must meet with the Earth-like orbit's
-             * small relative velocity and the gravity assist. */
+    attribute deltaVReturn : Real = transferBook.deltaVReturn / (1 ['m/s']) {
+        doc /* Return Δv in m/s, from the transfer book. */
     }
-    attribute deltaVInsertion : Real = 40.0 {
-        doc /* Δv in m/s from the gravity assist into the distant retrograde orbit. */
+    attribute deltaVInsertion : Real = transferBook.deltaVInsertion / (1 ['m/s']) {
+        doc /* Insertion Δv in m/s, from the transfer book. */
     }
-    attribute missedThrustMargin : Real = 0.10 {
-        doc /* Unplanned coast allowance on every arc. */
+    attribute missedThrustMargin : Real = transferBook.missedThrustMargin {
+        doc /* Unplanned coast allowance on every arc, from the transfer book. */
     }
 
     part def PropellantBudget {
@@ -441,8 +440,9 @@ package TethysBudgets {
         attribute thrustAtFullPower : Real = SepThrust((argentDesign.sep.maximumPower / (1 [W])) * ppuEfficiency,
             argentDesign.sep.specificImpulse / (1 [s]), head(argentDesign.sep.thrusters.efficiency));
         attribute massFlowAtAphelion : Real = MassFlowRate(thrustAtAphelion, argentDesign.sep.specificImpulse / (1 [s]));
+        attribute thrustingTimeNominal : DurationValue = (xenonNominal / (1 [kg])) / massFlowAtAphelion * (1 [s]);
         attribute thrustingTimeLarge : DurationValue = (xenonLarge / (1 [kg])) / massFlowAtAphelion * (1 [s]);
-        attribute thrustingTimeAllowed : DurationValue = 1400.0 [d];
+        attribute thrustingTimeAllowed : DurationValue = transferBook.thrustingTimeAllowed;
         attribute stackAccelerationLarge : Real = thrustAtAphelion / ((massBudget.launchMass + largeTarget.bodyMass) / (1 [kg]));
         assert constraint xenonClosesLarge : ClosesWithMargin {
             in capability = usable; in demand = xenonLarge; in policy = activePolicy;

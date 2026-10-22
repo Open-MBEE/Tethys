@@ -14,6 +14,10 @@ package TethysMonteCarlo {
     private import TethysEnvironment::*;
     private import TethysTug::*;
     private import TethysAnalyses::*;
+    private import TethysMission::transferBook;
+    private import TethysInspector::wren;
+    private import TethysBudgets::massBudget;
+    private import TethysBudgets::propellantBudget;
 
     // ---- Return against the target mass ------------------------------------------------------
 
@@ -23,18 +27,24 @@ package TethysMonteCarlo {
              * reserve and bounds the capturable body. */
         subject tug : Tug;
         in attribute bodyMassKg : Real default = nominalTarget.mass / 1 [kg];
-        in attribute outboundDeltaVMPerS : Real default = 2000.0;
-        in attribute requiredReturnDeltaVMPerS : Real default = 350.0;
-        in attribute xenonReserveKg : Real default = 300.0;
-        in attribute thrustDayAllowance : Real default = 1930.0;
+        in attribute outboundDeltaVMPerS : Real default = transferBook.deltaVOutbound / 1 ['m/s'];
+        in attribute rendezvousDeltaVMPerS : Real default = transferBook.deltaVRendezvous / 1 ['m/s'];
+        in attribute requiredReturnDeltaVMPerS : Real default = transferBook.deltaVRequiredReturn / 1 ['m/s'];
+        in attribute missedThrustMargin : Real default = transferBook.missedThrustMargin;
+        in attribute thrustDayAllowance : Real default = transferBook.thrustingTimeAllowed / 1 [d];
+        in attribute thrustN : Real default = propellantBudget.thrustAtAphelion;
 
         attribute ispS : Real = tug.sep.specificImpulse / 1 [s];
-        attribute massFlowKgPerS : Real = MassFlowRate(SepThrust(tug.sep.maximumPower / 1 [W], ispS, 0.65), ispS);
-        attribute outboundXenonKg : Real = PropellantForDeltaV(outboundDeltaVMPerS, tug.wetMass / 1 [kg], ispS);
-        attribute returnXenonKg : Real = tug.sep.xenonMass / 1 [kg] - outboundXenonKg - xenonReserveKg;
-        attribute stackMassKg : Real = tug.wetMass / 1 [kg] - outboundXenonKg + bodyMassKg;
+        attribute massFlowKgPerS : Real = MassFlowRate(thrustN, ispS);
+        attribute startMassKg : Real = (massBudget.launchMass - massBudget.adapterSeparated) / 1 [kg];
+        attribute outboundXenonKg : Real = PropellantForDeltaV(outboundDeltaVMPerS, startMassKg, ispS);
+        attribute rendezvousXenonKg : Real = PropellantForDeltaV(rendezvousDeltaVMPerS, startMassKg - outboundXenonKg, ispS);
+        attribute returnXenonKg : Real = propellantBudget.usable / 1 [kg] / (1.0 + missedThrustMargin) - outboundXenonKg - rendezvousXenonKg;
+        attribute stackMassKg : Real = startMassKg - outboundXenonKg - rendezvousXenonKg - wren.wetMass / 1 [kg] + bodyMassKg;
         return returnDeltaVMPerS : Real = RocketEquationDeltaV(ispS, stackMassKg, stackMassKg - returnXenonKg);
-        out totalThrustDays : Real = ThrustDays(outboundXenonKg + returnXenonKg, massFlowKgPerS);
+        out totalThrustDays : Real = ThrustDays(
+            (outboundXenonKg + rendezvousXenonKg + PropellantForDeltaV(requiredReturnDeltaVMPerS, stackMassKg, ispS)) * (1.0 + missedThrustMargin),
+            massFlowKgPerS);
 
         objective canReturn : ReturnCapability {
             doc /* The return capability this case must show. */
@@ -109,7 +119,9 @@ package TethysMonteCarlo {
         in attribute coastDaysPerEvent : Real default = 7.0;
         in attribute safeModeEvents : Real default = 2.0;
         in attribute recoveryDaysPerEvent : Real default = 3.0;
-        in attribute thrustDays : Real default = 1134.0;
+        in attribute thrustDays : Real default = propellantBudget.thrustingTimeNominal / 1 [d] {
+            doc /* The nominal case's thrusting time from the propellant budget. */
+        }
         in attribute nonThrustDays : Real default = 270.0;
         return missionDays : Real = thrustDays + nonThrustDays + safeModeEvents * (coastDaysPerEvent + recoveryDaysPerEvent);
         objective fitsDuration : DurationMargin {
@@ -158,7 +170,9 @@ package TethysMonteCarlo {
         in attribute periapsisAltitudeKm : Real default = 100.0;
         in attribute shapingDeltaVMPerS : Real default = 10.0;
         in attribute stackMassKg : Real default = 364000.0;
-        in attribute xenonReserveKg : Real default = 300.0;
+        in attribute xenonReserveKg : Real default = PropellantForDeltaV(transferBook.deltaVInsertion / 1 ['m/s'], stackMassKg, tug.sep.specificImpulse / 1 [s]) {
+            doc /* The insertion allocation of the transfer book, as xenon on the stack. */
+        }
         attribute lunarDistanceKm : Real = lunarOrbit.semiMajorAxis / 1 [km];
         attribute moonSpeedKmPerS : Real = CircularSpeed(earth.gravitationalParameterKm3PerS2, lunarDistanceKm);
         attribute escapeAtMoonKmPerS : Real = EscapeSpeed(earth.gravitationalParameterKm3PerS2, lunarDistanceKm);

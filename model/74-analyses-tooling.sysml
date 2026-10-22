@@ -17,6 +17,7 @@ package TethysAnalysesTooling {
     private import TethysAnalyses::*;
     private import TethysMonteCarlo::*;
     private import TethysDynamics::*;
+    private import TethysMission::transferBook;
 
     // ---- Monte Carlo over the target-uncertainty table ---------------------------------------
 
@@ -48,9 +49,9 @@ package TethysAnalysesTooling {
             doc /* The return capability this case must show. */
             subject :>> tug = analysed;
             in returnDeltaVMPerS = dispersion.returnDeltaVMPerS;
-            in requiredReturnDeltaVMPerS = 350.0;
+            in requiredReturnDeltaVMPerS = transferBook.deltaVRequiredReturn / 1 ['m/s'];
             in totalThrustDays = dispersion.totalThrustDays;
-            in thrustDayAllowance = 1930.0;
+            in thrustDayAllowance = transferBook.thrustingTimeAllowed / 1 [d];
         }
     }
     analysis returnOverTargetCases : ReturnOverTargetCases { subject :>> analysed = argent; }
@@ -70,9 +71,9 @@ package TethysAnalysesTooling {
             doc /* The return capability this case must show. */
             subject :>> tug = analysed;
             in returnDeltaVMPerS = dispersion.returnDeltaVMPerS;
-            in requiredReturnDeltaVMPerS = 350.0;
+            in requiredReturnDeltaVMPerS = transferBook.deltaVRequiredReturn / 1 ['m/s'];
             in totalThrustDays = dispersion.totalThrustDays;
-            in thrustDayAllowance = 1930.0;
+            in thrustDayAllowance = transferBook.thrustingTimeAllowed / 1 [d];
         }
     }
     analysis returnOverContinuousMass : ReturnOverContinuousMass { subject :>> analysed = argent; }

@@ -15,6 +15,10 @@ package TethysAnalyses {
     private import TethysTug::*;
     private import TethysTarget::SmallBody;
     private import TethysMission::tethys;
+    private import TethysMission::transferBook;
+    private import TethysInspector::wren;
+    private import TethysBudgets::massBudget;
+    private import TethysBudgets::propellantBudget;
     private import TethysRequirements::*;
 
     metadata def CredibilityAssessment {
@@ -145,31 +149,45 @@ package TethysAnalyses {
              * to spend. The target case is the input the mission is most sensitive to. */
         subject tug : Tug;
         in part target : SmallBody;
-        in attribute outboundDeltaVMPerS : Real default = 2000.0 {
-            doc /* Edelbaum circular-coplanar estimate 0.69 km/s for 1 → 1.034 AU, about 0.70 km/s
-                 * for the 0.030 eccentricity, 0.49 km/s for the 0.6° plane change, rounded up for
-                 * phasing and the launcher's v∞ disposal. */
+        in attribute outboundDeltaVMPerS : Real default = transferBook.deltaVOutbound / 1 ['m/s'] {
+            doc /* The outbound allocation of the transfer book (TethysMission::transferBook); the
+                 * Edelbaum circular-coplanar estimate of about 0.7 km/s for 1 → 1.034 AU with the
+                 * plane change and phasing sits well inside it. */
         }
-        in attribute requiredReturnDeltaVMPerS : Real default = 350.0 {
-            doc /* Return leg shaped onto the lunar gravity assist plus the distant-retrograde-orbit
-                 * insertion (invented allocation). */
+        in attribute rendezvousDeltaVMPerS : Real default = transferBook.deltaVRendezvous / 1 ['m/s'] {
+            doc /* Approach, station-keeping and capture manoeuvres, from the transfer book. */
         }
-        in attribute xenonReserveKg : Real default = 300.0;
-        in attribute thrustDayAllowance : Real default = 1930.0 {
-            doc /* Nominal duration 2 200 d less the non-thrusting phases: early operations 30 d,
-                 * characterisation 120 d, capture and despin 60 d, insertion and checkout 60 d. */
+        in attribute requiredReturnDeltaVMPerS : Real default = transferBook.deltaVRequiredReturn / 1 ['m/s'] {
+            doc /* Return leg to the lunar gravity assist plus the distant-retrograde-orbit
+                 * insertion: the book's return and insertion allocations together. */
         }
-        in attribute thrusterEfficiency : Real default = 0.65;
+        in attribute missedThrustMargin : Real default = transferBook.missedThrustMargin {
+            doc /* Unplanned-coast allowance held back on every arc, from the transfer book. */
+        }
+        in attribute thrustDayAllowance : Real default = transferBook.thrustingTimeAllowed / 1 [d] {
+            doc /* Thrusting days the timeline allows, from the transfer book. */
+        }
+        in attribute thrustN : Real default = propellantBudget.thrustAtAphelion {
+            doc /* Thrust at the target's aphelion from the propellant budget's SEP string model:
+                 * array power less the bus, through the PPUs, at the budget's thruster efficiency. */
+        }
 
-        attribute thrustN : Real = SepThrust(tug.sep.maximumPower / 1 [W], tug.sep.specificImpulse / 1 [s], thrusterEfficiency);
         attribute massFlowKgPerS : Real = MassFlowRate(thrustN, tug.sep.specificImpulse / 1 [s]);
-        attribute outboundXenonKg : Real = PropellantForDeltaV(outboundDeltaVMPerS, tug.wetMass / 1 [kg], tug.sep.specificImpulse / 1 [s]);
-        attribute returnXenonKg : Real = tug.sep.xenonMass / 1 [kg] - outboundXenonKg - xenonReserveKg;
-        attribute stackMassKg : Real = tug.wetMass / 1 [kg] - outboundXenonKg + target.mass / 1 [kg];
+        attribute startMassKg : Real = (massBudget.launchMass - massBudget.adapterSeparated) / 1 [kg];
+        attribute usableXenonKg : Real = propellantBudget.usable / 1 [kg];
+        attribute outboundXenonKg : Real = PropellantForDeltaV(outboundDeltaVMPerS, startMassKg, tug.sep.specificImpulse / 1 [s]);
+        attribute rendezvousXenonKg : Real = PropellantForDeltaV(rendezvousDeltaVMPerS, startMassKg - outboundXenonKg, tug.sep.specificImpulse / 1 [s]);
+        attribute returnXenonKg : Real = usableXenonKg / (1.0 + missedThrustMargin) - outboundXenonKg - rendezvousXenonKg {
+            doc /* Xenon the stack may spend coming home: the usable load less the missed-thrust
+                 * allowance and the two arcs flown alone. */
+        }
+        attribute stackMassKg : Real = startMassKg - outboundXenonKg - rendezvousXenonKg - wren.wetMass / 1 [kg] + target.mass / 1 [kg];
         return returnDeltaVMPerS : Real =
             RocketEquationDeltaV(tug.sep.specificImpulse / 1 [s], stackMassKg, stackMassKg - returnXenonKg);
-        out outboundThrustDays : Real = ThrustDays(outboundXenonKg, massFlowKgPerS);
-        out returnThrustDays : Real = ThrustDays(returnXenonKg, massFlowKgPerS);
+        out outboundThrustDays : Real = ThrustDays((outboundXenonKg + rendezvousXenonKg) * (1.0 + missedThrustMargin), massFlowKgPerS);
+        out returnThrustDays : Real = ThrustDays(
+            PropellantForDeltaV(requiredReturnDeltaVMPerS, stackMassKg, tug.sep.specificImpulse / 1 [s]) * (1.0 + missedThrustMargin),
+            massFlowKgPerS);
         out totalThrustDays : Real = outboundThrustDays + returnThrustDays;
 
         objective canReturn : ReturnCapability {

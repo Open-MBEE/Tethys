@@ -12,6 +12,7 @@ package TethysTrades {
     private import TethysEnvironment::*;
     private import TethysTug::*;
     private import TethysAnalyses::*;
+    private import TethysMission::transferBook;
 
     // ---- T3: array power against trip time ---------------------------------------------------
 
@@ -100,8 +101,12 @@ package TethysTrades {
              * cost at that Isp, plus a penalty per kilogram of xenon; an option whose xenon
              * exceeds the tank is penalised out. The least score wins. */
         subject :>> studyAlternatives : ThrusterOption[1..*];
-        in attribute outboundDeltaVMPerS : Real default = 2000.0;
-        in attribute returnDeltaVMPerS : Real default = 350.0;
+        in attribute outboundDeltaVMPerS : Real default = (transferBook.deltaVOutbound + transferBook.deltaVRendezvous) / 1 ['m/s'] {
+            doc /* Outbound and rendezvous arcs of the transfer book (TethysMission::transferBook). */
+        }
+        in attribute returnDeltaVMPerS : Real default = transferBook.deltaVRequiredReturn / 1 ['m/s'] {
+            doc /* Return and insertion arcs of the transfer book. */
+        }
         in attribute xenonPenaltyDaysPerKg : Real default = 0.1;
         in attribute tankOverflowPenaltyDays : Real default = 10000.0;
         objective :>> tradeStudyObjective : MinimizeObjective {
