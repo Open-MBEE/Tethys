@@ -20,4 +20,11 @@ run modes-tug-full-flight $SYSML -quiet -instantiate TethysModes::nominalFlight 
 run modes-tug-large-target $SYSML -quiet -instantiate TethysModes::largeTargetFlight -state TethysModes::largeTargetFlight.tug -advance 129600000 $MODEL
 run modes-inspector-imaging $SYSML -quiet -instantiate TethysModes::nominalFlight -state TethysModes::nominalFlight.inspector -advance 38102400 $MODEL
 run modes-inspector-retired $SYSML -quiet -instantiate TethysModes::nominalFlight -state TethysModes::nominalFlight.inspector -advance 129600000 $MODEL
+# WP-E — sequence (model/61-sequence.sysml): phase plan, dated schedule, and the mission action run to completion for the small, nominal and large target cases (2 200 d = 190 080 000 s).
+run sequence-phase-plan $SYSML -quiet -instantiate TethysSequence::nominalPhasePlan -e "TethysSequence::nominalPhasePlan.phases.phase" -e "TethysSequence::nominalPhasePlan.phases.plannedDuration" -e "TethysSequence::nominalPhasePlan.plannedTotal" $MODEL
+run sequence-schedule $SYSML -quiet -instantiate TethysSequence::baselineSchedule -e "TethysSequence::baselineSchedule.events.eventName" -e "TethysSequence::baselineSchedule.events.dayAfterLaunch" $MODEL
+run sequence-small-target $SYSML -quiet -instantiate TethysSequence::smallTargetCampaign -action "TethysSequence::FlightCampaign::mission TethysSequence::smallTargetCampaign" -advance 190080000 $MODEL
+run sequence-nominal $SYSML -quiet -instantiate TethysSequence::nominalCampaign -action "TethysSequence::FlightCampaign::mission TethysSequence::nominalCampaign" -advance 190080000 $MODEL
+run sequence-large-target $SYSML -quiet -instantiate TethysSequence::largeTargetCampaign -action "TethysSequence::FlightCampaign::mission TethysSequence::largeTargetCampaign" -advance 190080000 $MODEL
+run sequence-nominal-trace $SYSML -quiet -instantiate TethysSequence::nominalCampaign -action "TethysSequence::FlightCampaign::mission TethysSequence::nominalCampaign" -advance 190080000 -trace $MODEL
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi

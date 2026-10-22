@@ -1,0 +1,54 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysHouseRules
+✓ Created instance of TethysSequence::nominalCampaign
+  ID: 1
+  Use %features TethysSequence::nominalCampaign to inspect
+✓ Debugging action "mission" performed by object #1 of "TethysSequence::nominalCampaign"
+note: object #1 of "TethysSequence::nominalCampaign" already performs "TethysSequence::FlightCampaign::mission", so this session attaches to that running performance rather than starting a second one (as `%action TethysSequence::FlightCampaign::mission` would)
+  State: Waiting
+  Tokens: 1
+✓ Advanced to 190080000.0 (0 event(s) processed)
+  Action state: Completed
+  Tokens: 0
+  1 choice point (1 independent); %trace on to see them
+  Action steps taken: 27
+✓ Action completed
+  Results:
+    captureAndDespin.despin.initialSpinPeriod = [900.0 [s]]
+    captureAndDespin.despin.pulseTrains = 5
+    captureAndDespin.despin.spinPeriod = 9437.184 [s]
+    captureAndDespin.despin.wheelTakeoverPeriod = [7200.0 [s]]
+    captured = [true]
+    droInsertion.corridorError = [1200.0 [km]]
+    droInsertion.corridorHalfWidth = [5000.0 [km]]
+    droInsertion.inserted = [true]
+    droInsertion.insertionArcDuration = 20.0 [d]
+    droInsertion.outcome = ["inserted into the DRO"]
+    envelope = [Instance(ID: 4)]
+    inserted = [true]
+    inspectorRelease.checkoutPassed = [true]
+    inspectorRelease.groundGo = [true]
+    inspectorRelease.holdReason = [""]
+    inspectorRelease.released = [true]
+    inspectorRelease.umbilicalDisconnected = true
+    inspectorReleased = true
+    outboundArcPlan = [3]
+    outboundArcs = 3
+    outcome = ["disposed after 7 thrust arcs"]
+    returnArcPlan = [4]
+    returnArcs = 4
+    target = [Instance(ID: 3)]
+    xenonRemaining = 955.0 [kg]
+  standing: value (observed: 1 run under reverse)

@@ -1,0 +1,23 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysHouseRules
+✓ Created instance of TethysSequence::nominalPhasePlan
+  ID: 1
+  Use %features TethysSequence::nominalPhasePlan to inspect
+✓ TethysSequence::nominalPhasePlan.phases.phase
+  = ["launchAndEarlyOperations", "sepCommissioning (within outboundCruise)", "outboundCruise", "approachAndRendezvous", "characterisation", "capture", "returnCruise", "droInsertionAndCheckout", "utilisation", "disposal (after extendedMission)"]
+✓ TethysSequence::nominalPhasePlan.phases.plannedDuration
+  = [3.0 [d], 30.0 [d], 380.0 [d], 35.0 [d], 15.0 [d], 13.0 [d], 1000.0 [d], 60.0 [d], 300.0 [d], 30.0 [d]]
+✓ TethysSequence::nominalPhasePlan.plannedTotal
+  = 1866.0 [d]

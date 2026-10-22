@@ -10,6 +10,7 @@
 ✓ package TethysGround
 ✓ package TethysSystem
 ✓ package TethysModes
+✓ package TethysSequence
 ✓ package TethysHouseRules
 ✓ Created instance of TethysModes::largeTargetFlight
   ID: 1
