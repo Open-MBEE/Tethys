@@ -152,8 +152,19 @@ package TethysEnvironment {
         attribute :>> stabilityHorizon = 36525.0 [d];
     }
 
-    attribute speedOfLightKmPerS : Real = 299792.458;
-    attribute standardGravityMPerS2 : Real = 9.80665;
+    attribute speedOfLight : SpeedValue = 299792458.0 ['m/s'] {
+        doc /* The defining constant c, as an ISQ speed. */
+    }
+    attribute standardGravity : AccelerationValue = 9.80665 ['m⋅s⁻²'] {
+        doc /* Standard gravity g₀, as an ISQ acceleration: the Isp-to-exhaust-speed factor. */
+    }
+    attribute speedOfLightKmPerS : Real = speedOfLight / (1 ['m/s']) / 1000.0 {
+        doc /* c in km/s for the Real-valued orbital helpers below (sqrt and ** are defined
+             * on Real only in the Kernel Function Library). */
+    }
+    attribute standardGravityMPerS2 : Real = standardGravity / (1 ['m⋅s⁻²']) {
+        doc /* g₀ in m/s² for the Real-valued rocket-equation helpers below. */
+    }
     attribute pi : Real = 3.14159265358979;
 
     calc def SolarFlux {

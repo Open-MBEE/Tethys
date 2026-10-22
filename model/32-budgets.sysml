@@ -445,15 +445,19 @@ package TethysBudgets {
         attribute throughputLife : MassValue = head(argentDesign.sep.thrusters.xenonThroughputLife);
         attribute sepPowerAtAphelion : PowerValue = powerBudget.availableForPropulsion;
         attribute ppuEfficiency : Real = head(argentDesign.sep.powerProcessingUnits.efficiency);
-        attribute thrustAtAphelion : Real = SepThrust((sepPowerAtAphelion / (1 [W])) * ppuEfficiency,
-            argentDesign.sep.specificImpulse / (1 [s]), head(argentDesign.sep.thrusters.efficiency));
-        attribute thrustAtFullPower : Real = SepThrust((argentDesign.sep.maximumPower / (1 [W])) * ppuEfficiency,
-            argentDesign.sep.specificImpulse / (1 [s]), head(argentDesign.sep.thrusters.efficiency));
-        attribute massFlowAtAphelion : Real = MassFlowRate(thrustAtAphelion, argentDesign.sep.specificImpulse / (1 [s]));
-        attribute thrustingTimeNominal : DurationValue = (xenonNominal / (1 [kg])) / massFlowAtAphelion * (1 [s]);
-        attribute thrustingTimeLarge : DurationValue = (xenonLarge / (1 [kg])) / massFlowAtAphelion * (1 [s]);
+        attribute thrustAtAphelion : ForceValue = SepThrust((sepPowerAtAphelion / (1 [W])) * ppuEfficiency,
+            argentDesign.sep.specificImpulse / (1 [s]), head(argentDesign.sep.thrusters.efficiency)) [N];
+        attribute thrustAtFullPower : ForceValue = SepThrust((argentDesign.sep.maximumPower / (1 [W])) * ppuEfficiency,
+            argentDesign.sep.specificImpulse / (1 [s]), head(argentDesign.sep.thrusters.efficiency)) [N];
+        attribute massFlowAtAphelion : MassFlowRateValue = MassFlowRate(thrustAtAphelion / (1 [N]),
+            argentDesign.sep.specificImpulse / (1 [s])) ['kg⋅s⁻¹'];
+        attribute thrustingTimeNominal : DurationValue =
+            ((xenonNominal / (1 [kg])) / (massFlowAtAphelion / (1 ['kg⋅s⁻¹']))) [s];
+        attribute thrustingTimeLarge : DurationValue =
+            ((xenonLarge / (1 [kg])) / (massFlowAtAphelion / (1 ['kg⋅s⁻¹']))) [s];
         attribute thrustingTimeAllowed : DurationValue = transferBook.thrustingTimeAllowed;
-        attribute stackAccelerationLarge : Real = thrustAtAphelion / ((massBudget.launchMass + targetCases.large.mass) / (1 [kg]));
+        attribute stackAccelerationLarge : AccelerationValue =
+            ((thrustAtAphelion / (1 [N])) / ((massBudget.launchMass + targetCases.large.mass) / (1 [kg]))) ['m⋅s⁻²'];
         assert constraint largeCaseReturns {
             doc /* The heaviest design case is inside the return envelope: the two books agree. */
             targetCases.large.mass <= returnableBodyMass
@@ -628,7 +632,7 @@ package TethysBudgets {
         attribute arrestTime : DurationValue = 3.0 [s];
         attribute contactForceLarge : ForceValue = targetCases.large.mass * contactSpeed / arrestTime;
         attribute cinchPreload : ForceValue = sum(argentDesign.captureSystem.winches.lineTension);
-        attribute thrustLoad : ForceValue = propellantBudget.thrustAtFullPower * (1 [N]);
+        attribute thrustLoad : ForceValue = propellantBudget.thrustAtFullPower;
         attribute loadCapacity : ForceValue = argentDesign.captureSystem.bag.cinchLoadCapacity;
         assert constraint contactCloses : ClosesWithMargin {
             in capability = loadCapacity; in demand = contactForceLarge; in policy = activePolicy;

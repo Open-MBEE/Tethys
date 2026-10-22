@@ -60,8 +60,8 @@ package TethysTrades {
              * aphelion, plus a penalty in days per kilogram of wing and per cost unit; the least
              * score wins. */
         subject :>> studyAlternatives : ArrayOption[1..*];
-        in attribute xenonToProcessKg : Real default = 6300.0;
-        in attribute housekeepingW : Real default = 2000.0;
+        in attribute xenonToProcess : MassValue default = 6300.0 [kg];
+        in attribute housekeeping : PowerValue default = 2000.0 [W];
         in attribute massPenaltyDaysPerKg : Real default = 0.5;
         in attribute costPenaltyDaysPerUnit : Real default = 5.0;
         objective :>> tradeStudyObjective : MinimizeObjective {
@@ -69,10 +69,12 @@ package TethysTrades {
         }
         calc :>> evaluationFunction {
             in part option :>> alternative : ArrayOption;
-            attribute sepPowerW : Real = PowerAvailableToSep(option.powerAtOneAu / 1 [W], housekeepingW);
-            attribute thrustN : Real = SepThrust(sepPowerW, argent.sep.specificImpulse / 1 [s], 0.65);
-            attribute thrustDays : Real = ThrustDays(xenonToProcessKg, MassFlowRate(thrustN, argent.sep.specificImpulse / 1 [s]));
-            return :>> result : Real = thrustDays
+            attribute sepPower : PowerValue =
+                PowerAvailableToSep(option.powerAtOneAu / 1 [W], housekeeping / 1 [W]) [W];
+            attribute thrust : ForceValue = SepThrust(sepPower / 1 [W], argent.sep.specificImpulse / 1 [s], 0.65) [N];
+            attribute thrustTime : DurationValue = ThrustDays(xenonToProcess / 1 [kg],
+                MassFlowRate(thrust / 1 [N], argent.sep.specificImpulse / 1 [s])) [d];
+            return :>> result : Real = thrustTime / 1 [d]
                 + massPenaltyDaysPerKg * (option.wingMass / 1 [kg]) + costPenaltyDaysPerUnit * option.costUnits;
         }
         return part :>> selectedAlternative : ArrayOption;
@@ -102,10 +104,10 @@ package TethysTrades {
              * cost at that Isp, plus a penalty per kilogram of xenon; an option whose xenon
              * exceeds the tank is penalised out. The least score wins. */
         subject :>> studyAlternatives : ThrusterOption[1..*];
-        in attribute outboundDeltaVMPerS : Real default = (transferBook.deltaVOutbound + transferBook.deltaVRendezvous) / 1 ['m/s'] {
+        in attribute outboundDeltaV : SpeedValue default = transferBook.deltaVOutbound + transferBook.deltaVRendezvous {
             doc /* Outbound and rendezvous arcs of the transfer book (TethysMission::transferBook). */
         }
-        in attribute returnDeltaVMPerS : Real default = transferBook.deltaVRequiredReturn / 1 ['m/s'] {
+        in attribute returnDeltaV : SpeedValue default = transferBook.deltaVRequiredReturn {
             doc /* Return and insertion arcs of the transfer book. */
         }
         in attribute xenonPenaltyDaysPerKg : Real default = 0.1;
@@ -116,14 +118,15 @@ package TethysTrades {
         calc :>> evaluationFunction {
             in part option :>> alternative : ThrusterOption;
             attribute ispS : Real = option.specificImpulse / 1 [s];
-            attribute outboundXenonKg : Real = PropellantForDeltaV(outboundDeltaVMPerS, argent.wetMass / 1 [kg], ispS);
-            attribute stackKg : Real = argent.wetMass / 1 [kg] - outboundXenonKg + targetCases.nominal.mass / 1 [kg];
-            attribute returnXenonKg : Real = PropellantForDeltaV(returnDeltaVMPerS, stackKg, ispS);
-            attribute xenonKg : Real = outboundXenonKg + returnXenonKg;
-            attribute thrustN : Real = SepThrust(argent.sep.maximumPower / 1 [W], ispS, option.efficiency);
-            attribute thrustDays : Real = ThrustDays(xenonKg, MassFlowRate(thrustN, ispS));
-            attribute overflow : Real = if xenonKg > argent.sep.xenonMass / 1 [kg] ? tankOverflowPenaltyDays else 0.0;
-            return :>> result : Real = thrustDays + xenonPenaltyDaysPerKg * xenonKg + overflow;
+            attribute outboundXenon : MassValue =
+                PropellantForDeltaV(outboundDeltaV / 1 ['m/s'], argent.wetMass / 1 [kg], ispS) [kg];
+            attribute stack : MassValue = argent.wetMass - outboundXenon + targetCases.nominal.mass;
+            attribute returnXenon : MassValue = PropellantForDeltaV(returnDeltaV / 1 ['m/s'], stack / 1 [kg], ispS) [kg];
+            attribute xenon : MassValue = outboundXenon + returnXenon;
+            attribute thrust : ForceValue = SepThrust(argent.sep.maximumPower / 1 [W], ispS, option.efficiency) [N];
+            attribute thrustTime : DurationValue = ThrustDays(xenon / 1 [kg], MassFlowRate(thrust / 1 [N], ispS)) [d];
+            attribute overflow : Real = if xenon > argent.sep.xenonMass ? tankOverflowPenaltyDays else 0.0;
+            return :>> result : Real = thrustTime / 1 [d] + xenonPenaltyDaysPerKg * (xenon / 1 [kg]) + overflow;
         }
         return part :>> selectedAlternative : ThrusterOption;
     }

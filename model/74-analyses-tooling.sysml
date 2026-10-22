@@ -45,14 +45,14 @@ package TethysAnalysesTooling {
             subject :>> tug = analysed;
             in bodyMassKg = draw.bodyMassKg;
         }
-        attribute :>> observed = dispersion.returnDeltaVMPerS;
+        attribute :>> observed = dispersion.returnDeltaV / 1 ['m/s'];
         objective canReturn : ReturnCapability {
             doc /* The return capability this case must show. */
             subject :>> tug = analysed;
-            in returnDeltaVMPerS = dispersion.returnDeltaVMPerS;
-            in requiredReturnDeltaVMPerS = transferBook.deltaVRequiredReturn / 1 ['m/s'];
-            in totalThrustDays = dispersion.totalThrustDays;
-            in thrustDayAllowance = transferBook.thrustingTimeAllowed / 1 [d];
+            in returnDeltaV = dispersion.returnDeltaV;
+            in requiredReturnDeltaV = transferBook.deltaVRequiredReturn;
+            in totalThrustTime = dispersion.totalThrustTime;
+            in thrustTimeAllowance = transferBook.thrustingTimeAllowed;
         }
     }
     analysis returnOverTargetCases : ReturnOverTargetCases { subject :>> analysed = argent; }
@@ -67,14 +67,14 @@ package TethysAnalysesTooling {
             subject :>> tug = analysed;
             in bodyMassKg = bodyMassKg;
         }
-        attribute :>> observed = dispersion.returnDeltaVMPerS;
+        attribute :>> observed = dispersion.returnDeltaV / 1 ['m/s'];
         objective canReturn : ReturnCapability {
             doc /* The return capability this case must show. */
             subject :>> tug = analysed;
-            in returnDeltaVMPerS = dispersion.returnDeltaVMPerS;
-            in requiredReturnDeltaVMPerS = transferBook.deltaVRequiredReturn / 1 ['m/s'];
-            in totalThrustDays = dispersion.totalThrustDays;
-            in thrustDayAllowance = transferBook.thrustingTimeAllowed / 1 [d];
+            in returnDeltaV = dispersion.returnDeltaV;
+            in requiredReturnDeltaV = transferBook.deltaVRequiredReturn;
+            in totalThrustTime = dispersion.totalThrustTime;
+            in thrustTimeAllowance = transferBook.thrustingTimeAllowed;
         }
     }
     analysis returnOverContinuousMass : ReturnOverContinuousMass { subject :>> analysed = argent; }

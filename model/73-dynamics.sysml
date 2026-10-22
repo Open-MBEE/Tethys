@@ -85,9 +85,9 @@ package TethysDynamics {
         doc /* At every point of the mission the degraded array shall deliver at least the
              * propulsion system's lowest useful operating power plus the housekeeping load. */
         subject tug : Tug;
-        in attribute availableSepPowerW : Real;
-        in attribute minimumSepPowerW : Real;
-        require constraint { availableSepPowerW >= minimumSepPowerW }
+        in attribute availableSepPower : PowerValue;
+        in attribute minimumSepPower : PowerValue;
+        require constraint { availableSepPower >= minimumSepPower }
     }
 
     analysis def ArrayPowerAnalysis {
@@ -98,17 +98,18 @@ package TethysDynamics {
         subject tug : Tug;
         in attribute distanceAu : Real default = 1.034;
         in attribute missionDay : Real default = 0.0;
-        in attribute housekeepingW : Real default = 2000.0;
-        in attribute minimumSepPowerW : Real default = 20000.0;
-        attribute arrayPowerW : Real =
-            tug.eps.arrayPowerAtOneAu / 1 [W] * SolarFluxFromTable(distanceAu) / SolarFlux(1.0) * ArrayDegradationAt(missionDay);
-        return availableSepPowerW : Real = RealFunctions::min(arrayPowerW - housekeepingW, tug.sep.maximumPower / 1 [W]);
-        out thrustN : Real = SepThrust(availableSepPowerW, tug.sep.specificImpulse / 1 [s], 0.65);
+        in attribute housekeeping : PowerValue default = 2000.0 [W];
+        in attribute minimumSepPower : PowerValue default = 20000.0 [W];
+        attribute arrayPower : PowerValue =
+            tug.eps.arrayPowerAtOneAu * (SolarFluxFromTable(distanceAu) / SolarFlux(1.0) * ArrayDegradationAt(missionDay));
+        return availableSepPower : PowerValue =
+            RealFunctions::min((arrayPower - housekeeping) / 1 [W], tug.sep.maximumPower / 1 [W]) [W];
+        out thrust : ForceValue = SepThrust(availableSepPower / 1 [W], tug.sep.specificImpulse / 1 [s], 0.65) [N];
         objective enoughPower : PowerForThrust {
             doc /* The power the degraded array must still deliver. */
             subject :>> tug = tug;
-            in availableSepPowerW = availableSepPowerW;
-            in minimumSepPowerW = minimumSepPowerW;
+            in availableSepPower = availableSepPower;
+            in minimumSepPower = minimumSepPower;
         }
     }
     metadata CredibilityAssessment about ArrayPowerAnalysis { verificationFactor = 3; validation = 1; inputPedigree = 1; resultsUncertainty = 2; resultsRobustness = 2; useHistory = 1; managementProcess = 2; peopleQualification = 3; }
@@ -231,13 +232,13 @@ package TethysDynamics {
         doc /* After one revolution the state shall return to within the tolerance of its start,
              * and the period the propagation shows shall match the design value. */
         subject tug : Tug;
-        in attribute closureKm : Real;
-        in attribute closureToleranceKm : Real;
-        in attribute periodDays : Real;
-        in attribute designPeriodDays : Real;
-        in attribute periodToleranceDays : Real;
-        require constraint { closureKm <= closureToleranceKm }
-        require constraint { periodDays >= designPeriodDays - periodToleranceDays and periodDays <= designPeriodDays + periodToleranceDays }
+        in attribute closure : LengthValue;
+        in attribute closureTolerance : LengthValue;
+        in attribute period : DurationValue;
+        in attribute designPeriod : DurationValue;
+        in attribute periodTolerance : DurationValue;
+        require constraint { closure <= closureTolerance }
+        require constraint { period >= designPeriod - periodTolerance and period <= designPeriod + periodTolerance }
     }
 
     analysis def DroStabilityAnalysis {
@@ -246,27 +247,27 @@ package TethysDynamics {
              * unit and the closure of the propagated revolution is the per-revolution drift that,
              * multiplied over the hundred-year horizon, bounds the unattended wander. */
         subject tug : Tug;
-        in attribute closureToleranceKm : Real default = 1000.0;
-        in attribute periodToleranceDays : Real default = 0.1;
-        attribute periodDays : Real = dro70000.periodTimeUnits * earthMoon.timeUnitS / 86400.0;
-        attribute revolutionsInHorizon : Real = destinationDro.stabilityHorizon / 1 [d] / periodDays;
+        in attribute closureTolerance : LengthValue default = 1000.0 [km];
+        in attribute periodTolerance : DurationValue default = 0.1 [d];
+        attribute period : DurationValue = (dro70000.periodTimeUnits * earthMoon.timeUnitS) [s];
+        attribute revolutionsInHorizon : Real = destinationDro.stabilityHorizon / period;
         action revolution : ThreeBodyDynamics {
             :>> stateSpace = VectorOf((dro70000.x0, 0.0, 0.0, dro70000.vy0));
             :>> timeStep = (dro70000.periodTimeUnits / 320.0) [s];
             :>> stopTime = dro70000.periodTimeUnits [s];
             calc :>> getNextState { calc :>> integrate : RungeKutta4; }
         }
-        return closureKm : Real = earthMoon.lengthUnitKm
-            * sqrt((revolution.stateSpace.elements#(1) - dro70000.x0) ** 2 + revolution.stateSpace.elements#(2) ** 2);
-        out periodShownDays : Real = periodDays;
+        return closure : LengthValue = (earthMoon.lengthUnitKm
+            * sqrt((revolution.stateSpace.elements#(1) - dro70000.x0) ** 2 + revolution.stateSpace.elements#(2) ** 2)) [km];
+        out periodShown : DurationValue = period;
         objective closes : OrbitCloses {
             doc /* The closure and period the propagated revolution must show. */
             subject :>> tug = tug;
-            in closureKm = closureKm;
-            in closureToleranceKm = closureToleranceKm;
-            in periodDays = periodDays;
-            in designPeriodDays = destinationDro.period / 1 [d];
-            in periodToleranceDays = periodToleranceDays;
+            in closure = closure;
+            in closureTolerance = closureTolerance;
+            in period = period;
+            in designPeriod = destinationDro.period;
+            in periodTolerance = periodTolerance;
         }
     }
     metadata CredibilityAssessment about DroStabilityAnalysis { verificationFactor = 2; validation = 2; inputPedigree = 3; resultsUncertainty = 1; resultsRobustness = 1; useHistory = 2; managementProcess = 2; peopleQualification = 3; }
