@@ -1,0 +1,23 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysSafety
+✓ package TethysHouseRules
+✓ Constraint TethysSafety::earthImpactTree::earthImpactExcluded passed
+  standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysSafety::reliabilityBudget::reliabilityAllocationMet passed
+  standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysSafety::envelopeCases::largeCaseFits passed
+  standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysSafety::endOfLifeSafety::disposalPropellantSufficient passed
+  standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysSafety::groundSafetyData::twoInhibits passed
+  standing: holds (observed: 1 run under reverse)
