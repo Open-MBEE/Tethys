@@ -1,0 +1,24 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysHouseRules
+✓ TethysInspectorDetail::ForcedMotionDeltaVPerOrbit(50.0, 7200.0)
+  = [0.2741556778080372]
+  standing: value (observed: 1 run under reverse)
+✓ TethysInspectorDetail::CampaignDeltaV(12.0, 0.274, 5.0e-8, 7.0e5)
+  = [3.3230000000000004]
+  standing: value (observed: 1 run under reverse)
+✓ TethysInspectorDetail::ColdGasDeltaV(65.0, 24.0, 1.6)
+  = [43.97828130588829]
+  standing: value (observed: 1 run under reverse)
