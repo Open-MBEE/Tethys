@@ -519,7 +519,10 @@ package TethysBudgets {
         attribute isp : DurationValue = head(argentDesign.rcs.thrusters.specificImpulse);
         attribute momentArm : LengthValue = head(argentDesign.rcs.thrusters.momentArm);
         attribute proximityDeltaV : Real = 30.0;
-        attribute tugMassAtTarget : MassValue = massBudget.launchMass - massBudget.adapterSeparated - 700.0 [kg];
+        attribute tugMassAtTarget : MassValue = propellantBudget.tugMassAtTarget {
+            doc /* The tug alone at the target, from the propellant budget: launch mass less the
+                 * adapter, the outbound and rendezvous xenon and the released inspector. */
+        }
         attribute proximityOperations : MassValue = PropellantFor(proximityDeltaV, tugMassAtTarget, isp);
         attribute despinSmall : MassValue = DespinPropellant(targetCases.small, momentArm, isp);
         attribute despinNominal : MassValue = DespinPropellant(targetCases.nominal, momentArm, isp);
@@ -587,7 +590,14 @@ package TethysBudgets {
              * the radiators at their hot-case temperature. Cold case: coasting at aphelion,
              * heater power within its power-budget allocation. Every unit's predicted
              * temperatures within its limits in both cases. */
-        attribute hotCaseHeat : PowerValue = TugHeatInMode(TugMode::thrust) * 1.22;
+        attribute hotCaseSolarFactor : Real = SolarFlux(amaranth.orbit.perihelionAu) / SolarFlux(amaranth.orbit.aphelionAu) {
+            doc /* Perihelion over aphelion solar flux, (1.065/1.003)², about 1.13: the string
+                 * processes the array's output, so its dissipation in the thrust mode scales
+                 * with the flux the budget's aphelion unit powers are rated at. */
+        }
+        attribute hotCaseHeat : PowerValue = TugHeatInMode(TugMode::thrust) * hotCaseSolarFactor {
+            doc /* The thrust-mode dissipation of every unit, scaled to the target's perihelion. */
+        }
         attribute radiatorTemperature : ThermodynamicTemperatureValue = head(argentDesign.thermal.radiators.predictedHotTemperature);
         attribute radiatorCapacity : PowerValue = RadiatorRejection(argentDesign.thermal.radiatorArea,
             head(argentDesign.thermal.radiators.emissivity), radiatorTemperature);

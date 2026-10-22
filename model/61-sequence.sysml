@@ -14,6 +14,7 @@ package TethysSequence {
     private import TethysModes::TargetEstimate;
     private import TethysBudgets::CaptureCommitEnvelope;
     private import TethysBudgets::captureCommitEnvelope;
+    private import TethysBudgets::propellantBudget;
     private import TethysModes::smallTarget;
     private import TethysModes::nominalTarget;
     private import TethysModes::largeTarget;
@@ -282,11 +283,13 @@ package TethysSequence {
         in envelope : CaptureCommitEnvelope;
         in outboundArcPlan : Natural;
         in returnArcPlan : Natural;
-        attribute xenonRemaining : MassValue = 6600.0 [kg];
+        attribute xenonRemaining : MassValue = propellantBudget.loaded;
         attribute outboundArcs : Natural = 0;
         attribute returnArcs : Natural = 0;
         attribute inspectorReleased : Boolean = false;
-        attribute xenonReserve : MassValue = 300.0 [kg];
+        attribute xenonReserve : MassValue = propellantBudget.loaded * propellantBudget.residualFraction {
+            doc /* The residual the tanks cannot deliver, from the propellant budget. */
+        }
         attribute lunarAssistAt : TimeInstantValue;
         out captured : Boolean = false;
         out inserted : Boolean = false;
