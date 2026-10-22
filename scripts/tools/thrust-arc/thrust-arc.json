@@ -1,0 +1,20 @@
+{
+  "toolName": "ThrustArcSolver",
+  "version": "1.0",
+  "executable": "python3",
+  "variables": ["startAu", "endAu", "planeChangeDeg", "initialMassKg", "thrustN", "specificImpulseS", "deltaVMPerS", "propellantKg", "thrustDays"],
+  "invocation": {
+    "args": ["thrust_arc.py", "--start-au", "{startAu}", "--end-au", "{endAu}", "--plane-change-deg", "{planeChangeDeg}", "--initial-mass-kg", "{initialMassKg}", "--thrust-n", "{thrustN}", "--isp-s", "{specificImpulseS}"],
+    "cwd": ".",
+    "stdin": "none"
+  },
+  "reply": {
+    "format": "csv",
+    "source": "stdout",
+    "outputs": {
+      "deltaVMPerS": {"column": "deltaVMPerS", "type": "number"},
+      "propellantKg": {"column": "propellantKg", "type": "number"},
+      "thrustDays": {"column": "thrustDays", "type": "number"}
+    }
+  }
+}
