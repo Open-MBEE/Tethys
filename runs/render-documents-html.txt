@@ -30,8 +30,8 @@ loaded 53 files:
   model/61-sequence.sysml
   model/62-fdir.sysml
   model/63-flight-software.sysml
-  model/64-flight-dictionary-tooling.sysml
-  model/64-flight-dictionary.sysml
+  model/68-software-icds-tooling.sysml
+  model/68-software-icds.sysml
   model/70-analyses.sysml
   model/71-trades.sysml
   model/72-montecarlo.sysml
@@ -83,8 +83,8 @@ loaded 53 files:
 ✓ package TethysSequence
 ✓ package TethysFdir
 ✓ package TethysFlightSoftware
-✓ package TethysFlightDictionaryDocuments
-✓ package TethysFlightDictionary
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
 ✓ package TethysTrades
 ✓ package TethysMonteCarlo
@@ -109,12 +109,11 @@ wrote build/runs/documents-html/TethysDocuments-InterfaceControlDocuments.html (
 wrote build/runs/documents-html/TethysDocuments-RiskRegister.html (html, 1050 bytes)
 wrote build/runs/documents-html/TethysDocuments-SystemDescription.html (html, 36380 bytes)
 wrote build/runs/documents-html/TethysDocuments-VerificationMatrix.html (html, 34171 bytes)
-wrote build/runs/documents-html/TethysFlightDictionaryDocuments-FlightDictionaryDocument.html (html, 2617626 bytes)
 wrote build/runs/documents-html/TethysIcdDocuments-CaptureIcdDocument.html (html, 6015 bytes)
 wrote build/runs/documents-html/TethysIcdDocuments-DataBusIcdDocument.html (html, 4012 bytes)
 wrote build/runs/documents-html/TethysIcdDocuments-DockingIcdDocument.html (html, 5267 bytes)
 wrote build/runs/documents-html/TethysIcdDocuments-HighVoltagePowerIcdDocument.html (html, 3448 bytes)
-wrote build/runs/documents-html/TethysIcdDocuments-IcdRegisterDocument.html (html, 20465 bytes)
+wrote build/runs/documents-html/TethysIcdDocuments-IcdRegisterDocument.html (html, 29191 bytes)
 wrote build/runs/documents-html/TethysIcdDocuments-InspectorDispenserIcdDocument.html (html, 4126 bytes)
 wrote build/runs/documents-html/TethysIcdDocuments-InspectorRelayIcdDocument.html (html, 7871 bytes)
 wrote build/runs/documents-html/TethysIcdDocuments-InspectorThermalIcdDocument.html (html, 3487 bytes)
@@ -125,5 +124,10 @@ wrote build/runs/documents-html/TethysIcdDocuments-PropellantFeedIcdDocument.htm
 wrote build/runs/documents-html/TethysIcdDocuments-SpaceGroundIcdDocument.html (html, 9859 bytes)
 wrote build/runs/documents-html/TethysIcdDocuments-ThermalIcdDocument.html (html, 4672 bytes)
 wrote build/runs/documents-html/TethysIcdDocuments-TugInspectorIcdDocument.html (html, 4123 bytes)
+wrote build/runs/documents-html/TethysSoftwareIcdDocuments-BusProtocolIcdDocument.html (html, 12081 bytes)
+wrote build/runs/documents-html/TethysSoftwareIcdDocuments-InspectorRelayProfileIcdDocument.html (html, 7791 bytes)
+wrote build/runs/documents-html/TethysSoftwareIcdDocuments-MessageCatalogueDocument.html (html, 41535 bytes)
+wrote build/runs/documents-html/TethysSoftwareIcdDocuments-RegisterMapIcdDocument.html (html, 22184 bytes)
+wrote build/runs/documents-html/TethysSoftwareIcdDocuments-SpaceLinkProfileIcdDocument.html (html, 39409 bytes)
 wrote build/runs/documents-html/TethysVerificationTooling-VvReport.html (html, 173290 bytes)
 wrote build/runs/documents-html/sysml-document.css (css, 4632 bytes)

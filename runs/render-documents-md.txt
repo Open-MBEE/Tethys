@@ -30,8 +30,8 @@ loaded 53 files:
   model/61-sequence.sysml
   model/62-fdir.sysml
   model/63-flight-software.sysml
-  model/64-flight-dictionary-tooling.sysml
-  model/64-flight-dictionary.sysml
+  model/68-software-icds-tooling.sysml
+  model/68-software-icds.sysml
   model/70-analyses.sysml
   model/71-trades.sysml
   model/72-montecarlo.sysml
@@ -83,8 +83,8 @@ loaded 53 files:
 ✓ package TethysSequence
 ✓ package TethysFdir
 ✓ package TethysFlightSoftware
-✓ package TethysFlightDictionaryDocuments
-✓ package TethysFlightDictionary
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
 ✓ package TethysTrades
 ✓ package TethysMonteCarlo
@@ -109,12 +109,11 @@ wrote build/runs/documents/TethysDocuments-InterfaceControlDocuments.md (markdow
 wrote build/runs/documents/TethysDocuments-RiskRegister.md (markdown, 228 bytes)
 wrote build/runs/documents/TethysDocuments-SystemDescription.md (markdown, 23394 bytes)
 wrote build/runs/documents/TethysDocuments-VerificationMatrix.md (markdown, 6207 bytes)
-wrote build/runs/documents/TethysFlightDictionaryDocuments-FlightDictionaryDocument.md (markdown, 168924 bytes)
 wrote build/runs/documents/TethysIcdDocuments-CaptureIcdDocument.md (markdown, 759 bytes)
 wrote build/runs/documents/TethysIcdDocuments-DataBusIcdDocument.md (markdown, 496 bytes)
 wrote build/runs/documents/TethysIcdDocuments-DockingIcdDocument.md (markdown, 634 bytes)
 wrote build/runs/documents/TethysIcdDocuments-HighVoltagePowerIcdDocument.md (markdown, 443 bytes)
-wrote build/runs/documents/TethysIcdDocuments-IcdRegisterDocument.md (markdown, 5405 bytes)
+wrote build/runs/documents/TethysIcdDocuments-IcdRegisterDocument.md (markdown, 8823 bytes)
 wrote build/runs/documents/TethysIcdDocuments-InspectorDispenserIcdDocument.md (markdown, 501 bytes)
 wrote build/runs/documents/TethysIcdDocuments-InspectorRelayIcdDocument.md (markdown, 862 bytes)
 wrote build/runs/documents/TethysIcdDocuments-InspectorThermalIcdDocument.md (markdown, 449 bytes)
@@ -125,4 +124,9 @@ wrote build/runs/documents/TethysIcdDocuments-PropellantFeedIcdDocument.md (mark
 wrote build/runs/documents/TethysIcdDocuments-SpaceGroundIcdDocument.md (markdown, 1138 bytes)
 wrote build/runs/documents/TethysIcdDocuments-ThermalIcdDocument.md (markdown, 596 bytes)
 wrote build/runs/documents/TethysIcdDocuments-TugInspectorIcdDocument.md (markdown, 543 bytes)
+wrote build/runs/documents/TethysSoftwareIcdDocuments-BusProtocolIcdDocument.md (markdown, 1251 bytes)
+wrote build/runs/documents/TethysSoftwareIcdDocuments-InspectorRelayProfileIcdDocument.md (markdown, 895 bytes)
+wrote build/runs/documents/TethysSoftwareIcdDocuments-MessageCatalogueDocument.md (markdown, 10166 bytes)
+wrote build/runs/documents/TethysSoftwareIcdDocuments-RegisterMapIcdDocument.md (markdown, 2204 bytes)
+wrote build/runs/documents/TethysSoftwareIcdDocuments-SpaceLinkProfileIcdDocument.md (markdown, 3839 bytes)
 wrote build/runs/documents/TethysVerificationTooling-VvReport.md (markdown, 10691 bytes)

@@ -24,7 +24,10 @@ package TethysIcds {
     }
 
     metadata def InterfaceControl {
-        doc /* Who controls an interface, which document records it and at what revision. */
+        doc /* Who controls an interface, which document records it and at what revision. Ids
+             * TI-001 to TI-014 are the system ICDs of this package; TI-020 to TI-029 are reserved
+             * for the software ICDs of TethysSoftwareIcds (bus protocol, link profile, relay
+             * profile, register maps). */
         attribute authority : String;
         attribute document : String;
         attribute revision : String;
