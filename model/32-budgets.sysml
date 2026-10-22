@@ -244,14 +244,14 @@ package TethysBudgets {
         attribute arrayAtPerihelionBol : PowerValue =
             ArrayPower(argentDesign.eps.arrayPowerAtOneAu, perihelionAu, 1.0, cosineLoss);
         attribute demandEarlyOperations : PowerValue = TugPowerInMode(TugMode::earlyOperations);
-        attribute demandThrusting : PowerValue = TugPowerInMode(TugMode::thrusting);
-        attribute demandCoasting : PowerValue = TugPowerInMode(TugMode::coasting);
+        attribute demandThrusting : PowerValue = TugPowerInMode(TugMode::thrust);
+        attribute demandCoasting : PowerValue = TugPowerInMode(TugMode::coast);
         attribute demandProximityOperations : PowerValue = TugPowerInMode(TugMode::proximityOperations);
         attribute demandCapture : PowerValue = TugPowerInMode(TugMode::capture);
         attribute demandDespin : PowerValue = TugPowerInMode(TugMode::despin);
         attribute demandDroHold : PowerValue = TugPowerInMode(TugMode::droHold);
         attribute demandSafe : PowerValue = TugPowerInMode(TugMode::safe);
-        attribute busDemandThrusting : PowerValue = BusPowerInMode(TugMode::thrusting);
+        attribute busDemandThrusting : PowerValue = BusPowerInMode(TugMode::thrust);
         attribute availableForPropulsion : PowerValue = arrayAtAphelionEol - busDemandThrusting;
         attribute thrustingMargin : Real = MarginFraction(arrayAtAphelionEol, demandThrusting);
         assert constraint earlyOperationsClose : ClosesWithMargin {
@@ -587,11 +587,11 @@ package TethysBudgets {
              * the radiators at their hot-case temperature. Cold case: coasting at aphelion,
              * heater power within its power-budget allocation. Every unit's predicted
              * temperatures within its limits in both cases. */
-        attribute hotCaseHeat : PowerValue = TugHeatInMode(TugMode::thrusting) * 1.22;
+        attribute hotCaseHeat : PowerValue = TugHeatInMode(TugMode::thrust) * 1.22;
         attribute radiatorTemperature : ThermodynamicTemperatureValue = head(argentDesign.thermal.radiators.predictedHotTemperature);
         attribute radiatorCapacity : PowerValue = RadiatorRejection(argentDesign.thermal.radiatorArea,
             head(argentDesign.thermal.radiators.emissivity), radiatorTemperature);
-        attribute coldCaseHeaterPower : PowerValue = UnitsPowerInMode(argentDesign.thermal.heaters, TugMode::coasting);
+        attribute coldCaseHeaterPower : PowerValue = UnitsPowerInMode(argentDesign.thermal.heaters, TugMode::coast);
         attribute heaterAllocation : PowerValue = 320.0 [W];
         attribute hotUnitsWithinLimits : Boolean = argentDesign.units->forAll { in u : Unit;
             u.predictedHotTemperature <= u.maxOperatingTemperature };

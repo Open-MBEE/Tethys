@@ -25,7 +25,7 @@ run wpb-tug-dry-mass $SYSML -e "TethysTugStructure::argentDesign.dryMassEstimate
 run wpb-tug-dry-mass-allocated $SYSML -e "TethysTugStructure::argentDesign.dryMassAllocated" $MODEL
 run wpb-tug-sep-mass $SYSML -e "TethysTugStructure::argentDesign.sep.mass" $MODEL
 run wpb-unit-power-safe $SYSML -e "TethysTugStructure::UnitsPowerInMode(TethysTugStructure::argentDesign.cdh.flightComputers, TethysTugStructure::TugMode::safe)" $MODEL
-run wpb-unit-power-thrusting $SYSML -e "TethysTugStructure::UnitsPowerInMode(TethysTugStructure::argentDesign.sep.thrusters, TethysTugStructure::TugMode::thrusting)" $MODEL
+run wpb-unit-power-thrusting $SYSML -e "TethysTugStructure::UnitsPowerInMode(TethysTugStructure::argentDesign.sep.thrusters, TethysTugStructure::TugMode::thrust)" $MODEL
 run wpb-power-budget-safe $SYSML -e "TethysBudgets::powerBudget.demandSafe" $MODEL
 run wpb-mass-budget $SYSML -e "TethysBudgets::massBudget.launchMass" $MODEL
 run wpb-xenon-large $SYSML -e "TethysBudgets::propellantBudget.xenonLarge" -e "TethysBudgets::propellantBudget.returnableBodyMass" -e "TethysBudgets::propellantBudget.returnableBodyMassNoMargin" -e "TethysBudgets::captureCommitEnvelope.maximumBodyMass" $MODEL

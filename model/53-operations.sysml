@@ -12,17 +12,9 @@ package TethysOperations {
     private import TethysIcds::*;
     private import TethysLinkBudgets::LinkBudget;
     private import VerificationCases::VerificationMethodKind;
+    private import TethysTugStructure::TugMode;
 
     // ---- command and telemetry dictionary ---------------------------------------------------
-    enum def CommandedMode {
-        doc /* The modes the operations centre may command the tug into. */
-        enum safe;
-        enum cruise;
-        enum thrust;
-        enum proximity;
-        enum capture;
-    }
-
     enum def ApidClass {
         doc /* The application process classes the packet ids are assigned to. */
         enum housekeeping;
@@ -52,7 +44,7 @@ package TethysOperations {
         doc /* Transition the tug to a commanded mode. */
         attribute :>> opcode = "SET_MODE";
         attribute :>> apidClass = ApidClass::housekeeping;
-        attribute mode : CommandedMode;
+        attribute mode : TugMode;
     }
     item def StartThrustArc :> Command {
         doc /* Begin a thrust arc of the given duration at the given throttle. */
@@ -274,7 +266,7 @@ package TethysOperations {
 
     part def CommandedTug {
         doc /* The tug as the executive sees it: mode, thrust and relay state. */
-        attribute mode : CommandedMode := CommandedMode::cruise;
+        attribute mode : TugMode := TugMode::coast;
         attribute thrusting : Boolean := false;
         attribute relayActive : Boolean := false;
         attribute commandsAccepted : Natural := 0;
@@ -289,7 +281,7 @@ package TethysOperations {
                      * 90 % throttle, and confirm each step by its acknowledgement. */
                 action disableRelay send new DisableRelay(apid = 5, sequenceCount = 1, length = 16.0 [B]) to tug;
                 then action ackRelay accept a1 : CommandAcknowledge;
-                then action setThrustMode send new SetMode(apid = 1, sequenceCount = 2, length = 17.0 [B], mode = CommandedMode::thrust) to tug;
+                then action setThrustMode send new SetMode(apid = 1, sequenceCount = 2, length = 17.0 [B], mode = TugMode::thrust) to tug;
                 then action ackMode accept a2 : CommandAcknowledge;
                 then action startArc send new StartThrustArc(apid = 3, sequenceCount = 3, length = 24.0 [B], arcDuration = 48.0 [h], throttle = 0.9) to tug;
                 then action ackArc accept a3 : CommandAcknowledge;
@@ -476,7 +468,7 @@ package TethysOperations {
         attribute :>> triggerMnemonic = "GNC_TGT_RANGE";
         attribute :>> responseTime = 0.25 [h];
         action retreat send new AbortToRetreat(apid = 2, sequenceCount = 13, length = 24.0 [B], retreatSpeed = 0.1 ['m/s']) to scenario.tug;
-        then action safe send new SetMode(apid = 1, sequenceCount = 14, length = 17.0 [B], mode = CommandedMode::safe) to scenario.tug;
+        then action safe send new SetMode(apid = 1, sequenceCount = 14, length = 17.0 [B], mode = TugMode::safe) to scenario.tug;
     }
     action stationOutageResponse : ContingencyProcedure {
         doc /* CON-004: a Meridian station is lost for a day; the plan is rebuilt on the other

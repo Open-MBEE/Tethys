@@ -9,6 +9,8 @@ package TethysModes {
     private import SI::*;
     private import TethysInterfaces::*;
     private import TethysTug::Tug;
+    private import TethysTugStructure::TugMode;
+    private import TethysBudgets::TugPowerInMode;
     private import TethysInspector::Inspector;
     private import TethysTarget::targetCases;
     private import TethysBudgets::CaptureCommitEnvelope;
@@ -120,15 +122,10 @@ package TethysModes {
     }
 
     // ---- 2. Modes and the mode × subsystem configuration table --------------------------
-    enum def TugMode {
-        doc /* The tug's flight modes. Free-flight modes before capture, stacked modes after
-             * it, and safe mode reachable from every operating mode. */
-        launch; coast; thrust; approach; proximityOperations; retreat; capture;
-        despin; stackCoast; stackThrust; droHold; dockedPassive; disposal; safe; abortHold;
-    }
     attribute def SubsystemConfiguration {
         doc /* One row of the mode × subsystem matrix: what each subsystem does in a mode and
-             * the bus load it draws. */
+             * the load it draws — the per-unit rollup of TethysBudgets::TugPowerInMode, the
+             * same table the power budget closes, so the two cannot drift. */
         attribute mode : TugMode;
         attribute sepThrusting : Boolean;
         attribute highVoltageBusOn : Boolean;
@@ -137,86 +134,92 @@ package TethysModes {
         attribute wheelControl : Boolean;
         attribute captureSystemArmed : Boolean;
         attribute sensorsOn : Boolean;
-        attribute busLoad : PowerValue;
+        attribute busLoad : PowerValue default = TugPowerInMode(mode);
     }
     part def TugModeTable {
-        doc /* The mode × subsystem configuration matrix of the Argent tug. */
+        doc /* The mode × subsystem configuration matrix of the Argent tug, one row per
+             * TethysTugStructure::TugMode literal; each row's load is the budget's rollup. */
         attribute launch : SubsystemConfiguration {
             :>> mode = TugMode::launch; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = false; :>> proximityLinkOn = false; :>> wheelControl = false;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 0.9 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
+        }
+        attribute earlyOperations : SubsystemConfiguration {
+            :>> mode = TugMode::earlyOperations; :>> sepThrusting = false; :>> highVoltageBusOn = false;
+            :>> highGainAntennaOn = false; :>> proximityLinkOn = false; :>> wheelControl = true;
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute coast : SubsystemConfiguration {
             :>> mode = TugMode::coast; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 1.6 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute thrust : SubsystemConfiguration {
             :>> mode = TugMode::thrust; :>> sepThrusting = true; :>> highVoltageBusOn = true;
             :>> highGainAntennaOn = false; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 41.5 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute approach : SubsystemConfiguration {
             :>> mode = TugMode::approach; :>> sepThrusting = true; :>> highVoltageBusOn = true;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = true; :>> busLoad = 42.3 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = true;
         }
         attribute proximityOperations : SubsystemConfiguration {
             :>> mode = TugMode::proximityOperations; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = true; :>> wheelControl = false;
-            :>> captureSystemArmed = false; :>> sensorsOn = true; :>> busLoad = 2.4 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = true;
         }
         attribute retreat : SubsystemConfiguration {
             :>> mode = TugMode::retreat; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = true; :>> wheelControl = false;
-            :>> captureSystemArmed = false; :>> sensorsOn = true; :>> busLoad = 2.2 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = true;
         }
         attribute capture : SubsystemConfiguration {
             :>> mode = TugMode::capture; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = false; :>> proximityLinkOn = true; :>> wheelControl = false;
-            :>> captureSystemArmed = true; :>> sensorsOn = true; :>> busLoad = 2.9 [kW];
+            :>> captureSystemArmed = true; :>> sensorsOn = true;
         }
         attribute despin : SubsystemConfiguration {
             :>> mode = TugMode::despin; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = false; :>> proximityLinkOn = false; :>> wheelControl = false;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 2.0 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute stackCoast : SubsystemConfiguration {
             :>> mode = TugMode::stackCoast; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 1.7 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute stackThrust : SubsystemConfiguration {
             :>> mode = TugMode::stackThrust; :>> sepThrusting = true; :>> highVoltageBusOn = true;
             :>> highGainAntennaOn = false; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 41.6 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute droHold : SubsystemConfiguration {
             :>> mode = TugMode::droHold; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 1.5 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute dockedPassive : SubsystemConfiguration {
             :>> mode = TugMode::dockedPassive; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = true; :>> wheelControl = false;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 1.3 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute disposal : SubsystemConfiguration {
             :>> mode = TugMode::disposal; :>> sepThrusting = true; :>> highVoltageBusOn = true;
             :>> highGainAntennaOn = false; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 41.5 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute safe : SubsystemConfiguration {
             :>> mode = TugMode::safe; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = false; :>> proximityLinkOn = false; :>> wheelControl = false;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 1.1 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute abortHold : SubsystemConfiguration {
             :>> mode = TugMode::abortHold; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 1.6 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
-        attribute rows : SubsystemConfiguration[15] = (launch, coast, thrust, approach,
+        attribute rows : SubsystemConfiguration[16] = (launch, earlyOperations, coast, thrust, approach,
             proximityOperations, retreat, capture, despin, stackCoast, stackThrust, droHold,
             dockedPassive, disposal, safe, abortHold);
         assert constraint safeModeShedsLoads {
