@@ -3,10 +3,12 @@
 # develop commit (the binary and the "OpenSysML Libraries" sources come from the same checkout,
 # so runs/ are reproducible), the pinned OMG pilot validator and the batch pilot validator built
 # against the same pinned jar. The commit is the one place the OpenSysML pin lives; `make runs`
-# records it (commit + Go version only) in runs/tool-version.txt.
+# records it (commit + Go version only) in runs/tool-version.txt, so the Go toolchain that
+# builds the binary is pinned too (GOTOOLCHAIN fetches it when the host's go differs).
 set -eu
 OPENSYSML_REPO=${OPENSYSML_REPO:-https://github.com/Open-MBEE/OpenSysML}
 OPENSYSML_COMMIT=${OPENSYSML_COMMIT:-5cd37f288fef171d62737d6045f4caff772b6014}
+export GOTOOLCHAIN=${GOTOOLCHAIN:-go1.25.11}
 mkdir -p build/opensysml
 if [ ! -d build/opensysml-src ]; then
   git init -q build/opensysml-src

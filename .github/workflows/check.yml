@@ -12,7 +12,7 @@ jobs:
         with: { distribution: temurin, java-version: '21' }
       - uses: actions/setup-go@v5
         with: { go-version: '1.25' }
-      - run: sudo apt-get install -y --no-install-recommends graphviz
+      - run: sudo apt-get install -y --no-install-recommends graphviz z3
       - name: Build OpenSysML at the pinned commit and fetch the pinned pilot validators
         run: make tools
       - run: make tiers
