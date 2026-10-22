@@ -1,0 +1,48 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysHouseRules
+✓ Created instance of TethysSequence::largeTargetCampaign
+  ID: 1
+  Use %features TethysSequence::largeTargetCampaign to inspect
+✓ Debugging action "mission" performed by object #1 of "TethysSequence::largeTargetCampaign"
+note: object #1 of "TethysSequence::largeTargetCampaign" already performs "TethysSequence::FlightCampaign::mission", so this session attaches to that running performance rather than starting a second one (as `%action TethysSequence::FlightCampaign::mission` would)
+  State: Waiting
+  Tokens: 1
+✓ Advanced to 190080000.0 (0 event(s) processed)
+  Action state: Completed
+  Tokens: 0
+  1 choice point (1 independent); %trace on to see them
+  Action steps taken: 14
+✓ Action completed
+  Results:
+    captured = [false]
+    envelope = [Instance(ID: 4)]
+    inserted = [false]
+    inspectorRelease.checkoutPassed = [true]
+    inspectorRelease.groundGo = [true]
+    inspectorRelease.holdReason = [""]
+    inspectorRelease.released = [true]
+    inspectorRelease.umbilicalDisconnected = true
+    inspectorReleased = true
+    lunarAssistAt = <unset>
+    outboundArcPlan = [3]
+    outboundArcs = 3
+    outcome = ["capture refused: target estimate outside the capture envelope"]
+    returnArcPlan = [4]
+    returnArcs = 0
+    target = [Instance(ID: 3)]
+    xenonRemaining = 5955.0 [kg]
+    xenonReserve = 300.0 [kg]
+  standing: value (observed: 1 run under reverse)

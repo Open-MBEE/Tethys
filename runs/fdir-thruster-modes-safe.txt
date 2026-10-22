@@ -1,0 +1,34 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysHouseRules
+✓ Created instance of TethysFdir::thrusterFaultScenario
+  ID: 1
+  Use %features TethysFdir::thrusterFaultScenario to inspect
+warning: TethysFdir::thrusterFaultScenario: materialization is bounded; not every feature value was checked
+✓ Debugging state machine "modes" exhibited by object #4 of "TethysFdir::thrusterFaultScenario.tug"
+  Current state: onLauncher | off | lowGain | thrusters | stowed
+  Time: 0.0
+  Events: 0
+✓ Advanced to 2764800.0 (18 event(s) processed)
+  Current state: safe | off | lowGain | thrusters | stowed
+  Last event at: 2600640.0
+  Remaining events: 0
+  9 choice points (8 independent); %trace on to see them
+  Do behavior actions run: 2
+  Action steps taken: 22
+  Waiting on the clock:
+    t=2773440.0: action campaign of object #2, accept after waiting since step 24 for the clock to reach t=2773440.0
+    t=3205440.0: state machine FdirSupervisor of object #4, time -> expired
+  standing: value (observed: 1 run under reverse)

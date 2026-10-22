@@ -1,0 +1,22 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysHouseRules
+✓ Created instance of TethysSequence::baselineSchedule
+  ID: 1
+  Use %features TethysSequence::baselineSchedule to inspect
+✓ TethysSequence::baselineSchedule.events.eventName
+  = ["liftOff", "separationFromLauncher", "arraysDeployed", "firstThrustArc", "rendezvous", "inspectorRelease", "captureCommit", "captureComplete", "despinComplete", "departureFromTarget", "lunarGravityAssist", "droInsertion", "visitingVehicleDocking", "tugSeparation", "tugDisposalBurn"]
+✓ TethysSequence::baselineSchedule.events.dayAfterLaunch
+  = [0.0 [d], 0.05 [d], 0.1 [d], 33.0 [d], 448.0 [d], 450.0 [d], 463.0 [d], 466.0 [d], 476.0 [d], 480.0 [d], 1480.0 [d], 1500.0 [d], 1560.0 [d], 1860.0 [d], 1890.0 [d]]

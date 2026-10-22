@@ -1,0 +1,651 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysHouseRules
+[trace] materialize: nominalCampaign #1
+[trace] start: performed action mission of #1
+[trace] materialize: mission #2
+[trace] materialize: nominalTarget #3
+[trace]   eval feature nominalTarget -> instance#3
+[trace] eval feature FlightCampaign::target -> instance#3
+[trace] materialize: envelope #4
+[trace] eval feature FlightCampaign::envelope -> instance#4
+[trace] eval feature FlightCampaign::outboundArcPlan -> 3
+[trace] eval feature FlightCampaign::returnArcPlan -> 4
+[trace]   eval literal 6600.0 -> 6600.0
+[trace] eval index -> 6600.0 [kg]
+[trace]   eval literal 300.0 -> 300.0
+[trace] eval index -> 300.0 [kg]
+[trace] materialize: TimeInstantValue #5
+[trace] eval literal false -> false
+[trace] eval literal false -> false
+[trace] eval literal "" -> ""
+[trace] run: performed action mission of #1
+[trace] step 1: token 1@launchAndEarlyOperations
+[trace]   eval literal 3.0 -> 3.0
+[trace] eval index -> 3.0 [d]
+✓ Created instance of TethysSequence::nominalCampaign
+  ID: 1
+  Use %features TethysSequence::nominalCampaign to inspect
+[trace]   eval literal 6.8 -> 6.8
+[trace] eval index -> 6.8 [m]
+[trace]   eval literal 362.0e3 -> 362000.0
+[trace] eval index -> 362000.0 [kg]
+[trace]   eval literal 1000.0e3 -> 1000000.0
+[trace] eval index -> 1000000.0 [kg]
+[trace]   eval literal 10.0 -> 10.0
+[trace] eval index -> 10.0 [m]
+[trace] materialize: launchAndEarlyOperations #6
+[trace] materialize: sepCommissioning #7
+[trace] materialize: farFieldApproach #8
+[trace] materialize: rendezvous #9
+[trace] materialize: inspectorRelease #10
+[trace] eval literal true -> true
+[trace] eval literal true -> true
+[trace] eval literal false -> false
+[trace] eval literal "" -> ""
+[trace] materialize: inspectorCharacterisation #11
+[trace] materialize: tugStationKeeping #12
+[trace] materialize: retreatHold #13
+[trace] materialize: captureAndDespin #14
+[trace] materialize: scheduleLunarAssist #15
+[trace] materialize: lunarGravityAssist #16
+[trace] materialize: droInsertion #17
+[trace]   eval literal 1200.0 -> 1200.0
+[trace] eval index -> 1200.0 [km]
+[trace]   eval literal 5000.0 -> 5000.0
+[trace] eval index -> 5000.0 [km]
+[trace]   eval literal 20.0 -> 20.0
+[trace] eval index -> 20.0 [d]
+[trace] eval literal false -> false
+[trace] eval literal "" -> ""
+[trace] materialize: droCheckout #18
+[trace]   eval literal 180.0 -> 180.0
+[trace] eval index -> 180.0 [km]
+[trace]   eval literal 10.0 -> 10.0
+[trace] eval index -> 10.0 [km]
+[trace] eval literal 3 -> 3
+[trace] eval feature initialDrift -> (180.0 [km])
+[trace]   eval literal 1.5 -> 1.5
+[trace] eval index -> 1.5 [kg]
+[trace] eval literal 0 -> 0
+[trace]   eval literal 0.0 -> 0.0
+[trace] eval index -> 0.0 [kg]
+[trace] materialize: droCheckoutHold #19
+[trace] materialize: visitingVehicleDocking #20
+[trace] materialize: utilisation #21
+[trace] materialize: tugSeparation #22
+[trace] materialize: disposalBurn #23
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] run: performed action mission of #1
+[trace] step 2: token 1@sepCommissioning
+[trace]   eval literal 30.0 -> 30.0
+[trace] eval index -> 30.0 [d]
+[trace] run: performed action mission of #1
+[trace] step 3: token 1@while
+[trace] stmt while
+[trace]   iteration 1
+[trace]       eval feature outboundArcs -> 0
+[trace]       eval feature outboundArcPlan -> (3)
+[trace]     eval operator < -> true
+[trace]     stmt node outboundArc
+[trace] enter action node: outboundArc
+[trace]         eval literal 120.0 -> 120.0
+[trace]       eval index -> 120.0 [d]
+[trace]         eval literal 215.0 -> 215.0
+[trace]       eval index -> 215.0 [kg]
+[trace]       eval feature xenonRemaining -> 6600.0 [kg]
+[trace]         eval feature xenonBefore -> (6600.0 [kg])
+[trace]         eval feature xenonPerArc -> (215.0 [kg])
+[trace]       eval operator - -> 6385.0 [kg]
+[trace]       stmt assign xenonRemaining
+[trace]         eval chain xenonAfter -> (6385.0 [kg])
+[trace]       stmt assign outboundArcs
+[trace]           eval feature outboundArcs -> 0
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 1
+[trace]         eval literal 10.0 -> 10.0
+[trace]       eval index -> 10.0 [d]
+[trace] step 4: token 1@while, token 2@opticalNavigationCoast
+[trace] run: performed action mission of #1
+[trace] leave action node: outboundArc
+[trace]   iteration 2
+[trace]       eval feature outboundArcs -> 1
+[trace]       eval feature outboundArcPlan -> (3)
+[trace]     eval operator < -> true
+[trace]     stmt node outboundArc
+[trace] enter action node: outboundArc
+[trace]         eval literal 120.0 -> 120.0
+[trace]       eval index -> 120.0 [d]
+[trace]         eval literal 215.0 -> 215.0
+[trace]       eval index -> 215.0 [kg]
+[trace]       eval feature xenonRemaining -> 6385.0 [kg]
+[trace]         eval feature xenonBefore -> (6385.0 [kg])
+[trace]         eval feature xenonPerArc -> (215.0 [kg])
+[trace]       eval operator - -> 6170.0 [kg]
+[trace]       stmt assign xenonRemaining
+[trace]         eval chain xenonAfter -> (6170.0 [kg])
+[trace]       stmt assign outboundArcs
+[trace]           eval feature outboundArcs -> 1
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 2
+[trace]         eval literal 10.0 -> 10.0
+[trace]       eval index -> 10.0 [d]
+[trace] run: performed action mission of #1
+[trace] leave action node: outboundArc
+[trace]   iteration 3
+[trace]       eval feature outboundArcs -> 2
+[trace]       eval feature outboundArcPlan -> (3)
+[trace]     eval operator < -> true
+[trace]     stmt node outboundArc
+[trace] enter action node: outboundArc
+[trace]         eval literal 120.0 -> 120.0
+[trace]       eval index -> 120.0 [d]
+[trace]         eval literal 215.0 -> 215.0
+[trace]       eval index -> 215.0 [kg]
+[trace]       eval feature xenonRemaining -> 6170.0 [kg]
+[trace]         eval feature xenonBefore -> (6170.0 [kg])
+[trace]         eval feature xenonPerArc -> (215.0 [kg])
+[trace]       eval operator - -> 5955.0 [kg]
+[trace]       stmt assign xenonRemaining
+[trace]         eval chain xenonAfter -> (5955.0 [kg])
+[trace]       stmt assign outboundArcs
+[trace]           eval feature outboundArcs -> 2
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 3
+[trace]         eval literal 10.0 -> 10.0
+[trace]       eval index -> 10.0 [d]
+[trace] run: performed action mission of #1
+[trace] leave action node: outboundArc
+[trace]   iteration 4
+[trace]       eval feature outboundArcs -> 3
+[trace]       eval feature outboundArcPlan -> (3)
+[trace]     eval operator < -> false
+[trace] step 5: token 1@farFieldApproach
+[trace]   eval literal 25.0 -> 25.0
+[trace] eval index -> 25.0 [d]
+[trace] run: performed action mission of #1
+[trace] step 6: token 1@rendezvous
+[trace]   eval literal 10.0 -> 10.0
+[trace] eval index -> 10.0 [d]
+[trace] run: performed action mission of #1
+[trace] step 7: token 1@inspectorRelease
+[trace] eval literal true -> true
+[trace] eval literal true -> true
+[trace] eval literal false -> false
+[trace] eval literal false -> false
+[trace] eval literal "" -> ""
+[trace] step 1: token 1@checkoutGate
+[trace] eval feature checkoutPassed -> (true)
+[trace] step 2: token 1@disconnectUmbilical
+[trace] stmt assign umbilicalDisconnected
+[trace]   eval literal true -> true
+[trace] step 3: token 1@groundGoHold
+[trace]   eval literal 12.0 -> 12.0
+[trace] eval index -> 12.0 [h]
+[trace] run: performed action mission of #1
+[trace] step 4: token 1@groundGate
+[trace]   eval feature groundGo -> (true)
+[trace]   eval feature umbilicalDisconnected -> true
+[trace] eval operator and -> true
+[trace] step 5: token 1@release
+[trace] stmt assign released
+[trace]   eval literal true -> true
+[trace] step 6: token 1@done
+[trace] step 7: no active tokens
+[trace] step 8: token 1@assign inspectorReleased
+[trace] stmt assign inspectorReleased
+[trace]   eval chain released -> (true)
+[trace] step 9: token 1@characterisationFork
+[trace] step 10: token 5@inspectorCharacterisation, token 6@tugStationKeeping
+[trace]   eval literal 14.0 -> 14.0
+[trace] eval index -> 14.0 [d]
+[trace]   eval literal 14.0 -> 14.0
+[trace] eval index -> 14.0 [d]
+[trace] run: performed action mission of #1
+[trace] choice step 11: tokens 5@inspectorCharacterisation, 6@tugStationKeeping (unordered; took 6@tugStationKeeping first; independent)
+[trace] step 11: token 5@characterisationJoin, token 6@characterisationJoin
+[trace] step 12: token 7@captureCommit
+[trace]       eval feature target -> (instance#3)
+[trace]     eval chain estimatedMass -> (362000.0 [kg])
+[trace]       eval feature envelope -> (instance#4)
+[trace]     eval chain maximumBodyMass -> (1000000.0 [kg])
+[trace]   eval operator <= -> true
+[trace]       eval feature target -> (instance#3)
+[trace]     eval chain estimatedDiameter -> (6.8 [m])
+[trace]       eval feature envelope -> (instance#4)
+[trace]     eval chain maximumBodyDiameter -> (10.0 [m])
+[trace]   eval operator <= -> true
+[trace] eval operator and -> true
+[trace] step 13: token 7@captureAndDespin
+[trace] enter action node: captureAndDespin
+[trace] step 14: token 7@capture
+[trace]   eval literal 3.0 -> 3.0
+[trace] eval index -> 3.0 [d]
+[trace] run: performed action mission of #1
+[trace] step 15: token 7@assign captured
+[trace] stmt assign captured
+[trace]   eval literal true -> true
+[trace] step 16: token 7@despin
+[trace]   eval literal 900.0 -> 900.0
+[trace] eval index -> 900.0 [s]
+[trace]   eval literal 7200.0 -> 7200.0
+[trace] eval index -> 7200.0 [s]
+[trace] eval feature initialSpinPeriod -> (900.0 [s])
+[trace] eval literal 0 -> 0
+[trace] step 1: token 1@while
+[trace] stmt while
+[trace]   iteration 1
+[trace]       eval feature spinPeriod -> (900.0 [s])
+[trace]       eval feature wheelTakeoverPeriod -> (7200.0 [s])
+[trace]     eval operator < -> true
+[trace]     stmt node pulseTrain
+[trace] enter action node: pulseTrain
+[trace]       stmt assign spinPeriod
+[trace]           eval feature spinPeriod -> (900.0 [s])
+[trace]           eval literal 1.6 -> 1.6
+[trace]         eval operator * -> 1440.0 [s]
+[trace]       stmt assign pulseTrains
+[trace]           eval feature pulseTrains -> 0
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 1
+[trace] leave action node: pulseTrain
+[trace]   iteration 2
+[trace]       eval feature spinPeriod -> 1440.0 [s]
+[trace]       eval feature wheelTakeoverPeriod -> (7200.0 [s])
+[trace]     eval operator < -> true
+[trace]     stmt node pulseTrain
+[trace] enter action node: pulseTrain
+[trace]       stmt assign spinPeriod
+[trace]           eval feature spinPeriod -> 1440.0 [s]
+[trace]           eval literal 1.6 -> 1.6
+[trace]         eval operator * -> 2304.0 [s]
+[trace]       stmt assign pulseTrains
+[trace]           eval feature pulseTrains -> 1
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 2
+[trace] leave action node: pulseTrain
+[trace]   iteration 3
+[trace]       eval feature spinPeriod -> 2304.0 [s]
+[trace]       eval feature wheelTakeoverPeriod -> (7200.0 [s])
+[trace]     eval operator < -> true
+[trace]     stmt node pulseTrain
+[trace] enter action node: pulseTrain
+[trace]       stmt assign spinPeriod
+[trace]           eval feature spinPeriod -> 2304.0 [s]
+[trace]           eval literal 1.6 -> 1.6
+[trace]         eval operator * -> 3686.4 [s]
+[trace]       stmt assign pulseTrains
+[trace]           eval feature pulseTrains -> 2
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 3
+[trace] leave action node: pulseTrain
+[trace]   iteration 4
+[trace]       eval feature spinPeriod -> 3686.4 [s]
+[trace]       eval feature wheelTakeoverPeriod -> (7200.0 [s])
+[trace]     eval operator < -> true
+[trace]     stmt node pulseTrain
+[trace] enter action node: pulseTrain
+[trace]       stmt assign spinPeriod
+[trace]           eval feature spinPeriod -> 3686.4 [s]
+[trace]           eval literal 1.6 -> 1.6
+[trace]         eval operator * -> 5898.24 [s]
+[trace]       stmt assign pulseTrains
+[trace]           eval feature pulseTrains -> 3
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 4
+[trace] leave action node: pulseTrain
+[trace]   iteration 5
+[trace]       eval feature spinPeriod -> 5898.24 [s]
+[trace]       eval feature wheelTakeoverPeriod -> (7200.0 [s])
+[trace]     eval operator < -> true
+[trace]     stmt node pulseTrain
+[trace] enter action node: pulseTrain
+[trace]       stmt assign spinPeriod
+[trace]           eval feature spinPeriod -> 5898.24 [s]
+[trace]           eval literal 1.6 -> 1.6
+[trace]         eval operator * -> 9437.184 [s]
+[trace]       stmt assign pulseTrains
+[trace]           eval feature pulseTrains -> 4
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 5
+[trace] leave action node: pulseTrain
+[trace]   iteration 6
+[trace]       eval feature spinPeriod -> 9437.184 [s]
+[trace]       eval feature wheelTakeoverPeriod -> (7200.0 [s])
+[trace]     eval operator < -> false
+[trace] step 2: token 1@done
+[trace] step 3: no active tokens
+[trace] leave action node: captureAndDespin
+[trace] step 17: token 7@while
+[trace] stmt while
+[trace]   iteration 1
+[trace]       eval feature returnArcs -> 0
+[trace]       eval feature returnArcPlan -> (4)
+[trace]     eval operator < -> true
+[trace]     stmt node returnArc
+[trace] enter action node: returnArc
+[trace]         eval literal 250.0 -> 250.0
+[trace]       eval index -> 250.0 [d]
+[trace]         eval literal 1250.0 -> 1250.0
+[trace]       eval index -> 1250.0 [kg]
+[trace]       eval feature xenonRemaining -> 5955.0 [kg]
+[trace]         eval feature xenonBefore -> (5955.0 [kg])
+[trace]         eval feature xenonPerArc -> (1250.0 [kg])
+[trace]       eval operator - -> 4705.0 [kg]
+[trace]       stmt assign xenonRemaining
+[trace]         eval chain xenonAfter -> (4705.0 [kg])
+[trace]       stmt assign returnArcs
+[trace]           eval feature returnArcs -> 0
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 1
+[trace] leave action node: returnArc
+[trace]   iteration 2
+[trace]       eval feature returnArcs -> 1
+[trace]       eval feature returnArcPlan -> (4)
+[trace]     eval operator < -> true
+[trace]     stmt node returnArc
+[trace] enter action node: returnArc
+[trace]         eval literal 250.0 -> 250.0
+[trace]       eval index -> 250.0 [d]
+[trace]         eval literal 1250.0 -> 1250.0
+[trace]       eval index -> 1250.0 [kg]
+[trace]       eval feature xenonRemaining -> 4705.0 [kg]
+[trace]         eval feature xenonBefore -> (4705.0 [kg])
+[trace]         eval feature xenonPerArc -> (1250.0 [kg])
+[trace]       eval operator - -> 3455.0 [kg]
+[trace]       stmt assign xenonRemaining
+[trace]         eval chain xenonAfter -> (3455.0 [kg])
+[trace]       stmt assign returnArcs
+[trace]           eval feature returnArcs -> 1
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 2
+[trace] leave action node: returnArc
+[trace]   iteration 3
+[trace]       eval feature returnArcs -> 2
+[trace]       eval feature returnArcPlan -> (4)
+[trace]     eval operator < -> true
+[trace]     stmt node returnArc
+[trace] enter action node: returnArc
+[trace]         eval literal 250.0 -> 250.0
+[trace]       eval index -> 250.0 [d]
+[trace]         eval literal 1250.0 -> 1250.0
+[trace]       eval index -> 1250.0 [kg]
+[trace]       eval feature xenonRemaining -> 3455.0 [kg]
+[trace]         eval feature xenonBefore -> (3455.0 [kg])
+[trace]         eval feature xenonPerArc -> (1250.0 [kg])
+[trace]       eval operator - -> 2205.0 [kg]
+[trace]       stmt assign xenonRemaining
+[trace]         eval chain xenonAfter -> (2205.0 [kg])
+[trace]       stmt assign returnArcs
+[trace]           eval feature returnArcs -> 2
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 3
+[trace] leave action node: returnArc
+[trace]   iteration 4
+[trace]       eval feature returnArcs -> 3
+[trace]       eval feature returnArcPlan -> (4)
+[trace]     eval operator < -> true
+[trace]     stmt node returnArc
+[trace] enter action node: returnArc
+[trace]         eval literal 250.0 -> 250.0
+[trace]       eval index -> 250.0 [d]
+[trace]         eval literal 1250.0 -> 1250.0
+[trace]       eval index -> 1250.0 [kg]
+[trace]       eval feature xenonRemaining -> 2205.0 [kg]
+[trace]         eval feature xenonBefore -> (2205.0 [kg])
+[trace]         eval feature xenonPerArc -> (1250.0 [kg])
+[trace]       eval operator - -> 955.0 [kg]
+[trace]       stmt assign xenonRemaining
+[trace]         eval chain xenonAfter -> (955.0 [kg])
+[trace]       stmt assign returnArcs
+[trace]           eval feature returnArcs -> 3
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 4
+[trace] leave action node: returnArc
+[trace]   iteration 5
+[trace]       eval feature returnArcs -> 4
+[trace]       eval feature returnArcPlan -> (4)
+[trace]     eval operator < -> false
+[trace] step 18: token 7@if
+[trace] stmt if
+[trace]     eval feature xenonRemaining -> 955.0 [kg]
+[trace]     eval feature xenonReserve -> 300.0 [kg]
+[trace]   eval operator < -> false
+[trace] step 19: token 7@scheduleLunarAssist
+[trace] stmt assign lunarAssistAt
+[trace] materialize: universalClock #24
+[trace]     eval chain currentTime -> 9979200.0 [s]
+[trace]       eval literal 20.0 -> 20.0
+[trace]     eval index -> 20.0 [d]
+[trace]   eval operator + -> 11707200.0 [s]
+[trace] step 20: token 7@lunarGravityAssist
+[trace] eval feature lunarAssistAt -> 11707200.0 [s]
+[trace] run: performed action mission of #1
+[trace] step 21: token 7@droInsertion
+[trace]   eval literal 1200.0 -> 1200.0
+[trace] eval index -> 1200.0 [km]
+[trace]   eval literal 5000.0 -> 5000.0
+[trace] eval index -> 5000.0 [km]
+[trace]   eval literal 20.0 -> 20.0
+[trace] eval index -> 20.0 [d]
+[trace] eval literal false -> false
+[trace] eval literal "" -> ""
+[trace] step 1: token 1@corridorGate
+[trace]   eval feature corridorError -> (1200.0 [km])
+[trace]   eval feature corridorHalfWidth -> (5000.0 [km])
+[trace] eval operator <= -> true
+[trace] step 2: token 1@insertionArc
+[trace] eval feature insertionArcDuration -> 20.0 [d]
+[trace] run: performed action mission of #1
+[trace] step 3: token 1@insertionDone
+[trace] stmt assign inserted
+[trace]   eval literal true -> true
+[trace] step 4: token 1@insertionReport
+[trace] stmt assign outcome
+[trace]   eval literal "inserted into the DRO" -> "inserted into the DRO"
+[trace] step 5: token 1@afterInsertion
+[trace] step 6: token 1@orbitDetermination
+[trace]   eval literal 2.0 -> 2.0
+[trace] eval index -> 2.0 [d]
+[trace] run: performed action mission of #1
+[trace] step 7: token 1@done
+[trace] step 8: no active tokens
+[trace] step 22: token 7@assign inserted
+[trace] stmt assign inserted
+[trace]   eval chain inserted -> (true)
+[trace] step 23: token 7@droCheckout
+[trace]   eval literal 180.0 -> 180.0
+[trace] eval index -> 180.0 [km]
+[trace]   eval literal 10.0 -> 10.0
+[trace] eval index -> 10.0 [km]
+[trace] eval literal 3 -> 3
+[trace] eval feature initialDrift -> (180.0 [km])
+[trace]   eval literal 1.5 -> 1.5
+[trace] eval index -> 1.5 [kg]
+[trace] eval literal 0 -> 0
+[trace]   eval literal 0.0 -> 0.0
+[trace] eval index -> 0.0 [kg]
+[trace] step 1: token 1@loop until
+[trace] stmt loop until
+[trace]   iteration 1
+[trace]     stmt node trim
+[trace] enter action node: trim
+[trace]       stmt assign drift
+[trace]           eval feature drift -> (180.0 [km])
+[trace]           eval literal 0.4 -> 0.4
+[trace]         eval operator * -> 72.0 [km]
+[trace]       stmt assign trims
+[trace]           eval feature trims -> (0)
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 1
+[trace] leave action node: trim
+[trace]       eval feature drift -> 72.0 [km]
+[trace]       eval feature controlBox -> (10.0 [km])
+[trace]     eval operator <= -> false
+[trace]   iteration 2
+[trace]     stmt node trim
+[trace] enter action node: trim
+[trace]       stmt assign drift
+[trace]           eval feature drift -> 72.0 [km]
+[trace]           eval literal 0.4 -> 0.4
+[trace]         eval operator * -> 28.8 [km]
+[trace]       stmt assign trims
+[trace]           eval feature trims -> (1)
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 2
+[trace] leave action node: trim
+[trace]       eval feature drift -> 28.8 [km]
+[trace]       eval feature controlBox -> (10.0 [km])
+[trace]     eval operator <= -> false
+[trace]   iteration 3
+[trace]     stmt node trim
+[trace] enter action node: trim
+[trace]       stmt assign drift
+[trace]           eval feature drift -> 28.8 [km]
+[trace]           eval literal 0.4 -> 0.4
+[trace]         eval operator * -> 11.52 [km]
+[trace]       stmt assign trims
+[trace]           eval feature trims -> (2)
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 3
+[trace] leave action node: trim
+[trace]       eval feature drift -> 11.52 [km]
+[trace]       eval feature controlBox -> (10.0 [km])
+[trace]     eval operator <= -> false
+[trace]   iteration 4
+[trace]     stmt node trim
+[trace] enter action node: trim
+[trace]       stmt assign drift
+[trace]           eval feature drift -> 11.52 [km]
+[trace]           eval literal 0.4 -> 0.4
+[trace]         eval operator * -> 4.608 [km]
+[trace]       stmt assign trims
+[trace]           eval feature trims -> (3)
+[trace]           eval literal 1 -> 1
+[trace]         eval operator + -> 4
+[trace] leave action node: trim
+[trace]       eval feature drift -> 4.608 [km]
+[trace]       eval feature controlBox -> (10.0 [km])
+[trace]     eval operator <= -> true
+[trace] step 2: token 1@for cycle
+[trace] stmt for cycle
+[trace]     eval literal 1 -> 1
+[trace]     eval feature cyclesPlanned -> (3)
+[trace]   eval operator .. -> (1, 2, 3)
+[trace]   iteration 1
+[trace]     stmt node costCycle
+[trace]       stmt assign hydrazineUsed
+[trace]           eval feature hydrazineUsed -> (0.0 [kg])
+[trace]           eval feature trimPerCycle -> 1.5 [kg]
+[trace]         eval operator + -> 1.5 [kg]
+[trace]   iteration 2
+[trace]     stmt node costCycle
+[trace]       stmt assign hydrazineUsed
+[trace]           eval feature hydrazineUsed -> (1.5 [kg])
+[trace]           eval feature trimPerCycle -> 1.5 [kg]
+[trace]         eval operator + -> 3.0 [kg]
+[trace]   iteration 3
+[trace]     stmt node costCycle
+[trace]       stmt assign hydrazineUsed
+[trace]           eval feature hydrazineUsed -> (3.0 [kg])
+[trace]           eval feature trimPerCycle -> 1.5 [kg]
+[trace]         eval operator + -> 4.5 [kg]
+[trace] step 3: token 1@done
+[trace] step 4: no active tokens
+[trace] step 24: token 7@droCheckoutHold
+[trace]   eval literal 58.0 -> 58.0
+[trace] eval index -> 58.0 [d]
+[trace] run: performed action mission of #1
+[trace] step 25: token 7@visitingVehicleDocking
+[trace]   eval literal 1.0 -> 1.0
+[trace] eval index -> 1.0 [d]
+[trace] run: performed action mission of #1
+[trace] step 26: token 7@utilisation
+[trace]   eval literal 300.0 -> 300.0
+[trace] eval index -> 300.0 [d]
+[trace] run: performed action mission of #1
+[trace] step 27: token 7@tugSeparation
+[trace]   eval literal 1.0 -> 1.0
+[trace] eval index -> 1.0 [d]
+[trace] run: performed action mission of #1
+[trace] step 28: token 7@disposalBurn
+[trace]   eval literal 30.0 -> 30.0
+[trace] eval index -> 30.0 [d]
+[trace] run: performed action mission of #1
+[trace] step 29: token 7@assign outcome
+[trace] stmt assign outcome
+[trace]       eval literal "disposed after " -> "disposed after "
+[trace]           eval feature outboundArcs -> 3
+[trace]           eval feature returnArcs -> 4
+[trace]         eval operator + -> 7
+[trace]         enter calc BaseFunctions::ToString
+[trace]           bind x = 7 [argument]
+[trace]         exit calc BaseFunctions::ToString -> "7"
+[trace]       eval invoke ToString -> "7"
+[trace]     eval operator + -> "disposed after 7"
+[trace]     eval literal " thrust arcs" -> " thrust arcs"
+[trace]   eval operator + -> "disposed after 7 thrust arcs"
+[trace] step 30: token 7@done
+[trace] step 31: no active tokens
+✓ Debugging action "mission" performed by object #1 of "TethysSequence::nominalCampaign"
+note: object #1 of "TethysSequence::nominalCampaign" already performs "TethysSequence::FlightCampaign::mission", so this session attaches to that running performance rather than starting a second one (as `%action TethysSequence::FlightCampaign::mission` would)
+  State: Waiting
+  Tokens: 1
+✓ Advanced to 190080000.0 (0 event(s) processed)
+  Action state: Completed
+  Tokens: 0
+  1 choice point (1 independent)
+  Action steps taken: 30
+✓ Action completed
+  Results:
+    captureAndDespin.despin.initialSpinPeriod = [900.0 [s]]
+    captureAndDespin.despin.pulseTrains = 5
+    captureAndDespin.despin.spinPeriod = 9437.184 [s]
+    captureAndDespin.despin.wheelTakeoverPeriod = [7200.0 [s]]
+    captured = [true]
+    droCheckout.controlBox = [10.0 [km]]
+    droCheckout.cyclesPlanned = [3]
+    droCheckout.drift = 4.608 [km]
+    droCheckout.hydrazineUsed = [4.5 [kg]]
+    droCheckout.initialDrift = [180.0 [km]]
+    droCheckout.trimPerCycle = 1.5 [kg]
+    droCheckout.trims = [4]
+    droInsertion.corridorError = [1200.0 [km]]
+    droInsertion.corridorHalfWidth = [5000.0 [km]]
+    droInsertion.inserted = [true]
+    droInsertion.insertionArcDuration = 20.0 [d]
+    droInsertion.outcome = ["inserted into the DRO"]
+    envelope = [Instance(ID: 4)]
+    inserted = [true]
+    inspectorRelease.checkoutPassed = [true]
+    inspectorRelease.groundGo = [true]
+    inspectorRelease.holdReason = [""]
+    inspectorRelease.released = [true]
+    inspectorRelease.umbilicalDisconnected = true
+    inspectorReleased = true
+    lunarAssistAt = 11707200.0 [s]
+    outboundArcPlan = [3]
+    outboundArcs = 3
+    outcome = ["disposed after 7 thrust arcs"]
+    returnArcPlan = [4]
+    returnArcs = 4
+    target = [Instance(ID: 3)]
+    xenonRemaining = 955.0 [kg]
+    xenonReserve = 300.0 [kg]
+  standing: value (observed: 1 run under reverse)

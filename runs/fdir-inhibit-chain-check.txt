@@ -1,0 +1,21 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysHouseRules
+✓ Created instance of TethysFdir::armedChain
+  ID: 1
+  Use %features TethysFdir::armedChain to inspect
+✓ Action TethysFdir::InhibitChain::cinch: no violation, exhaustive (1 states, 0 moves, depth 0)
+  outcome: armCommanded = [true]; fired = [true]; groundEnable = [true]; holdReason = [""]; inCaptureMode = [true]; this.armCommanded = true; this.groundEnable = true; this.inCaptureMode = true; this.isSolid = true
+  standing: holds (bounded over schedules: 1 state, 0 moves searched)

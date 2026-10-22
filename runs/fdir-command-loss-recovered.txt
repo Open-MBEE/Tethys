@@ -1,0 +1,33 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysHouseRules
+✓ Created instance of TethysFdir::commandLossScenario
+  ID: 1
+  Use %features TethysFdir::commandLossScenario to inspect
+warning: TethysFdir::commandLossScenario: materialization is bounded; not every feature value was checked
+✓ Debugging state machine "modes" exhibited by object #4 of "TethysFdir::commandLossScenario.tug"
+  Current state: onLauncher | off | lowGain | thrusters | stowed
+  Time: 0.0
+  Events: 0
+✓ Advanced to 2160000.0 (9 event(s) processed)
+  Current state: coast | standby | highGain | wheels | stowed
+  Last event at: 2073600.0
+  Remaining events: 0
+  10 choice points (10 independent); %trace on to see them
+  Do behavior actions run: 2
+  Action steps taken: 13
+  Waiting on the clock:
+    t=2592000.0: state machine FdirSupervisor of object #4, time -> expired
+  standing: value (observed: 1 run under reverse)

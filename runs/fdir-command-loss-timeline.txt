@@ -1,0 +1,89 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysHouseRules
+✓ Created instance of TethysFdir::commandLossScenario
+  ID: 1
+  Use %features TethysFdir::commandLossScenario to inspect
+warning: TethysFdir::commandLossScenario: materialization is bounded; not every feature value was checked
+✓ Debugging state machine "fdir" exhibited by object #4 of "TethysFdir::commandLossScenario.tug"
+  Current state: armed | nominal | nominal | nominal | nominal | monitoring
+  Time: 0.0
+  Events: 1
+✓ Advanced to 2160000.0 (9 event(s) processed)
+  Current state: armed | nominal | nominal | nominal | nominal | monitoring
+  Last event at: 1987200.0
+  Remaining events: 1
+  10 choice points (10 independent); %trace on to see them
+  Do behavior actions run: 2
+  Action steps taken: 13
+  Waiting on the clock:
+    t=2592000.0: state machine FdirSupervisor of object #4, time -> expired
+  standing: value (observed: 1 run under reverse)
+run - timeline rendering (the trace of a run to t = 2.16e+06)
+
+TethysFdir::commandLossScenario.tug.fdir
+  0 .. 432000.00000000006       armed | thrusterHealth.nominal | ppuHealth.nominal | powerHealth.nominal | attitudeHealth.nominal | monitoring
+  432000.00000000006 .. 864000  armed | thrusterHealth.nominal | ppuHealth.nominal | powerHealth.nominal | attitudeHealth.nominal | monitoring (accept GroundContact)
+  864000 .. 1.4688e+06          armed | thrusterHealth.nominal | ppuHealth.nominal | powerHealth.nominal | attitudeHealth.nominal | monitoring (accept GroundContact)
+  1.4688e+06 .. 1.9872e+06      expired | thrusterHealth.nominal | ppuHealth.nominal | powerHealth.nominal | attitudeHealth.nominal | monitoring (time)
+  1.9872e+06 .. 2.16e+06        armed | thrusterHealth.nominal | ppuHealth.nominal | powerHealth.nominal | attitudeHealth.nominal | monitoring (accept GroundContact)  (held at the end)
+  transitions:
+    t=432000.00000000006 armed -> armed (accept GroundContact)
+    t=864000 armed -> armed (accept GroundContact)
+    t=1.4688e+06 armed -> expired (time)
+    t=1.9872e+06 expired -> armed (accept GroundContact)
+  noted:
+    t=0 choice entering FdirSupervisor: next armed(entry), thrusterHealth.nominal(entry), ppuHealth.nominal(entry), powerHealth.nominal(entry), attitudeHealth.nominal(entry), monitoring(entry) (unordered; took armed(entry) first; independent)
+    t=0 choice entering FdirSupervisor: next thrusterHealth.nominal(entry), ppuHealth.nominal(entry), powerHealth.nominal(entry), attitudeHealth.nominal(entry), monitoring(entry) (unordered; took thrusterHealth.nominal(entry) first; independent)
+    t=0 choice entering FdirSupervisor: next ppuHealth.nominal(entry), powerHealth.nominal(entry), attitudeHealth.nominal(entry), monitoring(entry) (unordered; took ppuHealth.nominal(entry) first; independent)
+    t=0 choice entering FdirSupervisor: next powerHealth.nominal(entry), attitudeHealth.nominal(entry), monitoring(entry) (unordered; took powerHealth.nominal(entry) first; independent)
+    t=0 choice entering FdirSupervisor: next attitudeHealth.nominal(entry), monitoring(entry) (unordered; took attitudeHealth.nominal(entry) first; independent)
+
+TethysFdir::commandLossScenario.tug.modes
+  0 .. 4320                 onLauncher | off | lowGain | thrusters | stowed
+  4320 .. 8640              deploying | off | lowGain | thrusters | stowed (accept SeparationConfirmed)
+  8640 .. 1.4688e+06        coast | standby | highGain | wheels | stowed (accept ArraysDeployed, accept ArraysDeployed, accept ArraysDeployed, accept ArraysDeployed)  via done
+  1.4688e+06 .. 2.0736e+06  safe | off | lowGain | thrusters | stowed (accept SafeModeRequest, accept SafeModeRequest, accept SafeModeRequest, accept SafeModeRequest)
+  2.0736e+06 .. 2.16e+06    coast | standby | highGain | wheels | stowed (accept SafeModeExit, accept SafeModeExit, accept SafeModeExit, accept SafeModeExit)  (held at the end)
+  transitions:
+    t=4320 onLauncher -> deploying (accept SeparationConfirmed)
+    t=8640 deploying -> done (accept ArraysDeployed)
+    t=8640 off -> standby (accept ArraysDeployed)
+    t=8640 lowGain -> highGain (accept ArraysDeployed)
+    t=8640 thrusters -> wheels (accept ArraysDeployed)
+    t=8640 done -> freeFlight
+    t=1.4688e+06 coast -> safe (accept SafeModeRequest)
+    t=1.4688e+06 standby -> off (accept SafeModeRequest)
+    t=1.4688e+06 highGain -> lowGain (accept SafeModeRequest)
+    t=1.4688e+06 wheels -> thrusters (accept SafeModeRequest)
+    t=2.0736e+06 safe -> freeFlight (accept SafeModeExit)
+    t=2.0736e+06 off -> standby (accept SafeModeExit)
+    t=2.0736e+06 lowGain -> highGain (accept SafeModeExit)
+    t=2.0736e+06 thrusters -> wheels (accept SafeModeExit)
+  noted:
+    t=0 choice entering TugModes: next launch(entry), off(entry), lowGain(entry), thrusters(entry), stowed(entry) (unordered; took launch(entry) first; independent)
+    t=0 choice entering TugModes: next off(entry), lowGain(entry), thrusters(entry), stowed(entry) (unordered; took off(entry) first; independent)
+    t=0 choice entering TugModes: next lowGain(entry), thrusters(entry), stowed(entry) (unordered; took lowGain(entry) first; independent)
+    t=0 choice entering TugModes: next thrusters(entry), stowed(entry) (unordered; took thrusters(entry) first; independent)
+    t=8640 choice on accept ArraysDeployed: next deploying(exit), off(exit), lowGain(exit), thrusters(exit) (unordered; took deploying(exit) first; independent)
+    t=8640 choice on accept ArraysDeployed: next off(exit), lowGain(exit), thrusters(exit) (unordered; took off(exit) first; independent)
+    t=8640 choice on accept ArraysDeployed: next lowGain(exit), thrusters(exit) (unordered; took lowGain(exit) first; independent)
+    t=1.4688e+06 choice on accept SafeModeRequest: next coast(exit), standby(exit), highGain(exit), wheels(exit) (unordered; took coast(exit) first; independent)
+    t=1.4688e+06 choice on accept SafeModeRequest: next safe(entry), standby(exit), highGain(exit), wheels(exit) (unordered; took safe(entry) first; independent)
+    t=1.4688e+06 choice on accept SafeModeRequest: next standby(exit), highGain(exit), wheels(exit) (unordered; took standby(exit) first; independent)
+    t=1.4688e+06 choice on accept SafeModeRequest: next highGain(exit), wheels(exit) (unordered; took highGain(exit) first; independent)
+    t=2.0736e+06 choice on accept SafeModeExit: next safe(exit), off(exit), lowGain(exit), thrusters(exit) (unordered; took safe(exit) first; independent)
+    t=2.0736e+06 choice on accept SafeModeExit: next off(exit), lowGain(exit), thrusters(exit) (unordered; took off(exit) first; independent)
+    t=2.0736e+06 choice on accept SafeModeExit: next lowGain(exit), thrusters(exit) (unordered; took lowGain(exit) first; independent)

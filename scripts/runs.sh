@@ -78,4 +78,36 @@ run allocations-queries $SYSML -run-query "TethysAllocationQueries::UnallocatedF
 run allocations-matrix $SYSML -render TethysAllocations::functionAllocationMatrix -render-form csv $MODEL
 run allocations-requirement-matrix $SYSML -render TethysAllocations::requirementAllocationMatrix -render-form csv $MODEL
 run allocations-instantiate $SYSML -instantiate TethysAllocations::missionFunctions -instantiate TethysAllocations::sourcingRecord $MODEL
+# WP-E — modes (model/60-modes.sysml): the mode machines under the nominal and large-target campaigns; clock in seconds (1 d = 86 400 s).
+run modes-table $SYSML -quiet -instantiate TethysModes::argentModeTable -e "TethysModes::argentModeTable.rows.mode" -e "TethysModes::argentModeTable.rows.busLoad" -e "TethysModes::argentModeTable.rows.sepThrusting" -e "TethysModes::argentModeTable.rows.highVoltageBusOn" $MODEL
+run modes-tug-early-ops $SYSML -quiet -instantiate TethysModes::nominalFlight -state TethysModes::nominalFlight.tug -advance 17280 -trace $MODEL
+run modes-tug-thrust-arc $SYSML -quiet -instantiate TethysModes::nominalFlight -state TethysModes::nominalFlight.tug -advance 2678400 $MODEL
+run modes-tug-proximity-ops $SYSML -quiet -instantiate TethysModes::nominalFlight -state TethysModes::nominalFlight.tug -advance 38016000 $MODEL
+run modes-tug-full-flight $SYSML -quiet -instantiate TethysModes::nominalFlight -state TethysModes::nominalFlight.tug -advance 129600000 $MODEL
+run modes-tug-large-target $SYSML -quiet -instantiate TethysModes::largeTargetFlight -state TethysModes::largeTargetFlight.tug -advance 129600000 $MODEL
+run modes-inspector-imaging $SYSML -quiet -instantiate TethysModes::nominalFlight -state TethysModes::nominalFlight.inspector -advance 38102400 $MODEL
+run modes-inspector-retired $SYSML -quiet -instantiate TethysModes::nominalFlight -state TethysModes::nominalFlight.inspector -advance 129600000 $MODEL
+# WP-E — sequence (model/61-sequence.sysml): phase plan, dated schedule, and the mission action run to completion for the small, nominal and large target cases (2 200 d = 190 080 000 s).
+run sequence-phase-plan $SYSML -quiet -instantiate TethysSequence::nominalPhasePlan -e "TethysSequence::nominalPhasePlan.phases.phase" -e "TethysSequence::nominalPhasePlan.phases.plannedDuration" -e "TethysSequence::nominalPhasePlan.plannedTotal" $MODEL
+run sequence-schedule $SYSML -quiet -instantiate TethysSequence::baselineSchedule -e "TethysSequence::baselineSchedule.events.eventName" -e "TethysSequence::baselineSchedule.events.dayAfterLaunch" $MODEL
+run sequence-small-target $SYSML -quiet -instantiate TethysSequence::smallTargetCampaign -action "TethysSequence::FlightCampaign::mission TethysSequence::smallTargetCampaign" -advance 190080000 $MODEL
+run sequence-nominal $SYSML -quiet -instantiate TethysSequence::nominalCampaign -action "TethysSequence::FlightCampaign::mission TethysSequence::nominalCampaign" -advance 190080000 $MODEL
+run sequence-large-target $SYSML -quiet -instantiate TethysSequence::largeTargetCampaign -action "TethysSequence::FlightCampaign::mission TethysSequence::largeTargetCampaign" -advance 190080000 $MODEL
+run sequence-nominal-trace $SYSML -quiet -instantiate TethysSequence::nominalCampaign -action "TethysSequence::FlightCampaign::mission TethysSequence::nominalCampaign" -advance 190080000 -trace $MODEL
+# WP-E — FDIR (model/62-fdir.sysml): the supervisor and the mode machine under three fault-injection campaigns (compressed day clock), and the inhibit chain under the schedule checker and the SMT engine.
+run fdir-command-loss-expired $SYSML -quiet -instantiate TethysFdir::commandLossScenario -state TethysFdir::commandLossScenario.tug.fdir -advance 1555200 $MODEL
+run fdir-command-loss-modes-safe $SYSML -quiet -instantiate TethysFdir::commandLossScenario -state TethysFdir::commandLossScenario.tug.modes -advance 1555200 $MODEL
+run fdir-command-loss-recovered $SYSML -quiet -instantiate TethysFdir::commandLossScenario -state TethysFdir::commandLossScenario.tug.modes -advance 2160000 $MODEL
+run fdir-thruster-restarting $SYSML -quiet -instantiate TethysFdir::thrusterFaultScenario -state TethysFdir::thrusterFaultScenario.tug.fdir -advance 876960 -trace $MODEL
+run fdir-thruster-on-spare $SYSML -quiet -instantiate TethysFdir::thrusterFaultScenario -state TethysFdir::thrusterFaultScenario.tug.fdir -advance 1900800 $MODEL
+run fdir-thruster-ppu-cross-strapped $SYSML -quiet -instantiate TethysFdir::thrusterFaultScenario -state TethysFdir::thrusterFaultScenario.tug.fdir -advance 2332800 $MODEL
+run fdir-thruster-string-lost $SYSML -quiet -instantiate TethysFdir::thrusterFaultScenario -state TethysFdir::thrusterFaultScenario.tug.fdir -advance 2764800 $MODEL
+run fdir-thruster-modes-safe $SYSML -quiet -instantiate TethysFdir::thrusterFaultScenario -state TethysFdir::thrusterFaultScenario.tug.modes -advance 2764800 $MODEL
+run fdir-earth-impact-nominal-return $SYSML -quiet -instantiate TethysFdir::earthImpactScenario -state TethysFdir::earthImpactScenario.tug.modes -advance 2160000 $MODEL
+run fdir-earth-impact-aborted $SYSML -quiet -instantiate TethysFdir::earthImpactScenario -state TethysFdir::earthImpactScenario.tug.fdir -advance 2592000 $MODEL
+run fdir-earth-impact-abort-hold $SYSML -quiet -instantiate TethysFdir::earthImpactScenario -state TethysFdir::earthImpactScenario.tug.modes -advance 2592000 $MODEL
+run fdir-inhibit-chain-held $SYSML -quiet -instantiate TethysFdir::inhibitedChain -action "TethysFdir::InhibitChain::cinch TethysFdir::inhibitedChain" $MODEL
+run fdir-inhibit-chain-check $SYSML -quiet -engine check -instantiate TethysFdir::armedChain -action "TethysFdir::InhibitChain::cinch TethysFdir::armedChain" -check-property TethysFdir::InhibitChain::noFireWithoutInhibitsRemoved $MODEL
+run fdir-inhibit-chain-smt $SYSML -quiet -engine smt -instantiate TethysFdir::armedChain -action "TethysFdir::InhibitChain::cinch TethysFdir::armedChain" -check-input armCommanded -check-input groundEnable -check-input inCaptureMode -check-property TethysFdir::InhibitChain::noFireWithoutInhibitsRemoved $MODEL
+run fdir-command-loss-timeline $SYSML -quiet -instantiate TethysFdir::commandLossScenario -state TethysFdir::commandLossScenario.tug.fdir -advance 2160000 -render-run timeline=- -render-form text $MODEL
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi
