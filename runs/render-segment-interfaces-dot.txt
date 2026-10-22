@@ -1,4 +1,4 @@
-loaded 15 files:
+loaded 16 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -13,6 +13,7 @@ loaded 15 files:
   model/90-views.sysml
   model/91-documents.sysml
   model/92-layout.sysml
+  model/93-views-tooling.sysml
   model/99-house-rules.sysml
 ✓ package Tethys
 ✓ package TethysEnvironment
@@ -28,36 +29,34 @@ loaded 15 files:
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
+✓ package TethysViewsTooling
 ✓ package TethysHouseRules
 // view: TethysViews::segmentInterfaces
 // kind: interconnection
 // stated: view def InterconnectionView
 // not represented: 2 node(s) without a position, left undrawn
-// canvas: unit=px w=960 h=520
 // layout: neato -n2
 digraph "TethysViews::segmentInterfaces" {
   graph [fontname="Helvetica", layout=neato, inputscale=72, dpi=72];
   node [shape=box, style=filled, fillcolor=white, color="#181818", fontname="Helvetica", fontsize=14, penwidth=0.5];
   edge [color="#181818", fontname="Helvetica", fontsize=13, penwidth=1];
-  "canvas:0" [shape=point, style=invis, width=0, height=0, label="", pos="0,520!", pin=true];
-  "canvas:1" [shape=point, style=invis, width=0, height=0, label="", pos="960,0!", pin=true];
   subgraph "cluster_n0" {
     label=<<font point-size="10"><i>«part»</i></font><br/><b>tethysSystem</b>>;
     color=black;
     penwidth=0.5;
-    bb="32,52,928,468";
-    "n0" [shape=point, style=invis, width=0, height=0, label="", pos="480,260!", pin=true];
-    "n1" [style="rounded,filled", label=<<font point-size="10"><i>«part»</i></font><br/><b>flight</b>>, margin=0, pos="480,400!", pin=true, width=3.0555555555555554, height=1.6666666666666667, fixedsize=true, comment="collapsed"];
-    "n2" [style="rounded,filled", label=<<font point-size="10"><i>«part»</i></font><br/><b>launch</b>>, margin=0, pos="150,400!", pin=true, width=3.0555555555555554, height=1.6666666666666667, fixedsize=true, comment="collapsed"];
-    "n3" [style="rounded,filled", label=<<font point-size="10"><i>«part»</i></font><br/><b>ground</b>>, margin=0, pos="480,120!", pin=true, width=3.0555555555555554, height=1.6666666666666667, fixedsize=true, comment="collapsed"];
-    "n4" [style="rounded,filled", label=<<font point-size="10"><i>«part»</i></font><br/><b>target</b>>, margin=0, fillcolor="#F4E3C1", color="#8A6D3B", pos="810,400!", pin=true, width=3.0555555555555554, height=1.6666666666666667, fixedsize=true, comment="collapsed"];
-    "n4.0" [shape=box, label="", xlabel="surface", fontsize=8, width=0.16666666666666666, height=0.16666666666666666, fixedsize=true, pos="694,400!", pin=true];
-    "n5" [style="rounded,filled", label=<<font point-size="10"><i>«part»</i></font><br/><b>visitor</b>>, margin=0, pos="810,120!", pin=true, width=3.0555555555555554, height=1.6666666666666667, fixedsize=true, comment="collapsed"];
-    "n5.0" [shape=box, label="", xlabel="docking", fontsize=8, width=0.16666666666666666, height=0.16666666666666666, fixedsize=true, pos="810,186!", pin=true];
+    bb="32,-468,928,-52";
+    "n0" [shape=point, style=invis, width=0, height=0, label="", pos="480,-260!", pin=true];
+    "n1" [style="rounded,filled", label=<<font point-size="10"><i>«part»</i></font><br/><b>flight</b>>, margin=0, pos="480,-120!", pin=true, width=3.0555555555555554, height=1.6666666666666667, fixedsize=true, comment="collapsed"];
+    "n2" [style="rounded,filled", label=<<font point-size="10"><i>«part»</i></font><br/><b>launch</b>>, margin=0, pos="150,-120!", pin=true, width=3.0555555555555554, height=1.6666666666666667, fixedsize=true, comment="collapsed"];
+    "n3" [style="rounded,filled", label=<<font point-size="10"><i>«part»</i></font><br/><b>ground</b>>, margin=0, pos="480,-400!", pin=true, width=3.0555555555555554, height=1.6666666666666667, fixedsize=true, comment="collapsed"];
+    "n4" [style="rounded,filled", label=<<font point-size="10"><i>«part»</i></font><br/><b>target</b>>, margin=0, fillcolor="#F4E3C1", color="#8A6D3B", pos="810,-120!", pin=true, width=3.0555555555555554, height=1.6666666666666667, fixedsize=true, comment="collapsed"];
+    "n4.0" [shape=box, label="", xlabel="surface", fontsize=8, width=0.16666666666666666, height=0.16666666666666666, fixedsize=true, pos="694,-120!", pin=true];
+    "n5" [style="rounded,filled", label=<<font point-size="10"><i>«part»</i></font><br/><b>visitor</b>>, margin=0, pos="810,-400!", pin=true, width=3.0555555555555554, height=1.6666666666666667, fixedsize=true, comment="collapsed"];
+    "n5.0" [shape=box, label="", xlabel="docking", fontsize=8, width=0.16666666666666666, height=0.16666666666666666, fixedsize=true, pos="810,-334!", pin=true];
   }
-  "note:0" [shape=note, margin=0, label=<Segment-level interface control: one<br/>interface definition per edge<br/>(TethysInterfaces).>, pos="190,50!", pin=true, width=4.166666666666667, height=0.8333333333333334, fixedsize=true];
-  "n1" -> "n2" [arrowhead=none, penwidth=3, pos="260,400 260,400 370,400 370,400"];
-  "n1" -> "n3" [arrowhead=none, penwidth=3, pos="480,340 480,340 480,180 480,180"];
-  "n1" -> "n4.0" [arrowhead=none, penwidth=3, pos="590,400 590,400 700,400 700,400"];
-  "n1" -> "n5.0" [arrowhead=none, penwidth=3, pos="590,370 590,370 810,180 810,180"];
+  "note:0" [shape=note, margin=0, label=<Segment-level interface control: one<br/>interface definition per edge<br/>(TethysInterfaces).>, pos="190,-470!", pin=true, width=4.166666666666667, height=0.8333333333333334, fixedsize=true];
+  "n1" -> "n2" [arrowhead=none, penwidth=3, pos="260,-120 260,-120 370,-120 370,-120"];
+  "n1" -> "n3" [arrowhead=none, penwidth=3, pos="480,-180 480,-180 480,-340 480,-340"];
+  "n1" -> "n4.0" [arrowhead=none, penwidth=3, pos="590,-120 590,-120 700,-120 700,-120"];
+  "n1" -> "n5.0" [arrowhead=none, penwidth=3, pos="590,-150 590,-150 810,-340 810,-340"];
 }

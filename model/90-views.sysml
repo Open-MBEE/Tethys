@@ -1,11 +1,11 @@
 // Who looks at the model, and how: the stakeholder roles, the concerns each holds, the viewpoints
 // that frame those concerns, and the views that satisfy them — requirements, interface control,
 // budget, timeline and mode views — with the renderings they are drawn in. `-render-all` draws
-// every view here; the documents in TethysDocuments embed them.
+// every view here; the documents in TethysDocuments embed them. Views that need an OpenSysML
+// rendering live in TethysViewsTooling so this file stays in the mission tier.
 package TethysViews {
     private import Views::*;
     private import StandardViewDefinitions::*;
-    private import OpenSysMLRenderings::*;
     private import TethysMission::Mission;
 
     // ---- stakeholder roles -----------------------------------------------------------------
@@ -222,8 +222,7 @@ package TethysViews {
     view segmentInterfaces : InterfaceView {
         doc /* The system with its five segment-level parts and the four top-level interfaces:
              * launch adapter, deep-space link, capture and visitor docking. TethysLayout
-             * positions the parts and routes the interfaces. */
-        @DiagramLayout::Canvas { unit = "px"; width = 960.0; height = 520.0; }
+             * positions the parts, sizes the canvas and routes the interfaces. */
         expose TethysSystem::tethysSystem;
         satisfy interfaceViewpoint {
             doc /* This view answers the interfaceViewpoint. */
@@ -289,17 +288,5 @@ package TethysViews {
         doc /* The target body's design constants in textual notation, for a review package. */
         expose TethysEnvironment::amaranth;
         render asTextualNotation;
-    }
-    view systemOverview {
-        doc /* Everything in one drawing: the system's parts, ports and interfaces mixed. */
-        expose TethysSystem::tethysSystem;
-        render asMixedDiagram;
-        view interfaces :> segmentInterfaces;
-        satisfy interfaceViewpoint {
-            doc /* This view answers the interfaceViewpoint. */
-        }
-        satisfy budgetViewpoint {
-            doc /* This view answers the budgetViewpoint. */
-        }
     }
 }

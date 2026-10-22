@@ -27,101 +27,99 @@ The mission is one system of five segment-level parts: the flight segment (tug a
 *Segment-level interface control (positioned by TethysLayout)*
 
 <figure class="sysml-diagram">
-<svg width="968pt" height="528pt"
- viewBox="0.00 0.00 968.00 528.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 524)">
+<svg width="904pt" height="456pt"
+ viewBox="0.00 0.00 904.00 456.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 452)">
 <title>TethysViews::segmentInterfaces</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-524 964,-524 964,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-452 900,-452 900,4 -4,4"/>
 <g id="clust1" class="cluster">
 <title>cluster_n0</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="32,-52 32,-468 928,-468 928,-52 32,-52"/>
-<text text-anchor="start" x="464" y="-457" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
-<text text-anchor="start" x="425.5" y="-443.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">tethysSystem</text>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="0,-32 0,-448 896,-448 896,-32 0,-32"/>
+<text text-anchor="start" x="432" y="-437" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="393.5" y="-423.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">tethysSystem</text>
 </g>
-<!-- canvas:0 -->
-<!-- canvas:1 -->
 <!-- n0 -->
 <!-- n1 -->
 <!-- collapsed -->
-<g id="node4" class="node">
+<g id="node2" class="node">
 <title>n1</title>
-<path fill="white" stroke="#181818" stroke-width="0.5" d="M578,-460C578,-460 382,-460 382,-460 376,-460 370,-454 370,-448 370,-448 370,-352 370,-352 370,-346 376,-340 382,-340 382,-340 578,-340 578,-340 584,-340 590,-346 590,-352 590,-352 590,-448 590,-448 590,-454 584,-460 578,-460"/>
-<text text-anchor="start" x="464" y="-405" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
-<text text-anchor="start" x="459" y="-391.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">flight</text>
+<path fill="white" stroke="#181818" stroke-width="0.5" d="M546,-440C546,-440 350,-440 350,-440 344,-440 338,-434 338,-428 338,-428 338,-332 338,-332 338,-326 344,-320 350,-320 350,-320 546,-320 546,-320 552,-320 558,-326 558,-332 558,-332 558,-428 558,-428 558,-434 552,-440 546,-440"/>
+<text text-anchor="start" x="432" y="-385" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="427" y="-371.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">flight</text>
 </g>
 <!-- n2 -->
 <!-- collapsed -->
-<g id="node5" class="node">
+<g id="node3" class="node">
 <title>n2</title>
-<path fill="white" stroke="#181818" stroke-width="0.5" d="M248,-460C248,-460 52,-460 52,-460 46,-460 40,-454 40,-448 40,-448 40,-352 40,-352 40,-346 46,-340 52,-340 52,-340 248,-340 248,-340 254,-340 260,-346 260,-352 260,-352 260,-448 260,-448 260,-454 254,-460 248,-460"/>
-<text text-anchor="start" x="134" y="-405" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
-<text text-anchor="start" x="124" y="-391.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">launch</text>
+<path fill="white" stroke="#181818" stroke-width="0.5" d="M216,-440C216,-440 20,-440 20,-440 14,-440 8,-434 8,-428 8,-428 8,-332 8,-332 8,-326 14,-320 20,-320 20,-320 216,-320 216,-320 222,-320 228,-326 228,-332 228,-332 228,-428 228,-428 228,-434 222,-440 216,-440"/>
+<text text-anchor="start" x="102" y="-385" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="92" y="-371.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">launch</text>
 </g>
 <!-- n1&#45;&gt;n2 -->
 <g id="edge1" class="edge">
 <title>n1&#45;&gt;n2</title>
-<path fill="none" stroke="#181818" stroke-width="3" d="M260,-400C260,-400 370,-400 370,-400"/>
+<path fill="none" stroke="#181818" stroke-width="3" d="M228,-380C228,-380 338,-380 338,-380"/>
 </g>
 <!-- n3 -->
 <!-- collapsed -->
-<g id="node6" class="node">
+<g id="node4" class="node">
 <title>n3</title>
-<path fill="white" stroke="#181818" stroke-width="0.5" d="M578,-180C578,-180 382,-180 382,-180 376,-180 370,-174 370,-168 370,-168 370,-72 370,-72 370,-66 376,-60 382,-60 382,-60 578,-60 578,-60 584,-60 590,-66 590,-72 590,-72 590,-168 590,-168 590,-174 584,-180 578,-180"/>
-<text text-anchor="start" x="464" y="-125" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
-<text text-anchor="start" x="452" y="-111.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">ground</text>
+<path fill="white" stroke="#181818" stroke-width="0.5" d="M546,-160C546,-160 350,-160 350,-160 344,-160 338,-154 338,-148 338,-148 338,-52 338,-52 338,-46 344,-40 350,-40 350,-40 546,-40 546,-40 552,-40 558,-46 558,-52 558,-52 558,-148 558,-148 558,-154 552,-160 546,-160"/>
+<text text-anchor="start" x="432" y="-105" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="420" y="-91.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">ground</text>
 </g>
 <!-- n1&#45;&gt;n3 -->
 <g id="edge2" class="edge">
 <title>n1&#45;&gt;n3</title>
-<path fill="none" stroke="#181818" stroke-width="3" d="M480,-340C480,-340 480,-180 480,-180"/>
+<path fill="none" stroke="#181818" stroke-width="3" d="M448,-320C448,-320 448,-160 448,-160"/>
 </g>
 <!-- n4.0 -->
-<g id="node8" class="node">
+<g id="node6" class="node">
 <title>n4.0</title>
-<polygon fill="white" stroke="#181818" stroke-width="0.5" points="700,-406 688,-406 688,-394 700,-394 700,-406"/>
-<text text-anchor="middle" x="672.5" y="-408.6" font-family="Helvetica,sans-Serif" font-size="8.00">surface</text>
+<polygon fill="white" stroke="#181818" stroke-width="0.5" points="668,-386 656,-386 656,-374 668,-374 668,-386"/>
+<text text-anchor="middle" x="640.5" y="-388.6" font-family="Helvetica,sans-Serif" font-size="8.00">surface</text>
 </g>
 <!-- n1&#45;&gt;n4.0 -->
 <g id="edge3" class="edge">
 <title>n1&#45;&gt;n4.0</title>
-<path fill="none" stroke="#181818" stroke-width="3" d="M590,-400C590,-400 700,-400 700,-400"/>
+<path fill="none" stroke="#181818" stroke-width="3" d="M558,-380C558,-380 668,-380 668,-380"/>
 </g>
 <!-- n5.0 -->
-<g id="node10" class="node">
+<g id="node8" class="node">
 <title>n5.0</title>
-<polygon fill="white" stroke="#181818" stroke-width="0.5" points="816,-192 804,-192 804,-180 816,-180 816,-192"/>
-<text text-anchor="middle" x="787.5" y="-194.6" font-family="Helvetica,sans-Serif" font-size="8.00">docking</text>
+<polygon fill="white" stroke="#181818" stroke-width="0.5" points="784,-172 772,-172 772,-160 784,-160 784,-172"/>
+<text text-anchor="middle" x="755.5" y="-174.6" font-family="Helvetica,sans-Serif" font-size="8.00">docking</text>
 </g>
 <!-- n1&#45;&gt;n5.0 -->
 <g id="edge4" class="edge">
 <title>n1&#45;&gt;n5.0</title>
-<path fill="none" stroke="#181818" stroke-width="3" d="M590,-370C590,-370 810,-180 810,-180"/>
+<path fill="none" stroke="#181818" stroke-width="3" d="M558,-350C558,-350 778,-160 778,-160"/>
 </g>
 <!-- n4 -->
 <!-- collapsed -->
-<g id="node7" class="node">
+<g id="node5" class="node">
 <title>n4</title>
-<path fill="#f4e3c1" stroke="#8a6d3b" stroke-width="0.5" d="M908,-460C908,-460 712,-460 712,-460 706,-460 700,-454 700,-448 700,-448 700,-352 700,-352 700,-346 706,-340 712,-340 712,-340 908,-340 908,-340 914,-340 920,-346 920,-352 920,-352 920,-448 920,-448 920,-454 914,-460 908,-460"/>
-<text text-anchor="start" x="794" y="-405" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
-<text text-anchor="start" x="785" y="-391.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">target</text>
+<path fill="#f4e3c1" stroke="#8a6d3b" stroke-width="0.5" d="M876,-440C876,-440 680,-440 680,-440 674,-440 668,-434 668,-428 668,-428 668,-332 668,-332 668,-326 674,-320 680,-320 680,-320 876,-320 876,-320 882,-320 888,-326 888,-332 888,-332 888,-428 888,-428 888,-434 882,-440 876,-440"/>
+<text text-anchor="start" x="762" y="-385" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="753" y="-371.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">target</text>
 </g>
 <!-- n5 -->
 <!-- collapsed -->
-<g id="node9" class="node">
+<g id="node7" class="node">
 <title>n5</title>
-<path fill="white" stroke="#181818" stroke-width="0.5" d="M908,-180C908,-180 712,-180 712,-180 706,-180 700,-174 700,-168 700,-168 700,-72 700,-72 700,-66 706,-60 712,-60 712,-60 908,-60 908,-60 914,-60 920,-66 920,-72 920,-72 920,-168 920,-168 920,-174 914,-180 908,-180"/>
-<text text-anchor="start" x="794" y="-125" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
-<text text-anchor="start" x="785" y="-111.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">visitor</text>
+<path fill="white" stroke="#181818" stroke-width="0.5" d="M876,-160C876,-160 680,-160 680,-160 674,-160 668,-154 668,-148 668,-148 668,-52 668,-52 668,-46 674,-40 680,-40 680,-40 876,-40 876,-40 882,-40 888,-46 888,-52 888,-52 888,-148 888,-148 888,-154 882,-160 876,-160"/>
+<text text-anchor="start" x="762" y="-105" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="753" y="-91.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">visitor</text>
 </g>
 <!-- note:0 -->
-<g id="node11" class="node">
+<g id="node9" class="node">
 <title>note:0</title>
-<polygon fill="white" stroke="#181818" stroke-width="0.5" points="334,-80 40,-80 40,-20 340,-20 340,-74 334,-80"/>
-<polyline fill="none" stroke="#181818" stroke-width="0.5" points="334,-80 334,-74 "/>
-<polyline fill="none" stroke="#181818" stroke-width="0.5" points="340,-74 334,-74 "/>
-<text text-anchor="start" x="63.5" y="-61.3" font-family="Helvetica,sans-Serif" font-size="14.00">Segment&#45;level interface control: one</text>
-<text text-anchor="start" x="90.5" y="-46.3" font-family="Helvetica,sans-Serif" font-size="14.00">interface definition per edge</text>
-<text text-anchor="start" x="125" y="-31.3" font-family="Helvetica,sans-Serif" font-size="14.00">(TethysInterfaces).</text>
+<polygon fill="white" stroke="#181818" stroke-width="0.5" points="302,-60 8,-60 8,0 308,0 308,-54 302,-60"/>
+<polyline fill="none" stroke="#181818" stroke-width="0.5" points="302,-60 302,-54 "/>
+<polyline fill="none" stroke="#181818" stroke-width="0.5" points="308,-54 302,-54 "/>
+<text text-anchor="start" x="31.5" y="-41.3" font-family="Helvetica,sans-Serif" font-size="14.00">Segment&#45;level interface control: one</text>
+<text text-anchor="start" x="58.5" y="-26.3" font-family="Helvetica,sans-Serif" font-size="14.00">interface definition per edge</text>
+<text text-anchor="start" x="93" y="-11.3" font-family="Helvetica,sans-Serif" font-size="14.00">(TethysInterfaces).</text>
 </g>
 </g>
 </svg>
@@ -133,7 +131,7 @@ The mission is one system of five segment-level parts: the flight segment (tug a
 <svg width="904pt" height="424pt"
  viewBox="0.00 0.00 904.00 424.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 420)">
-<title>TethysViews::systemOverview</title>
+<title>TethysViewsTooling::systemOverview</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-420 900,-420 900,4 -4,4"/>
 <g id="clust1" class="cluster">
 <title>cluster_n0</title>

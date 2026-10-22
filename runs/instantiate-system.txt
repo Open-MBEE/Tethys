@@ -12,6 +12,7 @@
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
+✓ package TethysViewsTooling
 ✓ package TethysHouseRules
 ✓ Created instance of TethysSystem::tethysSystem
   ID: 1

@@ -1,4 +1,4 @@
-loaded 15 files:
+loaded 16 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -13,6 +13,7 @@ loaded 15 files:
   model/90-views.sysml
   model/91-documents.sysml
   model/92-layout.sysml
+  model/93-views-tooling.sysml
   model/99-house-rules.sysml
 ✓ package Tethys
 ✓ package TethysEnvironment
@@ -28,6 +29,7 @@ loaded 15 files:
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
+✓ package TethysViewsTooling
 ✓ package TethysHouseRules
 document  TethysDocuments::InterfaceControlDocuments
 document  TethysDocuments::RiskRegister
@@ -49,6 +51,6 @@ view      tree             TethysViews::projectLifecycle
 view      table            TethysViews::requirementsTable
 view      tree             TethysViews::requirementsTree
 view      interconnection  TethysViews::segmentInterfaces
-view      mixed            TethysViews::systemOverview
-view      interconnection  TethysViews::systemOverview::interfaces
 view      interconnection  TethysViews::tugPowerBus
+view      mixed            TethysViewsTooling::systemOverview
+view      interconnection  TethysViewsTooling::systemOverview::interfaces

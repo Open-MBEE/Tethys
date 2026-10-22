@@ -1,11 +1,11 @@
-// F-004: `expose P::*` in a view also exposes the members P privately imports.
-// Run: sysml -render F004::Tables::table -render-form markdown model/probes/F-004-namespace-expose-private-imports.sysml
+// F-H02: `expose P::*` in a view also exposes the members P privately imports.
+// Run: sysml -render FH02::Tables::table -render-form markdown model/probes/F-H02-namespace-expose-private-imports.sysml
 // Observed: the table lists every member of ISQ and SI (thousands of rows) beside the two
-// item defs F004::Items declares.
+// item defs FH02::Items declares.
 // Expected: the two item defs only — a private import is not a visible membership of
-// F004::Items, and a NamespaceExpose exposes the visible memberships of the exposed namespace
+// FH02::Items, and a NamespaceExpose exposes the visible memberships of the exposed namespace
 // (SysML v2 8.3.26.4 NamespaceExpose, KerML 8.3.2.3 NamespaceImport/importedMemberships).
-package F004 {
+package FH02 {
     package Items {
         private import ISQ::*;
         private import SI::*;

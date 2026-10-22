@@ -12,6 +12,7 @@
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
+✓ package TethysViewsTooling
 ✓ package TethysHouseRules
 ✓ Query TethysDocuments::MissionRequirements returned 9 rows
   Columns: shortName, name, documentation, tier

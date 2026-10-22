@@ -1,9 +1,9 @@
-// F-003: a DocumentQueries projection cannot read the attribute values of a metadata annotation.
-// Load with the model: sysml -run-query "F003::VerificationMethods" model/*.sysml model/probes/F-003-metadata-columns.sysml
-// Observed: `query F003::VerificationMethods references unknown property Verification.method`;
+// F-H01: a DocumentQueries projection cannot read the attribute values of a metadata annotation.
+// Load with the model: sysml -run-query "FH01::VerificationMethods" model/*.sysml model/probes/F-H01-metadata-columns.sysml
+// Observed: `query FH01::VerificationMethods references unknown property Verification.method`;
 // the same for Column(path = …), Column(expression = …) and properties = ("metadata").
 // Expected: one row per L1 requirement with the method its @Verification annotation states.
-package F003 {
+package FH01 {
     private import DocumentQueries::*;
     private import KerML::Root::Element;
     private import ScalarValues::*;
