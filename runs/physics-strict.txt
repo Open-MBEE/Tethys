@@ -1,0 +1,2 @@
+✓ package TethysPhysics
+✓ model/81-physics.kerml: no errors

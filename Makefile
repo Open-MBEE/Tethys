@@ -1,6 +1,9 @@
 SYSML ?= build/opensysml/sysml
 PILOT ?= build/pilot-validator/validate-sysml
-MODEL := $(sort $(wildcard model/*.sysml))
+MODEL := $(sort $(wildcard model/*.sysml model/*.kerml))
+# The pinned pilot validator reads .sysml only (docs/findings.md F-003); the KerML library is
+# gated by the strict OpenSysML validate above.
+PILOT_MODEL := $(sort $(wildcard model/*.sysml))
 
 .PHONY: tools check validate pilot house-rules runs runs-check
 
@@ -13,7 +16,7 @@ validate:
 	$(SYSML) -validate -strict -warnings-as-errors $(MODEL)
 
 pilot:
-	$(PILOT) $(MODEL)
+	$(PILOT) $(PILOT_MODEL)
 
 house-rules:
 	$(SYSML) -validate -self-check-package TethysHouseRules $(MODEL)
