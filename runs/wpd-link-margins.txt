@@ -1,0 +1,32 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysHouseRules
+✓ TethysLinkBudgets::MarginReport(TethysLinkBudgets::xDownlinkAtMaximumRange)
+  = [10.725200960987088]
+  standing: value (observed: 1 run under reverse)
+✓ TethysLinkBudgets::MarginReport(TethysLinkBudgets::xUplinkAtMaximumRange)
+  = [46.287231820862644]
+  standing: value (observed: 1 run under reverse)
+✓ TethysLinkBudgets::MarginReport(TethysLinkBudgets::kaDownlinkAtTargetRange)
+  = [9.975531005166545]
+  standing: value (observed: 1 run under reverse)
+✓ TethysLinkBudgets::MarginReport(TethysLinkBudgets::xDownlinkInDro)
+  = [46.64280130771567]
+  standing: value (observed: 1 run under reverse)
+✓ TethysLinkBudgets::MarginReport(TethysLinkBudgets::proximityReturnLink)
+  = [40.82235567431014]
+  standing: value (observed: 1 run under reverse)

@@ -1,0 +1,35 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysHouseRules
+✓ TethysLinkBudgets::CharacterisationDataVolume(4.0, 0.005, 40.0, 12.0)
+  = [965097263.1827835]
+  standing: value (observed: 1 run under reverse)
+✓ TethysLinkBudgets::CharacterisationDataVolume(6.8, 0.005, 40.0, 12.0)
+  = [2789131090.598244]
+  standing: value (observed: 1 run under reverse)
+✓ TethysLinkBudgets::CharacterisationDataVolume(9.5, 0.005, 40.0, 12.0)
+  = [5443751750.140387]
+  standing: value (observed: 1 run under reverse)
+✓ TethysLinkBudgets::RelayDaysRequired(965097263.18, 1.0e6, 3240.0)
+  = [0.2978695256728395]
+  standing: value (observed: 1 run under reverse)
+✓ TethysLinkBudgets::RelayDaysRequired(2789131090.60, 1.0e6, 3240.0)
+  = [0.8608429291975308]
+  standing: value (observed: 1 run under reverse)
+✓ TethysLinkBudgets::RelayDaysRequired(5443751750.14, 1.0e6, 3240.0)
+  = [1.6801702932530864]
+  standing: value (observed: 1 run under reverse)

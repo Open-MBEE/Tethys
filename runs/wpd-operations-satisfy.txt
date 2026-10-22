@@ -1,0 +1,27 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysHouseRules
+✓ satisfy dictionaryConsistent by dictionary holds (on TethysOperations::dictionary ID: 1)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy operationsReadiness by orrStatus holds (on TethysOperations::orrStatus ID: 3)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy resourceMarginPositive by xenonTrend holds (on TethysOperations::xenonTrend ID: 4)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy resourceMarginPositive by batteryCapacityTrend holds (on TethysOperations::batteryCapacityTrend ID: 5)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy extendedMissionAffordable by extendedMission holds (on TethysOperations::extendedMission ID: 6)
+  standing: holds (observed: 1 run under reverse)

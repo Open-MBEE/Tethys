@@ -1,0 +1,29 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysHouseRules
+✓ satisfy xDownlinkCloses by xDownlinkAtMaximumRange holds (on TethysLinkBudgets::xDownlinkAtMaximumRange ID: 1)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy xUplinkCloses by xUplinkAtMaximumRange holds (on TethysLinkBudgets::xUplinkAtMaximumRange ID: 2)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy kaDownlinkCloses by kaDownlinkAtTargetRange holds (on TethysLinkBudgets::kaDownlinkAtTargetRange ID: 3)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy droDownlinkCloses by xDownlinkInDro holds (on TethysLinkBudgets::xDownlinkInDro ID: 4)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy proximityLinkCloses by proximityReturnLink holds (on TethysLinkBudgets::proximityReturnLink ID: 5)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy relayCarriesCharacterisation by largeTargetRelayLoad holds (on TethysLinkBudgets::largeTargetRelayLoad ID: 6)
+  standing: holds (observed: 1 run under reverse)

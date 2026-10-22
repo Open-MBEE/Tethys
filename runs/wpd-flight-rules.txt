@@ -1,0 +1,20 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysHouseRules
+✓ Action TethysOperations::RelayThenThrustProcedure: no violation, exhaustive (7 states, 6 moves, depth 6)
+  outcome: relayActive = false; stateOfCharge = 0.55; thrusting = false
+  standing: holds (bounded over schedules: 7 states, 6 moves searched)
