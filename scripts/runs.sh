@@ -11,4 +11,6 @@ run house-rules $SYSML -validate -self-check-package TethysHouseRules $MODEL
 run instantiate-system $SYSML -instantiate TethysSystem::tethysSystem $MODEL
 run environment-calcs $SYSML -calc "TethysEnvironment::SolarFlux(1.034)" -calc "TethysEnvironment::SolarFlux(1.003)" -calc "TethysEnvironment::CircularSpeed(398600.4418, 6578.137)" -calc "TethysEnvironment::EscapeSpeed(398600.4418, 6578.137)" -calc "TethysEnvironment::OrbitalPeriod(1.32712440018e11, 154.68e6)" -calc "TethysEnvironment::OneWayLightTime(60.0e6)" -calc "TethysEnvironment::SphereMass(6.8, 2200.0)" -calc "TethysEnvironment::SepThrust(40000.0, 2900.0, 0.65)" -calc "TethysEnvironment::NaturalLog(2.0)" -calc "TethysEnvironment::RocketEquationDeltaV(2900.0, 12600.0, 6000.0)" $MODEL
 # Work packages append their commands here; keep one `run <name> …` per line.
+run requirements-satisfy $SYSML -satisfy $MODEL
+run tpm-margins $SYSML -instantiate TethysStakeholders::technicalPerformanceMeasures -validate=TethysStakeholders::technicalPerformanceMeasures $MODEL
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi

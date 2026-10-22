@@ -1,0 +1,50 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysHouseRules
+✓ satisfy captureEnvelope by TethysTug::argent holds (on TethysTug::argent ID: 1)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy deliveredMass by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 7)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy transferDuration by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 7)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy propellantCapacity by TethysTug::argent holds (on TethysTug::argent ID: 1)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy characterisationProducts by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 7)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy earthImpactExclusion by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 7)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy droStability by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 7)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy thrustRedundancy by TethysTug::argent holds (on TethysTug::argent ID: 1)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy deflectionMeasurement by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 7)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy autonomousSurvival by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 7)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy proximityContactEnvironment by TethysTug::argent holds (on TethysTug::argent ID: 1)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy faultResponse by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 7)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy massBudget by TethysTug::argent holds (on TethysTug::argent ID: 1)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy inspectorDeployment by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 7)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy despinCapacity by TethysTug::argent holds (on TethysTug::argent ID: 1)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy groundCoverage by tethysSystem.ground holds (on TethysSystem::tethysSystem.ground ID: 16)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy commandLatency by tethysSystem.ground holds (on TethysSystem::tethysSystem.ground ID: 16)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy operatorWorkload by tethysSystem.ground holds (on TethysSystem::tethysSystem.ground ID: 16)
+  standing: holds (observed: 1 run under reverse)

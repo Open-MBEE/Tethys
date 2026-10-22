@@ -9,5 +9,7 @@
 ✓ package TethysLaunch
 ✓ package TethysGround
 ✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
 ✓ package TethysHouseRules
-✓ model/00-tethys.sysml, model/01-environment.sysml, model/02-mission.sysml, model/03-interfaces.sysml, model/04-requirements.sysml, model/05-tug.sysml, model/06-inspector.sysml, model/07-target.sysml, model/08-launch.sysml, model/09-ground.sysml, model/10-system.sysml, model/99-house-rules.sysml: no errors
+✓ model/00-tethys.sysml, model/01-environment.sysml, model/02-mission.sysml, model/03-interfaces.sysml, model/04-requirements.sysml, model/05-tug.sysml, model/06-inspector.sysml, model/07-target.sysml, model/08-launch.sysml, model/09-ground.sysml, model/10-system.sysml, model/20-stakeholders.sysml, model/21-requirements-l2.sysml, model/99-house-rules.sysml: no errors
