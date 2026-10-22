@@ -34,7 +34,7 @@ package TethysMission {
     }
 
     part tethys : Mission {
-        doc /* The Tethys Retrieval mission: medium class, 1 300 days from launch to the
+        doc /* The Tethys Retrieval mission: medium class, 2 200 days from launch to the
              * delivery of the target into its lunar distant retrograde orbit. */
         attribute :>> missionClass = MissionClass::medium;
         attribute :>> nominalDuration = 2200 [d];
@@ -56,11 +56,12 @@ package TethysMission {
              * outbound 2 800 m/s on the tug alone, 1 173 kg; rendezvous 150 m/s on the tug alone,
              * 60 kg; return 160 m/s on the 362 t nominal stack, 2 094 kg; insertion 40 m/s on
              * that stack, 522 kg. With the 10 % missed-thrust allowance on every arc that is
-             * 4 233 kg for the nominal case, 3 115 kg for the 217 t small case and 5 351 kg for
-             * the 507 t large case, against the 6 468 kg usable of the 6 600 kg loaded (2 %
+             * 4 233 kg for the nominal case, 3 087 kg for the 213 t small case and 5 341 kg for
+             * the 506 t large case, against the 6 468 kg usable of the 6 600 kg loaded (2 %
              * residual): 21 % margin on the large case. The same chain returns at most about
-             * 540 t with the 15 % margin policy and about 650 t with no margin; a 1 010 t body
-             * would need about 9 230 kg. At the 1.69 N the array gives at the target's aphelion
+             * 542 t with the 15 % margin policy and about 652 t with no margin
+             * (TethysBudgets::propellantBudget.returnableBodyMass), so the 576 t densest body is
+             * refused at commit. At the 1.69 N the array gives at the target's aphelion
              * the large case thrusts for about 1 040 days, within the 1 400 days the timeline
              * allows (TethysBudgets::propellantBudget evaluates every number above). */
         attribute deltaVOutbound : SpeedValue;

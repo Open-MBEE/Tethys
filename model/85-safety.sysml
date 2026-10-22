@@ -158,7 +158,7 @@ package TethysSafety {
 
         occurrence <'TH-001'> earthImpactByTarget : Hazard {
             doc /* The returned body is placed on an Earth-impact trajectory. The one catastrophic
-                 * hazard of the mission: a 370 t body at 12 km/s is far above the airburst
+                 * hazard of the mission: a 362 t body (506 t in the large case) at 12 km/s is far above the airburst
                  * threshold. Controlled by trajectory design (TS-801), ground authority over the
                  * final targeting (TS-802) and the fault tree earthImpactTree. */
             attribute :>> severity = Severity::catastrophic;

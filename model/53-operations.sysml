@@ -544,10 +544,11 @@ package TethysOperations {
         attribute margin : Real = projected - floor;
     }
     part xenonTrend : ResourceTrend {
-        doc /* Xenon in kg at the start of the return cruise: 5 650 kg aboard, 5.2 kg a day of
-             * thrust, 1 000 days to go, 300 kg reserve floor. */
+        doc /* Xenon in kg at the start of the return cruise: about 5 235 kg aboard (6 468 kg usable less the
+             * 1 233 kg of the outbound and rendezvous arcs), 5.2 kg a day of thrust, 1 000 days
+             * to go, 300 kg reserve floor. */
         attribute :>> resourceName = "xenon (kg)";
-        attribute :>> current = 5650.0;
+        attribute :>> current = 5235.0;
         attribute :>> ratePerDay = -5.2;
         attribute :>> daysRemaining = 1000.0;
         attribute :>> floor = 300.0;

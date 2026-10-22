@@ -93,13 +93,13 @@ package TethysRequirementsL2 {
     }
     requirement <'TS-003'> transferDuration : PerformanceRequirement {
         doc /* The flight segment shall complete launch to DRO insertion within the nominal
-             * duration: 1 100 d of thrust, 650 d of coast and navigation arcs, 150 d of proximity
-             * operations and a 300 d reserve. */
+             * duration: 1 400 d of thrust (the transfer book's allowance), 450 d of coast and
+             * navigation arcs, 150 d of proximity operations and a 200 d reserve. */
         subject flight : TethysFlightSegment;
-        attribute thrustTime : DurationValue = 1100 [d];
-        attribute coastTime : DurationValue = 650 [d];
+        attribute thrustTime : DurationValue = TethysMission::transferBook.thrustingTimeAllowed;
+        attribute coastTime : DurationValue = 450 [d];
         attribute proximityOperations : DurationValue = 150 [d];
-        attribute reserve : DurationValue = 300 [d];
+        attribute reserve : DurationValue = 200 [d];
         attribute total : DurationValue = thrustTime + coastTime + proximityOperations + reserve;
         require constraint { total <= TethysMission::tethys.nominalDuration }
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::mission; stage = VerificationStage::qualification; }

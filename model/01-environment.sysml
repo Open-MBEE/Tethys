@@ -128,7 +128,7 @@ package TethysEnvironment {
 
     attribute heliocentricRange : RangeEnvelope {
         doc /* Sun distance over the mission, from the target's perihelion to its aphelion:
-             * solar flux 1049 to 1462 W/m² (SolarFlux). */
+             * solar flux 1 200 to 1 353 W/m² (SolarFlux at 1.065 and 1.003 AU). */
         attribute :>> minimum = 150.0e6 [km];
         attribute :>> maximum = 159.3e6 [km];
     }
