@@ -12,8 +12,11 @@ jobs:
         with: { distribution: temurin, java-version: '21' }
       - name: Fetch OpenSysML nightly
         run: curl -fsSL https://raw.githubusercontent.com/Open-MBEE/OpenSysML/develop/install.sh | sh -s -- --version nightly --tools sysml --prefix "$PWD/build/opensysml"
-      - name: Fetch the pinned pilot validator
+      - name: Fetch the pinned pilot validators and the OpenSysML library sources
         run: |
+          sudo apt-get install -y --no-install-recommends graphviz
           git clone --depth 1 https://github.com/Open-MBEE/OpenSysML build/opensysml-src
-          (cd build/opensysml-src && ./scripts/download-pilot-validator.sh) && cp -r build/opensysml-src/build/pilot-validator build/
+          (cd build/opensysml-src && ./scripts/download-pilot-sysml-validator.sh)
+          cp -r build/opensysml-src/build/pilot-validator build/opensysml-src/build/pilot-sysml-validator build/
+      - run: make tiers
       - run: make check
