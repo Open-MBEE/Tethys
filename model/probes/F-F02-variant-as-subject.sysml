@@ -4,12 +4,12 @@
 package TethysVariantSubjectProbe {
     private import ScalarValues::*;
     private import SI::*;
-    private import TethysTarget::SmallBody;
+    private import TethysTarget::*;
     private import TethysAnalyses::*;
     part def Configuration { part target : SmallBody; }
-    part largeConfiguration : Configuration { part :>> target = TargetCase::large; }
+    part largeConfiguration : Configuration { part :>> target = CaptureTargetCase::large; }
     analysis def BodyMass { subject body : SmallBody; return massKg : Real = body.mass / 1 [kg]; }
-    analysis viaVariant : BodyMass { subject :>> body = TargetCase::large; }
+    analysis viaVariant : BodyMass { subject :>> body = CaptureTargetCase::large; }
     analysis viaConfiguration : BodyMass { subject :>> body = largeConfiguration.target; }
-    analysis viaPlainPart : BodyMass { subject :>> body = largeTarget; }
+    analysis viaPlainPart : BodyMass { subject :>> body = targetCases.large; }
 }
