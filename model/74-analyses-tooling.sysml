@@ -85,8 +85,8 @@ package TethysAnalysesTooling {
         doc /* One revolution of the destination DRO with StateSpaceIntegration::RK4 bound as the
              * integrator and the x-axis crossing guarded on y. */
         :>> stateSpace = VectorOf((dro70000.x0, 0.0, 0.0, dro70000.vy0));
-        :>> timeStep = 0.01 [s];
-        :>> stopTime = 3.20 [s];
+        :>> timeStep = (dro70000.periodTimeUnits / 320.0) [s];
+        :>> stopTime = dro70000.periodTimeUnits [s];
         calc :>> getNextState { calc :>> integrate : RK4; }
         event occurrence :>> xAxisCrossing : ZeroCrossing { :>> guard = stateSpace.elements#(2); }
     }

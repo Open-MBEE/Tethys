@@ -217,10 +217,13 @@ package TethysDynamics {
     }
 
     action droRevolution : ThreeBodyDynamics {
-        doc /* One revolution of the destination DRO in 320 steps of 0.01 time units (1.04 h). */
+        doc /* One full revolution of the destination DRO: 320 steps of one 320th of the period
+             * (3.2047 time units, about 1.04 h a step), so the final state is compared with the
+             * initial one after exactly one period and the closure is a closure, not the arc the
+             * orbit still had to go. */
         :>> stateSpace = VectorOf((dro70000.x0, 0.0, 0.0, dro70000.vy0));
-        :>> timeStep = 0.01 [s];
-        :>> stopTime = 3.20 [s];
+        :>> timeStep = (dro70000.periodTimeUnits / 320.0) [s];
+        :>> stopTime = dro70000.periodTimeUnits [s];
         calc :>> getNextState { calc :>> integrate : RungeKutta4; }
     }
 
@@ -249,8 +252,8 @@ package TethysDynamics {
         attribute revolutionsInHorizon : Real = destinationDro.stabilityHorizon / 1 [d] / periodDays;
         action revolution : ThreeBodyDynamics {
             :>> stateSpace = VectorOf((dro70000.x0, 0.0, 0.0, dro70000.vy0));
-            :>> timeStep = 0.01 [s];
-            :>> stopTime = 3.20 [s];
+            :>> timeStep = (dro70000.periodTimeUnits / 320.0) [s];
+            :>> stopTime = dro70000.periodTimeUnits [s];
             calc :>> getNextState { calc :>> integrate : RungeKutta4; }
         }
         return closureKm : Real = earthMoon.lengthUnitKm

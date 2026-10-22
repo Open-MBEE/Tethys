@@ -143,10 +143,12 @@ package TethysEnvironment {
 
     attribute destinationDro : DistantRetrogradeOrbit {
         doc /* The selected DRO: about 70 000 km from the Moon, two-week period, stable for well
-             * over a century (invented selection; the stability is what TethysAnalyses must
-             * show). */
+             * over a century (invented selection; the stability is what TethysDynamics must
+             * show). The period is the propagated one: 3.2047 Earth–Moon time units of
+             * 375 190 s, 13.9155 days (TethysDynamics::droStability checks the propagation
+             * against it). */
         attribute :>> radiusAboutMoon = 70000.0 [km];
-        attribute :>> period = 13.9 [d];
+        attribute :>> period = 13.9155 [d];
         attribute :>> stabilityHorizon = 36525.0 [d];
     }
 
