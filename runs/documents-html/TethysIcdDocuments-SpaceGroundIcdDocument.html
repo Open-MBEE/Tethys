@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICD-003 Space–ground RF interface</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysIcdDocuments::SpaceGroundIcdDocument">
+<h1 class="sysml-title">ICD-003 Space–ground RF interface</h1>
+<section class="sysml-section" id="ends" data-content="section" data-name="ends">
+<h2>Interface ends</h2>
+<table class="sysml-table" data-content="table" data-name="table" data-query="TethysIcdDocuments::IcdEnds">
+<caption class="sysml-caption">Ends and their port types</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysInterfaces::SpaceGroundLink::spacecraftSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">spacecraftSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::RfPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::SpaceGroundLink::groundSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">groundSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::RfPort</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="parameters" data-content="section" data-name="parameters">
+<h2>Interface parameters</h2>
+<table class="sysml-table" data-content="table" data-name="table" data-query="TethysIcdDocuments::IcdParameters">
+<caption class="sysml-caption">Parameters both sides agree on</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysIcds::SpaceGroundIcd::uplinkFrequency" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">uplinkFrequency</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQSpaceTime::FrequencyValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::SpaceGroundIcd::xDownlinkFrequency" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">xDownlinkFrequency</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQSpaceTime::FrequencyValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::SpaceGroundIcd::kaDownlinkFrequency" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">kaDownlinkFrequency</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQSpaceTime::FrequencyValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::SpaceGroundIcd::uplinkModulation" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">uplinkModulation</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysIcds::Modulation</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::SpaceGroundIcd::downlinkModulation" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">downlinkModulation</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysIcds::Modulation</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::SpaceGroundIcd::downlinkCoding" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">downlinkCoding</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysIcds::ChannelCoding</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::SpaceGroundIcd::minimumDownlinkRate" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">minimumDownlinkRate</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQInformation::BinaryDigitRateValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::SpaceGroundIcd::maximumDownlinkRate" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">maximumDownlinkRate</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQInformation::BinaryDigitRateValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::SpaceGroundIcd::uplinkRate" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">uplinkRate</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQInformation::BinaryDigitRateValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::SpaceGroundIcd::rangingTone" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">rangingTone</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQSpaceTime::FrequencyValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::SpaceGroundIcd::packetProtocol" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">packetProtocol</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ScalarValues::String</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::SpaceGroundIcd::downlinkBand" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">downlinkBand</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysMeridian::RfBand</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+</article>
+</body>
+</html>

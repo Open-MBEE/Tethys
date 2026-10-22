@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tethys Retrieval interface control document register</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysIcdDocuments::IcdRegisterDocument">
+<h1 class="sysml-title">Tethys Retrieval interface control document register</h1>
+<p class="sysml-paragraph" data-content="paragraph" data-name="scope">One interface control document per TethysInterfaces interface definition, each specialising its interface def with the parameters both sides must agree on, bound to both ends, under the control authority its InterfaceControl metadata names.</p>
+<section class="sysml-section" id="classes" data-content="section" data-name="classes">
+<h2>ICD classes</h2>
+<table class="sysml-table" data-content="table" data-name="register" data-query="TethysIcdDocuments::IcdRegister">
+<caption class="sysml-caption">Interface control documents of the mission</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysIcds::PacketInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PacketInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The command/telemetry packet interface between the flight software and the operations centre, independent of the RF link that carries it.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::TugInspectorIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TugInspectorIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Argent ↔ Wren while stowed: 28 V keep-alive power, checkout telemetry over the umbilical and the separation signal. Mechanical and thermal disciplines are in TI-007 and TI-008 because the backbone interface has only umbilical ends.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::LaunchIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">LaunchIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Stack ↔ Arcturus-5H: adapter geometry, quasi-static and dynamic loads, fairing environments, stack mass properties, separation and injection accuracy.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::SpaceGroundIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SpaceGroundIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Argent ↔ Meridian: X-band up and down, Ka-band down, modulation, coding, rate envelope, two-way ranging and the packet protocol over the link. The Earth-range envelope per phase is in TethysLinkBudgets.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::InspectorRelayIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InspectorRelayIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Wren ↔ Argent proximity link: UHF, low rate down to Wren, imagery and radar up to Argent, usable within the geometry window below; the data volume it must carry depends on the target size and is sized in TethysLinkBudgets.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::CaptureIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">CaptureIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Argent ↔ Amaranth through capture: contact loads, grapple torque, the spin the capture system absorbs and the contact thermal environment. The spin and load figures are the large-target case; the small and nominal cases follow from the target cases in TethysLinkBudgets and the capture analyses.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::DockingIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">DockingIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Argent ↔ visiting vehicle in the DRO: a passive androgynous ring on the tug, power transfer and a data link across the mated interface.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::PowerIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PowerIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The regulated 28 V bus from the EPS to every subsystem, with its ripple and the current limit each load may draw.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::HighVoltagePowerIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">HighVoltagePowerIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The unregulated high-voltage bus from the arrays to the SEP power processing.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::DataBusIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">DataBusIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The on-board data bus: a dual-redundant serial bus at 1 Mbit/s carrying packets between the bus controller and every remote terminal.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::ThermalIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ThermalIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A conductive thermal interface: bolted joint conductance and the heat it carries at the interface temperature band.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::InspectorDispenserIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InspectorDispenserIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Argent ↔ Wren mechanical: the dispenser rails, preload, release spring and the ejection velocity; connected over the structure ports the backbone exposes.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::InspectorThermalIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InspectorThermalIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Argent ↔ Wren thermal while stowed: the dispenser keeps Wren&#39;s battery above its survival temperature with heat conducted through the rails.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::PropellantFeedIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PropellantFeedIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tank ↔ ground fill-and-drain for xenon and hydrazine: fill pressure, flow rate and the mass loaded.</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="requirements" data-content="section" data-name="requirements">
+<h2>Interface requirements</h2>
+<table class="sysml-table" data-content="table" data-name="register" data-query="TethysIcdDocuments::IcdRequirements">
+<caption class="sysml-caption">Requirements that both sides conform to each ICD</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysIcds::tugInspectorConformance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">tugInspectorConformance</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Argent and Wren shall conform to ICD-001 across the umbilical: keep-alive voltage 28 V, power 15 W, checkout telemetry at 9 600 bit/s.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::launchConformance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">launchConformance</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The stack shall conform to ICD-002: mass, centre of mass, loads, envelope and separation.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::spaceGroundConformance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">spaceGroundConformance</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Argent and Meridian shall conform to ICD-003: frequencies, modulation, coding, rates and ranging.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::relayConformance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">relayConformance</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Wren and Argent shall conform to ICD-004 across the proximity link within the geometry window.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::captureConformance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureConformance</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The capture system shall meet ICD-005 for every target case.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::dockingConformance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dockingConformance</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The docking ring shall meet ICD-006.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::dispenserConformance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dispenserConformance</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The dispenser and Wren shall meet ICD-007.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::inspectorThermalConformance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorThermalConformance</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The dispenser shall keep Wren above its survival temperature per ICD-008.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::propellantFeedConformance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">propellantFeedConformance</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Both fill-and-drain interfaces shall meet ICD-009.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::packetConformance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">packetConformance</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Flight software and the operations centre shall exchange only packets the dictionary defines, per TCD-010.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::internalBusConformance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">internalBusConformance</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Every subsystem shall meet ICD-011 to ICD-014 on its power, data and thermal interfaces.</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="verificationCases" data-content="section" data-name="verificationCases">
+<h2>Interface verification</h2>
+<table class="sysml-table" data-content="table" data-name="register" data-query="TethysIcdDocuments::IcdVerifications">
+<caption class="sysml-caption">Verification case per ICD</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysIcds::umbilicalTest" data-element-kind="verificationCaseUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">umbilicalTest</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Mated umbilical test with flight Wren in the dispenser.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::adapterFitCheck" data-element-kind="verificationCaseUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">adapterFitCheck</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Adapter fit check and separation shock test with the launcher&#39;s flight adapter.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::rfCompatibilityTest" data-element-kind="verificationCaseUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">rfCompatibilityTest</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">End-to-end RF compatibility test between the flight transponder and a station.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::relayRangeTest" data-element-kind="verificationCaseUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">relayRangeTest</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Proximity link test over the geometry window on an antenna range.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::captureLoadsAnalysis" data-element-kind="verificationCaseUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureLoadsAnalysis</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Contact-dynamics analysis for the small, nominal and large target cases.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::dockingRingTest" data-element-kind="verificationCaseUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dockingRingTest</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Docking ring capture and power-transfer test with the partner&#39;s mating ring.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::dispenserEjectionTest" data-element-kind="verificationCaseUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dispenserEjectionTest</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Ejection test on the dispenser with a Wren mass model.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::stowedThermalTest" data-element-kind="verificationCaseUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">stowedThermalTest</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Thermal-vacuum cold case with Wren stowed.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::fillAndDrainTest" data-element-kind="verificationCaseUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">fillAndDrainTest</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Fill-and-drain flow test with the ground loading cart.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::packetDictionaryTest" data-element-kind="verificationCaseUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">packetDictionaryTest</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Every dictionary command sent and every telemetry packet decoded on the flatsat.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::subsystemInterfaceTests" data-element-kind="verificationCaseUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">subsystemInterfaceTests</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Power, data-bus and thermal interface acceptance tests on each subsystem.</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+</article>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICD-001 Tug–inspector umbilical interface</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysIcdDocuments::TugInspectorIcdDocument">
+<h1 class="sysml-title">ICD-001 Tug–inspector umbilical interface</h1>
+<section class="sysml-section" id="ends" data-content="section" data-name="ends">
+<h2>Interface ends</h2>
+<table class="sysml-table" data-content="table" data-name="table" data-query="TethysIcdDocuments::IcdEnds">
+<caption class="sysml-caption">Ends and their port types</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysInterfaces::TugInspectorInterface::tugSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">tugSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::UmbilicalPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::TugInspectorInterface::inspectorSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::UmbilicalPort</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="parameters" data-content="section" data-name="parameters">
+<h2>Interface parameters</h2>
+<table class="sysml-table" data-content="table" data-name="table" data-query="TethysIcdDocuments::IcdParameters">
+<caption class="sysml-caption">Parameters both sides agree on</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysIcds::TugInspectorIcd::keepAliveVoltage" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">keepAliveVoltage</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQElectromagnetism::ElectricPotentialValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::TugInspectorIcd::keepAlivePower" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">keepAlivePower</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQMechanics::PowerValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::TugInspectorIcd::checkoutDataRate" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">checkoutDataRate</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQInformation::BinaryDigitRateValue</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+</article>
+</body>
+</html>

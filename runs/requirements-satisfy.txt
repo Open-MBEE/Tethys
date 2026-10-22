@@ -14,6 +14,39 @@
 ✓ package TethysRequirementsL3L4
 ✓ package TethysVerification
 ✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
 ✓ package TethysHouseRules
 ✓ satisfy captureEnvelope by TethysTug::argent holds (on TethysTug::argent ID: 1)
 ✓ Verification TethysVerification::captureEnvelopeTest verdict: pass
@@ -168,4 +201,104 @@
 ✓ Verification TethysVerification::inspectorAcceptanceTest verdict: pass
   standing: holds (observed: 1 run under reverse)
 ? satisfy verificationViewpoint needs an object of TethysVerification::VvMatrix: none is instantiated
+✓ satisfy massBudgetCloses by massBudget holds (on TethysBudgets::massBudget ID: 272)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy powerBudgetCloses by powerBudget holds (on TethysBudgets::powerBudget ID: 409)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy energyBudgetCloses by energyBudget holds (on TethysBudgets::energyBudget ID: 411)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy inspectorEnergyBudgetCloses by inspectorEnergyBudget holds (on TethysBudgets::inspectorEnergyBudget ID: 412)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy dataBudgetCloses by dataBudget holds (on TethysBudgets::dataBudget ID: 413)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy propellantBudgetCloses by propellantBudget holds (on TethysBudgets::propellantBudget ID: 414)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy hydrazineBudgetCloses by hydrazineBudget holds (on TethysBudgets::hydrazineBudget ID: 418)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy pointingBudgetCloses by pointingBudget holds (on TethysBudgets::pointingBudget ID: 419)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy thermalBudgetCloses by thermalBudget holds (on TethysBudgets::thermalBudget ID: 420)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy captureLoadBudgetCloses by captureLoadBudget holds (on TethysBudgets::captureLoadBudget ID: 421)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy radiationBudgetCloses by radiationBudget holds (on TethysBudgets::radiationBudget ID: 422)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy magneticCleanlinessCloses by magneticCleanlinessBudget holds (on TethysBudgets::magneticCleanlinessBudget ID: 423)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy reliabilityBudgetCloses by reliabilityBudget holds (on TethysBudgets::reliabilityBudget ID: 424)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy processorBudgetCloses by processorBudget holds (on TethysBudgets::processorBudget ID: 425)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy xDownlinkCloses by xDownlinkAtMaximumRange holds (on TethysLinkBudgets::xDownlinkAtMaximumRange ID: 426)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy xUplinkCloses by xUplinkAtMaximumRange holds (on TethysLinkBudgets::xUplinkAtMaximumRange ID: 427)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy kaDownlinkCloses by kaDownlinkAtTargetRange holds (on TethysLinkBudgets::kaDownlinkAtTargetRange ID: 428)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy droDownlinkCloses by xDownlinkInDro holds (on TethysLinkBudgets::xDownlinkInDro ID: 429)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy proximityLinkCloses by proximityReturnLink holds (on TethysLinkBudgets::proximityReturnLink ID: 430)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy relayCarriesCharacterisation by largeTargetRelayLoad holds (on TethysLinkBudgets::largeTargetRelayLoad ID: 431)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy dictionaryConsistent by dictionary holds (on TethysOperations::dictionary ID: 432)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy operationsReadiness by orrStatus holds (on TethysOperations::orrStatus ID: 434)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy resourceMarginPositive by xenonTrend holds (on TethysOperations::xenonTrend ID: 435)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy resourceMarginPositive by batteryCapacityTrend holds (on TethysOperations::batteryCapacityTrend ID: 436)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy extendedMissionAffordable by extendedMission holds (on TethysOperations::extendedMission ID: 437)
+  standing: holds (observed: 1 run under reverse)
+? satisfy requirementsViewpoint could not be evaluated (on TethysViews::requirementsTree ID: 438)
+  Error: satisfaction satisfy requirementsViewpoint: no condition to evaluate
+  standing: not covered (satisfaction satisfy requirementsViewpoint: no condition to evaluate)
+? satisfy requirementsViewpoint could not be evaluated (on TethysViews::requirementsTable ID: 440)
+  Error: satisfaction satisfy requirementsViewpoint: no condition to evaluate
+  standing: not covered (satisfaction satisfy requirementsViewpoint: no condition to evaluate)
+? satisfy interfaceViewpoint could not be evaluated (on TethysViews::segmentInterfaces ID: 442)
+  Error: satisfaction satisfy interfaceViewpoint: no condition to evaluate
+  standing: not covered (satisfaction satisfy interfaceViewpoint: no condition to evaluate)
+? satisfy interfaceViewpoint could not be evaluated (on TethysViews::flightSegmentWiring ID: 444)
+  Error: satisfaction satisfy interfaceViewpoint: no condition to evaluate
+  standing: not covered (satisfaction satisfy interfaceViewpoint: no condition to evaluate)
+? satisfy interfaceViewpoint could not be evaluated (on TethysViews::tugPowerBus ID: 446)
+  Error: satisfaction satisfy interfaceViewpoint: no condition to evaluate
+  standing: not covered (satisfaction satisfy interfaceViewpoint: no condition to evaluate)
+? satisfy interfaceViewpoint could not be evaluated (on TethysViews::interfaceDefinitions ID: 448)
+  Error: satisfaction satisfy interfaceViewpoint: no condition to evaluate
+  standing: not covered (satisfaction satisfy interfaceViewpoint: no condition to evaluate)
+? satisfy budgetViewpoint could not be evaluated (on TethysViews::massBudget ID: 450)
+  Error: satisfaction satisfy budgetViewpoint: no condition to evaluate
+  standing: not covered (satisfaction satisfy budgetViewpoint: no condition to evaluate)
+? satisfy operationsViewpoint could not be evaluated (on TethysViews::missionTimeline ID: 452)
+  Error: satisfaction satisfy operationsViewpoint: no condition to evaluate
+  standing: not covered (satisfaction satisfy operationsViewpoint: no condition to evaluate)
+? satisfy operationsViewpoint could not be evaluated (on TethysViews::projectLifecycle ID: 455)
+  Error: satisfaction satisfy operationsViewpoint: no condition to evaluate
+  standing: not covered (satisfaction satisfy operationsViewpoint: no condition to evaluate)
+? satisfy operationsViewpoint could not be evaluated (on TethysViews::modeMachine ID: 458)
+  Error: satisfaction satisfy operationsViewpoint: no condition to evaluate
+  standing: not covered (satisfaction satisfy operationsViewpoint: no condition to evaluate)
+? satisfy assuranceViewpoint could not be evaluated (on TethysViews::modeMachine ID: 458)
+  Error: satisfaction satisfy assuranceViewpoint: no condition to evaluate
+  standing: not covered (satisfaction satisfy assuranceViewpoint: no condition to evaluate)
+? satisfy TethysViews::interfaceViewpoint could not be evaluated (on TethysViewsTooling::systemOverview ID: 460)
+  Error: satisfaction satisfy TethysViews::interfaceViewpoint: no condition to evaluate
+  standing: not covered (satisfaction satisfy TethysViews::interfaceViewpoint: no condition to evaluate)
+? satisfy TethysViews::budgetViewpoint could not be evaluated (on TethysViewsTooling::systemOverview ID: 460)
+  Error: satisfaction satisfy TethysViews::budgetViewpoint: no condition to evaluate
+  standing: not covered (satisfaction satisfy TethysViews::budgetViewpoint: no condition to evaluate)
+✓ satisfy argentMassWithinTolerance by argentFM holds (on TethysAsBuilt::argentFM ID: 464)
+  standing: holds (observed: 1 run under reverse)
+✗ satisfy wrenMassWithinTolerance by wrenFM fails (on TethysAsBuilt::wrenFM ID: 465)
+  Required condition evaluated to false: unit.massDeviation <= unit.massTolerance and unit.massDeviation >= - unit.massTolerance
+  standing: violated (witnessed: 1 run under reverse)
+✓ satisfy heliocentricDisposal by argentAtEndOfLife holds (on TethysDisposal::argentAtEndOfLife ID: 466)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy passivation by argentAtEndOfLife.passivated holds (on TethysDisposal::argentAtEndOfLife.passivated ID: 468)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy separationSafety by argentFM.captureSystem holds (on TethysAsBuilt::argentFM.captureSystem ID: 470)
+  standing: holds (observed: 1 run under reverse)
 exit 2

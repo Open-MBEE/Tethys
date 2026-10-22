@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tethys verification and validation matrix</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysVerificationTooling::VvReport">
+<h1 class="sysml-title">Tethys verification and validation matrix</h1>
+<p class="sysml-paragraph" data-content="paragraph" data-name="scope">Every requirement of the Tethys tree (L1 to L4, needs, objectives and success criteria), the cases that verify it, the parts that satisfy it and the requirements it derives from.</p>
+<table class="sysml-table" data-content="table" data-name="l1" data-query="TethysVerificationTooling::VvMatrixOf">
+<caption class="sysml-caption">L1 mission requirements</caption>
+<thead>
+<tr>
+<th scope="col" data-column="shortName">shortName</th>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="verifiedBy">verifiedBy</th>
+<th scope="col" data-column="cases">cases</th>
+<th scope="col" data-column="satisfiedBy">satisfiedBy</th>
+<th scope="col" data-column="derivedFrom">derivedFrom</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysRequirements::retrieval" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-001</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">retrieval</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DeliveryAnalysis" data-element-kind="verificationCaseDef">DeliveryAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::missionDuration" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-002</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">missionDuration</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DeliveryAnalysis" data-element-kind="verificationCaseDef">DeliveryAnalysis</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysAnalyses::MissionDurationByAnalysis" data-element-kind="verificationCaseDef">MissionDurationByAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::characterisation" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-003</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">characterisation</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::CharacterisationAnalysis" data-element-kind="verificationCaseDef">CharacterisationAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::launchCompatibility" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-004</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">launchCompatibility</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::InterfaceBaselineInspection" data-element-kind="verificationCaseDef">InterfaceBaselineInspection</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::groundCompatibility" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-005</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">groundCompatibility</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::GroundReadinessDemo" data-element-kind="verificationCaseDef">GroundReadinessDemo</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::cislunarSafety" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-006</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">cislunarSafety</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::ReturnSafetyAnalysis" data-element-kind="verificationCaseDef">ReturnSafetyAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::missionClass" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-007</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">missionClass</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::RedundancyInspection" data-element-kind="verificationCaseDef">RedundancyInspection</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::deflectionDemonstration" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-008</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">deflectionDemonstration</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DeflectionAnalysis" data-element-kind="verificationCaseDef">DeflectionAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirements::utilisationAccess" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TR-009</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">utilisationAccess</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DockingDemo" data-element-kind="verificationCaseDef">DockingDemo</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="needs" data-query="TethysVerificationTooling::VvMatrixOf">
+<caption class="sysml-caption">Needs, objectives and success criteria</caption>
+<thead>
+<tr>
+<th scope="col" data-column="shortName">shortName</th>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="verifiedBy">verifiedBy</th>
+<th scope="col" data-column="cases">cases</th>
+<th scope="col" data-column="satisfiedBy">satisfiedBy</th>
+<th scope="col" data-column="derivedFrom">derivedFrom</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysStakeholders::returnedBodyNeed" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">N-001</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">returnedBodyNeed</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::MissionValidation" data-element-kind="verificationCaseDef">MissionValidation</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::timelinessNeed" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">N-002</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">timelinessNeed</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::MissionValidation" data-element-kind="verificationCaseDef">MissionValidation</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::knownTargetNeed" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">N-003</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">knownTargetNeed</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::MissionValidation" data-element-kind="verificationCaseDef">MissionValidation</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::noEarthRiskNeed" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">N-004</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">noEarthRiskNeed</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::MissionValidation" data-element-kind="verificationCaseDef">MissionValidation</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::deflectionKnowledgeNeed" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">N-005</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">deflectionKnowledgeNeed</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::MissionValidation" data-element-kind="verificationCaseDef">MissionValidation</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::surfaceAccessNeed" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">N-006</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">surfaceAccessNeed</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DockingDemo" data-element-kind="verificationCaseDef">DockingDemo</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::operabilityNeed" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">N-007</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">operabilityNeed</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::GroundReadinessDemo" data-element-kind="verificationCaseDef">GroundReadinessDemo</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::ConOpsValidation" data-element-kind="verificationCaseDef">ConOpsValidation</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::robustToTargetNeed" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">N-008</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">robustToTargetNeed</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::MissionValidation" data-element-kind="verificationCaseDef">MissionValidation</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::providerInterfaceNeed" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">N-009</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">providerInterfaceNeed</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::InterfaceBaselineInspection" data-element-kind="verificationCaseDef">InterfaceBaselineInspection</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::shapeModel" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SO-001</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">shapeModel</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::CharacterisationAnalysis" data-element-kind="verificationCaseDef">CharacterisationAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::massEstimate" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SO-002</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">massEstimate</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::CharacterisationAnalysis" data-element-kind="verificationCaseDef">CharacterisationAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::spinState" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SO-003</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">spinState</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::CharacterisationAnalysis" data-element-kind="verificationCaseDef">CharacterisationAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::deflectionMeasurement" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SO-004</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">deflectionMeasurement</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::SuccessCriteriaValidation" data-element-kind="verificationCaseDef">SuccessCriteriaValidation</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::minimumSuccess" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName"></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">minimumSuccess</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::SuccessCriteriaValidation" data-element-kind="verificationCaseDef">SuccessCriteriaValidation</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::fullSuccess" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName"></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">fullSuccess</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::SuccessCriteriaValidation" data-element-kind="verificationCaseDef">SuccessCriteriaValidation</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::minimumSuccess::characterised" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MS-001</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">characterised</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::SuccessCriteriaValidation" data-element-kind="verificationCaseDef">SuccessCriteriaValidation</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::minimumSuccess::deflected" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MS-002</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">deflected</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::SuccessCriteriaValidation" data-element-kind="verificationCaseDef">SuccessCriteriaValidation</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::fullSuccess::delivered" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">FS-001</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">delivered</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::SuccessCriteriaValidation" data-element-kind="verificationCaseDef">SuccessCriteriaValidation</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysStakeholders::fullSuccess::accessible" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">FS-002</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">accessible</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::SuccessCriteriaValidation" data-element-kind="verificationCaseDef">SuccessCriteriaValidation</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="l2" data-query="TethysVerificationTooling::VvMatrixOf">
+<caption class="sysml-caption">L2 system requirements</caption>
+<thead>
+<tr>
+<th scope="col" data-column="shortName">shortName</th>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="verifiedBy">verifiedBy</th>
+<th scope="col" data-column="cases">cases</th>
+<th scope="col" data-column="satisfiedBy">satisfiedBy</th>
+<th scope="col" data-column="derivedFrom">derivedFrom</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysRequirementsL2::captureEnvelope" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-001</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureEnvelope</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::CaptureEnvelopeTest" data-element-kind="verificationCaseDef">CaptureEnvelopeTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::argent" data-element-kind="partUsage">argent</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::deliveredMass" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-002</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">deliveredMass</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DeliveryAnalysis" data-element-kind="verificationCaseDef">DeliveryAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSystem::tethysSystem::flight" data-element-kind="partUsage">flight</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::transferDuration" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-003</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">transferDuration</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::PowerAnalysis" data-element-kind="verificationCaseDef">PowerAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSystem::tethysSystem::flight" data-element-kind="partUsage">flight</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::propellantCapacity" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-004</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">propellantCapacity</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::PropellantAnalysis" data-element-kind="verificationCaseDef">PropellantAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::argent" data-element-kind="partUsage">argent</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::characterisationProducts" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-005</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">characterisationProducts</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::CharacterisationAnalysis" data-element-kind="verificationCaseDef">CharacterisationAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSystem::tethysSystem::flight" data-element-kind="partUsage">flight</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::launchCompatibility" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-006</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">launchCompatibility</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::MassBudgetAnalysis" data-element-kind="verificationCaseDef">MassBudgetAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::deepSpaceLink" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-007</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">deepSpaceLink</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::LinkBudgetTest" data-element-kind="verificationCaseDef">LinkBudgetTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::earthImpactExclusion" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-008</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">earthImpactExclusion</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::ReturnSafetyAnalysis" data-element-kind="verificationCaseDef">ReturnSafetyAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSystem::tethysSystem::flight" data-element-kind="partUsage">flight</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::droStability" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-009</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">droStability</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::ReturnSafetyAnalysis" data-element-kind="verificationCaseDef">ReturnSafetyAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSystem::tethysSystem::flight" data-element-kind="partUsage">flight</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::thrustRedundancy" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-010</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thrustRedundancy</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::RedundancyInspection" data-element-kind="verificationCaseDef">RedundancyInspection</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::SepCommissioning" data-element-kind="verificationCaseDef">SepCommissioning</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::argent" data-element-kind="partUsage">argent</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::deflectionMeasurement" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-011</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">deflectionMeasurement</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DeflectionAnalysis" data-element-kind="verificationCaseDef">DeflectionAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSystem::tethysSystem::flight" data-element-kind="partUsage">flight</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::visitorDocking" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-012</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">visitorDocking</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DockingDemo" data-element-kind="verificationCaseDef">DockingDemo</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::autonomousSurvival" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-013</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">autonomousSurvival</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::AutonomyTest" data-element-kind="verificationCaseDef">AutonomyTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSystem::tethysSystem::flight" data-element-kind="partUsage">flight</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::proximityContactEnvironment" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-014</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">proximityContactEnvironment</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::ContactSpeedTest" data-element-kind="verificationCaseDef">ContactSpeedTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::argent" data-element-kind="partUsage">argent</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::faultResponse" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-015</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">faultResponse</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::FaultResponseTest" data-element-kind="verificationCaseDef">FaultResponseTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSystem::tethysSystem::flight" data-element-kind="partUsage">flight</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::massBudget" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-016</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">massBudget</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::MassBudgetAnalysis" data-element-kind="verificationCaseDef">MassBudgetAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::argent" data-element-kind="partUsage">argent</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::captureQualification" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-017</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureQualification</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::CaptureEnvelopeTest" data-element-kind="verificationCaseDef">CaptureEnvelopeTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::inspectorDeployment" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-018</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorDeployment</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::SeparationTest" data-element-kind="verificationCaseDef">SeparationTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSystem::tethysSystem::flight" data-element-kind="partUsage">flight</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::despinCapacity" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-019</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">despinCapacity</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DespinAnalysis" data-element-kind="verificationCaseDef">DespinAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::argent" data-element-kind="partUsage">argent</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::groundCoverage" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-020</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">groundCoverage</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::GroundReadinessDemo" data-element-kind="verificationCaseDef">GroundReadinessDemo</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSystem::tethysSystem::ground" data-element-kind="partUsage">ground</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::commandLatency" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-021</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">commandLatency</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::GroundReadinessDemo" data-element-kind="verificationCaseDef">GroundReadinessDemo</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSystem::tethysSystem::ground" data-element-kind="partUsage">ground</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::operatorWorkload" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TS-022</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">operatorWorkload</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::GroundReadinessDemo" data-element-kind="verificationCaseDef">GroundReadinessDemo</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSystem::tethysSystem::ground" data-element-kind="partUsage">ground</span></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::flightPerformanceRequirements" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName"></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">flightPerformanceRequirements</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DocumentInspection" data-element-kind="verificationCaseDef">DocumentInspection</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::flightSafetyAndAutonomyRequirements" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName"></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">flightSafetyAndAutonomyRequirements</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DocumentInspection" data-element-kind="verificationCaseDef">DocumentInspection</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::flightEnvironmentAndBudgetRequirements" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName"></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">flightEnvironmentAndBudgetRequirements</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DocumentInspection" data-element-kind="verificationCaseDef">DocumentInspection</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::interfaceRequirements" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName"></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">interfaceRequirements</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DocumentInspection" data-element-kind="verificationCaseDef">DocumentInspection</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::groundSegmentRequirements" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName"></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">groundSegmentRequirements</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DocumentInspection" data-element-kind="verificationCaseDef">DocumentInspection</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL2::safetyRequirements" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName"></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">safetyRequirements</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DocumentInspection" data-element-kind="verificationCaseDef">DocumentInspection</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom"></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="l3l4" data-query="TethysVerificationTooling::VvMatrixOf">
+<caption class="sysml-caption">L3 subsystem and L4 component requirements</caption>
+<thead>
+<tr>
+<th scope="col" data-column="shortName">shortName</th>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="verifiedBy">verifiedBy</th>
+<th scope="col" data-column="cases">cases</th>
+<th scope="col" data-column="satisfiedBy">satisfiedBy</th>
+<th scope="col" data-column="derivedFrom">derivedFrom</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::sepThrust" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TA-001</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sepThrust</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::SepHotFireTest" data-element-kind="verificationCaseDef">SepHotFireTest</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::ThrustModelValidation" data-element-kind="verificationCaseDef">ThrustModelValidation</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::SepCommissioning" data-element-kind="verificationCaseDef">SepCommissioning</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::argent::sep" data-element-kind="partUsage">sep</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::transferDuration" data-element-kind="requirementUsage">transferDuration</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::arrayPowerAtTarget" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TA-002</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">arrayPowerAtTarget</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::PowerAnalysis" data-element-kind="verificationCaseDef">PowerAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::argent::eps" data-element-kind="partUsage">eps</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::transferDuration" data-element-kind="requirementUsage">transferDuration</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::captureBagDiameter" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TA-003</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureBagDiameter</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::CaptureEnvelopeTest" data-element-kind="verificationCaseDef">CaptureEnvelopeTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::argent::captureSystem" data-element-kind="partUsage">captureSystem</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::captureEnvelope" data-element-kind="requirementUsage">captureEnvelope</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::contactSpeedTolerance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TA-004</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">contactSpeedTolerance</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::ContactSpeedTest" data-element-kind="verificationCaseDef">ContactSpeedTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::argent::captureSystem" data-element-kind="partUsage">captureSystem</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::proximityContactEnvironment" data-element-kind="requirementUsage">proximityContactEnvironment</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::despinTorque" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TA-005</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">despinTorque</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DespinAnalysis" data-element-kind="verificationCaseDef">DespinAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::argent::rcs" data-element-kind="partUsage">rcs</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::despinCapacity" data-element-kind="requirementUsage">despinCapacity</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::hydrazineLoad" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TA-006</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">hydrazineLoad</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DespinAnalysis" data-element-kind="verificationCaseDef">DespinAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::argent::rcs" data-element-kind="partUsage">rcs</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::despinCapacity" data-element-kind="requirementUsage">despinCapacity</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::deepSpaceEirp" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TA-007</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">deepSpaceEirp</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::LinkBudgetTest" data-element-kind="verificationCaseDef">LinkBudgetTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::Tug::telecom" data-element-kind="partUsage">telecom</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::deepSpaceLink" data-element-kind="requirementUsage">deepSpaceLink</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::proximityLinkRange" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TA-008</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">proximityLinkRange</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::InspectorAcceptanceTest" data-element-kind="verificationCaseDef">InspectorAcceptanceTest</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::InspectorCommissioning" data-element-kind="verificationCaseDef">InspectorCommissioning</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::Tug::telecom" data-element-kind="partUsage">telecom</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::inspectorDeployment" data-element-kind="requirementUsage">inspectorDeployment</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::relativeNavigation" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TA-009</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">relativeNavigation</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::ProximityNavigationTest" data-element-kind="verificationCaseDef">ProximityNavigationTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::Tug::gnc" data-element-kind="partUsage">gnc</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::characterisationProducts" data-element-kind="requirementUsage">characterisationProducts</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::faultDetectionLatency" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TA-010</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">faultDetectionLatency</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::FaultResponseTest" data-element-kind="verificationCaseDef">FaultResponseTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::Tug::cdh" data-element-kind="partUsage">cdh</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::faultResponse" data-element-kind="requirementUsage">faultResponse</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::heatRejection" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TA-011</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">heatRejection</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::ThermalBalanceTest" data-element-kind="verificationCaseDef">ThermalBalanceTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::Tug::thermal" data-element-kind="partUsage">thermal</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::proximityContactEnvironment" data-element-kind="requirementUsage">proximityContactEnvironment</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::dockingLoads" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TA-012</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dockingLoads</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DockingLoadsAnalysis" data-element-kind="verificationCaseDef">DockingLoadsAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::Tug::structure" data-element-kind="partUsage">structure</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::visitorDocking" data-element-kind="requirementUsage">visitorDocking</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::inspectorSeparation" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TA-013</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorSeparation</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::SeparationTest" data-element-kind="verificationCaseDef">SeparationTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::Tug::structure" data-element-kind="partUsage">structure</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::inspectorDeployment" data-element-kind="requirementUsage">inspectorDeployment</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::spinStateSensing" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TA-014</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">spinStateSensing</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::CharacterisationAnalysis" data-element-kind="verificationCaseDef">CharacterisationAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::Tug::sensors" data-element-kind="partUsage">sensors</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::characterisationProducts" data-element-kind="requirementUsage">characterisationProducts</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::imagingResolution" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TW-001</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">imagingResolution</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::InspectorAcceptanceTest" data-element-kind="verificationCaseDef">InspectorAcceptanceTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysInspector::Inspector::payload" data-element-kind="partUsage">payload</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::characterisationProducts" data-element-kind="requirementUsage">characterisationProducts</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::circumnavigationPropellant" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TW-002</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">circumnavigationPropellant</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::CharacterisationAnalysis" data-element-kind="verificationCaseDef">CharacterisationAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysInspector::Inspector::propulsion" data-element-kind="partUsage">propulsion</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::characterisationProducts" data-element-kind="requirementUsage">characterisationProducts</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::keepAlivePower" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TW-003</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">keepAlivePower</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::InspectorAcceptanceTest" data-element-kind="verificationCaseDef">InspectorAcceptanceTest</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::InspectorCommissioning" data-element-kind="verificationCaseDef">InspectorCommissioning</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysInspector::Inspector::bus" data-element-kind="partUsage">bus</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::inspectorDeployment" data-element-kind="requirementUsage">inspectorDeployment</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::inspectorMass" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TW-004</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorMass</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::InspectorAcceptanceTest" data-element-kind="verificationCaseDef">InspectorAcceptanceTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysInspector::wren" data-element-kind="partUsage">wren</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::launchCompatibility" data-element-kind="requirementUsage">launchCompatibility</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::dopplerForMass" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TW-005</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dopplerForMass</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::InspectorAcceptanceTest" data-element-kind="verificationCaseDef">InspectorAcceptanceTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysInspector::Inspector::bus" data-element-kind="partUsage">bus</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::characterisationProducts" data-element-kind="requirementUsage">characterisationProducts</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::stationAperture" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TG-001</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">stationAperture</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::LinkBudgetTest" data-element-kind="verificationCaseDef">LinkBudgetTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy"></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::deepSpaceLink" data-element-kind="requirementUsage">deepSpaceLink</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::stationSpacing" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TG-002</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">stationSpacing</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::GroundInspection" data-element-kind="verificationCaseDef">GroundInspection</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSystem::TethysGroundSegment::network" data-element-kind="partUsage">network</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::deepSpaceLink" data-element-kind="requirementUsage">deepSpaceLink</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::rangingAccuracy" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TG-003</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">rangingAccuracy</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::DeflectionAnalysis" data-element-kind="verificationCaseDef">DeflectionAnalysis</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGround::GroundNetwork::fdf" data-element-kind="partUsage">fdf</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::deflectionMeasurement" data-element-kind="requirementUsage">deflectionMeasurement</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::impactScreening" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TG-004</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">impactScreening</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::GroundProceduresDemo" data-element-kind="verificationCaseDef">GroundProceduresDemo</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGround::GroundNetwork::fdf" data-element-kind="partUsage">fdf</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::earthImpactExclusion" data-element-kind="requirementUsage">earthImpactExclusion</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::sequenceTurnaround" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TG-005</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sequenceTurnaround</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::GroundProceduresDemo" data-element-kind="verificationCaseDef">GroundProceduresDemo</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGround::GroundNetwork::moc" data-element-kind="partUsage">moc</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::commandLatency" data-element-kind="requirementUsage">commandLatency</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::monitoringAutomation" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TG-006</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">monitoringAutomation</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::GroundProceduresDemo" data-element-kind="verificationCaseDef">GroundProceduresDemo</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGround::GroundNetwork::moc" data-element-kind="partUsage">moc</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::operatorWorkload" data-element-kind="requirementUsage">operatorWorkload</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::scienceArchive" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TG-007</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">scienceArchive</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::GroundProceduresDemo" data-element-kind="verificationCaseDef">GroundProceduresDemo</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGround::GroundNetwork::sds" data-element-kind="partUsage">sds</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::characterisationProducts" data-element-kind="requirementUsage">characterisationProducts</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::thrusterUnitThrust" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TC-001</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thrusterUnitThrust</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::SepHotFireTest" data-element-kind="verificationCaseDef">SepHotFireTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::argent::sep" data-element-kind="partUsage">sep</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::sepThrust" data-element-kind="requirementUsage">sepThrust</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::transferDuration" data-element-kind="requirementUsage">transferDuration</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::powerProcessingEfficiency" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TC-002</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">powerProcessingEfficiency</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::SepHotFireTest" data-element-kind="verificationCaseDef">SepHotFireTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::argent::sep" data-element-kind="partUsage">sep</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::sepThrust" data-element-kind="requirementUsage">sepThrust</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::transferDuration" data-element-kind="requirementUsage">transferDuration</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::cinchMotorTorque" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TC-003</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">cinchMotorTorque</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::CinchMotorTest" data-element-kind="verificationCaseDef">CinchMotorTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::argent::captureSystem" data-element-kind="partUsage">captureSystem</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::captureBagDiameter" data-element-kind="requirementUsage">captureBagDiameter</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::captureEnvelope" data-element-kind="requirementUsage">captureEnvelope</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::narrowAngleCameraSensitivity" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TC-004</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">narrowAngleCameraSensitivity</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::ProximityNavigationTest" data-element-kind="verificationCaseDef">ProximityNavigationTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::Tug::sensors" data-element-kind="partUsage">sensors</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::relativeNavigation" data-element-kind="requirementUsage">relativeNavigation</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::characterisationProducts" data-element-kind="requirementUsage">characterisationProducts</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::fdirTaskPeriod" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TC-005</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">fdirTaskPeriod</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::FaultResponseTest" data-element-kind="verificationCaseDef">FaultResponseTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTug::Tug::cdh" data-element-kind="partUsage">cdh</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::faultDetectionLatency" data-element-kind="requirementUsage">faultDetectionLatency</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::faultResponse" data-element-kind="requirementUsage">faultResponse</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysRequirementsL3L4::inspectorDetectorPitch" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TC-006</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorDetectorPitch</span></td>
+<td class="sysml-cell" data-column="verifiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysVerification::InspectorAcceptanceTest" data-element-kind="verificationCaseDef">InspectorAcceptanceTest</span></td>
+<td class="sysml-cell" data-column="cases" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysInspector::Inspector::payload" data-element-kind="partUsage">payload</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::imagingResolution" data-element-kind="requirementUsage">imagingResolution</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::characterisationProducts" data-element-kind="requirementUsage">characterisationProducts</span></td>
+</tr>
+</tbody>
+</table>
+<section class="sysml-section" id="outstanding" data-content="section" data-name="outstanding">
+<h2>Requirements without a verification case</h2>
+<table class="sysml-table" data-content="table" data-name="none" data-query="TethysVerificationTooling::UnverifiedRequirements">
+<caption class="sysml-caption">Unverified requirements (expected empty)</caption>
+<thead>
+<tr>
+<th scope="col" data-column="shortName">shortName</th>
+<th scope="col" data-column="name">name</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</article>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TCD-010 Command and telemetry packet interface</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysIcdDocuments::PacketInterfaceDocument">
+<h1 class="sysml-title">TCD-010 Command and telemetry packet interface</h1>
+<section class="sysml-section" id="ends" data-content="section" data-name="ends">
+<h2>Interface ends</h2>
+<table class="sysml-table" data-content="table" data-name="table" data-query="TethysIcdDocuments::IcdEnds">
+<caption class="sysml-caption">Ends and their port types</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysIcds::PacketInterface::flightSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">flightSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysIcds::PacketPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::PacketInterface::groundSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">groundSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysIcds::PacketPort</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="parameters" data-content="section" data-name="parameters">
+<h2>Interface parameters</h2>
+<table class="sysml-table" data-content="table" data-name="table" data-query="TethysIcdDocuments::IcdParameters">
+<caption class="sysml-caption">Parameters both sides agree on</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysIcds::PacketInterface::maximumPacketLength" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">maximumPacketLength</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQInformation::StorageCapacityValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::PacketInterface::housekeepingApid" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">housekeepingApid</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ScalarValues::Natural</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+</article>
+</body>
+</html>
