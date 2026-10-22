@@ -2,7 +2,7 @@
 
 Files: `model/95-as-built.sysml` (`TethysAsBuilt`), `model/96-imported-data.sysml`
 (`TethysImportedData`), `model/97-disposal.sysml` (`TethysDisposal`), `data/`.
-Recorded with OpenSysML `nightly-20261021-b60a18c20` and the pinned pilot validator; every
+Recorded with OpenSysML `v0.10.1-2054-g0a5fa2d94` (built from source at origin/develop 0a5fa2d94) and the pinned pilot validator; every
 command below is a `run` line in `scripts/runs.sh` with its output under `runs/`, except the
 `make check` gates. `$MODEL` is `model/*.sysml`.
 

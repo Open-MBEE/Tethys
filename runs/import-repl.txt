@@ -65,10 +65,10 @@ SysML v2 REPL — %help for commands, Ctrl-D to exit
   TethysImportedData::amaranthTracked::approachEpoch3::ephemeris::heliocentricDistanceAu = 1.0462 (redefines TethysImportedData::EphemerisSample::heliocentricDistanceAu)
   TethysImportedData::amaranthTracked::approachEpoch3::ephemeris::rangeRate = -12.0 [m/s] (redefines TethysImportedData::EphemerisSample::rangeRate)
 ✓ TethysImportedData::xenonUsedOutbound
-  used = 3290.0 [kg]
+  used = [3290.0 [kg]]
   standing: value (observed: 1 run under reverse)
 ✓ TethysImportedData::xenonUsedReturn
-  used = 2750.0 [kg]
+  used = [2750.0 [kg]]
   standing: value (observed: 1 run under reverse)
 ✓ TethysImportedData::amaranthTracked.approachEpoch3.ephemeris.earthRange
   = 10600000.0 [km]
