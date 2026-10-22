@@ -10,14 +10,14 @@ package TethysDocuments {
 
     // ---- queries ----------------------------------------------------------------------------
     calc def MissionRequirements :> Query {
-        doc /* The L1 requirements with their identifier, name, text and tier. The verification
-             * method, level and stage each carries as @Verification cannot be projected
-             * (docs/findings/WP-H.md F-H01); the verification matrix lists them by requirement. */
+        doc /* The L1 requirements with their identifier, name, text and tier, and the
+             * verification method, level and stage each declares as @Verification, read through
+             * the metadata def's features. */
         Project(
             source = WhereType(
                 source = OwnedElements(source = Named(qualifiedName = "TethysRequirements")),
                 type = "RequirementUsage"),
-            properties = ("shortName", "name", "documentation", "tier"))
+            properties = ("shortName", "name", "documentation", "tier", "Verification::method", "Verification::level", "Verification::stage"))
     }
     calc def RequirementText :> Query {
         doc /* Identifier and statement of every L1 requirement, for the definitions block. */
@@ -245,9 +245,8 @@ package TethysDocuments {
     }
 
     part def VerificationMatrix :> Document {
-        doc /* The verification cross-reference matrix: every L1 requirement with its tier and
-             * statement. The method, level and stage each requirement declares as @Verification
-             * are in the model but not yet projectable (docs/findings/WP-H.md F-H01). */
+        doc /* The verification cross-reference matrix: every L1 requirement with its tier,
+             * statement and the method, level and stage it declares as @Verification. */
         attribute redefines title = "Tethys Retrieval — Verification Matrix";
 
         part intro : Paragraph {
@@ -257,7 +256,7 @@ package TethysDocuments {
             attribute redefines title = "Requirements";
             part table : Table {
                 attribute redefines caption = "L1 requirements";
-                attribute redefines columnLabels = ("Id", "Name", "Statement", "Tier");
+                attribute redefines columnLabels = ("Id", "Name", "Statement", "Tier", "Method", "Level", "Stage");
                 calc rows : MissionRequirements;
             }
             part drawn : Diagram {
