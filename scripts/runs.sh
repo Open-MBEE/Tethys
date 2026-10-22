@@ -42,4 +42,5 @@ run fdir-earth-impact-abort-hold $SYSML -quiet -instantiate TethysFdir::earthImp
 run fdir-inhibit-chain-held $SYSML -quiet -instantiate TethysFdir::inhibitedChain -action "TethysFdir::InhibitChain::cinch TethysFdir::inhibitedChain" $MODEL
 run fdir-inhibit-chain-check $SYSML -quiet -engine check -instantiate TethysFdir::armedChain -action "TethysFdir::InhibitChain::cinch TethysFdir::armedChain" -check-property TethysFdir::InhibitChain::noFireWithoutInhibitsRemoved $MODEL
 run fdir-inhibit-chain-smt $SYSML -quiet -engine smt -instantiate TethysFdir::armedChain -action "TethysFdir::InhibitChain::cinch TethysFdir::armedChain" -check-input armCommanded -check-input groundEnable -check-input inCaptureMode -check-property TethysFdir::InhibitChain::noFireWithoutInhibitsRemoved $MODEL
+run fdir-command-loss-timeline $SYSML -quiet -instantiate TethysFdir::commandLossScenario -state TethysFdir::commandLossScenario.tug.fdir -advance 2160000 -render-run timeline=- -render-form text $MODEL
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi
