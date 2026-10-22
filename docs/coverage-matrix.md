@@ -261,4 +261,12 @@ Rows from the software scope review (`SW-###`), covered package by package in
 | SW-245 `FlightComputer` image and bus ports | WP-SW-1 (WP-SW-4 binds the load figures) | sat |
 | SW-252 `SoftwareDeployment` and new `SoftwareFunction` leaves | WP-SW-1 | sat |
 | SW-254 house rules: every application allocated | WP-SW-1 (WP-SW-2 and WP-SW-5 add theirs) | sat |
-| SW-255 coverage and findings files | each software package | sat for WP-SW-1 |
+| SW-039 inter-application message catalogue | WP-SW-6 software interface control | sat — `docs/coverage/WP-SW-6.md` |
+| SW-040 AABP-1 on-board bus protocol ICD | WP-SW-6 | sat |
+| SW-041 CCSDS Space Packet + MLS-2 link profile | WP-SW-6 | sat |
+| SW-042 software ICDs per interface (flight–ground, flight–Wren, app–app, app–RIU register maps) | WP-SW-6 | sat |
+| SW-064 flight-software interfaces, packet standard, time correlation, dictionary versioning | WP-SW-6 (WP-SW-2 rebinds the packet names) | sat |
+| SW-189 four-level allocation chain, specialised end redefinitions | WP-SW-6 probe | sat (finding F-SW602) |
+| SW-193 interfaces with ≥ 3 ends | WP-SW-6 probe and in-model topics | sat (finding F-SW601) |
+| SW-247 TI-02x reservation and `IcdRegister` software rows | WP-SW-6 | sat |
+| SW-255 coverage and findings files | each software package | sat for WP-SW-1, WP-SW-6 |

@@ -10,23 +10,25 @@ package TethysIcdDocuments {
 
     // ---- queries over the ICD package ----------------------------------------------------
     calc def IcdRegister :> Query {
-        doc /* One row per ICD class in TethysIcds: name and documentation. */
+        doc /* One row per ICD class in TethysIcds and in TethysSoftwareIcds (the software ICDs,
+             * TI-02x): name and documentation. */
         Project(
-            source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysIcds")), type = "InterfaceDefinition"),
+            source = WhereType(source = OwnedElements(source = (Named(qualifiedName = "TethysIcds"), Named(qualifiedName = "TethysSoftwareIcds"))), type = "InterfaceDefinition"),
             properties = ("name", "documentation")
         )
     }
     calc def IcdRequirements :> Query {
-        doc /* The interface requirements of TethysIcds. */
+        doc /* The interface requirements of TethysIcds and TethysSoftwareIcds. */
         Project(
-            source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysIcds")), type = "RequirementUsage"),
+            source = WhereType(source = OwnedElements(source = (Named(qualifiedName = "TethysIcds"), Named(qualifiedName = "TethysSoftwareIcds"))), type = "RequirementUsage"),
             properties = ("name", "documentation")
         )
     }
     calc def IcdVerifications :> Query {
-        doc /* The verification cases of TethysIcds with the ICD document each covers. */
+        doc /* The verification cases of TethysIcds and TethysSoftwareIcds with the ICD document
+             * each covers. */
         Project(
-            source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysIcds")), type = "VerificationCaseUsage"),
+            source = WhereType(source = OwnedElements(source = (Named(qualifiedName = "TethysIcds"), Named(qualifiedName = "TethysSoftwareIcds"))), type = "VerificationCaseUsage"),
             properties = ("name", "documentation")
         )
     }
@@ -58,7 +60,7 @@ package TethysIcdDocuments {
              * verification cases that close them. */
         :>> title = "Tethys Retrieval interface control document register";
         part scope : Paragraph {
-            :>> text = "One interface control document per TethysInterfaces interface definition, each specialising its interface def with the parameters both sides must agree on, bound to both ends, under the control authority its InterfaceControl metadata names.";
+            :>> text = "One interface control document per TethysInterfaces interface definition, each specialising its interface def with the parameters both sides must agree on, bound to both ends, under the control authority its InterfaceControl metadata names; the software ICDs (TI-02x) of TethysSoftwareIcds profile the packet and data-bus interfaces down to message, frame and register level.";
         }
         part classes : Section {
             :>> title = "ICD classes";

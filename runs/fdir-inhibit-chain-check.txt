@@ -30,6 +30,8 @@
 ✓ package TethysFdir
 ✓ package TethysFlightSoftware
 ✓ package TethysFlightBehaviour
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
 ✓ package TethysTrades
 ✓ package TethysMonteCarlo

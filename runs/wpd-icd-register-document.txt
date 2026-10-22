@@ -1,4 +1,4 @@
-loaded 52 files:
+loaded 54 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -31,6 +31,8 @@ loaded 52 files:
   model/62-fdir.sysml
   model/63-flight-software.sysml
   model/65-flight-behaviour.sysml
+  model/68-software-icds-tooling.sysml
+  model/68-software-icds.sysml
   model/70-analyses.sysml
   model/71-trades.sysml
   model/72-montecarlo.sysml
@@ -83,6 +85,8 @@ loaded 52 files:
 ✓ package TethysFdir
 ✓ package TethysFlightSoftware
 ✓ package TethysFlightBehaviour
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
 ✓ package TethysTrades
 ✓ package TethysMonteCarlo
@@ -105,7 +109,7 @@ loaded 52 files:
 ✓ package TethysHouseRules
 # Tethys Retrieval interface control document register
 
-One interface control document per TethysInterfaces interface definition, each specialising its interface def with the parameters both sides must agree on, bound to both ends, under the control authority its InterfaceControl metadata names.
+One interface control document per TethysInterfaces interface definition, each specialising its interface def with the parameters both sides must agree on, bound to both ends, under the control authority its InterfaceControl metadata names; the software ICDs (TI-02x) of TethysSoftwareIcds profile the packet and data-bus interfaces down to message, frame and register level.
 
 ## ICD classes
 
@@ -127,6 +131,12 @@ One interface control document per TethysInterfaces interface definition, each s
 | InspectorDispenserIcd | Argent ↔ Wren mechanical: the dispenser rails, preload, release spring and the<br>ejection velocity; connected over the structure ports the backbone exposes. |
 | InspectorThermalIcd | Argent ↔ Wren thermal while stowed: the dispenser keeps Wren's battery above its<br>survival temperature with heat conducted through the rails. |
 | PropellantFeedIcd | Tank ↔ ground fill-and-drain for xenon and hydrazine: fill pressure, flow rate<br>and the mass loaded. |
+| FanoutTopic | One message type from its publisher to two subscribers: a three-ended interface,<br>which the standard permits for any interface not typed by BinaryInterface. |
+| BroadcastTopic | One message type from its publisher to three subscribers: a four-ended interface. |
+| OnBoardBusProtocolIcd | The AABP-1 protocol between the software bus controller in the board support<br>package and each remote terminal on the on-board data bus: frame layout,<br>addressing, the time-slot schedule within one polling period and the handling of<br>check failures. The bus electrical and rate figures are those of TI-013. |
+| SpaceLinkProfileIcd | The MLS-2 profile of the TI-010 packet interface between the telecom application<br>and the Meridian packet gateway: CCSDS Space Packets with a time-code secondary<br>header, carried in fixed-length transfer frames on eight virtual channels, with a<br>rate set per tug mode and a safe rate set that every mode falls back to. The RF<br>carrier beneath it is TI-003. |
+| InspectorRelaySoftwareIcd | The software profile of the proximity relay between the inspector-handling<br>application and Wren: AABP-1 frames tunnelled over the TI-004 GMSK link, the<br>identifier block the relayed inspector packets use, the store-and-forward depth<br>on the tug and the acknowledgement rules. |
+| RemoteInterfaceUnitRegisterIcd | The register-level ICD between the remote-interface-unit driver of the board<br>support package and each remote interface unit: the register access frame AABP-1<br>carries, the address and data widths, and the two register maps. |
 
 ## Interface requirements
 
@@ -145,6 +155,10 @@ One interface control document per TethysInterfaces interface definition, each s
 | propellantFeedConformance | Both fill-and-drain interfaces shall meet ICD-009. |
 | packetConformance | Flight software and the operations centre shall exchange only packets the<br>dictionary defines, per TCD-010. |
 | internalBusConformance | Every subsystem shall meet ICD-011 to ICD-014 on its power, data and thermal<br>interfaces. |
+| busProtocolConformance | The board support package and every remote terminal shall conform to SCD-020:<br>AABP-1 frames of at most 1 024 B with an 8 B header and a 16-bit checksum, 32<br>addresses, 64 schedule slots per 125 ms polling period, two retries before a<br>fault is raised. |
+| spaceLinkProfileConformance | The telecom application and the Meridian packet gateway shall conform to<br>SCD-021: CCSDS Space Packets with a 10 B time-code secondary header in 1 115 B<br>transfer frames on eight virtual channels, the rate set of the current tug mode,<br>and the 2 000 bit/s safe rate set in safe and abort-hold modes. |
+| relayProfileConformance | The inspector-handling application and Wren shall conform to SCD-022: AABP-1<br>frames tunnelled over the proximity link, identifiers 128–159, acknowledgement<br>within 2 s, three retries, 200 MB store-and-forward on the tug. |
+| registerMapConformance | The remote-interface-unit driver and both remote interface units shall conform<br>to SCD-023: 8-bit register addresses, 16-bit data words, the register maps of the<br>thermal and propulsion unit and of the mechanism unit. |
 
 ## Interface verification
 
@@ -163,3 +177,7 @@ One interface control document per TethysInterfaces interface definition, each s
 | fillAndDrainTest | Fill-and-drain flow test with the ground loading cart. |
 | packetDictionaryTest | Every dictionary command sent and every telemetry packet decoded on the flatsat. |
 | subsystemInterfaceTests | Power, data-bus and thermal interface acceptance tests on each subsystem. |
+| busProtocolTest | Bus protocol test on the avionics test bench with the flight bus controller and<br>both remote interface units. |
+| spaceLinkProfileTest | End-to-end packet test through a Meridian station to the operations centre,<br>running every rate set and the fallback to the safe rate set. |
+| relayProfileTest | Relay profile test with flight Wren on the proximity link in the anechoic<br>chamber, including a store-and-forward backlog. |
+| registerMapTest | Register read-back test of every mapped register on both remote interface units. |

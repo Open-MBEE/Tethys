@@ -1,0 +1,3 @@
+✓ package 'F-SW601-three-end-interface'
+Source / Target,'F-SW601-three-end-interface'::Node::subscribe
+'F-SW601-three-end-interface'::Node::publish,connect
