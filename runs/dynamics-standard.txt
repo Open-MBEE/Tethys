@@ -1,0 +1,41 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysHouseRules
+✓ TethysDynamics::droStability
+  closureKm = [0.0]
+  periodShownDays = [13.916245079395546]
+  objective closes: satisfied
+  standing: value (observed: 1 run under reverse)
+sysml: failed to create executor: initialize action: unsupported state-space dynamics: action droRevolution binds integrate to RungeKutta4; the runtime integrates by StateSpaceIntegration::Euler or StateSpaceIntegration::RK4
+  standing: not covered (failed to create executor: initialize action: unsupported state-space dynamics: action droRevolution binds integrate to RungeKutta4; the runtime integrates by StateSpaceIntegration::Euler or StateSpaceIntegration::RK4)
+sysml: failed to create executor: initialize action: unsupported state-space dynamics: action firstThrustArc binds integrate to RungeKutta4; the runtime integrates by StateSpaceIntegration::Euler or StateSpaceIntegration::RK4
+  standing: not covered (failed to create executor: initialize action: unsupported state-space dynamics: action firstThrustArc binds integrate to RungeKutta4; the runtime integrates by StateSpaceIntegration::Euler or StateSpaceIntegration::RK4)
+✓ Started action executor for "TethysDynamics::despinNominal"
+  State: Running
+  Tokens: 1
+✓ Action completed
+  Final state: Completed
+  Results:
+    input = ⟨132.0, 60.0, 0.020394324259558567⟩
+    momentOfInertiaKgM2 = 1674811.2392133435
+    output = ⟨6283185307.17958⟩
+    stateSpace = ⟨0.0, 7.341956733441085⟩
+    stopTime = 360 [s]
+    time = 360.0 [s]
+    timeStep = 60 [s]
+  standing: value (observed: 1 run under reverse)
+exit 2

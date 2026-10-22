@@ -1,0 +1,25 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysHouseRules
+sweep TethysAnalyses::transferNominal — 4 run(s)
+outboundDeltaVMPerS | returnDeltaVMPerS    | outboundThrustDays   | returnThrustDays    | totalThrustDays      | verdict
+--------------------+----------------------+----------------------+---------------------+----------------------+----------------------
+1500.0              | [432.9359844656203]  | [116.53611330163152] | [1017.588590059461] | [1134.1247033610925] | canReturn: satisfied
+2000.0              | [417.0981974800674]  | [154.03545065123998] | [980.0892527098525] | [1134.1247033610925] | canReturn: satisfied
+2500.0              | [401.5278305951042]  | [190.8812621310408]  | [943.2434412300516] | [1134.1247033610925] | canReturn: satisfied
+3000.0              | [386.22051119988504] | [227.0849371706269]  | [907.0397661904657] | [1134.1247033610925] | canReturn: satisfied
+  standing: table (observed: 4 rows)

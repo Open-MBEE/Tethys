@@ -9,9 +9,11 @@
 ✓ package TethysLaunch
 ✓ package TethysGround
 ✓ package TethysSystem
-✓ package TethysModes
-✓ package TethysSequence
-✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
 ✓ package TethysHouseRules
 ✓ Created instance of TethysSystem::tethysSystem
   ID: 1
