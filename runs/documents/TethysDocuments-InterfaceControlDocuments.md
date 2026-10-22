@@ -10,7 +10,10 @@ Every boundary in the mission is controlled by one interface definition in `Teth
 
 | name | documentation |
 | --- | --- |
-| TugInspectorInterface | Tug ↔ inspector before release: mechanical dispenser, umbilical and thermal. The<br>relay link takes over after release. |
+| TugInspectorInterface | Tug ↔ inspector before release, the electrical umbilical: keep-alive power,<br>checkout data and the separation signal. The stowed stack's mechanical and<br>thermal disciplines are InspectorDispenserInterface and InspectorThermalInterface,<br>each a binary interface of its own so every usage stays a two-ended connect; the<br>relay link takes over after release. |
+| InspectorDispenserInterface | Tug ↔ inspector mechanical while stowed: the dispenser rails and release<br>mechanism carrying Wren's launch loads into the tug structure. |
+| InspectorThermalInterface | Tug ↔ inspector thermal while stowed: heat conducted through the dispenser<br>rails that keeps Wren's battery above its survival temperature. |
+| PropellantFeedInterface | Tank ↔ ground fill-and-drain: the xenon and hydrazine loading lines on the pad. |
 | SpacecraftLauncherInterface | Stack ↔ launcher: adapter, loads, umbilical and separation. |
 | SpaceGroundLink | Tug ↔ ground station: X/Ka-band telemetry, telecommand and ranging. |
 | InspectorRelayLink | Inspector ↔ tug proximity link: imagery and radar data up, commands down. |
@@ -28,6 +31,27 @@ Every boundary in the mission is controlled by one interface definition in `Teth
 | --- | --- | --- |
 | TethysInterfaces::TugInspectorInterface | tugSide | TethysInterfaces::UmbilicalPort |
 | TethysInterfaces::TugInspectorInterface | inspectorSide | TethysInterfaces::UmbilicalPort |
+
+**owner: TethysInterfaces::InspectorDispenserInterface**
+
+| owner | name | type |
+| --- | --- | --- |
+| TethysInterfaces::InspectorDispenserInterface | tugSide | TethysInterfaces::MechanicalPort |
+| TethysInterfaces::InspectorDispenserInterface | inspectorSide | TethysInterfaces::MechanicalPort |
+
+**owner: TethysInterfaces::InspectorThermalInterface**
+
+| owner | name | type |
+| --- | --- | --- |
+| TethysInterfaces::InspectorThermalInterface | tugSide | TethysInterfaces::ThermalPort |
+| TethysInterfaces::InspectorThermalInterface | inspectorSide | TethysInterfaces::ThermalPort |
+
+**owner: TethysInterfaces::PropellantFeedInterface**
+
+| owner | name | type |
+| --- | --- | --- |
+| TethysInterfaces::PropellantFeedInterface | tankSide | TethysInterfaces::FluidPort |
+| TethysInterfaces::PropellantFeedInterface | groundSide | TethysInterfaces::FluidPort |
 
 **owner: TethysInterfaces::SpacecraftLauncherInterface**
 
@@ -122,7 +146,10 @@ Every boundary in the mission is controlled by one interface definition in `Teth
 | Heat | Conducted or radiated thermal power. |
 | MechanicalLoad | Quasi-static, sine, random, shock or contact load at a mechanical interface. |
 | Propellant | Pressurised propellant: xenon for the electric thrusters, hydrazine for the<br>reaction control thrusters, pressurant gas for either. |
-| TugInspectorInterface | Tug ↔ inspector before release: mechanical dispenser, umbilical and thermal. The<br>relay link takes over after release. |
+| TugInspectorInterface | Tug ↔ inspector before release, the electrical umbilical: keep-alive power,<br>checkout data and the separation signal. The stowed stack's mechanical and<br>thermal disciplines are InspectorDispenserInterface and InspectorThermalInterface,<br>each a binary interface of its own so every usage stays a two-ended connect; the<br>relay link takes over after release. |
+| InspectorDispenserInterface | Tug ↔ inspector mechanical while stowed: the dispenser rails and release<br>mechanism carrying Wren's launch loads into the tug structure. |
+| InspectorThermalInterface | Tug ↔ inspector thermal while stowed: heat conducted through the dispenser<br>rails that keeps Wren's battery above its survival temperature. |
+| PropellantFeedInterface | Tank ↔ ground fill-and-drain: the xenon and hydrazine loading lines on the pad. |
 | SpacecraftLauncherInterface | Stack ↔ launcher: adapter, loads, umbilical and separation. |
 | SpaceGroundLink | Tug ↔ ground station: X/Ka-band telemetry, telecommand and ranging. |
 | InspectorRelayLink | Inspector ↔ tug proximity link: imagery and radar data up, commands down. |
@@ -172,12 +199,14 @@ flowchart LR
 **wetMass**`")
       subgraph n4 ["`*«part»* **structure**`"]
         direction LR
+        n4.1["inspectorAttachment"]
         n5("`*«attribute»*
 **mass**`")
       end
       subgraph n6 ["`*«part»* **thermal**`"]
         direction LR
-        n6.1["power"]
+        n6.1["inspectorThermal"]
+        n6.2["power"]
         n7("`*«attribute»*
 **mass**`")
       end
@@ -253,6 +282,8 @@ flowchart LR
     end
     subgraph n33 ["`*«part»* **inspector**`"]
       direction LR
+      n33.0["carrierAttachment"]
+      n33.1["stowedThermal"]
       n34("`*«attribute»*
 **wetMass**`")
       subgraph n35 ["`*«part»* **bus**`"]
@@ -279,12 +310,14 @@ flowchart LR
   n8.0 === n11.1
   n8.0 === n13.2
   n8.0 === n15.0
-  n8.0 === n6.1
+  n8.0 === n6.2
   n8.0 === n24.1
   n8.0 === n27.1
   n8.0 === n31.0
   n8.1 === n17.1
   n8.2 === n35.1
+  n4.1 === n33.0
+  n6.1 === n33.1
   n35.0 === n13.1
   linkStyle 0 stroke-width:3px
   linkStyle 1 stroke-width:3px
@@ -296,4 +329,6 @@ flowchart LR
   linkStyle 7 stroke-width:3px
   linkStyle 8 stroke-width:3px
   linkStyle 9 stroke-width:3px
+  linkStyle 10 stroke-width:3px
+  linkStyle 11 stroke-width:3px
 ```

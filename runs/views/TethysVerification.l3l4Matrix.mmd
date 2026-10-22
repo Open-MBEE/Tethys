@@ -892,1376 +892,1380 @@ flowchart TD
   n302 --- n303
   n301 --- n302
   n300 --- n301
-      n304("`*«attribute»*
-**mass**`")
-  n300 --- n304
-      n305("`*«port»*
+      n304("`*«port»*
+**inspectorThermal**`")
+        n305("`*«item»*
+**heat**`")
+          n306("`*«attribute»*
 **power**`")
-        n306("`*«item»*
-**supply**`")
-          n307("`*«attribute»*
-**voltage**`")
-  n306 --- n307
-          n308("`*«attribute»*
-**power**`")
-  n306 --- n308
   n305 --- n306
-  n300 --- n305
-      n309("`*«port»*
-**bus**`")
-        n310("`*«item»*
-**telemetry**`")
-          n311("`*«attribute»*
-**dataRate**`")
-  n310 --- n311
-          n312("`*«attribute»*
-**volume**`")
-  n310 --- n312
-  n309 --- n310
-        n313("`*«item»*
-**telecommand**`")
-  n309 --- n313
-  n300 --- n309
-  n299 --- n300
-    n314("`*«attribute»*
-**rejection**`")
-  n299 --- n314
-    n315("`**require constraint**`")
-  n299 --- n315
-    n316("`**metadata usage**`")
-      n317("`*«attribute»*
-**method**`")
-  n316 --- n317
-      n318("`*«attribute»*
-**level**`")
-  n316 --- n318
-      n319("`*«attribute»*
-**stage**`")
-  n316 --- n319
-  n299 --- n316
-    n320("`**metadata usage**`")
-      n321("`*«attribute»*
-**owner**`")
-  n320 --- n321
-      n322("`*«attribute»*
-**status**`")
-  n320 --- n322
-  n299 --- n320
-    n323("`*«attribute»*
-**tier**`")
-  n299 --- n323
-  n324("`*«requirement»*
-**dockingLoads**`")
-    n325("`*«subject»*
-**structure**`")
-      n326("`*«port»*
-**launcherAttachment**`")
-        n327("`*«item»*
-**load**`")
-          n328("`*«attribute»*
-**quasiStaticAcceleration**`")
-  n327 --- n328
-          n329("`*«attribute»*
-**force**`")
-  n327 --- n329
-  n326 --- n327
-        n330("`*«attribute»*
-**separable**`")
-  n326 --- n330
-  n325 --- n326
-      n331("`*«port»*
-**inspectorAttachment**`")
-        n332("`*«item»*
-**load**`")
-          n333("`*«attribute»*
-**quasiStaticAcceleration**`")
-  n332 --- n333
-          n334("`*«attribute»*
-**force**`")
-  n332 --- n334
-  n331 --- n332
-        n335("`*«attribute»*
-**separable**`")
-  n331 --- n335
-  n325 --- n331
-      n336("`*«port»*
-**docking**`")
-        n337("`*«item»*
-**load**`")
-          n338("`*«attribute»*
-**quasiStaticAcceleration**`")
-  n337 --- n338
-          n339("`*«attribute»*
-**force**`")
-  n337 --- n339
-  n336 --- n337
-        n340("`*«item»*
-**transfer**`")
-          n341("`*«attribute»*
+  n304 --- n305
+  n300 --- n304
+      n307("`*«attribute»*
+**mass**`")
+  n300 --- n307
+      n308("`*«port»*
+**power**`")
+        n309("`*«item»*
+**supply**`")
+          n310("`*«attribute»*
 **voltage**`")
+  n309 --- n310
+          n311("`*«attribute»*
+**power**`")
+  n309 --- n311
+  n308 --- n309
+  n300 --- n308
+      n312("`*«port»*
+**bus**`")
+        n313("`*«item»*
+**telemetry**`")
+          n314("`*«attribute»*
+**dataRate**`")
+  n313 --- n314
+          n315("`*«attribute»*
+**volume**`")
+  n313 --- n315
+  n312 --- n313
+        n316("`*«item»*
+**telecommand**`")
+  n312 --- n316
+  n300 --- n312
+  n299 --- n300
+    n317("`*«attribute»*
+**rejection**`")
+  n299 --- n317
+    n318("`**require constraint**`")
+  n299 --- n318
+    n319("`**metadata usage**`")
+      n320("`*«attribute»*
+**method**`")
+  n319 --- n320
+      n321("`*«attribute»*
+**level**`")
+  n319 --- n321
+      n322("`*«attribute»*
+**stage**`")
+  n319 --- n322
+  n299 --- n319
+    n323("`**metadata usage**`")
+      n324("`*«attribute»*
+**owner**`")
+  n323 --- n324
+      n325("`*«attribute»*
+**status**`")
+  n323 --- n325
+  n299 --- n323
+    n326("`*«attribute»*
+**tier**`")
+  n299 --- n326
+  n327("`*«requirement»*
+**dockingLoads**`")
+    n328("`*«subject»*
+**structure**`")
+      n329("`*«port»*
+**launcherAttachment**`")
+        n330("`*«item»*
+**load**`")
+          n331("`*«attribute»*
+**quasiStaticAcceleration**`")
+  n330 --- n331
+          n332("`*«attribute»*
+**force**`")
+  n330 --- n332
+  n329 --- n330
+        n333("`*«attribute»*
+**separable**`")
+  n329 --- n333
+  n328 --- n329
+      n334("`*«port»*
+**inspectorAttachment**`")
+        n335("`*«item»*
+**load**`")
+          n336("`*«attribute»*
+**quasiStaticAcceleration**`")
+  n335 --- n336
+          n337("`*«attribute»*
+**force**`")
+  n335 --- n337
+  n334 --- n335
+        n338("`*«attribute»*
+**separable**`")
+  n334 --- n338
+  n328 --- n334
+      n339("`*«port»*
+**docking**`")
+        n340("`*«item»*
+**load**`")
+          n341("`*«attribute»*
+**quasiStaticAcceleration**`")
   n340 --- n341
           n342("`*«attribute»*
-**power**`")
+**force**`")
   n340 --- n342
-  n336 --- n340
+  n339 --- n340
         n343("`*«item»*
-**data**`")
+**transfer**`")
           n344("`*«attribute»*
-**dataRate**`")
+**voltage**`")
   n343 --- n344
           n345("`*«attribute»*
-**volume**`")
+**power**`")
   n343 --- n345
-  n336 --- n343
-  n325 --- n336
-      n346("`*«attribute»*
-**mass**`")
-  n325 --- n346
-      n347("`*«port»*
-**power**`")
-        n348("`*«item»*
-**supply**`")
-          n349("`*«attribute»*
-**voltage**`")
-  n348 --- n349
-          n350("`*«attribute»*
-**power**`")
-  n348 --- n350
-  n347 --- n348
-  n325 --- n347
-      n351("`*«port»*
-**bus**`")
-        n352("`*«item»*
-**telemetry**`")
-          n353("`*«attribute»*
+  n339 --- n343
+        n346("`*«item»*
+**data**`")
+          n347("`*«attribute»*
 **dataRate**`")
-  n352 --- n353
-          n354("`*«attribute»*
+  n346 --- n347
+          n348("`*«attribute»*
 **volume**`")
-  n352 --- n354
+  n346 --- n348
+  n339 --- n346
+  n328 --- n339
+      n349("`*«attribute»*
+**mass**`")
+  n328 --- n349
+      n350("`*«port»*
+**power**`")
+        n351("`*«item»*
+**supply**`")
+          n352("`*«attribute»*
+**voltage**`")
   n351 --- n352
+          n353("`*«attribute»*
+**power**`")
+  n351 --- n353
+  n350 --- n351
+  n328 --- n350
+      n354("`*«port»*
+**bus**`")
         n355("`*«item»*
+**telemetry**`")
+          n356("`*«attribute»*
+**dataRate**`")
+  n355 --- n356
+          n357("`*«attribute»*
+**volume**`")
+  n355 --- n357
+  n354 --- n355
+        n358("`*«item»*
 **telecommand**`")
-  n351 --- n355
-  n325 --- n351
-  n324 --- n325
-    n356("`*«attribute»*
+  n354 --- n358
+  n328 --- n354
+  n327 --- n328
+    n359("`*«attribute»*
 **dockingLoad**`")
-  n324 --- n356
-    n357("`**require constraint**`")
-  n324 --- n357
-    n358("`**metadata usage**`")
-      n359("`*«attribute»*
+  n327 --- n359
+    n360("`**require constraint**`")
+  n327 --- n360
+    n361("`**metadata usage**`")
+      n362("`*«attribute»*
 **method**`")
-  n358 --- n359
-      n360("`*«attribute»*
-**level**`")
-  n358 --- n360
-      n361("`*«attribute»*
-**stage**`")
-  n358 --- n361
-  n324 --- n358
-    n362("`**metadata usage**`")
+  n361 --- n362
       n363("`*«attribute»*
-**owner**`")
-  n362 --- n363
+**level**`")
+  n361 --- n363
       n364("`*«attribute»*
-**status**`")
-  n362 --- n364
-  n324 --- n362
+**stage**`")
+  n361 --- n364
+  n327 --- n361
     n365("`**metadata usage**`")
       n366("`*«attribute»*
-**text**`")
+**owner**`")
   n365 --- n366
-  n324 --- n365
-    n367("`*«attribute»*
+      n367("`*«attribute»*
+**status**`")
+  n365 --- n367
+  n327 --- n365
+    n368("`**metadata usage**`")
+      n369("`*«attribute»*
+**text**`")
+  n368 --- n369
+  n327 --- n368
+    n370("`*«attribute»*
 **tier**`")
-  n324 --- n367
-  n368("`*«requirement»*
+  n327 --- n370
+  n371("`*«requirement»*
 **inspectorSeparation**`")
-    n369("`*«subject»*
+    n372("`*«subject»*
 **structure**`")
-      n370("`*«port»*
+      n373("`*«port»*
 **launcherAttachment**`")
-        n371("`*«item»*
+        n374("`*«item»*
 **load**`")
-          n372("`*«attribute»*
+          n375("`*«attribute»*
 **quasiStaticAcceleration**`")
-  n371 --- n372
-          n373("`*«attribute»*
+  n374 --- n375
+          n376("`*«attribute»*
 **force**`")
-  n371 --- n373
-  n370 --- n371
-        n374("`*«attribute»*
+  n374 --- n376
+  n373 --- n374
+        n377("`*«attribute»*
 **separable**`")
-  n370 --- n374
-  n369 --- n370
-      n375("`*«port»*
+  n373 --- n377
+  n372 --- n373
+      n378("`*«port»*
 **inspectorAttachment**`")
-        n376("`*«item»*
+        n379("`*«item»*
 **load**`")
-          n377("`*«attribute»*
+          n380("`*«attribute»*
 **quasiStaticAcceleration**`")
-  n376 --- n377
-          n378("`*«attribute»*
+  n379 --- n380
+          n381("`*«attribute»*
 **force**`")
-  n376 --- n378
-  n375 --- n376
-        n379("`*«attribute»*
+  n379 --- n381
+  n378 --- n379
+        n382("`*«attribute»*
 **separable**`")
-  n375 --- n379
-  n369 --- n375
-      n380("`*«port»*
+  n378 --- n382
+  n372 --- n378
+      n383("`*«port»*
 **docking**`")
-        n381("`*«item»*
-**load**`")
-          n382("`*«attribute»*
-**quasiStaticAcceleration**`")
-  n381 --- n382
-          n383("`*«attribute»*
-**force**`")
-  n381 --- n383
-  n380 --- n381
         n384("`*«item»*
-**transfer**`")
+**load**`")
           n385("`*«attribute»*
-**voltage**`")
+**quasiStaticAcceleration**`")
   n384 --- n385
           n386("`*«attribute»*
-**power**`")
+**force**`")
   n384 --- n386
-  n380 --- n384
+  n383 --- n384
         n387("`*«item»*
-**data**`")
+**transfer**`")
           n388("`*«attribute»*
-**dataRate**`")
+**voltage**`")
   n387 --- n388
           n389("`*«attribute»*
-**volume**`")
+**power**`")
   n387 --- n389
-  n380 --- n387
-  n369 --- n380
-      n390("`*«attribute»*
-**mass**`")
-  n369 --- n390
-      n391("`*«port»*
-**power**`")
-        n392("`*«item»*
-**supply**`")
-          n393("`*«attribute»*
-**voltage**`")
-  n392 --- n393
-          n394("`*«attribute»*
-**power**`")
-  n392 --- n394
-  n391 --- n392
-  n369 --- n391
-      n395("`*«port»*
-**bus**`")
-        n396("`*«item»*
-**telemetry**`")
-          n397("`*«attribute»*
+  n383 --- n387
+        n390("`*«item»*
+**data**`")
+          n391("`*«attribute»*
 **dataRate**`")
-  n396 --- n397
-          n398("`*«attribute»*
+  n390 --- n391
+          n392("`*«attribute»*
 **volume**`")
-  n396 --- n398
+  n390 --- n392
+  n383 --- n390
+  n372 --- n383
+      n393("`*«attribute»*
+**mass**`")
+  n372 --- n393
+      n394("`*«port»*
+**power**`")
+        n395("`*«item»*
+**supply**`")
+          n396("`*«attribute»*
+**voltage**`")
   n395 --- n396
+          n397("`*«attribute»*
+**power**`")
+  n395 --- n397
+  n394 --- n395
+  n372 --- n394
+      n398("`*«port»*
+**bus**`")
         n399("`*«item»*
-**telecommand**`")
-  n395 --- n399
-  n369 --- n395
-  n368 --- n369
-    n400("`*«attribute»*
-**separationSpeed**`")
-  n368 --- n400
-    n401("`**require constraint**`")
-  n368 --- n401
-    n402("`**metadata usage**`")
-      n403("`*«attribute»*
-**method**`")
-  n402 --- n403
-      n404("`*«attribute»*
-**level**`")
-  n402 --- n404
-      n405("`*«attribute»*
-**stage**`")
-  n402 --- n405
-  n368 --- n402
-    n406("`**metadata usage**`")
-      n407("`*«attribute»*
-**owner**`")
-  n406 --- n407
-      n408("`*«attribute»*
-**status**`")
-  n406 --- n408
-  n368 --- n406
-    n409("`*«attribute»*
-**tier**`")
-  n368 --- n409
-  n410("`*«requirement»*
-**spinStateSensing**`")
-    n411("`*«subject»*
-**sensors**`")
-      n412("`*«attribute»*
-**mass**`")
-  n411 --- n412
-      n413("`*«port»*
-**power**`")
-        n414("`*«item»*
-**supply**`")
-          n415("`*«attribute»*
-**voltage**`")
-  n414 --- n415
-          n416("`*«attribute»*
-**power**`")
-  n414 --- n416
-  n413 --- n414
-  n411 --- n413
-      n417("`*«port»*
-**bus**`")
-        n418("`*«item»*
 **telemetry**`")
-          n419("`*«attribute»*
+          n400("`*«attribute»*
 **dataRate**`")
-  n418 --- n419
-          n420("`*«attribute»*
+  n399 --- n400
+          n401("`*«attribute»*
 **volume**`")
-  n418 --- n420
-  n417 --- n418
-        n421("`*«item»*
+  n399 --- n401
+  n398 --- n399
+        n402("`*«item»*
 **telecommand**`")
-  n417 --- n421
-  n411 --- n417
-  n410 --- n411
-    n422("`*«attribute»*
-**periodUncertainty**`")
-  n410 --- n422
-    n423("`**require constraint**`")
-  n410 --- n423
-    n424("`**metadata usage**`")
-      n425("`*«attribute»*
+  n398 --- n402
+  n372 --- n398
+  n371 --- n372
+    n403("`*«attribute»*
+**separationSpeed**`")
+  n371 --- n403
+    n404("`**require constraint**`")
+  n371 --- n404
+    n405("`**metadata usage**`")
+      n406("`*«attribute»*
 **method**`")
-  n424 --- n425
-      n426("`*«attribute»*
+  n405 --- n406
+      n407("`*«attribute»*
 **level**`")
-  n424 --- n426
-      n427("`*«attribute»*
+  n405 --- n407
+      n408("`*«attribute»*
 **stage**`")
-  n424 --- n427
-  n410 --- n424
-    n428("`**metadata usage**`")
-      n429("`*«attribute»*
+  n405 --- n408
+  n371 --- n405
+    n409("`**metadata usage**`")
+      n410("`*«attribute»*
 **owner**`")
-  n428 --- n429
-      n430("`*«attribute»*
+  n409 --- n410
+      n411("`*«attribute»*
 **status**`")
-  n428 --- n430
-  n410 --- n428
-    n431("`*«attribute»*
+  n409 --- n411
+  n371 --- n409
+    n412("`*«attribute»*
 **tier**`")
-  n410 --- n431
-  n432("`*«requirement»*
-**imagingResolution**`")
-    n433("`*«subject»*
-**payload**`")
-      n434("`*«attribute»*
+  n371 --- n412
+  n413("`*«requirement»*
+**spinStateSensing**`")
+    n414("`*«subject»*
+**sensors**`")
+      n415("`*«attribute»*
 **mass**`")
-  n433 --- n434
-  n432 --- n433
-    n435("`*«attribute»*
-**groundSampleDistance**`")
-  n432 --- n435
-    n436("`**require constraint**`")
-  n432 --- n436
-    n437("`**metadata usage**`")
-      n438("`*«attribute»*
-**method**`")
-  n437 --- n438
-      n439("`*«attribute»*
-**level**`")
-  n437 --- n439
-      n440("`*«attribute»*
-**stage**`")
-  n437 --- n440
-  n432 --- n437
-    n441("`**metadata usage**`")
-      n442("`*«attribute»*
-**owner**`")
-  n441 --- n442
-      n443("`*«attribute»*
-**status**`")
-  n441 --- n443
-  n432 --- n441
-    n444("`*«attribute»*
-**tier**`")
-  n432 --- n444
-  n445("`*«requirement»*
-**circumnavigationPropellant**`")
-    n446("`*«subject»*
-**propulsion**`")
-      n447("`*«attribute»*
-**mass**`")
-  n446 --- n447
-      n448("`*«attribute»*
-**propellantMass**`")
-  n446 --- n448
-  n445 --- n446
-    n449("`*«attribute»*
-**deltaV**`")
-  n445 --- n449
-    n450("`**require constraint**`")
-  n445 --- n450
-    n451("`**metadata usage**`")
-      n452("`*«attribute»*
-**method**`")
-  n451 --- n452
-      n453("`*«attribute»*
-**level**`")
-  n451 --- n453
-      n454("`*«attribute»*
-**stage**`")
-  n451 --- n454
-  n445 --- n451
-    n455("`**metadata usage**`")
-      n456("`*«attribute»*
-**owner**`")
-  n455 --- n456
-      n457("`*«attribute»*
-**status**`")
-  n455 --- n457
-  n445 --- n455
-    n458("`*«attribute»*
-**tier**`")
-  n445 --- n458
-  n459("`*«requirement»*
-**TethysRequirementsL3L4::keepAlivePower**`")
-    n460("`*«subject»*
-**bus**`")
-      n461("`*«attribute»*
-**mass**`")
-  n460 --- n461
-      n462("`*«port»*
-**proximity**`")
-        n463("`*«item»*
-**carrier**`")
-          n464("`*«attribute»*
-**frequency**`")
-  n463 --- n464
-          n465("`*«attribute»*
-**eirp**`")
-  n463 --- n465
-  n462 --- n463
-  n460 --- n462
-      n466("`*«port»*
-**umbilical**`")
-        n467("`*«item»*
-**keepAlive**`")
-          n468("`*«attribute»*
-**voltage**`")
-  n467 --- n468
-          n469("`*«attribute»*
+  n414 --- n415
+      n416("`*«port»*
 **power**`")
-  n467 --- n469
-  n466 --- n467
-        n470("`*«item»*
-**checkout**`")
-          n471("`*«attribute»*
+        n417("`*«item»*
+**supply**`")
+          n418("`*«attribute»*
+**voltage**`")
+  n417 --- n418
+          n419("`*«attribute»*
+**power**`")
+  n417 --- n419
+  n416 --- n417
+  n414 --- n416
+      n420("`*«port»*
+**bus**`")
+        n421("`*«item»*
+**telemetry**`")
+          n422("`*«attribute»*
 **dataRate**`")
+  n421 --- n422
+          n423("`*«attribute»*
+**volume**`")
+  n421 --- n423
+  n420 --- n421
+        n424("`*«item»*
+**telecommand**`")
+  n420 --- n424
+  n414 --- n420
+  n413 --- n414
+    n425("`*«attribute»*
+**periodUncertainty**`")
+  n413 --- n425
+    n426("`**require constraint**`")
+  n413 --- n426
+    n427("`**metadata usage**`")
+      n428("`*«attribute»*
+**method**`")
+  n427 --- n428
+      n429("`*«attribute»*
+**level**`")
+  n427 --- n429
+      n430("`*«attribute»*
+**stage**`")
+  n427 --- n430
+  n413 --- n427
+    n431("`**metadata usage**`")
+      n432("`*«attribute»*
+**owner**`")
+  n431 --- n432
+      n433("`*«attribute»*
+**status**`")
+  n431 --- n433
+  n413 --- n431
+    n434("`*«attribute»*
+**tier**`")
+  n413 --- n434
+  n435("`*«requirement»*
+**imagingResolution**`")
+    n436("`*«subject»*
+**payload**`")
+      n437("`*«attribute»*
+**mass**`")
+  n436 --- n437
+  n435 --- n436
+    n438("`*«attribute»*
+**groundSampleDistance**`")
+  n435 --- n438
+    n439("`**require constraint**`")
+  n435 --- n439
+    n440("`**metadata usage**`")
+      n441("`*«attribute»*
+**method**`")
+  n440 --- n441
+      n442("`*«attribute»*
+**level**`")
+  n440 --- n442
+      n443("`*«attribute»*
+**stage**`")
+  n440 --- n443
+  n435 --- n440
+    n444("`**metadata usage**`")
+      n445("`*«attribute»*
+**owner**`")
+  n444 --- n445
+      n446("`*«attribute»*
+**status**`")
+  n444 --- n446
+  n435 --- n444
+    n447("`*«attribute»*
+**tier**`")
+  n435 --- n447
+  n448("`*«requirement»*
+**circumnavigationPropellant**`")
+    n449("`*«subject»*
+**propulsion**`")
+      n450("`*«attribute»*
+**mass**`")
+  n449 --- n450
+      n451("`*«attribute»*
+**propellantMass**`")
+  n449 --- n451
+  n448 --- n449
+    n452("`*«attribute»*
+**deltaV**`")
+  n448 --- n452
+    n453("`**require constraint**`")
+  n448 --- n453
+    n454("`**metadata usage**`")
+      n455("`*«attribute»*
+**method**`")
+  n454 --- n455
+      n456("`*«attribute»*
+**level**`")
+  n454 --- n456
+      n457("`*«attribute»*
+**stage**`")
+  n454 --- n457
+  n448 --- n454
+    n458("`**metadata usage**`")
+      n459("`*«attribute»*
+**owner**`")
+  n458 --- n459
+      n460("`*«attribute»*
+**status**`")
+  n458 --- n460
+  n448 --- n458
+    n461("`*«attribute»*
+**tier**`")
+  n448 --- n461
+  n462("`*«requirement»*
+**TethysRequirementsL3L4::keepAlivePower**`")
+    n463("`*«subject»*
+**bus**`")
+      n464("`*«attribute»*
+**mass**`")
+  n463 --- n464
+      n465("`*«port»*
+**proximity**`")
+        n466("`*«item»*
+**carrier**`")
+          n467("`*«attribute»*
+**frequency**`")
+  n466 --- n467
+          n468("`*«attribute»*
+**eirp**`")
+  n466 --- n468
+  n465 --- n466
+  n463 --- n465
+      n469("`*«port»*
+**umbilical**`")
+        n470("`*«item»*
+**keepAlive**`")
+          n471("`*«attribute»*
+**voltage**`")
   n470 --- n471
           n472("`*«attribute»*
-**volume**`")
-  n470 --- n472
-  n466 --- n470
-        n473("`*«attribute»*
-**separationSignal**`")
-  n466 --- n473
-  n460 --- n466
-  n459 --- n460
-    n474("`*«attribute»*
-**keepAlivePower**`")
-  n459 --- n474
-    n475("`**require constraint**`")
-  n459 --- n475
-    n476("`**metadata usage**`")
-      n477("`*«attribute»*
-**method**`")
-  n476 --- n477
-      n478("`*«attribute»*
-**level**`")
-  n476 --- n478
-      n479("`*«attribute»*
-**stage**`")
-  n476 --- n479
-  n459 --- n476
-    n480("`**metadata usage**`")
-      n481("`*«attribute»*
-**owner**`")
-  n480 --- n481
-      n482("`*«attribute»*
-**status**`")
-  n480 --- n482
-  n459 --- n480
-    n483("`*«attribute»*
-**tier**`")
-  n459 --- n483
-  n484("`*«requirement»*
-**inspectorMass**`")
-    n485("`*«subject»*
-**inspector**`")
-      n486("`*«attribute»*
-**wetMass**`")
-  n485 --- n486
-      n487("`*«part»*
-**bus**`")
-        n488("`*«attribute»*
-**mass**`")
-  n487 --- n488
-        n489("`*«port»*
-**proximity**`")
-          n490("`*«item»*
-**carrier**`")
-            n491("`*«attribute»*
-**frequency**`")
-  n490 --- n491
-            n492("`*«attribute»*
-**eirp**`")
-  n490 --- n492
-  n489 --- n490
-  n487 --- n489
-        n493("`*«port»*
-**umbilical**`")
-          n494("`*«item»*
-**keepAlive**`")
-            n495("`*«attribute»*
-**voltage**`")
-  n494 --- n495
-            n496("`*«attribute»*
 **power**`")
-  n494 --- n496
-  n493 --- n494
-          n497("`*«item»*
+  n470 --- n472
+  n469 --- n470
+        n473("`*«item»*
 **checkout**`")
-            n498("`*«attribute»*
+          n474("`*«attribute»*
 **dataRate**`")
+  n473 --- n474
+          n475("`*«attribute»*
+**volume**`")
+  n473 --- n475
+  n469 --- n473
+        n476("`*«attribute»*
+**separationSignal**`")
+  n469 --- n476
+  n463 --- n469
+  n462 --- n463
+    n477("`*«attribute»*
+**keepAlivePower**`")
+  n462 --- n477
+    n478("`**require constraint**`")
+  n462 --- n478
+    n479("`**metadata usage**`")
+      n480("`*«attribute»*
+**method**`")
+  n479 --- n480
+      n481("`*«attribute»*
+**level**`")
+  n479 --- n481
+      n482("`*«attribute»*
+**stage**`")
+  n479 --- n482
+  n462 --- n479
+    n483("`**metadata usage**`")
+      n484("`*«attribute»*
+**owner**`")
+  n483 --- n484
+      n485("`*«attribute»*
+**status**`")
+  n483 --- n485
+  n462 --- n483
+    n486("`*«attribute»*
+**tier**`")
+  n462 --- n486
+  n487("`*«requirement»*
+**inspectorMass**`")
+    n488("`*«subject»*
+**inspector**`")
+      n489("`*«attribute»*
+**wetMass**`")
+  n488 --- n489
+      n490("`*«part»*
+**bus**`")
+        n491("`*«attribute»*
+**mass**`")
+  n490 --- n491
+        n492("`*«port»*
+**proximity**`")
+          n493("`*«item»*
+**carrier**`")
+            n494("`*«attribute»*
+**frequency**`")
+  n493 --- n494
+            n495("`*«attribute»*
+**eirp**`")
+  n493 --- n495
+  n492 --- n493
+  n490 --- n492
+        n496("`*«port»*
+**umbilical**`")
+          n497("`*«item»*
+**keepAlive**`")
+            n498("`*«attribute»*
+**voltage**`")
   n497 --- n498
             n499("`*«attribute»*
-**volume**`")
+**power**`")
   n497 --- n499
-  n493 --- n497
-          n500("`*«attribute»*
-**separationSignal**`")
-  n493 --- n500
-  n487 --- n493
-  n485 --- n487
-      n501("`*«part»*
-**payload**`")
-        n502("`*«attribute»*
-**mass**`")
-  n501 --- n502
-  n485 --- n501
-      n503("`*«part»*
-**propulsion**`")
-        n504("`*«attribute»*
-**mass**`")
-  n503 --- n504
-        n505("`*«attribute»*
-**propellantMass**`")
-  n503 --- n505
-  n485 --- n503
-      n506("`*«port»*
-**carrierAttachment**`")
-        n507("`*«item»*
-**load**`")
-          n508("`*«attribute»*
-**quasiStaticAcceleration**`")
-  n507 --- n508
-          n509("`*«attribute»*
-**force**`")
-  n507 --- n509
-  n506 --- n507
-        n510("`*«attribute»*
-**separable**`")
-  n506 --- n510
-  n485 --- n506
-  n484 --- n485
-    n511("`**require constraint**`")
-  n484 --- n511
-    n512("`**metadata usage**`")
-      n513("`*«attribute»*
-**method**`")
-  n512 --- n513
-      n514("`*«attribute»*
-**level**`")
-  n512 --- n514
-      n515("`*«attribute»*
-**stage**`")
-  n512 --- n515
-  n484 --- n512
-    n516("`**metadata usage**`")
-      n517("`*«attribute»*
-**owner**`")
-  n516 --- n517
-      n518("`*«attribute»*
-**status**`")
-  n516 --- n518
-  n484 --- n516
-    n519("`*«attribute»*
-**tier**`")
-  n484 --- n519
-  n520("`*«requirement»*
-**dopplerForMass**`")
-    n521("`*«subject»*
-**bus**`")
-      n522("`*«attribute»*
-**mass**`")
-  n521 --- n522
-      n523("`*«port»*
-**proximity**`")
-        n524("`*«item»*
-**carrier**`")
-          n525("`*«attribute»*
-**frequency**`")
-  n524 --- n525
-          n526("`*«attribute»*
-**eirp**`")
-  n524 --- n526
-  n523 --- n524
-  n521 --- n523
-      n527("`*«port»*
-**umbilical**`")
-        n528("`*«item»*
-**keepAlive**`")
-          n529("`*«attribute»*
-**voltage**`")
-  n528 --- n529
-          n530("`*«attribute»*
-**power**`")
-  n528 --- n530
-  n527 --- n528
-        n531("`*«item»*
+  n496 --- n497
+          n500("`*«item»*
 **checkout**`")
-          n532("`*«attribute»*
+            n501("`*«attribute»*
 **dataRate**`")
-  n531 --- n532
-          n533("`*«attribute»*
+  n500 --- n501
+            n502("`*«attribute»*
 **volume**`")
-  n531 --- n533
-  n527 --- n531
-        n534("`*«attribute»*
+  n500 --- n502
+  n496 --- n500
+          n503("`*«attribute»*
 **separationSignal**`")
-  n527 --- n534
-  n521 --- n527
-  n520 --- n521
-    n535("`*«attribute»*
-**dopplerAccuracy**`")
-  n520 --- n535
-    n536("`**require constraint**`")
-  n520 --- n536
-    n537("`**metadata usage**`")
-      n538("`*«attribute»*
-**method**`")
-  n537 --- n538
-      n539("`*«attribute»*
-**level**`")
-  n537 --- n539
-      n540("`*«attribute»*
-**stage**`")
-  n537 --- n540
-  n520 --- n537
-    n541("`**metadata usage**`")
-      n542("`*«attribute»*
-**owner**`")
-  n541 --- n542
-      n543("`*«attribute»*
-**status**`")
-  n541 --- n543
-  n520 --- n541
-    n544("`*«attribute»*
-**tier**`")
-  n520 --- n544
-  n545("`*«requirement»*
-**stationAperture**`")
-    n546("`*«subject»*
-**station**`")
-      n547("`*«attribute»*
-**antennaDiameter**`")
-  n546 --- n547
-      n548("`*«attribute»*
-**longitude**`")
-  n546 --- n548
-      n549("`*«port»*
-**uplinkDownlink**`")
-        n550("`*«item»*
-**carrier**`")
-          n551("`*«attribute»*
-**frequency**`")
-  n550 --- n551
-          n552("`*«attribute»*
-**eirp**`")
-  n550 --- n552
-  n549 --- n550
-  n546 --- n549
-  n545 --- n546
-    n553("`*«attribute»*
-**minimumAperture**`")
-  n545 --- n553
-    n554("`*«attribute»*
-**noiseTemperature**`")
-  n545 --- n554
-    n555("`**require constraint**`")
-  n545 --- n555
-    n556("`**metadata usage**`")
-      n557("`*«attribute»*
-**method**`")
-  n556 --- n557
-      n558("`*«attribute»*
-**level**`")
-  n556 --- n558
-      n559("`*«attribute»*
-**stage**`")
-  n556 --- n559
-  n545 --- n556
-    n560("`**metadata usage**`")
-      n561("`*«attribute»*
-**owner**`")
-  n560 --- n561
-      n562("`*«attribute»*
-**status**`")
-  n560 --- n562
-  n545 --- n560
-    n563("`*«attribute»*
-**tier**`")
-  n545 --- n563
-  n564("`*«requirement»*
-**stationSpacing**`")
-    n565("`*«subject»*
-**network**`")
-      n566("`*«part»*
-**stations**`")
-        n567("`*«attribute»*
-**antennaDiameter**`")
-  n566 --- n567
-        n568("`*«attribute»*
-**longitude**`")
-  n566 --- n568
-        n569("`*«port»*
-**uplinkDownlink**`")
-          n570("`*«item»*
-**carrier**`")
-            n571("`*«attribute»*
-**frequency**`")
-  n570 --- n571
-            n572("`*«attribute»*
-**eirp**`")
-  n570 --- n572
-  n569 --- n570
-  n566 --- n569
-  n565 --- n566
-      n573("`*«part»*
-**moc**`")
-  n565 --- n573
-      n574("`*«part»*
-**fdf**`")
-  n565 --- n574
-      n575("`*«part»*
-**sds**`")
-  n565 --- n575
-  n564 --- n565
-    n576("`**require constraint**`")
-  n564 --- n576
-    n577("`**metadata usage**`")
-      n578("`*«attribute»*
-**method**`")
-  n577 --- n578
-      n579("`*«attribute»*
-**level**`")
-  n577 --- n579
-      n580("`*«attribute»*
-**stage**`")
-  n577 --- n580
-  n564 --- n577
-    n581("`**metadata usage**`")
-      n582("`*«attribute»*
-**owner**`")
-  n581 --- n582
-      n583("`*«attribute»*
-**status**`")
-  n581 --- n583
-  n564 --- n581
-    n584("`*«attribute»*
-**tier**`")
-  n564 --- n584
-  n585("`*«requirement»*
-**rangingAccuracy**`")
-    n586("`*«subject»*
-**fdf**`")
-  n585 --- n586
-    n587("`*«attribute»*
-**rangeAccuracy**`")
-  n585 --- n587
-    n588("`**require constraint**`")
-  n585 --- n588
-    n589("`**metadata usage**`")
-      n590("`*«attribute»*
-**method**`")
-  n589 --- n590
-      n591("`*«attribute»*
-**level**`")
-  n589 --- n591
-      n592("`*«attribute»*
-**stage**`")
-  n589 --- n592
-  n585 --- n589
-    n593("`**metadata usage**`")
-      n594("`*«attribute»*
-**owner**`")
-  n593 --- n594
-      n595("`*«attribute»*
-**status**`")
-  n593 --- n595
-  n585 --- n593
-    n596("`*«attribute»*
-**tier**`")
-  n585 --- n596
-  n597("`*«requirement»*
-**impactScreening**`")
-    n598("`*«subject»*
-**fdf**`")
-  n597 --- n598
-    n599("`*«attribute»*
-**screenedFraction**`")
-  n597 --- n599
-    n600("`**require constraint**`")
-  n597 --- n600
-    n601("`**metadata usage**`")
-      n602("`*«attribute»*
-**method**`")
-  n601 --- n602
-      n603("`*«attribute»*
-**level**`")
-  n601 --- n603
-      n604("`*«attribute»*
-**stage**`")
-  n601 --- n604
-  n597 --- n601
-    n605("`**metadata usage**`")
-      n606("`*«attribute»*
-**owner**`")
-  n605 --- n606
-      n607("`*«attribute»*
-**status**`")
-  n605 --- n607
-  n597 --- n605
-    n608("`*«attribute»*
-**tier**`")
-  n597 --- n608
-  n609("`*«requirement»*
-**sequenceTurnaround**`")
-    n610("`*«subject»*
-**moc**`")
-  n609 --- n610
-    n611("`*«attribute»*
-**turnaround**`")
-  n609 --- n611
-    n612("`**require constraint**`")
-  n609 --- n612
-    n613("`**metadata usage**`")
-      n614("`*«attribute»*
-**method**`")
-  n613 --- n614
-      n615("`*«attribute»*
-**level**`")
-  n613 --- n615
-      n616("`*«attribute»*
-**stage**`")
-  n613 --- n616
-  n609 --- n613
-    n617("`**metadata usage**`")
-      n618("`*«attribute»*
-**owner**`")
-  n617 --- n618
-      n619("`*«attribute»*
-**status**`")
-  n617 --- n619
-  n609 --- n617
-    n620("`*«attribute»*
-**tier**`")
-  n609 --- n620
-  n621("`*«requirement»*
-**monitoringAutomation**`")
-    n622("`*«subject»*
-**moc**`")
-  n621 --- n622
-    n623("`*«attribute»*
-**automatedFraction**`")
-  n621 --- n623
-    n624("`**require constraint**`")
-  n621 --- n624
-    n625("`**metadata usage**`")
-      n626("`*«attribute»*
-**method**`")
-  n625 --- n626
-      n627("`*«attribute»*
-**level**`")
-  n625 --- n627
-      n628("`*«attribute»*
-**stage**`")
-  n625 --- n628
-  n621 --- n625
-    n629("`**metadata usage**`")
-      n630("`*«attribute»*
-**owner**`")
-  n629 --- n630
-      n631("`*«attribute»*
-**status**`")
-  n629 --- n631
-  n621 --- n629
-    n632("`*«attribute»*
-**tier**`")
-  n621 --- n632
-  n633("`*«requirement»*
-**scienceArchive**`")
-    n634("`*«subject»*
-**sds**`")
-  n633 --- n634
-    n635("`*«attribute»*
-**archiveLatency**`")
-  n633 --- n635
-    n636("`**require constraint**`")
-  n633 --- n636
-    n637("`**metadata usage**`")
-      n638("`*«attribute»*
-**method**`")
-  n637 --- n638
-      n639("`*«attribute»*
-**level**`")
-  n637 --- n639
-      n640("`*«attribute»*
-**stage**`")
-  n637 --- n640
-  n633 --- n637
-    n641("`**metadata usage**`")
-      n642("`*«attribute»*
-**owner**`")
-  n641 --- n642
-      n643("`*«attribute»*
-**status**`")
-  n641 --- n643
-  n633 --- n641
-    n644("`*«attribute»*
-**tier**`")
-  n633 --- n644
-  n645("`*«requirement»*
-**thrusterUnitThrust**`")
-    n646("`*«subject»*
-**sep**`")
-      n647("`*«attribute»*
-**xenonMass**`")
-  n646 --- n647
-      n648("`*«attribute»*
-**thrusterCount**`")
-  n646 --- n648
-      n649("`*«attribute»*
-**operatingThrusters**`")
-  n646 --- n649
-      n650("`*«attribute»*
-**specificImpulse**`")
-  n646 --- n650
-      n651("`*«attribute»*
-**maximumPower**`")
-  n646 --- n651
-      n652("`*«port»*
-**xenonFill**`")
-        n653("`*«item»*
-**propellantFlow**`")
-          n654("`*«attribute»*
-**mass**`")
-  n653 --- n654
-  n652 --- n653
-  n646 --- n652
-      n655("`*«attribute»*
-**mass**`")
-  n646 --- n655
-      n656("`*«port»*
-**power**`")
-        n657("`*«item»*
-**supply**`")
-          n658("`*«attribute»*
-**voltage**`")
-  n657 --- n658
-          n659("`*«attribute»*
-**power**`")
-  n657 --- n659
-  n656 --- n657
-  n646 --- n656
-      n660("`*«port»*
-**bus**`")
-        n661("`*«item»*
-**telemetry**`")
-          n662("`*«attribute»*
-**dataRate**`")
-  n661 --- n662
-          n663("`*«attribute»*
-**volume**`")
-  n661 --- n663
-  n660 --- n661
-        n664("`*«item»*
-**telecommand**`")
-  n660 --- n664
-  n646 --- n660
-  n645 --- n646
-    n665("`*«attribute»*
-**unitPower**`")
-  n645 --- n665
-    n666("`*«attribute»*
-**unitThrust**`")
-  n645 --- n666
-    n667("`**require constraint**`")
-  n645 --- n667
-    n668("`**metadata usage**`")
-      n669("`*«attribute»*
-**method**`")
-  n668 --- n669
-      n670("`*«attribute»*
-**level**`")
-  n668 --- n670
-      n671("`*«attribute»*
-**stage**`")
-  n668 --- n671
-  n645 --- n668
-    n672("`**metadata usage**`")
-      n673("`*«attribute»*
-**owner**`")
-  n672 --- n673
-      n674("`*«attribute»*
-**status**`")
-  n672 --- n674
-  n645 --- n672
-    n675("`*«attribute»*
-**tier**`")
-  n645 --- n675
-  n676("`*«requirement»*
-**powerProcessingEfficiency**`")
-    n677("`*«subject»*
-**sep**`")
-      n678("`*«attribute»*
-**xenonMass**`")
-  n677 --- n678
-      n679("`*«attribute»*
-**thrusterCount**`")
-  n677 --- n679
-      n680("`*«attribute»*
-**operatingThrusters**`")
-  n677 --- n680
-      n681("`*«attribute»*
-**specificImpulse**`")
-  n677 --- n681
-      n682("`*«attribute»*
-**maximumPower**`")
-  n677 --- n682
-      n683("`*«port»*
-**xenonFill**`")
-        n684("`*«item»*
-**propellantFlow**`")
-          n685("`*«attribute»*
-**mass**`")
-  n684 --- n685
-  n683 --- n684
-  n677 --- n683
-      n686("`*«attribute»*
-**mass**`")
-  n677 --- n686
-      n687("`*«port»*
-**power**`")
-        n688("`*«item»*
-**supply**`")
-          n689("`*«attribute»*
-**voltage**`")
-  n688 --- n689
-          n690("`*«attribute»*
-**power**`")
-  n688 --- n690
-  n687 --- n688
-  n677 --- n687
-      n691("`*«port»*
-**bus**`")
-        n692("`*«item»*
-**telemetry**`")
-          n693("`*«attribute»*
-**dataRate**`")
-  n692 --- n693
-          n694("`*«attribute»*
-**volume**`")
-  n692 --- n694
-  n691 --- n692
-        n695("`*«item»*
-**telecommand**`")
-  n691 --- n695
-  n677 --- n691
-  n676 --- n677
-    n696("`*«attribute»*
-**efficiency**`")
-  n676 --- n696
-    n697("`**require constraint**`")
-  n676 --- n697
-    n698("`**metadata usage**`")
-      n699("`*«attribute»*
-**method**`")
-  n698 --- n699
-      n700("`*«attribute»*
-**level**`")
-  n698 --- n700
-      n701("`*«attribute»*
-**stage**`")
-  n698 --- n701
-  n676 --- n698
-    n702("`**metadata usage**`")
-      n703("`*«attribute»*
-**owner**`")
-  n702 --- n703
-      n704("`*«attribute»*
-**status**`")
-  n702 --- n704
-  n676 --- n702
-    n705("`*«attribute»*
-**tier**`")
-  n676 --- n705
-  n706("`*«requirement»*
-**cinchMotorTorque**`")
-    n707("`*«subject»*
-**captureSystem**`")
-      n708("`*«attribute»*
-**maximumBodyDiameter**`")
-  n707 --- n708
-      n709("`*«attribute»*
-**maximumBodyMass**`")
-  n707 --- n709
-      n710("`*«port»*
-**grapple**`")
-        n711("`*«item»*
-**load**`")
-          n712("`*«attribute»*
-**quasiStaticAcceleration**`")
-  n711 --- n712
-          n713("`*«attribute»*
-**force**`")
-  n711 --- n713
-  n710 --- n711
-        n714("`*«attribute»*
-**separable**`")
-  n710 --- n714
-  n707 --- n710
-      n715("`*«attribute»*
-**mass**`")
-  n707 --- n715
-      n716("`*«port»*
-**power**`")
-        n717("`*«item»*
-**supply**`")
-          n718("`*«attribute»*
-**voltage**`")
-  n717 --- n718
-          n719("`*«attribute»*
-**power**`")
-  n717 --- n719
-  n716 --- n717
-  n707 --- n716
-      n720("`*«port»*
-**bus**`")
-        n721("`*«item»*
-**telemetry**`")
-          n722("`*«attribute»*
-**dataRate**`")
-  n721 --- n722
-          n723("`*«attribute»*
-**volume**`")
-  n721 --- n723
-  n720 --- n721
-        n724("`*«item»*
-**telecommand**`")
-  n720 --- n724
-  n707 --- n720
-  n706 --- n707
-    n725("`*«attribute»*
-**stallTorqueNm**`")
-  n706 --- n725
-    n726("`**require constraint**`")
-  n706 --- n726
-    n727("`**metadata usage**`")
-      n728("`*«attribute»*
-**method**`")
-  n727 --- n728
-      n729("`*«attribute»*
-**level**`")
-  n727 --- n729
-      n730("`*«attribute»*
-**stage**`")
-  n727 --- n730
-  n706 --- n727
-    n731("`**metadata usage**`")
-      n732("`*«attribute»*
-**owner**`")
-  n731 --- n732
-      n733("`*«attribute»*
-**status**`")
-  n731 --- n733
-  n706 --- n731
-    n734("`*«attribute»*
-**tier**`")
-  n706 --- n734
-  n735("`*«requirement»*
-**narrowAngleCameraSensitivity**`")
-    n736("`*«subject»*
-**sensors**`")
-      n737("`*«attribute»*
-**mass**`")
-  n736 --- n737
-      n738("`*«port»*
-**power**`")
-        n739("`*«item»*
-**supply**`")
-          n740("`*«attribute»*
-**voltage**`")
-  n739 --- n740
-          n741("`*«attribute»*
-**power**`")
-  n739 --- n741
-  n738 --- n739
-  n736 --- n738
-      n742("`*«port»*
-**bus**`")
-        n743("`*«item»*
-**telemetry**`")
-          n744("`*«attribute»*
-**dataRate**`")
-  n743 --- n744
-          n745("`*«attribute»*
-**volume**`")
-  n743 --- n745
-  n742 --- n743
-        n746("`*«item»*
-**telecommand**`")
-  n742 --- n746
-  n736 --- n742
-  n735 --- n736
-    n747("`*«attribute»*
-**limitingMagnitude**`")
-  n735 --- n747
-    n748("`**require constraint**`")
-  n735 --- n748
-    n749("`**metadata usage**`")
-      n750("`*«attribute»*
-**method**`")
-  n749 --- n750
-      n751("`*«attribute»*
-**level**`")
-  n749 --- n751
-      n752("`*«attribute»*
-**stage**`")
-  n749 --- n752
-  n735 --- n749
-    n753("`**metadata usage**`")
-      n754("`*«attribute»*
-**owner**`")
-  n753 --- n754
-      n755("`*«attribute»*
-**status**`")
-  n753 --- n755
-  n735 --- n753
-    n756("`*«attribute»*
-**tier**`")
-  n735 --- n756
-  n757("`*«requirement»*
-**fdirTaskPeriod**`")
-    n758("`*«subject»*
-**cdh**`")
-      n759("`*«port»*
-**busController**`")
-        n760("`*«item»*
-**telemetry**`")
-          n761("`*«attribute»*
-**dataRate**`")
-  n760 --- n761
-          n762("`*«attribute»*
-**volume**`")
-  n760 --- n762
-  n759 --- n760
-        n763("`*«item»*
-**telecommand**`")
-  n759 --- n763
-  n758 --- n759
-      n764("`*«attribute»*
-**mass**`")
-  n758 --- n764
-      n765("`*«port»*
-**power**`")
-        n766("`*«item»*
-**supply**`")
-          n767("`*«attribute»*
-**voltage**`")
-  n766 --- n767
-          n768("`*«attribute»*
-**power**`")
-  n766 --- n768
-  n765 --- n766
-  n758 --- n765
-      n769("`*«port»*
-**bus**`")
-        n770("`*«item»*
-**telemetry**`")
-          n771("`*«attribute»*
-**dataRate**`")
-  n770 --- n771
-          n772("`*«attribute»*
-**volume**`")
-  n770 --- n772
-  n769 --- n770
-        n773("`*«item»*
-**telecommand**`")
-  n769 --- n773
-  n758 --- n769
-  n757 --- n758
-    n774("`*«attribute»*
-**taskPeriod**`")
-  n757 --- n774
-    n775("`**require constraint**`")
-  n757 --- n775
-    n776("`**metadata usage**`")
-      n777("`*«attribute»*
-**method**`")
-  n776 --- n777
-      n778("`*«attribute»*
-**level**`")
-  n776 --- n778
-      n779("`*«attribute»*
-**stage**`")
-  n776 --- n779
-  n757 --- n776
-    n780("`**metadata usage**`")
-      n781("`*«attribute»*
-**owner**`")
-  n780 --- n781
-      n782("`*«attribute»*
-**status**`")
-  n780 --- n782
-  n757 --- n780
-    n783("`*«attribute»*
-**tier**`")
-  n757 --- n783
-  n784("`*«requirement»*
-**inspectorDetectorPitch**`")
-    n785("`*«subject»*
+  n496 --- n503
+  n490 --- n496
+  n488 --- n490
+      n504("`*«part»*
 **payload**`")
-      n786("`*«attribute»*
+        n505("`*«attribute»*
 **mass**`")
-  n785 --- n786
-  n784 --- n785
+  n504 --- n505
+  n488 --- n504
+      n506("`*«part»*
+**propulsion**`")
+        n507("`*«attribute»*
+**mass**`")
+  n506 --- n507
+        n508("`*«attribute»*
+**propellantMass**`")
+  n506 --- n508
+  n488 --- n506
+      n509("`*«port»*
+**carrierAttachment**`")
+        n510("`*«item»*
+**load**`")
+          n511("`*«attribute»*
+**quasiStaticAcceleration**`")
+  n510 --- n511
+          n512("`*«attribute»*
+**force**`")
+  n510 --- n512
+  n509 --- n510
+        n513("`*«attribute»*
+**separable**`")
+  n509 --- n513
+  n488 --- n509
+      n514("`*«port»*
+**stowedThermal**`")
+        n515("`*«item»*
+**heat**`")
+          n516("`*«attribute»*
+**power**`")
+  n515 --- n516
+  n514 --- n515
+  n488 --- n514
+  n487 --- n488
+    n517("`**require constraint**`")
+  n487 --- n517
+    n518("`**metadata usage**`")
+      n519("`*«attribute»*
+**method**`")
+  n518 --- n519
+      n520("`*«attribute»*
+**level**`")
+  n518 --- n520
+      n521("`*«attribute»*
+**stage**`")
+  n518 --- n521
+  n487 --- n518
+    n522("`**metadata usage**`")
+      n523("`*«attribute»*
+**owner**`")
+  n522 --- n523
+      n524("`*«attribute»*
+**status**`")
+  n522 --- n524
+  n487 --- n522
+    n525("`*«attribute»*
+**tier**`")
+  n487 --- n525
+  n526("`*«requirement»*
+**dopplerForMass**`")
+    n527("`*«subject»*
+**bus**`")
+      n528("`*«attribute»*
+**mass**`")
+  n527 --- n528
+      n529("`*«port»*
+**proximity**`")
+        n530("`*«item»*
+**carrier**`")
+          n531("`*«attribute»*
+**frequency**`")
+  n530 --- n531
+          n532("`*«attribute»*
+**eirp**`")
+  n530 --- n532
+  n529 --- n530
+  n527 --- n529
+      n533("`*«port»*
+**umbilical**`")
+        n534("`*«item»*
+**keepAlive**`")
+          n535("`*«attribute»*
+**voltage**`")
+  n534 --- n535
+          n536("`*«attribute»*
+**power**`")
+  n534 --- n536
+  n533 --- n534
+        n537("`*«item»*
+**checkout**`")
+          n538("`*«attribute»*
+**dataRate**`")
+  n537 --- n538
+          n539("`*«attribute»*
+**volume**`")
+  n537 --- n539
+  n533 --- n537
+        n540("`*«attribute»*
+**separationSignal**`")
+  n533 --- n540
+  n527 --- n533
+  n526 --- n527
+    n541("`*«attribute»*
+**dopplerAccuracy**`")
+  n526 --- n541
+    n542("`**require constraint**`")
+  n526 --- n542
+    n543("`**metadata usage**`")
+      n544("`*«attribute»*
+**method**`")
+  n543 --- n544
+      n545("`*«attribute»*
+**level**`")
+  n543 --- n545
+      n546("`*«attribute»*
+**stage**`")
+  n543 --- n546
+  n526 --- n543
+    n547("`**metadata usage**`")
+      n548("`*«attribute»*
+**owner**`")
+  n547 --- n548
+      n549("`*«attribute»*
+**status**`")
+  n547 --- n549
+  n526 --- n547
+    n550("`*«attribute»*
+**tier**`")
+  n526 --- n550
+  n551("`*«requirement»*
+**stationAperture**`")
+    n552("`*«subject»*
+**station**`")
+      n553("`*«attribute»*
+**antennaDiameter**`")
+  n552 --- n553
+      n554("`*«attribute»*
+**longitude**`")
+  n552 --- n554
+      n555("`*«port»*
+**uplinkDownlink**`")
+        n556("`*«item»*
+**carrier**`")
+          n557("`*«attribute»*
+**frequency**`")
+  n556 --- n557
+          n558("`*«attribute»*
+**eirp**`")
+  n556 --- n558
+  n555 --- n556
+  n552 --- n555
+  n551 --- n552
+    n559("`*«attribute»*
+**minimumAperture**`")
+  n551 --- n559
+    n560("`*«attribute»*
+**noiseTemperature**`")
+  n551 --- n560
+    n561("`**require constraint**`")
+  n551 --- n561
+    n562("`**metadata usage**`")
+      n563("`*«attribute»*
+**method**`")
+  n562 --- n563
+      n564("`*«attribute»*
+**level**`")
+  n562 --- n564
+      n565("`*«attribute»*
+**stage**`")
+  n562 --- n565
+  n551 --- n562
+    n566("`**metadata usage**`")
+      n567("`*«attribute»*
+**owner**`")
+  n566 --- n567
+      n568("`*«attribute»*
+**status**`")
+  n566 --- n568
+  n551 --- n566
+    n569("`*«attribute»*
+**tier**`")
+  n551 --- n569
+  n570("`*«requirement»*
+**stationSpacing**`")
+    n571("`*«subject»*
+**network**`")
+      n572("`*«part»*
+**stations**`")
+        n573("`*«attribute»*
+**antennaDiameter**`")
+  n572 --- n573
+        n574("`*«attribute»*
+**longitude**`")
+  n572 --- n574
+        n575("`*«port»*
+**uplinkDownlink**`")
+          n576("`*«item»*
+**carrier**`")
+            n577("`*«attribute»*
+**frequency**`")
+  n576 --- n577
+            n578("`*«attribute»*
+**eirp**`")
+  n576 --- n578
+  n575 --- n576
+  n572 --- n575
+  n571 --- n572
+      n579("`*«part»*
+**primaryStation**`")
+        n580("`*«attribute»*
+**antennaDiameter**`")
+  n579 --- n580
+        n581("`*«attribute»*
+**longitude**`")
+  n579 --- n581
+        n582("`*«port»*
+**uplinkDownlink**`")
+          n583("`*«item»*
+**carrier**`")
+            n584("`*«attribute»*
+**frequency**`")
+  n583 --- n584
+            n585("`*«attribute»*
+**eirp**`")
+  n583 --- n585
+  n582 --- n583
+  n579 --- n582
+  n571 --- n579
+      n586("`*«part»*
+**moc**`")
+  n571 --- n586
+      n587("`*«part»*
+**fdf**`")
+  n571 --- n587
+      n588("`*«part»*
+**sds**`")
+  n571 --- n588
+  n570 --- n571
+    n589("`**require constraint**`")
+  n570 --- n589
+    n590("`**metadata usage**`")
+      n591("`*«attribute»*
+**method**`")
+  n590 --- n591
+      n592("`*«attribute»*
+**level**`")
+  n590 --- n592
+      n593("`*«attribute»*
+**stage**`")
+  n590 --- n593
+  n570 --- n590
+    n594("`**metadata usage**`")
+      n595("`*«attribute»*
+**owner**`")
+  n594 --- n595
+      n596("`*«attribute»*
+**status**`")
+  n594 --- n596
+  n570 --- n594
+    n597("`*«attribute»*
+**tier**`")
+  n570 --- n597
+  n598("`*«requirement»*
+**rangingAccuracy**`")
+    n599("`*«subject»*
+**fdf**`")
+  n598 --- n599
+    n600("`*«attribute»*
+**rangeAccuracy**`")
+  n598 --- n600
+    n601("`**require constraint**`")
+  n598 --- n601
+    n602("`**metadata usage**`")
+      n603("`*«attribute»*
+**method**`")
+  n602 --- n603
+      n604("`*«attribute»*
+**level**`")
+  n602 --- n604
+      n605("`*«attribute»*
+**stage**`")
+  n602 --- n605
+  n598 --- n602
+    n606("`**metadata usage**`")
+      n607("`*«attribute»*
+**owner**`")
+  n606 --- n607
+      n608("`*«attribute»*
+**status**`")
+  n606 --- n608
+  n598 --- n606
+    n609("`*«attribute»*
+**tier**`")
+  n598 --- n609
+  n610("`*«requirement»*
+**impactScreening**`")
+    n611("`*«subject»*
+**fdf**`")
+  n610 --- n611
+    n612("`*«attribute»*
+**screenedFraction**`")
+  n610 --- n612
+    n613("`**require constraint**`")
+  n610 --- n613
+    n614("`**metadata usage**`")
+      n615("`*«attribute»*
+**method**`")
+  n614 --- n615
+      n616("`*«attribute»*
+**level**`")
+  n614 --- n616
+      n617("`*«attribute»*
+**stage**`")
+  n614 --- n617
+  n610 --- n614
+    n618("`**metadata usage**`")
+      n619("`*«attribute»*
+**owner**`")
+  n618 --- n619
+      n620("`*«attribute»*
+**status**`")
+  n618 --- n620
+  n610 --- n618
+    n621("`*«attribute»*
+**tier**`")
+  n610 --- n621
+  n622("`*«requirement»*
+**sequenceTurnaround**`")
+    n623("`*«subject»*
+**moc**`")
+  n622 --- n623
+    n624("`*«attribute»*
+**turnaround**`")
+  n622 --- n624
+    n625("`**require constraint**`")
+  n622 --- n625
+    n626("`**metadata usage**`")
+      n627("`*«attribute»*
+**method**`")
+  n626 --- n627
+      n628("`*«attribute»*
+**level**`")
+  n626 --- n628
+      n629("`*«attribute»*
+**stage**`")
+  n626 --- n629
+  n622 --- n626
+    n630("`**metadata usage**`")
+      n631("`*«attribute»*
+**owner**`")
+  n630 --- n631
+      n632("`*«attribute»*
+**status**`")
+  n630 --- n632
+  n622 --- n630
+    n633("`*«attribute»*
+**tier**`")
+  n622 --- n633
+  n634("`*«requirement»*
+**monitoringAutomation**`")
+    n635("`*«subject»*
+**moc**`")
+  n634 --- n635
+    n636("`*«attribute»*
+**automatedFraction**`")
+  n634 --- n636
+    n637("`**require constraint**`")
+  n634 --- n637
+    n638("`**metadata usage**`")
+      n639("`*«attribute»*
+**method**`")
+  n638 --- n639
+      n640("`*«attribute»*
+**level**`")
+  n638 --- n640
+      n641("`*«attribute»*
+**stage**`")
+  n638 --- n641
+  n634 --- n638
+    n642("`**metadata usage**`")
+      n643("`*«attribute»*
+**owner**`")
+  n642 --- n643
+      n644("`*«attribute»*
+**status**`")
+  n642 --- n644
+  n634 --- n642
+    n645("`*«attribute»*
+**tier**`")
+  n634 --- n645
+  n646("`*«requirement»*
+**scienceArchive**`")
+    n647("`*«subject»*
+**sds**`")
+  n646 --- n647
+    n648("`*«attribute»*
+**archiveLatency**`")
+  n646 --- n648
+    n649("`**require constraint**`")
+  n646 --- n649
+    n650("`**metadata usage**`")
+      n651("`*«attribute»*
+**method**`")
+  n650 --- n651
+      n652("`*«attribute»*
+**level**`")
+  n650 --- n652
+      n653("`*«attribute»*
+**stage**`")
+  n650 --- n653
+  n646 --- n650
+    n654("`**metadata usage**`")
+      n655("`*«attribute»*
+**owner**`")
+  n654 --- n655
+      n656("`*«attribute»*
+**status**`")
+  n654 --- n656
+  n646 --- n654
+    n657("`*«attribute»*
+**tier**`")
+  n646 --- n657
+  n658("`*«requirement»*
+**thrusterUnitThrust**`")
+    n659("`*«subject»*
+**sep**`")
+      n660("`*«attribute»*
+**xenonMass**`")
+  n659 --- n660
+      n661("`*«attribute»*
+**thrusterCount**`")
+  n659 --- n661
+      n662("`*«attribute»*
+**operatingThrusters**`")
+  n659 --- n662
+      n663("`*«attribute»*
+**specificImpulse**`")
+  n659 --- n663
+      n664("`*«attribute»*
+**maximumPower**`")
+  n659 --- n664
+      n665("`*«port»*
+**xenonFill**`")
+        n666("`*«item»*
+**propellantFlow**`")
+          n667("`*«attribute»*
+**mass**`")
+  n666 --- n667
+  n665 --- n666
+  n659 --- n665
+      n668("`*«attribute»*
+**mass**`")
+  n659 --- n668
+      n669("`*«port»*
+**power**`")
+        n670("`*«item»*
+**supply**`")
+          n671("`*«attribute»*
+**voltage**`")
+  n670 --- n671
+          n672("`*«attribute»*
+**power**`")
+  n670 --- n672
+  n669 --- n670
+  n659 --- n669
+      n673("`*«port»*
+**bus**`")
+        n674("`*«item»*
+**telemetry**`")
+          n675("`*«attribute»*
+**dataRate**`")
+  n674 --- n675
+          n676("`*«attribute»*
+**volume**`")
+  n674 --- n676
+  n673 --- n674
+        n677("`*«item»*
+**telecommand**`")
+  n673 --- n677
+  n659 --- n673
+  n658 --- n659
+    n678("`*«attribute»*
+**unitPower**`")
+  n658 --- n678
+    n679("`*«attribute»*
+**unitThrust**`")
+  n658 --- n679
+    n680("`**require constraint**`")
+  n658 --- n680
+    n681("`**metadata usage**`")
+      n682("`*«attribute»*
+**method**`")
+  n681 --- n682
+      n683("`*«attribute»*
+**level**`")
+  n681 --- n683
+      n684("`*«attribute»*
+**stage**`")
+  n681 --- n684
+  n658 --- n681
+    n685("`**metadata usage**`")
+      n686("`*«attribute»*
+**owner**`")
+  n685 --- n686
+      n687("`*«attribute»*
+**status**`")
+  n685 --- n687
+  n658 --- n685
+    n688("`*«attribute»*
+**tier**`")
+  n658 --- n688
+  n689("`*«requirement»*
+**powerProcessingEfficiency**`")
+    n690("`*«subject»*
+**sep**`")
+      n691("`*«attribute»*
+**xenonMass**`")
+  n690 --- n691
+      n692("`*«attribute»*
+**thrusterCount**`")
+  n690 --- n692
+      n693("`*«attribute»*
+**operatingThrusters**`")
+  n690 --- n693
+      n694("`*«attribute»*
+**specificImpulse**`")
+  n690 --- n694
+      n695("`*«attribute»*
+**maximumPower**`")
+  n690 --- n695
+      n696("`*«port»*
+**xenonFill**`")
+        n697("`*«item»*
+**propellantFlow**`")
+          n698("`*«attribute»*
+**mass**`")
+  n697 --- n698
+  n696 --- n697
+  n690 --- n696
+      n699("`*«attribute»*
+**mass**`")
+  n690 --- n699
+      n700("`*«port»*
+**power**`")
+        n701("`*«item»*
+**supply**`")
+          n702("`*«attribute»*
+**voltage**`")
+  n701 --- n702
+          n703("`*«attribute»*
+**power**`")
+  n701 --- n703
+  n700 --- n701
+  n690 --- n700
+      n704("`*«port»*
+**bus**`")
+        n705("`*«item»*
+**telemetry**`")
+          n706("`*«attribute»*
+**dataRate**`")
+  n705 --- n706
+          n707("`*«attribute»*
+**volume**`")
+  n705 --- n707
+  n704 --- n705
+        n708("`*«item»*
+**telecommand**`")
+  n704 --- n708
+  n690 --- n704
+  n689 --- n690
+    n709("`*«attribute»*
+**efficiency**`")
+  n689 --- n709
+    n710("`**require constraint**`")
+  n689 --- n710
+    n711("`**metadata usage**`")
+      n712("`*«attribute»*
+**method**`")
+  n711 --- n712
+      n713("`*«attribute»*
+**level**`")
+  n711 --- n713
+      n714("`*«attribute»*
+**stage**`")
+  n711 --- n714
+  n689 --- n711
+    n715("`**metadata usage**`")
+      n716("`*«attribute»*
+**owner**`")
+  n715 --- n716
+      n717("`*«attribute»*
+**status**`")
+  n715 --- n717
+  n689 --- n715
+    n718("`*«attribute»*
+**tier**`")
+  n689 --- n718
+  n719("`*«requirement»*
+**cinchMotorTorque**`")
+    n720("`*«subject»*
+**captureSystem**`")
+      n721("`*«attribute»*
+**maximumBodyDiameter**`")
+  n720 --- n721
+      n722("`*«attribute»*
+**maximumBodyMass**`")
+  n720 --- n722
+      n723("`*«port»*
+**grapple**`")
+        n724("`*«item»*
+**load**`")
+          n725("`*«attribute»*
+**quasiStaticAcceleration**`")
+  n724 --- n725
+          n726("`*«attribute»*
+**force**`")
+  n724 --- n726
+  n723 --- n724
+        n727("`*«attribute»*
+**separable**`")
+  n723 --- n727
+  n720 --- n723
+      n728("`*«attribute»*
+**mass**`")
+  n720 --- n728
+      n729("`*«port»*
+**power**`")
+        n730("`*«item»*
+**supply**`")
+          n731("`*«attribute»*
+**voltage**`")
+  n730 --- n731
+          n732("`*«attribute»*
+**power**`")
+  n730 --- n732
+  n729 --- n730
+  n720 --- n729
+      n733("`*«port»*
+**bus**`")
+        n734("`*«item»*
+**telemetry**`")
+          n735("`*«attribute»*
+**dataRate**`")
+  n734 --- n735
+          n736("`*«attribute»*
+**volume**`")
+  n734 --- n736
+  n733 --- n734
+        n737("`*«item»*
+**telecommand**`")
+  n733 --- n737
+  n720 --- n733
+  n719 --- n720
+    n738("`*«attribute»*
+**stallTorqueNm**`")
+  n719 --- n738
+    n739("`**require constraint**`")
+  n719 --- n739
+    n740("`**metadata usage**`")
+      n741("`*«attribute»*
+**method**`")
+  n740 --- n741
+      n742("`*«attribute»*
+**level**`")
+  n740 --- n742
+      n743("`*«attribute»*
+**stage**`")
+  n740 --- n743
+  n719 --- n740
+    n744("`**metadata usage**`")
+      n745("`*«attribute»*
+**owner**`")
+  n744 --- n745
+      n746("`*«attribute»*
+**status**`")
+  n744 --- n746
+  n719 --- n744
+    n747("`*«attribute»*
+**tier**`")
+  n719 --- n747
+  n748("`*«requirement»*
+**narrowAngleCameraSensitivity**`")
+    n749("`*«subject»*
+**sensors**`")
+      n750("`*«attribute»*
+**mass**`")
+  n749 --- n750
+      n751("`*«port»*
+**power**`")
+        n752("`*«item»*
+**supply**`")
+          n753("`*«attribute»*
+**voltage**`")
+  n752 --- n753
+          n754("`*«attribute»*
+**power**`")
+  n752 --- n754
+  n751 --- n752
+  n749 --- n751
+      n755("`*«port»*
+**bus**`")
+        n756("`*«item»*
+**telemetry**`")
+          n757("`*«attribute»*
+**dataRate**`")
+  n756 --- n757
+          n758("`*«attribute»*
+**volume**`")
+  n756 --- n758
+  n755 --- n756
+        n759("`*«item»*
+**telecommand**`")
+  n755 --- n759
+  n749 --- n755
+  n748 --- n749
+    n760("`*«attribute»*
+**limitingMagnitude**`")
+  n748 --- n760
+    n761("`**require constraint**`")
+  n748 --- n761
+    n762("`**metadata usage**`")
+      n763("`*«attribute»*
+**method**`")
+  n762 --- n763
+      n764("`*«attribute»*
+**level**`")
+  n762 --- n764
+      n765("`*«attribute»*
+**stage**`")
+  n762 --- n765
+  n748 --- n762
+    n766("`**metadata usage**`")
+      n767("`*«attribute»*
+**owner**`")
+  n766 --- n767
+      n768("`*«attribute»*
+**status**`")
+  n766 --- n768
+  n748 --- n766
+    n769("`*«attribute»*
+**tier**`")
+  n748 --- n769
+  n770("`*«requirement»*
+**fdirTaskPeriod**`")
+    n771("`*«subject»*
+**cdh**`")
+      n772("`*«port»*
+**busController**`")
+        n773("`*«item»*
+**telemetry**`")
+          n774("`*«attribute»*
+**dataRate**`")
+  n773 --- n774
+          n775("`*«attribute»*
+**volume**`")
+  n773 --- n775
+  n772 --- n773
+        n776("`*«item»*
+**telecommand**`")
+  n772 --- n776
+  n771 --- n772
+      n777("`*«attribute»*
+**mass**`")
+  n771 --- n777
+      n778("`*«port»*
+**power**`")
+        n779("`*«item»*
+**supply**`")
+          n780("`*«attribute»*
+**voltage**`")
+  n779 --- n780
+          n781("`*«attribute»*
+**power**`")
+  n779 --- n781
+  n778 --- n779
+  n771 --- n778
+      n782("`*«port»*
+**bus**`")
+        n783("`*«item»*
+**telemetry**`")
+          n784("`*«attribute»*
+**dataRate**`")
+  n783 --- n784
+          n785("`*«attribute»*
+**volume**`")
+  n783 --- n785
+  n782 --- n783
+        n786("`*«item»*
+**telecommand**`")
+  n782 --- n786
+  n771 --- n782
+  n770 --- n771
     n787("`*«attribute»*
-**pixelPitch**`")
-  n784 --- n787
+**taskPeriod**`")
+  n770 --- n787
     n788("`**require constraint**`")
-  n784 --- n788
+  n770 --- n788
     n789("`**metadata usage**`")
       n790("`*«attribute»*
 **method**`")
@@ -2272,7 +2276,7 @@ flowchart TD
       n792("`*«attribute»*
 **stage**`")
   n789 --- n792
-  n784 --- n789
+  n770 --- n789
     n793("`**metadata usage**`")
       n794("`*«attribute»*
 **owner**`")
@@ -2280,7 +2284,42 @@ flowchart TD
       n795("`*«attribute»*
 **status**`")
   n793 --- n795
-  n784 --- n793
+  n770 --- n793
     n796("`*«attribute»*
 **tier**`")
-  n784 --- n796
+  n770 --- n796
+  n797("`*«requirement»*
+**inspectorDetectorPitch**`")
+    n798("`*«subject»*
+**payload**`")
+      n799("`*«attribute»*
+**mass**`")
+  n798 --- n799
+  n797 --- n798
+    n800("`*«attribute»*
+**pixelPitch**`")
+  n797 --- n800
+    n801("`**require constraint**`")
+  n797 --- n801
+    n802("`**metadata usage**`")
+      n803("`*«attribute»*
+**method**`")
+  n802 --- n803
+      n804("`*«attribute»*
+**level**`")
+  n802 --- n804
+      n805("`*«attribute»*
+**stage**`")
+  n802 --- n805
+  n797 --- n802
+    n806("`**metadata usage**`")
+      n807("`*«attribute»*
+**owner**`")
+  n806 --- n807
+      n808("`*«attribute»*
+**status**`")
+  n806 --- n808
+  n797 --- n806
+    n809("`*«attribute»*
+**tier**`")
+  n797 --- n809

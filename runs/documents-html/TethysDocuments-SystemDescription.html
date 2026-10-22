@@ -318,7 +318,7 @@ flowchart LR
     end
     subgraph n5 [&#34;`*«part»* **thermal**`&#34;]
       direction LR
-      n5.1[&#34;power&#34;]
+      n5.2[&#34;power&#34;]
       n6(&#34;`*«attribute»*
 **mass**`&#34;)
     end
@@ -393,7 +393,7 @@ flowchart LR
   n7.0 === n10.1
   n7.0 === n12.2
   n7.0 === n14.0
-  n7.0 === n5.1
+  n7.0 === n5.2
   n7.0 === n23.1
   n7.0 === n26.1
   n7.0 === n30.0
@@ -421,13 +421,16 @@ flowchart LR
 <li class="sysml-item" data-element="TethysMission::flightTimeline::captureCommit" data-element-kind="occurrenceUsage">captureCommit</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::captureComplete" data-element-kind="occurrenceUsage">captureComplete</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::despinComplete" data-element-kind="occurrenceUsage">despinComplete</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::inspectorRetirement" data-element-kind="occurrenceUsage">inspectorRetirement</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::departureFromTarget" data-element-kind="occurrenceUsage">departureFromTarget</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::lunarGravityAssist" data-element-kind="occurrenceUsage">lunarGravityAssist</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::droInsertion" data-element-kind="occurrenceUsage">droInsertion</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::visitingVehicleDocking" data-element-kind="occurrenceUsage">visitingVehicleDocking</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::tugSeparation" data-element-kind="occurrenceUsage">tugSeparation</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::tugDisposalBurn" data-element-kind="occurrenceUsage">tugDisposalBurn</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::integrationAndTest" data-element-kind="occurrenceUsage">integrationAndTest TethysMission::MissionPhase</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::launchAndEarlyOperations" data-element-kind="occurrenceUsage">launchAndEarlyOperations TethysMission::MissionPhase</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::sepCommissioning" data-element-kind="occurrenceUsage">sepCommissioning TethysMission::MissionPhase</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::outboundCruise" data-element-kind="occurrenceUsage">outboundCruise TethysMission::MissionPhase</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::approachAndRendezvous" data-element-kind="occurrenceUsage">approachAndRendezvous TethysMission::MissionPhase</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::characterisation" data-element-kind="occurrenceUsage">characterisation TethysMission::MissionPhase</li>
@@ -494,58 +497,61 @@ flowchart LR
 **despinComplete**`&#34;)
   n0 --- n9
     n10(&#34;`*«occurrence»*
-**departureFromTarget**`&#34;)
+**inspectorRetirement**`&#34;)
   n0 --- n10
     n11(&#34;`*«occurrence»*
-**lunarGravityAssist**`&#34;)
+**departureFromTarget**`&#34;)
   n0 --- n11
     n12(&#34;`*«occurrence»*
-**droInsertion**`&#34;)
+**lunarGravityAssist**`&#34;)
   n0 --- n12
     n13(&#34;`*«occurrence»*
-**visitingVehicleDocking**`&#34;)
+**droInsertion**`&#34;)
   n0 --- n13
     n14(&#34;`*«occurrence»*
-**tugSeparation**`&#34;)
+**visitingVehicleDocking**`&#34;)
   n0 --- n14
     n15(&#34;`*«occurrence»*
-**tugDisposalBurn**`&#34;)
+**tugSeparation**`&#34;)
   n0 --- n15
     n16(&#34;`*«occurrence»*
-**launchAndEarlyOperations**`&#34;)
+**tugDisposalBurn**`&#34;)
   n0 --- n16
     n17(&#34;`*«occurrence»*
-**outboundCruise**`&#34;)
+**integrationAndTest**`&#34;)
   n0 --- n17
     n18(&#34;`*«occurrence»*
-**approachAndRendezvous**`&#34;)
+**launchAndEarlyOperations**`&#34;)
   n0 --- n18
     n19(&#34;`*«occurrence»*
-**characterisation**`&#34;)
+**sepCommissioning**`&#34;)
   n0 --- n19
     n20(&#34;`*«occurrence»*
-**capture**`&#34;)
+**outboundCruise**`&#34;)
   n0 --- n20
     n21(&#34;`*«occurrence»*
-**returnCruise**`&#34;)
+**approachAndRendezvous**`&#34;)
   n0 --- n21
     n22(&#34;`*«occurrence»*
-**droInsertionAndCheckout**`&#34;)
+**characterisation**`&#34;)
   n0 --- n22
     n23(&#34;`*«occurrence»*
-**utilisation**`&#34;)
+**capture**`&#34;)
   n0 --- n23
     n24(&#34;`*«occurrence»*
-**extendedMission**`&#34;)
+**returnCruise**`&#34;)
   n0 --- n24
     n25(&#34;`*«occurrence»*
-**disposal**`&#34;)
+**droInsertionAndCheckout**`&#34;)
   n0 --- n25
-    n26(&#34;`**succession**`&#34;)
+    n26(&#34;`*«occurrence»*
+**utilisation**`&#34;)
   n0 --- n26
-    n27(&#34;`**succession**`&#34;)
+    n27(&#34;`*«occurrence»*
+**extendedMission**`&#34;)
   n0 --- n27
-    n28(&#34;`**succession**`&#34;)
+    n28(&#34;`*«occurrence»*
+**disposal**`&#34;)
   n0 --- n28
     n29(&#34;`**succession**`&#34;)
   n0 --- n29
@@ -588,7 +594,19 @@ flowchart LR
     n48(&#34;`**succession**`&#34;)
   n0 --- n48
     n49(&#34;`**succession**`&#34;)
-  n0 --- n49</pre>
+  n0 --- n49
+    n50(&#34;`**succession**`&#34;)
+  n0 --- n50
+    n51(&#34;`**succession**`&#34;)
+  n0 --- n51
+    n52(&#34;`**succession**`&#34;)
+  n0 --- n52
+    n53(&#34;`**succession**`&#34;)
+  n0 --- n53
+    n54(&#34;`**succession**`&#34;)
+  n0 --- n54
+    n55(&#34;`**succession**`&#34;)
+  n0 --- n55</pre>
 <figcaption class="sysml-caption">The flight timeline: phases and the events that bound them</figcaption>
 </figure>
 </section>

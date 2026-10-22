@@ -23,7 +23,19 @@
 <tbody>
 <tr class="sysml-row" data-element="TethysInterfaces::TugInspectorInterface" data-element-kind="interfaceDef">
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TugInspectorInterface</span></td>
-<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ inspector before release: mechanical dispenser, umbilical and thermal. The relay link takes over after release.</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ inspector before release, the electrical umbilical: keep-alive power, checkout data and the separation signal. The stowed stack&#39;s mechanical and thermal disciplines are InspectorDispenserInterface and InspectorThermalInterface, each a binary interface of its own so every usage stays a two-ended connect; the relay link takes over after release.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::InspectorDispenserInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InspectorDispenserInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ inspector mechanical while stowed: the dispenser rails and release mechanism carrying Wren&#39;s launch loads into the tug structure.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::InspectorThermalInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InspectorThermalInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ inspector thermal while stowed: heat conducted through the dispenser rails that keeps Wren&#39;s battery above its survival temperature.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::PropellantFeedInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PropellantFeedInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tank ↔ ground fill-and-drain: the xenon and hydrazine loading lines on the pad.</span></td>
 </tr>
 <tr class="sysml-row" data-element="TethysInterfaces::SpacecraftLauncherInterface" data-element-kind="interfaceDef">
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SpacecraftLauncherInterface</span></td>
@@ -79,6 +91,45 @@
 <td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::TugInspectorInterface</span></td>
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorSide</span></td>
 <td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::UmbilicalPort</span></td>
+</tr>
+</tbody>
+<tbody class="sysml-group" data-group="owner" data-group-key="TethysInterfaces::InspectorDispenserInterface">
+<tr class="sysml-group-heading"><th scope="rowgroup" colspan="3"><span class="sysml-group-column">owner</span>: <span class="sysml-group-key">TethysInterfaces::InspectorDispenserInterface</span></th></tr>
+<tr class="sysml-row" data-element="TethysInterfaces::InspectorDispenserInterface::tugSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::InspectorDispenserInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">tugSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::MechanicalPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::InspectorDispenserInterface::inspectorSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::InspectorDispenserInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::MechanicalPort</span></td>
+</tr>
+</tbody>
+<tbody class="sysml-group" data-group="owner" data-group-key="TethysInterfaces::InspectorThermalInterface">
+<tr class="sysml-group-heading"><th scope="rowgroup" colspan="3"><span class="sysml-group-column">owner</span>: <span class="sysml-group-key">TethysInterfaces::InspectorThermalInterface</span></th></tr>
+<tr class="sysml-row" data-element="TethysInterfaces::InspectorThermalInterface::tugSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::InspectorThermalInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">tugSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::ThermalPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::InspectorThermalInterface::inspectorSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::InspectorThermalInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::ThermalPort</span></td>
+</tr>
+</tbody>
+<tbody class="sysml-group" data-group="owner" data-group-key="TethysInterfaces::PropellantFeedInterface">
+<tr class="sysml-group-heading"><th scope="rowgroup" colspan="3"><span class="sysml-group-column">owner</span>: <span class="sysml-group-key">TethysInterfaces::PropellantFeedInterface</span></th></tr>
+<tr class="sysml-row" data-element="TethysInterfaces::PropellantFeedInterface::tankSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::PropellantFeedInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">tankSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::FluidPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::PropellantFeedInterface::groundSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="owner" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::PropellantFeedInterface</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">groundSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::FluidPort</span></td>
 </tr>
 </tbody>
 <tbody class="sysml-group" data-group="owner" data-group-key="TethysInterfaces::SpacecraftLauncherInterface">
@@ -296,7 +347,19 @@
 </tr>
 <tr class="sysml-row" data-element="TethysInterfaces::TugInspectorInterface" data-element-kind="interfaceDef">
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TugInspectorInterface</span></td>
-<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ inspector before release: mechanical dispenser, umbilical and thermal. The relay link takes over after release.</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ inspector before release, the electrical umbilical: keep-alive power, checkout data and the separation signal. The stowed stack&#39;s mechanical and thermal disciplines are InspectorDispenserInterface and InspectorThermalInterface, each a binary interface of its own so every usage stays a two-ended connect; the relay link takes over after release.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::InspectorDispenserInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InspectorDispenserInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ inspector mechanical while stowed: the dispenser rails and release mechanism carrying Wren&#39;s launch loads into the tug structure.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::InspectorThermalInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InspectorThermalInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ inspector thermal while stowed: heat conducted through the dispenser rails that keeps Wren&#39;s battery above its survival temperature.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::PropellantFeedInterface" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PropellantFeedInterface</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tank ↔ ground fill-and-drain: the xenon and hydrazine loading lines on the pad.</span></td>
 </tr>
 <tr class="sysml-row" data-element="TethysInterfaces::SpacecraftLauncherInterface" data-element-kind="interfaceDef">
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SpacecraftLauncherInterface</span></td>
@@ -371,12 +434,14 @@ flowchart LR
 **wetMass**`&#34;)
       subgraph n4 [&#34;`*«part»* **structure**`&#34;]
         direction LR
+        n4.1[&#34;inspectorAttachment&#34;]
         n5(&#34;`*«attribute»*
 **mass**`&#34;)
       end
       subgraph n6 [&#34;`*«part»* **thermal**`&#34;]
         direction LR
-        n6.1[&#34;power&#34;]
+        n6.1[&#34;inspectorThermal&#34;]
+        n6.2[&#34;power&#34;]
         n7(&#34;`*«attribute»*
 **mass**`&#34;)
       end
@@ -452,6 +517,8 @@ flowchart LR
     end
     subgraph n33 [&#34;`*«part»* **inspector**`&#34;]
       direction LR
+      n33.0[&#34;carrierAttachment&#34;]
+      n33.1[&#34;stowedThermal&#34;]
       n34(&#34;`*«attribute»*
 **wetMass**`&#34;)
       subgraph n35 [&#34;`*«part»* **bus**`&#34;]
@@ -478,12 +545,14 @@ flowchart LR
   n8.0 === n11.1
   n8.0 === n13.2
   n8.0 === n15.0
-  n8.0 === n6.1
+  n8.0 === n6.2
   n8.0 === n24.1
   n8.0 === n27.1
   n8.0 === n31.0
   n8.1 === n17.1
   n8.2 === n35.1
+  n4.1 === n33.0
+  n6.1 === n33.1
   n35.0 === n13.1
   linkStyle 0 stroke-width:3px
   linkStyle 1 stroke-width:3px
@@ -494,7 +563,9 @@ flowchart LR
   linkStyle 6 stroke-width:3px
   linkStyle 7 stroke-width:3px
   linkStyle 8 stroke-width:3px
-  linkStyle 9 stroke-width:3px</pre>
+  linkStyle 9 stroke-width:3px
+  linkStyle 10 stroke-width:3px
+  linkStyle 11 stroke-width:3px</pre>
 <figcaption class="sysml-caption">Tug ↔ inspector: carrier umbilical and relay link</figcaption>
 </figure>
 </section>

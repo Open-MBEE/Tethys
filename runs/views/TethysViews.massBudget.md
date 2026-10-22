@@ -4,7 +4,7 @@
 | TethysTug::argent | part | Tug |  |
 | dryMass | attribute | MassValue | TethysTug::argent |
 | wetMass | attribute | MassValue | TethysTug::argent |
-| eps | part | ElectricalPower | TethysTug::argent |
+| eps | part | ElectricalPowerSystem | TethysTug::argent |
 | arrayPowerAtOneAu | attribute | PowerValue | eps |
 | sep | part | SolarElectricPropulsion | TethysTug::argent |
 | xenonMass | attribute | MassValue | sep |

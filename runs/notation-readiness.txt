@@ -51,7 +51,7 @@
 ✓ Created instance of TethysNotation::baselineReadiness
   ID: 1
   Use %features TethysNotation::baselineReadiness to inspect
-error: feature value baselineReadiness.bodyCount: usage captureOperation: performed action capture of object #89: invoke action CommitDecision: initialize action: initialize attributes: eval attribute default go: type mismatch: operator '<=' is not defined for a sequence and a quantity; DataFunctions::'<=' takes one DataValue per operand
+error: feature value baselineReadiness.bodyCount: usage captureOperation: performed action capture of object #93: invoke action CommitDecision: initialize action: initialize attributes: eval attribute default go: type mismatch: operator '<=' is not defined for a sequence and a quantity; DataFunctions::'<=' takes one DataValue per operand
 ✓ assert constraint inspectorDecisionIsExclusive holds (on TethysNotation::baselineReadiness ID: 1)
 ✓ assert constraint carriedMeansLifted holds (on TethysNotation::baselineReadiness ID: 1)
 ✓ assert constraint spareIsReal holds (on TethysNotation::baselineReadiness ID: 1)

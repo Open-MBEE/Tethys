@@ -268,7 +268,7 @@ flowchart LR
     end
     subgraph n5 ["`*«part»* **thermal**`"]
       direction LR
-      n5.1["power"]
+      n5.2["power"]
       n6("`*«attribute»*
 **mass**`")
     end
@@ -343,7 +343,7 @@ flowchart LR
   n7.0 === n10.1
   n7.0 === n12.2
   n7.0 === n14.0
-  n7.0 === n5.1
+  n7.0 === n5.2
   n7.0 === n23.1
   n7.0 === n26.1
   n7.0 === n30.0
@@ -369,22 +369,25 @@ flowchart LR
 7. captureCommit
 8. captureComplete
 9. despinComplete
-10. departureFromTarget
-11. lunarGravityAssist
-12. droInsertion
-13. visitingVehicleDocking
-14. tugSeparation
-15. tugDisposalBurn
-16. launchAndEarlyOperations TethysMission::MissionPhase
-17. outboundCruise TethysMission::MissionPhase
-18. approachAndRendezvous TethysMission::MissionPhase
-19. characterisation TethysMission::MissionPhase
-20. capture TethysMission::MissionPhase
-21. returnCruise TethysMission::MissionPhase
-22. droInsertionAndCheckout TethysMission::MissionPhase
-23. utilisation TethysMission::MissionPhase
-24. extendedMission TethysMission::MissionPhase
-25. disposal TethysMission::MissionPhase
+10. inspectorRetirement
+11. departureFromTarget
+12. lunarGravityAssist
+13. droInsertion
+14. visitingVehicleDocking
+15. tugSeparation
+16. tugDisposalBurn
+17. integrationAndTest TethysMission::MissionPhase
+18. launchAndEarlyOperations TethysMission::MissionPhase
+19. sepCommissioning TethysMission::MissionPhase
+20. outboundCruise TethysMission::MissionPhase
+21. approachAndRendezvous TethysMission::MissionPhase
+22. characterisation TethysMission::MissionPhase
+23. capture TethysMission::MissionPhase
+24. returnCruise TethysMission::MissionPhase
+25. droInsertionAndCheckout TethysMission::MissionPhase
+26. utilisation TethysMission::MissionPhase
+27. extendedMission TethysMission::MissionPhase
+28. disposal TethysMission::MissionPhase
 
 *The flight timeline: phases and the events that bound them*
 
@@ -444,58 +447,61 @@ flowchart LR
 **despinComplete**`")
   n0 --- n9
     n10("`*«occurrence»*
-**departureFromTarget**`")
+**inspectorRetirement**`")
   n0 --- n10
     n11("`*«occurrence»*
-**lunarGravityAssist**`")
+**departureFromTarget**`")
   n0 --- n11
     n12("`*«occurrence»*
-**droInsertion**`")
+**lunarGravityAssist**`")
   n0 --- n12
     n13("`*«occurrence»*
-**visitingVehicleDocking**`")
+**droInsertion**`")
   n0 --- n13
     n14("`*«occurrence»*
-**tugSeparation**`")
+**visitingVehicleDocking**`")
   n0 --- n14
     n15("`*«occurrence»*
-**tugDisposalBurn**`")
+**tugSeparation**`")
   n0 --- n15
     n16("`*«occurrence»*
-**launchAndEarlyOperations**`")
+**tugDisposalBurn**`")
   n0 --- n16
     n17("`*«occurrence»*
-**outboundCruise**`")
+**integrationAndTest**`")
   n0 --- n17
     n18("`*«occurrence»*
-**approachAndRendezvous**`")
+**launchAndEarlyOperations**`")
   n0 --- n18
     n19("`*«occurrence»*
-**characterisation**`")
+**sepCommissioning**`")
   n0 --- n19
     n20("`*«occurrence»*
-**capture**`")
+**outboundCruise**`")
   n0 --- n20
     n21("`*«occurrence»*
-**returnCruise**`")
+**approachAndRendezvous**`")
   n0 --- n21
     n22("`*«occurrence»*
-**droInsertionAndCheckout**`")
+**characterisation**`")
   n0 --- n22
     n23("`*«occurrence»*
-**utilisation**`")
+**capture**`")
   n0 --- n23
     n24("`*«occurrence»*
-**extendedMission**`")
+**returnCruise**`")
   n0 --- n24
     n25("`*«occurrence»*
-**disposal**`")
+**droInsertionAndCheckout**`")
   n0 --- n25
-    n26("`**succession**`")
+    n26("`*«occurrence»*
+**utilisation**`")
   n0 --- n26
-    n27("`**succession**`")
+    n27("`*«occurrence»*
+**extendedMission**`")
   n0 --- n27
-    n28("`**succession**`")
+    n28("`*«occurrence»*
+**disposal**`")
   n0 --- n28
     n29("`**succession**`")
   n0 --- n29
@@ -539,6 +545,18 @@ flowchart LR
   n0 --- n48
     n49("`**succession**`")
   n0 --- n49
+    n50("`**succession**`")
+  n0 --- n50
+    n51("`**succession**`")
+  n0 --- n51
+    n52("`**succession**`")
+  n0 --- n52
+    n53("`**succession**`")
+  n0 --- n53
+    n54("`**succession**`")
+  n0 --- n54
+    n55("`**succession**`")
+  n0 --- n55
 ```
 
 ## Mission requirements

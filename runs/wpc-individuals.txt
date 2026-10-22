@@ -52,8 +52,8 @@
   ID: 1
   Use %features TethysInspectorDetail::wrenFM to inspect
 ✓ Created instance of TethysProximityOps::amaranthFM
-  ID: 78
+  ID: 81
   Use %features TethysProximityOps::amaranthFM to inspect
 ✓ Created instance of TethysProximityOps::proxStackFM
-  ID: 91
+  ID: 94
   Use %features TethysProximityOps::proxStackFM to inspect

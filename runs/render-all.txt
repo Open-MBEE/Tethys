@@ -102,9 +102,9 @@ loaded 50 files:
 TethysVerification::VvMatrix: note: renders empty
 wrote build/runs/views/TethysVerification.VvMatrix.mmd (mermaid, 802 bytes)
 wrote build/runs/views/TethysVerification.l1Matrix.mmd (mermaid, 4309 bytes)
-wrote build/runs/views/TethysVerification.l2Matrix.mmd (mermaid, 323148 bytes)
-wrote build/runs/views/TethysVerification.l3l4Matrix.mmd (mermaid, 46979 bytes)
-wrote build/runs/views/TethysVerification.verificationCases.mmd (mermaid, 1423989 bytes)
+wrote build/runs/views/TethysVerification.l2Matrix.mmd (mermaid, 340391 bytes)
+wrote build/runs/views/TethysVerification.l3l4Matrix.mmd (mermaid, 47786 bytes)
+wrote build/runs/views/TethysVerification.verificationCases.mmd (mermaid, 1488420 bytes)
 TethysRisk::RiskRegisterView: note: renders empty
 wrote build/runs/views/TethysRisk.RiskRegisterView~1798bcd41eb23fe6.md (markdown, 128 bytes)
 wrote build/runs/views/TethysRisk.riskRegisterView~de4a5ee31ff27b8d.md (markdown, 10521 bytes)
@@ -127,11 +127,11 @@ wrote build/runs/views/TethysViews.ModeView.mmd (mermaid, 1001 bytes)
 wrote build/runs/views/TethysViews.requirementsTree.mmd (mermaid, 1204 bytes)
 wrote build/runs/views/TethysViews.requirementsTable.md (markdown, 3722 bytes)
 wrote build/runs/views/TethysViews.segmentInterfaces.mmd (mermaid, 1979 bytes)
-wrote build/runs/views/TethysViews.flightSegmentWiring.mmd (mermaid, 4050 bytes)
+wrote build/runs/views/TethysViews.flightSegmentWiring.mmd (mermaid, 4279 bytes)
 wrote build/runs/views/TethysViews.tugPowerBus.mmd (mermaid, 3090 bytes)
-wrote build/runs/views/TethysViews.interfaceDefinitions.md (markdown, 449213 bytes)
-wrote build/runs/views/TethysViews.massBudget.md (markdown, 1096 bytes)
-wrote build/runs/views/TethysViews.missionTimeline.mmd (mermaid, 3326 bytes)
+wrote build/runs/views/TethysViews.interfaceDefinitions.md (markdown, 5670 bytes)
+wrote build/runs/views/TethysViews.massBudget.md (markdown, 1102 bytes)
+wrote build/runs/views/TethysViews.missionTimeline.mmd (mermaid, 3646 bytes)
 wrote build/runs/views/TethysViews.projectLifecycle.mmd (mermaid, 1828 bytes)
 TethysViews::modeMachine: note: renders empty
 TethysViews::modeMachine: note: part def TethysTug::Tug is no state machine; a state rendering does not show it

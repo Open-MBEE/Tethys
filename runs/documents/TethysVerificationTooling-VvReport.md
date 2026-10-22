@@ -96,7 +96,7 @@ Every requirement of the Tethys tree (L1 to L4, needs, objectives and success cr
 | TW-003 | keepAlivePower | InspectorAcceptanceTest, InspectorCommissioning | 2 | bus | inspectorDeployment |
 | TW-004 | inspectorMass | InspectorAcceptanceTest | 1 | wren | launchCompatibility |
 | TW-005 | dopplerForMass | InspectorAcceptanceTest | 1 | bus | characterisationProducts |
-| TG-001 | stationAperture | LinkBudgetTest | 1 |  | deepSpaceLink |
+| TG-001 | stationAperture | LinkBudgetTest | 1 | primaryStation | deepSpaceLink |
 | TG-002 | stationSpacing | GroundInspection | 1 | network | deepSpaceLink |
 | TG-003 | rangingAccuracy | DeflectionAnalysis | 1 | fdf | deflectionMeasurement |
 | TG-004 | impactScreening | GroundProceduresDemo | 1 | fdf | earthImpactExclusion |

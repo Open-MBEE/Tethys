@@ -52,13 +52,13 @@
   ID: 1
   Use %features TethysVariants::baselineConfiguration to inspect
 ✓ Created instance of TethysVariants::smallTargetTugOnly
-  ID: 46
+  ID: 50
   Use %features TethysVariants::smallTargetTugOnly to inspect
 ✓ Created instance of TethysVariants::largeTargetStudy
-  ID: 84
+  ID: 92
   Use %features TethysVariants::largeTargetStudy to inspect
 ✓ Created instance of TethysVariants::fastSpinStudy
-  ID: 121
+  ID: 133
   Use %features TethysVariants::fastSpinStudy to inspect
 ✓ assert constraint captureEnvelope holds (on TethysVariants::baselineConfiguration ID: 1)
 ✓ assert constraint spinWithinGrappleRate holds (on TethysVariants::baselineConfiguration ID: 1)
@@ -69,33 +69,33 @@
 ✓ assert constraint stringsMatchArray holds (on TethysVariants::baselineConfiguration ID: 1)
 ✓ TethysVariants::baselineConfiguration is valid: all 7 assertions hold
   standing: holds (observed: 1 run under reverse)
-✓ assert constraint captureEnvelope holds (on TethysVariants::smallTargetTugOnly ID: 46)
-✓ assert constraint spinWithinGrappleRate holds (on TethysVariants::smallTargetTugOnly ID: 46)
-✓ assert constraint powerCloses holds (on TethysVariants::smallTargetTugOnly ID: 46)
-✓ assert constraint returnCloses holds (on TethysVariants::smallTargetTugOnly ID: 46)
-✓ assert constraint thrustTimeFits holds (on TethysVariants::smallTargetTugOnly ID: 46)
-✓ assert constraint launcherLifts holds (on TethysVariants::smallTargetTugOnly ID: 46)
-✓ assert constraint stringsMatchArray holds (on TethysVariants::smallTargetTugOnly ID: 46)
+✓ assert constraint captureEnvelope holds (on TethysVariants::smallTargetTugOnly ID: 50)
+✓ assert constraint spinWithinGrappleRate holds (on TethysVariants::smallTargetTugOnly ID: 50)
+✓ assert constraint powerCloses holds (on TethysVariants::smallTargetTugOnly ID: 50)
+✓ assert constraint returnCloses holds (on TethysVariants::smallTargetTugOnly ID: 50)
+✓ assert constraint thrustTimeFits holds (on TethysVariants::smallTargetTugOnly ID: 50)
+✓ assert constraint launcherLifts holds (on TethysVariants::smallTargetTugOnly ID: 50)
+✓ assert constraint stringsMatchArray holds (on TethysVariants::smallTargetTugOnly ID: 50)
 ✓ TethysVariants::smallTargetTugOnly is valid: all 7 assertions hold
   standing: holds (observed: 1 run under reverse)
-✓ assert constraint captureEnvelope holds (on TethysVariants::largeTargetStudy ID: 84)
-✓ assert constraint spinWithinGrappleRate holds (on TethysVariants::largeTargetStudy ID: 84)
-✓ assert constraint powerCloses holds (on TethysVariants::largeTargetStudy ID: 84)
-✗ assert constraint returnCloses fails (on TethysVariants::largeTargetStudy ID: 84)
+✓ assert constraint captureEnvelope holds (on TethysVariants::largeTargetStudy ID: 92)
+✓ assert constraint spinWithinGrappleRate holds (on TethysVariants::largeTargetStudy ID: 92)
+✓ assert constraint powerCloses holds (on TethysVariants::largeTargetStudy ID: 92)
+✗ assert constraint returnCloses fails (on TethysVariants::largeTargetStudy ID: 92)
   Assertion evaluated to false: returnDeltaV >= requiredReturnDeltaV
-✓ assert constraint thrustTimeFits holds (on TethysVariants::largeTargetStudy ID: 84)
-✓ assert constraint launcherLifts holds (on TethysVariants::largeTargetStudy ID: 84)
-✓ assert constraint stringsMatchArray holds (on TethysVariants::largeTargetStudy ID: 84)
+✓ assert constraint thrustTimeFits holds (on TethysVariants::largeTargetStudy ID: 92)
+✓ assert constraint launcherLifts holds (on TethysVariants::largeTargetStudy ID: 92)
+✓ assert constraint stringsMatchArray holds (on TethysVariants::largeTargetStudy ID: 92)
 ✗ TethysVariants::largeTargetStudy is not valid: 1 of 7 assertions fails
   standing: violated (witnessed: 1 run under reverse)
-✓ assert constraint captureEnvelope holds (on TethysVariants::fastSpinStudy ID: 121)
-✗ assert constraint spinWithinGrappleRate fails (on TethysVariants::fastSpinStudy ID: 121)
+✓ assert constraint captureEnvelope holds (on TethysVariants::fastSpinStudy ID: 133)
+✗ assert constraint spinWithinGrappleRate fails (on TethysVariants::fastSpinStudy ID: 133)
   Assertion evaluated to false: target.rotationPeriod >= minimumRotationPeriod
-✓ assert constraint powerCloses holds (on TethysVariants::fastSpinStudy ID: 121)
-✓ assert constraint returnCloses holds (on TethysVariants::fastSpinStudy ID: 121)
-✓ assert constraint thrustTimeFits holds (on TethysVariants::fastSpinStudy ID: 121)
-✓ assert constraint launcherLifts holds (on TethysVariants::fastSpinStudy ID: 121)
-✓ assert constraint stringsMatchArray holds (on TethysVariants::fastSpinStudy ID: 121)
+✓ assert constraint powerCloses holds (on TethysVariants::fastSpinStudy ID: 133)
+✓ assert constraint returnCloses holds (on TethysVariants::fastSpinStudy ID: 133)
+✓ assert constraint thrustTimeFits holds (on TethysVariants::fastSpinStudy ID: 133)
+✓ assert constraint launcherLifts holds (on TethysVariants::fastSpinStudy ID: 133)
+✓ assert constraint stringsMatchArray holds (on TethysVariants::fastSpinStudy ID: 133)
 ✗ TethysVariants::fastSpinStudy is not valid: 1 of 7 assertions fails
   standing: violated (witnessed: 1 run under reverse)
 exit 1

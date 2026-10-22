@@ -9,7 +9,7 @@ One interface control document per TethysInterfaces interface definition, each s
 | name | documentation |
 | --- | --- |
 | PacketInterface | The command/telemetry packet interface between the flight software and the<br>operations centre, independent of the RF link that carries it. |
-| TugInspectorIcd | Argent ↔ Wren while stowed: 28 V keep-alive power, checkout telemetry over the<br>umbilical and the separation signal. Mechanical and thermal disciplines are in<br>TI-007 and TI-008 because the backbone interface has only umbilical ends. |
+| TugInspectorIcd | Argent ↔ Wren while stowed: 28 V keep-alive power, checkout telemetry over the<br>umbilical and the separation signal. The mechanical and thermal disciplines of<br>the stowed stack are TI-007 and TI-008 over their own backbone interfaces. |
 | LaunchIcd | Stack ↔ Arcturus-5H: adapter geometry, quasi-static and dynamic loads, fairing<br>environments, stack mass properties, separation and injection accuracy. |
 | SpaceGroundIcd | Argent ↔ Meridian: X-band up and down, Ka-band down, modulation, coding, rate<br>envelope, two-way ranging and the packet protocol over the link. The Earth-range<br>envelope per phase is in TethysLinkBudgets. |
 | InspectorRelayIcd | Wren ↔ Argent proximity link: UHF, low rate down to Wren, imagery and radar up to<br>Argent, usable within the geometry window below; the data volume it must carry<br>depends on the target size and is sized in TethysLinkBudgets. |
