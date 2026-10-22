@@ -10,6 +10,7 @@
 ✓ package TethysGround
 ✓ package TethysSystem
 ✓ package TethysSafety
+✓ package TethysRisk
 ✓ package TethysHouseRules
 ✓ Constraint TethysSafety::earthImpactTree::earthImpactExcluded passed
   standing: holds (observed: 1 run under reverse)

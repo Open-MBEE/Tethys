@@ -10,6 +10,7 @@
 ✓ package TethysGround
 ✓ package TethysSystem
 ✓ package TethysSafety
+✓ package TethysRisk
 ✓ package TethysHouseRules
 ✓ Created instance of TethysSystem::tethysSystem
   ID: 1
