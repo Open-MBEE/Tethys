@@ -9,6 +9,7 @@ package TethysSequence {
     private import ScalarValues::*;
     private import ISQ::*;
     private import SI::*;
+    private import Time::*;
     private import BaseFunctions::ToString;
     private import TethysModes::TargetEstimate;
     private import TethysModes::CaptureEnvelope;
@@ -235,8 +236,35 @@ package TethysSequence {
         action insertionArc accept after insertionArcDuration;
         then action insertionDone assign inserted := true;
         then action insertionReport assign outcome := "inserted into the DRO";
-        then done;
+        then afterInsertion;
         action backupLoiter assign outcome := "corridor missed: backup heliocentric loiter, retry next synodic window";
+        then afterInsertion;
+        merge afterInsertion;
+        then action orbitDetermination accept after 2.0 [d];
+        then done;
+    }
+
+    action def DroStationKeeping {
+        doc /* The DRO checkout's station-keeping demonstration: hydrazine trims are repeated
+             * until the along-track drift is inside the control box, then the three
+             * demonstration cycles of the checkout plan are costed. */
+        in initialDrift : LengthValue;
+        in controlBox : LengthValue;
+        in cyclesPlanned : Natural;
+        attribute drift : LengthValue = initialDrift;
+        attribute trimPerCycle : MassValue = 1.5 [kg];
+        out trims : Natural = 0;
+        out hydrazineUsed : MassValue = 0.0 [kg];
+        first start;
+        then loop {
+            action trim {
+                assign drift := drift * 0.4;
+                then assign trims := trims + 1;
+            }
+        } until drift <= controlBox;
+        then for cycle in 1..cyclesPlanned {
+            action costCycle assign hydrazineUsed := hydrazineUsed + trimPerCycle;
+        }
         then done;
     }
 
@@ -246,7 +274,8 @@ package TethysSequence {
              * of TethysMission::flightTimeline. The clock runs in days; the thrust arcs are
              * loops counted against the arc plan; the capture commit is a decision over the
              * delivered target estimate and the capture envelope, and a refused commit ends
-             * the mission in a retreat hold. */
+             * the mission in a retreat hold (`terminate`). The lunar assist is waited for as a
+             * timed event (`accept at` a clock instant scheduled after the return arcs). */
         in target : TargetEstimate;
         in envelope : CaptureEnvelope;
         in outboundArcPlan : Natural;
@@ -255,6 +284,8 @@ package TethysSequence {
         attribute outboundArcs : Natural = 0;
         attribute returnArcs : Natural = 0;
         attribute inspectorReleased : Boolean = false;
+        attribute xenonReserve : MassValue = 300.0 [kg];
+        attribute lunarAssistAt : TimeInstantValue;
         out captured : Boolean = false;
         out inserted : Boolean = false;
         out outcome : String = "";
@@ -293,7 +324,7 @@ package TethysSequence {
             if target.estimatedMass <= envelope.maximumBodyMass and target.estimatedDiameter <= envelope.maximumBodyDiameter then captureAndDespin;
             else retreatHold;
         action retreatHold assign outcome := "capture refused: target estimate outside the capture envelope";
-        then done;
+        then terminate;
         action captureAndDespin {
             action capture accept after 3.0 [d];
             then assign captured := true;
@@ -313,13 +344,22 @@ package TethysSequence {
                 then assign returnArcs := returnArcs + 1;
             }
         }
-        then action lunarGravityAssist accept after 20.0 [d];
+        then if xenonRemaining < xenonReserve {
+            action reserveBreached assign outcome := "xenon reserve breached before the lunar assist";
+        }
+        then action scheduleLunarAssist assign lunarAssistAt := Time::universalClock.currentTime + 20.0 [d];
+        then action lunarGravityAssist accept at lunarAssistAt;
         then action droInsertion : DroInsertionSequence {
             in corridorError = 1200.0 [km];
             in corridorHalfWidth = 5000.0 [km];
         }
         then assign inserted := droInsertion.inserted;
-        then action droCheckout accept after 60.0 [d];
+        then action droCheckout : DroStationKeeping {
+            in initialDrift = 180.0 [km];
+            in controlBox = 10.0 [km];
+            in cyclesPlanned = 3;
+        }
+        then action droCheckoutHold accept after 58.0 [d];
         then action visitingVehicleDocking accept after 1.0 [d];
         then action utilisation accept after 300.0 [d];
         then action tugSeparation accept after 1.0 [d];

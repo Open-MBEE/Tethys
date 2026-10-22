@@ -261,6 +261,7 @@ package TethysModes {
         attribute captured : Boolean = false;
         attribute thrustArcsStarted : Natural = 0;
         attribute safeModeEntries : Natural = 0;
+        attribute sunPointingCycles : Natural = 0;
         attribute abortEntries : Natural = 0;
         attribute lastSafeModeReason : String = "";
 
@@ -325,8 +326,15 @@ package TethysModes {
             }
             state safe {
                 doc /* Sun-pointed, low-gain, thrusters and high-voltage bus off, waiting for
-                     * ground recovery. */
+                     * ground recovery; while in safe mode the sun-pointing hold is re-acquired
+                     * every hour (the `do` behaviour). */
                 entry assign safeModeEntries := safeModeEntries + 1;
+                do action sunPointingHold {
+                    first start;
+                    then action reacquire accept after 1.0 [h];
+                    then assign sunPointingCycles := sunPointingCycles + 1;
+                    then done;
+                }
             }
             state abortHold {
                 doc /* Return aborted by the Earth-impact exclusion monitor: thrust inhibited,

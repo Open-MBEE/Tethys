@@ -26,6 +26,7 @@ warning: TethysFdir::commandLossScenario: materialization is bounded; not every 
   Last event at: 1987200.0
   Remaining events: 1
   10 choice points (10 independent); %trace on to see them
+  Do behavior actions run: 2
   Action steps taken: 13
   Waiting on the clock:
     t=2592000.0: state machine FdirSupervisor of object #4, time -> expired

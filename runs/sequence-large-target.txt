@@ -36,6 +36,7 @@ note: object #1 of "TethysSequence::largeTargetCampaign" already performs "Tethy
     inspectorRelease.released = [true]
     inspectorRelease.umbilicalDisconnected = true
     inspectorReleased = true
+    lunarAssistAt = <unset>
     outboundArcPlan = [3]
     outboundArcs = 3
     outcome = ["capture refused: target estimate outside the capture envelope"]
@@ -43,4 +44,5 @@ note: object #1 of "TethysSequence::largeTargetCampaign" already performs "Tethy
     returnArcs = 0
     target = [Instance(ID: 3)]
     xenonRemaining = 5955.0 [kg]
+    xenonReserve = 300.0 [kg]
   standing: value (observed: 1 run under reverse)

@@ -26,6 +26,7 @@ warning: TethysFdir::thrusterFaultScenario: materialization is bounded; not ever
   Last event at: 2600640.0
   Remaining events: 0
   9 choice points (8 independent); %trace on to see them
+  Do behavior actions run: 2
   Action steps taken: 22
   Waiting on the clock:
     t=2773440.0: action campaign of object #2, accept after waiting since step 24 for the clock to reach t=2773440.0
