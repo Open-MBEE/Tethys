@@ -104,13 +104,13 @@ package TethysTug {
     }
 
     part argent : Tug {
-        doc /* The flight tug as sized at the start of Phase B: 5 600 kg dry, 9 800 kg xenon,
-             * 400 kg hydrazine; 48 kW at 1 AU; four thrusters, three operating, Isp 2 900 s. */
+        doc /* The flight tug as sized at the start of Phase B: 5 600 kg dry, 6 600 kg xenon,
+             * 400 kg hydrazine (about 1 100 days of thrust at 1.8 N: ~650 kg outbound, ~5 100 kg to bring 370 t home); 48 kW at 1 AU; four thrusters, three operating, Isp 2 900 s. */
         attribute :>> dryMass = 5600.0 [kg];
-        attribute :>> wetMass = 15800.0 [kg];
+        attribute :>> wetMass = 12600.0 [kg];
         part :>> eps { attribute :>> arrayPowerAtOneAu = 48.0 [kW]; }
         part :>> sep {
-            attribute :>> xenonMass = 9800.0 [kg];
+            attribute :>> xenonMass = 6600.0 [kg];
             attribute :>> thrusterCount = 4;
             attribute :>> operatingThrusters = 3;
             attribute :>> specificImpulse = 2900.0 [s];

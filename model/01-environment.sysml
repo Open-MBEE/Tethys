@@ -86,17 +86,17 @@ package TethysEnvironment {
         attribute :>> bulkDensity = 2200.0 ['kg⋅m⁻³'];
         attribute :>> mass = 362.0e3 [kg];
         attribute :>> rotationPeriod = 252.0 [s];
-        attribute :>> absoluteMagnitude = 28.1;
+        attribute :>> absoluteMagnitude = 28.2;
         attribute :>> geometricAlbedo = 0.20;
         attribute :>> spectralType = "S";
         attribute :>> orbit : HeliocentricOrbit {
-            attribute :>> semiMajorAxisAu = 1.052;
-            attribute :>> eccentricity = 0.083;
-            attribute :>> inclination = 1.6 ['°'];
-            attribute :>> perihelionAu = 0.9647;
-            attribute :>> aphelionAu = 1.1393;
-            attribute :>> period = 394.1 [d];
-            attribute :>> synodicPeriodWithEarth = 5004.0 [d];
+            attribute :>> semiMajorAxisAu = 1.034;
+            attribute :>> eccentricity = 0.030;
+            attribute :>> inclination = 0.6 ['°'];
+            attribute :>> perihelionAu = 1.0030;
+            attribute :>> aphelionAu = 1.0650;
+            attribute :>> period = 384.0 [d];
+            attribute :>> synodicPeriodWithEarth = 7467.0 [d];
         }
     }
 
@@ -122,15 +122,15 @@ package TethysEnvironment {
         doc /* Tug–Earth distance over the mission: 2 to 60 million km (one-way light time 7 to
              * 200 s). The Earth-like target orbit keeps the tug close; the drift phases of the
              * outbound and return legs set the maximum. */
-        attribute :>> minimum = 2.0e6 [km];
+        attribute :>> minimum = 0.3e6 [km];
         attribute :>> maximum = 60.0e6 [km];
     }
 
     attribute heliocentricRange : RangeEnvelope {
         doc /* Sun distance over the mission, from the target's perihelion to its aphelion:
              * solar flux 1049 to 1462 W/m² (SolarFlux). */
-        attribute :>> minimum = 144.3e6 [km];
-        attribute :>> maximum = 170.4e6 [km];
+        attribute :>> minimum = 150.0e6 [km];
+        attribute :>> maximum = 159.3e6 [km];
     }
 
     attribute def DistantRetrogradeOrbit {

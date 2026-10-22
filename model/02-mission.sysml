@@ -37,7 +37,7 @@ package TethysMission {
         doc /* The Tethys Retrieval mission: medium class, 1 300 days from launch to the
              * delivery of the target into its lunar distant retrograde orbit. */
         attribute :>> missionClass = MissionClass::medium;
-        attribute :>> nominalDuration = 1300 [d];
+        attribute :>> nominalDuration = 2200 [d];
         part flight : FlightSegment;
         part launch : LaunchSegment;
         part ground : GroundSegment;

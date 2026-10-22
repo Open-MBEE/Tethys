@@ -357,6 +357,8 @@ Common pattern for every budget row (patterns: rts `mass-rollup.sysml` recursive
 
 ## 2. Venus orbiter + entry/descent probe — domain content list (generic to the class)
 
+> **Superseded.** This section was written for the earlier Venus-orbiter concept of the model. The domain list for the asteroid-retrieval mission the model now describes is [small-body-domain-list.md](small-body-domain-list.md); the rows below are kept for the record only.
+
 All numbers in §2.1 are public physical constants, quoted from the NASA NSSDCA *Venus Fact Sheet* (nssdc.gsfc.nasa.gov/planetary/factsheet/venusfact.html, last updated 11 January 2024, read for this review) unless marked **derived**. Derived values were computed in this review from those constants (vis-viva, Hohmann, inverse-square, free-space path loss) and are illustrative — the model should compute them with its own `calc def`s, not copy them. Every Hesperia/Kestrel design number (masses, powers, rates, apsides) is to be **invented** by the work packages; nothing below is taken from a real or planned mission.
 
 ### 2.1 Environment and public constants (for `Hesperia::Environment`)

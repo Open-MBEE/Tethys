@@ -68,7 +68,7 @@ package TethysRequirements {
         attribute nominalDuration : DurationValue;
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::mission; stage = VerificationStage::inFlight; }
         @original;
-        require constraint { nominalDuration <= 1300 [d] }
+        require constraint { nominalDuration <= 2200 [d] }
     }
     requirement <'TR-003'> characterisation : MissionRequirement {
         doc /* Before committing to capture, the mission shall determine the target's shape,

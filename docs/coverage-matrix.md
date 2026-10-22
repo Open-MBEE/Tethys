@@ -30,7 +30,7 @@ Source reviews (kept verbatim; rows are referenced by id, never copied):
 | 1.17 Views, documents, model management and house rules | SE-321–SE-329 (9) | 5 | 2 | 2 | WP-H views, documents, layout |
 | **Total** | 233 | 133 | 66 | 34 | |
 
-Section 2 of the SE review was written for the earlier Venus-orbiter concept of this model; the small-body / solar-electric domain list that replaces it is [small-body-domain-list.md](small-body-domain-list.md) (pending), and it feeds `TethysEnvironment` (backbone) and the subsystem/interface/failure-mode/trade lists of WP-B, WP-D, WP-E and WP-F. Section 3 ("what no published model covers", 20 boundary groups) is the first list every work package checks its constructs against; section 4 (verification-query mechanisms) is the recipe for turning a predicate into a gate.
+Section 2 of the SE review was written for the earlier Venus-orbiter concept of this model; the small-body / solar-electric domain list that replaces it is [small-body-domain-list.md](small-body-domain-list.md), and it feeds `TethysEnvironment` (backbone) and the subsystem/interface/failure-mode/trade lists of WP-B, WP-D, WP-E and WP-F. Section 3 ("what no published model covers", 20 boundary groups) is the first list every work package checks its constructs against; section 4 (verification-query mechanisms) is the recipe for turning a predicate into a gate.
 
 ## 2. Language rows by group
 
