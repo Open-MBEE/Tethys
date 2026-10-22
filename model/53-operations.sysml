@@ -28,12 +28,12 @@ package TethysOperations {
     attribute def ApidTable {
         doc /* The application ids assigned to each class; the dictionary check demands they
              * are distinct and in the 11-bit range. */
-        attribute housekeeping : Natural = 1;
-        attribute guidance : Natural = 2;
-        attribute propulsion : Natural = 3;
-        attribute capture : Natural = 4;
-        attribute relay : Natural = 5;
-        attribute imaging : Natural = 6;
+        attribute housekeeping : Natural default = 1;
+        attribute guidance : Natural default = 2;
+        attribute propulsion : Natural default = 3;
+        attribute capture : Natural default = 4;
+        attribute relay : Natural default = 5;
+        attribute imaging : Natural default = 6;
     }
 
     item def Command :> CommandPacket {
@@ -174,19 +174,32 @@ package TethysOperations {
     }
 
     part def Dictionary {
-        doc /* The dictionary as a whole, with the consistency checks run over it. */
+        doc /* The dictionary as a whole, with the consistency checks run over it. The counts and
+             * the consistency flags are bound by the flight dictionary that specialises this. */
         attribute apids : ApidTable;
         attribute apidMaximum : Natural = 2047;
-        attribute commandCount : Natural = 8;
-        attribute telemetryPointCount : Natural = 7;
-    }
-    part dictionary : Dictionary {
-        doc /* The Tethys dictionary at its current issue. */
+        attribute commandCount : Natural;
+        attribute telemetryPointCount : Natural;
+        attribute eventCount : Natural;
+        attribute packetCount : Natural;
+        attribute opcodesUnique : Boolean;
+        attribute mnemonicsUnique : Boolean;
+        attribute apidsUnique : Boolean;
+        attribute apidsWithinRange : Boolean;
+        attribute eventIdsUnique : Boolean;
+        attribute packetsSumToLength : Boolean;
+        attribute commandsHaveModePrecondition : Boolean;
+        attribute pointsHaveSource : Boolean;
+        attribute parametersInRange : Boolean;
+        attribute fdirThresholdsReadLimitTable : Boolean;
     }
 
     requirement <'TG-010'> dictionaryConsistent : SystemRequirement {
-        doc /* The dictionary shall assign distinct application ids within the 11-bit range and
-             * every telemetry point shall carry ordered limits. */
+        doc /* The dictionary shall assign distinct application ids within the 11-bit range, distinct
+             * opcodes, mnemonics and event ids; every command shall have an opcode and a mode
+             * precondition, every packet shall sum to its length, every telemetry point shall name
+             * its source application and carry ordered limits, and every fault-supervisor threshold
+             * shall read a limit-table row. */
         subject d : Dictionary;
         @Verification { method = VerificationMethodKind::inspect; level = VerificationLevel::system; stage = VerificationStage::preLaunch; }
         require constraint distinctApids {
@@ -199,9 +212,18 @@ package TethysOperations {
                 and d.apids.capture != d.apids.relay and d.apids.capture != d.apids.imaging
                 and d.apids.relay != d.apids.imaging
         }
-        require constraint apidsInRange { d.apids.imaging <= d.apidMaximum }
+        require constraint apidsInRange { d.apids.imaging <= d.apidMaximum and d.apidsWithinRange }
+        require constraint distinctOpcodes { d.opcodesUnique }
+        require constraint distinctMnemonics { d.mnemonicsUnique }
+        require constraint distinctAllocatedApids { d.apidsUnique }
+        require constraint distinctEventIds { d.eventIdsUnique }
+        require constraint commandsComplete { d.commandsHaveModePrecondition }
+        require constraint packetsSumToLength { d.packetsSumToLength }
+        require constraint pointsSourced { d.pointsHaveSource }
+        require constraint parametersInRange { d.parametersInRange }
+        require constraint thresholdsFromTable { d.fdirThresholdsReadLimitTable }
+        require constraint populated { d.commandCount > 0 and d.telemetryPointCount > 0 and d.eventCount > 0 and d.packetCount > 0 }
     }
-    satisfy dictionaryConsistent by dictionary { doc /* The current dictionary passes its checks. */ }
 
     // ---- flight rules ------------------------------------------------------------------------
     constraint def NoThrustDuringRelay {

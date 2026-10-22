@@ -260,7 +260,18 @@ Rows from the software scope review (`SW-###`), covered package by package in
 | SW-241 flight software attached to C&DH | WP-SW-1 | sat |
 | SW-245 `FlightComputer` image and bus ports | WP-SW-1 (WP-SW-4 binds the load figures) | sat |
 | SW-252 `SoftwareDeployment` and new `SoftwareFunction` leaves | WP-SW-1 | sat |
-| SW-254 house rules: every application allocated | WP-SW-1 (WP-SW-2 and WP-SW-5 add theirs) | sat |
+| SW-003 time service / time code | WP-SW-2 flight dictionary | sat — `docs/coverage/WP-SW-2.md` |
+| SW-005 table service | WP-SW-2 | sat |
+| SW-007 command ingest | WP-SW-2 (dispatch behaviour WP-SW-3) | sat |
+| SW-008 telemetry output | WP-SW-2 (packetisation behaviour WP-SW-3) | sat |
+| SW-009 housekeeping and limits | WP-SW-2 | sat |
+| SW-027 parameter management | WP-SW-2 | sat |
+| SW-030 complete command dictionary | WP-SW-2 | sat (findings F-SW188, F-SW201) |
+| SW-031 complete telemetry dictionary | WP-SW-2 | sat (finding F-SW194) |
+| SW-032 packet definitions | WP-SW-2 | sat (finding F-SW192) |
+| SW-033 event dictionary | WP-SW-2 | sat |
+| SW-247 `SpacePacket` secondary header | WP-SW-2 (WP-SW-6 adds the software ICDs) | sat for WP-SW-2 |
+| SW-248 `Dictionary` counts derived from 64, `TG-010` extended | WP-SW-2 | sat |
 | SW-039 inter-application message catalogue | WP-SW-6 software interface control | sat — `docs/coverage/WP-SW-6.md` |
 | SW-040 AABP-1 on-board bus protocol ICD | WP-SW-6 | sat |
 | SW-041 CCSDS Space Packet + MLS-2 link profile | WP-SW-6 | sat |
@@ -269,4 +280,5 @@ Rows from the software scope review (`SW-###`), covered package by package in
 | SW-189 four-level allocation chain, specialised end redefinitions | WP-SW-6 probe | sat (finding F-SW602) |
 | SW-193 interfaces with ≥ 3 ends | WP-SW-6 probe and in-model topics | sat (finding F-SW601) |
 | SW-247 TI-02x reservation and `IcdRegister` software rows | WP-SW-6 | sat |
-| SW-255 coverage and findings files | each software package | sat for WP-SW-1, WP-SW-6 |
+| SW-254 house rules: every application allocated | WP-SW-1 (WP-SW-2 and WP-SW-5 add theirs) | sat for WP-SW-1 and WP-SW-2 |
+| SW-255 coverage and findings files | each software package | sat for WP-SW-1, WP-SW-2, WP-SW-6 |

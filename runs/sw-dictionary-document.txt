@@ -1,0 +1,1703 @@
+loaded 55 files:
+  model/00-tethys.sysml
+  model/01-environment.sysml
+  model/02-mission.sysml
+  model/03-interfaces.sysml
+  model/04-requirements.sysml
+  model/05-tug.sysml
+  model/06-inspector.sysml
+  model/07-target.sysml
+  model/08-launch.sysml
+  model/09-ground.sysml
+  model/10-system.sysml
+  model/20-stakeholders.sysml
+  model/21-requirements-l2.sysml
+  model/22-requirements-l3-l4.sysml
+  model/23-verification.sysml
+  model/24-verification-tooling.sysml
+  model/30-margin-policy.sysml
+  model/31-tug-structure.sysml
+  model/32-budgets.sysml
+  model/40-inspector.sysml
+  model/41-capture-system.sysml
+  model/42-proximity-ops.sysml
+  model/50-ground.sysml
+  model/51-icds.sysml
+  model/52-link-budgets.sysml
+  model/53-operations.sysml
+  model/54-icds-tooling.sysml
+  model/60-modes.sysml
+  model/61-sequence.sysml
+  model/62-fdir.sysml
+  model/63-flight-software.sysml
+  model/64-flight-dictionary-tooling.sysml
+  model/64-flight-dictionary.sysml
+  model/68-software-icds-tooling.sysml
+  model/68-software-icds.sysml
+  model/70-analyses.sysml
+  model/71-trades.sysml
+  model/72-montecarlo.sysml
+  model/73-dynamics.sysml
+  model/74-analyses-tooling.sysml
+  model/80-variants.sysml
+  model/81-physics.kerml
+  model/82-notation-sweep.sysml
+  model/85-safety.sysml
+  model/86-risk.sysml
+  model/87-allocations-tooling.sysml
+  model/87-allocations.sysml
+  model/90-views.sysml
+  model/91-documents.sysml
+  model/92-layout.sysml
+  model/93-views-tooling.sysml
+  model/95-as-built.sysml
+  model/96-imported-data.sysml
+  model/97-disposal.sysml
+  model/99-house-rules.sysml
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+# Argent flight dictionary
+
+Every command, telemetry point, event and packet the Argent flight software and the Meridian ground system agree on, read from TethysFlightDictionary. Opcodes, mnemonics, application ids and event ids are unique; the dictionary requirement in TethysOperations checks it.
+
+## Command dictionary
+
+*Commands by opcode*
+
+| mnemonic | opcodeNumber | application | criticality | hazardous | argumentCount | documentation |
+| --- | --- | --- | --- | --- | --- | --- |
+| CDH\_NOOP | 257 | cdh | routine | false | 0 | No operation; exercises the command path and increments the accept counter. |
+| CDH\_RESET\_PROCESSOR | 258 | cdh | critical | true | 1 | Warm-reset the flight computer; all applications restart from their tables. |
+| CDH\_SELECT\_PRIME\_COMPUTER | 259 | cdh | critical | false | 1 | Make the named computer prime and the other hot spare. |
+| CDH\_SET\_CLOCK | 260 | cdh | critical | false | 2 | Set the spacecraft clock coarse and fine fields. |
+| CDH\_ADJUST\_CLOCK | 261 | cdh | routine | false | 2 | Slew the spacecraft clock by a signed correction applied over the next pass. |
+| CDH\_DUMP\_MEMORY | 262 | cdh | routine | false | 2 | Downlink a memory region of the given address and length. |
+| CDH\_LOAD\_MEMORY | 263 | cdh | critical | true | 3 | Write a memory region; the image follows in the data field. |
+| CDH\_START\_RECORDING | 264 | cdh | routine | false | 1 | Start recording the named telemetry packet class to the recorder. |
+| CDH\_STOP\_RECORDING | 265 | cdh | routine | false | 1 | Stop recording the named telemetry packet class. |
+| CDH\_DOWNLINK\_FILE | 266 | cdh | routine | false | 2 | Queue a recorder file for downlink at the given priority. |
+| CDH\_DELETE\_FILE | 267 | cdh | critical | false | 1 | Delete a recorder file after its downlink is confirmed. |
+| CDH\_SET\_DOWNLINK\_PRIORITY | 268 | cdh | routine | false | 2 | Set the downlink priority of a telemetry packet class. |
+| CDH\_SET\_WATCHDOG\_PERIOD | 269 | cdh | critical | false | 1 | Set the hardware watchdog kick period. |
+| CDH\_CLEAR\_COUNTERS | 270 | cdh | routine | false | 0 | Zero the command accept and reject counters. |
+| CDH\_SET\_APP\_RATE\_CDH | 271 | cdh | critical | false | 1 | Set the scheduling rate of the CDH application. |
+| CDH\_SET\_APP\_RATE\_GNC | 272 | cdh | critical | false | 1 | Set the scheduling rate of the GNC application. |
+| CDH\_SET\_APP\_RATE\_SEP | 273 | cdh | critical | false | 1 | Set the scheduling rate of the SEP application. |
+| CDH\_SET\_APP\_RATE\_EPS | 274 | cdh | critical | false | 1 | Set the scheduling rate of the EPS application. |
+| CDH\_SET\_APP\_RATE\_THM | 275 | cdh | critical | false | 1 | Set the scheduling rate of the THM application. |
+| CDH\_SET\_APP\_RATE\_COM | 276 | cdh | critical | false | 1 | Set the scheduling rate of the COM application. |
+| CDH\_SET\_APP\_RATE\_INS | 277 | cdh | critical | false | 1 | Set the scheduling rate of the INS application. |
+| CDH\_SET\_APP\_RATE\_CAP | 278 | cdh | critical | false | 1 | Set the scheduling rate of the CAP application. |
+| CDH\_SET\_APP\_RATE\_AUT | 279 | cdh | critical | false | 1 | Set the scheduling rate of the AUT application. |
+| CDH\_SET\_APP\_RATE\_FDR | 280 | cdh | critical | false | 1 | Set the scheduling rate of the FDR application. |
+| CDH\_SET\_APP\_RATE\_MOD | 281 | cdh | critical | false | 1 | Set the scheduling rate of the MOD application. |
+| CDH\_SET\_APP\_RATE\_PBU | 282 | cdh | critical | false | 1 | Set the scheduling rate of the PBU application. |
+| GNC\_SET\_ATTITUDE\_TARGET | 513 | gnc | critical | false | 4 | Command a target quaternion; the controller slews to it at the rate limit. |
+| GNC\_SET\_RATE\_TARGET | 514 | gnc | critical | false | 3 | Command a body rate target. |
+| GNC\_SLEW\_TO | 515 | gnc | critical | false | 3 | Slew about the given axis by the given angle. |
+| GNC\_HOLD\_ATTITUDE | 516 | gnc | routine | false | 0 | Hold the current attitude inertially. |
+| GNC\_SELECT\_STAR\_TRACKER | 517 | gnc | critical | false | 1 | Select the star tracker used by the estimator. |
+| GNC\_SELECT\_IMU | 518 | gnc | critical | false | 1 | Select the inertial measurement unit used by the estimator. |
+| GNC\_DESATURATE\_WHEELS | 519 | gnc | critical | true | 1 | Dump wheel momentum with the reaction control thrusters. |
+| GNC\_SET\_WHEEL\_SPEED | 520 | gnc | critical | false | 2 | Command a wheel to a speed; for ground testing and bias management. |
+| GNC\_ENABLE\_RCS\_CONTROL | 521 | gnc | critical | true | 0 | Allow the controller to fire reaction control thrusters. |
+| GNC\_DISABLE\_RCS\_CONTROL | 522 | gnc | critical | false | 0 | Inhibit all reaction control thruster firing. |
+| GNC\_UPLOAD\_EPHEMERIS | 523 | gnc | routine | false | 3 | Load an ephemeris block for the tug, the Earth, the Moon or the target. |
+| GNC\_SET\_GUIDANCE\_MODE | 524 | gnc | critical | false | 1 | Select the guidance law: inertial hold, sun point, thrust vector or target track. |
+| GNC\_START\_TCM | 525 | gnc | critical | true | 3 | Execute a trajectory correction with the reaction control system. |
+| GNC\_ABORT\_TCM | 526 | gnc | critical | false | 0 | Stop a running trajectory correction immediately. |
+| GNC\_SET\_POINTING\_TOLERANCE | 527 | gnc | routine | false | 1 | Set the attitude error at which a slew is declared complete. |
+| GNC\_RESET\_ESTIMATOR | 528 | gnc | critical | false | 0 | Reinitialise the attitude estimator from the star tracker. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_01 | 529 | gnc | critical | true | 0 | Enable reaction control thruster 1. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_01 | 530 | gnc | critical | false | 0 | Disable reaction control thruster 1. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_02 | 531 | gnc | critical | true | 0 | Enable reaction control thruster 2. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_02 | 532 | gnc | critical | false | 0 | Disable reaction control thruster 2. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_03 | 533 | gnc | critical | true | 0 | Enable reaction control thruster 3. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_03 | 534 | gnc | critical | false | 0 | Disable reaction control thruster 3. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_04 | 535 | gnc | critical | true | 0 | Enable reaction control thruster 4. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_04 | 536 | gnc | critical | false | 0 | Disable reaction control thruster 4. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_05 | 537 | gnc | critical | true | 0 | Enable reaction control thruster 5. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_05 | 538 | gnc | critical | false | 0 | Disable reaction control thruster 5. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_06 | 539 | gnc | critical | true | 0 | Enable reaction control thruster 6. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_06 | 540 | gnc | critical | false | 0 | Disable reaction control thruster 6. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_07 | 541 | gnc | critical | true | 0 | Enable reaction control thruster 7. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_07 | 542 | gnc | critical | false | 0 | Disable reaction control thruster 7. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_08 | 543 | gnc | critical | true | 0 | Enable reaction control thruster 8. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_08 | 544 | gnc | critical | false | 0 | Disable reaction control thruster 8. |
+| GNC\_WHEEL\_ON\_1 | 545 | gnc | critical | false | 0 | Power on reaction wheel 1. |
+| GNC\_WHEEL\_OFF\_1 | 546 | gnc | critical | false | 0 | Power off reaction wheel 1. |
+| GNC\_WHEEL\_ON\_2 | 547 | gnc | critical | false | 0 | Power on reaction wheel 2. |
+| GNC\_WHEEL\_OFF\_2 | 548 | gnc | critical | false | 0 | Power off reaction wheel 2. |
+| GNC\_WHEEL\_ON\_3 | 549 | gnc | critical | false | 0 | Power on reaction wheel 3. |
+| GNC\_WHEEL\_OFF\_3 | 550 | gnc | critical | false | 0 | Power off reaction wheel 3. |
+| GNC\_WHEEL\_ON\_4 | 551 | gnc | critical | false | 0 | Power on reaction wheel 4. |
+| GNC\_WHEEL\_OFF\_4 | 552 | gnc | critical | false | 0 | Power off reaction wheel 4. |
+| SEP\_START\_THRUST\_ARC | 769 | sepControl | critical | true | 2 | Begin a thrust arc of the given duration at the given throttle. |
+| SEP\_STOP\_THRUST | 770 | sepControl | critical | false | 0 | Stop thrusting immediately and close the flow. |
+| SEP\_SET\_THROTTLE | 771 | sepControl | critical | false | 1 | Change the throttle of a running arc. |
+| SEP\_SELECT\_THRUSTER | 772 | sepControl | critical | false | 1 | Select the thruster the next arc fires. |
+| SEP\_PRIME\_FEED | 773 | sepControl | critical | true | 0 | Open the feed system and bring the regulator to pressure. |
+| SEP\_VENT\_FEED | 774 | sepControl | critical | true | 0 | Vent the feed lines downstream of the latch valves. |
+| SEP\_SET\_FLOW\_RATE | 775 | sepControl | critical | false | 1 | Set the anode flow set point. |
+| SEP\_THRUSTER\_RESTART | 776 | sepControl | critical | true | 1 | Attempt a restart after a flameout, after the restart delay. |
+| SEP\_OPEN\_LATCH\_VALVE | 777 | sepControl | critical | true | 1 | Open a latch valve. |
+| SEP\_CLOSE\_LATCH\_VALVE | 778 | sepControl | critical | false | 1 | Close a latch valve. |
+| SEP\_GIMBAL\_SET | 779 | sepControl | critical | false | 3 | Point a thruster gimbal. |
+| SEP\_GIMBAL\_HOME | 780 | sepControl | routine | false | 1 | Drive a thruster gimbal to its mechanical home. |
+| SEP\_SET\_DISCHARGE\_LIMIT | 781 | sepControl | critical | false | 1 | Set the discharge current trip limit for the power processing units. |
+| SEP\_TANK\_HEATER\_SETPOINT | 782 | sepControl | routine | false | 1 | Set the xenon tank heater set point. |
+| SEP\_PPU\_ON\_1 | 783 | sepControl | critical | true | 0 | Power on power processing unit 1. |
+| SEP\_PPU\_OFF\_1 | 784 | sepControl | critical | false | 0 | Power off power processing unit 1. |
+| SEP\_PPU\_ON\_2 | 785 | sepControl | critical | true | 0 | Power on power processing unit 2. |
+| SEP\_PPU\_OFF\_2 | 786 | sepControl | critical | false | 0 | Power off power processing unit 2. |
+| SEP\_PPU\_ON\_3 | 787 | sepControl | critical | true | 0 | Power on power processing unit 3. |
+| SEP\_PPU\_OFF\_3 | 788 | sepControl | critical | false | 0 | Power off power processing unit 3. |
+| SEP\_CATHODE\_HEATER\_ON\_1 | 789 | sepControl | routine | false | 0 | Enable the cathode heater of thruster 1. |
+| SEP\_CATHODE\_HEATER\_OFF\_1 | 790 | sepControl | routine | false | 0 | Disable the cathode heater of thruster 1. |
+| SEP\_CATHODE\_HEATER\_ON\_2 | 791 | sepControl | routine | false | 0 | Enable the cathode heater of thruster 2. |
+| SEP\_CATHODE\_HEATER\_OFF\_2 | 792 | sepControl | routine | false | 0 | Disable the cathode heater of thruster 2. |
+| SEP\_CATHODE\_HEATER\_ON\_3 | 793 | sepControl | routine | false | 0 | Enable the cathode heater of thruster 3. |
+| SEP\_CATHODE\_HEATER\_OFF\_3 | 794 | sepControl | routine | false | 0 | Disable the cathode heater of thruster 3. |
+| EPS\_SET\_BATTERY\_CHARGE\_LIMIT | 1025 | powerManagement | critical | false | 1 | Set the battery end-of-charge voltage. |
+| EPS\_SET\_LOAD\_SHED\_LEVEL | 1026 | powerManagement | critical | false | 1 | Set the load-shed tier the power manager applies at low state of charge. |
+| EPS\_SELECT\_BATTERY | 1027 | powerManagement | critical | false | 1 | Select the battery that carries the bus; the other floats. |
+| EPS\_SADA\_SET\_ANGLE | 1028 | powerManagement | critical | false | 2 | Drive a solar array drive to an angle. |
+| EPS\_SADA\_TRACK\_SUN | 1029 | powerManagement | routine | false | 1 | Return a solar array drive to sun tracking. |
+| EPS\_SADA\_HOLD | 1030 | powerManagement | routine | false | 1 | Hold a solar array drive at its current angle. |
+| EPS\_SET\_BUS\_VOLTAGE\_LIMITS | 1031 | powerManagement | critical | false | 2 | Set the regulated bus under- and over-voltage trips. |
+| EPS\_BALANCE\_CELLS | 1032 | powerManagement | routine | false | 1 | Start a cell balancing cycle on a battery. |
+| EPS\_RESET\_SWITCH\_TRIPS | 1033 | powerManagement | critical | false | 0 | Clear every latched over-current trip. |
+| EPS\_SET\_ARRAY\_STRING\_MASK | 1034 | powerManagement | critical | false | 2 | Mask solar array strings out of the regulator. |
+| EPS\_SWITCH\_ON\_01 | 1035 | powerManagement | critical | false | 0 | Close power switch 1. |
+| EPS\_SWITCH\_OFF\_01 | 1036 | powerManagement | critical | false | 0 | Open power switch 1. |
+| EPS\_SWITCH\_ON\_02 | 1037 | powerManagement | critical | false | 0 | Close power switch 2. |
+| EPS\_SWITCH\_OFF\_02 | 1038 | powerManagement | critical | false | 0 | Open power switch 2. |
+| EPS\_SWITCH\_ON\_03 | 1039 | powerManagement | critical | false | 0 | Close power switch 3. |
+| EPS\_SWITCH\_OFF\_03 | 1040 | powerManagement | critical | false | 0 | Open power switch 3. |
+| EPS\_SWITCH\_ON\_04 | 1041 | powerManagement | critical | false | 0 | Close power switch 4. |
+| EPS\_SWITCH\_OFF\_04 | 1042 | powerManagement | critical | false | 0 | Open power switch 4. |
+| EPS\_SWITCH\_ON\_05 | 1043 | powerManagement | critical | false | 0 | Close power switch 5. |
+| EPS\_SWITCH\_OFF\_05 | 1044 | powerManagement | critical | false | 0 | Open power switch 5. |
+| EPS\_SWITCH\_ON\_06 | 1045 | powerManagement | critical | false | 0 | Close power switch 6. |
+| EPS\_SWITCH\_OFF\_06 | 1046 | powerManagement | critical | false | 0 | Open power switch 6. |
+| EPS\_SWITCH\_ON\_07 | 1047 | powerManagement | critical | false | 0 | Close power switch 7. |
+| EPS\_SWITCH\_OFF\_07 | 1048 | powerManagement | critical | false | 0 | Open power switch 7. |
+| EPS\_SWITCH\_ON\_08 | 1049 | powerManagement | critical | false | 0 | Close power switch 8. |
+| EPS\_SWITCH\_OFF\_08 | 1050 | powerManagement | critical | false | 0 | Open power switch 8. |
+| EPS\_SWITCH\_ON\_09 | 1051 | powerManagement | critical | false | 0 | Close power switch 9. |
+| EPS\_SWITCH\_OFF\_09 | 1052 | powerManagement | critical | false | 0 | Open power switch 9. |
+| EPS\_SWITCH\_ON\_10 | 1053 | powerManagement | critical | false | 0 | Close power switch 10. |
+| EPS\_SWITCH\_OFF\_10 | 1054 | powerManagement | critical | false | 0 | Open power switch 10. |
+| EPS\_SWITCH\_ON\_11 | 1055 | powerManagement | critical | false | 0 | Close power switch 11. |
+| EPS\_SWITCH\_OFF\_11 | 1056 | powerManagement | critical | false | 0 | Open power switch 11. |
+| EPS\_SWITCH\_ON\_12 | 1057 | powerManagement | critical | false | 0 | Close power switch 12. |
+| EPS\_SWITCH\_OFF\_12 | 1058 | powerManagement | critical | false | 0 | Open power switch 12. |
+| EPS\_SWITCH\_ON\_13 | 1059 | powerManagement | critical | false | 0 | Close power switch 13. |
+| EPS\_SWITCH\_OFF\_13 | 1060 | powerManagement | critical | false | 0 | Open power switch 13. |
+| EPS\_SWITCH\_ON\_14 | 1061 | powerManagement | critical | false | 0 | Close power switch 14. |
+| EPS\_SWITCH\_OFF\_14 | 1062 | powerManagement | critical | false | 0 | Open power switch 14. |
+| EPS\_SWITCH\_ON\_15 | 1063 | powerManagement | critical | false | 0 | Close power switch 15. |
+| EPS\_SWITCH\_OFF\_15 | 1064 | powerManagement | critical | false | 0 | Open power switch 15. |
+| EPS\_SWITCH\_ON\_16 | 1065 | powerManagement | critical | false | 0 | Close power switch 16. |
+| EPS\_SWITCH\_OFF\_16 | 1066 | powerManagement | critical | false | 0 | Open power switch 16. |
+| EPS\_SWITCH\_ON\_17 | 1067 | powerManagement | critical | false | 0 | Close power switch 17. |
+| EPS\_SWITCH\_OFF\_17 | 1068 | powerManagement | critical | false | 0 | Open power switch 17. |
+| EPS\_SWITCH\_ON\_18 | 1069 | powerManagement | critical | false | 0 | Close power switch 18. |
+| EPS\_SWITCH\_OFF\_18 | 1070 | powerManagement | critical | false | 0 | Open power switch 18. |
+| EPS\_SWITCH\_ON\_19 | 1071 | powerManagement | critical | false | 0 | Close power switch 19. |
+| EPS\_SWITCH\_OFF\_19 | 1072 | powerManagement | critical | false | 0 | Open power switch 19. |
+| EPS\_SWITCH\_ON\_20 | 1073 | powerManagement | critical | false | 0 | Close power switch 20. |
+| EPS\_SWITCH\_OFF\_20 | 1074 | powerManagement | critical | false | 0 | Open power switch 20. |
+| EPS\_SWITCH\_ON\_21 | 1075 | powerManagement | critical | false | 0 | Close power switch 21. |
+| EPS\_SWITCH\_OFF\_21 | 1076 | powerManagement | critical | false | 0 | Open power switch 21. |
+| EPS\_SWITCH\_ON\_22 | 1077 | powerManagement | critical | false | 0 | Close power switch 22. |
+| EPS\_SWITCH\_OFF\_22 | 1078 | powerManagement | critical | false | 0 | Open power switch 22. |
+| EPS\_SWITCH\_ON\_23 | 1079 | powerManagement | critical | false | 0 | Close power switch 23. |
+| EPS\_SWITCH\_OFF\_23 | 1080 | powerManagement | critical | false | 0 | Open power switch 23. |
+| EPS\_SWITCH\_ON\_24 | 1081 | powerManagement | critical | false | 0 | Close power switch 24. |
+| EPS\_SWITCH\_OFF\_24 | 1082 | powerManagement | critical | false | 0 | Open power switch 24. |
+| THM\_SET\_CONTROL\_MODE | 1281 | thermalControl | critical | false | 1 | Select the heater control law: bang-bang, proportional or open loop. |
+| THM\_LOUVER\_SET | 1282 | thermalControl | routine | false | 2 | Set a radiator louver position. |
+| THM\_LOUVER\_AUTO | 1283 | thermalControl | routine | false | 1 | Return a radiator louver to passive control. |
+| THM\_SET\_SURVIVAL\_SETPOINTS | 1284 | thermalControl | critical | false | 2 | Set the survival heater set points applied in safe mode. |
+| THM\_SET\_DEADBAND | 1285 | thermalControl | routine | false | 1 | Set the control deadband of every zone. |
+| THM\_ENABLE\_ALL\_HEATERS | 1286 | thermalControl | critical | false | 0 | Enable every heater zone under its set point. |
+| THM\_DISABLE\_ALL\_HEATERS | 1287 | thermalControl | critical | true | 0 | Disable every heater zone; survival heaters stay on their thermostats. |
+| THM\_SET\_HEATER\_POWER\_CAP | 1288 | thermalControl | critical | false | 1 | Cap the total heater power the thermal application may draw. |
+| THM\_HEATER\_ENABLE\_01 | 1289 | thermalControl | routine | false | 0 | Enable heater zone 1. |
+| THM\_HEATER\_DISABLE\_01 | 1290 | thermalControl | routine | false | 0 | Disable heater zone 1. |
+| THM\_HEATER\_ENABLE\_02 | 1291 | thermalControl | routine | false | 0 | Enable heater zone 2. |
+| THM\_HEATER\_DISABLE\_02 | 1292 | thermalControl | routine | false | 0 | Disable heater zone 2. |
+| THM\_HEATER\_ENABLE\_03 | 1293 | thermalControl | routine | false | 0 | Enable heater zone 3. |
+| THM\_HEATER\_DISABLE\_03 | 1294 | thermalControl | routine | false | 0 | Disable heater zone 3. |
+| THM\_HEATER\_ENABLE\_04 | 1295 | thermalControl | routine | false | 0 | Enable heater zone 4. |
+| THM\_HEATER\_DISABLE\_04 | 1296 | thermalControl | routine | false | 0 | Disable heater zone 4. |
+| THM\_HEATER\_ENABLE\_05 | 1297 | thermalControl | routine | false | 0 | Enable heater zone 5. |
+| THM\_HEATER\_DISABLE\_05 | 1298 | thermalControl | routine | false | 0 | Disable heater zone 5. |
+| THM\_HEATER\_ENABLE\_06 | 1299 | thermalControl | routine | false | 0 | Enable heater zone 6. |
+| THM\_HEATER\_DISABLE\_06 | 1300 | thermalControl | routine | false | 0 | Disable heater zone 6. |
+| THM\_HEATER\_ENABLE\_07 | 1301 | thermalControl | routine | false | 0 | Enable heater zone 7. |
+| THM\_HEATER\_DISABLE\_07 | 1302 | thermalControl | routine | false | 0 | Disable heater zone 7. |
+| THM\_HEATER\_ENABLE\_08 | 1303 | thermalControl | routine | false | 0 | Enable heater zone 8. |
+| THM\_HEATER\_DISABLE\_08 | 1304 | thermalControl | routine | false | 0 | Disable heater zone 8. |
+| THM\_HEATER\_ENABLE\_09 | 1305 | thermalControl | routine | false | 0 | Enable heater zone 9. |
+| THM\_HEATER\_DISABLE\_09 | 1306 | thermalControl | routine | false | 0 | Disable heater zone 9. |
+| THM\_HEATER\_ENABLE\_10 | 1307 | thermalControl | routine | false | 0 | Enable heater zone 10. |
+| THM\_HEATER\_DISABLE\_10 | 1308 | thermalControl | routine | false | 0 | Disable heater zone 10. |
+| THM\_HEATER\_ENABLE\_11 | 1309 | thermalControl | routine | false | 0 | Enable heater zone 11. |
+| THM\_HEATER\_DISABLE\_11 | 1310 | thermalControl | routine | false | 0 | Disable heater zone 11. |
+| THM\_HEATER\_ENABLE\_12 | 1311 | thermalControl | routine | false | 0 | Enable heater zone 12. |
+| THM\_HEATER\_DISABLE\_12 | 1312 | thermalControl | routine | false | 0 | Disable heater zone 12. |
+| THM\_HEATER\_ENABLE\_13 | 1313 | thermalControl | routine | false | 0 | Enable heater zone 13. |
+| THM\_HEATER\_DISABLE\_13 | 1314 | thermalControl | routine | false | 0 | Disable heater zone 13. |
+| THM\_HEATER\_ENABLE\_14 | 1315 | thermalControl | routine | false | 0 | Enable heater zone 14. |
+| THM\_HEATER\_DISABLE\_14 | 1316 | thermalControl | routine | false | 0 | Disable heater zone 14. |
+| THM\_HEATER\_ENABLE\_15 | 1317 | thermalControl | routine | false | 0 | Enable heater zone 15. |
+| THM\_HEATER\_DISABLE\_15 | 1318 | thermalControl | routine | false | 0 | Disable heater zone 15. |
+| THM\_HEATER\_ENABLE\_16 | 1319 | thermalControl | routine | false | 0 | Enable heater zone 16. |
+| THM\_HEATER\_DISABLE\_16 | 1320 | thermalControl | routine | false | 0 | Disable heater zone 16. |
+| THM\_HEATER\_SETPOINT\_01 | 1321 | thermalControl | routine | false | 1 | Set the control set point of heater zone 1. |
+| THM\_HEATER\_SETPOINT\_02 | 1322 | thermalControl | routine | false | 1 | Set the control set point of heater zone 2. |
+| THM\_HEATER\_SETPOINT\_03 | 1323 | thermalControl | routine | false | 1 | Set the control set point of heater zone 3. |
+| THM\_HEATER\_SETPOINT\_04 | 1324 | thermalControl | routine | false | 1 | Set the control set point of heater zone 4. |
+| THM\_HEATER\_SETPOINT\_05 | 1325 | thermalControl | routine | false | 1 | Set the control set point of heater zone 5. |
+| THM\_HEATER\_SETPOINT\_06 | 1326 | thermalControl | routine | false | 1 | Set the control set point of heater zone 6. |
+| THM\_HEATER\_SETPOINT\_07 | 1327 | thermalControl | routine | false | 1 | Set the control set point of heater zone 7. |
+| THM\_HEATER\_SETPOINT\_08 | 1328 | thermalControl | routine | false | 1 | Set the control set point of heater zone 8. |
+| THM\_HEATER\_SETPOINT\_09 | 1329 | thermalControl | routine | false | 1 | Set the control set point of heater zone 9. |
+| THM\_HEATER\_SETPOINT\_10 | 1330 | thermalControl | routine | false | 1 | Set the control set point of heater zone 10. |
+| THM\_HEATER\_SETPOINT\_11 | 1331 | thermalControl | routine | false | 1 | Set the control set point of heater zone 11. |
+| THM\_HEATER\_SETPOINT\_12 | 1332 | thermalControl | routine | false | 1 | Set the control set point of heater zone 12. |
+| THM\_HEATER\_SETPOINT\_13 | 1333 | thermalControl | routine | false | 1 | Set the control set point of heater zone 13. |
+| THM\_HEATER\_SETPOINT\_14 | 1334 | thermalControl | routine | false | 1 | Set the control set point of heater zone 14. |
+| THM\_HEATER\_SETPOINT\_15 | 1335 | thermalControl | routine | false | 1 | Set the control set point of heater zone 15. |
+| THM\_HEATER\_SETPOINT\_16 | 1336 | thermalControl | routine | false | 1 | Set the control set point of heater zone 16. |
+| COM\_TRANSMITTER\_ON | 1537 | telecom | critical | true | 1 | Enable the transmitter on the selected transponder. |
+| COM\_TRANSMITTER\_OFF | 1538 | telecom | critical | false | 1 | Disable the transmitter. |
+| COM\_SELECT\_TRANSPONDER | 1539 | telecom | critical | false | 1 | Select the prime transponder. |
+| COM\_SELECT\_ANTENNA | 1540 | telecom | critical | false | 1 | Route the transmitter to the high-gain or a low-gain antenna. |
+| COM\_SET\_DOWNLINK\_RATE | 1541 | telecom | routine | false | 1 | Set the downlink symbol rate. |
+| COM\_SET\_UPLINK\_RATE | 1542 | telecom | routine | false | 1 | Set the expected uplink bit rate. |
+| COM\_RANGING\_ON | 1543 | telecom | routine | false | 0 | Enable the ranging channel turn-around. |
+| COM\_RANGING\_OFF | 1544 | telecom | routine | false | 0 | Disable the ranging channel turn-around. |
+| COM\_HGA\_POINT | 1545 | telecom | critical | false | 2 | Point the high-gain antenna. |
+| COM\_HGA\_TRACK\_EARTH | 1546 | telecom | routine | false | 0 | Return the high-gain antenna to Earth tracking. |
+| COM\_HGA\_STOW | 1547 | telecom | critical | false | 0 | Stow the high-gain antenna. |
+| COM\_SET\_PASS\_WINDOW | 1548 | telecom | routine | false | 2 | Load the next ground pass window. |
+| COM\_SET\_CODING | 1549 | telecom | routine | false | 1 | Select the downlink coding: convolutional, Reed–Solomon, turbo or LDPC. |
+| COM\_SET\_TRANSMIT\_POWER | 1550 | telecom | critical | false | 1 | Set the transmitter output power. |
+| COM\_DOWNLINK\_RATE\_PRESET\_1 | 1551 | telecom | routine | false | 0 | Select downlink rate preset 1 of the link table. |
+| COM\_DOWNLINK\_RATE\_PRESET\_2 | 1552 | telecom | routine | false | 0 | Select downlink rate preset 2 of the link table. |
+| COM\_DOWNLINK\_RATE\_PRESET\_3 | 1553 | telecom | routine | false | 0 | Select downlink rate preset 3 of the link table. |
+| COM\_DOWNLINK\_RATE\_PRESET\_4 | 1554 | telecom | routine | false | 0 | Select downlink rate preset 4 of the link table. |
+| COM\_DOWNLINK\_RATE\_PRESET\_5 | 1555 | telecom | routine | false | 0 | Select downlink rate preset 5 of the link table. |
+| COM\_DOWNLINK\_RATE\_PRESET\_6 | 1556 | telecom | routine | false | 0 | Select downlink rate preset 6 of the link table. |
+| INS\_ARM\_RELEASE | 1793 | inspectorHandling | critical | true | 1 | Arm the inspector release mechanism. |
+| INS\_SAFE\_RELEASE | 1794 | inspectorHandling | critical | false | 0 | Disarm the inspector release mechanism. |
+| INS\_RELEASE\_INSPECTOR | 1795 | inspectorHandling | hazardous | true | 2 | Release the inspector; irreversible. |
+| INS\_FORWARD\_COMMAND | 1796 | inspectorHandling | critical | false | 2 | Forward a command block to the inspector over the relay link. |
+| INS\_START\_IMAGING\_SESSION | 1797 | inspectorHandling | routine | false | 2 | Start an inspector imaging session of the given duration. |
+| INS\_STOP\_IMAGING\_SESSION | 1798 | inspectorHandling | routine | false | 0 | Stop the inspector imaging session. |
+| INS\_SET\_IMAGE\_COMPRESSION | 1799 | inspectorHandling | routine | false | 1 | Set the image compression ratio relayed to the inspector. |
+| INS\_SELECT\_RELAY\_RATE | 1800 | inspectorHandling | routine | false | 1 | Set the relay link data rate. |
+| INS\_STORE\_IMAGE\_SEGMENT | 1801 | inspectorHandling | routine | false | 2 | Store a relayed image segment in the recorder. |
+| INS\_DOWNLINK\_IMAGE | 1802 | inspectorHandling | routine | false | 1 | Queue a stored inspector image for downlink. |
+| INS\_RETIRE\_INSPECTOR | 1803 | inspectorHandling | hazardous | true | 1 | Command the inspector to its disposal state; irreversible. |
+| INS\_SET\_RELAY\_WINDOW | 1804 | inspectorHandling | routine | false | 2 | Load the next relay contact window. |
+| INS\_ENABLE\_RELAY | 1805 | inspectorHandling | routine | false | 0 | Enable the relay receiver. |
+| INS\_DISABLE\_RELAY | 1806 | inspectorHandling | routine | false | 0 | Disable the relay receiver. |
+| CAP\_ARM\_CAPTURE | 2049 | captureControl | critical | true | 1 | Arm the capture mechanism. |
+| CAP\_DISARM\_CAPTURE | 2050 | captureControl | critical | false | 0 | Disarm the capture mechanism. |
+| CAP\_DEPLOY\_BAG | 2051 | captureControl | hazardous | true | 1 | Deploy the capture bag. |
+| CAP\_CLOSE\_BAG | 2052 | captureControl | hazardous | true | 1 | Close the capture bag around the body. |
+| CAP\_CINCH\_BAG | 2053 | captureControl | critical | true | 1 | Cinch the bag to the commanded tension. |
+| CAP\_START\_DESPIN | 2054 | captureControl | critical | true | 1 | Start the despin controller. |
+| CAP\_STOP\_DESPIN | 2055 | captureControl | critical | false | 0 | Stop the despin controller. |
+| CAP\_SET\_DESPIN\_TORQUE | 2056 | captureControl | critical | false | 1 | Set the despin torque fraction. |
+| CAP\_LATCH\_BODY | 2057 | captureControl | critical | true | 1 | Engage the body latches. |
+| CAP\_RELEASE\_BODY | 2058 | captureControl | hazardous | true | 1 | Release the body latches and the bag; irreversible for the mission. |
+| CAP\_ABORT\_CAPTURE | 2059 | captureControl | critical | true | 0 | Abort the capture: open the bag and retreat. |
+| CAP\_SET\_APPROACH\_RATE | 2060 | captureControl | critical | false | 1 | Set the closing rate limit for the final approach. |
+| CAP\_ENABLE\_PROXIMITY\_SENSORS | 2061 | captureControl | routine | false | 0 | Power and enable the proximity sensor suite. |
+| CAP\_DISABLE\_PROXIMITY\_SENSORS | 2062 | captureControl | routine | false | 0 | Disable the proximity sensor suite. |
+| CAP\_SET\_CONTACT\_FORCE\_LIMIT | 2063 | captureControl | critical | false | 1 | Set the contact force at which the controller backs off. |
+| CAP\_SET\_BODY\_MASS\_ESTIMATE | 2064 | captureControl | routine | false | 1 | Load the ground estimate of the body mass into the controller. |
+| CAP\_PETAL\_OPEN\_1 | 2065 | captureControl | critical | true | 0 | Open bag petal 1. |
+| CAP\_PETAL\_CLOSE\_1 | 2066 | captureControl | critical | true | 0 | Close bag petal 1. |
+| CAP\_PETAL\_OPEN\_2 | 2067 | captureControl | critical | true | 0 | Open bag petal 2. |
+| CAP\_PETAL\_CLOSE\_2 | 2068 | captureControl | critical | true | 0 | Close bag petal 2. |
+| CAP\_PETAL\_OPEN\_3 | 2069 | captureControl | critical | true | 0 | Open bag petal 3. |
+| CAP\_PETAL\_CLOSE\_3 | 2070 | captureControl | critical | true | 0 | Close bag petal 3. |
+| CAP\_PETAL\_OPEN\_4 | 2071 | captureControl | critical | true | 0 | Open bag petal 4. |
+| CAP\_PETAL\_CLOSE\_4 | 2072 | captureControl | critical | true | 0 | Close bag petal 4. |
+| AUT\_LOAD\_SEQUENCE | 2305 | autonomy | routine | false | 3 | Load a command sequence into an engine. |
+| AUT\_START\_SEQUENCE | 2306 | autonomy | critical | false | 1 | Start the sequence loaded in an engine. |
+| AUT\_STOP\_SEQUENCE | 2307 | autonomy | critical | false | 1 | Stop and unload the sequence in an engine. |
+| AUT\_PAUSE\_SEQUENCE | 2308 | autonomy | routine | false | 1 | Pause the sequence in an engine. |
+| AUT\_RESUME\_SEQUENCE | 2309 | autonomy | routine | false | 1 | Resume a paused sequence. |
+| AUT\_SET\_SEQUENCE\_PARAMETER | 2310 | autonomy | routine | false | 3 | Set a sequence parameter by index. |
+| AUT\_ENABLE\_AUTONOMY | 2311 | autonomy | critical | false | 1 | Enable on-board autonomy at the given level. |
+| AUT\_DISABLE\_AUTONOMY | 2312 | autonomy | critical | false | 0 | Disable on-board autonomy; sequences run but rules do not fire. |
+| AUT\_SET\_RULE\_ENABLE | 2313 | autonomy | critical | false | 2 | Enable or disable an autonomy rule. |
+| AUT\_CLEAR\_RULE\_HISTORY | 2314 | autonomy | routine | false | 0 | Clear the rule firing history. |
+| AUT\_SET\_WAYPOINT | 2315 | autonomy | critical | false | 3 | Add a proximity-operations waypoint. |
+| AUT\_CLEAR\_WAYPOINTS | 2316 | autonomy | critical | false | 0 | Clear the waypoint list. |
+| AUT\_SET\_PLAN\_HORIZON | 2317 | autonomy | routine | false | 1 | Set the planning horizon of the autonomy executive. |
+| AUT\_ENGINE\_ENABLE\_1 | 2318 | autonomy | routine | false | 0 | Enable sequence engine 1. |
+| AUT\_ENGINE\_DISABLE\_1 | 2319 | autonomy | routine | false | 0 | Disable sequence engine 1. |
+| AUT\_ENGINE\_ENABLE\_2 | 2320 | autonomy | routine | false | 0 | Enable sequence engine 2. |
+| AUT\_ENGINE\_DISABLE\_2 | 2321 | autonomy | routine | false | 0 | Disable sequence engine 2. |
+| AUT\_ENGINE\_ENABLE\_3 | 2322 | autonomy | routine | false | 0 | Enable sequence engine 3. |
+| AUT\_ENGINE\_DISABLE\_3 | 2323 | autonomy | routine | false | 0 | Disable sequence engine 3. |
+| AUT\_ENGINE\_ENABLE\_4 | 2324 | autonomy | routine | false | 0 | Enable sequence engine 4. |
+| AUT\_ENGINE\_DISABLE\_4 | 2325 | autonomy | routine | false | 0 | Disable sequence engine 4. |
+| FDR\_ENABLE\_MONITOR | 2561 | fdir | critical | false | 1 | Enable a fault monitor. |
+| FDR\_DISABLE\_MONITOR | 2562 | fdir | critical | true | 1 | Disable a fault monitor. |
+| FDR\_SET\_LIMIT | 2563 | fdir | critical | false | 5 | Set the red and yellow limits of a monitored point. |
+| FDR\_RESET\_LIMIT | 2564 | fdir | routine | false | 1 | Return a monitored point to its table limits. |
+| FDR\_CLEAR\_FAULT | 2565 | fdir | critical | false | 1 | Clear a latched fault. |
+| FDR\_ACKNOWLEDGE\_FAULT | 2566 | fdir | routine | false | 1 | Acknowledge a fault so its response may re-arm. |
+| FDR\_MASK\_RESPONSE | 2567 | fdir | critical | true | 1 | Mask a fault response. |
+| FDR\_UNMASK\_RESPONSE | 2568 | fdir | critical | false | 1 | Unmask a fault response. |
+| FDR\_FORCE\_SAFE\_MODE | 2569 | fdir | critical | true | 0 | Command safe mode directly. |
+| FDR\_SET\_COMMAND\_LOSS\_TIMER | 2570 | fdir | critical | false | 1 | Set the command-loss timer that calls safe mode when no command arrives. |
+| FDR\_RESET\_COMMAND\_LOSS\_TIMER | 2571 | fdir | routine | false | 0 | Restart the command-loss timer. |
+| FDR\_ABORT\_TO\_RETREAT | 2572 | fdir | critical | true | 0 | Abort proximity operations and retreat to the hold point. |
+| FDR\_SET\_FLAMEOUT\_RETRIES | 2573 | fdir | critical | false | 1 | Set the thruster restarts tried before a switchover. |
+| FDR\_SET\_BATTERY\_LOW\_FRACTION | 2574 | fdir | critical | false | 1 | Set the state of charge at which load shedding starts. |
+| FDR\_SET\_IMPACT\_PROBABILITY\_LIMIT | 2575 | fdir | critical | false | 1 | Set the Earth impact probability above which the supervisor aborts. |
+| FDR\_SET\_EXCLUSION\_RADIUS | 2576 | fdir | critical | false | 1 | Set the Earth exclusion radius. |
+| FDR\_MONITOR\_RESPONSE\_01 | 2577 | fdir | critical | false | 1 | Set the response of monitor 1. |
+| FDR\_MONITOR\_RESPONSE\_02 | 2578 | fdir | critical | false | 1 | Set the response of monitor 2. |
+| FDR\_MONITOR\_RESPONSE\_03 | 2579 | fdir | critical | false | 1 | Set the response of monitor 3. |
+| FDR\_MONITOR\_RESPONSE\_04 | 2580 | fdir | critical | false | 1 | Set the response of monitor 4. |
+| FDR\_MONITOR\_RESPONSE\_05 | 2581 | fdir | critical | false | 1 | Set the response of monitor 5. |
+| FDR\_MONITOR\_RESPONSE\_06 | 2582 | fdir | critical | false | 1 | Set the response of monitor 6. |
+| FDR\_MONITOR\_RESPONSE\_07 | 2583 | fdir | critical | false | 1 | Set the response of monitor 7. |
+| FDR\_MONITOR\_RESPONSE\_08 | 2584 | fdir | critical | false | 1 | Set the response of monitor 8. |
+| FDR\_MONITOR\_RESPONSE\_09 | 2585 | fdir | critical | false | 1 | Set the response of monitor 9. |
+| FDR\_MONITOR\_RESPONSE\_10 | 2586 | fdir | critical | false | 1 | Set the response of monitor 10. |
+| FDR\_MONITOR\_RESPONSE\_11 | 2587 | fdir | critical | false | 1 | Set the response of monitor 11. |
+| FDR\_MONITOR\_RESPONSE\_12 | 2588 | fdir | critical | false | 1 | Set the response of monitor 12. |
+| MOD\_SET\_MODE | 2817 | modeManagement | critical | true | 1 | Transition the tug to a commanded mode. |
+| MOD\_CONFIRM\_MODE | 2818 | modeManagement | critical | false | 2 | Confirm a pending two-step mode transition. |
+| MOD\_CANCEL\_PENDING\_MODE | 2819 | modeManagement | routine | false | 0 | Cancel a pending two-step mode transition. |
+| MOD\_LOAD\_MODE\_TABLE | 2820 | modeManagement | critical | false | 1 | Load the mode × subsystem table. |
+| MOD\_ENABLE\_AUTO\_TRANSITION | 2821 | modeManagement | critical | false | 0 | Allow on-board events to drive mode transitions. |
+| MOD\_DISABLE\_AUTO\_TRANSITION | 2822 | modeManagement | critical | false | 0 | Only ground commands may drive mode transitions. |
+| MOD\_HOLD\_MODE | 2823 | modeManagement | routine | false | 0 | Hold the current mode against events. |
+| MOD\_RESUME\_MODE | 2824 | modeManagement | routine | false | 0 | Release a mode hold. |
+| MOD\_SET\_TRANSITION\_TIMEOUT | 2825 | modeManagement | routine | false | 1 | Set the time a transition may take before it is declared failed. |
+| PBU\_LOAD\_TABLE | 3073 | parameterBootUpdate | critical | false | 2 | Load a parameter table into the staging buffer. |
+| PBU\_DUMP\_TABLE | 3074 | parameterBootUpdate | routine | false | 1 | Downlink a parameter table. |
+| PBU\_ACTIVATE\_TABLE | 3075 | parameterBootUpdate | critical | true | 2 | Activate a staged table after validation. |
+| PBU\_VERIFY\_TABLE | 3076 | parameterBootUpdate | routine | false | 1 | Recompute and report a table checksum. |
+| PBU\_SET\_PARAMETER | 3077 | parameterBootUpdate | critical | false | 2 | Set one parameter by id. |
+| PBU\_GET\_PARAMETER | 3078 | parameterBootUpdate | routine | false | 1 | Report one parameter by id. |
+| PBU\_START\_BOOT\_UPDATE | 3079 | parameterBootUpdate | critical | true | 2 | Start receiving a boot image. |
+| PBU\_ABORT\_BOOT\_UPDATE | 3080 | parameterBootUpdate | critical | false | 0 | Abort a boot image transfer. |
+| PBU\_SELECT\_BOOT\_IMAGE | 3081 | parameterBootUpdate | critical | true | 2 | Select the boot image used at the next reset. |
+| PBU\_COMMIT\_BOOT\_IMAGE | 3082 | parameterBootUpdate | critical | true | 0 | Mark the running image good so the boot loader stops falling back. |
+| PBU\_TABLE\_RESET\_01 | 3083 | parameterBootUpdate | critical | false | 0 | Reset parameter table 1 to its flight defaults. |
+| PBU\_TABLE\_RESET\_02 | 3084 | parameterBootUpdate | critical | false | 0 | Reset parameter table 2 to its flight defaults. |
+| PBU\_TABLE\_RESET\_03 | 3085 | parameterBootUpdate | critical | false | 0 | Reset parameter table 3 to its flight defaults. |
+| PBU\_TABLE\_RESET\_04 | 3086 | parameterBootUpdate | critical | false | 0 | Reset parameter table 4 to its flight defaults. |
+| PBU\_TABLE\_RESET\_05 | 3087 | parameterBootUpdate | critical | false | 0 | Reset parameter table 5 to its flight defaults. |
+| PBU\_TABLE\_RESET\_06 | 3088 | parameterBootUpdate | critical | false | 0 | Reset parameter table 6 to its flight defaults. |
+| PBU\_TABLE\_RESET\_07 | 3089 | parameterBootUpdate | critical | false | 0 | Reset parameter table 7 to its flight defaults. |
+| PBU\_TABLE\_RESET\_08 | 3090 | parameterBootUpdate | critical | false | 0 | Reset parameter table 8 to its flight defaults. |
+| PBU\_TABLE\_RESET\_09 | 3091 | parameterBootUpdate | critical | false | 0 | Reset parameter table 9 to its flight defaults. |
+| PBU\_TABLE\_RESET\_10 | 3092 | parameterBootUpdate | critical | false | 0 | Reset parameter table 10 to its flight defaults. |
+| PBU\_TABLE\_RESET\_11 | 3093 | parameterBootUpdate | critical | false | 0 | Reset parameter table 11 to its flight defaults. |
+| PBU\_TABLE\_RESET\_12 | 3094 | parameterBootUpdate | critical | false | 0 | Reset parameter table 12 to its flight defaults. |
+
+## Telemetry dictionary
+
+*Telemetry points by id*
+
+| mnemonic | pointId | source | kind | redLow | yellowLow | yellowHigh | redHigh | unitSymbol | rate |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| CDH\_T\_BOARD\_01 | 1001 | cdh | housekeeping | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| CDH\_T\_BOARD\_02 | 1002 | cdh | housekeeping | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| CDH\_T\_BOARD\_03 | 1003 | cdh | housekeeping | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| CDH\_T\_BOARD\_04 | 1004 | cdh | housekeeping | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| CDH\_CPU\_LOAD\_01 | 1005 | cdh | housekeeping | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| CDH\_CPU\_LOAD\_02 | 1006 | cdh | housekeeping | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| CDH\_MEM\_USED\_01 | 1007 | cdh | housekeeping | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| CDH\_MEM\_USED\_02 | 1008 | cdh | housekeeping | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| CDH\_RECORDER\_FILL | 1009 | cdh | housekeeping | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| CDH\_UPTIME | 1010 | cdh | housekeeping | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 1 \[Hz\] |
+| CDH\_CMD\_ACCEPT\_COUNT | 1011 | cdh | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| CDH\_CMD\_REJECT\_COUNT | 1012 | cdh | housekeeping | 0 | 0 | 10 | 100 | 1 | 1 \[Hz\] |
+| CDH\_BUS\_MSG\_RATE | 1013 | cdh | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| CDH\_FILE\_COUNT | 1014 | cdh | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| CDH\_CLOCK\_COARSE | 1015 | cdh | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| CDH\_CLOCK\_FINE | 1016 | cdh | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| CDH\_APP\_RATE\_01 | 1017 | cdh | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_RATE\_02 | 1018 | cdh | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_RATE\_03 | 1019 | cdh | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_RATE\_04 | 1020 | cdh | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_RATE\_05 | 1021 | cdh | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_RATE\_06 | 1022 | cdh | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_RATE\_07 | 1023 | cdh | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_RATE\_08 | 1024 | cdh | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_RATE\_09 | 1025 | cdh | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_RATE\_10 | 1026 | cdh | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_RATE\_11 | 1027 | cdh | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_RATE\_12 | 1028 | cdh | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_LOAD\_01 | 1029 | cdh | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_LOAD\_02 | 1030 | cdh | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_LOAD\_03 | 1031 | cdh | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_LOAD\_04 | 1032 | cdh | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_LOAD\_05 | 1033 | cdh | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_LOAD\_06 | 1034 | cdh | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_LOAD\_07 | 1035 | cdh | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_LOAD\_08 | 1036 | cdh | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_LOAD\_09 | 1037 | cdh | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_LOAD\_10 | 1038 | cdh | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_LOAD\_11 | 1039 | cdh | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| CDH\_APP\_LOAD\_12 | 1040 | cdh | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| CDH\_PARTITION\_STATUS\_01 | 1041 | cdh | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| CDH\_PARTITION\_STATUS\_02 | 1042 | cdh | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| CDH\_PARTITION\_STATUS\_03 | 1043 | cdh | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| CDH\_PARTITION\_STATUS\_04 | 1044 | cdh | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_01 | 1045 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_02 | 1046 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_03 | 1047 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_04 | 1048 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_05 | 1049 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_06 | 1050 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_07 | 1051 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_08 | 1052 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_09 | 1053 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_10 | 1054 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_11 | 1055 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_12 | 1056 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_13 | 1057 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_14 | 1058 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_15 | 1059 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_BUS\_RT\_ERRORS\_16 | 1060 | cdh | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| CDH\_WATCHDOG\_MARGIN | 1061 | cdh | housekeeping | 0 \[s\] | 0.5 \[s\] | 30 \[s\] | 60 \[s\] | s | 1 \[Hz\] |
+| GNC\_Q\_01 | 2001 | gnc | housekeeping | -1 | -1 | 1 | 1 | 1 | 1 \[Hz\] |
+| GNC\_Q\_02 | 2002 | gnc | housekeeping | -1 | -1 | 1 | 1 | 1 | 1 \[Hz\] |
+| GNC\_Q\_03 | 2003 | gnc | housekeeping | -1 | -1 | 1 | 1 | 1 | 1 \[Hz\] |
+| GNC\_Q\_04 | 2004 | gnc | housekeeping | -1 | -1 | 1 | 1 | 1 | 1 \[Hz\] |
+| GNC\_RATE\_01 | 2005 | gnc | housekeeping | -0.1 \[rad/s\] | -0.05 \[rad/s\] | 0.05 \[rad/s\] | 0.1 \[rad/s\] | rad/s | 1 \[Hz\] |
+| GNC\_RATE\_02 | 2006 | gnc | housekeeping | -0.1 \[rad/s\] | -0.05 \[rad/s\] | 0.05 \[rad/s\] | 0.1 \[rad/s\] | rad/s | 1 \[Hz\] |
+| GNC\_RATE\_03 | 2007 | gnc | housekeeping | -0.1 \[rad/s\] | -0.05 \[rad/s\] | 0.05 \[rad/s\] | 0.1 \[rad/s\] | rad/s | 1 \[Hz\] |
+| GNC\_ATT\_ERR\_01 | 2008 | gnc | housekeeping | -0.1 \[rad\] | -0.02 \[rad\] | 0.02 \[rad\] | 0.1 \[rad\] | rad | 1 \[Hz\] |
+| GNC\_ATT\_ERR\_02 | 2009 | gnc | housekeeping | -0.1 \[rad\] | -0.02 \[rad\] | 0.02 \[rad\] | 0.1 \[rad\] | rad | 1 \[Hz\] |
+| GNC\_ATT\_ERR\_03 | 2010 | gnc | housekeeping | -0.1 \[rad\] | -0.02 \[rad\] | 0.02 \[rad\] | 0.1 \[rad\] | rad | 1 \[Hz\] |
+| GNC\_RATE\_ERR\_01 | 2011 | gnc | engineering | -0.1 \[rad/s\] | -0.05 \[rad/s\] | 0.05 \[rad/s\] | 0.1 \[rad/s\] | rad/s | 1 \[Hz\] |
+| GNC\_RATE\_ERR\_02 | 2012 | gnc | engineering | -0.1 \[rad/s\] | -0.05 \[rad/s\] | 0.05 \[rad/s\] | 0.1 \[rad/s\] | rad/s | 1 \[Hz\] |
+| GNC\_RATE\_ERR\_03 | 2013 | gnc | engineering | -0.1 \[rad/s\] | -0.05 \[rad/s\] | 0.05 \[rad/s\] | 0.1 \[rad/s\] | rad/s | 1 \[Hz\] |
+| GNC\_ST\_T\_01 | 2014 | gnc | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| GNC\_ST\_T\_02 | 2015 | gnc | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| GNC\_ST\_STATUS\_01 | 2016 | gnc | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| GNC\_ST\_STATUS\_02 | 2017 | gnc | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| GNC\_IMU\_GYRO\_01 | 2018 | gnc | engineering | -0.1 \[rad/s\] | -0.05 \[rad/s\] | 0.05 \[rad/s\] | 0.1 \[rad/s\] | rad/s | 10 \[Hz\] |
+| GNC\_IMU\_GYRO\_02 | 2019 | gnc | engineering | -0.1 \[rad/s\] | -0.05 \[rad/s\] | 0.05 \[rad/s\] | 0.1 \[rad/s\] | rad/s | 10 \[Hz\] |
+| GNC\_IMU\_GYRO\_03 | 2020 | gnc | engineering | -0.1 \[rad/s\] | -0.05 \[rad/s\] | 0.05 \[rad/s\] | 0.1 \[rad/s\] | rad/s | 10 \[Hz\] |
+| GNC\_IMU\_GYRO\_04 | 2021 | gnc | engineering | -0.1 \[rad/s\] | -0.05 \[rad/s\] | 0.05 \[rad/s\] | 0.1 \[rad/s\] | rad/s | 10 \[Hz\] |
+| GNC\_IMU\_GYRO\_05 | 2022 | gnc | engineering | -0.1 \[rad/s\] | -0.05 \[rad/s\] | 0.05 \[rad/s\] | 0.1 \[rad/s\] | rad/s | 10 \[Hz\] |
+| GNC\_IMU\_GYRO\_06 | 2023 | gnc | engineering | -0.1 \[rad/s\] | -0.05 \[rad/s\] | 0.05 \[rad/s\] | 0.1 \[rad/s\] | rad/s | 10 \[Hz\] |
+| GNC\_IMU\_ACCEL\_01 | 2024 | gnc | engineering | -10 \[m/s\] | -5 \[m/s\] | 5 \[m/s\] | 10 \[m/s\] | m/s | 10 \[Hz\] |
+| GNC\_IMU\_ACCEL\_02 | 2025 | gnc | engineering | -10 \[m/s\] | -5 \[m/s\] | 5 \[m/s\] | 10 \[m/s\] | m/s | 10 \[Hz\] |
+| GNC\_IMU\_ACCEL\_03 | 2026 | gnc | engineering | -10 \[m/s\] | -5 \[m/s\] | 5 \[m/s\] | 10 \[m/s\] | m/s | 10 \[Hz\] |
+| GNC\_IMU\_ACCEL\_04 | 2027 | gnc | engineering | -10 \[m/s\] | -5 \[m/s\] | 5 \[m/s\] | 10 \[m/s\] | m/s | 10 \[Hz\] |
+| GNC\_IMU\_ACCEL\_05 | 2028 | gnc | engineering | -10 \[m/s\] | -5 \[m/s\] | 5 \[m/s\] | 10 \[m/s\] | m/s | 10 \[Hz\] |
+| GNC\_IMU\_ACCEL\_06 | 2029 | gnc | engineering | -10 \[m/s\] | -5 \[m/s\] | 5 \[m/s\] | 10 \[m/s\] | m/s | 10 \[Hz\] |
+| GNC\_IMU\_T\_01 | 2030 | gnc | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| GNC\_IMU\_T\_02 | 2031 | gnc | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| GNC\_WHEEL\_SPEED\_01 | 2032 | gnc | housekeeping | -650 \[rad/s\] | -600 \[rad/s\] | 600 \[rad/s\] | 650 \[rad/s\] | rad/s | 1 \[Hz\] |
+| GNC\_WHEEL\_SPEED\_02 | 2033 | gnc | housekeeping | -650 \[rad/s\] | -600 \[rad/s\] | 600 \[rad/s\] | 650 \[rad/s\] | rad/s | 1 \[Hz\] |
+| GNC\_WHEEL\_SPEED\_03 | 2034 | gnc | housekeeping | -650 \[rad/s\] | -600 \[rad/s\] | 600 \[rad/s\] | 650 \[rad/s\] | rad/s | 1 \[Hz\] |
+| GNC\_WHEEL\_SPEED\_04 | 2035 | gnc | housekeeping | -650 \[rad/s\] | -600 \[rad/s\] | 600 \[rad/s\] | 650 \[rad/s\] | rad/s | 1 \[Hz\] |
+| GNC\_WHEEL\_I\_01 | 2036 | gnc | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| GNC\_WHEEL\_I\_02 | 2037 | gnc | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| GNC\_WHEEL\_I\_03 | 2038 | gnc | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| GNC\_WHEEL\_I\_04 | 2039 | gnc | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| GNC\_WHEEL\_T\_01 | 2040 | gnc | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| GNC\_WHEEL\_T\_02 | 2041 | gnc | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| GNC\_WHEEL\_T\_03 | 2042 | gnc | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| GNC\_WHEEL\_T\_04 | 2043 | gnc | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| GNC\_RCS\_ON\_TIME\_01 | 2044 | gnc | engineering | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 0.1 \[Hz\] |
+| GNC\_RCS\_ON\_TIME\_02 | 2045 | gnc | engineering | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 0.1 \[Hz\] |
+| GNC\_RCS\_ON\_TIME\_03 | 2046 | gnc | engineering | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 0.1 \[Hz\] |
+| GNC\_RCS\_ON\_TIME\_04 | 2047 | gnc | engineering | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 0.1 \[Hz\] |
+| GNC\_RCS\_ON\_TIME\_05 | 2048 | gnc | engineering | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 0.1 \[Hz\] |
+| GNC\_RCS\_ON\_TIME\_06 | 2049 | gnc | engineering | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 0.1 \[Hz\] |
+| GNC\_RCS\_ON\_TIME\_07 | 2050 | gnc | engineering | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 0.1 \[Hz\] |
+| GNC\_RCS\_ON\_TIME\_08 | 2051 | gnc | engineering | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 0.1 \[Hz\] |
+| GNC\_RCS\_PULSES\_01 | 2052 | gnc | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| GNC\_RCS\_PULSES\_02 | 2053 | gnc | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| GNC\_RCS\_PULSES\_03 | 2054 | gnc | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| GNC\_RCS\_PULSES\_04 | 2055 | gnc | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| GNC\_RCS\_PULSES\_05 | 2056 | gnc | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| GNC\_RCS\_PULSES\_06 | 2057 | gnc | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| GNC\_RCS\_PULSES\_07 | 2058 | gnc | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| GNC\_RCS\_PULSES\_08 | 2059 | gnc | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| GNC\_SUN\_SENSOR\_01 | 2060 | gnc | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| GNC\_SUN\_SENSOR\_02 | 2061 | gnc | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| GNC\_SUN\_SENSOR\_03 | 2062 | gnc | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| GNC\_SUN\_SENSOR\_04 | 2063 | gnc | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| GNC\_SUN\_SENSOR\_05 | 2064 | gnc | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| GNC\_SUN\_SENSOR\_06 | 2065 | gnc | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| GNC\_RANGE\_TO\_TARGET | 2066 | gnc | housekeeping | 0 \[m\] | 10 \[m\] | 100000000 \[m\] | 1000000000 \[m\] | m | 1 \[Hz\] |
+| GNC\_RANGE\_RATE | 2067 | gnc | housekeeping | -100 \[m/s\] | -50 \[m/s\] | 50 \[m/s\] | 100 \[m/s\] | m/s | 1 \[Hz\] |
+| GNC\_BEARING\_01 | 2068 | gnc | engineering | -3.1416 \[rad\] | -3 \[rad\] | 3 \[rad\] | 3.1416 \[rad\] | rad | 1 \[Hz\] |
+| GNC\_BEARING\_02 | 2069 | gnc | engineering | -3.1416 \[rad\] | -3 \[rad\] | 3 \[rad\] | 3.1416 \[rad\] | rad | 1 \[Hz\] |
+| GNC\_EPHEMERIS\_AGE | 2070 | gnc | housekeeping | 0 \[s\] | 0 \[s\] | 2592000 \[s\] | 7776000 \[s\] | s | 0.1 \[Hz\] |
+| GNC\_GUIDANCE\_MODE | 2071 | gnc | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| GNC\_MOMENTUM\_01 | 2072 | gnc | housekeeping | -1 | -0.8 | 0.8 | 1 | 1 | 1 \[Hz\] |
+| GNC\_MOMENTUM\_02 | 2073 | gnc | housekeeping | -1 | -0.8 | 0.8 | 1 | 1 | 1 \[Hz\] |
+| GNC\_MOMENTUM\_03 | 2074 | gnc | housekeeping | -1 | -0.8 | 0.8 | 1 | 1 | 1 \[Hz\] |
+| SEP\_DISCHARGE\_I\_01 | 3001 | sepControl | housekeeping | 0 \[A\] | 0 \[A\] | 30 \[A\] | 40 \[A\] | A | 1 \[Hz\] |
+| SEP\_DISCHARGE\_I\_02 | 3002 | sepControl | housekeeping | 0 \[A\] | 0 \[A\] | 30 \[A\] | 40 \[A\] | A | 1 \[Hz\] |
+| SEP\_DISCHARGE\_I\_03 | 3003 | sepControl | housekeeping | 0 \[A\] | 0 \[A\] | 30 \[A\] | 40 \[A\] | A | 1 \[Hz\] |
+| SEP\_DISCHARGE\_V\_01 | 3004 | sepControl | housekeeping | 0 \[V\] | 200 \[V\] | 400 \[V\] | 450 \[V\] | V | 1 \[Hz\] |
+| SEP\_DISCHARGE\_V\_02 | 3005 | sepControl | housekeeping | 0 \[V\] | 200 \[V\] | 400 \[V\] | 450 \[V\] | V | 1 \[Hz\] |
+| SEP\_DISCHARGE\_V\_03 | 3006 | sepControl | housekeeping | 0 \[V\] | 200 \[V\] | 400 \[V\] | 450 \[V\] | V | 1 \[Hz\] |
+| SEP\_ANODE\_FLOW\_01 | 3007 | sepControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| SEP\_ANODE\_FLOW\_02 | 3008 | sepControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| SEP\_ANODE\_FLOW\_03 | 3009 | sepControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| SEP\_CATHODE\_FLOW\_01 | 3010 | sepControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| SEP\_CATHODE\_FLOW\_02 | 3011 | sepControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| SEP\_CATHODE\_FLOW\_03 | 3012 | sepControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| SEP\_KEEPER\_I\_01 | 3013 | sepControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| SEP\_KEEPER\_I\_02 | 3014 | sepControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| SEP\_KEEPER\_I\_03 | 3015 | sepControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| SEP\_MAGNET\_I\_01 | 3016 | sepControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| SEP\_MAGNET\_I\_02 | 3017 | sepControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| SEP\_MAGNET\_I\_03 | 3018 | sepControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| SEP\_CATHODE\_HTR\_I\_01 | 3019 | sepControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| SEP\_CATHODE\_HTR\_I\_02 | 3020 | sepControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| SEP\_CATHODE\_HTR\_I\_03 | 3021 | sepControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| SEP\_THRUSTER\_T\_01 | 3022 | sepControl | engineering | 233 \[K\] | 253 \[K\] | 523 \[K\] | 573 \[K\] | K | 0.1 \[Hz\] |
+| SEP\_THRUSTER\_T\_02 | 3023 | sepControl | engineering | 233 \[K\] | 253 \[K\] | 523 \[K\] | 573 \[K\] | K | 0.1 \[Hz\] |
+| SEP\_THRUSTER\_T\_03 | 3024 | sepControl | engineering | 233 \[K\] | 253 \[K\] | 523 \[K\] | 573 \[K\] | K | 0.1 \[Hz\] |
+| SEP\_PPU\_IN\_POWER\_01 | 3025 | sepControl | housekeeping | 0 \[W\] | 0 \[W\] | 7000 \[W\] | 7500 \[W\] | W | 1 \[Hz\] |
+| SEP\_PPU\_IN\_POWER\_02 | 3026 | sepControl | housekeeping | 0 \[W\] | 0 \[W\] | 7000 \[W\] | 7500 \[W\] | W | 1 \[Hz\] |
+| SEP\_PPU\_IN\_POWER\_03 | 3027 | sepControl | housekeeping | 0 \[W\] | 0 \[W\] | 7000 \[W\] | 7500 \[W\] | W | 1 \[Hz\] |
+| SEP\_PPU\_T\_01 | 3028 | sepControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| SEP\_PPU\_T\_02 | 3029 | sepControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| SEP\_PPU\_T\_03 | 3030 | sepControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| SEP\_PPU\_STATUS\_01 | 3031 | sepControl | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| SEP\_PPU\_STATUS\_02 | 3032 | sepControl | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| SEP\_PPU\_STATUS\_03 | 3033 | sepControl | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| SEP\_PPU\_EFFICIENCY\_01 | 3034 | sepControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| SEP\_PPU\_EFFICIENCY\_02 | 3035 | sepControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| SEP\_PPU\_EFFICIENCY\_03 | 3036 | sepControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| SEP\_TANK\_P\_01 | 3037 | sepControl | housekeeping | 0 \[Pa\] | 200000 \[Pa\] | 15000000 \[Pa\] | 18000000 \[Pa\] | Pa | 0.1 \[Hz\] |
+| SEP\_TANK\_P\_02 | 3038 | sepControl | housekeeping | 0 \[Pa\] | 200000 \[Pa\] | 15000000 \[Pa\] | 18000000 \[Pa\] | Pa | 0.1 \[Hz\] |
+| SEP\_TANK\_T\_01 | 3039 | sepControl | housekeeping | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| SEP\_TANK\_T\_02 | 3040 | sepControl | housekeeping | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| SEP\_XENON\_REMAINING | 3041 | sepControl | housekeeping | 0 \[kg\] | 50 \[kg\] | 5000 \[kg\] | 6000 \[kg\] | kg | 0.01 \[Hz\] |
+| SEP\_FLOW\_TOTAL | 3042 | sepControl | engineering | 0 \[kg\] | 10 \[kg\] | 2000 \[kg\] | 2500 \[kg\] | kg | 0.01 \[Hz\] |
+| SEP\_REG\_P\_01 | 3043 | sepControl | housekeeping | 0 \[Pa\] | 100000 \[Pa\] | 300000 \[Pa\] | 350000 \[Pa\] | Pa | 1 \[Hz\] |
+| SEP\_REG\_P\_02 | 3044 | sepControl | housekeeping | 0 \[Pa\] | 100000 \[Pa\] | 300000 \[Pa\] | 350000 \[Pa\] | Pa | 1 \[Hz\] |
+| SEP\_LATCH\_VALVE\_01 | 3045 | sepControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| SEP\_LATCH\_VALVE\_02 | 3046 | sepControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| SEP\_LATCH\_VALVE\_03 | 3047 | sepControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| SEP\_LATCH\_VALVE\_04 | 3048 | sepControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| SEP\_LATCH\_VALVE\_05 | 3049 | sepControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| SEP\_LATCH\_VALVE\_06 | 3050 | sepControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| SEP\_GIMBAL\_ANGLE\_01 | 3051 | sepControl | engineering | -0.25 \[rad\] | -0.2 \[rad\] | 0.2 \[rad\] | 0.25 \[rad\] | rad | 1 \[Hz\] |
+| SEP\_GIMBAL\_ANGLE\_02 | 3052 | sepControl | engineering | -0.25 \[rad\] | -0.2 \[rad\] | 0.2 \[rad\] | 0.25 \[rad\] | rad | 1 \[Hz\] |
+| SEP\_GIMBAL\_ANGLE\_03 | 3053 | sepControl | engineering | -0.25 \[rad\] | -0.2 \[rad\] | 0.2 \[rad\] | 0.25 \[rad\] | rad | 1 \[Hz\] |
+| SEP\_GIMBAL\_ANGLE\_04 | 3054 | sepControl | engineering | -0.25 \[rad\] | -0.2 \[rad\] | 0.2 \[rad\] | 0.25 \[rad\] | rad | 1 \[Hz\] |
+| SEP\_GIMBAL\_ANGLE\_05 | 3055 | sepControl | engineering | -0.25 \[rad\] | -0.2 \[rad\] | 0.2 \[rad\] | 0.25 \[rad\] | rad | 1 \[Hz\] |
+| SEP\_GIMBAL\_ANGLE\_06 | 3056 | sepControl | engineering | -0.25 \[rad\] | -0.2 \[rad\] | 0.2 \[rad\] | 0.25 \[rad\] | rad | 1 \[Hz\] |
+| SEP\_THRUST\_EST | 3057 | sepControl | housekeeping | 0 \[N\] | 0 \[N\] | 1 \[N\] | 1.2 \[N\] | N | 1 \[Hz\] |
+| SEP\_ISP\_EST | 3058 | sepControl | engineering | 0 \[s\] | 1500 \[s\] | 3000 \[s\] | 3500 \[s\] | s | 0.1 \[Hz\] |
+| SEP\_ARC\_ELAPSED | 3059 | sepControl | housekeeping | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 1 \[Hz\] |
+| SEP\_ARC\_REMAINING | 3060 | sepControl | housekeeping | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_01 | 4001 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_02 | 4002 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_03 | 4003 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_04 | 4004 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_05 | 4005 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_06 | 4006 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_07 | 4007 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_08 | 4008 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_09 | 4009 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_10 | 4010 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_11 | 4011 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_12 | 4012 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_13 | 4013 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_14 | 4014 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_15 | 4015 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_16 | 4016 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_17 | 4017 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_18 | 4018 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_19 | 4019 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_20 | 4020 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_21 | 4021 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_22 | 4022 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_23 | 4023 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_24 | 4024 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_25 | 4025 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_26 | 4026 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_27 | 4027 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_28 | 4028 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_29 | 4029 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_30 | 4030 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_31 | 4031 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_CELL\_V\_32 | 4032 | powerManagement | engineering | 2.5 \[V\] | 3 \[V\] | 4.1 \[V\] | 4.25 \[V\] | V | 0.1 \[Hz\] |
+| EPS\_BATT\_T\_01 | 4033 | powerManagement | housekeeping | 263 \[K\] | 273 \[K\] | 308 \[K\] | 318 \[K\] | K | 0.1 \[Hz\] |
+| EPS\_BATT\_T\_02 | 4034 | powerManagement | housekeeping | 263 \[K\] | 273 \[K\] | 308 \[K\] | 318 \[K\] | K | 0.1 \[Hz\] |
+| EPS\_BATT\_T\_03 | 4035 | powerManagement | housekeeping | 263 \[K\] | 273 \[K\] | 308 \[K\] | 318 \[K\] | K | 0.1 \[Hz\] |
+| EPS\_BATT\_T\_04 | 4036 | powerManagement | housekeeping | 263 \[K\] | 273 \[K\] | 308 \[K\] | 318 \[K\] | K | 0.1 \[Hz\] |
+| EPS\_BATT\_SOC\_01 | 4037 | powerManagement | housekeeping | 0.3 | 0.4 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_BATT\_SOC\_02 | 4038 | powerManagement | housekeeping | 0.3 | 0.4 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_BATT\_I\_01 | 4039 | powerManagement | housekeeping | -60 \[A\] | -50 \[A\] | 50 \[A\] | 60 \[A\] | A | 1 \[Hz\] |
+| EPS\_BATT\_I\_02 | 4040 | powerManagement | housekeeping | -60 \[A\] | -50 \[A\] | 50 \[A\] | 60 \[A\] | A | 1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_01 | 4041 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_02 | 4042 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_03 | 4043 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_04 | 4044 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_05 | 4045 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_06 | 4046 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_07 | 4047 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_08 | 4048 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_09 | 4049 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_10 | 4050 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_11 | 4051 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_12 | 4052 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_13 | 4053 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_14 | 4054 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_15 | 4055 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_16 | 4056 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_17 | 4057 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_18 | 4058 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_19 | 4059 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_20 | 4060 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_21 | 4061 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_22 | 4062 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_23 | 4063 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_STRING\_I\_24 | 4064 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| EPS\_ARRAY\_T\_01 | 4065 | powerManagement | engineering | 173 \[K\] | 193 \[K\] | 373 \[K\] | 393 \[K\] | K | 0.1 \[Hz\] |
+| EPS\_ARRAY\_T\_02 | 4066 | powerManagement | engineering | 173 \[K\] | 193 \[K\] | 373 \[K\] | 393 \[K\] | K | 0.1 \[Hz\] |
+| EPS\_ARRAY\_T\_03 | 4067 | powerManagement | engineering | 173 \[K\] | 193 \[K\] | 373 \[K\] | 393 \[K\] | K | 0.1 \[Hz\] |
+| EPS\_ARRAY\_T\_04 | 4068 | powerManagement | engineering | 173 \[K\] | 193 \[K\] | 373 \[K\] | 393 \[K\] | K | 0.1 \[Hz\] |
+| EPS\_ARRAY\_T\_05 | 4069 | powerManagement | engineering | 173 \[K\] | 193 \[K\] | 373 \[K\] | 393 \[K\] | K | 0.1 \[Hz\] |
+| EPS\_ARRAY\_T\_06 | 4070 | powerManagement | engineering | 173 \[K\] | 193 \[K\] | 373 \[K\] | 393 \[K\] | K | 0.1 \[Hz\] |
+| EPS\_ARRAY\_T\_07 | 4071 | powerManagement | engineering | 173 \[K\] | 193 \[K\] | 373 \[K\] | 393 \[K\] | K | 0.1 \[Hz\] |
+| EPS\_ARRAY\_T\_08 | 4072 | powerManagement | engineering | 173 \[K\] | 193 \[K\] | 373 \[K\] | 393 \[K\] | K | 0.1 \[Hz\] |
+| EPS\_ARRAY\_V\_01 | 4073 | powerManagement | housekeeping | 0 \[V\] | 60 \[V\] | 120 \[V\] | 130 \[V\] | V | 1 \[Hz\] |
+| EPS\_ARRAY\_V\_02 | 4074 | powerManagement | housekeeping | 0 \[V\] | 60 \[V\] | 120 \[V\] | 130 \[V\] | V | 1 \[Hz\] |
+| EPS\_ARRAY\_V\_03 | 4075 | powerManagement | housekeeping | 0 \[V\] | 60 \[V\] | 120 \[V\] | 130 \[V\] | V | 1 \[Hz\] |
+| EPS\_ARRAY\_V\_04 | 4076 | powerManagement | housekeeping | 0 \[V\] | 60 \[V\] | 120 \[V\] | 130 \[V\] | V | 1 \[Hz\] |
+| EPS\_BUS\_V\_01 | 4077 | powerManagement | housekeeping | 26 \[V\] | 27 \[V\] | 29 \[V\] | 30 \[V\] | V | 1 \[Hz\] |
+| EPS\_BUS\_V\_02 | 4078 | powerManagement | housekeeping | 26 \[V\] | 27 \[V\] | 29 \[V\] | 30 \[V\] | V | 1 \[Hz\] |
+| EPS\_BUS\_I\_01 | 4079 | powerManagement | housekeeping | 0 \[A\] | 0 \[A\] | 150 \[A\] | 180 \[A\] | A | 1 \[Hz\] |
+| EPS\_BUS\_I\_02 | 4080 | powerManagement | housekeeping | 0 \[A\] | 0 \[A\] | 150 \[A\] | 180 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_STATE\_01 | 4081 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_02 | 4082 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_03 | 4083 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_04 | 4084 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_05 | 4085 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_06 | 4086 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_07 | 4087 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_08 | 4088 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_09 | 4089 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_10 | 4090 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_11 | 4091 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_12 | 4092 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_13 | 4093 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_14 | 4094 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_15 | 4095 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_16 | 4096 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_17 | 4097 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_18 | 4098 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_19 | 4099 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_20 | 4100 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_21 | 4101 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_22 | 4102 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_23 | 4103 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_STATE\_24 | 4104 | powerManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| EPS\_SW\_I\_01 | 4105 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_02 | 4106 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_03 | 4107 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_04 | 4108 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_05 | 4109 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_06 | 4110 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_07 | 4111 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_08 | 4112 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_09 | 4113 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_10 | 4114 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_11 | 4115 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_12 | 4116 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_13 | 4117 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_14 | 4118 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_15 | 4119 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_16 | 4120 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_17 | 4121 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_18 | 4122 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_19 | 4123 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_20 | 4124 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_21 | 4125 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_22 | 4126 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_23 | 4127 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SW\_I\_24 | 4128 | powerManagement | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| EPS\_SADA\_ANGLE\_01 | 4129 | powerManagement | housekeeping | -3.1416 \[rad\] | -3 \[rad\] | 3 \[rad\] | 3.1416 \[rad\] | rad | 1 \[Hz\] |
+| EPS\_SADA\_ANGLE\_02 | 4130 | powerManagement | housekeeping | -3.1416 \[rad\] | -3 \[rad\] | 3 \[rad\] | 3.1416 \[rad\] | rad | 1 \[Hz\] |
+| EPS\_SADA\_RATE\_01 | 4131 | powerManagement | engineering | -0.1 \[rad/s\] | -0.05 \[rad/s\] | 0.05 \[rad/s\] | 0.1 \[rad/s\] | rad/s | 1 \[Hz\] |
+| EPS\_SADA\_RATE\_02 | 4132 | powerManagement | engineering | -0.1 \[rad/s\] | -0.05 \[rad/s\] | 0.05 \[rad/s\] | 0.1 \[rad/s\] | rad/s | 1 \[Hz\] |
+| EPS\_PCU\_T\_01 | 4133 | powerManagement | housekeeping | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| EPS\_PCU\_T\_02 | 4134 | powerManagement | housekeeping | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| EPS\_LOAD\_SHED\_LEVEL | 4135 | powerManagement | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| EPS\_TOTAL\_LOAD | 4136 | powerManagement | housekeeping | 0 \[W\] | 0 \[W\] | 9000 \[W\] | 10000 \[W\] | W | 1 \[Hz\] |
+| EPS\_ARRAY\_POWER | 4137 | powerManagement | housekeeping | 0 \[W\] | 0 \[W\] | 12000 \[W\] | 13000 \[W\] | W | 1 \[Hz\] |
+| THM\_ZONE\_T\_01 | 5001 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_02 | 5002 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_03 | 5003 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_04 | 5004 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_05 | 5005 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_06 | 5006 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_07 | 5007 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_08 | 5008 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_09 | 5009 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_10 | 5010 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_11 | 5011 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_12 | 5012 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_13 | 5013 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_14 | 5014 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_15 | 5015 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_16 | 5016 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_17 | 5017 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_18 | 5018 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_19 | 5019 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_20 | 5020 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_21 | 5021 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_22 | 5022 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_23 | 5023 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_24 | 5024 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_25 | 5025 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_26 | 5026 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_27 | 5027 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_28 | 5028 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_29 | 5029 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_30 | 5030 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_31 | 5031 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_32 | 5032 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_33 | 5033 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_34 | 5034 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_35 | 5035 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_36 | 5036 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_37 | 5037 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_38 | 5038 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_39 | 5039 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_40 | 5040 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_41 | 5041 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_42 | 5042 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_43 | 5043 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_44 | 5044 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_45 | 5045 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_46 | 5046 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_47 | 5047 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_48 | 5048 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_49 | 5049 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_50 | 5050 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_51 | 5051 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_52 | 5052 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_53 | 5053 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_54 | 5054 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_55 | 5055 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_56 | 5056 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_57 | 5057 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_58 | 5058 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_59 | 5059 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_60 | 5060 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_61 | 5061 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_62 | 5062 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_63 | 5063 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_64 | 5064 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_65 | 5065 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_66 | 5066 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_67 | 5067 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_68 | 5068 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_69 | 5069 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_70 | 5070 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_71 | 5071 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_72 | 5072 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_73 | 5073 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_74 | 5074 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_75 | 5075 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_76 | 5076 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_77 | 5077 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_78 | 5078 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_79 | 5079 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_80 | 5080 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_81 | 5081 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_82 | 5082 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_83 | 5083 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_84 | 5084 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_85 | 5085 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_86 | 5086 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_87 | 5087 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_88 | 5088 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_89 | 5089 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_90 | 5090 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_91 | 5091 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_92 | 5092 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_93 | 5093 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_94 | 5094 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_95 | 5095 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_96 | 5096 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_97 | 5097 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_98 | 5098 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_99 | 5099 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_100 | 5100 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_101 | 5101 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_102 | 5102 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_103 | 5103 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_104 | 5104 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_105 | 5105 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_106 | 5106 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_107 | 5107 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_108 | 5108 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_109 | 5109 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_110 | 5110 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_111 | 5111 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_112 | 5112 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_113 | 5113 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_114 | 5114 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_115 | 5115 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_116 | 5116 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_117 | 5117 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_118 | 5118 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_119 | 5119 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_120 | 5120 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_121 | 5121 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_122 | 5122 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_123 | 5123 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_124 | 5124 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_125 | 5125 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_126 | 5126 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_127 | 5127 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_128 | 5128 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_129 | 5129 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_130 | 5130 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_131 | 5131 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_132 | 5132 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_133 | 5133 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_134 | 5134 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_135 | 5135 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_136 | 5136 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_137 | 5137 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_138 | 5138 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_139 | 5139 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_140 | 5140 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_141 | 5141 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_142 | 5142 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_143 | 5143 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_144 | 5144 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_145 | 5145 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_146 | 5146 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_147 | 5147 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_148 | 5148 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_149 | 5149 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_150 | 5150 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_151 | 5151 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_152 | 5152 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_153 | 5153 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_154 | 5154 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_155 | 5155 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_156 | 5156 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_157 | 5157 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_158 | 5158 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_159 | 5159 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_160 | 5160 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_161 | 5161 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_162 | 5162 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_163 | 5163 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_164 | 5164 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_165 | 5165 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_166 | 5166 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_167 | 5167 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_168 | 5168 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_169 | 5169 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_170 | 5170 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_171 | 5171 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_172 | 5172 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_173 | 5173 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_174 | 5174 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_175 | 5175 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_176 | 5176 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_177 | 5177 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_178 | 5178 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_179 | 5179 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_180 | 5180 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_181 | 5181 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_182 | 5182 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_183 | 5183 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_184 | 5184 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_185 | 5185 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_186 | 5186 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_187 | 5187 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_188 | 5188 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_189 | 5189 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_190 | 5190 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_191 | 5191 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_ZONE\_T\_192 | 5192 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_HTR\_STATE\_01 | 5193 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_STATE\_02 | 5194 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_STATE\_03 | 5195 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_STATE\_04 | 5196 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_STATE\_05 | 5197 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_STATE\_06 | 5198 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_STATE\_07 | 5199 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_STATE\_08 | 5200 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_STATE\_09 | 5201 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_STATE\_10 | 5202 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_STATE\_11 | 5203 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_STATE\_12 | 5204 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_STATE\_13 | 5205 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_STATE\_14 | 5206 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_STATE\_15 | 5207 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_STATE\_16 | 5208 | thermalControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| THM\_HTR\_DUTY\_01 | 5209 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_DUTY\_02 | 5210 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_DUTY\_03 | 5211 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_DUTY\_04 | 5212 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_DUTY\_05 | 5213 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_DUTY\_06 | 5214 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_DUTY\_07 | 5215 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_DUTY\_08 | 5216 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_DUTY\_09 | 5217 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_DUTY\_10 | 5218 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_DUTY\_11 | 5219 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_DUTY\_12 | 5220 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_DUTY\_13 | 5221 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_DUTY\_14 | 5222 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_DUTY\_15 | 5223 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_DUTY\_16 | 5224 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HTR\_I\_01 | 5225 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_HTR\_I\_02 | 5226 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_HTR\_I\_03 | 5227 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_HTR\_I\_04 | 5228 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_HTR\_I\_05 | 5229 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_HTR\_I\_06 | 5230 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_HTR\_I\_07 | 5231 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_HTR\_I\_08 | 5232 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_HTR\_I\_09 | 5233 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_HTR\_I\_10 | 5234 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_HTR\_I\_11 | 5235 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_HTR\_I\_12 | 5236 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_HTR\_I\_13 | 5237 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_HTR\_I\_14 | 5238 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_HTR\_I\_15 | 5239 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_HTR\_I\_16 | 5240 | thermalControl | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 0.1 \[Hz\] |
+| THM\_SETPOINT\_01 | 5241 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_SETPOINT\_02 | 5242 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_SETPOINT\_03 | 5243 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_SETPOINT\_04 | 5244 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_SETPOINT\_05 | 5245 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_SETPOINT\_06 | 5246 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_SETPOINT\_07 | 5247 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_SETPOINT\_08 | 5248 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_SETPOINT\_09 | 5249 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_SETPOINT\_10 | 5250 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_SETPOINT\_11 | 5251 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_SETPOINT\_12 | 5252 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_SETPOINT\_13 | 5253 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_SETPOINT\_14 | 5254 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_SETPOINT\_15 | 5255 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_SETPOINT\_16 | 5256 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.01 \[Hz\] |
+| THM\_LOUVER\_POS\_01 | 5257 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_LOUVER\_POS\_02 | 5258 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_LOUVER\_POS\_03 | 5259 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_LOUVER\_POS\_04 | 5260 | thermalControl | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| THM\_HEAT\_PIPE\_T\_01 | 5261 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_HEAT\_PIPE\_T\_02 | 5262 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_HEAT\_PIPE\_T\_03 | 5263 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_HEAT\_PIPE\_T\_04 | 5264 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_HEAT\_PIPE\_T\_05 | 5265 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_HEAT\_PIPE\_T\_06 | 5266 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_HEAT\_PIPE\_T\_07 | 5267 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_HEAT\_PIPE\_T\_08 | 5268 | thermalControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| THM\_RADIATOR\_T\_01 | 5269 | thermalControl | housekeeping | 173 \[K\] | 193 \[K\] | 323 \[K\] | 343 \[K\] | K | 0.1 \[Hz\] |
+| THM\_RADIATOR\_T\_02 | 5270 | thermalControl | housekeeping | 173 \[K\] | 193 \[K\] | 323 \[K\] | 343 \[K\] | K | 0.1 \[Hz\] |
+| THM\_RADIATOR\_T\_03 | 5271 | thermalControl | housekeeping | 173 \[K\] | 193 \[K\] | 323 \[K\] | 343 \[K\] | K | 0.1 \[Hz\] |
+| THM\_RADIATOR\_T\_04 | 5272 | thermalControl | housekeeping | 173 \[K\] | 193 \[K\] | 323 \[K\] | 343 \[K\] | K | 0.1 \[Hz\] |
+| THM\_HTR\_POWER\_TOTAL | 5273 | thermalControl | housekeeping | 0 \[W\] | 0 \[W\] | 800 \[W\] | 900 \[W\] | W | 1 \[Hz\] |
+| THM\_CONTROL\_MODE | 5274 | thermalControl | housekeeping | 0 | 0 | 2 | 2 | 1 | 1 \[Hz\] |
+| COM\_TX\_POWER\_01 | 6001 | telecom | housekeeping | 0 \[W\] | 0 \[W\] | 100 \[W\] | 110 \[W\] | W | 1 \[Hz\] |
+| COM\_TX\_POWER\_02 | 6002 | telecom | housekeeping | 0 \[W\] | 0 \[W\] | 100 \[W\] | 110 \[W\] | W | 1 \[Hz\] |
+| COM\_RX\_AGC\_01 | 6003 | telecom | housekeeping | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| COM\_RX\_AGC\_02 | 6004 | telecom | housekeeping | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| COM\_RX\_LOCK\_01 | 6005 | telecom | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| COM\_RX\_LOCK\_02 | 6006 | telecom | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| COM\_CARRIER\_LOCK | 6007 | telecom | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| COM\_SYMBOL\_RATE | 6008 | telecom | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| COM\_UPLINK\_RATE | 6009 | telecom | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| COM\_FRAME\_COUNT | 6010 | telecom | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| COM\_FRAME\_ERRORS | 6011 | telecom | engineering | 0 | 0 | 100 | 1000 | 1 | 1 \[Hz\] |
+| COM\_SSPA\_T\_01 | 6012 | telecom | housekeeping | 233 \[K\] | 253 \[K\] | 343 \[K\] | 353 \[K\] | K | 0.1 \[Hz\] |
+| COM\_SSPA\_T\_02 | 6013 | telecom | housekeeping | 233 \[K\] | 253 \[K\] | 343 \[K\] | 353 \[K\] | K | 0.1 \[Hz\] |
+| COM\_SSPA\_I\_01 | 6014 | telecom | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| COM\_SSPA\_I\_02 | 6015 | telecom | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| COM\_HGA\_AZ | 6016 | telecom | housekeeping | -1.6 \[rad\] | -1.5708 \[rad\] | 1.5708 \[rad\] | 1.6 \[rad\] | rad | 1 \[Hz\] |
+| COM\_HGA\_EL | 6017 | telecom | housekeeping | -0.8 \[rad\] | -0.7854 \[rad\] | 0.7854 \[rad\] | 0.8 \[rad\] | rad | 1 \[Hz\] |
+| COM\_ANTENNA\_SEL | 6018 | telecom | housekeeping | 0 | 0 | 2 | 2 | 1 | 1 \[Hz\] |
+| COM\_RANGING\_STATE | 6019 | telecom | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| COM\_DOPPLER | 6020 | telecom | engineering | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| COM\_TWO\_WAY\_RANGE | 6021 | telecom | engineering | 0 \[m\] | 10 \[m\] | 100000000 \[m\] | 1000000000 \[m\] | m | 0.1 \[Hz\] |
+| COM\_LINK\_MARGIN | 6022 | telecom | housekeeping | 0 | 3 | 30 | 40 | 1 | 1 \[Hz\] |
+| COM\_PASS\_REMAINING | 6023 | telecom | engineering | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 1 \[Hz\] |
+| COM\_EXCITER\_T\_01 | 6024 | telecom | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| COM\_EXCITER\_T\_02 | 6025 | telecom | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| COM\_XPDR\_STATE\_01 | 6026 | telecom | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| COM\_XPDR\_STATE\_02 | 6027 | telecom | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| COM\_HGA\_T\_01 | 6028 | telecom | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| COM\_HGA\_T\_02 | 6029 | telecom | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| COM\_RELAY\_RX\_LOCK | 6030 | telecom | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| COM\_RELAY\_RATE | 6031 | telecom | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| COM\_RELAY\_FRAME\_COUNT | 6032 | telecom | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| COM\_RELAY\_LINK\_MARGIN | 6033 | telecom | housekeeping | 0 | 3 | 30 | 40 | 1 | 1 \[Hz\] |
+| COM\_CODING\_SEL | 6034 | telecom | engineering | 0 | 0 | 254 | 255 | 1 | 0.1 \[Hz\] |
+| COM\_HGA\_MOTOR\_I\_01 | 6035 | telecom | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| COM\_HGA\_MOTOR\_I\_02 | 6036 | telecom | engineering | 0 \[A\] | 0 \[A\] | 8 \[A\] | 10 \[A\] | A | 1 \[Hz\] |
+| INS\_INSP\_RANGE | 7001 | inspectorHandling | housekeeping | 0 \[m\] | 20 \[m\] | 5000 \[m\] | 10000 \[m\] | m | 1 \[Hz\] |
+| INS\_INSP\_BEARING\_01 | 7002 | inspectorHandling | housekeeping | -3.1416 \[rad\] | -3 \[rad\] | 3 \[rad\] | 3.1416 \[rad\] | rad | 1 \[Hz\] |
+| INS\_INSP\_BEARING\_02 | 7003 | inspectorHandling | housekeeping | -3.1416 \[rad\] | -3 \[rad\] | 3 \[rad\] | 3.1416 \[rad\] | rad | 1 \[Hz\] |
+| INS\_INSP\_RANGE\_RATE | 7004 | inspectorHandling | housekeeping | -2 \[m/s\] | -1 \[m/s\] | 1 \[m/s\] | 2 \[m/s\] | m/s | 1 \[Hz\] |
+| INS\_INSP\_STATE | 7005 | inspectorHandling | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| INS\_INSP\_BATT\_V | 7006 | inspectorHandling | housekeeping | 20 \[V\] | 22 \[V\] | 29.4 \[V\] | 30 \[V\] | V | 0.1 \[Hz\] |
+| INS\_INSP\_BATT\_SOC | 7007 | inspectorHandling | housekeeping | 0.2 | 0.3 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| INS\_INSP\_T\_01 | 7008 | inspectorHandling | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| INS\_INSP\_T\_02 | 7009 | inspectorHandling | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| INS\_INSP\_T\_03 | 7010 | inspectorHandling | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| INS\_INSP\_T\_04 | 7011 | inspectorHandling | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| INS\_INSP\_T\_05 | 7012 | inspectorHandling | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| INS\_INSP\_T\_06 | 7013 | inspectorHandling | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| INS\_INSP\_T\_07 | 7014 | inspectorHandling | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| INS\_INSP\_T\_08 | 7015 | inspectorHandling | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| INS\_IMAGE\_COUNT | 7016 | inspectorHandling | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| INS\_IMAGE\_QUEUE | 7017 | inspectorHandling | engineering | 0 | 0 | 200 | 256 | 1 | 0.1 \[Hz\] |
+| INS\_SEGMENTS\_RX | 7018 | inspectorHandling | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| INS\_SEGMENT\_ERRORS | 7019 | inspectorHandling | engineering | 0 | 0 | 50 | 500 | 1 | 1 \[Hz\] |
+| INS\_RELAY\_MARGIN | 7020 | inspectorHandling | housekeeping | 0 | 3 | 30 | 40 | 1 | 1 \[Hz\] |
+| INS\_CAM\_T\_01 | 7021 | inspectorHandling | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| INS\_CAM\_T\_02 | 7022 | inspectorHandling | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| INS\_CAM\_STATE\_01 | 7023 | inspectorHandling | engineering | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| INS\_CAM\_STATE\_02 | 7024 | inspectorHandling | engineering | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| INS\_INSP\_PROPELLANT | 7025 | inspectorHandling | housekeeping | 0 | 0.1 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| INS\_INSP\_THR\_PULSES\_01 | 7026 | inspectorHandling | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| INS\_INSP\_THR\_PULSES\_02 | 7027 | inspectorHandling | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| INS\_INSP\_THR\_PULSES\_03 | 7028 | inspectorHandling | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| INS\_INSP\_THR\_PULSES\_04 | 7029 | inspectorHandling | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| INS\_INSP\_THR\_PULSES\_05 | 7030 | inspectorHandling | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| INS\_INSP\_THR\_PULSES\_06 | 7031 | inspectorHandling | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| INS\_INSP\_THR\_PULSES\_07 | 7032 | inspectorHandling | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| INS\_INSP\_THR\_PULSES\_08 | 7033 | inspectorHandling | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| INS\_RELEASE\_MECH\_STATE | 7034 | inspectorHandling | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| INS\_RELEASE\_ARMED | 7035 | inspectorHandling | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| INS\_LAST\_CONTACT\_AGE | 7036 | inspectorHandling | housekeeping | 0 \[s\] | 0 \[s\] | 7200 \[s\] | 86400 \[s\] | s | 0.1 \[Hz\] |
+| INS\_IMAGE\_COMPRESSION | 7037 | inspectorHandling | engineering | 0 | 0 | 254 | 255 | 1 | 0.1 \[Hz\] |
+| CAP\_BAG\_DEPLOY\_POS\_01 | 8001 | captureControl | housekeeping | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| CAP\_BAG\_DEPLOY\_POS\_02 | 8002 | captureControl | housekeeping | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| CAP\_BAG\_DEPLOY\_POS\_03 | 8003 | captureControl | housekeeping | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| CAP\_BAG\_DEPLOY\_POS\_04 | 8004 | captureControl | housekeeping | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| CAP\_PETAL\_ANGLE\_01 | 8005 | captureControl | housekeeping | -0.1 \[rad\] | 0 \[rad\] | 2 \[rad\] | 2.1 \[rad\] | rad | 1 \[Hz\] |
+| CAP\_PETAL\_ANGLE\_02 | 8006 | captureControl | housekeeping | -0.1 \[rad\] | 0 \[rad\] | 2 \[rad\] | 2.1 \[rad\] | rad | 1 \[Hz\] |
+| CAP\_PETAL\_ANGLE\_03 | 8007 | captureControl | housekeeping | -0.1 \[rad\] | 0 \[rad\] | 2 \[rad\] | 2.1 \[rad\] | rad | 1 \[Hz\] |
+| CAP\_PETAL\_ANGLE\_04 | 8008 | captureControl | housekeeping | -0.1 \[rad\] | 0 \[rad\] | 2 \[rad\] | 2.1 \[rad\] | rad | 1 \[Hz\] |
+| CAP\_PETAL\_MOTOR\_I\_01 | 8009 | captureControl | engineering | 0 \[A\] | 0 \[A\] | 4 \[A\] | 5 \[A\] | A | 1 \[Hz\] |
+| CAP\_PETAL\_MOTOR\_I\_02 | 8010 | captureControl | engineering | 0 \[A\] | 0 \[A\] | 4 \[A\] | 5 \[A\] | A | 1 \[Hz\] |
+| CAP\_PETAL\_MOTOR\_I\_03 | 8011 | captureControl | engineering | 0 \[A\] | 0 \[A\] | 4 \[A\] | 5 \[A\] | A | 1 \[Hz\] |
+| CAP\_PETAL\_MOTOR\_I\_04 | 8012 | captureControl | engineering | 0 \[A\] | 0 \[A\] | 4 \[A\] | 5 \[A\] | A | 1 \[Hz\] |
+| CAP\_PETAL\_T\_01 | 8013 | captureControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| CAP\_PETAL\_T\_02 | 8014 | captureControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| CAP\_PETAL\_T\_03 | 8015 | captureControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| CAP\_PETAL\_T\_04 | 8016 | captureControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| CAP\_CINCH\_TENSION\_01 | 8017 | captureControl | housekeeping | 0 \[N\] | 0 \[N\] | 2000 \[N\] | 2500 \[N\] | N | 1 \[Hz\] |
+| CAP\_CINCH\_TENSION\_02 | 8018 | captureControl | housekeeping | 0 \[N\] | 0 \[N\] | 2000 \[N\] | 2500 \[N\] | N | 1 \[Hz\] |
+| CAP\_LATCH\_STATE\_01 | 8019 | captureControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| CAP\_LATCH\_STATE\_02 | 8020 | captureControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| CAP\_LATCH\_STATE\_03 | 8021 | captureControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| CAP\_LATCH\_STATE\_04 | 8022 | captureControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| CAP\_PROX\_RANGE\_01 | 8023 | captureControl | engineering | 0 \[m\] | 0.5 \[m\] | 1000 \[m\] | 2000 \[m\] | m | 10 \[Hz\] |
+| CAP\_PROX\_RANGE\_02 | 8024 | captureControl | engineering | 0 \[m\] | 0.5 \[m\] | 1000 \[m\] | 2000 \[m\] | m | 10 \[Hz\] |
+| CAP\_PROX\_RANGE\_03 | 8025 | captureControl | engineering | 0 \[m\] | 0.5 \[m\] | 1000 \[m\] | 2000 \[m\] | m | 10 \[Hz\] |
+| CAP\_PROX\_RANGE\_04 | 8026 | captureControl | engineering | 0 \[m\] | 0.5 \[m\] | 1000 \[m\] | 2000 \[m\] | m | 10 \[Hz\] |
+| CAP\_PROX\_RANGE\_05 | 8027 | captureControl | engineering | 0 \[m\] | 0.5 \[m\] | 1000 \[m\] | 2000 \[m\] | m | 10 \[Hz\] |
+| CAP\_PROX\_RANGE\_06 | 8028 | captureControl | engineering | 0 \[m\] | 0.5 \[m\] | 1000 \[m\] | 2000 \[m\] | m | 10 \[Hz\] |
+| CAP\_PROX\_RANGE\_07 | 8029 | captureControl | engineering | 0 \[m\] | 0.5 \[m\] | 1000 \[m\] | 2000 \[m\] | m | 10 \[Hz\] |
+| CAP\_PROX\_RANGE\_08 | 8030 | captureControl | engineering | 0 \[m\] | 0.5 \[m\] | 1000 \[m\] | 2000 \[m\] | m | 10 \[Hz\] |
+| CAP\_PROX\_STATE\_01 | 8031 | captureControl | engineering | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| CAP\_PROX\_STATE\_02 | 8032 | captureControl | engineering | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| CAP\_PROX\_STATE\_03 | 8033 | captureControl | engineering | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| CAP\_PROX\_STATE\_04 | 8034 | captureControl | engineering | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| CAP\_PROX\_STATE\_05 | 8035 | captureControl | engineering | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| CAP\_PROX\_STATE\_06 | 8036 | captureControl | engineering | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| CAP\_PROX\_STATE\_07 | 8037 | captureControl | engineering | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| CAP\_PROX\_STATE\_08 | 8038 | captureControl | engineering | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| CAP\_BODY\_SPIN\_RATE\_01 | 8039 | captureControl | housekeeping | -0.6 \[rad/s\] | -0.5 \[rad/s\] | 0.5 \[rad/s\] | 0.6 \[rad/s\] | rad/s | 1 \[Hz\] |
+| CAP\_BODY\_SPIN\_RATE\_02 | 8040 | captureControl | housekeeping | -0.6 \[rad/s\] | -0.5 \[rad/s\] | 0.5 \[rad/s\] | 0.6 \[rad/s\] | rad/s | 1 \[Hz\] |
+| CAP\_BODY\_SPIN\_RATE\_03 | 8041 | captureControl | housekeeping | -0.6 \[rad/s\] | -0.5 \[rad/s\] | 0.5 \[rad/s\] | 0.6 \[rad/s\] | rad/s | 1 \[Hz\] |
+| CAP\_DESPIN\_TORQUE | 8042 | captureControl | housekeeping | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| CAP\_DESPIN\_PROGRESS | 8043 | captureControl | housekeeping | 0 | 0.1 | 0.9 | 1 | 1 | 0.1 \[Hz\] |
+| CAP\_CAPTURE\_ARMED | 8044 | captureControl | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| CAP\_CAPTURE\_STATE | 8045 | captureControl | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| CAP\_CONTACT\_FORCE\_01 | 8046 | captureControl | housekeeping | -500 \[N\] | -400 \[N\] | 400 \[N\] | 500 \[N\] | N | 10 \[Hz\] |
+| CAP\_CONTACT\_FORCE\_02 | 8047 | captureControl | housekeeping | -500 \[N\] | -400 \[N\] | 400 \[N\] | 500 \[N\] | N | 10 \[Hz\] |
+| CAP\_CONTACT\_FORCE\_03 | 8048 | captureControl | housekeeping | -500 \[N\] | -400 \[N\] | 400 \[N\] | 500 \[N\] | N | 10 \[Hz\] |
+| CAP\_BODY\_MASS\_EST | 8049 | captureControl | housekeeping | 0 \[kg\] | 1000 \[kg\] | 2000000 \[kg\] | 2500000 \[kg\] | kg | 0.01 \[Hz\] |
+| CAP\_APPROACH\_RATE | 8050 | captureControl | housekeeping | -1 \[m/s\] | -0.5 \[m/s\] | 0.5 \[m/s\] | 1 \[m/s\] | m/s | 1 \[Hz\] |
+| CAP\_MECHANISM\_T\_01 | 8051 | captureControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| CAP\_MECHANISM\_T\_02 | 8052 | captureControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| CAP\_MECHANISM\_T\_03 | 8053 | captureControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| CAP\_MECHANISM\_T\_04 | 8054 | captureControl | engineering | 233 \[K\] | 253 \[K\] | 313 \[K\] | 333 \[K\] | K | 0.1 \[Hz\] |
+| AUT\_SEQ\_STATE\_01 | 9001 | autonomy | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| AUT\_SEQ\_STATE\_02 | 9002 | autonomy | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| AUT\_SEQ\_STATE\_03 | 9003 | autonomy | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| AUT\_SEQ\_STATE\_04 | 9004 | autonomy | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| AUT\_SEQ\_STEP\_01 | 9005 | autonomy | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| AUT\_SEQ\_STEP\_02 | 9006 | autonomy | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| AUT\_SEQ\_STEP\_03 | 9007 | autonomy | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| AUT\_SEQ\_STEP\_04 | 9008 | autonomy | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| AUT\_SEQ\_ID\_01 | 9009 | autonomy | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| AUT\_SEQ\_ID\_02 | 9010 | autonomy | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| AUT\_SEQ\_ID\_03 | 9011 | autonomy | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| AUT\_SEQ\_ID\_04 | 9012 | autonomy | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| AUT\_SEQ\_TIME\_TO\_NEXT\_01 | 9013 | autonomy | engineering | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 1 \[Hz\] |
+| AUT\_SEQ\_TIME\_TO\_NEXT\_02 | 9014 | autonomy | engineering | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 1 \[Hz\] |
+| AUT\_SEQ\_TIME\_TO\_NEXT\_03 | 9015 | autonomy | engineering | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 1 \[Hz\] |
+| AUT\_SEQ\_TIME\_TO\_NEXT\_04 | 9016 | autonomy | engineering | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_01 | 9017 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_02 | 9018 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_03 | 9019 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_04 | 9020 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_05 | 9021 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_06 | 9022 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_07 | 9023 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_08 | 9024 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_09 | 9025 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_10 | 9026 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_11 | 9027 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_12 | 9028 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_13 | 9029 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_14 | 9030 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_15 | 9031 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_FIRED\_COUNT\_16 | 9032 | autonomy | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_01 | 9033 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_02 | 9034 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_03 | 9035 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_04 | 9036 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_05 | 9037 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_06 | 9038 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_07 | 9039 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_08 | 9040 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_09 | 9041 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_10 | 9042 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_11 | 9043 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_12 | 9044 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_13 | 9045 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_14 | 9046 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_15 | 9047 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_RULE\_ENABLED\_16 | 9048 | autonomy | engineering | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| AUT\_WAYPOINT\_INDEX | 9049 | autonomy | housekeeping | 0 | 0 | 31 | 31 | 1 | 1 \[Hz\] |
+| AUT\_WAYPOINT\_RANGE | 9050 | autonomy | housekeeping | 0 \[m\] | 10 \[m\] | 100000000 \[m\] | 1000000000 \[m\] | m | 1 \[Hz\] |
+| AUT\_AUTONOMY\_LEVEL | 9051 | autonomy | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| AUT\_PLAN\_HORIZON | 9052 | autonomy | engineering | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 0.1 \[Hz\] |
+| AUT\_ENGINE\_ENABLED\_01 | 9053 | autonomy | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| AUT\_ENGINE\_ENABLED\_02 | 9054 | autonomy | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| AUT\_ENGINE\_ENABLED\_03 | 9055 | autonomy | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| AUT\_ENGINE\_ENABLED\_04 | 9056 | autonomy | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_01 | 10001 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_02 | 10002 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_03 | 10003 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_04 | 10004 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_05 | 10005 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_06 | 10006 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_07 | 10007 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_08 | 10008 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_09 | 10009 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_10 | 10010 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_11 | 10011 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_12 | 10012 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_13 | 10013 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_14 | 10014 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_15 | 10015 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_16 | 10016 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_17 | 10017 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_18 | 10018 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_19 | 10019 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_20 | 10020 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_21 | 10021 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_22 | 10022 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_23 | 10023 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_24 | 10024 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_25 | 10025 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_26 | 10026 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_27 | 10027 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_28 | 10028 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_29 | 10029 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_30 | 10030 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_31 | 10031 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_32 | 10032 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_33 | 10033 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_34 | 10034 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_35 | 10035 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_36 | 10036 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_37 | 10037 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_38 | 10038 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_39 | 10039 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_40 | 10040 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_41 | 10041 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_42 | 10042 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_43 | 10043 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_44 | 10044 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_45 | 10045 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_46 | 10046 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_47 | 10047 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_STATE\_48 | 10048 | fdir | housekeeping | 0 | 0 | 3 | 3 | 1 | 1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_01 | 10049 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_02 | 10050 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_03 | 10051 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_04 | 10052 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_05 | 10053 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_06 | 10054 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_07 | 10055 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_08 | 10056 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_09 | 10057 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_10 | 10058 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_11 | 10059 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_12 | 10060 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_13 | 10061 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_14 | 10062 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_15 | 10063 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_16 | 10064 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_17 | 10065 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_18 | 10066 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_19 | 10067 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_20 | 10068 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_21 | 10069 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_22 | 10070 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_23 | 10071 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_24 | 10072 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_25 | 10073 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_26 | 10074 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_27 | 10075 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_28 | 10076 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_29 | 10077 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_30 | 10078 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_31 | 10079 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_32 | 10080 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_33 | 10081 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_34 | 10082 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_35 | 10083 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_36 | 10084 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_37 | 10085 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_38 | 10086 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_39 | 10087 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_40 | 10088 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_41 | 10089 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_42 | 10090 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_43 | 10091 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_44 | 10092 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_45 | 10093 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_46 | 10094 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_47 | 10095 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_MON\_TRIP\_COUNT\_48 | 10096 | fdir | engineering | 0 | 0 | 100 | 1000 | 1 | 0.1 \[Hz\] |
+| FDR\_FAULT\_COUNT | 10097 | fdir | housekeeping | 0 | 0 | 10 | 100 | 1 | 1 \[Hz\] |
+| FDR\_LAST\_FAULT\_ID | 10098 | fdir | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| FDR\_SAFE\_MODE\_COUNT | 10099 | fdir | housekeeping | 0 | 0 | 2 | 5 | 1 | 0.1 \[Hz\] |
+| FDR\_CMD\_LOSS\_TIMER | 10100 | fdir | housekeeping | 0 \[s\] | 0 \[s\] | 518400 \[s\] | 604800 \[s\] | s | 1 \[Hz\] |
+| FDR\_RESPONSE\_MASK | 10101 | fdir | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| FDR\_FLAMEOUT\_RETRIES | 10102 | fdir | housekeeping | 0 | 0 | 2 | 2 | 1 | 1 \[Hz\] |
+| FDR\_RESPONSE\_STATE | 10103 | fdir | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| FDR\_ACTIVE\_FAULTS | 10104 | fdir | housekeeping | 0 | 0 | 3 | 10 | 1 | 1 \[Hz\] |
+| FDR\_IMPACT\_PROBABILITY | 10105 | fdir | housekeeping | 0 | 0 | 5e-05 | 0.0001 | 1 | 0.1 \[Hz\] |
+| FDR\_EARTH\_RANGE | 10106 | fdir | housekeeping | 63781370 \[m\] | 70000000 \[m\] | 1000000000000 \[m\] | 10000000000000 \[m\] | m | 0.1 \[Hz\] |
+| MOD\_CURRENT\_MODE | 11001 | modeManagement | housekeeping | 0 | 0 | 15 | 15 | 1 | 1 \[Hz\] |
+| MOD\_PREVIOUS\_MODE | 11002 | modeManagement | housekeeping | 0 | 0 | 15 | 15 | 1 | 1 \[Hz\] |
+| MOD\_MODE\_TIME | 11003 | modeManagement | housekeeping | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 1 \[Hz\] |
+| MOD\_TRANSITION\_COUNT | 11004 | modeManagement | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 1 \[Hz\] |
+| MOD\_PENDING\_MODE | 11005 | modeManagement | housekeeping | 0 | 0 | 15 | 15 | 1 | 1 \[Hz\] |
+| MOD\_AUTO\_TRANSITION\_EN | 11006 | modeManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| MOD\_MODE\_TABLE\_ID | 11007 | modeManagement | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| MOD\_MODE\_TABLE\_CRC | 11008 | modeManagement | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| MOD\_SUBSYSTEM\_STATE\_01 | 11009 | modeManagement | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| MOD\_SUBSYSTEM\_STATE\_02 | 11010 | modeManagement | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| MOD\_SUBSYSTEM\_STATE\_03 | 11011 | modeManagement | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| MOD\_SUBSYSTEM\_STATE\_04 | 11012 | modeManagement | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| MOD\_SUBSYSTEM\_STATE\_05 | 11013 | modeManagement | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| MOD\_SUBSYSTEM\_STATE\_06 | 11014 | modeManagement | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| MOD\_SUBSYSTEM\_STATE\_07 | 11015 | modeManagement | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| MOD\_SUBSYSTEM\_STATE\_08 | 11016 | modeManagement | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| MOD\_SUBSYSTEM\_STATE\_09 | 11017 | modeManagement | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| MOD\_SUBSYSTEM\_STATE\_10 | 11018 | modeManagement | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| MOD\_SUBSYSTEM\_STATE\_11 | 11019 | modeManagement | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| MOD\_SUBSYSTEM\_STATE\_12 | 11020 | modeManagement | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| MOD\_MODE\_HOLD | 11021 | modeManagement | housekeeping | 0 | 0 | 1 | 1 | 1 | 1 \[Hz\] |
+| MOD\_TRANSITION\_TIMEOUT | 11022 | modeManagement | engineering | 0 \[s\] | 0 \[s\] | 10000000 \[s\] | 100000000 \[s\] | s | 0.1 \[Hz\] |
+| PBU\_TABLE\_ID\_01 | 12001 | parameterBootUpdate | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_ID\_02 | 12002 | parameterBootUpdate | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_ID\_03 | 12003 | parameterBootUpdate | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_ID\_04 | 12004 | parameterBootUpdate | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_ID\_05 | 12005 | parameterBootUpdate | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_ID\_06 | 12006 | parameterBootUpdate | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_ID\_07 | 12007 | parameterBootUpdate | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_ID\_08 | 12008 | parameterBootUpdate | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_ID\_09 | 12009 | parameterBootUpdate | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_ID\_10 | 12010 | parameterBootUpdate | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_ID\_11 | 12011 | parameterBootUpdate | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_ID\_12 | 12012 | parameterBootUpdate | housekeeping | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_CRC\_01 | 12013 | parameterBootUpdate | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_CRC\_02 | 12014 | parameterBootUpdate | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_CRC\_03 | 12015 | parameterBootUpdate | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_CRC\_04 | 12016 | parameterBootUpdate | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_CRC\_05 | 12017 | parameterBootUpdate | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_CRC\_06 | 12018 | parameterBootUpdate | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_CRC\_07 | 12019 | parameterBootUpdate | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_CRC\_08 | 12020 | parameterBootUpdate | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_CRC\_09 | 12021 | parameterBootUpdate | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_CRC\_10 | 12022 | parameterBootUpdate | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_CRC\_11 | 12023 | parameterBootUpdate | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_CRC\_12 | 12024 | parameterBootUpdate | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_STATE\_01 | 12025 | parameterBootUpdate | housekeeping | 0 | 0 | 3 | 3 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_STATE\_02 | 12026 | parameterBootUpdate | housekeeping | 0 | 0 | 3 | 3 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_STATE\_03 | 12027 | parameterBootUpdate | housekeeping | 0 | 0 | 3 | 3 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_STATE\_04 | 12028 | parameterBootUpdate | housekeeping | 0 | 0 | 3 | 3 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_STATE\_05 | 12029 | parameterBootUpdate | housekeeping | 0 | 0 | 3 | 3 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_STATE\_06 | 12030 | parameterBootUpdate | housekeeping | 0 | 0 | 3 | 3 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_STATE\_07 | 12031 | parameterBootUpdate | housekeeping | 0 | 0 | 3 | 3 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_STATE\_08 | 12032 | parameterBootUpdate | housekeeping | 0 | 0 | 3 | 3 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_STATE\_09 | 12033 | parameterBootUpdate | housekeeping | 0 | 0 | 3 | 3 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_STATE\_10 | 12034 | parameterBootUpdate | housekeeping | 0 | 0 | 3 | 3 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_STATE\_11 | 12035 | parameterBootUpdate | housekeeping | 0 | 0 | 3 | 3 | 1 | 0.1 \[Hz\] |
+| PBU\_TABLE\_STATE\_12 | 12036 | parameterBootUpdate | housekeeping | 0 | 0 | 3 | 3 | 1 | 0.1 \[Hz\] |
+| PBU\_BOOT\_IMAGE\_SEL | 12037 | parameterBootUpdate | housekeeping | 0 | 0 | 1 | 1 | 1 | 0.1 \[Hz\] |
+| PBU\_BOOT\_IMAGE\_CRC\_01 | 12038 | parameterBootUpdate | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_BOOT\_IMAGE\_CRC\_02 | 12039 | parameterBootUpdate | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_UPDATE\_PROGRESS | 12040 | parameterBootUpdate | housekeeping | 0 | 0.1 | 0.9 | 1 | 1 | 1 \[Hz\] |
+| PBU\_UPDATE\_STATE | 12041 | parameterBootUpdate | housekeeping | 0 | 0 | 254 | 255 | 1 | 1 \[Hz\] |
+| PBU\_PARAM\_WRITE\_COUNT | 12042 | parameterBootUpdate | engineering | 0 | 0 | 4000000000 | 4294967295 | 1 | 0.1 \[Hz\] |
+| PBU\_PARAM\_REJECT\_COUNT | 12043 | parameterBootUpdate | engineering | 0 | 0 | 10 | 100 | 1 | 0.1 \[Hz\] |
+| PBU\_EEPROM\_WRITE\_CYCLES | 12044 | parameterBootUpdate | engineering | 0 | 0 | 90000 | 100000 | 1 | 0.01 \[Hz\] |
+
+## Event dictionary
+
+*Events by id*
+
+| mnemonic | eventId | source | severity | fdirRelevant | text |
+| --- | --- | --- | --- | --- | --- |
+| CDH\_EVT\_STARTED | 101 | cdh | info | false | application started |
+| CDH\_EVT\_STOPPED | 102 | cdh | warning | false | application stopped |
+| CDH\_EVT\_CMD\_ACCEPTED | 103 | cdh | info | false | command accepted |
+| CDH\_EVT\_CMD\_REJECTED | 104 | cdh | warning | false | command rejected |
+| CDH\_EVT\_TABLE\_LOADED | 105 | cdh | info | false | parameter table loaded |
+| CDH\_EVT\_TABLE\_INVALID | 106 | cdh | fault | true | parameter table failed validation |
+| CDH\_EVT\_WATCHDOG\_MISSED | 107 | cdh | fault | true | application missed its watchdog window |
+| CDH\_EVT\_MODE\_CHANGE\_SEEN | 108 | cdh | info | false | application applied a mode change |
+| CDH\_EVT\_PROCESSOR\_RESET | 109 | cdh | critical | true | flight computer reset |
+| CDH\_EVT\_PRIME\_SWITCHED | 110 | cdh | critical | true | prime computer switched |
+| CDH\_EVT\_CLOCK\_SET | 111 | cdh | info | false | spacecraft clock set |
+| CDH\_EVT\_RECORDER\_FULL | 112 | cdh | warning | false | recorder at capacity; oldest files overwritten |
+| CDH\_EVT\_FILE\_DOWNLINKED | 113 | cdh | info | false | file downlink complete |
+| CDH\_EVT\_MEMORY\_SCRUB\_ERROR | 114 | cdh | fault | true | uncorrectable memory error scrubbed |
+| GNC\_EVT\_STARTED | 201 | gnc | info | false | application started |
+| GNC\_EVT\_STOPPED | 202 | gnc | warning | false | application stopped |
+| GNC\_EVT\_CMD\_ACCEPTED | 203 | gnc | info | false | command accepted |
+| GNC\_EVT\_CMD\_REJECTED | 204 | gnc | warning | false | command rejected |
+| GNC\_EVT\_TABLE\_LOADED | 205 | gnc | info | false | parameter table loaded |
+| GNC\_EVT\_TABLE\_INVALID | 206 | gnc | fault | true | parameter table failed validation |
+| GNC\_EVT\_WATCHDOG\_MISSED | 207 | gnc | fault | true | application missed its watchdog window |
+| GNC\_EVT\_MODE\_CHANGE\_SEEN | 208 | gnc | info | false | application applied a mode change |
+| GNC\_EVT\_SLEW\_COMPLETE | 209 | gnc | info | false | slew complete within tolerance |
+| GNC\_EVT\_STAR\_TRACKER\_LOST | 210 | gnc | fault | true | star tracker lost lock |
+| GNC\_EVT\_IMU\_FAULT | 211 | gnc | fault | true | inertial measurement unit fault |
+| GNC\_EVT\_WHEEL\_SATURATION | 212 | gnc | warning | false | reaction wheel near saturation |
+| GNC\_EVT\_DESAT\_COMPLETE | 213 | gnc | info | false | momentum dump complete |
+| GNC\_EVT\_TCM\_COMPLETE | 214 | gnc | info | false | trajectory correction complete |
+| GNC\_EVT\_ESTIMATOR\_DIVERGED | 215 | gnc | critical | true | attitude estimator diverged |
+| GNC\_EVT\_EPHEMERIS\_STALE | 216 | gnc | warning | false | ephemeris past validity |
+| SEP\_EVT\_STARTED | 301 | sepControl | info | false | application started |
+| SEP\_EVT\_STOPPED | 302 | sepControl | warning | false | application stopped |
+| SEP\_EVT\_CMD\_ACCEPTED | 303 | sepControl | info | false | command accepted |
+| SEP\_EVT\_CMD\_REJECTED | 304 | sepControl | warning | false | command rejected |
+| SEP\_EVT\_TABLE\_LOADED | 305 | sepControl | info | false | parameter table loaded |
+| SEP\_EVT\_TABLE\_INVALID | 306 | sepControl | fault | true | parameter table failed validation |
+| SEP\_EVT\_WATCHDOG\_MISSED | 307 | sepControl | fault | true | application missed its watchdog window |
+| SEP\_EVT\_MODE\_CHANGE\_SEEN | 308 | sepControl | info | false | application applied a mode change |
+| SEP\_EVT\_ARC\_STARTED | 309 | sepControl | info | false | thrust arc started |
+| SEP\_EVT\_ARC\_COMPLETE | 310 | sepControl | info | false | thrust arc complete |
+| SEP\_EVT\_FLAMEOUT | 311 | sepControl | fault | true | thruster flameout |
+| SEP\_EVT\_RESTART\_OK | 312 | sepControl | info | false | thruster restarted |
+| SEP\_EVT\_RESTART\_FAILED | 313 | sepControl | critical | true | thruster restart failed; switchover requested |
+| SEP\_EVT\_TANK\_LOW | 314 | sepControl | warning | false | xenon below reserve |
+| SEP\_EVT\_PPU\_OVERCURRENT | 315 | sepControl | fault | true | power processing unit over-current trip |
+| SEP\_EVT\_GIMBAL\_STALL | 316 | sepControl | fault | true | gimbal stalled |
+| EPS\_EVT\_STARTED | 401 | powerManagement | info | false | application started |
+| EPS\_EVT\_STOPPED | 402 | powerManagement | warning | false | application stopped |
+| EPS\_EVT\_CMD\_ACCEPTED | 403 | powerManagement | info | false | command accepted |
+| EPS\_EVT\_CMD\_REJECTED | 404 | powerManagement | warning | false | command rejected |
+| EPS\_EVT\_TABLE\_LOADED | 405 | powerManagement | info | false | parameter table loaded |
+| EPS\_EVT\_TABLE\_INVALID | 406 | powerManagement | fault | true | parameter table failed validation |
+| EPS\_EVT\_WATCHDOG\_MISSED | 407 | powerManagement | fault | true | application missed its watchdog window |
+| EPS\_EVT\_MODE\_CHANGE\_SEEN | 408 | powerManagement | info | false | application applied a mode change |
+| EPS\_EVT\_LOAD\_SHED | 409 | powerManagement | warning | false | load shed tier applied |
+| EPS\_EVT\_BATTERY\_LOW | 410 | powerManagement | fault | true | battery below low fraction |
+| EPS\_EVT\_BUS\_UNDERVOLTAGE | 411 | powerManagement | critical | true | bus under-voltage trip |
+| EPS\_EVT\_SWITCH\_TRIP | 412 | powerManagement | fault | true | power switch over-current trip |
+| EPS\_EVT\_ARRAY\_STRING\_LOST | 413 | powerManagement | warning | false | solar array string open |
+| EPS\_EVT\_SADA\_STALL | 414 | powerManagement | fault | true | solar array drive stalled |
+| EPS\_EVT\_CHARGE\_COMPLETE | 415 | powerManagement | info | false | battery charge complete |
+| THM\_EVT\_STARTED | 501 | thermalControl | info | false | application started |
+| THM\_EVT\_STOPPED | 502 | thermalControl | warning | false | application stopped |
+| THM\_EVT\_CMD\_ACCEPTED | 503 | thermalControl | info | false | command accepted |
+| THM\_EVT\_CMD\_REJECTED | 504 | thermalControl | warning | false | command rejected |
+| THM\_EVT\_TABLE\_LOADED | 505 | thermalControl | info | false | parameter table loaded |
+| THM\_EVT\_TABLE\_INVALID | 506 | thermalControl | fault | true | parameter table failed validation |
+| THM\_EVT\_WATCHDOG\_MISSED | 507 | thermalControl | fault | true | application missed its watchdog window |
+| THM\_EVT\_MODE\_CHANGE\_SEEN | 508 | thermalControl | info | false | application applied a mode change |
+| THM\_EVT\_ZONE\_COLD | 509 | thermalControl | warning | false | zone below yellow low |
+| THM\_EVT\_ZONE\_HOT | 510 | thermalControl | warning | false | zone above yellow high |
+| THM\_EVT\_ZONE\_RED | 511 | thermalControl | fault | true | zone outside red limits |
+| THM\_EVT\_HEATER\_FAILED | 512 | thermalControl | fault | true | heater did not raise its zone |
+| THM\_EVT\_SURVIVAL\_ACTIVE | 513 | thermalControl | warning | false | survival heaters active |
+| THM\_EVT\_POWER\_CAP\_HIT | 514 | thermalControl | warning | false | heater power cap reached |
+| COM\_EVT\_STARTED | 601 | telecom | info | false | application started |
+| COM\_EVT\_STOPPED | 602 | telecom | warning | false | application stopped |
+| COM\_EVT\_CMD\_ACCEPTED | 603 | telecom | info | false | command accepted |
+| COM\_EVT\_CMD\_REJECTED | 604 | telecom | warning | false | command rejected |
+| COM\_EVT\_TABLE\_LOADED | 605 | telecom | info | false | parameter table loaded |
+| COM\_EVT\_TABLE\_INVALID | 606 | telecom | fault | true | parameter table failed validation |
+| COM\_EVT\_WATCHDOG\_MISSED | 607 | telecom | fault | true | application missed its watchdog window |
+| COM\_EVT\_MODE\_CHANGE\_SEEN | 608 | telecom | info | false | application applied a mode change |
+| COM\_EVT\_CARRIER\_ACQUIRED | 609 | telecom | info | false | uplink carrier acquired |
+| COM\_EVT\_CARRIER\_LOST | 610 | telecom | warning | false | uplink carrier lost |
+| COM\_EVT\_PASS\_START | 611 | telecom | info | false | ground pass started |
+| COM\_EVT\_PASS\_END | 612 | telecom | info | false | ground pass ended |
+| COM\_EVT\_TX\_OVERTEMP | 613 | telecom | fault | true | transmitter over temperature |
+| COM\_EVT\_HGA\_POINTING\_ERROR | 614 | telecom | warning | false | high-gain pointing error |
+| COM\_EVT\_RELAY\_ACQUIRED | 615 | telecom | info | false | relay link acquired |
+| COM\_EVT\_RELAY\_LOST | 616 | telecom | warning | false | relay link lost |
+| INS\_EVT\_STARTED | 701 | inspectorHandling | info | false | application started |
+| INS\_EVT\_STOPPED | 702 | inspectorHandling | warning | false | application stopped |
+| INS\_EVT\_CMD\_ACCEPTED | 703 | inspectorHandling | info | false | command accepted |
+| INS\_EVT\_CMD\_REJECTED | 704 | inspectorHandling | warning | false | command rejected |
+| INS\_EVT\_TABLE\_LOADED | 705 | inspectorHandling | info | false | parameter table loaded |
+| INS\_EVT\_TABLE\_INVALID | 706 | inspectorHandling | fault | true | parameter table failed validation |
+| INS\_EVT\_WATCHDOG\_MISSED | 707 | inspectorHandling | fault | true | application missed its watchdog window |
+| INS\_EVT\_MODE\_CHANGE\_SEEN | 708 | inspectorHandling | info | false | application applied a mode change |
+| INS\_EVT\_RELEASE\_ARMED | 709 | inspectorHandling | warning | false | inspector release armed |
+| INS\_EVT\_RELEASED | 710 | inspectorHandling | critical | true | inspector released |
+| INS\_EVT\_IMAGE\_RECEIVED | 711 | inspectorHandling | info | false | inspector image complete |
+| INS\_EVT\_SEGMENT\_LOST | 712 | inspectorHandling | warning | false | image segment lost |
+| INS\_EVT\_INSPECTOR\_SAFE | 713 | inspectorHandling | fault | true | inspector reported safe mode |
+| INS\_EVT\_INSPECTOR\_RETIRED | 714 | inspectorHandling | critical | true | inspector retired |
+| INS\_EVT\_CONTACT\_LOST | 715 | inspectorHandling | fault | true | inspector contact overdue |
+| CAP\_EVT\_STARTED | 801 | captureControl | info | false | application started |
+| CAP\_EVT\_STOPPED | 802 | captureControl | warning | false | application stopped |
+| CAP\_EVT\_CMD\_ACCEPTED | 803 | captureControl | info | false | command accepted |
+| CAP\_EVT\_CMD\_REJECTED | 804 | captureControl | warning | false | command rejected |
+| CAP\_EVT\_TABLE\_LOADED | 805 | captureControl | info | false | parameter table loaded |
+| CAP\_EVT\_TABLE\_INVALID | 806 | captureControl | fault | true | parameter table failed validation |
+| CAP\_EVT\_WATCHDOG\_MISSED | 807 | captureControl | fault | true | application missed its watchdog window |
+| CAP\_EVT\_MODE\_CHANGE\_SEEN | 808 | captureControl | info | false | application applied a mode change |
+| CAP\_EVT\_CAPTURE\_ARMED | 809 | captureControl | warning | false | capture armed |
+| CAP\_EVT\_BAG\_DEPLOYED | 810 | captureControl | critical | true | capture bag deployed |
+| CAP\_EVT\_BAG\_CLOSED | 811 | captureControl | critical | true | capture bag closed |
+| CAP\_EVT\_CONTACT | 812 | captureControl | warning | false | body contact detected |
+| CAP\_EVT\_CONTACT\_FORCE\_HIGH | 813 | captureControl | fault | true | contact force above limit |
+| CAP\_EVT\_DESPIN\_COMPLETE | 814 | captureControl | info | false | despin complete |
+| CAP\_EVT\_LATCHED | 815 | captureControl | critical | true | body latched |
+| CAP\_EVT\_CAPTURE\_ABORTED | 816 | captureControl | critical | true | capture aborted |
+| CAP\_EVT\_PETAL\_STALL | 817 | captureControl | fault | true | petal motor stalled |
+| CAP\_EVT\_PROXIMITY\_SENSOR\_FAULT | 818 | captureControl | fault | true | proximity sensor fault |
+| AUT\_EVT\_STARTED | 901 | autonomy | info | false | application started |
+| AUT\_EVT\_STOPPED | 902 | autonomy | warning | false | application stopped |
+| AUT\_EVT\_CMD\_ACCEPTED | 903 | autonomy | info | false | command accepted |
+| AUT\_EVT\_CMD\_REJECTED | 904 | autonomy | warning | false | command rejected |
+| AUT\_EVT\_TABLE\_LOADED | 905 | autonomy | info | false | parameter table loaded |
+| AUT\_EVT\_TABLE\_INVALID | 906 | autonomy | fault | true | parameter table failed validation |
+| AUT\_EVT\_WATCHDOG\_MISSED | 907 | autonomy | fault | true | application missed its watchdog window |
+| AUT\_EVT\_MODE\_CHANGE\_SEEN | 908 | autonomy | info | false | application applied a mode change |
+| AUT\_EVT\_SEQUENCE\_STARTED | 909 | autonomy | info | false | sequence started |
+| AUT\_EVT\_SEQUENCE\_COMPLETE | 910 | autonomy | info | false | sequence complete |
+| AUT\_EVT\_SEQUENCE\_FAILED | 911 | autonomy | fault | true | sequence step failed |
+| AUT\_EVT\_RULE\_FIRED | 912 | autonomy | warning | false | autonomy rule fired |
+| AUT\_EVT\_WAYPOINT\_REACHED | 913 | autonomy | info | false | waypoint reached |
+| AUT\_EVT\_PLAN\_INFEASIBLE | 914 | autonomy | fault | true | plan infeasible within horizon |
+| FDR\_EVT\_STARTED | 1001 | fdir | info | false | application started |
+| FDR\_EVT\_STOPPED | 1002 | fdir | warning | false | application stopped |
+| FDR\_EVT\_CMD\_ACCEPTED | 1003 | fdir | info | false | command accepted |
+| FDR\_EVT\_CMD\_REJECTED | 1004 | fdir | warning | false | command rejected |
+| FDR\_EVT\_TABLE\_LOADED | 1005 | fdir | info | false | parameter table loaded |
+| FDR\_EVT\_TABLE\_INVALID | 1006 | fdir | fault | true | parameter table failed validation |
+| FDR\_EVT\_WATCHDOG\_MISSED | 1007 | fdir | fault | true | application missed its watchdog window |
+| FDR\_EVT\_MODE\_CHANGE\_SEEN | 1008 | fdir | info | false | application applied a mode change |
+| FDR\_EVT\_MONITOR\_TRIP | 1009 | fdir | fault | true | monitor tripped |
+| FDR\_EVT\_RESPONSE\_TAKEN | 1010 | fdir | critical | true | fault response taken |
+| FDR\_EVT\_SAFE\_MODE\_ENTERED | 1011 | fdir | critical | true | safe mode entered |
+| FDR\_EVT\_COMMAND\_LOSS | 1012 | fdir | critical | true | command-loss timer expired |
+| FDR\_EVT\_ABORT\_RETREAT | 1013 | fdir | critical | true | abort to retreat commanded |
+| FDR\_EVT\_FAULT\_CLEARED | 1014 | fdir | info | false | fault cleared |
+| FDR\_EVT\_IMPACT\_PROBABILITY\_HIGH | 1015 | fdir | critical | true | Earth impact probability above limit |
+| FDR\_EVT\_EXCLUSION\_VIOLATION | 1016 | fdir | critical | true | trajectory enters Earth exclusion radius |
+| MOD\_EVT\_STARTED | 1101 | modeManagement | info | false | application started |
+| MOD\_EVT\_STOPPED | 1102 | modeManagement | warning | false | application stopped |
+| MOD\_EVT\_CMD\_ACCEPTED | 1103 | modeManagement | info | false | command accepted |
+| MOD\_EVT\_CMD\_REJECTED | 1104 | modeManagement | warning | false | command rejected |
+| MOD\_EVT\_TABLE\_LOADED | 1105 | modeManagement | info | false | parameter table loaded |
+| MOD\_EVT\_TABLE\_INVALID | 1106 | modeManagement | fault | true | parameter table failed validation |
+| MOD\_EVT\_WATCHDOG\_MISSED | 1107 | modeManagement | fault | true | application missed its watchdog window |
+| MOD\_EVT\_MODE\_CHANGE\_SEEN | 1108 | modeManagement | info | false | application applied a mode change |
+| MOD\_EVT\_MODE\_ENTERED | 1109 | modeManagement | info | false | mode entered |
+| MOD\_EVT\_MODE\_PENDING | 1110 | modeManagement | info | false | two-step transition pending |
+| MOD\_EVT\_MODE\_REJECTED | 1111 | modeManagement | warning | false | transition rejected by table |
+| MOD\_EVT\_TRANSITION\_TIMEOUT | 1112 | modeManagement | fault | true | transition did not complete |
+| MOD\_EVT\_AUTO\_TRANSITION | 1113 | modeManagement | warning | false | event-driven transition |
+| PBU\_EVT\_STARTED | 1201 | parameterBootUpdate | info | false | application started |
+| PBU\_EVT\_STOPPED | 1202 | parameterBootUpdate | warning | false | application stopped |
+| PBU\_EVT\_CMD\_ACCEPTED | 1203 | parameterBootUpdate | info | false | command accepted |
+| PBU\_EVT\_CMD\_REJECTED | 1204 | parameterBootUpdate | warning | false | command rejected |
+| PBU\_EVT\_TABLE\_LOADED | 1205 | parameterBootUpdate | info | false | parameter table loaded |
+| PBU\_EVT\_TABLE\_INVALID | 1206 | parameterBootUpdate | fault | true | parameter table failed validation |
+| PBU\_EVT\_WATCHDOG\_MISSED | 1207 | parameterBootUpdate | fault | true | application missed its watchdog window |
+| PBU\_EVT\_MODE\_CHANGE\_SEEN | 1208 | parameterBootUpdate | info | false | application applied a mode change |
+| PBU\_EVT\_TABLE\_ACTIVATED | 1209 | parameterBootUpdate | info | false | table activated |
+| PBU\_EVT\_TABLE\_CRC\_MISMATCH | 1210 | parameterBootUpdate | fault | true | table checksum mismatch |
+| PBU\_EVT\_BOOT\_UPDATE\_STARTED | 1211 | parameterBootUpdate | warning | false | boot image transfer started |
+| PBU\_EVT\_BOOT\_UPDATE\_COMPLETE | 1212 | parameterBootUpdate | critical | true | boot image written |
+| PBU\_EVT\_BOOT\_FALLBACK | 1213 | parameterBootUpdate | critical | true | boot loader fell back to the previous image |
+| PBU\_EVT\_PARAMETER\_REJECTED | 1214 | parameterBootUpdate | warning | false | parameter outside its range |
+
+## Packet definitions
+
+*Packets by application id*
+
+| mnemonic | apid | apidClass | source | rate | fieldCount | headerBits | payloadBits | lengthOctets | layoutConsistent |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| CDH\_HK\_01 | 16 | housekeeping | cdh | 1 \[Hz\] | 19 | 96 | 368 | 58 | true |
+| CDH\_ENG\_01 | 17 | housekeeping | cdh | 1 \[Hz\] | 24 | 96 | 608 | 88 | true |
+| CDH\_ENG\_02 | 18 | housekeeping | cdh | 0.1 \[Hz\] | 18 | 96 | 544 | 80 | true |
+| EPS\_HK\_01 | 19 | housekeeping | powerManagement | 1 \[Hz\] | 24 | 96 | 320 | 52 | true |
+| EPS\_HK\_02 | 20 | housekeeping | powerManagement | 1 \[Hz\] | 23 | 96 | 264 | 45 | true |
+| EPS\_ENG\_01 | 21 | housekeeping | powerManagement | 0.1 \[Hz\] | 24 | 96 | 384 | 60 | true |
+| EPS\_ENG\_02 | 22 | housekeeping | powerManagement | 0.1 \[Hz\] | 24 | 96 | 384 | 60 | true |
+| EPS\_ENG\_03 | 23 | housekeeping | powerManagement | 1 \[Hz\] | 24 | 96 | 384 | 60 | true |
+| EPS\_ENG\_04 | 24 | housekeeping | powerManagement | 1 \[Hz\] | 18 | 96 | 320 | 52 | true |
+| THM\_HK\_01 | 25 | housekeeping | thermalControl | 1 \[Hz\] | 22 | 96 | 216 | 39 | true |
+| THM\_ENG\_01 | 26 | housekeeping | thermalControl | 0.1 \[Hz\] | 24 | 96 | 384 | 60 | true |
+| THM\_ENG\_02 | 27 | housekeeping | thermalControl | 0.1 \[Hz\] | 24 | 96 | 384 | 60 | true |
+| THM\_ENG\_03 | 28 | housekeeping | thermalControl | 0.1 \[Hz\] | 24 | 96 | 384 | 60 | true |
+| THM\_ENG\_04 | 29 | housekeeping | thermalControl | 0.1 \[Hz\] | 24 | 96 | 384 | 60 | true |
+| THM\_ENG\_05 | 30 | housekeeping | thermalControl | 0.1 \[Hz\] | 24 | 96 | 384 | 60 | true |
+| THM\_ENG\_06 | 31 | housekeeping | thermalControl | 0.1 \[Hz\] | 24 | 96 | 384 | 60 | true |
+| THM\_ENG\_07 | 32 | housekeeping | thermalControl | 0.1 \[Hz\] | 24 | 96 | 384 | 60 | true |
+| THM\_ENG\_08 | 33 | housekeeping | thermalControl | 0.1 \[Hz\] | 24 | 96 | 384 | 60 | true |
+| THM\_ENG\_09 | 34 | housekeeping | thermalControl | 0.1 \[Hz\] | 24 | 96 | 384 | 60 | true |
+| THM\_ENG\_10 | 35 | housekeeping | thermalControl | 0.1 \[Hz\] | 24 | 96 | 384 | 60 | true |
+| THM\_ENG\_11 | 36 | housekeeping | thermalControl | 0.1 \[Hz\] | 12 | 96 | 192 | 36 | true |
+| FDR\_HK\_01 | 37 | housekeeping | fdir | 1 \[Hz\] | 24 | 96 | 192 | 36 | true |
+| FDR\_HK\_02 | 38 | housekeeping | fdir | 1 \[Hz\] | 24 | 96 | 192 | 36 | true |
+| FDR\_HK\_03 | 39 | housekeeping | fdir | 1 \[Hz\] | 10 | 96 | 280 | 47 | true |
+| FDR\_ENG\_01 | 40 | housekeeping | fdir | 0.1 \[Hz\] | 24 | 96 | 768 | 108 | true |
+| FDR\_ENG\_02 | 41 | housekeeping | fdir | 0.1 \[Hz\] | 24 | 96 | 768 | 108 | true |
+| MOD\_HK\_01 | 42 | housekeeping | modeManagement | 1 \[Hz\] | 20 | 96 | 232 | 41 | true |
+| MOD\_ENG\_01 | 43 | housekeeping | modeManagement | 0.1 \[Hz\] | 2 | 96 | 64 | 20 | true |
+| PBU\_HK\_01 | 44 | housekeeping | parameterBootUpdate | 0.1 \[Hz\] | 24 | 96 | 480 | 72 | true |
+| PBU\_HK\_02 | 45 | housekeeping | parameterBootUpdate | 1 \[Hz\] | 3 | 96 | 32 | 16 | true |
+| PBU\_ENG\_01 | 46 | housekeeping | parameterBootUpdate | 0.1 \[Hz\] | 17 | 96 | 544 | 80 | true |
+| GNC\_HK\_01 | 64 | guidance | gnc | 1 \[Hz\] | 23 | 96 | 552 | 81 | true |
+| GNC\_ENG\_01 | 65 | guidance | gnc | 10 \[Hz\] | 24 | 96 | 624 | 90 | true |
+| GNC\_ENG\_02 | 66 | guidance | gnc | 1 \[Hz\] | 24 | 96 | 640 | 92 | true |
+| GNC\_ENG\_03 | 67 | guidance | gnc | 1 \[Hz\] | 3 | 96 | 80 | 22 | true |
+| AUT\_HK\_01 | 68 | guidance | autonomy | 1 \[Hz\] | 19 | 96 | 392 | 61 | true |
+| AUT\_ENG\_01 | 69 | guidance | autonomy | 1 \[Hz\] | 24 | 96 | 672 | 96 | true |
+| AUT\_ENG\_02 | 70 | guidance | autonomy | 0.1 \[Hz\] | 13 | 96 | 128 | 28 | true |
+| SEP\_HK\_01 | 128 | propulsion | sepControl | 1 \[Hz\] | 24 | 96 | 336 | 54 | true |
+| SEP\_HK\_02 | 129 | propulsion | sepControl | 1 \[Hz\] | 4 | 96 | 88 | 23 | true |
+| SEP\_ENG\_01 | 130 | propulsion | sepControl | 1 \[Hz\] | 24 | 96 | 384 | 60 | true |
+| SEP\_ENG\_02 | 131 | propulsion | sepControl | 1 \[Hz\] | 8 | 96 | 256 | 44 | true |
+| CAP\_HK\_01 | 192 | capture | captureControl | 10 \[Hz\] | 24 | 96 | 448 | 68 | true |
+| CAP\_HK\_02 | 193 | capture | captureControl | 1 \[Hz\] | 2 | 96 | 64 | 20 | true |
+| CAP\_ENG\_01 | 194 | capture | captureControl | 10 \[Hz\] | 24 | 96 | 448 | 68 | true |
+| CAP\_ENG\_02 | 195 | capture | captureControl | 0.1 \[Hz\] | 4 | 96 | 64 | 20 | true |
+| COM\_HK\_01 | 256 | relay | telecom | 1 \[Hz\] | 19 | 96 | 288 | 48 | true |
+| COM\_ENG\_01 | 257 | relay | telecom | 1 \[Hz\] | 17 | 96 | 376 | 59 | true |
+| INS\_HK\_01 | 320 | imaging | inspectorHandling | 1 \[Hz\] | 12 | 96 | 248 | 43 | true |
+| INS\_ENG\_01 | 321 | imaging | inspectorHandling | 1 \[Hz\] | 24 | 96 | 560 | 82 | true |
+| INS\_ENG\_02 | 322 | imaging | inspectorHandling | 0.1 \[Hz\] | 1 | 96 | 8 | 13 | true |
+
+*Field layout of the first housekeeping packet*
+
+| name | order | offset | width | point |
+| --- | --- | --- | --- | --- |
+| f01 | 1 | 96 | 16 | CDH\_T\_BOARD\_01 |
+| f02 | 2 | 112 | 16 | CDH\_T\_BOARD\_02 |
+| f03 | 3 | 128 | 16 | CDH\_T\_BOARD\_03 |
+| f04 | 4 | 144 | 16 | CDH\_T\_BOARD\_04 |
+| f05 | 5 | 160 | 16 | CDH\_CPU\_LOAD\_01 |
+| f06 | 6 | 176 | 16 | CDH\_CPU\_LOAD\_02 |
+| f07 | 7 | 192 | 16 | CDH\_MEM\_USED\_01 |
+| f08 | 8 | 208 | 16 | CDH\_MEM\_USED\_02 |
+| f09 | 9 | 224 | 16 | CDH\_RECORDER\_FILL |
+| f10 | 10 | 240 | 32 | CDH\_UPTIME |
+| f11 | 11 | 272 | 32 | CDH\_CMD\_ACCEPT\_COUNT |
+| f12 | 12 | 304 | 32 | CDH\_CMD\_REJECT\_COUNT |
+| f13 | 13 | 336 | 32 | CDH\_CLOCK\_COARSE |
+| f14 | 14 | 368 | 32 | CDH\_CLOCK\_FINE |
+| f15 | 15 | 400 | 8 | CDH\_PARTITION\_STATUS\_01 |
+| f16 | 16 | 408 | 8 | CDH\_PARTITION\_STATUS\_02 |
+| f17 | 17 | 416 | 8 | CDH\_PARTITION\_STATUS\_03 |
+| f18 | 18 | 424 | 8 | CDH\_PARTITION\_STATUS\_04 |
+| f19 | 19 | 432 | 32 | CDH\_WATCHDOG\_MARGIN |

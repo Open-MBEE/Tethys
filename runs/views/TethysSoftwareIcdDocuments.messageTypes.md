@@ -75,6 +75,8 @@
 | apid | attribute | Natural | TethysIcds::SpacePacket |
 | sequenceCount | attribute | Natural | TethysIcds::SpacePacket |
 | length | attribute | StorageCapacityValue | TethysIcds::SpacePacket |
+| primaryHeaderLength | attribute | StorageCapacityValue | TethysIcds::SpacePacket |
+| secondaryHeader | attribute | PacketSecondaryHeader | TethysIcds::SpacePacket |
 | TethysIcds::TelemetryPacket | item def |  |  |
 | TethysFlightSoftware::TimeTick | item def |  |  |
 | missionElapsedTime | attribute | DurationValue | TethysFlightSoftware::TimeTick |

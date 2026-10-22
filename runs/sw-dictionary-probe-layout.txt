@@ -1,0 +1,26 @@
+✓ package F_SW192
+✓ package F_SW192_Query
+✓ F_SW192::hk.layoutOk
+  = true
+✓ F_SW192::bad.layoutOk
+  = false
+✓ F_SW192::LayoutOk(48, (16, 16, 32), 14)
+  = [true]
+  standing: value (observed: 1 run under reverse)
+✓ Query F_SW192_Query::Fields returned 3 rows
+  Columns: name, order, offset, width
+  Row 1: F_SW192::hk::f1
+    name = "f1"
+    order = 1
+    offset = 48
+    width = 16
+  Row 2: F_SW192::hk::f2
+    name = "f2"
+    order = 2
+    offset = 64
+    width = 16
+  Row 3: F_SW192::hk::f3
+    name = "f3"
+    order = 3
+    offset = 80
+    width = 32

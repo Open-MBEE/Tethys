@@ -1,4 +1,4 @@
-loaded 54 files:
+loaded 55 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -30,7 +30,8 @@ loaded 54 files:
   model/61-sequence.sysml
   model/62-fdir.sysml
   model/63-flight-software.sysml
-  model/65-flight-behaviour.sysml
+  model/64-flight-dictionary-tooling.sysml
+  model/64-flight-dictionary.sysml
   model/68-software-icds-tooling.sysml
   model/68-software-icds.sysml
   model/70-analyses.sysml

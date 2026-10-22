@@ -29,7 +29,8 @@
 ✓ package TethysSequence
 ✓ package TethysFdir
 ✓ package TethysFlightSoftware
-✓ package TethysFlightBehaviour
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
@@ -64,7 +65,7 @@ warning: TethysModes::nominalFlight: materialization is bounded; not every featu
   Current state: done
   Last event at: 38888640.0
   Remaining events: 0
-  21 choice points (20 independent); %trace on to see them
+  20 choice points (19 independent); %trace on to see them
   Action steps taken: 40
 ✓ State machine completed (a transition reached `done`)
   standing: value (observed: 1 run under reverse)

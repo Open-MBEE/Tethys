@@ -29,7 +29,8 @@
 ✓ package TethysSequence
 ✓ package TethysFdir
 ✓ package TethysFlightSoftware
-✓ package TethysFlightBehaviour
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
@@ -52,15 +53,13 @@
 ✓ package TethysImportedData
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
-✓ satisfy dictionaryConsistent by dictionary holds (on TethysOperations::dictionary ID: 1)
+✓ satisfy operationsReadiness by orrStatus holds (on TethysOperations::orrStatus ID: 1)
   standing: holds (observed: 1 run under reverse)
-✓ satisfy operationsReadiness by orrStatus holds (on TethysOperations::orrStatus ID: 3)
-  standing: holds (observed: 1 run under reverse)
-✗ satisfy resourceMarginPositive by xenonTrend fails (on TethysOperations::xenonTrend ID: 4)
+✗ satisfy resourceMarginPositive by xenonTrend fails (on TethysOperations::xenonTrend ID: 2)
   Required condition evaluated to false: trend.margin >= 0.0
   standing: violated (witnessed: 1 run under reverse)
-✓ satisfy resourceMarginPositive by batteryCapacityTrend holds (on TethysOperations::batteryCapacityTrend ID: 5)
+✓ satisfy resourceMarginPositive by batteryCapacityTrend holds (on TethysOperations::batteryCapacityTrend ID: 3)
   standing: holds (observed: 1 run under reverse)
-✓ satisfy extendedMissionAffordable by extendedMission holds (on TethysOperations::extendedMission ID: 6)
+✓ satisfy extendedMissionAffordable by extendedMission holds (on TethysOperations::extendedMission ID: 4)
   standing: holds (observed: 1 run under reverse)
 exit 1
