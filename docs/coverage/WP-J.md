@@ -45,7 +45,7 @@ this package's scope; **open** = not covered.
 
 | Row | File : element | Proving command | Result |
 | --- | --- | --- | --- |
-| SE-081 configuration / envelope | `85-safety` : `envelopeCases` (small / nominal / large target vs `argent.captureSystem.maximumBodyDiameter`), `EnvelopeMargin`; `87-allocations` : `encloseTarget` → `captureSystem`, `carryLoads` → `structure` | `safety-calcs` (`EnvelopeMargin(10.0, 5.0 / 6.8 / 7.7)` = 0.50 / 0.32 / 0.23); `safety-constraints` (`largeCaseFits` passed) | partial — fit checks only; the layout itself is WP-C |
+| SE-081 configuration / envelope | `85-safety` : `envelopeCases` (`TethysTarget::targetCases` small / nominal / large vs `argent.captureSystem.maximumBodyDiameter`), `EnvelopeMargin`; `87-allocations` : `encloseTarget` → `captureSystem`, `carryLoads` → `structure` | `safety-calcs` (`EnvelopeMargin(10.0, 5.7 / 6.8 / 7.6)` = 0.43 / 0.32 / 0.24); `safety-constraints` (`largeCaseFits` passed) | partial — fit checks only; the layout itself is WP-C |
 | SE-082 item / flow definitions | — | — | open (WP-D; no allocation aspect) |
 | SE-083 data architecture | `87-allocations` : `handleCommandsAndData`, `archiveScienceData` → `cdh`, `sds` | `allocations-matrix` | partial |
 | SE-084 flight software architecture | `87-allocations` : `SoftwareFunction` usages allocated to `gnc` / `cdh`; `softwareHosting` | `allocations-queries`, `allocations-matrix` | partial — hosting only; partitions are WP-E |

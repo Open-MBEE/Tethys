@@ -115,7 +115,7 @@ only where a construct of the model happens to exercise them.
 | LANG-092 | could | OwnedSpecialization (rule; literals —) | model/81-physics.kerml:`struct OperatingString :> PropulsionString` | `physics-strict` | satisfied |
 | LANG-093 | must | Conjugation (rule; literals `conjugate` `conjugates` `conjugation` `~`) | model/81-physics.kerml:Relationships `conjugation ArcView conjugate PowerSideArc ~ ThrustArc;` | `physics-strict` | satisfied |
 | LANG-094 | must | Conjugation — alternative using `conjugate` `conjugation` | model/81-physics.kerml:Relationships `conjugation ArcView conjugate PowerSideArc ~ ThrustArc;` | `physics-strict` | satisfied |
-| LANG-095 | must | Conjugation — alternative using `.` `conjugate` | — `conjugate <feature chain>` form: not exercised; a conjugated feature chain has no mission reading here | `physics-strict` | open |
+| LANG-095 | must | Conjugation — alternative using `.` `conjugate` | — `conjugate <feature chain>` form: not exercised; a conjugated feature chain has no mission reading here | `physics-strict` | open — notation-only row, left open as a conscious non-use |
 | LANG-096 | must | Conjugation — alternative using `conjugate` `~` | model/81-physics.kerml:Relationships `conjugation ArcView conjugate PowerSideArc ~ ThrustArc;` | `physics-strict` | satisfied |
 | LANG-097 | must | Conjugation — alternative using `conjugate` `conjugates` | model/81-physics.kerml:Relationships `conjugate PowerSideCoast conjugates CoastArc;` | `physics-strict` | satisfied |
 | LANG-098 | could | OwnedConjugation (rule; literals —) | model/81-physics.kerml:`behavior ThrustArcAsSeen ~ ThrustArc` | `physics-strict` | satisfied |
@@ -183,7 +183,7 @@ only where a construct of the model happens to exercise them.
 | LANG-164 | must | Subsetting — alternative using `:>` `subset` | model/81-physics.kerml:Relationships `specialization subset referenceString.tank :> Objects::objects;` (an accessible target: F-G02) | `physics-strict` | satisfied |
 | LANG-168 | must | Redefinition (rule; literals `:>>` `redefines` `redefinition` `specialization`) | model/81-physics.kerml:Relationships `redefinition CrossFeed::manifoldTank :>> Feeds::tank;` | `physics-strict` | satisfied |
 | LANG-169 | must | Redefinition — alternative using `redefinition` `specialization` | model/81-physics.kerml:Relationships `specialization redefinition CrossFeed::manifoldThruster redefines Feeds::thruster;` | `physics-strict` | satisfied |
-| LANG-170 | must | Redefinition — alternative using `.` `redefinition` | — `redefinition <chain>.x` form: not exercised | `physics-strict` | open |
+| LANG-170 | must | Redefinition — alternative using `.` `redefinition` | — `redefinition <chain>.x` form: not exercised | `physics-strict` | open — notation-only row, left open as a conscious non-use |
 | LANG-171 | must | Redefinition — alternative using `:>>` `redefinition` | model/81-physics.kerml:Relationships `redefinition CrossFeed::manifoldTank :>> Feeds::tank;` | `physics-strict` | satisfied |
 | LANG-172 | must | Redefinition — alternative using `redefines` `redefinition` | model/81-physics.kerml:Relationships `specialization redefinition CrossFeed::manifoldThruster redefines Feeds::thruster;` | `physics-strict` | satisfied |
 | LANG-174 | must | FeatureConjugationPart (fragment; literals `conjugates` `~`) | model/81-physics.kerml:Relationships `feature powerSideString ~ referenceString` | `physics-strict` | satisfied |
