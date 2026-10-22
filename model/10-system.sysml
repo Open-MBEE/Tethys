@@ -8,17 +8,24 @@ package TethysSystem {
     private import TethysInterfaces::*;
     private import TethysMission::*;
     private import TethysTug::Tug;
+    private import TethysTug::argent;
     private import TethysInspector::Inspector;
+    private import TethysInspector::wren;
     private import TethysTarget::SmallBody;
     private import TethysLaunch::*;
     private import TethysGround::*;
 
     part def TethysFlightSegment :> FlightSegment {
-        doc /* The tug with Wren in its dispenser: the stack as launched. */
-        part tug : Tug;
-        part inspector : Inspector;
+        doc /* The tug with Wren in its dispenser: the stack as launched. The two parts are
+             * bound to the configured vehicles so the system instance carries their values. */
+        part tug : Tug = argent;
+        part inspector : Inspector = wren;
         interface inspectorCarrier : TugInspectorInterface
             connect tug.eps.inspectorKeepAlive to inspector.bus.umbilical;
+        interface inspectorDispenser : InspectorDispenserInterface
+            connect tug.structure.inspectorAttachment to inspector.carrierAttachment;
+        interface inspectorThermal : InspectorThermalInterface
+            connect tug.thermal.inspectorThermal to inspector.stowedThermal;
         interface inspectorRelay : InspectorRelayLink
             connect inspector.bus.proximity to tug.telecom.proximity;
     }

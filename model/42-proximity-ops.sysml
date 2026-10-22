@@ -12,6 +12,8 @@ package TethysProximityOps {
     private import TethysTug::Tug;
     private import TethysTug::argent;
     private import TethysInspector::wren;
+    private import TethysTarget::SmallBody;
+    private import TethysTarget::SpinState;
     private import TethysInspectorDetail::*;
     private import TethysCaptureSystem::*;
 
@@ -29,7 +31,7 @@ package TethysProximityOps {
         attribute linkRate : BinaryDigitRateValue;
     }
 
-    individual part def AmaranthFlightTarget :> CharacterisedBody {
+    individual part def AmaranthFlightTarget :> SmallBody {
         doc /* Amaranth as the one body the mission meets, as opposed to the cases it may be. */
     }
     individual part amaranthFM : AmaranthFlightTarget {

@@ -1,8 +1,8 @@
 // One interface control document per TethysInterfaces interface definition: each ICD
 // specialises its interface def, carries the parameters the items crossing it must agree on,
 // binds the two ends to those parameters, names its control authority and is verified by a
-// case of its own. Three ICD classes the backbone lacks (inspector dispenser, inspector
-// thermal, propellant feed) are defined here and connected where the backbone exposes ports.
+// case of its own, the inspector dispenser, inspector thermal and propellant feed ICDs
+// included; icdSystem retypes every system interface by its ICD.
 package TethysIcds {
     private import ScalarValues::*;
     private import ISQ::*;
@@ -81,8 +81,8 @@ package TethysIcds {
     // ---- ICDs over the backbone interface definitions ----------------------------------
     interface def <'TI-001'> TugInspectorIcd :> TugInspectorInterface {
         doc /* Argent ↔ Wren while stowed: 28 V keep-alive power, checkout telemetry over the
-             * umbilical and the separation signal. Mechanical and thermal disciplines are in
-             * TI-007 and TI-008 because the backbone interface has only umbilical ends. */
+             * umbilical and the separation signal. The mechanical and thermal disciplines of
+             * the stowed stack are TI-007 and TI-008 over their own backbone interfaces. */
         @InterfaceControl { authority = "flight segment"; document = "ICD-001"; revision = "B"; status = IcdStatus::baselined; }
         attribute keepAliveVoltage : ElectricPotentialValue = 28.0 [V];
         attribute keepAlivePower : PowerValue = 15.0 [W];
@@ -239,13 +239,11 @@ package TethysIcds {
         flow of Heat from hot.heat to cold.heat;
     }
 
-    // ---- ICD classes the backbone does not yet define ------------------------------------
-    interface def <'TI-007'> InspectorDispenserIcd {
+    // ---- ICDs over the stowed-stack and propellant-loading interface definitions ---------
+    interface def <'TI-007'> InspectorDispenserIcd :> InspectorDispenserInterface {
         doc /* Argent ↔ Wren mechanical: the dispenser rails, preload, release spring and the
              * ejection velocity; connected over the structure ports the backbone exposes. */
         @InterfaceControl { authority = "flight segment"; document = "ICD-007"; revision = "A"; status = IcdStatus::preliminary; }
-        end tugSide : MechanicalPort;
-        end inspectorSide : ~MechanicalPort;
         attribute railPreload : ForceValue = 400.0 [N];
         attribute ejectionSpeed : SpeedValue = 0.3 ['m/s'];
         attribute inspectorMassMaximum : MassValue = 26.0 [kg];
@@ -253,24 +251,20 @@ package TethysIcds {
         binding bind tugSide.load.force = railPreload;
     }
 
-    interface def <'TI-008'> InspectorThermalIcd {
+    interface def <'TI-008'> InspectorThermalIcd :> InspectorThermalInterface {
         doc /* Argent ↔ Wren thermal while stowed: the dispenser keeps Wren's battery above its
              * survival temperature with heat conducted through the rails. */
         @InterfaceControl { authority = "flight segment"; document = "ICD-008"; revision = "A"; status = IcdStatus::draft; }
-        end tugSide : ThermalPort;
-        end inspectorSide : ~ThermalPort;
         attribute survivalTemperature : ThermodynamicTemperatureValue = 263.0 [K];
         attribute heaterPower : PowerValue = 4.0 [W];
         bind tugSide.heat.power = inspectorSide.heat.power;
         binding bind tugSide.heat.power = heaterPower;
     }
 
-    interface def <'TI-009'> PropellantFeedIcd {
+    interface def <'TI-009'> PropellantFeedIcd :> PropellantFeedInterface {
         doc /* Tank ↔ ground fill-and-drain for xenon and hydrazine: fill pressure, flow rate
              * and the mass loaded. */
         @InterfaceControl { authority = "launch segment"; document = "ICD-009"; revision = "A"; status = IcdStatus::preliminary; }
-        end tankSide : FluidPort;
-        end groundSide : ~FluidPort;
         attribute fillPressure : PressureValue = 15.0e6 [Pa];
         attribute fillRate : MassFlowRateValue = 0.02 ['kg⋅s⁻¹'];
         attribute loadedMass : MassValue;
@@ -281,14 +275,15 @@ package TethysIcds {
 
     // ---- the system with every interface typed by its ICD --------------------------------
     part def IcdFlightSegment :> TethysFlightSegment {
-        doc /* The flight segment with its interfaces retyped by their ICDs and the dispenser
-             * interface the backbone leaves unconnected. */
+        doc /* The flight segment with every one of its interfaces retyped by its ICD. */
         interface :>> inspectorCarrier : TugInspectorIcd
             connect tug.eps.inspectorKeepAlive to inspector.bus.umbilical;
         interface :>> inspectorRelay : InspectorRelayIcd
             connect inspector.bus.proximity to tug.telecom.proximity;
-        interface dispenser : InspectorDispenserIcd
+        interface :>> inspectorDispenser : InspectorDispenserIcd
             connect tug.structure.inspectorAttachment to inspector.carrierAttachment;
+        interface :>> inspectorThermal : InspectorThermalIcd
+            connect tug.thermal.inspectorThermal to inspector.stowedThermal;
     }
 
     part def LoadingCart {

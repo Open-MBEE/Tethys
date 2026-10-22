@@ -26,8 +26,9 @@ package TethysTug {
         doc /* MLI, deployable radiators, heaters and the power-processing-unit heat rejection
              * loop; the hot case is full-power thrusting at the target's perihelion. */
         port radiator : ThermalPort;
+        port inspectorThermal : ThermalPort;
     }
-    part def ElectricalPower :> Subsystem {
+    part def ElectricalPowerSystem :> Subsystem {
         doc /* Two large roll-out solar array wings, battery and the high-voltage and
              * low-voltage power distribution; the array sizes the whole tug. */
         attribute arrayPowerAtOneAu : PowerValue;
@@ -84,7 +85,7 @@ package TethysTug {
         attribute wetMass : MassValue;
         part structure : StructureAndMechanisms;
         part thermal : ThermalControl;
-        part eps : ElectricalPower;
+        part eps : ElectricalPowerSystem;
         part cdh : CommandAndDataHandling;
         part telecom : Telecommunications;
         part gnc : GuidanceNavigationControl;

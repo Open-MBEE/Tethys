@@ -390,7 +390,7 @@ package TethysTugStructure {
         attribute busVoltage : ElectricPotentialValue = 300 [V];
     }
 
-    part def ArgentPower :> TethysTug::ElectricalPower, Assembly {
+    part def ArgentPower :> TethysTug::ElectricalPowerSystem, Assembly {
         doc /* The electrical power subsystem of Argent. */
         #Critical part arrayWings : SolarArrayWing[2];
         #Critical part arrayDrives : ArrayDriveMechanism[2];

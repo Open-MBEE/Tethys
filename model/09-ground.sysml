@@ -26,6 +26,10 @@ package TethysGround {
     part def GroundNetwork {
         doc /* The Meridian network: three stations about 120° apart in longitude. */
         part stations : DeepSpaceStation[3];
+        part primaryStation : DeepSpaceStation :> stations {
+            doc /* The one station every per-station requirement is stated against: any of
+                 * the three, since they are interchangeable for the tug. */
+        }
         part moc : MissionOperationsCentre;
         part fdf : FlightDynamicsFacility;
         part sds : ScienceDataSystem;

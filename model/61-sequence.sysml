@@ -36,7 +36,7 @@ package TethysSequence {
             :>> plannedDuration = 3.0 [d];
         }
         attribute sepCommissioning : PhaseCriteria {
-            :>> phase = "sepCommissioning (within outboundCruise)";
+            :>> phase = "sepCommissioning";
             :>> entryCriterion = "arrays deployed and high-voltage bus energised";
             :>> exitCriterion = "all four thrusters fired at full power, gimbal calibration done";
             :>> plannedDuration = 30.0 [d];

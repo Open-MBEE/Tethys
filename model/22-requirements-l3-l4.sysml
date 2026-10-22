@@ -45,7 +45,7 @@ package TethysRequirementsL3L4 {
         doc /* The electrical power subsystem shall supply at least 38 kW to the SEP (95 % of its
              * maximum, the throttle point the transfer is designed at) plus a 6 kW bus load at
              * the target's heliocentric distance, where the solar flux is that at 1.034 AU. */
-        subject eps : ElectricalPower;
+        subject eps : ElectricalPowerSystem;
         attribute busLoad : PowerValue = 6.0 [kW];
         attribute sepPowerAtTarget : PowerValue = 38.0 [kW];
         attribute fluxRatio : Real = TethysEnvironment::SolarFlux(1.034) / TethysEnvironment::SolarFlux(1.0);
@@ -366,8 +366,7 @@ package TethysRequirementsL3L4 {
     part l3l4Satisfaction {
         doc /* Satisfying parts for the L3 and L4 requirements, evaluated by -satisfy. Argent's
              * configured subsystems and Wren carry values; the ground subsystems are the
-             * system's. TG-001 has no single-station part in the backbone to be satisfied by
-             * (the network's stations are a [3] multiplicity); it is closed by inspection. */
+             * system's, and TG-001 is stated against the network's primary station. */
         satisfy sepThrust by argent.sep { doc /* Argent's SEP. */ }
         satisfy arrayPowerAtTarget by argent.eps { doc /* Argent's power subsystem. */ }
         satisfy captureBagDiameter by argent.captureSystem { doc /* Argent's capture system. */ }
@@ -387,6 +386,7 @@ package TethysRequirementsL3L4 {
         satisfy keepAlivePower by wren.bus { doc /* Wren's bus. */ }
         satisfy inspectorMass by wren { doc /* Wren. */ }
         satisfy dopplerForMass by wren.bus { doc /* Wren's bus. */ }
+        satisfy stationAperture by tethysSystem.ground.network.primaryStation { doc /* One Meridian station. */ }
         satisfy stationSpacing by tethysSystem.ground.network { doc /* The Meridian network. */ }
         satisfy TethysRequirementsL3L4::rangingAccuracy by tethysSystem.ground.network.fdf { doc /* The flight dynamics facility. */ }
         satisfy impactScreening by tethysSystem.ground.network.fdf { doc /* The flight dynamics facility. */ }

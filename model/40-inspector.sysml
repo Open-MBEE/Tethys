@@ -12,18 +12,11 @@ package TethysInspectorDetail {
     private import TethysEnvironment::*;
     private import TethysInterfaces::*;
     private import TethysInspector::*;
+    private import TethysTarget::SpinState;
 
     metadata def FlightMeasured {
         doc /* Marks an element whose values are measured in flight (telemetry, navigation
              * solutions) rather than designed: the reader must not take them as allocations. */
-    }
-
-    enum def SpinState {
-        doc /* The rotation state of a small body as the characterisation reports it:
-             * principal-axis rotation about the maximum-inertia axis, or non-principal-axis
-             * tumbling, which the capture envelope excludes. */
-        principalAxis;
-        tumbling;
     }
 
     item def ImageFrame {

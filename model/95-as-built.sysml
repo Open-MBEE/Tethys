@@ -52,7 +52,7 @@ package TethysAsBuilt {
     individual part def SepFlightUnit :> SolarElectricPropulsion, AsBuiltUnit {
         doc /* The one solar-electric propulsion module flown on Argent. */
     }
-    individual part def EpsFlightUnit :> ElectricalPower, AsBuiltUnit {
+    individual part def EpsFlightUnit :> ElectricalPowerSystem, AsBuiltUnit {
         doc /* The one electrical-power subsystem flown on Argent. */
     }
     individual part def CaptureFlightUnit :> CaptureSystem, AsBuiltUnit {
