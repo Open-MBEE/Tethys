@@ -11,6 +11,7 @@
 ✓ package TethysSystem
 ✓ package TethysSafety
 ✓ package TethysRisk
+✓ package TethysAllocationQueries
 ✓ package TethysAllocations
 ✓ package TethysHouseRules
 ✓ TethysRisk::Score(TethysRisk::Likelihood::moderate, TethysRisk::Consequence::catastrophic)

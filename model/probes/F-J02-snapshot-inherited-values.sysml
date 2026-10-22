@@ -1,5 +1,5 @@
-package 'F-004-snapshot-inherited-values' {
-    doc /* Smallest reproducer for docs/findings.md F-004. The snapshot is a portion of the same
+package 'F-J02-snapshot-inherited-values' {
+    doc /* Smallest reproducer for docs/findings/WP-J.md F-J02. The snapshot is a portion of the same
          * occurrence, so `atReview.product` is expected to read the owner's `width` (3) with the
          * snapshot's own `height` (5) and give 15. Both validators accept the file. */
     private import ScalarValues::*;

@@ -4,9 +4,9 @@ package TethysAllocations {
          * inspector, the launch and the ground segment with the standard Allocations library,
          * the allocation of the mission requirements to the components that carry them, the
          * sourcing (make, buy, heritage) and software-hosting records that ride on the
-         * allocations, and the allocation matrix view. The coverage query that lists
-         * unallocated functions needs the DocumentQueries library and lives in
-         * model/probes/F-005-allocation-queries.sysml (docs/findings.md F-005). */
+         * allocations, and the allocation matrix view. The coverage queries that list
+         * unallocated functions and requirements need a document-query library and live in
+         * the tool-tier file model/87-allocations-tooling.sysml. */
 
     private import ScalarValues::*;
     private import Actions::*;
@@ -151,8 +151,8 @@ package TethysAllocations {
     // ---------------------------------------------------------------- function → component
 
     part functionAllocations {
-        doc /* Every leaf of missionFunctions allocated to exactly one component; the query in
-             * the F-005 probe must return no rows. */
+        doc /* Every leaf of missionFunctions allocated to exactly one component;
+             * TethysAllocationQueries::UnallocatedFunctions must return no rows. */
         allocation loads : FunctionAllocation allocate missionFunctions.carryLoads to argent.structure;
         allocation heat : FunctionAllocation allocate missionFunctions.rejectHeat to argent.thermal;
         allocation generation : FunctionAllocation allocate missionFunctions.generateElectricalPower to argent.eps;
