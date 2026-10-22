@@ -1,0 +1,16 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysHouseRules
+✓ Created instance of TethysSystem::tethysSystem
+  ID: 1
+  Use %features TethysSystem::tethysSystem to inspect
+warning: TethysSystem::tethysSystem: materialization is bounded; not every feature value was checked

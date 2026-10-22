@@ -1,7 +1,7 @@
-// House rules `make house-rules` applies with -self-check-package HesperiaHouseRules: each
+// House rules `make house-rules` applies with -self-check-package TethysHouseRules: each
 // constraint def's first in parameter is typed by a metaclass, so it governs every element
 // that classifies as one. CONVENTIONS.md states each rule in prose.
-package HesperiaHouseRules {
+package TethysHouseRules {
     private import SequenceFunctions::*;
 
     constraint def definitionHasDocumentation {
@@ -16,9 +16,10 @@ package HesperiaHouseRules {
         not r.documentation->isEmpty()
     }
 
-    constraint def portUsageDeclaresDirection {
-        doc /* Every port usage on a definition declares in, out or inout. */
+    constraint def portUsageIsTyped {
+        doc /* Every port usage is typed by a port def from TethysInterfaces, so an ICD
+             * can be written against it. */
         in p : SysML::PortUsage;
-        not p.direction->isEmpty()
+        not p.portDefinition->isEmpty()
     }
 }

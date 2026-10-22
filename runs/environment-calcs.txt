@@ -1,0 +1,42 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysHouseRules
+✓ TethysEnvironment::SolarFlux(1.052)
+  = 1229.7777906287497
+  standing: value (observed: 1 run under reverse)
+✓ TethysEnvironment::SolarFlux(0.9647)
+  = 1462.4248837708005
+  standing: value (observed: 1 run under reverse)
+✓ TethysEnvironment::CircularSpeed(398600.4418, 6578.137)
+  = 7.784261748565626
+  standing: value (observed: 1 run under reverse)
+✓ TethysEnvironment::EscapeSpeed(398600.4418, 6578.137)
+  = 11.008608537883612
+  standing: value (observed: 1 run under reverse)
+✓ TethysEnvironment::OrbitalPeriod(1.32712440018e11, 157.38e6)
+  = 34052449.91065223
+  standing: value (observed: 1 run under reverse)
+✓ TethysEnvironment::OneWayLightTime(60.0e6)
+  = 200.13845711889124
+  standing: value (observed: 1 run under reverse)
+✓ TethysEnvironment::SphereMass(6.8, 2200.0)
+  = 362199.6624596331
+  standing: value (observed: 1 run under reverse)
+✓ TethysEnvironment::SepThrust(40000.0, 2900.0, 0.65)
+  = 1.8284566577535266
+  standing: value (observed: 1 run under reverse)
+✓ TethysEnvironment::NaturalLog(2.0)
+  = 0.6931470737597851
+  standing: value (observed: 1 run under reverse)
+✓ TethysEnvironment::RocketEquationDeltaV(2900.0, 15800.0, 9800.0)
+  = 13583.386112610599
+  standing: value (observed: 1 run under reverse)
