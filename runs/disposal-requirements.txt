@@ -1,0 +1,23 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Requirement TethysDisposal::heliocentricDisposal satisfied
+  standing: holds (observed: 1 run under reverse)
+✓ Requirement TethysDisposal::disposalPropellantReserve satisfied
+  standing: holds (observed: 1 run under reverse)
+✓ Requirement TethysDisposal::passivation satisfied
+  standing: holds (observed: 1 run under reverse)
+✓ Requirement TethysDisposal::separationSafety satisfied
+  standing: holds (observed: 1 run under reverse)

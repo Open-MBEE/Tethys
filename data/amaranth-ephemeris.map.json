@@ -1,0 +1,11 @@
+{
+  "records": "/samples",
+  "element": {"path": "/id", "prefix": "TethysImportedData::amaranthTracked::"},
+  "features": {
+    "epoch": {"path": "/t/days", "unit": "d"},
+    "heliocentricDistanceAu": {"path": "/r_au"},
+    "earthRange": {"path": "/range/km", "unit": "km"},
+    "rangeRate": {"path": "/range/rate_m_s", "unit": "m/s"}
+  },
+  "ignore": ["note"]
+}

@@ -1,0 +1,7 @@
+element	asMeasuredMass [kg]
+TethysAsBuilt::argentFM	5638.4
+TethysAsBuilt::argentFM::sep	1196.2
+TethysAsBuilt::argentFM::eps	1251.5
+TethysAsBuilt::argentFM::captureSystem	833.9
+TethysAsBuilt::argentFM::rcs	207.1
+TethysAsBuilt::wrenFM	24.9

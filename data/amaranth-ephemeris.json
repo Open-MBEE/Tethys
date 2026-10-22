@@ -1,0 +1,8 @@
+{
+  "source": "Argent radio tracking and Wren optical navigation, approach solutions",
+  "samples": [
+    {"id": "approachEpoch1::ephemeris", "t": {"days": 560.0}, "r_au": 1.0521, "range": {"km": 7.9e6, "rate_m_s": -1210.0}, "note": "first optical acquisition"},
+    {"id": "approachEpoch2::ephemeris", "t": {"days": 590.0}, "r_au": 1.0488, "range": {"km": 9.4e6, "rate_m_s": -640.0}, "note": "mid-approach"},
+    {"id": "approachEpoch3::ephemeris", "t": {"days": 610.0}, "r_au": 1.0462, "range": {"km": 10.6e6, "rate_m_s": -12.0}, "note": "at rendezvous"}
+  ]
+}
