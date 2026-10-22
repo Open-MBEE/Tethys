@@ -29,6 +29,8 @@
 ✓ package TethysSequence
 ✓ package TethysFdir
 ✓ package TethysFlightSoftware
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
 ✓ package TethysTrades
 ✓ package TethysMonteCarlo
