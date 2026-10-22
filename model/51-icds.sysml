@@ -46,11 +46,21 @@ package TethysIcds {
     }
 
     // ---- packets: the command/telemetry interface the dictionary is written against -----
+    attribute def PacketSecondaryHeader {
+        doc /* The packet secondary header: the on-board time code, seconds and 1/65 536 s
+             * fractions since the mission epoch, six octets. */
+        attribute coarseTime : Natural;
+        attribute fineTime : Natural;
+        attribute length : StorageCapacityValue default = 6.0 [B];
+    }
     item def SpacePacket {
-        doc /* A packet on the space link: application id, sequence count and length. */
+        doc /* A packet on the space link: the six-octet primary header's application id, sequence
+             * count and length, and the secondary header carrying the time code. */
         attribute apid : Natural;
         attribute sequenceCount : Natural;
         attribute length : StorageCapacityValue;
+        attribute primaryHeaderLength : StorageCapacityValue default = 6.0 [B];
+        attribute secondaryHeader : PacketSecondaryHeader;
     }
     item def TelemetryPacket :> SpacePacket, Telemetry {
         doc /* A telemetry packet: a space packet carrying housekeeping or payload data. */
