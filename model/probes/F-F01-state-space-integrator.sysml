@@ -1,7 +1,5 @@
-// Findings F-F01 and F-F05: the TethysDynamics state-space actions with OpenSysML's own
-// integrator bound in place of the standard-SysML RungeKutta4 the model declares, and the DRO
-// stability analysis with that integrator, to show that a state-space action nested in an
-// analysis body is not performed whichever integrator it binds. Loaded after model/*.sysml.
+// Findings F-F01: the TethysDynamics DRO revolution with OpenSysML's own integrator bound in
+// place of the standard-SysML RungeKutta4 the model declares. Loaded after model/*.sysml.
 package TethysDynamicsIntegratorProbe {
     private import ScalarValues::*;
     private import SI::*;
@@ -18,12 +16,5 @@ package TethysDynamicsIntegratorProbe {
         :>> stopTime = 3.20 [s];
         calc :>> getNextState { calc :>> integrate : RK4; }
         event occurrence :>> xAxisCrossing : ZeroCrossing { :>> guard = stateSpace.elements#(2); }
-    }
-    analysis droStabilityRk4 : DroStabilityAnalysis {
-        subject :>> tug = argent;
-        action :>> revolution {
-            calc :>> getNextState { calc :>> integrate : RK4; }
-            event occurrence :>> xAxisCrossing : ZeroCrossing { :>> guard = stateSpace.elements#(2); }
-        }
     }
 }

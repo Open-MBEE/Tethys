@@ -1,6 +1,3 @@
-model/probes/F-F01-state-space-integrator.sysml:25:46: warning[redefinition-type-mismatch]: integrate (typed by RK4) redefines integrate (typed by RungeKutta4): types do not conform
-            calc :>> getNextState { calc :>> integrate : RK4; }
-                                             ^~~~~~~~~
 ✓ package Tethys
 ✓ package TethysEnvironment
 ✓ package TethysMission
@@ -19,8 +16,17 @@ model/probes/F-F01-state-space-integrator.sysml:25:46: warning[redefinition-type
 ✓ package TethysAnalysesTooling
 ✓ package TethysHouseRules
 ✓ package TethysDynamicsIntegratorProbe
-✓ TethysDynamicsIntegratorProbe::droStabilityRk4
-  closureKm = [0.0]
-  periodShownDays = [13.916245079395546]
-  objective closes: satisfied
+✓ Started action executor for "TethysDynamicsIntegratorProbe::droRevolutionRk4"
+  State: Running
+  Tokens: 1
+✓ Action completed
+  Final state: Completed
+  Results:
+    constants = Instance(ID: 2)
+    input = ⟨0.0⟩
+    output = ⟨0.18211014385737295⟩
+    stateSpace = ⟨0.8057554713502632, -0.0024289598645587714, -0.0034335952938240946, 0.519331526105718⟩
+    stopTime = 3.2 [s]
+    time = 3.2 [s]
+    timeStep = 0.01 [s]
   standing: value (observed: 1 run under reverse)

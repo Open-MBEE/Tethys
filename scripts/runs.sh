@@ -34,9 +34,10 @@ runt tooling-montecarlo-continuous $SYSML -analysis TethysAnalysesTooling::retur
 runt tooling-montecarlo-min $SYSML -analysis TethysAnalysesTooling::returnOverContinuousMass -draws min -runs 1 $MODEL
 runt tooling-montecarlo-max $SYSML -analysis TethysAnalysesTooling::returnOverContinuousMass -draws max -runs 1 $MODEL
 run tooling-dynamics $SYSML -action TethysAnalysesTooling::droRevolutionRk4 -action TethysAnalysesTooling::firstThrustArcRk4 $MODEL
-run probe-F-F01 $SYSML -analysis TethysDynamicsIntegratorProbe::droStabilityRk4 $MODEL model/probes/F-F01-state-space-integrator.sysml
+run probe-F-F01 $SYSML -action TethysDynamicsIntegratorProbe::droRevolutionRk4 $MODEL model/probes/F-F01-state-space-integrator.sysml
 run probe-F-F02 $SYSML -analysis TethysVariantSubjectProbe::viaVariant -analysis TethysVariantSubjectProbe::viaConfiguration -analysis TethysVariantSubjectProbe::viaPlainPart $MODEL model/probes/F-F02-variant-as-subject.sysml
 run probe-F-F03 $SYSML -analysis TethysMetadataInBodyProbe::inline -analysis TethysMetadataInBodyProbe::outside $MODEL model/probes/F-F03-metadata-in-analysis-body.sysml
+run probe-F-F05 $SYSML -action NestedStateSpaceProbe::fall -analysis NestedStateSpaceProbe::drop model/probes/F-F05-nested-state-space-action.sysml
 run probe-F-F04 $SYSML -calc "TethysAmbiguousMinProbe::Smaller(2.0, 3.0)" -calc "TethysAmbiguousMinProbe::Larger(2.0, 3.0)" model/probes/F-F04-ambiguous-min.sysml
 run probe-F-F06 env OPENSYSML_TOOLS="$TOOLS" $SYSML -analysis TethysToolMultiplicityProbe::unmultipliedTransfer $MODEL model/probes/F-F06-tool-output-multiplicity.sysml
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi
