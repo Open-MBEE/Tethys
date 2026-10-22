@@ -1,0 +1,182 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysHouseRules
+✓ TethysVerification::captureEnvelopeTest
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::captureEnvelopeTest verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::contactSpeedTest
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::contactSpeedTest verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::sepHotFireTest
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::sepHotFireTest verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::linkBudgetTest
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::linkBudgetTest verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::faultResponseTest
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::faultResponseTest verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::autonomyTest
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::autonomyTest verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::inspectorAcceptanceTest
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::inspectorAcceptanceTest verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::separationTest
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::separationTest verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::proximityNavigationTest
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::proximityNavigationTest verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::thermalBalanceTest
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::thermalBalanceTest verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::cinchMotorTest
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::cinchMotorTest verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::propellantAnalysis
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::propellantAnalysis verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::despinAnalysis
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::despinAnalysis verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::powerAnalysis
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::powerAnalysis verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::massBudgetAnalysis
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::massBudgetAnalysis verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::returnSafetyAnalysis
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::returnSafetyAnalysis verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::deliveryAnalysis
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::deliveryAnalysis verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::characterisationAnalysis
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::characterisationAnalysis verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::deflectionAnalysis
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::deflectionAnalysis verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::dockingLoadsAnalysis
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::dockingLoadsAnalysis verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::thrustModelValidation
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::thrustModelValidation verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::redundancyInspection
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::redundancyInspection verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::documentInspection
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::documentInspection verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::groundInspection
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::groundInspection verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::groundReadinessDemo
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::groundReadinessDemo verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::sepCommissioning
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::sepCommissioning verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::inspectorCommissioning
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::inspectorCommissioning verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::dockingDemo
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::dockingDemo verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::missionValidation
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::missionValidation verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::successCriteriaValidation
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::successCriteriaValidation verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::groundProceduresDemo
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::groundProceduresDemo verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::interfaceBaselineInspection
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::interfaceBaselineInspection verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysVerification::conOpsValidation
+  result = [VerdictKind::pass]
+  objective obj: satisfied
+  ✓ Verification TethysVerification::conOpsValidation verdict: pass
+  standing: holds (observed: 1 run under reverse)

@@ -1,0 +1,24 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysHouseRules
+✓ Started action executor for "TethysVerification::runCampaign"
+  State: Running
+  Tokens: 1
+✓ Action completed
+  Final state: Completed
+  1 choice point (1 independent); %trace on to see them
+  standing: value (observed: 1 run under reverse)
