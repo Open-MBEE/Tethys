@@ -12,6 +12,8 @@
 ✓ package TethysStakeholders
 ✓ package TethysRequirementsL2
 ✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
 ✓ package TethysHouseRules
 ✓ Created instance of TethysSystem::tethysSystem
   ID: 1
