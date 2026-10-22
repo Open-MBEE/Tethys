@@ -1,9 +1,12 @@
-# Hesperia — a complete, simulated planetary mission in SysML v2
+# Tethys — a complete, simulated deep-space mission in SysML v2
 
-Hesperia is a **fictional** Venus mission: the *Hesperia Orbiter* carries the short-lived
-atmospheric descent probe *Kestrel*, launches on the fictional *Arcturus-5H*, and is operated
-through the fictional *Meridian* deep-space network. Every name, budget and performance figure in
-this repository is invented; only the physics of Venus and of spaceflight is real.
+Tethys Retrieval is a **fictional** asteroid-retrieval mission: the solar-electric tug *Argent*
+flies to the small near-Earth asteroid 2031 QX *"Amaranth"*, characterises it with the free-flying
+inspector *Wren*, captures and despins it, and returns it to a lunar distant retrograde orbit for
+the visiting vehicle *Lantern*. It launches on the fictional *Arcturus-5H* and is operated through
+the fictional *Meridian* deep-space network. Every name, body, budget and performance figure in
+this repository is invented; only the physics of spaceflight and of the Sun–Earth–Moon system is
+real.
 
 The model is written in standard SysML v2 and exists for two purposes:
 

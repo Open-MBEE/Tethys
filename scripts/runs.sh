@@ -7,5 +7,8 @@ MODEL=$(ls model/*.sysml | sort | tr '\n' ' ')
 out=build/runs; rm -rf "$out"; mkdir -p "$out"
 run() { name=$1; shift; "$@" > "$out/$name.txt" 2>&1 || echo "exit $?" >> "$out/$name.txt"; }
 run validate $SYSML -validate $MODEL
+run house-rules $SYSML -validate -self-check-package TethysHouseRules $MODEL
+run instantiate-system $SYSML -instantiate TethysSystem::tethysSystem $MODEL
+run environment-calcs $SYSML -calc "TethysEnvironment::SolarFlux(1.052)" -calc "TethysEnvironment::SolarFlux(0.9647)" -calc "TethysEnvironment::CircularSpeed(398600.4418, 6578.137)" -calc "TethysEnvironment::EscapeSpeed(398600.4418, 6578.137)" -calc "TethysEnvironment::OrbitalPeriod(1.32712440018e11, 157.38e6)" -calc "TethysEnvironment::OneWayLightTime(60.0e6)" -calc "TethysEnvironment::SphereMass(6.8, 2200.0)" -calc "TethysEnvironment::SepThrust(40000.0, 2900.0, 0.65)" -calc "TethysEnvironment::NaturalLog(2.0)" -calc "TethysEnvironment::RocketEquationDeltaV(2900.0, 15800.0, 9800.0)" $MODEL
 # Work packages append their commands here; keep one `run <name> …` per line.
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi

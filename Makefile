@@ -16,7 +16,7 @@ pilot:
 	$(PILOT) $(MODEL)
 
 house-rules:
-	$(SYSML) -validate -self-check-package HesperiaHouseRules $(MODEL)
+	$(SYSML) -validate -self-check-package TethysHouseRules $(MODEL)
 
 runs:
 	SYSML=$(SYSML) scripts/runs.sh record
