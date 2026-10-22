@@ -1,0 +1,78 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysHouseRules
+✓ TethysPhysics::TwoBody::OrbitalPeriod(1.32712440018e20, 1.5468e11)
+  = [33179917.08592372]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::TwoBody::VisVivaSpeed(1.32712440018e20, 1.4996e11, 1.5468e11)
+  = [30199.181898213697]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::TwoBody::HohmannDeltaV(1.32712440018e20, 1.495978707e11, 1.5468e11)
+  = [493.35145254281815]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::TwoBody::SynodicPeriod(31558149.8, 33179917.1)
+  = [645651687.6332285]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::TwoBody::DepartureSpeed(3.986004418e14, 6578137.0, 1414.2)
+  = [11099.073095550095]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::ThreeBody::MassRatio(5.9722e24, 7.342e22)
+  = [0.012144329283018118]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::ThreeBody::HillRadius(3.844e8, 5.9722e24, 7.342e22)
+  = [61513386.90174179]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::ThreeBody::JacobiConstant(0.01215, 1.1, 0.0, 0.3)
+  = [3.1131430986748745]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::LowThrust::EdelbaumDeltaV(29290.0, 29780.0, 0.01047)
+  = [689.9430634918504]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::LowThrust::Exponential(1.0)
+  = [2.7182818284589936]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::LowThrust::PropellantForDeltaV(12600.0, 2800.0, 28439.285)
+  = [1181.424542037742]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::LowThrust::ThrustTime(5420.0, 6.43e-5)
+  = [84292379.47122861]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::ElectricPropulsion::ExhaustVelocity(2900.0)
+  = [28439.285]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::ElectricPropulsion::Thrust(40000.0, 2900.0, 0.65)
+  = [1.8284566577535266]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::ElectricPropulsion::MassFlowRate(1.8285, 28439.285)
+  = [6.429486535966006e-05]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::ElectricPropulsion::JetPower(1.8285, 28439.285)
+  = [26000.61631125]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::ElectricPropulsion::ArrayPowerAtDistance(48000.0, 1.034, 0.97)
+  = [43548.368993860575]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::SmallBodies::SphereMass(6.8, 2200.0)
+  = [362199.6624596334]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::SmallBodies::BreakupPeriod(2200.0)
+  = [8011.63880579327]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::SmallBodies::SurfaceGravity(362000.0, 3.4)
+  = [2.0900489619377162e-06]
+  standing: value (observed: 1 run under reverse)
+✓ TethysPhysics::SmallBodies::EquatorialAcceleration(252.0, 3.4)
+  = [0.0021136718923975696]
+  standing: value (observed: 1 run under reverse)
