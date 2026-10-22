@@ -2,7 +2,7 @@
 
 Owned files: `model/90-views.sysml` (`TethysViews`), `model/91-documents.sysml` (`TethysDocuments`),
 `model/92-layout.sysml` (`TethysLayout`); runs under `runs/` from the WP-H lines of `scripts/runs.sh`.
-Gate build: OpenSysML `nightly-20261021-b60a18c20` (`runs/tool-version.txt`), pilot 2026-08 (0.62.0)
+Gate build: OpenSysML `v0.10.1-2054-g0a5fa2d94` (develop 0a5fa2d94, built from source) (`runs/tool-version.txt`), pilot 2026-08 (0.62.0)
 run as OpenSysML's batch validator with `--extension-library "OpenSysML Libraries"` (see the PR body:
 the standalone pilot cannot resolve `DocumentQueries`, `DiagramLayout` or `OpenSysMLRenderings`).
 
