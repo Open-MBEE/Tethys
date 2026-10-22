@@ -1,0 +1,7 @@
+# Findings — WP-I (as-built individuals, imported data and disposal)
+
+Tool-boundary findings of this package; same columns as `docs/findings.md`, renumbered at integration.
+
+| ID | Found | Version | Construct | Observed | Expected (spec §) | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| F-I01 | 2026-10-22 | OpenSysML v0.10.1-2054-g0a5fa2d94 (same on nightly-20261021-b60a18c20) | `sysml model/*.sysml -import data/argent-telemetry.csv -convert sysml -o build/imported.sysml` | With more than one model file loaded, `-import` followed by `-convert sysml -o` is refused: `-import sets values in one model file; name a single file to convert`; without `-convert` it is refused too (`-import writes the imported model with -convert sysml -o <file>`). The preview (`-import-dry-run`) and the REPL path (`%import … map …`, then `%calc`/`%eval`, `runs/import-repl.txt`) both work over the same multi-file session and set the snapshot values in `model/96-imported-data.sysml`. | Tool surface, no spec clause: `docs/manual/importing-data.md` says the import "edits the model's own text, so comments and layout survive", which for a multi-file model means writing the file that owns each element named (here only `96-imported-data.sysml`); the CLI should write it, or `-o` should accept a directory. The model keeps the spec-correct unvalued snapshot features; `scripts/runs.sh` proves the import through `-import-dry-run` and the REPL. | open |

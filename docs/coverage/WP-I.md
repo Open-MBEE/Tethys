@@ -14,7 +14,7 @@ command below is a `run` line in `scripts/runs.sh` with its output under `runs/`
 | SE-269 (should) | `95:waiverTW001 : Waiver` and `dependency wrenMassDeviation from wrenFM to waiverTW001`; `satisfy wrenMassWithinTolerance by wrenFM` records the violation | `sysml -satisfy $MODEL` | satisfied: `✗ satisfy wrenMassWithinTolerance by wrenFM fails … violated` |
 | SE-270 (should) | per-unit end-item data as `UnitIdentity` + `Provenance` + as-measured masses on each unit; no `Document` per unit | — | open: a `-render-document` end-item data package is not written (DocumentQueries is OpenSysML-only, see `CONVENTIONS.md`) |
 | SE-271–SE-274 | operations products owned by WP-H | — | not WP-I |
-| SE-275 (should) | `96:argentFlight` snapshots (`afterArraysDeployed`, `atRendezvous`, `atCaptureComplete`, `atDroInsertion`) each with an unvalued `telemetry : TelemetrySample`, filled from `data/argent-telemetry.csv`; `amaranthTracked` snapshots with `ephemeris : EphemerisSample` filled from `data/amaranth-ephemeris.json` through `data/amaranth-ephemeris.map.json`; `xenonUsedOutbound`/`xenonUsedReturn` calcs over the imported values | `runs/import-dry-run.txt`, `runs/import-repl.txt` | satisfied: 20 + 12 values set; `xenonUsedOutbound = 3290.0 [kg]`, `xenonUsedReturn = 2750.0 [kg]`, `earthRange = 10600000.0 [km]`; CLI write-back is F-003 |
+| SE-275 (should) | `96:argentFlight` snapshots (`afterArraysDeployed`, `atRendezvous`, `atCaptureComplete`, `atDroInsertion`) each with an unvalued `telemetry : TelemetrySample`, filled from `data/argent-telemetry.csv`; `amaranthTracked` snapshots with `ephemeris : EphemerisSample` filled from `data/amaranth-ephemeris.json` through `data/amaranth-ephemeris.map.json`; `xenonUsedOutbound`/`xenonUsedReturn` calcs over the imported values | `runs/import-dry-run.txt`, `runs/import-repl.txt` | satisfied: 20 + 12 values set; `xenonUsedOutbound = 3290.0 [kg]`, `xenonUsedReturn = 2750.0 [kg]`, `earthRange = 10600000.0 [km]`; CLI write-back is F-I01 |
 | SE-290 (must) | `97:heliocentricDisposal` TS-290, `disposalPropellantReserve` TS-291 (rocket equation over the DRO-insertion xenon), `passivation` TS-292, `separationSafety` TS-293 (small/nominal/large/as-characterised body cases); `DisposalSequence` action def performed by `disposal`; `TugEndOfLife` state def exhibited by `argentAtEndOfLife` | `runs/disposal-requirements.txt`, `runs/disposal-sequence.txt`, `runs/disposal-states.txt` | satisfied: four requirements hold; action `Completed`; state machine ends in `passivated` |
 | SE-291 (should) | `97:argentAtEndOfLife.passivated` final as-flown snapshot (last telemetry frame, tank pressure, battery and transmitter flags); `closeout : CloseoutRecord` referencing it | `runs/disposal-requirements.txt` (TS-292 reads the snapshot), `make validate` | satisfied |
 | SE-292 (could) | `97:pfar : PostFlightAssessment` with three `@Issue` lessons | `make validate`, `make pilot` | satisfied |
@@ -26,7 +26,7 @@ command below is a `run` line in `scripts/runs.sh` with its output under `runs/`
 | LANG-532 (`individual occurrence def`, must) | not needed: the individuals are parts; see LANG-524 | — | open |
 | LANG-533–535 (snapshot as requirement subject, timeslice features) | `97:satisfy passivation by argentAtEndOfLife.passivated`; `96:outboundThrust.averageThrust` | `runs/disposal-requirements.txt`, `runs/as-built-satisfy.txt` | satisfied |
 | GAP-101 (`individual`/`snapshot` modifiers) | every modifier above | `make validate`, `make pilot` | both validators accept |
-| TOOL-054 `-import` (must) | CSV, JSON and TSV in one run | `runs/import-dry-run.txt` | satisfied (preview); write-back F-003 |
+| TOOL-054 `-import` (must) | CSV, JSON and TSV in one run | `runs/import-dry-run.txt` | satisfied (preview); write-back F-I01 |
 | TOOL-055 `-import-as` (must) | `-import-as values` | `runs/import-dry-run.txt` | satisfied |
 | TOOL-056 `-import-map` | `data/amaranth-ephemeris.map.json` (`records`, `element.prefix`, nested `path`, `unit`, `ignore`) | `runs/import-dry-run.txt`, `runs/import-repl.txt` | satisfied |
 | TOOL-057 `-import-format` (must) | `data/as-built-masses.txt` read as `tsv` | `runs/import-dry-run.txt` | satisfied |
@@ -39,4 +39,4 @@ carries the pre-arrival estimate and the measured values as ordered snapshots, s
 `massEstimateRatio` (1.2155) is the realised uncertainty.
 
 Open: SE-270 (no per-unit `Document`), LANG-532 (no `individual occurrence def` needed),
-F-003 (CLI `-import` cannot write a multi-file model back; the REPL path proves the import).
+F-I01 (CLI `-import` cannot write a multi-file model back; the REPL path proves the import).
