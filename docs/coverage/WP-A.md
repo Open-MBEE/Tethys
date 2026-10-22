@@ -42,7 +42,7 @@ modelled.
 | SE-046 | 20 : `#refinement dependency` needs ← L1, objectives → L1; 21 : L2 attributes bound to `TethysEnvironment` calcs (`RocketEquationDeltaV`, `SolarFlux`, `SepThrust`) | V | done |
 | SE-047 | all : `<'ID'>` shortName, `doc`, `@Verification {method, level, stage}`, `@StatusInfo {owner, status}`, `@Rationale`, `tier` | V, H | done |
 | SE-048 | 21, 22 : `require constraint` over ISQ-typed attributes with SI unit literals | S | done |
-| SE-049 | 21 : `l2Satisfaction`; 22 : `l3l4Satisfaction` (`satisfy … by argent.sep`, `tethysSystem.ground`, …) | S | done — tug requirements are satisfied by `TethysTug::argent` because `tethysSystem.flight.tug` carries no values (backbone note in the PR) |
+| SE-049 | 21 : `l2Satisfaction`; 22 : `l3l4Satisfaction` (`satisfy … by argent.sep`, `tethysSystem.ground`, …) | S | done — `TethysFlightSegment::tug` and `inspector` are bound to `argent` and `wren` at integration, so `tethysSystem.flight.tug` now carries the configured values; the tug requirements keep `argent` as their satisfier |
 | SE-050 | 21 : `flightPerformanceRequirements`, `flightSafetyAndAutonomyRequirements`, `flightEnvironmentAndBudgetRequirements`, `interfaceRequirements`, `groundSegmentRequirements`, `safetyRequirements` | V; `documentInspection` (A) | done — groups ≤ 6 members (F-A02) |
 | SE-051 | 21 : `InterfaceRequirement` TS-006 (`SpacecraftLauncherInterface`), TS-007 (`SpaceGroundLink`), TS-012 (`DockingInterface`) with `icd` | S | done |
 | SE-052 | 21 : `EnvironmentalRequirement` TS-014 (contact and perihelion flux); 22 : TA-004, TA-011; 23 : `environmentalTestMatrix` | S, A (`contactSpeedTest`, `thermalBalanceTest`) | done |
@@ -56,7 +56,7 @@ modelled.
 | SE-060 | 21 : `@StatusInfo { status = StatusKind::tbr }` TS-004, TS-012; `tbd` TS-018; 22 : TA-012 tbr, TA-013 tbd; `@Rationale` on each | V | done |
 | SE-061 | 21 : `allocation … allocate <group> to tethysSystem.flight / .ground` | V, P | done |
 | SE-062 | 21 : `BudgetRequirement` TS-004 (xenon split), TS-016 (dry mass allocation) | S, A (`propellantAnalysis`, `massBudgetAnalysis`) | done |
-| SE-063 | 99 (backbone) `requirementHasDocumentation`, `definitionHasDocumentation` over every WP-A element; IDs on every requirement | H (0 violations) | partial — a "single shall / no TBD in baseline" rule needs a `TethysHouseRules` addition (backbone) |
+| SE-063 | 99 (backbone) `requirementHasDocumentation`, `definitionHasDocumentation` over every WP-A element; IDs on every requirement | H (0 violations) | done — `requirementHasText` (every `RequirementUsage` has a non-empty derived `text`) joined the backbone house rules at integration; a "single shall / no TBD" wording rule would be stricter than the spec and is not added |
 | SE-064 | 21 : `VerificationRequirement` TS-017; 23 : `TestSpecification` (procedure, facility, report) on every usage | V, A (`captureEnvelopeTest`) | done |
 | SE-065 | 21 : `Waiver` metadata on TS-013 (relief, scope, approvedBy, expires) | V | done |
 | SE-211 | 23 : package doc, `TestSpecification`/`Closure`/`CampaignStep` vocabulary, `testBeds`, `testCampaign`, methods per `VerificationMethod` | V, P | done |
