@@ -18,4 +18,23 @@ run unverified-requirements $SYSML -run-query "TethysVerificationTooling::Unveri
 run vv-matrix-l2 $SYSML -run-query "TethysVerificationTooling::VvMatrix root=TethysRequirementsL2" $MODEL
 run vv-report $SYSML -render-document TethysVerificationTooling::VvReport $MODEL
 run test-campaign $SYSML -action TethysVerification::runCampaign $MODEL
+# WP-B — Argent tug structure and engineering budgets (one expression per process: F-B01 in docs/findings/WP-B.md)
+run wpb-margin-policy $SYSML -calc "TethysMarginPolicy::ContingencyFor(TethysMarginPolicy::Maturity::modified, TethysMarginPolicy::activePolicy)" -calc "TethysMarginPolicy::WithContingency(100.0, TethysMarginPolicy::Maturity::newDesign, TethysMarginPolicy::activePolicy)" -calc "TethysMarginPolicy::MarginFraction(12.0, 10.0)" -constraint "TethysMarginPolicy::ClosesWithMargin(1200.0, 1000.0, TethysMarginPolicy::activePolicy)" $MODEL
+run wpb-margin-policy-alone $SYSML -calc "TethysMarginPolicy::ContingencyFor(TethysMarginPolicy::Maturity::modified, TethysMarginPolicy::activePolicy)" model/30-margin-policy.sysml
+run wpb-tug-dry-mass $SYSML -e "TethysTugStructure::argentDesign.dryMassEstimate" $MODEL
+run wpb-tug-dry-mass-allocated $SYSML -e "TethysTugStructure::argentDesign.dryMassAllocated" $MODEL
+run wpb-tug-sep-mass $SYSML -e "TethysTugStructure::argentDesign.sep.mass" $MODEL
+run wpb-unit-power-safe $SYSML -e "TethysTugStructure::UnitsPowerInMode(TethysTugStructure::argentDesign.cdh.flightComputers, TethysTugStructure::TugMode::safe)" $MODEL
+run wpb-unit-power-thrusting $SYSML -e "TethysTugStructure::UnitsPowerInMode(TethysTugStructure::argentDesign.sep.thrusters, TethysTugStructure::TugMode::thrusting)" $MODEL
+run wpb-power-budget-safe $SYSML -e "TethysBudgets::powerBudget.demandSafe" $MODEL
+run wpb-mass-budget $SYSML -e "TethysBudgets::massBudget.launchMass" $MODEL
+run wpb-xenon-large $SYSML -e "TethysBudgets::propellantBudget.xenonLarge" $MODEL
+run wpb-sep-thrust-aphelion $SYSML -e "TethysBudgets::propellantBudget.thrustAtAphelion" $MODEL
+run wpb-thrusting-time-large $SYSML -e "TethysBudgets::propellantBudget.thrustingTimeLarge" $MODEL
+run wpb-hydrazine-large $SYSML -e "TethysBudgets::hydrazineBudget.demandLarge" $MODEL
+run wpb-data-daily $SYSML -e "TethysBudgets::dataBudget.dailyGenerated" $MODEL
+run wpb-pointing-antenna $SYSML -e "TethysBudgets::pointingBudget.antennaPointingErrorDegrees" $MODEL
+run wpb-radiator-capacity $SYSML -e "TethysBudgets::thermalBudget.radiatorCapacity" $MODEL
+run wpb-reliability $SYSML -e "TethysBudgets::reliabilityBudget.missionReliability" $MODEL
+run wpb-budgets-satisfy $SYSML -satisfy $MODEL
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi
