@@ -57,4 +57,12 @@ run wpd-flight-rules $SYSML -engine check -action TethysOperations::RelayThenThr
 run wpd-icd-register-document $SYSML -render-document TethysIcdDocuments::IcdRegisterDocument $MODEL
 run wpd-space-ground-icd-document $SYSML -render-document TethysIcdDocuments::SpaceGroundIcdDocument $MODEL
 run wpd-operations-timeline $SYSML -instantiate TethysOperations::opsTimeline -state "TethysOperations::OperationsTimeline::day TethysOperations::opsTimeline" -advance 50000 -render-run timeline=- $MODEL
+run as-built-individuals $SYSML -e "TethysAsBuilt::argentFM.identity.serialNumber" -e "TethysAsBuilt::argentFM.sep.identity.serialNumber" -e "TethysAsBuilt::wrenFM.identity.serialNumber" -e "TethysAsBuilt::argentFM.massDeviation" -e "TethysAsBuilt::wrenFM.massDeviation" -e "TethysAsBuilt::amaranthFM.massEstimateRatio" -e "TethysAsBuilt::asBuiltBaseline.tugState.dryMass" $MODEL
+run as-built-satisfy $SYSML -satisfy $MODEL
+run as-built-integration $SYSML -action TethysAsBuilt::integration $MODEL
+run import-dry-run $SYSML -import data/argent-telemetry.csv -import data/amaranth-ephemeris.json -import-map data/amaranth-ephemeris.map.json -import data/as-built-masses.txt -import-format tsv -import-as values -import-dry-run $MODEL
+run import-repl sh -c "printf '%s\n' '%import data/argent-telemetry.csv' '%import data/amaranth-ephemeris.json map data/amaranth-ephemeris.map.json' '%calc TethysImportedData::xenonUsedOutbound' '%calc TethysImportedData::xenonUsedReturn' '%eval TethysImportedData::amaranthTracked.approachEpoch3.ephemeris.earthRange' | $SYSML $MODEL"
+run disposal-requirements $SYSML -requirement TethysDisposal::heliocentricDisposal -requirement TethysDisposal::disposalPropellantReserve -requirement TethysDisposal::passivation -requirement TethysDisposal::separationSafety $MODEL
+run disposal-sequence $SYSML -action TethysDisposal::disposal $MODEL
+run disposal-states $SYSML -instantiate TethysDisposal::argentAtEndOfLife -state "TethysDisposal::TugEndOfLife argentAtEndOfLife" -advance 10 $MODEL
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi

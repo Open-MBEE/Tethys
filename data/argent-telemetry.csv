@@ -1,0 +1,5 @@
+element,missionElapsedTime [d],xenonRemaining [kg],hydrazineRemaining [kg],arrayPower [kW],batteryStateOfCharge
+TethysImportedData::argentFlight::afterArraysDeployed::telemetry,2.0,6600.0,400.0,47.6,0.98
+TethysImportedData::argentFlight::atRendezvous::telemetry,610.0,3310.0,391.0,44.1,0.97
+TethysImportedData::argentFlight::atCaptureComplete::telemetry,790.0,3290.0,352.0,43.8,0.95
+TethysImportedData::argentFlight::atDroInsertion::telemetry,2150.0,540.0,318.0,41.9,0.96

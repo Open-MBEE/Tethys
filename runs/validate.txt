@@ -9,10 +9,8 @@
 ✓ package TethysLaunch
 ✓ package TethysGround
 ✓ package TethysSystem
-✓ package TethysMeridian
-✓ package TethysIcds
-✓ package TethysLinkBudgets
-✓ package TethysOperations
-✓ package TethysIcdDocuments
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
 ✓ package TethysHouseRules
-✓ model/00-tethys.sysml, model/01-environment.sysml, model/02-mission.sysml, model/03-interfaces.sysml, model/04-requirements.sysml, model/05-tug.sysml, model/06-inspector.sysml, model/07-target.sysml, model/08-launch.sysml, model/09-ground.sysml, model/10-system.sysml, model/50-ground.sysml, model/51-icds.sysml, model/52-link-budgets.sysml, model/53-operations.sysml, model/54-icds-tooling.sysml, model/99-house-rules.sysml: no errors
+✓ model/00-tethys.sysml, model/01-environment.sysml, model/02-mission.sysml, model/03-interfaces.sysml, model/04-requirements.sysml, model/05-tug.sysml, model/06-inspector.sysml, model/07-target.sysml, model/08-launch.sysml, model/09-ground.sysml, model/10-system.sysml, model/95-as-built.sysml, model/96-imported-data.sysml, model/97-disposal.sysml, model/99-house-rules.sysml: no errors

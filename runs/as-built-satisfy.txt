@@ -1,0 +1,27 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ satisfy argentMassWithinTolerance by argentFM holds (on TethysAsBuilt::argentFM ID: 1)
+  standing: holds (observed: 1 run under reverse)
+✗ satisfy wrenMassWithinTolerance by wrenFM fails (on TethysAsBuilt::wrenFM ID: 2)
+  Required condition evaluated to false: unit.massDeviation <= unit.massTolerance and unit.massDeviation >= - unit.massTolerance
+  standing: violated (witnessed: 1 run under reverse)
+✓ satisfy heliocentricDisposal by argentAtEndOfLife holds (on TethysDisposal::argentAtEndOfLife ID: 3)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy passivation by argentAtEndOfLife.passivated holds (on TethysDisposal::argentAtEndOfLife.passivated ID: 5)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy separationSafety by argentFM.captureSystem holds (on TethysAsBuilt::argentFM.captureSystem ID: 7)
+  standing: holds (observed: 1 run under reverse)
+exit 1

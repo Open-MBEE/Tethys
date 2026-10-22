@@ -1,0 +1,29 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysDisposal::argentAtEndOfLife
+  ID: 1
+  Use %features TethysDisposal::argentAtEndOfLife to inspect
+warning: TethysDisposal::argentAtEndOfLife: materialization is bounded; not every feature value was checked
+✓ Debugging state machine "endOfLife" exhibited by object #1 of "TethysDisposal::argentAtEndOfLife"
+note: object #1 of "TethysDisposal::argentAtEndOfLife" already exhibits "TethysDisposal::TugEndOfLife", so this session attaches to that running machine rather than starting a second performance of it (as `%state argentAtEndOfLife` would)
+  Current state: passivated
+  Time: 0.0
+  Events: 0
+✓ Advanced to 10.0 (0 event(s) processed)
+  Current state: passivated
+  Last event at: 0.0
+  Remaining events: 0
+  standing: value (observed: 1 run under reverse)

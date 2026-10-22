@@ -9,11 +9,9 @@
 ✓ package TethysLaunch
 ✓ package TethysGround
 ✓ package TethysSystem
-✓ package TethysMeridian
-✓ package TethysIcds
-✓ package TethysLinkBudgets
-✓ package TethysOperations
-✓ package TethysIcdDocuments
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
 ✓ package TethysHouseRules
 ✓ Created instance of TethysSystem::tethysSystem
   ID: 1
