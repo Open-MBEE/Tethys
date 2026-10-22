@@ -65,7 +65,7 @@ Proving command for every row: `sysml -validate -strict -warnings-as-errors MODE
 | TOOL-042 `-check-input` | `-engine smt … -check-input armCommanded -check-input groundEnable -check-input inCaptureMode` | `runs/fdir-inhibit-chain-smt` | boundary — `not covered`: the property reads the performing object's features, which the SMT stage does not encode yet (exit 2, recorded as is) |
 | TOOL-112 `-trace` | `-trace` on a state run and on the mission action | `runs/modes-tug-early-ops`, `runs/fdir-thruster-restarting`, `runs/sequence-nominal-trace` | satisfied — transitions, effects, choice points reported |
 | TOOL-113 `-render-run` | `-render-run timeline=- -render-form text` on the command-loss run (`timeline=build/cl.svg` writes a 10 kB SVG) | `runs/fdir-command-loss-timeline` | partly — the SVG renders; the text form of a state-machine run lists the two machines with no lanes, so the pinned text is headers only |
-| TOOL-150 `%graphs` | `printf '%graphs TethysModes::InspectorModes\n' \| sysml -quiet MODEL` | not pinned (REPL) | `%graphs` output on the pinned build: `SysML v2 REPL — %help for commands, Ctrl-D to exit` |
+| TOOL-150 `%graphs` | `printf '%graphs TethysModes::InspectorModes\n' \| sysml -quiet MODEL` | not pinned (REPL) | satisfied — emits the lowered `StateGraph` as one JSON document (`states`, `vertices` with entry/exit bodies, `transitions` with `signalType`, `payload`, `guard`, `via`, time triggers, `entryTransitions`), each element with its source span |
 
 ## Notes
 
