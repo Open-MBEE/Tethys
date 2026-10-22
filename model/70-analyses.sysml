@@ -145,21 +145,21 @@ package TethysAnalyses {
              * to spend. The target case is the input the mission is most sensitive to. */
         subject tug : Tug;
         in part target : SmallBody;
-        in attribute outboundDeltaVMPerS : Real = 2000.0 {
+        in attribute outboundDeltaVMPerS : Real default = 2000.0 {
             doc /* Edelbaum circular-coplanar estimate 0.69 km/s for 1 → 1.034 AU, about 0.70 km/s
                  * for the 0.030 eccentricity, 0.49 km/s for the 0.6° plane change, rounded up for
                  * phasing and the launcher's v∞ disposal. */
         }
-        in attribute requiredReturnDeltaVMPerS : Real = 350.0 {
+        in attribute requiredReturnDeltaVMPerS : Real default = 350.0 {
             doc /* Return leg shaped onto the lunar gravity assist plus the distant-retrograde-orbit
                  * insertion (invented allocation). */
         }
-        in attribute xenonReserveKg : Real = 300.0;
-        in attribute thrustDayAllowance : Real = 1930.0 {
+        in attribute xenonReserveKg : Real default = 300.0;
+        in attribute thrustDayAllowance : Real default = 1930.0 {
             doc /* Nominal duration 2 200 d less the non-thrusting phases: early operations 30 d,
                  * characterisation 120 d, capture and despin 60 d, insertion and checkout 60 d. */
         }
-        in attribute thrusterEfficiency : Real = 0.65;
+        in attribute thrusterEfficiency : Real default = 0.65;
 
         attribute thrustN : Real = SepThrust(tug.sep.maximumPower / 1 [W], tug.sep.specificImpulse / 1 [s], thrusterEfficiency);
         attribute massFlowKgPerS : Real = MassFlowRate(thrustN, tug.sep.specificImpulse / 1 [s]);
@@ -215,12 +215,12 @@ package TethysAnalyses {
              * propellant the despin takes. */
         subject tug : Tug;
         in part target : SmallBody;
-        in attribute rcsThrusterForceN : Real = 22.0;
-        in attribute rcsThrusterCount : Natural = 2;
-        in attribute leverArmM : Real = 3.0;
-        in attribute rcsSpecificImpulseS : Real = 220.0;
-        in attribute maximumSurfaceSpeedMPerS : Real = 0.10;
-        in attribute despinHydrazineAllocationKg : Real = 40.0;
+        in attribute rcsThrusterForceN : Real default = 22.0;
+        in attribute rcsThrusterCount : Natural default = 2;
+        in attribute leverArmM : Real default = 3.0;
+        in attribute rcsSpecificImpulseS : Real default = 220.0;
+        in attribute maximumSurfaceSpeedMPerS : Real default = 0.10;
+        in attribute despinHydrazineAllocationKg : Real default = 40.0;
 
         attribute diameterM : Real = target.meanDiameter / 1 [m];
         attribute massKg : Real = target.mass / 1 [kg];
@@ -283,8 +283,8 @@ package TethysAnalyses {
              * plane change, mass, thrust and Isp from the model and answers the Δv, xenon and
              * thrusting days; the objective checks the days against the outbound allowance. */
         subject tug : Tug;
-        in attribute thrusterEfficiency : Real = 0.65;
-        in attribute outboundAllowanceDays : Real = 260.0;
+        in attribute thrusterEfficiency : Real default = 0.65;
+        in attribute outboundAllowanceDays : Real default = 260.0;
         action solve : SolveThrustArc {
             in startAu = 1.0;
             in endAu = amaranth.orbit.semiMajorAxisAu;
@@ -312,7 +312,7 @@ package TethysAnalyses {
              * non-thrusting phases must fit the nominal duration. */
         subject tug : Tug;
         in part target : SmallBody;
-        in attribute nonThrustDays : Real = 270.0;
+        in attribute nonThrustDays : Real default = 270.0;
         objective durationObjective {
             doc /* The mission duration requirement this case verifies. */
             verify missionDuration;

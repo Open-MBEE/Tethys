@@ -58,10 +58,10 @@ package TethysTrades {
              * aphelion, plus a penalty in days per kilogram of wing and per cost unit; the least
              * score wins. */
         subject :>> studyAlternatives : ArrayOption[1..*];
-        in attribute xenonToProcessKg : Real = 6300.0;
-        in attribute housekeepingW : Real = 2000.0;
-        in attribute massPenaltyDaysPerKg : Real = 0.5;
-        in attribute costPenaltyDaysPerUnit : Real = 5.0;
+        in attribute xenonToProcessKg : Real default = 6300.0;
+        in attribute housekeepingW : Real default = 2000.0;
+        in attribute massPenaltyDaysPerKg : Real default = 0.5;
+        in attribute costPenaltyDaysPerUnit : Real default = 5.0;
         objective :>> tradeStudyObjective : MinimizeObjective;
         calc :>> evaluationFunction {
             in part option :>> alternative : ArrayOption;
@@ -98,10 +98,10 @@ package TethysTrades {
              * cost at that Isp, plus a penalty per kilogram of xenon; an option whose xenon
              * exceeds the tank is penalised out. The least score wins. */
         subject :>> studyAlternatives : ThrusterOption[1..*];
-        in attribute outboundDeltaVMPerS : Real = 2000.0;
-        in attribute returnDeltaVMPerS : Real = 350.0;
-        in attribute xenonPenaltyDaysPerKg : Real = 0.1;
-        in attribute tankOverflowPenaltyDays : Real = 10000.0;
+        in attribute outboundDeltaVMPerS : Real default = 2000.0;
+        in attribute returnDeltaVMPerS : Real default = 350.0;
+        in attribute xenonPenaltyDaysPerKg : Real default = 0.1;
+        in attribute tankOverflowPenaltyDays : Real default = 10000.0;
         objective :>> tradeStudyObjective : MinimizeObjective;
         calc :>> evaluationFunction {
             in part option :>> alternative : ThrusterOption;
@@ -152,7 +152,7 @@ package TethysTrades {
              * penalty per day in the belts (array degradation and the schedule it costs); the
              * least score wins. */
         subject :>> studyAlternatives : DepartureOption[1..*];
-        in attribute beltDayPenaltyUnits : Real = 1.0;
+        in attribute beltDayPenaltyUnits : Real default = 1.0;
         objective :>> tradeStudyObjective : MinimizeObjective;
         calc :>> evaluationFunction {
             in part option :>> alternative : DepartureOption;
@@ -214,11 +214,11 @@ package TethysTrades {
              * the longest eclipse count against an option, unattended stability for it, each
              * criterion with its weight; the highest score wins. */
         subject :>> studyAlternatives : DestinationOrbitOption[1..*];
-        in attribute stationKeepingWeight : Real = 10.0;
-        in attribute insertionWeight : Real = 1.0;
-        in attribute accessWeight : Real = 0.2;
-        in attribute eclipseWeightPerHour : Real = 10.0;
-        in attribute stabilityWeightPerYear : Real = 5.0;
+        in attribute stationKeepingWeight : Real default = 10.0;
+        in attribute insertionWeight : Real default = 1.0;
+        in attribute accessWeight : Real default = 0.2;
+        in attribute eclipseWeightPerHour : Real default = 10.0;
+        in attribute stabilityWeightPerYear : Real default = 5.0;
         objective :>> tradeStudyObjective : MaximizeObjective;
         calc :>> evaluationFunction {
             in part option :>> alternative : DestinationOrbitOption;
@@ -273,10 +273,10 @@ package TethysTrades {
     analysis def CaptureMechanismTrade :> TradeStudy {
         doc /* Weighted scoring of the capture mechanisms; the highest score wins. */
         subject :>> studyAlternatives : CaptureMechanismOption[1..*];
-        in attribute toleranceWeight : Real = 3.0;
-        in attribute benignityWeight : Real = 3.0;
-        in attribute testabilityWeight : Real = 1.0;
-        in attribute massWeightPerKg : Real = 0.01;
+        in attribute toleranceWeight : Real default = 3.0;
+        in attribute benignityWeight : Real default = 3.0;
+        in attribute testabilityWeight : Real default = 1.0;
+        in attribute massWeightPerKg : Real default = 0.01;
         objective :>> tradeStudyObjective : MaximizeObjective;
         calc :>> evaluationFunction {
             in part option :>> alternative : CaptureMechanismOption;
