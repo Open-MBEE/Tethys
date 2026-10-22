@@ -1,0 +1,4 @@
+sysml v0.10.1-2054-g0a5fa2d94
+  Commit:     0a5fa2d94
+  Build time: 2026-10-22_04:26:34
+  Go version: go1.25.11
