@@ -59,7 +59,7 @@ Every command below is `sysml … model/*.sysml`; `make check` runs them all thr
 | `StandardViewDefinitions` | `InterconnectionView`, `StateTransitionView` | the rest |
 | `OpenSysMLRenderings` (LIB-339–342) | `asMixedDiagram` | `asCaseDiagram`, `CaseView`, `MixedView` (no use cases in the backbone yet) |
 | `DiagramLayout` (LIB-112–117) | `Layout`, `Route`, `Style`, `Note` | `Canvas`, `Picture` |
-| `DocumentQueries` (LIB-118–163) | `Query`, `OwnedElements`, `Descendants`, `Named`, `WhereType`, `WhereMetadata`, `Union`, `Project`, `Document`, `Section`, `Paragraph`, `Span`, `Ref`, `Table` (`caption`, `groupBy`, `columnLabels`), `List`, `Definitions`, `Diagram` | `Column`/`ColumnSpec` (F-H01 blocks the one use), `Verdicts`, `States`, `Events`, `RelatedElements`, `OrderBy`, `Formula`, `Image`, `Link`, `*Column` runs — content for later packages |
+| `DocumentQueries` (LIB-118–163) | `Query`, `OwnedElements`, `Descendants`, `Named`, `WhereType`, `WhereMetadata`, `Union`, `Project`, `Document`, `Section`, `Paragraph`, `Span`, `Ref`, `Table` (`caption`, `groupBy`, `columnLabels`), `List`, `Definitions`, `Diagram` | `Column`/`ColumnSpec` (F-H01 fixed in pin: Method/Level/Stage columns in the V&V matrix), `Verdicts`, `States`, `Events`, `RelatedElements`, `OrderBy`, `Formula`, `Image`, `Link`, `*Column` runs — content for later packages |
 
 ## Soft-spot rows
 
@@ -76,4 +76,4 @@ Every command below is `sysml … model/*.sysml`; `make check` runs them all thr
 
 ## Findings added
 
-F-H01 (metadata attributes not projectable), F-H02 (`expose P::*` re-exposes private imports), F-H03 (`asTextualNotation` unsupported), F-H04 (pilot/OpenSysML disagree on a concern without an explicit subject), F-H05 (`-render-all`/`-list` treat view defs as views) — see `docs/findings/WP-H.md`.
+F-H01 (fixed in pin — metadata attributes projectable through `<metadata def>::<feature>`), F-H02 (`expose P::*` re-exposes private imports), F-H03 (`asTextualNotation` unsupported), F-H04 (pilot/OpenSysML disagree on a concern without an explicit subject), F-H05 (`-render-all`/`-list` treat view defs as views) — see `docs/findings/WP-H.md`.
