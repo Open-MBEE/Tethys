@@ -9,6 +9,11 @@
 ✓ package TethysLaunch
 ✓ package TethysGround
 ✓ package TethysSystem
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
 ✓ package TethysHouseRules
 ✓ TethysEnvironment::SolarFlux(1.034)
   = [1272.9667139313626]

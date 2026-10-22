@@ -1,4 +1,4 @@
-// Findings F-005: an annotating metadata usage inside an analysis case body makes OpenSysML
+// Findings F-F03: an annotating metadata usage inside an analysis case body makes OpenSysML
 // refuse to run the case (`then statement in a body is not executable`); the same annotation
 // written as `metadata … about …` outside the body (the form model/70-analyses.sysml uses) runs.
 // Loaded after model/*.sysml.

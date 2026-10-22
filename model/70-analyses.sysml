@@ -32,7 +32,7 @@ package TethysAnalyses {
     }
 
     // Credibility scores of the analysis definitions below (an annotation inside an analysis
-    // body is not executable in OpenSysML, findings F-005).
+    // body is not executable in OpenSysML, findings F-F03).
     metadata CredibilityAssessment about LowThrustTransferAnalysis { verificationFactor = 3; validation = 1; inputPedigree = 2; resultsUncertainty = 2; resultsRobustness = 2; useHistory = 1; managementProcess = 2; peopleQualification = 3; }
     metadata CredibilityAssessment about CaptureDynamicsAnalysis { verificationFactor = 3; validation = 1; inputPedigree = 2; resultsUncertainty = 2; resultsRobustness = 1; useHistory = 0; managementProcess = 2; peopleQualification = 3; }
     metadata CredibilityAssessment about ExternalTransferAnalysis { verificationFactor = 2; validation = 2; inputPedigree = 2; resultsUncertainty = 1; resultsRobustness = 2; useHistory = 1; managementProcess = 2; peopleQualification = 3; }
@@ -173,6 +173,7 @@ package TethysAnalyses {
         out totalThrustDays : Real = outboundThrustDays + returnThrustDays;
 
         objective canReturn : ReturnCapability {
+            doc /* The return capability this case must show. */
             subject :>> tug = tug;
             in returnDeltaVMPerS = returnDeltaVMPerS;
             in requiredReturnDeltaVMPerS = requiredReturnDeltaVMPerS;
@@ -234,6 +235,7 @@ package TethysAnalyses {
             rcsThrusterForceN * rcsThrusterCount * despinTimeS / (rcsSpecificImpulseS * standardGravityMPerS2);
 
         objective fitsEnvelope : CaptureEnvelope {
+            doc /* The capture envelope this case checks the target against. */
             subject :>> tug = tug;
             in bodyDiameterM = diameterM;
             in bodyMassKg = massKg;
@@ -297,6 +299,7 @@ package TethysAnalyses {
         out deltaVMPerS : Real = solve.deltaVMPerS;
         out propellantKg : Real = solve.propellantKg;
         objective fitsAllowance : TransferAllowance {
+            doc /* The outbound thrust-arc allowance the tool result is checked against. */
             subject :>> tug = tug;
             in thrustDays = solve.thrustDays;
             in allowanceDays = outboundAllowanceDays;
@@ -315,7 +318,9 @@ package TethysAnalyses {
         in attribute nonThrustDays : Real default = 270.0;
         objective durationObjective {
             doc /* The mission duration requirement this case verifies. */
-            verify missionDuration;
+            verify missionDuration {
+                doc /* TR-002 as verified here. */
+            }
         }
         analysis transfer : LowThrustTransferAnalysis {
             subject :>> tug = tug;

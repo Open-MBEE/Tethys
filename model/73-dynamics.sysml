@@ -3,7 +3,7 @@
 // circular restricted three-body model of the distant retrograde orbit, the heliocentric
 // thrust-and-coast model of a transfer arc, the discrete despin model, and the DRO stability
 // analysis. Integration is the fourth-order Runge–Kutta step written here against
-// StateSpaceRepresentation::Integrate; model/probes/F-003-state-space-integrator.sysml binds
+// StateSpaceRepresentation::Integrate; model/probes/F-F01-state-space-integrator.sysml binds
 // OpenSysML's own integrator to the same dynamics.
 package TethysDynamics {
     private import ScalarValues::*;
@@ -104,6 +104,7 @@ package TethysDynamics {
         return availableSepPowerW : Real = RealFunctions::min(arrayPowerW - housekeepingW, tug.sep.maximumPower / 1 [W]);
         out thrustN : Real = SepThrust(availableSepPowerW, tug.sep.specificImpulse / 1 [s], 0.65);
         objective enoughPower : PowerForThrust {
+            doc /* The power the degraded array must still deliver. */
             subject :>> tug = tug;
             in availableSepPowerW = availableSepPowerW;
             in minimumSepPowerW = minimumSepPowerW;
@@ -147,7 +148,7 @@ package TethysDynamics {
     calc def RungeKutta4 :> Integrate {
         doc /* The classical fourth-order Runge–Kutta step over the state derivative, the
              * standard-SysML specialisation of StateSpaceRepresentation::Integrate (OpenSysML
-             * does not execute it, findings F-003). */
+             * does not execute it, findings F-F01). */
         attribute k1 : StateDerivative = getDerivative(input, initialState);
         attribute k2 : StateDerivative = getDerivative(input, initialState + k1 * (timeInterval / 2.0));
         attribute k3 : StateDerivative = getDerivative(input, initialState + k2 * (timeInterval / 2.0));
@@ -255,6 +256,7 @@ package TethysDynamics {
             * sqrt((revolution.stateSpace.elements#(1) - dro70000.x0) ** 2 + revolution.stateSpace.elements#(2) ** 2);
         out periodShownDays : Real = periodDays;
         objective closes : OrbitCloses {
+            doc /* The closure and period the propagated revolution must show. */
             subject :>> tug = tug;
             in closureKm = closureKm;
             in closureToleranceKm = closureToleranceKm;

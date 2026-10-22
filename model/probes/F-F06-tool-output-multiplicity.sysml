@@ -1,4 +1,4 @@
-// Findings F-008: an external tool's `out` parameter declared without a multiplicity is read
+// Findings F-F06: an external tool's `out` parameter declared without a multiplicity is read
 // by OpenSysML as [0..*] (`one value answered but deltaVMPerS holds a sequence`), so the tool's
 // single value is refused; the same action with `[1]` on every parameter
 // (model/70-analyses.sysml SolveThrustArc) runs. Loaded after model/*.sysml with

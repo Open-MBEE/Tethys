@@ -1,4 +1,4 @@
-// Findings F-006: `min` is both RealFunctions::min and the SI minute; with both packages
+// Findings F-F04: `min` is both RealFunctions::min and the SI minute; with both packages
 // imported by `*`, the pilot binds the unit (`Must invoke a behavior or a behavioral feature`)
 // and OpenSysML the function, and neither reports the ambiguity. `max` has no unit namesake
 // and resolves in both. Standalone.

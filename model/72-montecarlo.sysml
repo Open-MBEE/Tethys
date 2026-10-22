@@ -3,9 +3,9 @@
 // `-sweep <input>=<low>..<high> -samples <n> -seed <s>` draws the input, evaluates the case
 // and the objective's verdict per draw, and the out-of-spec count is the verdict column.
 // Standard SysML v2 has no Monte Carlo construct of its own; the drawing is the tool's
-// (uniform over the range) and the analysis stays standard. OpenSysML's Simulation::MonteCarlo
-// form with weighted and distributed draws is model/probes/montecarlo-extension.sysml, kept
-// out of model/ because the pilot validator is not given OpenSysML's libraries.
+// (uniform over the range) and the analysis stays standard. OpenSysML's own Monte Carlo
+// library form of these cases, with weighted and distributed draws, is the tool-tier file
+// model/74-analyses-tooling.sysml.
 package TethysMonteCarlo {
     private import ScalarValues::*;
     private import ISQ::*;
@@ -37,6 +37,7 @@ package TethysMonteCarlo {
         out totalThrustDays : Real = ThrustDays(outboundXenonKg + returnXenonKg, massFlowKgPerS);
 
         objective canReturn : ReturnCapability {
+            doc /* The return capability this case must show. */
             subject :>> tug = tug;
             in returnDeltaVMPerS = returnDeltaVMPerS;
             in requiredReturnDeltaVMPerS = requiredReturnDeltaVMPerS;
@@ -73,6 +74,7 @@ package TethysMonteCarlo {
         out despinHydrazineKg : Real = 2.0 * rcsThrusterForceN * despinTimeS / (rcsSpecificImpulseS * standardGravityMPerS2);
 
         objective fitsEnvelope : CaptureEnvelope {
+            doc /* The capture envelope this case checks the target against. */
             subject :>> tug = tug;
             in bodyDiameterM = diameterM;
             in bodyMassKg = massKg;
@@ -111,6 +113,7 @@ package TethysMonteCarlo {
         in attribute nonThrustDays : Real default = 270.0;
         return missionDays : Real = thrustDays + nonThrustDays + safeModeEvents * (coastDaysPerEvent + recoveryDaysPerEvent);
         objective fitsDuration : DurationMargin {
+            doc /* The duration margin the drawn coasts are checked against. */
             subject :>> tug = tug;
             in missionDays = missionDays;
             in nominalDurationDays = TethysMission::tethys.nominalDuration / 1 [d];
@@ -168,6 +171,7 @@ package TethysMonteCarlo {
         out reserveDeltaVMPerS : Real =
             RocketEquationDeltaV(tug.sep.specificImpulse / 1 [s], stackMassKg, stackMassKg - xenonReserveKg);
         objective reserveCovers : InsertionReserve {
+            doc /* The insertion reserve the drawn end game is checked against. */
             subject :>> tug = tug;
             in insertionDeltaVMPerS = insertionDeltaVMPerS;
             in reserveDeltaVMPerS = reserveDeltaVMPerS;

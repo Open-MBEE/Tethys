@@ -1,0 +1,45 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysHouseRules
+✓ Started action executor for "TethysAnalysesTooling::droRevolutionRk4"
+  State: Running
+  Tokens: 1
+✓ Action completed
+  Final state: Completed
+  Results:
+    constants = Instance(ID: 2)
+    input = ⟨0.0⟩
+    output = ⟨0.18211014385737295⟩
+    stateSpace = ⟨0.8057554713502632, -0.0024289598645587714, -0.0034335952938240946, 0.519331526105718⟩
+    stopTime = 3.2 [s]
+    time = 3.2 [s]
+    timeStep = 0.01 [s]
+  standing: value (observed: 1 run under reverse)
+✓ Started action executor for "TethysAnalysesTooling::firstThrustArcRk4"
+  State: Running
+  Tokens: 1
+✓ Action completed
+  Final state: Completed
+  Results:
+    input = ⟨1.8284566577535266, 6.429334133236918e-05⟩
+    output = ⟨1.0010089756038687, 30.120874739672313⟩
+    stateSpace = ⟨131297253.0666045, 72012067.20754626, -14.326890785023359, 26.49542027439917, 12438.9066039576⟩
+    stopTime = 2592000 [s]
+    thrustN = [1.8284566577535266]
+    time = 2505603.2 [s]
+    timeStep = 86400 [s]
+  standing: value (observed: 1 run under reverse)

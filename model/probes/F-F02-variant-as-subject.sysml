@@ -1,4 +1,4 @@
-// Findings F-004: a variant of a variation bound as an analysis subject, directly or through a
+// Findings F-F02: a variant of a variation bound as an analysis subject, directly or through a
 // configuration part, is accepted by both validators but not evaluated by OpenSysML
 // (`cannot chain through non-instance member (variant)`). Loaded after model/*.sysml.
 package TethysVariantSubjectProbe {

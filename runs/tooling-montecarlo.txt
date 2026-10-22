@@ -1,0 +1,235 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysHouseRules
+runs TethysAnalysesTooling::returnOverTargetCases — 200 run(s), seed 7
+run | observed          | verdict
+----+-------------------+--------------------------
+1   | 690.9618905858129 | canReturn: satisfied
+2   | 417.0981974800674 | canReturn: satisfied
+3   | 690.9618905858129 | canReturn: satisfied
+4   | 690.9618905858129 | canReturn: satisfied
+5   | 417.0981974800674 | canReturn: satisfied
+6   | 417.0981974800674 | canReturn: satisfied
+7   | 690.9618905858129 | canReturn: satisfied
+8   | 237.2592114570476 | canReturn: not satisfied
+9   | 237.2592114570476 | canReturn: not satisfied
+10  | 690.9618905858129 | canReturn: satisfied
+11  | 417.0981974800674 | canReturn: satisfied
+12  | 690.9618905858129 | canReturn: satisfied
+13  | 237.2592114570476 | canReturn: not satisfied
+14  | 417.0981974800674 | canReturn: satisfied
+15  | 417.0981974800674 | canReturn: satisfied
+16  | 237.2592114570476 | canReturn: not satisfied
+17  | 690.9618905858129 | canReturn: satisfied
+18  | 237.2592114570476 | canReturn: not satisfied
+19  | 417.0981974800674 | canReturn: satisfied
+20  | 417.0981974800674 | canReturn: satisfied
+21  | 690.9618905858129 | canReturn: satisfied
+22  | 690.9618905858129 | canReturn: satisfied
+23  | 417.0981974800674 | canReturn: satisfied
+24  | 417.0981974800674 | canReturn: satisfied
+25  | 417.0981974800674 | canReturn: satisfied
+26  | 417.0981974800674 | canReturn: satisfied
+27  | 417.0981974800674 | canReturn: satisfied
+28  | 690.9618905858129 | canReturn: satisfied
+29  | 237.2592114570476 | canReturn: not satisfied
+30  | 417.0981974800674 | canReturn: satisfied
+31  | 417.0981974800674 | canReturn: satisfied
+32  | 417.0981974800674 | canReturn: satisfied
+33  | 237.2592114570476 | canReturn: not satisfied
+34  | 417.0981974800674 | canReturn: satisfied
+35  | 417.0981974800674 | canReturn: satisfied
+36  | 237.2592114570476 | canReturn: not satisfied
+37  | 237.2592114570476 | canReturn: not satisfied
+38  | 417.0981974800674 | canReturn: satisfied
+39  | 417.0981974800674 | canReturn: satisfied
+40  | 237.2592114570476 | canReturn: not satisfied
+41  | 417.0981974800674 | canReturn: satisfied
+42  | 417.0981974800674 | canReturn: satisfied
+43  | 417.0981974800674 | canReturn: satisfied
+44  | 417.0981974800674 | canReturn: satisfied
+45  | 417.0981974800674 | canReturn: satisfied
+46  | 690.9618905858129 | canReturn: satisfied
+47  | 690.9618905858129 | canReturn: satisfied
+48  | 237.2592114570476 | canReturn: not satisfied
+49  | 237.2592114570476 | canReturn: not satisfied
+50  | 237.2592114570476 | canReturn: not satisfied
+51  | 417.0981974800674 | canReturn: satisfied
+52  | 237.2592114570476 | canReturn: not satisfied
+53  | 417.0981974800674 | canReturn: satisfied
+54  | 690.9618905858129 | canReturn: satisfied
+55  | 690.9618905858129 | canReturn: satisfied
+56  | 417.0981974800674 | canReturn: satisfied
+57  | 417.0981974800674 | canReturn: satisfied
+58  | 237.2592114570476 | canReturn: not satisfied
+59  | 690.9618905858129 | canReturn: satisfied
+60  | 417.0981974800674 | canReturn: satisfied
+61  | 237.2592114570476 | canReturn: not satisfied
+62  | 690.9618905858129 | canReturn: satisfied
+63  | 237.2592114570476 | canReturn: not satisfied
+64  | 690.9618905858129 | canReturn: satisfied
+65  | 417.0981974800674 | canReturn: satisfied
+66  | 417.0981974800674 | canReturn: satisfied
+67  | 417.0981974800674 | canReturn: satisfied
+68  | 690.9618905858129 | canReturn: satisfied
+69  | 417.0981974800674 | canReturn: satisfied
+70  | 417.0981974800674 | canReturn: satisfied
+71  | 237.2592114570476 | canReturn: not satisfied
+72  | 237.2592114570476 | canReturn: not satisfied
+73  | 690.9618905858129 | canReturn: satisfied
+74  | 237.2592114570476 | canReturn: not satisfied
+75  | 690.9618905858129 | canReturn: satisfied
+76  | 417.0981974800674 | canReturn: satisfied
+77  | 417.0981974800674 | canReturn: satisfied
+78  | 690.9618905858129 | canReturn: satisfied
+79  | 690.9618905858129 | canReturn: satisfied
+80  | 237.2592114570476 | canReturn: not satisfied
+81  | 417.0981974800674 | canReturn: satisfied
+82  | 690.9618905858129 | canReturn: satisfied
+83  | 417.0981974800674 | canReturn: satisfied
+84  | 417.0981974800674 | canReturn: satisfied
+85  | 690.9618905858129 | canReturn: satisfied
+86  | 417.0981974800674 | canReturn: satisfied
+87  | 417.0981974800674 | canReturn: satisfied
+88  | 690.9618905858129 | canReturn: satisfied
+89  | 690.9618905858129 | canReturn: satisfied
+90  | 690.9618905858129 | canReturn: satisfied
+91  | 417.0981974800674 | canReturn: satisfied
+92  | 690.9618905858129 | canReturn: satisfied
+93  | 417.0981974800674 | canReturn: satisfied
+94  | 690.9618905858129 | canReturn: satisfied
+95  | 417.0981974800674 | canReturn: satisfied
+96  | 417.0981974800674 | canReturn: satisfied
+97  | 417.0981974800674 | canReturn: satisfied
+98  | 237.2592114570476 | canReturn: not satisfied
+99  | 237.2592114570476 | canReturn: not satisfied
+100 | 237.2592114570476 | canReturn: not satisfied
+101 | 690.9618905858129 | canReturn: satisfied
+102 | 417.0981974800674 | canReturn: satisfied
+103 | 417.0981974800674 | canReturn: satisfied
+104 | 417.0981974800674 | canReturn: satisfied
+105 | 690.9618905858129 | canReturn: satisfied
+106 | 690.9618905858129 | canReturn: satisfied
+107 | 417.0981974800674 | canReturn: satisfied
+108 | 417.0981974800674 | canReturn: satisfied
+109 | 237.2592114570476 | canReturn: not satisfied
+110 | 417.0981974800674 | canReturn: satisfied
+111 | 690.9618905858129 | canReturn: satisfied
+112 | 690.9618905858129 | canReturn: satisfied
+113 | 237.2592114570476 | canReturn: not satisfied
+114 | 237.2592114570476 | canReturn: not satisfied
+115 | 237.2592114570476 | canReturn: not satisfied
+116 | 417.0981974800674 | canReturn: satisfied
+117 | 690.9618905858129 | canReturn: satisfied
+118 | 417.0981974800674 | canReturn: satisfied
+119 | 237.2592114570476 | canReturn: not satisfied
+120 | 237.2592114570476 | canReturn: not satisfied
+121 | 417.0981974800674 | canReturn: satisfied
+122 | 417.0981974800674 | canReturn: satisfied
+123 | 417.0981974800674 | canReturn: satisfied
+124 | 237.2592114570476 | canReturn: not satisfied
+125 | 417.0981974800674 | canReturn: satisfied
+126 | 417.0981974800674 | canReturn: satisfied
+127 | 237.2592114570476 | canReturn: not satisfied
+128 | 417.0981974800674 | canReturn: satisfied
+129 | 417.0981974800674 | canReturn: satisfied
+130 | 417.0981974800674 | canReturn: satisfied
+131 | 237.2592114570476 | canReturn: not satisfied
+132 | 417.0981974800674 | canReturn: satisfied
+133 | 417.0981974800674 | canReturn: satisfied
+134 | 690.9618905858129 | canReturn: satisfied
+135 | 417.0981974800674 | canReturn: satisfied
+136 | 690.9618905858129 | canReturn: satisfied
+137 | 237.2592114570476 | canReturn: not satisfied
+138 | 690.9618905858129 | canReturn: satisfied
+139 | 417.0981974800674 | canReturn: satisfied
+140 | 417.0981974800674 | canReturn: satisfied
+141 | 417.0981974800674 | canReturn: satisfied
+142 | 237.2592114570476 | canReturn: not satisfied
+143 | 417.0981974800674 | canReturn: satisfied
+144 | 690.9618905858129 | canReturn: satisfied
+145 | 690.9618905858129 | canReturn: satisfied
+146 | 237.2592114570476 | canReturn: not satisfied
+147 | 690.9618905858129 | canReturn: satisfied
+148 | 417.0981974800674 | canReturn: satisfied
+149 | 417.0981974800674 | canReturn: satisfied
+150 | 690.9618905858129 | canReturn: satisfied
+151 | 690.9618905858129 | canReturn: satisfied
+152 | 237.2592114570476 | canReturn: not satisfied
+153 | 690.9618905858129 | canReturn: satisfied
+154 | 417.0981974800674 | canReturn: satisfied
+155 | 690.9618905858129 | canReturn: satisfied
+156 | 417.0981974800674 | canReturn: satisfied
+157 | 690.9618905858129 | canReturn: satisfied
+158 | 417.0981974800674 | canReturn: satisfied
+159 | 237.2592114570476 | canReturn: not satisfied
+160 | 417.0981974800674 | canReturn: satisfied
+161 | 417.0981974800674 | canReturn: satisfied
+162 | 237.2592114570476 | canReturn: not satisfied
+163 | 690.9618905858129 | canReturn: satisfied
+164 | 237.2592114570476 | canReturn: not satisfied
+165 | 417.0981974800674 | canReturn: satisfied
+166 | 690.9618905858129 | canReturn: satisfied
+167 | 237.2592114570476 | canReturn: not satisfied
+168 | 417.0981974800674 | canReturn: satisfied
+169 | 417.0981974800674 | canReturn: satisfied
+170 | 417.0981974800674 | canReturn: satisfied
+171 | 237.2592114570476 | canReturn: not satisfied
+172 | 690.9618905858129 | canReturn: satisfied
+173 | 417.0981974800674 | canReturn: satisfied
+174 | 237.2592114570476 | canReturn: not satisfied
+175 | 417.0981974800674 | canReturn: satisfied
+176 | 237.2592114570476 | canReturn: not satisfied
+177 | 690.9618905858129 | canReturn: satisfied
+178 | 417.0981974800674 | canReturn: satisfied
+179 | 237.2592114570476 | canReturn: not satisfied
+180 | 237.2592114570476 | canReturn: not satisfied
+181 | 417.0981974800674 | canReturn: satisfied
+182 | 237.2592114570476 | canReturn: not satisfied
+183 | 417.0981974800674 | canReturn: satisfied
+184 | 417.0981974800674 | canReturn: satisfied
+185 | 237.2592114570476 | canReturn: not satisfied
+186 | 690.9618905858129 | canReturn: satisfied
+187 | 237.2592114570476 | canReturn: not satisfied
+188 | 417.0981974800674 | canReturn: satisfied
+189 | 417.0981974800674 | canReturn: satisfied
+190 | 237.2592114570476 | canReturn: not satisfied
+191 | 417.0981974800674 | canReturn: satisfied
+192 | 690.9618905858129 | canReturn: satisfied
+193 | 417.0981974800674 | canReturn: satisfied
+194 | 417.0981974800674 | canReturn: satisfied
+195 | 690.9618905858129 | canReturn: satisfied
+196 | 690.9618905858129 | canReturn: satisfied
+197 | 690.9618905858129 | canReturn: satisfied
+198 | 237.2592114570476 | canReturn: not satisfied
+199 | 417.0981974800674 | canReturn: satisfied
+200 | 690.9618905858129 | canReturn: satisfied
+observed: 200 run(s), min 237.2592114570476, mean 447.9210901138061, max 690.9618905858129, p50 417.0981974800674, p90 690.9618905858129
+  237.3..294   ######               51
+  294..350.7                        0
+  350.7..407.4                      0
+  407.4..464.1 ##########           93
+  464.1..520.8                      0
+  520.8..577.5                      0
+  577.5..634.2                      0
+  634.2..691   ######               56
+✓ TethysAnalysesTooling::returnOverTargetCases over 200 run(s)
+  runs = 200
+  mean = 447.9210901138061
+  deviation = 168.64087229694766
+  outOfSpec = 51
+  standing: table (observed: 200 rows)

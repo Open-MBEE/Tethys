@@ -1,0 +1,26 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysHouseRules
+✓ package TethysVariantSubjectProbe
+sysml: analysis run failed: analysis TethysVariantSubjectProbe::viaVariant: evaluating the returned expression: cannot chain through non-instance member  (variant)
+  standing: not covered (analysis TethysVariantSubjectProbe::viaVariant: evaluating the returned expression: cannot chain through non-instance member  (variant))
+sysml: analysis run failed: analysis TethysVariantSubjectProbe::viaConfiguration: evaluating the returned expression: cannot chain through non-instance member  (variant)
+  standing: not covered (analysis TethysVariantSubjectProbe::viaConfiguration: evaluating the returned expression: cannot chain through non-instance member  (variant))
+✓ TethysVariantSubjectProbe::viaPlainPart
+  massKg = [643572.4291277081]
+  standing: value (observed: 1 run under reverse)
+exit 2

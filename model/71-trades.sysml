@@ -62,7 +62,9 @@ package TethysTrades {
         in attribute housekeepingW : Real default = 2000.0;
         in attribute massPenaltyDaysPerKg : Real default = 0.5;
         in attribute costPenaltyDaysPerUnit : Real default = 5.0;
-        objective :>> tradeStudyObjective : MinimizeObjective;
+        objective :>> tradeStudyObjective : MinimizeObjective {
+            doc /* The alternative with the least evaluation is selected. */
+        }
         calc :>> evaluationFunction {
             in part option :>> alternative : ArrayOption;
             attribute sepPowerW : Real = PowerAvailableToSep(option.powerAtOneAu / 1 [W], housekeepingW);
@@ -102,7 +104,9 @@ package TethysTrades {
         in attribute returnDeltaVMPerS : Real default = 350.0;
         in attribute xenonPenaltyDaysPerKg : Real default = 0.1;
         in attribute tankOverflowPenaltyDays : Real default = 10000.0;
-        objective :>> tradeStudyObjective : MinimizeObjective;
+        objective :>> tradeStudyObjective : MinimizeObjective {
+            doc /* The alternative with the least evaluation is selected. */
+        }
         calc :>> evaluationFunction {
             in part option :>> alternative : ThrusterOption;
             attribute ispS : Real = option.specificImpulse / 1 [s];
@@ -153,7 +157,9 @@ package TethysTrades {
              * least score wins. */
         subject :>> studyAlternatives : DepartureOption[1..*];
         in attribute beltDayPenaltyUnits : Real default = 1.0;
-        objective :>> tradeStudyObjective : MinimizeObjective;
+        objective :>> tradeStudyObjective : MinimizeObjective {
+            doc /* The alternative with the least evaluation is selected. */
+        }
         calc :>> evaluationFunction {
             in part option :>> alternative : DepartureOption;
             return :>> result : Real = option.launchCostUnits + beltDayPenaltyUnits * option.beltTransitDays;
@@ -219,7 +225,9 @@ package TethysTrades {
         in attribute accessWeight : Real default = 0.2;
         in attribute eclipseWeightPerHour : Real default = 10.0;
         in attribute stabilityWeightPerYear : Real default = 5.0;
-        objective :>> tradeStudyObjective : MaximizeObjective;
+        objective :>> tradeStudyObjective : MaximizeObjective {
+            doc /* The alternative with the highest evaluation is selected. */
+        }
         calc :>> evaluationFunction {
             in part option :>> alternative : DestinationOrbitOption;
             return :>> result : Real =
@@ -277,7 +285,9 @@ package TethysTrades {
         in attribute benignityWeight : Real default = 3.0;
         in attribute testabilityWeight : Real default = 1.0;
         in attribute massWeightPerKg : Real default = 0.01;
-        objective :>> tradeStudyObjective : MaximizeObjective;
+        objective :>> tradeStudyObjective : MaximizeObjective {
+            doc /* The alternative with the highest evaluation is selected. */
+        }
         calc :>> evaluationFunction {
             in part option :>> alternative : CaptureMechanismOption;
             return :>> result : Real =
