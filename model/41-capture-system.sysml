@@ -233,12 +233,12 @@ package TethysCaptureSystem {
         doc /* A target is capturable when it fits the bag, weighs no more than the return
              * trajectory and the load path take, rotates slowly enough for the despin budget
              * and does so about a principal axis. */
-        in target : CaptureTargetCase;
-        in mechanism : CaptureMechanism;
-        target.meanDiameter <= mechanism.maximumBodyDiameter
-            and target.mass <= mechanism.maximumBodyMass
-            and target.rotationPeriod >= mechanism.minimumRotationPeriod
-            and target.spinState == SpinState::principalAxis
+        in body : CaptureTargetCase;
+        in system : CaptureMechanism;
+        body.meanDiameter <= system.maximumBodyDiameter
+            and body.mass <= system.maximumBodyMass
+            and body.rotationPeriod >= system.minimumRotationPeriod
+            and body.spinState == SpinState::principalAxis
     }
 
     part def EnvelopeCase {
@@ -250,31 +250,31 @@ package TethysCaptureSystem {
         doc /* The small body: inside the envelope. */
         part :>> target = CaptureTargetCase::small;
         part :>> mechanism = captureMechanism;
-        assert constraint fits : CaptureEnvelope { in target = target; in mechanism = mechanism; }
+        assert constraint fits : CaptureEnvelope { in body = target; in system = mechanism; }
     }
     part nominalTargetCase : EnvelopeCase {
         doc /* The nominal body: inside the envelope. */
         part :>> target = CaptureTargetCase::nominal;
         part :>> mechanism = captureMechanism;
-        assert constraint fits : CaptureEnvelope { in target = target; in mechanism = mechanism; }
+        assert constraint fits : CaptureEnvelope { in body = target; in system = mechanism; }
     }
     part largeTargetCase : EnvelopeCase {
         doc /* The large body: outside the envelope on mass. */
         part :>> target = CaptureTargetCase::large;
         part :>> mechanism = captureMechanism;
-        assert not constraint fits : CaptureEnvelope { in target = target; in mechanism = mechanism; }
+        assert not constraint fits : CaptureEnvelope { in body = target; in system = mechanism; }
     }
     part fastSpinTargetCase : EnvelopeCase {
         doc /* The fast-spinning body: outside the envelope on rotation period. */
         part :>> target = CaptureTargetCase::fastSpin;
         part :>> mechanism = captureMechanism;
-        assert not constraint fits : CaptureEnvelope { in target = target; in mechanism = mechanism; }
+        assert not constraint fits : CaptureEnvelope { in body = target; in system = mechanism; }
     }
     part tumblingTargetCase : EnvelopeCase {
         doc /* The tumbling body: outside the envelope on spin state. */
         part :>> target = CaptureTargetCase::tumbling;
         part :>> mechanism = captureMechanism;
-        assert not constraint fits : CaptureEnvelope { in target = target; in mechanism = mechanism; }
+        assert not constraint fits : CaptureEnvelope { in body = target; in system = mechanism; }
     }
 
     interface def CaptureContactInterface :> CaptureInterface {

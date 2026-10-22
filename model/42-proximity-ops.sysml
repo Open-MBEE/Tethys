@@ -179,12 +179,11 @@ package TethysProximityOps {
     }
 
     part proximityOperations {
-        doc /* The proximity-operations context: the tug, Wren and the target with the flows
-             * between them, the modes the tug exhibits and the capture sequence it performs. */
+        doc /* The proximity-operations context: the tug, Wren and the data handler with the
+             * flows between them, and the modes the tug exhibits. */
         part tug : Tug :> argent;
         part inspector : WrenInspector;
         part dataHandler : ProximityDataHandler;
-        part target : CharacterisedBody :> amaranthFM;
         flow imageryLink : ProximityLinkFlow of ImageFrame
             from inspector.payload.visibleCamera.frames to dataHandler.imagery {
             attribute :>> linkRate = 2.0e6 ['bit/s'];
@@ -195,10 +194,30 @@ package TethysProximityOps {
         }
         flow of TargetCharacterisation from inspector.payload.characterisation to dataHandler.characterisation;
         message characterisationReport of TargetCharacterisation from inspector to dataHandler;
-        exhibit state modes : ProximityOpsModes;
-        perform action capture : CaptureSequence {
-            in system = tug.captureSystem;
+        exhibit state modes : ProximityOpsModes {
+            doc /* The nominal pass: link up, commit, contact, no abort. */
+            attribute :>> linkUp = true;
+            attribute :>> commitGo = true;
+            attribute :>> abort = false;
+            attribute :>> contactMade = true;
         }
+    }
+    part captureOperation {
+        doc /* The capture as performed on Amaranth: the sequence with Wren's characterisation
+             * of the body bound to its first step and the as-built mechanism as its system. */
+        part target :> amaranthFM;
+        item targetCharacterisation : TargetCharacterisation {
+            doc /* What Wren reports about Amaranth: the body as it is, mass to 10 %. */
+            attribute :>> meanDiameter = target.meanDiameter;
+            attribute :>> mass = target.mass;
+            attribute :>> massUncertaintyFraction = 0.1;
+            attribute :>> rotationPeriod = target.spinning.rotationPeriod;
+            attribute :>> spinState = target.spinning.spinState;
+        }
+        perform action capture : CaptureSequence {
+            in system = captureMechanism;
+        }
+        bind capture.characterise.characterisation = targetCharacterisation;
     }
 
     requirement def RetreatRangeRequirement {
