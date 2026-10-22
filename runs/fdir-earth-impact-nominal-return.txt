@@ -29,6 +29,7 @@
 ✓ package TethysSequence
 ✓ package TethysFdir
 ✓ package TethysFlightSoftware
+✓ package TethysFlightBehaviour
 ✓ package TethysAnalyses
 ✓ package TethysTrades
 ✓ package TethysMonteCarlo
@@ -61,7 +62,7 @@ warning: TethysFdir::earthImpactScenario: materialization is bounded; not every 
   Current state: stackThrust | thrusting | highGain | wheels | cinched
   Last event at: 1563840.0
   Remaining events: 0
-  14 choice points (10 independent); %trace on to see them
+  15 choice points (11 independent); %trace on to see them
   Action steps taken: 21
   Waiting on the clock:
     t=2427840.0: action campaign of object #2, accept after waiting since step 23 for the clock to reach t=2427840.0

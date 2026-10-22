@@ -1,0 +1,72 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightBehaviour
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysFlightBehaviour::softwareCommandLoss
+  ID: 1
+  Use %features TethysFlightBehaviour::softwareCommandLoss to inspect
+warning: TethysFlightBehaviour::softwareCommandLoss: materialization is bounded; not every feature value was checked
+✓ Debugging state machine "modes" exhibited by object #50 of "TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement"
+note: object #50 of "TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement" already exhibits "TethysFlightBehaviour::ModeManagementSoftware::modes", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement` would)
+  Current state: onLauncher | off | lowGain | thrusters | stowed
+  Time: 0.0
+  Events: 0
+✓ Advanced to 1555200.0 (23 event(s) processed)
+  Current state: safe | off | lowGain | thrusters | stowed
+  Last event at: 1468800.0
+  Remaining events: 0
+  25 choice points (14 independent); %trace on to see them
+  Do behavior actions run: 4
+  Action steps taken: 11
+  Waiting on the clock:
+    t=1987200.0: action campaign of object #2, accept after waiting since step 10 for the clock to reach t=1987200.0
+  standing: value (observed: 1 run under reverse)
+wrote build/runs/sw-mode-manager-safe-sequence.txt (text, 7272 bytes)

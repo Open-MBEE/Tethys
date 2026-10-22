@@ -1,0 +1,146 @@
+run - sequence rendering (the trace of a run to t = 1.296e+08)
+
+object TethysFlightBehaviour::softwareNominalFlight.operations : operations
+object TethysFlightBehaviour::softwareNominalFlight.tug : BehaviouralTug
+object TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement : ModeManagementSoftware
+object TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir : FdirSoftware
+object TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.sepControl : SepControlSoftware
+object TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom : TelecomSoftware
+object TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.powerManagement : PowerManagementSoftware
+object TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events : EventService
+object TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.thermalControl : ThermalControlSoftware
+object TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.captureControl : CaptureControlSoftware
+object TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.autonomy : AutonomySoftware
+object TethysFlightBehaviour::softwareNominalFlight.inspector : ModedInspector
+object TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.inspectorHandling : InspectorHandlingSoftware
+
+messages:
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=4320 SeparationConfirmed
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=4320 SeparationConfirmed
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=4320 SeparationConfirmed (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=4320 SeparationConfirmed (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=8640 ArraysDeployed
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=8640 ArraysDeployed
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=8640 ArraysDeployed
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=8640 ArraysDeployed (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.sepControl: t=8640 SepStandby
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom: t=8640 HighGainSelect
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.powerManagement: t=8640..604800 LoadRestore
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events: t=8640 ApplicationReport (application = "ModeManagementApplication", report = "early operations") (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=604800 SafeModeRequest (reason = "command-loss timer expired")
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=604800 SafeModeRequest (reason = "command-loss timer expired")
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=604800 SafeModeRequest (reason = "command-loss timer expired")
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.sepControl: t=604800 SepOff
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom: t=604800 LowGainSelect
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.powerManagement: t=604800 LoadShed
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.thermalControl: t=604800 LoadShed
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.captureControl: t=604800..3.888864e+07 CaptureDisarm
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.autonomy: t=604800 SequenceAbort (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events: t=604800 ApplicationReport (application = "ModeManagementApplication", report = "safe mode") (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug => TethysFlightBehaviour::softwareNominalFlight.tug: t=604800 SafeModeRequest (reason = "command-loss timer expired")
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=2.60064e+06 ThrustArcGo (plannedDuration = 200.0 [d]) (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=2.60064e+06 ThrustArcGo (plannedDuration = 200.0 [d]) (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=2.60064e+06 ThrustArcGo (plannedDuration = 200.0 [d])
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=2.60064e+06 ThrustArcGo (plannedDuration = 200.0 [d]) (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.sepControl: t=2.60064e+06..1.988064e+07 SepThrust
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom: t=2.60064e+06..1.988064e+07 LowGainSelect
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events: t=2.60064e+06 ApplicationReport (application = "ModeManagementApplication", report = "thrust arc") (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=1.988064e+07 ThrustArcEnd (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=1.988064e+07 ThrustArcEnd (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=1.988064e+07 ThrustArcEnd
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=1.988064e+07 ThrustArcEnd (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.sepControl: t=1.988064e+07 SepStandby
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom: t=1.988064e+07 HighGainSelect
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events: t=1.988064e+07 ApplicationReport (application = "ModeManagementApplication", report = "coast") (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=2.160864e+07 ThrustArcGo (plannedDuration = 150.0 [d]) (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=2.160864e+07 ThrustArcGo (plannedDuration = 150.0 [d]) (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=2.160864e+07 ThrustArcGo (plannedDuration = 150.0 [d])
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=2.160864e+07 ThrustArcGo (plannedDuration = 150.0 [d]) (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.sepControl: t=2.160864e+07..3.456864e+07 SepThrust
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom: t=2.160864e+07..3.456864e+07 LowGainSelect
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events: t=2.160864e+07 ApplicationReport (application = "ModeManagementApplication", report = "thrust arc") (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=3.456864e+07 ThrustArcEnd (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=3.456864e+07 ThrustArcEnd (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=3.456864e+07 ThrustArcEnd
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=3.456864e+07 ThrustArcEnd (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.sepControl: t=3.456864e+07 SepStandby
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom: t=3.456864e+07 HighGainSelect
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events: t=3.456864e+07 ApplicationReport (application = "ModeManagementApplication", report = "coast") (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=3.543264e+07..4.001184e+07 ProximityOperationsGo
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=3.543264e+07..4.001184e+07 ProximityOperationsGo
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=3.543264e+07 ProximityOperationsGo
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=3.543264e+07 ProximityOperationsGo (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.sepControl: t=3.543264e+07..3.759264e+07 SepThrust
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events: t=3.543264e+07 ApplicationReport (application = "ModeManagementApplication", report = "approach") (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=3.759264e+07 RangeUpdate (range = 20.0 [km]) (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=3.759264e+07 RangeUpdate (range = 20.0 [km]) (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=3.759264e+07 RangeUpdate (range = 20.0 [km])
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=3.759264e+07 RangeUpdate (range = 20.0 [km]) (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.inspector: t=3.759264e+07 InspectorCheckoutGo
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.sepControl: t=3.759264e+07 SepStandby
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom: t=3.759264e+07..7.457184e+07 RelayEnable
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events: t=3.759264e+07 ApplicationReport (application = "ModeManagementApplication", report = "proximity operations") (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.inspector: t=3.767904e+07 InspectorReleaseGo
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=3.767904e+07 InspectorReleaseGo (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=3.767904e+07 InspectorReleaseGo (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=3.767904e+07 InspectorReleaseGo
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=3.767904e+07 InspectorReleaseGo (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.inspector: t=3.767904e+07 InspectorImagingGo (passDuration = 8.0 [h])
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.inspectorHandling: t=3.767904e+07 InspectorReleaseGo
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom: t=3.767904e+07..7.457184e+07 RelayEnable
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.inspector: t=3.888864e+07 InspectorRetireGo
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=3.888864e+07 InspectorRetireGo (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=3.888864e+07 InspectorRetireGo (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=3.888864e+07 InspectorRetireGo
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=3.888864e+07 InspectorRetireGo (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=3.888864e+07 CaptureGo (estimatedDiameter = 6.8 [m], estimatedMass = 362000.0 [kg])
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=3.888864e+07 CaptureGo (estimatedDiameter = 6.8 [m], estimatedMass = 362000.0 [kg])
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=3.888864e+07 CaptureGo (estimatedDiameter = 6.8 [m], estimatedMass = 362000.0 [kg])
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=3.888864e+07 CaptureGo (estimatedDiameter = 6.8 [m], estimatedMass = 362000.0 [kg]) (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.inspectorHandling: t=3.888864e+07 InspectorRetireGo (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom: t=3.888864e+07..7.457184e+07 RelayDisable
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.captureControl: t=3.888864e+07 CaptureArm
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.autonomy: t=3.888864e+07 SequenceStart (sequenceId = 3) (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events: t=3.888864e+07 ApplicationReport (application = "ModeManagementApplication", report = "capture") (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=3.914784e+07 CaptureComplete
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=3.914784e+07 CaptureComplete
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=3.914784e+07 CaptureComplete
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=3.914784e+07 CaptureComplete (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.captureControl: t=3.914784e+07 CaptureDisarm (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom: t=3.914784e+07..7.457184e+07 RelayDisable
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events: t=3.914784e+07 ApplicationReport (application = "ModeManagementApplication", report = "despin") (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=4.001184e+07 DespinComplete
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=4.001184e+07 DespinComplete
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=4.001184e+07 DespinComplete (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=4.001184e+07 DespinComplete (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=4.001184e+07 ReturnThrustGo (plannedDuration = 400.0 [d]) (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=4.001184e+07 ReturnThrustGo (plannedDuration = 400.0 [d]) (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=4.001184e+07 ReturnThrustGo (plannedDuration = 400.0 [d])
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=4.001184e+07 ReturnThrustGo (plannedDuration = 400.0 [d]) (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.sepControl: t=4.001184e+07..7.457184e+07 SepThrust
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom: t=4.001184e+07..7.457184e+07 LowGainSelect
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events: t=4.001184e+07 ApplicationReport (application = "ModeManagementApplication", report = "stack thrust") (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=7.457184e+07 ThrustArcEnd (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=7.457184e+07 ThrustArcEnd (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=7.457184e+07 ThrustArcEnd
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=7.457184e+07 ThrustArcEnd (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.sepControl: t=7.457184e+07 SepStandby
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom: t=7.457184e+07 HighGainSelect
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events: t=7.457184e+07 ApplicationReport (application = "ModeManagementApplication", report = "coast") (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=7.975584e+07 DroHoldGo (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=7.975584e+07 DroHoldGo (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=7.975584e+07 DroHoldGo (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=7.975584e+07 DroHoldGo (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=8.234784e+07..9.789984e+07 DockingGo
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=8.234784e+07..9.789984e+07 DockingGo
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=8.234784e+07 DockingGo
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=8.234784e+07 DockingGo (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom: t=8.234784e+07 RelayEnable (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events: t=8.234784e+07 ApplicationReport (application = "ModeManagementApplication", report = "docking") (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug: t=9.789984e+07 DisposalGo
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=9.789984e+07 DisposalGo
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=9.789984e+07 DisposalGo
+  TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=9.789984e+07 DisposalGo (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.sepControl: t=9.789984e+07 SepThrust (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom: t=9.789984e+07 RelayDisable (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events: t=9.789984e+07 ApplicationReport (application = "ModeManagementApplication", report = "disposal") (not accepted)

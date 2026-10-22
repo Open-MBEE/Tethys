@@ -1,0 +1,86 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightBehaviour
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysFlightBehaviour::softwareNominalFlight
+  ID: 1
+  Use %features TethysFlightBehaviour::softwareNominalFlight to inspect
+warning: TethysFlightBehaviour::softwareNominalFlight: materialization is bounded; not every feature value was checked
+✓ Debugging action "engine" performed by object #45 of "TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.autonomy"
+note: object #45 of "TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.autonomy" already performs "TethysFlightBehaviour::AutonomySoftware::engine", so this session attaches to that running performance rather than starting a second one (as `%action TethysFlightBehaviour::AutonomySoftware::engine` would)
+  State: Waiting
+  Tokens: 1
+✓ Advanced to 1000.0 (5 event(s) processed)
+  Action state: Completed
+  Tokens: 0
+  Action steps taken: 3
+  Waiting on the clock:
+    t=4320.0: action nominalCampaign of object #2, accept after waiting since step 2 for the clock to reach t=4320.0
+    t=604800.0: state machine FdirSupervisor of object #4, time -> expired
+    t=604800.0: state machine FdirSupervisor of object #47, time -> expired
+✓ Action completed
+  Results:
+    allowedModes = [TugMode::earlyOperations, TugMode::thrust, TugMode::approach, TugMode::stackThrust, TugMode::disposal, TugMode::coast, TugMode::stackCoast, TugMode::dockedPassive, TugMode::proximityOperations, TugMode::retreat, TugMode::capture, TugMode::despin, TugMode::droHold, TugMode::safe, TugMode::abortHold]
+    check.allowedModes = [TugMode::earlyOperations, TugMode::thrust, TugMode::approach, TugMode::stackThrust, TugMode::disposal, TugMode::coast, TugMode::stackCoast, TugMode::dockedPassive, TugMode::proximityOperations, TugMode::retreat, TugMode::capture, TugMode::despin, TugMode::droHold, TugMode::safe, TugMode::abortHold]
+    check.mode = [TugMode::coast]
+    check.passed = [true]
+    check.powerMarginFraction = [0.1]
+    dispatch.dispatched = [true]
+    dispatch.releaseDelay = [600.0 [s]]
+    load.loaded = [true]
+    load.sequenceId = [2]
+    load.storedSequences = [1, 2, 3, 4, 5, 6]
+    mode = [TugMode::coast]
+    outcome = ["dispatched"]
+    releaseDelay = [600.0 [s]]
+    sequenceId = [2]
+    storedSequences = [1, 2, 3, 4, 5, 6]
+  standing: value (observed: 1 run under reverse)

@@ -1,0 +1,28 @@
+✓ package SW191
+✓ Created instance of SW191::host
+  ID: 1
+  Use %features SW191::host to inspect
+✓ Debugging action "parameterised" performed by object #1 of "SW191::host"
+note: object #1 of "SW191::host" already performs "SW191::Host::parameterised", so this session attaches to that running performance rather than starting a second one (as `%action SW191::Host::parameterised` would)
+  State: Waiting
+  Tokens: 1
+✓ Advanced to 100.0 (0 event(s) processed)
+  Action state: Completed
+  Tokens: 0
+  1 choice point; %trace on to see them
+  Action steps taken: 6
+✓ Action completed
+  Results:
+    finished = [true]
+    howLong = [10.0 [s]]
+  standing: value (observed: 1 run under reverse)
+✓ Debugging action "literal" performed by object #1 of "SW191::host"
+note: object #1 of "SW191::host" already performs "SW191::Host::literal", so this session attaches to that running performance rather than starting a second one (as `%action SW191::Host::literal` would)
+  State: Waiting
+  Tokens: 1
+  Action state: Completed
+  Tokens: 0
+✓ Action completed
+  Results:
+    finished = [true]
+  standing: value (observed: 1 run under reverse)

@@ -1,0 +1,16 @@
+✓ package FS03
+✓ Created instance of FS03::twoBound
+  ID: 1
+  Use %features FS03::twoBound to inspect
+✓ Debugging state machine "one" exhibited by object #4 of "FS03::twoBound.host"
+note: object #4 of "FS03::twoBound.host" already exhibits "FS03::TwoBound::one", so this session attaches to that running machine rather than starting a second performance of it (as `%state FS03::twoBound.host` would)
+  Current state: idle
+  Time: 0.0
+  Events: 0
+✓ Advanced to 10.0 (1 event(s) processed)
+  Current state: idle
+  Last event at: 0.0
+  Remaining events: 0
+  1 choice point; %trace on to see them
+  Action steps taken: 3
+  standing: value (observed: 1 run under reverse)

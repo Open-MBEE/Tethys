@@ -1,0 +1,15 @@
+✓ package FS05
+✓ Created instance of FS05::mismatched
+  ID: 1
+  Use %features FS05::mismatched to inspect
+✓ Debugging state machine "m" exhibited by object #4 of "FS05::mismatched.host"
+note: object #4 of "FS05::mismatched.host" already exhibits "FS05::MismatchedHost::m", so this session attaches to that running machine rather than starting a second performance of it (as `%state FS05::mismatched.host` would)
+  Current state: idle
+  Time: 0.0
+  Events: 0
+✓ Advanced to 10.0 (0 event(s) processed)
+  Current state: idle
+  Last event at: 0.0
+  Remaining events: 0
+  Action steps taken: 3
+  standing: value (observed: 1 run under reverse)

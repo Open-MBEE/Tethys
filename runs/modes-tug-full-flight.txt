@@ -29,6 +29,7 @@
 ✓ package TethysSequence
 ✓ package TethysFdir
 ✓ package TethysFlightSoftware
+✓ package TethysFlightBehaviour
 ✓ package TethysAnalyses
 ✓ package TethysTrades
 ✓ package TethysMonteCarlo
@@ -61,6 +62,6 @@ warning: TethysModes::nominalFlight: materialization is bounded; not every featu
   Current state: done | thrusting | highGain | wheels | released
   Last event at: 100491840.0
   Remaining events: 0
-  20 choice points (19 independent); %trace on to see them
+  21 choice points (20 independent); %trace on to see them
   Action steps taken: 40
   standing: value (observed: 1 run under reverse)

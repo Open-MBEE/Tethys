@@ -1,0 +1,67 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightBehaviour
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysFlightBehaviour::bootScenario
+  ID: 1
+  Use %features TethysFlightBehaviour::bootScenario to inspect
+✓ Debugging state machine "manager" exhibited by object #2 of "TethysFlightBehaviour::bootScenario.bootUpdate"
+note: object #2 of "TethysFlightBehaviour::bootScenario.bootUpdate" already exhibits "TethysFlightBehaviour::ParameterBootUpdateSoftware::manager", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysFlightBehaviour::bootScenario.bootUpdate` would)
+  Current state: bootRom
+  Time: 0.0
+  Events: 1
+✓ Advanced to 3000.0 (12 event(s) processed)
+  Current state: running
+  Last event at: 1500.0
+  Remaining events: 0
+  Action steps taken: 17
+  standing: value (observed: 1 run under reverse)
+wrote build/runs/sw-boot-sequence.txt (text, 1308 bytes)
