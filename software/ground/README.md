@@ -17,18 +17,21 @@ share the generated tables:
 - `tests/` — pytest oracle tests; each names the pinned run and the model element it checks.
 - `fixtures/packets.json` — the golden packet fixtures (format below).
 
-| Product | Model part (`TethysGroundSoftware::`) | Module |
+| Product | Model part of `meridianOperationsSuite` (`TethysGroundSoftware::`) | Module |
 | --- | --- | --- |
-| Meridian Forge | `SoftwareOperationsCentre::commandBuilder : CommandBuilder` | `meridian/forge/` |
-| Meridian Warden | `sequenceChecker : SequenceChecker` (flight rules, sequence store, uplink exchange) | `meridian/warden/` |
-| Meridian Lantern | `telemetryServer : TelemetryServer` | `meridian/lantern/`, `go/telemetry` |
-| Meridian Sextant | `flightDynamics : FlightDynamicsTool` | `meridian/sextant/` |
-| Meridian Almanac | `passPlanner : PassPlanner` | `meridian/almanac/` |
-| Meridian Vault | `DataArchive` | `meridian/vault/` |
-| Meridian Ledger | `anomalyTracker : AnomalyTracker` | `meridian/ledger/` |
-| Meridian Compass | `proximityPlanner : ProximityOperationsPlanner` | `meridian/compass/` |
-| Meridian Mirror / Anvil / Orrery / Capstan | `SimulatedTestBedSet` parts typed `TestBed` | `meridian/simulators/` |
-| (uplink service) | `TethysInterfaces` TI-021 MLS-2 link | `go/uplink` |
+| Meridian Forge | `moc.commandBuilder : CommandBuilder` | `meridian/forge/` |
+| Meridian Warden | `moc.sequencer : FlightRuleChecker` (+ `SequenceStore` stand-in, `UplinkExchange`) | `meridian/warden/` |
+| Meridian Lantern | `moc.telemetryServer : TelemetryServer` | `meridian/lantern/`, `go/telemetry` |
+| Meridian Almanac | `moc.passPlanner : PassPlanner` | `meridian/almanac/` |
+| Meridian Ledger | `moc.anomalyTracker : AnomalyTracker` | `meridian/ledger/` |
+| Meridian Compass | `moc.proximityPlanner : ProximityPlanner` | `meridian/compass/` |
+| Meridian Sextant | `fdf.flightDynamicsTool : FlightDynamicsTool` | `meridian/sextant/` |
+| Meridian Vault | `sds.dataArchive : DataArchive` | `meridian/vault/` |
+| Meridian Anvil | `testBeds.flatsat : HardwareInTheLoopTestBed` | `meridian/simulators/anvil.py` |
+| Meridian Capstan | `testBeds.captureRig : CaptureRigController` | `meridian/simulators/capstan.py` |
+| Meridian Orrery | `testBeds.dynamicsSimulator : DynamicsSimulator` | `meridian/simulators/orrery.py` |
+| Meridian Mirror | `testBeds.trajectoryTool : FlightSoftwareInTheLoopSimulator` | `meridian/simulators/mirror.py` |
+| (uplink service) | `TethysInterfaces` TI-021 MLS-2 link, `CommandBuilder`/`FlightRuleChecker` products | `go/uplink` |
 
 Everything the model defines as a `calc def` (orbit determination, manoeuvre design, station
 visibility, pass volume, link budget, trends) is evaluated through the pinned OpenSysML Python
