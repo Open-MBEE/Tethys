@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dynamics simulator (Meridian Orrery) design description</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysSoftwareDocumentsTooling::DynamicsSimulatorDesignDescription">
+<h1 class="sysml-title">Dynamics simulator (Meridian Orrery) design description</h1>
+<section class="sysml-section" id="purpose" data-content="section" data-name="purpose">
+<h2>Purpose</h2>
+<table class="sysml-table" data-content="table" data-name="definition" data-query="TethysSoftwareDocumentsTooling::Purpose">
+<caption class="sysml-caption">Component definition</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysGroundSoftware::DynamicsSimulator" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">DynamicsSimulator</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Meridian Orrery: the six-degree-of-freedom proximity-operations simulator with the GNC flight code in the loop.</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="interfaces" data-content="section" data-name="interfaces">
+<h2>Ports</h2>
+<table class="sysml-table" data-content="table" data-name="ports" data-query="TethysSoftwareDocumentsTooling::NamedPorts">
+<caption class="sysml-caption">Ports of the component</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="figures" data-content="section" data-name="figures">
+<h2>Figures and tables</h2>
+<table class="sysml-table" data-content="table" data-name="attributes" data-query="TethysSoftwareDocumentsTooling::NamedAttributes">
+<caption class="sysml-caption">Attributes the component carries</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysGroundSoftware::DynamicsSimulator::productName" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">productName</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::DynamicsSimulator::version" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">version</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::DynamicsSimulator::flightSoftwareInTheLoop" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">flightSoftwareInTheLoop</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::DynamicsSimulator::hardwareInTheLoop" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">hardwareInTheLoop</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="parts" data-query="TethysSoftwareDocumentsTooling::NamedParts">
+<caption class="sysml-caption">Parts the component owns</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="testBed" data-content="section" data-name="testBed">
+<h2>Test bed</h2>
+<table class="sysml-table" data-content="table" data-name="row" data-query="TethysSoftwareDocumentsTooling::Purpose">
+<caption class="sysml-caption">Programme test bed this simulator retypes</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysVerification::TestBedSet::dynamicsSimulator" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dynamicsSimulator</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysVerification::TestBed</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Six-degree-of-freedom proximity-operations simulator with the GNC flight code.</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="requirements" data-content="section" data-name="requirements">
+<h2>Requirements satisfied</h2>
+<table class="sysml-table" data-content="table" data-name="satisfied" data-query="TethysSoftwareDocumentsTooling::Satisfied">
+<caption class="sysml-caption">Software requirements satisfied</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="satisfies">satisfies</th>
+<th scope="col" data-column="rows">rows</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysGroundSoftware::SimulatedTestBedSet::dynamicsSimulator" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dynamicsSimulator</span></td>
+<td class="sysml-cell" data-column="satisfies" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareRequirements::simulatorFidelity" data-element-kind="requirementUsage">simulatorFidelity</span></td>
+<td class="sysml-cell" data-column="rows" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="criticality" data-content="section" data-name="criticality">
+<h2>Assurance classification</h2>
+<table class="sysml-table" data-content="table" data-name="level" data-query="TethysSoftwareDocumentsTooling::Classification">
+<caption class="sysml-caption">Classification register row</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="level">level</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::dynamicsSimulatorSoftware" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dynamicsSimulatorSoftware</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC" data-element-kind="enumUsage">levelC</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Meridian Orrery, the dynamics simulator.</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<p class="sysml-paragraph" data-content="paragraph" data-name="scope">One volume per component of the Meridian Operations Suite, in the order of TethysGroundSoftware::MeridianOperationsSuite::components. Every table is a query over TethysGroundSoftware, TethysSoftwareRequirements, TethysSoftwareAssurance and TethysVerification.</p>
+</article>
+</body>
+</html>

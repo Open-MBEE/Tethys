@@ -1,0 +1,203 @@
+# Command and data handling application design description
+
+## Purpose
+
+*Application definition*
+
+| name | type | documentation |
+| --- | --- | --- |
+| CdhApplication |  | Command and data handling: routes the telecommands the command ingest service<br>accepts, packetises the telemetry and drives the on-board data bus through the<br>board support package. |
+
+*Behavioural specialisation*
+
+| name | type | documentation |
+| --- | --- | --- |
+| CdhApplication |  | Command and data handling: routes the telecommands the command ingest service<br>accepts, packetises the telemetry and drives the on-board data bus through the<br>board support package. |
+
+## Ports
+
+*Ports of the application*
+
+| name | type | documentation |
+| --- | --- | --- |
+| routedCommands | TethysFlightSoftware::CommandIngestPort |  |
+| packets | TethysFlightSoftware::TelemetryOutputPort |  |
+| dataBus | TethysInterfaces::DataBusPort |  |
+
+*Ports added by the behavioural specialisation*
+
+| name | type | documentation |
+| --- | --- | --- |
+| routedCommands | TethysFlightSoftware::CommandIngestPort |  |
+| packets | TethysFlightSoftware::TelemetryOutputPort |  |
+| dataBus | TethysInterfaces::DataBusPort |  |
+
+## State machine
+
+*Exhibited state machines*
+
+| name | type | documentation |
+| --- | --- | --- |
+
+## Parameter table
+
+*Parameters: id, value, range, unit*
+
+| parameterId | value | minimum | maximum | unitSymbol | inRange |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 5 | 0.1 | 30 | s | true |
+| 2 | 0.9 | 0.5 | 0.99 | 1 | true |
+| 3 | 1 | 0.01 | 10 | s | true |
+| 4 | 64 | 8 | 512 | 1 | true |
+
+## Rate, worst-case execution time and deadline
+
+*Scheduled task*
+
+| name | period | wcet | deadline | utilisation | activeModes |
+| --- | --- | --- | --- | --- | --- |
+| cdhTask | 0.125 \[s\] | 0.004 \[s\] | 0.125 \[s\] | 0.032 | earlyOperations, thrust, approach, stackThrust, disposal, coast, stackCoast, dockedPassive, proximityOperations, retreat, capture, despin, droHold, safe, abortHold |
+
+## Commands, telemetry, events and packets owned
+
+*Commands*
+
+| mnemonic | opcodeNumber | criticality | hazardous | documentation |
+| --- | --- | --- | --- | --- |
+| CDH\_NOOP | 257 | routine | false | No operation; exercises the command path and increments the accept counter. |
+| CDH\_RESET\_PROCESSOR | 258 | critical | true | Warm-reset the flight computer; all applications restart from their tables. |
+| CDH\_SELECT\_PRIME\_COMPUTER | 259 | critical | false | Make the named computer prime and the other hot spare. |
+| CDH\_SET\_CLOCK | 260 | critical | false | Set the spacecraft clock coarse and fine fields. |
+| CDH\_ADJUST\_CLOCK | 261 | routine | false | Slew the spacecraft clock by a signed correction applied over the next pass. |
+| CDH\_DUMP\_MEMORY | 262 | routine | false | Downlink a memory region of the given address and length. |
+| CDH\_LOAD\_MEMORY | 263 | critical | true | Write a memory region; the image follows in the data field. |
+| CDH\_START\_RECORDING | 264 | routine | false | Start recording the named telemetry packet class to the recorder. |
+| CDH\_STOP\_RECORDING | 265 | routine | false | Stop recording the named telemetry packet class. |
+| CDH\_DOWNLINK\_FILE | 266 | routine | false | Queue a recorder file for downlink at the given priority. |
+| CDH\_DELETE\_FILE | 267 | critical | false | Delete a recorder file after its downlink is confirmed. |
+| CDH\_SET\_DOWNLINK\_PRIORITY | 268 | routine | false | Set the downlink priority of a telemetry packet class. |
+| CDH\_SET\_WATCHDOG\_PERIOD | 269 | critical | false | Set the hardware watchdog kick period. |
+| CDH\_CLEAR\_COUNTERS | 270 | routine | false | Zero the command accept and reject counters. |
+| CDH\_SET\_APP\_RATE\_CDH | 271 | critical | false | Set the scheduling rate of the CDH application. |
+| CDH\_SET\_APP\_RATE\_GNC | 272 | critical | false | Set the scheduling rate of the GNC application. |
+| CDH\_SET\_APP\_RATE\_SEP | 273 | critical | false | Set the scheduling rate of the SEP application. |
+| CDH\_SET\_APP\_RATE\_EPS | 274 | critical | false | Set the scheduling rate of the EPS application. |
+| CDH\_SET\_APP\_RATE\_THM | 275 | critical | false | Set the scheduling rate of the THM application. |
+| CDH\_SET\_APP\_RATE\_COM | 276 | critical | false | Set the scheduling rate of the COM application. |
+| CDH\_SET\_APP\_RATE\_INS | 277 | critical | false | Set the scheduling rate of the INS application. |
+| CDH\_SET\_APP\_RATE\_CAP | 278 | critical | false | Set the scheduling rate of the CAP application. |
+| CDH\_SET\_APP\_RATE\_AUT | 279 | critical | false | Set the scheduling rate of the AUT application. |
+| CDH\_SET\_APP\_RATE\_FDR | 280 | critical | false | Set the scheduling rate of the FDR application. |
+| CDH\_SET\_APP\_RATE\_MOD | 281 | critical | false | Set the scheduling rate of the MOD application. |
+| CDH\_SET\_APP\_RATE\_PBU | 282 | critical | false | Set the scheduling rate of the PBU application. |
+
+*Telemetry points*
+
+| mnemonic | pointId | kind | rate | unitSymbol |
+| --- | --- | --- | --- | --- |
+| CDH\_T\_BOARD\_01 | 1001 | housekeeping | 0.1 \[Hz\] | K |
+| CDH\_T\_BOARD\_02 | 1002 | housekeeping | 0.1 \[Hz\] | K |
+| CDH\_T\_BOARD\_03 | 1003 | housekeeping | 0.1 \[Hz\] | K |
+| CDH\_T\_BOARD\_04 | 1004 | housekeeping | 0.1 \[Hz\] | K |
+| CDH\_CPU\_LOAD\_01 | 1005 | housekeeping | 1 \[Hz\] | 1 |
+| CDH\_CPU\_LOAD\_02 | 1006 | housekeeping | 1 \[Hz\] | 1 |
+| CDH\_MEM\_USED\_01 | 1007 | housekeeping | 1 \[Hz\] | 1 |
+| CDH\_MEM\_USED\_02 | 1008 | housekeeping | 1 \[Hz\] | 1 |
+| CDH\_RECORDER\_FILL | 1009 | housekeeping | 0.1 \[Hz\] | 1 |
+| CDH\_UPTIME | 1010 | housekeeping | 1 \[Hz\] | s |
+| CDH\_CMD\_ACCEPT\_COUNT | 1011 | housekeeping | 1 \[Hz\] | 1 |
+| CDH\_CMD\_REJECT\_COUNT | 1012 | housekeeping | 1 \[Hz\] | 1 |
+| CDH\_BUS\_MSG\_RATE | 1013 | engineering | 1 \[Hz\] | 1 |
+| CDH\_FILE\_COUNT | 1014 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_CLOCK\_COARSE | 1015 | housekeeping | 1 \[Hz\] | 1 |
+| CDH\_CLOCK\_FINE | 1016 | housekeeping | 1 \[Hz\] | 1 |
+| CDH\_APP\_RATE\_01 | 1017 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_RATE\_02 | 1018 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_RATE\_03 | 1019 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_RATE\_04 | 1020 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_RATE\_05 | 1021 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_RATE\_06 | 1022 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_RATE\_07 | 1023 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_RATE\_08 | 1024 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_RATE\_09 | 1025 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_RATE\_10 | 1026 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_RATE\_11 | 1027 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_RATE\_12 | 1028 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_LOAD\_01 | 1029 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_LOAD\_02 | 1030 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_LOAD\_03 | 1031 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_LOAD\_04 | 1032 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_LOAD\_05 | 1033 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_LOAD\_06 | 1034 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_LOAD\_07 | 1035 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_LOAD\_08 | 1036 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_LOAD\_09 | 1037 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_LOAD\_10 | 1038 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_LOAD\_11 | 1039 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_APP\_LOAD\_12 | 1040 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_PARTITION\_STATUS\_01 | 1041 | housekeeping | 1 \[Hz\] | 1 |
+| CDH\_PARTITION\_STATUS\_02 | 1042 | housekeeping | 1 \[Hz\] | 1 |
+| CDH\_PARTITION\_STATUS\_03 | 1043 | housekeeping | 1 \[Hz\] | 1 |
+| CDH\_PARTITION\_STATUS\_04 | 1044 | housekeeping | 1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_01 | 1045 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_02 | 1046 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_03 | 1047 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_04 | 1048 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_05 | 1049 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_06 | 1050 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_07 | 1051 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_08 | 1052 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_09 | 1053 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_10 | 1054 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_11 | 1055 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_12 | 1056 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_13 | 1057 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_14 | 1058 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_15 | 1059 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_BUS\_RT\_ERRORS\_16 | 1060 | engineering | 0.1 \[Hz\] | 1 |
+| CDH\_WATCHDOG\_MARGIN | 1061 | housekeeping | 1 \[Hz\] | s |
+
+*Events (the fault-relevant ones are the fault-protection interface)*
+
+| mnemonic | eventId | severity | fdirRelevant | text |
+| --- | --- | --- | --- | --- |
+| CDH\_EVT\_STARTED | 101 | info | false | application started |
+| CDH\_EVT\_STOPPED | 102 | warning | false | application stopped |
+| CDH\_EVT\_CMD\_ACCEPTED | 103 | info | false | command accepted |
+| CDH\_EVT\_CMD\_REJECTED | 104 | warning | false | command rejected |
+| CDH\_EVT\_TABLE\_LOADED | 105 | info | false | parameter table loaded |
+| CDH\_EVT\_TABLE\_INVALID | 106 | fault | true | parameter table failed validation |
+| CDH\_EVT\_WATCHDOG\_MISSED | 107 | fault | true | application missed its watchdog window |
+| CDH\_EVT\_MODE\_CHANGE\_SEEN | 108 | info | false | application applied a mode change |
+| CDH\_EVT\_PROCESSOR\_RESET | 109 | critical | true | flight computer reset |
+| CDH\_EVT\_PRIME\_SWITCHED | 110 | critical | true | prime computer switched |
+| CDH\_EVT\_CLOCK\_SET | 111 | info | false | spacecraft clock set |
+| CDH\_EVT\_RECORDER\_FULL | 112 | warning | false | recorder at capacity; oldest files overwritten |
+| CDH\_EVT\_FILE\_DOWNLINKED | 113 | info | false | file downlink complete |
+| CDH\_EVT\_MEMORY\_SCRUB\_ERROR | 114 | fault | true | uncorrectable memory error scrubbed |
+
+*Packets*
+
+| mnemonic | apid | apidClass | rate | lengthOctets | layoutConsistent |
+| --- | --- | --- | --- | --- | --- |
+| CDH\_HK\_01 | 16 | housekeeping | 1 \[Hz\] | 58 | true |
+| CDH\_ENG\_01 | 17 | housekeeping | 1 \[Hz\] | 88 | true |
+| CDH\_ENG\_02 | 18 | housekeeping | 0.1 \[Hz\] | 80 | true |
+
+## Requirements satisfied
+
+*Software requirements satisfied*
+
+| name | satisfies | rows |
+| --- | --- | --- |
+| cdh | cdhApplication | 1 |
+
+## Assurance classification
+
+*Classification register row*
+
+| name | level | documentation |
+| --- | --- | --- |
+| cdh | levelB | Command and data handling: command routing, telemetry, the data bus. |
+
+One volume per application of the Argent flight software, in the order of TethysFlightSoftware::ArgentFlightSoftware. Every table is a query over TethysFlightSoftware, TethysFlightBehaviour, TethysFlightTiming, TethysFlightDictionary, TethysSoftwareRequirements and TethysSoftwareAssurance.

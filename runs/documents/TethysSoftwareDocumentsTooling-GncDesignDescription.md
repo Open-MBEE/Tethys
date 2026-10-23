@@ -1,0 +1,229 @@
+# Guidance, navigation and control application design description
+
+## Purpose
+
+*Application definition*
+
+| name | type | documentation |
+| --- | --- | --- |
+| GncApplication |  | Guidance, navigation and control: attitude determination and control, relative<br>state estimation and the final-targeting burn, safety-critical because the<br>targeting burn is the Earth-impact control of the hazard log. |
+
+*Behavioural specialisation*
+
+| name | type | documentation |
+| --- | --- | --- |
+| GncApplication |  | Guidance, navigation and control: attitude determination and control, relative<br>state estimation and the final-targeting burn, safety-critical because the<br>targeting burn is the Earth-impact control of the hazard log. |
+
+## Ports
+
+*Ports of the application*
+
+| name | type | documentation |
+| --- | --- | --- |
+| sensorsAndActuators | TethysInterfaces::DataBusPort |  |
+
+*Ports added by the behavioural specialisation*
+
+| name | type | documentation |
+| --- | --- | --- |
+| sensorsAndActuators | TethysInterfaces::DataBusPort |  |
+
+## State machine
+
+*Exhibited state machines*
+
+| name | type | documentation |
+| --- | --- | --- |
+
+## Parameter table
+
+*Parameters: id, value, range, unit*
+
+| parameterId | value | minimum | maximum | unitSymbol | inRange |
+| --- | --- | --- | --- | --- | --- |
+| 5 | 0.01 | 0.0001 | 0.02 | rad/s | true |
+| 6 | 0.001 | 0.0001 | 0.1 | rad | true |
+| 7 | 600 | 100 | 650 | rad/s | true |
+| 8 | 0.8 | 0.5 | 0.95 | 1 | true |
+
+## Rate, worst-case execution time and deadline
+
+*Scheduled task*
+
+| name | period | wcet | deadline | utilisation | activeModes |
+| --- | --- | --- | --- | --- | --- |
+| gncTask | 0.0625 \[s\] | 0.012 \[s\] | 0.0625 \[s\] | 0.192 | earlyOperations, thrust, approach, stackThrust, disposal, coast, stackCoast, dockedPassive, proximityOperations, retreat, capture, despin, droHold, safe, abortHold |
+
+## Commands, telemetry, events and packets owned
+
+*Commands*
+
+| mnemonic | opcodeNumber | criticality | hazardous | documentation |
+| --- | --- | --- | --- | --- |
+| GNC\_SET\_ATTITUDE\_TARGET | 513 | critical | false | Command a target quaternion; the controller slews to it at the rate limit. |
+| GNC\_SET\_RATE\_TARGET | 514 | critical | false | Command a body rate target. |
+| GNC\_SLEW\_TO | 515 | critical | false | Slew about the given axis by the given angle. |
+| GNC\_HOLD\_ATTITUDE | 516 | routine | false | Hold the current attitude inertially. |
+| GNC\_SELECT\_STAR\_TRACKER | 517 | critical | false | Select the star tracker used by the estimator. |
+| GNC\_SELECT\_IMU | 518 | critical | false | Select the inertial measurement unit used by the estimator. |
+| GNC\_DESATURATE\_WHEELS | 519 | critical | true | Dump wheel momentum with the reaction control thrusters. |
+| GNC\_SET\_WHEEL\_SPEED | 520 | critical | false | Command a wheel to a speed; for ground testing and bias management. |
+| GNC\_ENABLE\_RCS\_CONTROL | 521 | critical | true | Allow the controller to fire reaction control thrusters. |
+| GNC\_DISABLE\_RCS\_CONTROL | 522 | critical | false | Inhibit all reaction control thruster firing. |
+| GNC\_UPLOAD\_EPHEMERIS | 523 | routine | false | Load an ephemeris block for the tug, the Earth, the Moon or the target. |
+| GNC\_SET\_GUIDANCE\_MODE | 524 | critical | false | Select the guidance law: inertial hold, sun point, thrust vector or target track. |
+| GNC\_START\_TCM | 525 | critical | true | Execute a trajectory correction with the reaction control system. |
+| GNC\_ABORT\_TCM | 526 | critical | false | Stop a running trajectory correction immediately. |
+| GNC\_SET\_POINTING\_TOLERANCE | 527 | routine | false | Set the attitude error at which a slew is declared complete. |
+| GNC\_RESET\_ESTIMATOR | 528 | critical | false | Reinitialise the attitude estimator from the star tracker. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_01 | 529 | critical | true | Enable reaction control thruster 1. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_01 | 530 | critical | false | Disable reaction control thruster 1. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_02 | 531 | critical | true | Enable reaction control thruster 2. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_02 | 532 | critical | false | Disable reaction control thruster 2. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_03 | 533 | critical | true | Enable reaction control thruster 3. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_03 | 534 | critical | false | Disable reaction control thruster 3. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_04 | 535 | critical | true | Enable reaction control thruster 4. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_04 | 536 | critical | false | Disable reaction control thruster 4. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_05 | 537 | critical | true | Enable reaction control thruster 5. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_05 | 538 | critical | false | Disable reaction control thruster 5. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_06 | 539 | critical | true | Enable reaction control thruster 6. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_06 | 540 | critical | false | Disable reaction control thruster 6. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_07 | 541 | critical | true | Enable reaction control thruster 7. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_07 | 542 | critical | false | Disable reaction control thruster 7. |
+| GNC\_RCS\_THRUSTER\_ENABLE\_08 | 543 | critical | true | Enable reaction control thruster 8. |
+| GNC\_RCS\_THRUSTER\_DISABLE\_08 | 544 | critical | false | Disable reaction control thruster 8. |
+| GNC\_WHEEL\_ON\_1 | 545 | critical | false | Power on reaction wheel 1. |
+| GNC\_WHEEL\_OFF\_1 | 546 | critical | false | Power off reaction wheel 1. |
+| GNC\_WHEEL\_ON\_2 | 547 | critical | false | Power on reaction wheel 2. |
+| GNC\_WHEEL\_OFF\_2 | 548 | critical | false | Power off reaction wheel 2. |
+| GNC\_WHEEL\_ON\_3 | 549 | critical | false | Power on reaction wheel 3. |
+| GNC\_WHEEL\_OFF\_3 | 550 | critical | false | Power off reaction wheel 3. |
+| GNC\_WHEEL\_ON\_4 | 551 | critical | false | Power on reaction wheel 4. |
+| GNC\_WHEEL\_OFF\_4 | 552 | critical | false | Power off reaction wheel 4. |
+
+*Telemetry points*
+
+| mnemonic | pointId | kind | rate | unitSymbol |
+| --- | --- | --- | --- | --- |
+| GNC\_Q\_01 | 2001 | housekeeping | 1 \[Hz\] | 1 |
+| GNC\_Q\_02 | 2002 | housekeeping | 1 \[Hz\] | 1 |
+| GNC\_Q\_03 | 2003 | housekeeping | 1 \[Hz\] | 1 |
+| GNC\_Q\_04 | 2004 | housekeeping | 1 \[Hz\] | 1 |
+| GNC\_RATE\_01 | 2005 | housekeeping | 1 \[Hz\] | rad/s |
+| GNC\_RATE\_02 | 2006 | housekeeping | 1 \[Hz\] | rad/s |
+| GNC\_RATE\_03 | 2007 | housekeeping | 1 \[Hz\] | rad/s |
+| GNC\_ATT\_ERR\_01 | 2008 | housekeeping | 1 \[Hz\] | rad |
+| GNC\_ATT\_ERR\_02 | 2009 | housekeeping | 1 \[Hz\] | rad |
+| GNC\_ATT\_ERR\_03 | 2010 | housekeeping | 1 \[Hz\] | rad |
+| GNC\_RATE\_ERR\_01 | 2011 | engineering | 1 \[Hz\] | rad/s |
+| GNC\_RATE\_ERR\_02 | 2012 | engineering | 1 \[Hz\] | rad/s |
+| GNC\_RATE\_ERR\_03 | 2013 | engineering | 1 \[Hz\] | rad/s |
+| GNC\_ST\_T\_01 | 2014 | engineering | 0.1 \[Hz\] | K |
+| GNC\_ST\_T\_02 | 2015 | engineering | 0.1 \[Hz\] | K |
+| GNC\_ST\_STATUS\_01 | 2016 | housekeeping | 1 \[Hz\] | 1 |
+| GNC\_ST\_STATUS\_02 | 2017 | housekeeping | 1 \[Hz\] | 1 |
+| GNC\_IMU\_GYRO\_01 | 2018 | engineering | 10 \[Hz\] | rad/s |
+| GNC\_IMU\_GYRO\_02 | 2019 | engineering | 10 \[Hz\] | rad/s |
+| GNC\_IMU\_GYRO\_03 | 2020 | engineering | 10 \[Hz\] | rad/s |
+| GNC\_IMU\_GYRO\_04 | 2021 | engineering | 10 \[Hz\] | rad/s |
+| GNC\_IMU\_GYRO\_05 | 2022 | engineering | 10 \[Hz\] | rad/s |
+| GNC\_IMU\_GYRO\_06 | 2023 | engineering | 10 \[Hz\] | rad/s |
+| GNC\_IMU\_ACCEL\_01 | 2024 | engineering | 10 \[Hz\] | m/s |
+| GNC\_IMU\_ACCEL\_02 | 2025 | engineering | 10 \[Hz\] | m/s |
+| GNC\_IMU\_ACCEL\_03 | 2026 | engineering | 10 \[Hz\] | m/s |
+| GNC\_IMU\_ACCEL\_04 | 2027 | engineering | 10 \[Hz\] | m/s |
+| GNC\_IMU\_ACCEL\_05 | 2028 | engineering | 10 \[Hz\] | m/s |
+| GNC\_IMU\_ACCEL\_06 | 2029 | engineering | 10 \[Hz\] | m/s |
+| GNC\_IMU\_T\_01 | 2030 | engineering | 0.1 \[Hz\] | K |
+| GNC\_IMU\_T\_02 | 2031 | engineering | 0.1 \[Hz\] | K |
+| GNC\_WHEEL\_SPEED\_01 | 2032 | housekeeping | 1 \[Hz\] | rad/s |
+| GNC\_WHEEL\_SPEED\_02 | 2033 | housekeeping | 1 \[Hz\] | rad/s |
+| GNC\_WHEEL\_SPEED\_03 | 2034 | housekeeping | 1 \[Hz\] | rad/s |
+| GNC\_WHEEL\_SPEED\_04 | 2035 | housekeeping | 1 \[Hz\] | rad/s |
+| GNC\_WHEEL\_I\_01 | 2036 | engineering | 1 \[Hz\] | A |
+| GNC\_WHEEL\_I\_02 | 2037 | engineering | 1 \[Hz\] | A |
+| GNC\_WHEEL\_I\_03 | 2038 | engineering | 1 \[Hz\] | A |
+| GNC\_WHEEL\_I\_04 | 2039 | engineering | 1 \[Hz\] | A |
+| GNC\_WHEEL\_T\_01 | 2040 | engineering | 0.1 \[Hz\] | K |
+| GNC\_WHEEL\_T\_02 | 2041 | engineering | 0.1 \[Hz\] | K |
+| GNC\_WHEEL\_T\_03 | 2042 | engineering | 0.1 \[Hz\] | K |
+| GNC\_WHEEL\_T\_04 | 2043 | engineering | 0.1 \[Hz\] | K |
+| GNC\_RCS\_ON\_TIME\_01 | 2044 | engineering | 0.1 \[Hz\] | s |
+| GNC\_RCS\_ON\_TIME\_02 | 2045 | engineering | 0.1 \[Hz\] | s |
+| GNC\_RCS\_ON\_TIME\_03 | 2046 | engineering | 0.1 \[Hz\] | s |
+| GNC\_RCS\_ON\_TIME\_04 | 2047 | engineering | 0.1 \[Hz\] | s |
+| GNC\_RCS\_ON\_TIME\_05 | 2048 | engineering | 0.1 \[Hz\] | s |
+| GNC\_RCS\_ON\_TIME\_06 | 2049 | engineering | 0.1 \[Hz\] | s |
+| GNC\_RCS\_ON\_TIME\_07 | 2050 | engineering | 0.1 \[Hz\] | s |
+| GNC\_RCS\_ON\_TIME\_08 | 2051 | engineering | 0.1 \[Hz\] | s |
+| GNC\_RCS\_PULSES\_01 | 2052 | engineering | 0.1 \[Hz\] | 1 |
+| GNC\_RCS\_PULSES\_02 | 2053 | engineering | 0.1 \[Hz\] | 1 |
+| GNC\_RCS\_PULSES\_03 | 2054 | engineering | 0.1 \[Hz\] | 1 |
+| GNC\_RCS\_PULSES\_04 | 2055 | engineering | 0.1 \[Hz\] | 1 |
+| GNC\_RCS\_PULSES\_05 | 2056 | engineering | 0.1 \[Hz\] | 1 |
+| GNC\_RCS\_PULSES\_06 | 2057 | engineering | 0.1 \[Hz\] | 1 |
+| GNC\_RCS\_PULSES\_07 | 2058 | engineering | 0.1 \[Hz\] | 1 |
+| GNC\_RCS\_PULSES\_08 | 2059 | engineering | 0.1 \[Hz\] | 1 |
+| GNC\_SUN\_SENSOR\_01 | 2060 | engineering | 1 \[Hz\] | 1 |
+| GNC\_SUN\_SENSOR\_02 | 2061 | engineering | 1 \[Hz\] | 1 |
+| GNC\_SUN\_SENSOR\_03 | 2062 | engineering | 1 \[Hz\] | 1 |
+| GNC\_SUN\_SENSOR\_04 | 2063 | engineering | 1 \[Hz\] | 1 |
+| GNC\_SUN\_SENSOR\_05 | 2064 | engineering | 1 \[Hz\] | 1 |
+| GNC\_SUN\_SENSOR\_06 | 2065 | engineering | 1 \[Hz\] | 1 |
+| GNC\_RANGE\_TO\_TARGET | 2066 | housekeeping | 1 \[Hz\] | m |
+| GNC\_RANGE\_RATE | 2067 | housekeeping | 1 \[Hz\] | m/s |
+| GNC\_BEARING\_01 | 2068 | engineering | 1 \[Hz\] | rad |
+| GNC\_BEARING\_02 | 2069 | engineering | 1 \[Hz\] | rad |
+| GNC\_EPHEMERIS\_AGE | 2070 | housekeeping | 0.1 \[Hz\] | s |
+| GNC\_GUIDANCE\_MODE | 2071 | housekeeping | 1 \[Hz\] | 1 |
+| GNC\_MOMENTUM\_01 | 2072 | housekeeping | 1 \[Hz\] | 1 |
+| GNC\_MOMENTUM\_02 | 2073 | housekeeping | 1 \[Hz\] | 1 |
+| GNC\_MOMENTUM\_03 | 2074 | housekeeping | 1 \[Hz\] | 1 |
+
+*Events (the fault-relevant ones are the fault-protection interface)*
+
+| mnemonic | eventId | severity | fdirRelevant | text |
+| --- | --- | --- | --- | --- |
+| GNC\_EVT\_STARTED | 201 | info | false | application started |
+| GNC\_EVT\_STOPPED | 202 | warning | false | application stopped |
+| GNC\_EVT\_CMD\_ACCEPTED | 203 | info | false | command accepted |
+| GNC\_EVT\_CMD\_REJECTED | 204 | warning | false | command rejected |
+| GNC\_EVT\_TABLE\_LOADED | 205 | info | false | parameter table loaded |
+| GNC\_EVT\_TABLE\_INVALID | 206 | fault | true | parameter table failed validation |
+| GNC\_EVT\_WATCHDOG\_MISSED | 207 | fault | true | application missed its watchdog window |
+| GNC\_EVT\_MODE\_CHANGE\_SEEN | 208 | info | false | application applied a mode change |
+| GNC\_EVT\_SLEW\_COMPLETE | 209 | info | false | slew complete within tolerance |
+| GNC\_EVT\_STAR\_TRACKER\_LOST | 210 | fault | true | star tracker lost lock |
+| GNC\_EVT\_IMU\_FAULT | 211 | fault | true | inertial measurement unit fault |
+| GNC\_EVT\_WHEEL\_SATURATION | 212 | warning | false | reaction wheel near saturation |
+| GNC\_EVT\_DESAT\_COMPLETE | 213 | info | false | momentum dump complete |
+| GNC\_EVT\_TCM\_COMPLETE | 214 | info | false | trajectory correction complete |
+| GNC\_EVT\_ESTIMATOR\_DIVERGED | 215 | critical | true | attitude estimator diverged |
+| GNC\_EVT\_EPHEMERIS\_STALE | 216 | warning | false | ephemeris past validity |
+
+*Packets*
+
+| mnemonic | apid | apidClass | rate | lengthOctets | layoutConsistent |
+| --- | --- | --- | --- | --- | --- |
+| GNC\_HK\_01 | 64 | guidance | 1 \[Hz\] | 81 | true |
+| GNC\_ENG\_01 | 65 | guidance | 10 \[Hz\] | 90 | true |
+| GNC\_ENG\_02 | 66 | guidance | 1 \[Hz\] | 92 | true |
+| GNC\_ENG\_03 | 67 | guidance | 1 \[Hz\] | 22 | true |
+
+## Requirements satisfied
+
+*Software requirements satisfied*
+
+| name | satisfies | rows |
+| --- | --- | --- |
+| gnc | gncApplication | 1 |
+
+## Assurance classification
+
+*Classification register row*
+
+| name | level | documentation |
+| --- | --- | --- |
+| gnc | levelA | Guidance, navigation and control: the final targeting burn and relative navigation. |
+
+One volume per application of the Argent flight software, in the order of TethysFlightSoftware::ArgentFlightSoftware. Every table is a query over TethysFlightSoftware, TethysFlightBehaviour, TethysFlightTiming, TethysFlightDictionary, TethysSoftwareRequirements and TethysSoftwareAssurance.

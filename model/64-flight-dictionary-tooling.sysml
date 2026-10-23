@@ -64,7 +64,7 @@ package TethysFlightDictionaryDocuments {
     part def FlightDictionaryDocument :> Document {
         doc /* The Argent flight dictionary: commands, telemetry, events and packets of the
              * twelve applications, as the ground system loads them. */
-        :>> title = "Argent flight dictionary";
+        :>> title default = "Argent flight dictionary";
         part scope : Paragraph {
             :>> text = "Every command, telemetry point, event and packet the Argent flight software and the Meridian ground system agree on, read from TethysFlightDictionary. Opcodes, mnemonics, application ids and event ids are unique; the dictionary requirement in TethysOperations checks it.";
         }

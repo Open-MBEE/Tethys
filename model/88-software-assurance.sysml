@@ -1148,7 +1148,9 @@ package TethysSoftwareAssurance {
         in attribute abortRaisedInsideCorridor : Boolean;
         objective { doc /* An in-corridor solution is aborted before the burn. */
             verify earthImpactExclusion { doc /* Verified by this case. */ }
-            verify impactScreening { doc /* Verified by this case. */ } }
+            verify impactScreening { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::flightDynamicsProducts { doc /* Verified by this case. */ }
+        }
         PassIf(abortRaisedInsideCorridor)
     }
     verification def CaptureAbortTest :> SoftwareVerificationCase {
@@ -1159,7 +1161,22 @@ package TethysSoftwareAssurance {
         objective { doc /* The abort fires and the sequence store holds the six rehearsed sequences. */
             verify approachKeepOut { doc /* Verified by this case. */ }
             verify autonomousSurvival { doc /* Verified by this case. */ }
-            verify sequenceClearance { doc /* Verified by this case. */ } }
+            verify sequenceClearance { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::eventLogging { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::imageIntegrity { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::bootFallback { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::safeModeEntry { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::modeTransitions { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::redundancyManagement { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::heartbeatFailover { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::dataStoreRetention { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::boardSupportWatchdog { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::cdhApplication { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::thermalControlApplication { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::parameterBootUpdateApplication { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::flightDynamicsProducts { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::proximityGoNoGo { doc /* Verified by this case. */ }
+        }
         PassIf(abortIssuedOnBreach and storedSequenceCount >= 6)
     }
     verification def CommandRoutingTest :> SoftwareVerificationCase {
@@ -1168,7 +1185,15 @@ package TethysSoftwareAssurance {
         in attribute measuredFailover : DurationValue;
         objective { doc /* Routing resumes on the redundant computer within the command-latency budget. */
             verify commandLatency { doc /* Verified by this case. */ }
-            verify dictionaryDrivenTelemetry { doc /* Verified by this case. */ } }
+            verify dictionaryDrivenTelemetry { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::commandIngest { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::commandDispatchLatency { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::sequencingEngine { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::schedulerCapacity { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::autonomyApplication { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::commandValidation { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::sequenceClearance { doc /* Verified by this case. */ }
+        }
         PassIf(measuredFailover <= 600 [s])
     }
     verification def ThrustArcControlTest :> SoftwareVerificationCase {
@@ -1179,7 +1204,13 @@ package TethysSoftwareAssurance {
         objective { doc /* The arc continues on the spare string and the relay rule holds. */
             verify sepThrust { doc /* Verified by this case. */ }
             verify thrustRedundancy { doc /* Verified by this case. */ }
-            verify noThrustDuringRelay { doc /* Verified by this case. */ } }
+            verify noThrustDuringRelay { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::hazardousTwoStep { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::sequencingEngine { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::sepControlApplication { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::hazardousApproval { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::sequenceClearance { doc /* Verified by this case. */ }
+        }
         PassIf(stringLossHandled and thrustHeldDuringRelay)
     }
     verification def PowerManagementTest :> SoftwareVerificationCase {
@@ -1188,7 +1219,12 @@ package TethysSoftwareAssurance {
         in attribute loadShedTrippedAtFloor : Boolean;
         objective { doc /* The shed trips at the floor with the array sized for the target distance. */
             verify batteryDepthOfDischarge { doc /* Verified by this case. */ }
-            verify arrayPowerAtTarget { doc /* Verified by this case. */ } }
+            verify arrayPowerAtTarget { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::sequencingEngine { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::powerManagementApplication { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::sequenceClearance { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::limitAlarming { doc /* Verified by this case. */ }
+        }
         PassIf(loadShedTrippedAtFloor)
     }
     verification def ThermalControlTest :> SoftwareVerificationCase {
@@ -1204,7 +1240,16 @@ package TethysSoftwareAssurance {
         in attribute linkHeldThroughPass : Boolean;
         objective { doc /* The link is held through the pass at the planned rate. */
             verify deepSpaceLink { doc /* Verified by this case. */ }
-            verify deepSpaceEirp { doc /* Verified by this case. */ } }
+            verify deepSpaceEirp { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::telemetryRatesByMode { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::timeCorrelation { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::telemetrySampleLatency { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::dataStoreRetention { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::telemetryOutput { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::housekeepingSampling { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::telecomApplication { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::passPlanningVolume { doc /* Verified by this case. */ }
+        }
         PassIf(linkHeldThroughPass)
     }
     verification def InspectorRelayTest :> SoftwareVerificationCase {
@@ -1224,7 +1269,9 @@ package TethysSoftwareAssurance {
         objective { doc /* No fire without the inhibits removed; fire when they are. */
             verify captureEnvelope { doc /* Verified by this case. */ }
             verify captureQualification { doc /* Verified by this case. */ }
-            verify cinchMotorTorque { doc /* Verified by this case. */ } }
+            verify cinchMotorTorque { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::simulatorFidelity { doc /* Verified by this case. */ }
+        }
         PassIf(firedWhenArmed and heldWhenInhibited)
     }
     verification def FaultDetectionTest :> SoftwareVerificationCase {
@@ -1235,7 +1282,21 @@ package TethysSoftwareAssurance {
         objective { doc /* Detection within 0.5 s and the safe configuration reached. */
             verify faultResponse { doc /* Verified by this case. */ }
             verify faultDetectionLatency { doc /* Verified by this case. */ }
-            verify fdirTaskPeriod { doc /* Verified by this case. */ } }
+            verify fdirTaskPeriod { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::eventLogging { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::parameterTables { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::partitionIsolation { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::faultDetectionChain { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::safeConfigurationLatency { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::fdirTaskRate { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::safeModeEntry { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::heartbeatFailover { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::boardSupportWatchdog { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::gncApplication { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::captureControlApplication { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::fdirApplication { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::modeManagementApplication { doc /* Verified by this case. */ }
+        }
         PassIf(measuredDetection <= 0.5 [s] and safeConfigurationReached)
     }
     verification def ModeManagementTest :> SoftwareVerificationCase {
@@ -1243,14 +1304,35 @@ package TethysSoftwareAssurance {
         subject fsw : SoftwareTug;
         in attribute observedFinalMode : String;
         in attribute expectedFinalMode : String;
-        objective { doc /* The final mode of the scenario is the expected one. */ verify autonomousSurvival { doc /* Verified by this case. */ } }
+        objective { doc /* The final mode of the scenario is the expected one. */ verify autonomousSurvival { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::eventLogging { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::imageIntegrity { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::bootFallback { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::safeModeEntry { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::modeTransitions { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::redundancyManagement { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::heartbeatFailover { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::dataStoreRetention { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::boardSupportWatchdog { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::cdhApplication { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::thermalControlApplication { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::parameterBootUpdateApplication { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::flightDynamicsProducts { doc /* Verified by this case. */ }
+        }
         PassIf(observedFinalMode == expectedFinalMode)
     }
     verification def BootAndParameterTest :> SoftwareVerificationCase {
         doc /* Boot from the committed image, parameter table activation and the image update. */
         subject fsw : SoftwareTug;
         in attribute bootedFromCommittedImage : Boolean;
-        objective { doc /* The committed image boots; a corrupt upload falls back. */ verify dictionaryConsistent { doc /* Verified by this case. */ } }
+        objective { doc /* The committed image boots; a corrupt upload falls back. */ verify dictionaryConsistent { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::commandIngest { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::hazardousTwoStep { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::parameterTables { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::telemetryOutput { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::commandValidation { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::telemetryDecommutation { doc /* Verified by this case. */ }
+        }
         PassIf(bootedFromCommittedImage)
     }
     verification def HazardousCommandInhibitTest :> SoftwareVerificationCase {
@@ -1273,7 +1355,8 @@ package TethysSoftwareAssurance {
         objective { doc /* Refusal and the second approval both observed. */
             verify commandValidation { doc /* Verified by this case. */ }
             verify sequenceClearance { doc /* Verified by this case. */ }
-            verify sequenceTurnaround { doc /* Verified by this case. */ } }
+            verify sequenceTurnaround { doc /* Verified by this case. */ }
+        }
         PassIf(sequenceRefusedOnRuleViolation and secondApprovalRequired)
     }
     verification def PassPlanningTest :> SoftwareVerificationCase {
@@ -1282,7 +1365,10 @@ package TethysSoftwareAssurance {
         in attribute plannedPassesFit : Boolean;
         objective { doc /* Every planned pass fits the link. */
             verify plannedPassesFitTheLink { doc /* Verified by this case. */ }
-            verify monitoringAutomation { doc /* Verified by this case. */ } }
+            verify monitoringAutomation { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::limitAlarming { doc /* Verified by this case. */ }
+            verify TethysSoftwareRequirements::trendingAutomation { doc /* Verified by this case. */ }
+        }
         PassIf(plannedPassesFit)
     }
 

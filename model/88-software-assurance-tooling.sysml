@@ -135,7 +135,7 @@ package TethysSoftwareAssuranceTooling {
 
     part def SoftwareVcrmDocument :> Document {
         doc /* The software verification cross-reference matrix rendered from the model. */
-        attribute :>> title = "Argent flight software and Meridian verification cross-reference matrix";
+        attribute :>> title default = "Argent flight software and Meridian verification cross-reference matrix";
         part scope : Paragraph {
             attribute :>> text = "Every software verification case with its level, test bed, as-run verdict and evidence, the system requirements it verifies and the software functions it exercises. Planned cases have not run.";
         }

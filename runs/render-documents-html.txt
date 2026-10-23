@@ -1,4 +1,4 @@
-loaded 62 files:
+loaded 64 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -57,6 +57,8 @@ loaded 62 files:
   model/91-documents.sysml
   model/92-layout.sysml
   model/93-views-tooling.sysml
+  model/94-software-documents-tooling.sysml
+  model/94-software-documents.sysml
   model/95-as-built.sysml
   model/96-imported-data.sysml
   model/97-disposal.sysml
@@ -119,6 +121,8 @@ loaded 62 files:
 ✓ package TethysDocuments
 ✓ package TethysLayout
 ✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
 ✓ package TethysAsBuilt
 ✓ package TethysImportedData
 ✓ package TethysDisposal
@@ -143,14 +147,47 @@ wrote build/runs/documents-html/TethysIcdDocuments-PropellantFeedIcdDocument.htm
 wrote build/runs/documents-html/TethysIcdDocuments-SpaceGroundIcdDocument.html (html, 9859 bytes)
 wrote build/runs/documents-html/TethysIcdDocuments-ThermalIcdDocument.html (html, 4672 bytes)
 wrote build/runs/documents-html/TethysIcdDocuments-TugInspectorIcdDocument.html (html, 4123 bytes)
-wrote build/runs/documents-html/TethysSoftwareAssuranceTooling-SoftwareAssuranceReport.html (html, 29531 bytes)
-wrote build/runs/documents-html/TethysSoftwareAssuranceTooling-SoftwareFmecaDocument.html (html, 30586 bytes)
+wrote build/runs/documents-html/TethysSoftwareAssuranceTooling-SoftwareAssuranceReport.html (html, 29541 bytes)
+wrote build/runs/documents-html/TethysSoftwareAssuranceTooling-SoftwareFmecaDocument.html (html, 30596 bytes)
 wrote build/runs/documents-html/TethysSoftwareAssuranceTooling-SoftwareVcrmDocument.html (html, 109938 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-AnomalyTrackerDesignDescription.html (html, 8636 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-AutonomyDesignDescription.html (html, 111877 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-CaptureControlDesignDescription.html (html, 118557 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-CaptureRigDesignDescription.html (html, 8521 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-CdhDesignDescription.html (html, 123839 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-CommandBuilderDesignDescription.html (html, 12205 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-DataArchiveDesignDescription.html (html, 11348 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-DynamicsSimulatorDesignDescription.html (html, 8576 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-FdirDesignDescription.html (html, 177843 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-FlatsatDesignDescription.html (html, 8606 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-FlightApplicationDesignDescription.html (html, 827 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-FlightDictionaryVolume.html (html, 2673284 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-FlightDynamicsToolDesignDescription.html (html, 8710 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-GncDesignDescription.html (html, 151332 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-GroundComponentDesignDescription.html (html, 794 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-InspectorHandlingDesignDescription.html (html, 90382 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-ModeManagementDesignDescription.html (html, 73437 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-ParameterBootUpdateDesignDescription.html (html, 104921 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-PassPlannerDesignDescription.html (html, 9365 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-PowerManagementDesignDescription.html (html, 232672 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-ProximityPlannerDesignDescription.html (html, 10174 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-SepControlDesignDescription.html (html, 125680 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-SequencerDesignDescription.html (html, 8767 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-SoftwareArchitectureDescription.html (html, 233230 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-SoftwareDocumentIndex.html (html, 16992 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-SoftwareInterfaceControlVolume.html (html, 65881 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-SoftwareOperationsHandbook.html (html, 76676 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-SoftwareRequirementsSpecification.html (html, 181075 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-SoftwareTestPlan.html (html, 208416 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-TelecomDesignDescription.html (html, 94748 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-TelemetryServerDesignDescription.html (html, 11903 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-ThermalControlDesignDescription.html (html, 368998 bytes)
+wrote build/runs/documents-html/TethysSoftwareDocumentsTooling-TrajectoryToolDesignDescription.html (html, 8803 bytes)
 wrote build/runs/documents-html/TethysSoftwareIcdDocuments-BusProtocolIcdDocument.html (html, 12081 bytes)
 wrote build/runs/documents-html/TethysSoftwareIcdDocuments-InspectorRelayProfileIcdDocument.html (html, 7791 bytes)
 wrote build/runs/documents-html/TethysSoftwareIcdDocuments-MessageCatalogueDocument.html (html, 41535 bytes)
 wrote build/runs/documents-html/TethysSoftwareIcdDocuments-RegisterMapIcdDocument.html (html, 22184 bytes)
 wrote build/runs/documents-html/TethysSoftwareIcdDocuments-SpaceLinkProfileIcdDocument.html (html, 39409 bytes)
 wrote build/runs/documents-html/TethysSoftwareRequirementsTooling-SoftwareRequirementsDocument.html (html, 96420 bytes)
-wrote build/runs/documents-html/TethysVerificationTooling-VvReport.html (html, 178346 bytes)
+wrote build/runs/documents-html/TethysVerificationTooling-VvReport.html (html, 178357 bytes)
 wrote build/runs/documents-html/sysml-document.css (css, 4632 bytes)

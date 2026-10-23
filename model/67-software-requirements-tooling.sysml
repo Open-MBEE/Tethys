@@ -138,7 +138,7 @@ package TethysSoftwareRequirementsTooling {
              * derivation sources and satisfiers, and the coverage gates; the satisfaction verdicts are
              * the pinned -satisfy runs, because the verdict query cannot reach objects nested
              * as deep as the flight software's components. */
-        attribute :>> title = "Tethys software requirements";
+        attribute :>> title default = "Tethys software requirements";
         part scope : Paragraph {
             attribute :>> text = "The flight software requirements (TF-) on the Argent Flight Executive, its core services and applications, and the ground software requirements (TM-) on the Meridian Operations Suite; each row derives from the system rows it refines and names the software element that satisfies it; the verdicts of the constraints are the pinned satisfaction runs.";
         }

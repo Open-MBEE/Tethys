@@ -56,6 +56,8 @@
 ✓ package TethysDocuments
 ✓ package TethysLayout
 ✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
 ✓ package TethysAsBuilt
 ✓ package TethysImportedData
 ✓ package TethysDisposal
@@ -343,52 +345,185 @@
 ✓ satisfy latencyBudgetCloses by telemetrySampleBudget holds (on TethysFlightTiming::telemetrySampleBudget ID: 3222)
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy commandValidation by meridianOperationsSuite.moc.commandBuilder holds (on TethysGroundSoftware::meridianOperationsSuite.moc.commandBuilder ID: 67)
+? Verification TethysSoftwareAssurance::commandRoutingIntegration verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingIntegration parameter "measuredFailover" has no argument and no default
+? Verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop parameter "measuredFailover" has no argument and no default
+✓ Verification TethysSoftwareAssurance::commandRoutingModel verdict: pass
+? Verification TethysSoftwareAssurance::bootAndParameterUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::bootAndParameterUnit parameter "bootedFromCommittedImage" has no argument and no default
+? Verification TethysSoftwareAssurance::bootAndParameterHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::bootAndParameterHardwareInTheLoop parameter "bootedFromCommittedImage" has no argument and no default
+✓ Verification TethysSoftwareAssurance::bootAndParameterModel verdict: pass
+✓ Verification TethysSoftwareDocuments::groundReadinessDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy hazardousApproval by meridianOperationsSuite.moc.commandBuilder holds (on TethysGroundSoftware::meridianOperationsSuite.moc.commandBuilder ID: 67)
+? Verification TethysSoftwareAssurance::thrustArcUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::thrustArcUnit parameter "stringLossHandled" has no argument and no default
+? Verification TethysSoftwareAssurance::thrustArcFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::thrustArcFlightSoftwareInTheLoop parameter "stringLossHandled" has no argument and no default
+✓ Verification TethysSoftwareAssurance::thrustArcModel verdict: pass
+✓ Verification TethysSoftwareDocuments::groundReadinessDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy sequenceClearance by meridianOperationsSuite.moc.sequencer holds (on TethysGroundSoftware::meridianOperationsSuite.moc.sequencer ID: 68)
+? Verification TethysSoftwareAssurance::commandRoutingIntegration verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingIntegration parameter "measuredFailover" has no argument and no default
+? Verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop parameter "measuredFailover" has no argument and no default
+✓ Verification TethysSoftwareAssurance::commandRoutingModel verdict: pass
+? Verification TethysSoftwareAssurance::thrustArcUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::thrustArcUnit parameter "stringLossHandled" has no argument and no default
+? Verification TethysSoftwareAssurance::thrustArcFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::thrustArcFlightSoftwareInTheLoop parameter "stringLossHandled" has no argument and no default
+✓ Verification TethysSoftwareAssurance::thrustArcModel verdict: pass
+? Verification TethysSoftwareAssurance::powerManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::powerManagementUnit parameter "loadShedTrippedAtFloor" has no argument and no default
+? Verification TethysSoftwareAssurance::powerManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::powerManagementFlatsat parameter "loadShedTrippedAtFloor" has no argument and no default
+✓ Verification TethysSoftwareDocuments::groundReadinessDemoSoftware verdict: pass
+✓ Verification TethysSoftwareDocuments::groundProceduresDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy telemetryDecommutation by meridianOperationsSuite.moc.telemetryServer holds (on TethysGroundSoftware::meridianOperationsSuite.moc.telemetryServer ID: 71)
+? Verification TethysSoftwareAssurance::bootAndParameterUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::bootAndParameterUnit parameter "bootedFromCommittedImage" has no argument and no default
+? Verification TethysSoftwareAssurance::bootAndParameterHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::bootAndParameterHardwareInTheLoop parameter "bootedFromCommittedImage" has no argument and no default
+✓ Verification TethysSoftwareAssurance::bootAndParameterModel verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy limitAlarming by meridianOperationsSuite.moc.telemetryServer holds (on TethysGroundSoftware::meridianOperationsSuite.moc.telemetryServer ID: 71)
+? Verification TethysSoftwareAssurance::powerManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::powerManagementUnit parameter "loadShedTrippedAtFloor" has no argument and no default
+? Verification TethysSoftwareAssurance::powerManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::powerManagementFlatsat parameter "loadShedTrippedAtFloor" has no argument and no default
+? Verification TethysSoftwareAssurance::passPlanningIntegration verdict: error — unbound parameter: verification TethysSoftwareAssurance::passPlanningIntegration parameter "plannedPassesFit" has no argument and no default
+✓ Verification TethysSoftwareDocuments::groundProceduresDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy trendingAutomation by meridianOperationsSuite.moc.telemetryServer holds (on TethysGroundSoftware::meridianOperationsSuite.moc.telemetryServer ID: 71)
+? Verification TethysSoftwareAssurance::passPlanningIntegration verdict: error — unbound parameter: verification TethysSoftwareAssurance::passPlanningIntegration parameter "plannedPassesFit" has no argument and no default
+✓ Verification TethysSoftwareDocuments::groundReadinessDemoSoftware verdict: pass
+✓ Verification TethysSoftwareDocuments::groundProceduresDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy flightDynamicsProducts by meridianOperationsSuite.fdf.flightDynamicsTool holds (on TethysGroundSoftware::meridianOperationsSuite.fdf.flightDynamicsTool ID: 83)
+? Verification TethysSoftwareAssurance::finalTargetingUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::finalTargetingUnit parameter "abortRaisedInsideCorridor" has no argument and no default
+? Verification TethysSoftwareAssurance::finalTargetingFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::finalTargetingFlightSoftwareInTheLoop parameter "abortRaisedInsideCorridor" has no argument and no default
+✓ Verification TethysSoftwareAssurance::finalTargetingModel verdict: pass
+? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
+? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
+? Verification TethysSoftwareAssurance::modeManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementUnit parameter "observedFinalMode" has no argument and no default
+? Verification TethysSoftwareAssurance::modeManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementFlatsat parameter "observedFinalMode" has no argument and no default
+✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
+✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
+✓ Verification TethysSoftwareDocuments::deflectionAnalysisSoftware verdict: pass
+✓ Verification TethysSoftwareDocuments::groundProceduresDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy passPlanningVolume by meridianOperationsSuite.moc.passPlanner holds (on TethysGroundSoftware::meridianOperationsSuite.moc.passPlanner ID: 73)
+? Verification TethysSoftwareAssurance::spaceLinkUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkUnit parameter "linkHeldThroughPass" has no argument and no default
+? Verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop parameter "linkHeldThroughPass" has no argument and no default
+✓ Verification TethysSoftwareDocuments::linkBudgetTestSoftware verdict: pass
+✓ Verification TethysSoftwareDocuments::groundReadinessDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy archiveRetention by meridianOperationsSuite.sds.dataArchive holds (on TethysGroundSoftware::meridianOperationsSuite.sds.dataArchive ID: 85)
+✓ Verification TethysSoftwareDocuments::groundProceduresDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy anomalyDisposition by meridianOperationsSuite.moc.anomalyTracker holds (on TethysGroundSoftware::meridianOperationsSuite.moc.anomalyTracker ID: 79)
+✓ Verification TethysSoftwareDocuments::groundReadinessDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy proximityGoNoGo by meridianOperationsSuite.moc.proximityPlanner holds (on TethysGroundSoftware::meridianOperationsSuite.moc.proximityPlanner ID: 81)
+? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
+? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
+✓ Verification TethysSoftwareDocuments::contactSpeedTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy simulatorFidelity by meridianOperationsSuite.testBeds.flatsat holds (on TethysGroundSoftware::meridianOperationsSuite.testBeds.flatsat ID: 87)
+? Verification TethysSoftwareAssurance::captureSequenceUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureSequenceUnit parameter "firedWhenArmed" has no argument and no default
+? Verification TethysSoftwareAssurance::captureSequenceFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureSequenceFlightSoftwareInTheLoop parameter "firedWhenArmed" has no argument and no default
+? Verification TethysSoftwareAssurance::captureSequenceHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureSequenceHardwareInTheLoop parameter "firedWhenArmed" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureSequenceModel verdict: pass
+✓ Verification TethysSoftwareDocuments::captureEnvelopeTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy simulatorFidelity by meridianOperationsSuite.testBeds.trajectoryTool holds (on TethysGroundSoftware::meridianOperationsSuite.testBeds.trajectoryTool ID: 90)
+? Verification TethysSoftwareAssurance::captureSequenceUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureSequenceUnit parameter "firedWhenArmed" has no argument and no default
+? Verification TethysSoftwareAssurance::captureSequenceFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureSequenceFlightSoftwareInTheLoop parameter "firedWhenArmed" has no argument and no default
+? Verification TethysSoftwareAssurance::captureSequenceHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureSequenceHardwareInTheLoop parameter "firedWhenArmed" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureSequenceModel verdict: pass
+✓ Verification TethysSoftwareDocuments::captureEnvelopeTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy simulatorFidelity by meridianOperationsSuite.testBeds.dynamicsSimulator holds (on TethysGroundSoftware::meridianOperationsSuite.testBeds.dynamicsSimulator ID: 89)
+? Verification TethysSoftwareAssurance::captureSequenceUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureSequenceUnit parameter "firedWhenArmed" has no argument and no default
+? Verification TethysSoftwareAssurance::captureSequenceFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureSequenceFlightSoftwareInTheLoop parameter "firedWhenArmed" has no argument and no default
+? Verification TethysSoftwareAssurance::captureSequenceHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureSequenceHardwareInTheLoop parameter "firedWhenArmed" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureSequenceModel verdict: pass
+✓ Verification TethysSoftwareDocuments::captureEnvelopeTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy simulatorFidelity by meridianOperationsSuite.testBeds.captureRig holds (on TethysGroundSoftware::meridianOperationsSuite.testBeds.captureRig ID: 88)
+? Verification TethysSoftwareAssurance::captureSequenceUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureSequenceUnit parameter "firedWhenArmed" has no argument and no default
+? Verification TethysSoftwareAssurance::captureSequenceFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureSequenceFlightSoftwareInTheLoop parameter "firedWhenArmed" has no argument and no default
+? Verification TethysSoftwareAssurance::captureSequenceHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureSequenceHardwareInTheLoop parameter "firedWhenArmed" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureSequenceModel verdict: pass
+✓ Verification TethysSoftwareDocuments::captureEnvelopeTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy commandIngest by argentSoftware.cdh.software.commandIngest holds (on TethysFlightSoftware::argentSoftware.cdh.software.commandIngest ID: 3171)
+? Verification TethysSoftwareAssurance::commandRoutingIntegration verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingIntegration parameter "measuredFailover" has no argument and no default
+? Verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop parameter "measuredFailover" has no argument and no default
+✓ Verification TethysSoftwareAssurance::commandRoutingModel verdict: pass
+? Verification TethysSoftwareAssurance::bootAndParameterUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::bootAndParameterUnit parameter "bootedFromCommittedImage" has no argument and no default
+? Verification TethysSoftwareAssurance::bootAndParameterHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::bootAndParameterHardwareInTheLoop parameter "bootedFromCommittedImage" has no argument and no default
+✓ Verification TethysSoftwareAssurance::bootAndParameterModel verdict: pass
+✓ Verification TethysSoftwareDocuments::groundReadinessDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy hazardousTwoStep by argentSoftware.cdh.software.commandIngest holds (on TethysFlightSoftware::argentSoftware.cdh.software.commandIngest ID: 3171)
+? Verification TethysSoftwareAssurance::thrustArcUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::thrustArcUnit parameter "stringLossHandled" has no argument and no default
+? Verification TethysSoftwareAssurance::thrustArcFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::thrustArcFlightSoftwareInTheLoop parameter "stringLossHandled" has no argument and no default
+✓ Verification TethysSoftwareAssurance::thrustArcModel verdict: pass
+? Verification TethysSoftwareAssurance::bootAndParameterUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::bootAndParameterUnit parameter "bootedFromCommittedImage" has no argument and no default
+? Verification TethysSoftwareAssurance::bootAndParameterHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::bootAndParameterHardwareInTheLoop parameter "bootedFromCommittedImage" has no argument and no default
+✓ Verification TethysSoftwareAssurance::bootAndParameterModel verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy telemetryRatesByMode by argentSoftware.cdh.software.telecom holds (on TethysFlightSoftware::argentSoftware.cdh.software.telecom ID: 3181)
+? Verification TethysSoftwareAssurance::spaceLinkUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkUnit parameter "linkHeldThroughPass" has no argument and no default
+? Verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop parameter "linkHeldThroughPass" has no argument and no default
+✓ Verification TethysSoftwareDocuments::linkBudgetTestSoftware verdict: pass
+✓ Verification TethysSoftwareDocuments::groundReadinessDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy eventLogging by argentSoftware.cdh.software.events holds (on TethysFlightSoftware::argentSoftware.cdh.software.events ID: 3168)
+? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
+? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
+? Verification TethysSoftwareAssurance::faultDetectionUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionUnit parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlatsat parameter "measuredDetection" has no argument and no default
+✓ Verification TethysSoftwareAssurance::faultDetectionModel verdict: pass
+? Verification TethysSoftwareAssurance::modeManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementUnit parameter "observedFinalMode" has no argument and no default
+? Verification TethysSoftwareAssurance::modeManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementFlatsat parameter "observedFinalMode" has no argument and no default
+✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
+✓ Verification TethysSoftwareDocuments::faultResponseTestSoftware verdict: pass
+✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy parameterTables by argentSoftware.cdh.software.tables holds (on TethysFlightSoftware::argentSoftware.cdh.software.tables ID: 3169)
+? Verification TethysSoftwareAssurance::faultDetectionUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionUnit parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlatsat parameter "measuredDetection" has no argument and no default
+✓ Verification TethysSoftwareAssurance::faultDetectionModel verdict: pass
+? Verification TethysSoftwareAssurance::bootAndParameterUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::bootAndParameterUnit parameter "bootedFromCommittedImage" has no argument and no default
+? Verification TethysSoftwareAssurance::bootAndParameterHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::bootAndParameterHardwareInTheLoop parameter "bootedFromCommittedImage" has no argument and no default
+✓ Verification TethysSoftwareAssurance::bootAndParameterModel verdict: pass
+✓ Verification TethysSoftwareDocuments::faultResponseTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy timeCorrelation by argentSoftware.cdh.software.time holds (on TethysFlightSoftware::argentSoftware.cdh.software.time ID: 3167)
+? Verification TethysSoftwareAssurance::spaceLinkUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkUnit parameter "linkHeldThroughPass" has no argument and no default
+? Verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop parameter "linkHeldThroughPass" has no argument and no default
+✓ Verification TethysSoftwareDocuments::linkBudgetTestSoftware verdict: pass
+✓ Verification TethysSoftwareDocuments::deflectionAnalysisSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy imageIntegrity by argentSoftware.cdh.software.bootUpdate holds (on TethysFlightSoftware::argentSoftware.cdh.software.bootUpdate ID: 3175)
+? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
+? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
+? Verification TethysSoftwareAssurance::modeManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementUnit parameter "observedFinalMode" has no argument and no default
+? Verification TethysSoftwareAssurance::modeManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementFlatsat parameter "observedFinalMode" has no argument and no default
+✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
+✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy bootFallback by softwareNominalFlight.tug.cdh.software.parameterBootUpdate holds (on TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.parameterBootUpdate ID: 3284)
+? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
+? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
+? Verification TethysSoftwareAssurance::modeManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementUnit parameter "observedFinalMode" has no argument and no default
+? Verification TethysSoftwareAssurance::modeManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementFlatsat parameter "observedFinalMode" has no argument and no default
+✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
+✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy partitionIsolation by argentSoftware.cdh.software.executive holds (on TethysFlightSoftware::argentSoftware.cdh.software.executive ID: 3166)
+? Verification TethysSoftwareAssurance::faultDetectionUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionUnit parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlatsat parameter "measuredDetection" has no argument and no default
+✓ Verification TethysSoftwareAssurance::faultDetectionModel verdict: pass
+✓ Verification TethysSoftwareDocuments::faultResponseTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy processorMemoryReserve by softwareProcessorBudget holds (on TethysFlightTiming::softwareProcessorBudget ID: 3134)
   standing: holds (observed: 1 run under reverse)
@@ -398,60 +533,219 @@
 ✓ satisfy busReserveCoast by softwareBusBudgetCoast holds (on TethysFlightTiming::softwareBusBudgetCoast ID: 3208)
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy faultDetectionChain by argentLatency.faultDetection holds (on TethysFlightTiming::argentLatency.faultDetection ID: 3212)
+? Verification TethysSoftwareAssurance::faultDetectionUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionUnit parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlatsat parameter "measuredDetection" has no argument and no default
+✓ Verification TethysSoftwareAssurance::faultDetectionModel verdict: pass
+✓ Verification TethysSoftwareDocuments::faultResponseTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy safeConfigurationLatency by argentLatency.safeConfiguration holds (on TethysFlightTiming::argentLatency.safeConfiguration ID: 3213)
+? Verification TethysSoftwareAssurance::faultDetectionUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionUnit parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlatsat parameter "measuredDetection" has no argument and no default
+✓ Verification TethysSoftwareAssurance::faultDetectionModel verdict: pass
+✓ Verification TethysSoftwareDocuments::faultResponseTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy fdirTaskRate by argentTiming.platformSchedule.fdirTask holds (on TethysFlightTiming::argentTiming.platformSchedule.fdirTask ID: 3144)
+? Verification TethysSoftwareAssurance::faultDetectionUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionUnit parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlatsat parameter "measuredDetection" has no argument and no default
+✓ Verification TethysSoftwareAssurance::faultDetectionModel verdict: pass
+✓ Verification TethysSoftwareDocuments::faultResponseTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy commandDispatchLatency by argentLatency.commandDispatch holds (on TethysFlightTiming::argentLatency.commandDispatch ID: 3214)
+? Verification TethysSoftwareAssurance::commandRoutingIntegration verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingIntegration parameter "measuredFailover" has no argument and no default
+? Verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop parameter "measuredFailover" has no argument and no default
+✓ Verification TethysSoftwareAssurance::commandRoutingModel verdict: pass
+✓ Verification TethysSoftwareDocuments::groundReadinessDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy telemetrySampleLatency by argentLatency.telemetrySample holds (on TethysFlightTiming::argentLatency.telemetrySample ID: 3215)
+? Verification TethysSoftwareAssurance::spaceLinkUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkUnit parameter "linkHeldThroughPass" has no argument and no default
+? Verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop parameter "linkHeldThroughPass" has no argument and no default
+✓ Verification TethysSoftwareDocuments::linkBudgetTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy safeModeEntry by argentSoftware.cdh.software.modeManagement holds (on TethysFlightSoftware::argentSoftware.cdh.software.modeManagement ID: 3186)
+? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
+? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
+? Verification TethysSoftwareAssurance::faultDetectionUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionUnit parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlatsat parameter "measuredDetection" has no argument and no default
+✓ Verification TethysSoftwareAssurance::faultDetectionModel verdict: pass
+? Verification TethysSoftwareAssurance::modeManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementUnit parameter "observedFinalMode" has no argument and no default
+? Verification TethysSoftwareAssurance::modeManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementFlatsat parameter "observedFinalMode" has no argument and no default
+✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
+✓ Verification TethysSoftwareDocuments::faultResponseTestSoftware verdict: pass
+✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy modeTransitions by argentSoftware.cdh.software.modeManagement holds (on TethysFlightSoftware::argentSoftware.cdh.software.modeManagement ID: 3186)
+? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
+? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
+? Verification TethysSoftwareAssurance::modeManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementUnit parameter "observedFinalMode" has no argument and no default
+? Verification TethysSoftwareAssurance::modeManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementFlatsat parameter "observedFinalMode" has no argument and no default
+✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
+✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy sequencingEngine by argentSoftware.cdh.software.autonomy holds (on TethysFlightSoftware::argentSoftware.cdh.software.autonomy ID: 3184)
+? Verification TethysSoftwareAssurance::commandRoutingIntegration verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingIntegration parameter "measuredFailover" has no argument and no default
+? Verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop parameter "measuredFailover" has no argument and no default
+✓ Verification TethysSoftwareAssurance::commandRoutingModel verdict: pass
+? Verification TethysSoftwareAssurance::thrustArcUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::thrustArcUnit parameter "stringLossHandled" has no argument and no default
+? Verification TethysSoftwareAssurance::thrustArcFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::thrustArcFlightSoftwareInTheLoop parameter "stringLossHandled" has no argument and no default
+✓ Verification TethysSoftwareAssurance::thrustArcModel verdict: pass
+? Verification TethysSoftwareAssurance::powerManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::powerManagementUnit parameter "loadShedTrippedAtFloor" has no argument and no default
+? Verification TethysSoftwareAssurance::powerManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::powerManagementFlatsat parameter "loadShedTrippedAtFloor" has no argument and no default
+✓ Verification TethysSoftwareDocuments::groundReadinessDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy redundancyManagement by argentSoftware.cdh holds (on TethysFlightSoftware::argentSoftware.cdh ID: 15)
+? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
+? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
+? Verification TethysSoftwareAssurance::modeManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementUnit parameter "observedFinalMode" has no argument and no default
+? Verification TethysSoftwareAssurance::modeManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementFlatsat parameter "observedFinalMode" has no argument and no default
+✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
+✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy heartbeatFailover by softwareNominalFlight.tug.cdh holds (on TethysFlightBehaviour::softwareNominalFlight.tug.cdh ID: 3246)
+? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
+? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
+? Verification TethysSoftwareAssurance::faultDetectionUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionUnit parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlatsat parameter "measuredDetection" has no argument and no default
+✓ Verification TethysSoftwareAssurance::faultDetectionModel verdict: pass
+? Verification TethysSoftwareAssurance::modeManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementUnit parameter "observedFinalMode" has no argument and no default
+? Verification TethysSoftwareAssurance::modeManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementFlatsat parameter "observedFinalMode" has no argument and no default
+✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
+✓ Verification TethysSoftwareDocuments::faultResponseTestSoftware verdict: pass
+✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy busMessaging by argentSoftware.cdh.software.softwareBus holds (on TethysFlightSoftware::argentSoftware.cdh.software.softwareBus ID: 3415)
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy dataStoreRetention by argentSoftware.cdh.software.dataStore holds (on TethysFlightSoftware::argentSoftware.cdh.software.dataStore ID: 3170)
+? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
+? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
+? Verification TethysSoftwareAssurance::spaceLinkUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkUnit parameter "linkHeldThroughPass" has no argument and no default
+? Verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop parameter "linkHeldThroughPass" has no argument and no default
+? Verification TethysSoftwareAssurance::modeManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementUnit parameter "observedFinalMode" has no argument and no default
+? Verification TethysSoftwareAssurance::modeManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementFlatsat parameter "observedFinalMode" has no argument and no default
+✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
+✓ Verification TethysSoftwareDocuments::linkBudgetTestSoftware verdict: pass
+✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy telemetryOutput by argentSoftware.cdh.software.telemetryOutput holds (on TethysFlightSoftware::argentSoftware.cdh.software.telemetryOutput ID: 3172)
+? Verification TethysSoftwareAssurance::spaceLinkUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkUnit parameter "linkHeldThroughPass" has no argument and no default
+? Verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop parameter "linkHeldThroughPass" has no argument and no default
+? Verification TethysSoftwareAssurance::bootAndParameterUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::bootAndParameterUnit parameter "bootedFromCommittedImage" has no argument and no default
+? Verification TethysSoftwareAssurance::bootAndParameterHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::bootAndParameterHardwareInTheLoop parameter "bootedFromCommittedImage" has no argument and no default
+✓ Verification TethysSoftwareAssurance::bootAndParameterModel verdict: pass
+✓ Verification TethysSoftwareDocuments::linkBudgetTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy housekeepingSampling by argentSoftware.cdh.software.housekeeping holds (on TethysFlightSoftware::argentSoftware.cdh.software.housekeeping ID: 3173)
+? Verification TethysSoftwareAssurance::spaceLinkUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkUnit parameter "linkHeldThroughPass" has no argument and no default
+? Verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop parameter "linkHeldThroughPass" has no argument and no default
+✓ Verification TethysSoftwareDocuments::linkBudgetTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy schedulerCapacity by argentSoftware.cdh.software.scheduler holds (on TethysFlightSoftware::argentSoftware.cdh.software.scheduler ID: 3174)
+? Verification TethysSoftwareAssurance::commandRoutingIntegration verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingIntegration parameter "measuredFailover" has no argument and no default
+? Verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop parameter "measuredFailover" has no argument and no default
+✓ Verification TethysSoftwareAssurance::commandRoutingModel verdict: pass
+✓ Verification TethysSoftwareDocuments::groundReadinessDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy boardSupportWatchdog by argentSoftware.cdh.software.boardSupport holds (on TethysFlightSoftware::argentSoftware.cdh.software.boardSupport ID: 3165)
+? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
+? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
+? Verification TethysSoftwareAssurance::faultDetectionUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionUnit parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlatsat parameter "measuredDetection" has no argument and no default
+✓ Verification TethysSoftwareAssurance::faultDetectionModel verdict: pass
+? Verification TethysSoftwareAssurance::modeManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementUnit parameter "observedFinalMode" has no argument and no default
+? Verification TethysSoftwareAssurance::modeManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementFlatsat parameter "observedFinalMode" has no argument and no default
+✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
+✓ Verification TethysSoftwareDocuments::faultResponseTestSoftware verdict: pass
+✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy cdhApplication by argentSoftware.cdh.software.cdh holds (on TethysFlightSoftware::argentSoftware.cdh.software.cdh ID: 3176)
+? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
+? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
+? Verification TethysSoftwareAssurance::modeManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementUnit parameter "observedFinalMode" has no argument and no default
+? Verification TethysSoftwareAssurance::modeManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementFlatsat parameter "observedFinalMode" has no argument and no default
+✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
+✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy gncApplication by argentSoftware.cdh.software.gnc holds (on TethysFlightSoftware::argentSoftware.cdh.software.gnc ID: 3177)
+? Verification TethysSoftwareAssurance::faultDetectionUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionUnit parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlatsat parameter "measuredDetection" has no argument and no default
+✓ Verification TethysSoftwareAssurance::faultDetectionModel verdict: pass
+✓ Verification TethysSoftwareDocuments::faultResponseTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy sepControlApplication by argentSoftware.cdh.software.sepControl holds (on TethysFlightSoftware::argentSoftware.cdh.software.sepControl ID: 3178)
+? Verification TethysSoftwareAssurance::thrustArcUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::thrustArcUnit parameter "stringLossHandled" has no argument and no default
+? Verification TethysSoftwareAssurance::thrustArcFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::thrustArcFlightSoftwareInTheLoop parameter "stringLossHandled" has no argument and no default
+✓ Verification TethysSoftwareAssurance::thrustArcModel verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy powerManagementApplication by argentSoftware.cdh.software.powerManagement holds (on TethysFlightSoftware::argentSoftware.cdh.software.powerManagement ID: 3179)
+? Verification TethysSoftwareAssurance::powerManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::powerManagementUnit parameter "loadShedTrippedAtFloor" has no argument and no default
+? Verification TethysSoftwareAssurance::powerManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::powerManagementFlatsat parameter "loadShedTrippedAtFloor" has no argument and no default
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy thermalControlApplication by argentSoftware.cdh.software.thermalControl holds (on TethysFlightSoftware::argentSoftware.cdh.software.thermalControl ID: 3180)
+? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
+? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
+? Verification TethysSoftwareAssurance::modeManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementUnit parameter "observedFinalMode" has no argument and no default
+? Verification TethysSoftwareAssurance::modeManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementFlatsat parameter "observedFinalMode" has no argument and no default
+✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
+✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy telecomApplication by argentSoftware.cdh.software.telecom holds (on TethysFlightSoftware::argentSoftware.cdh.software.telecom ID: 3181)
+? Verification TethysSoftwareAssurance::spaceLinkUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkUnit parameter "linkHeldThroughPass" has no argument and no default
+? Verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::spaceLinkHardwareInTheLoop parameter "linkHeldThroughPass" has no argument and no default
+✓ Verification TethysSoftwareDocuments::linkBudgetTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy inspectorHandlingApplication by argentSoftware.cdh.software.inspectorHandling holds (on TethysFlightSoftware::argentSoftware.cdh.software.inspectorHandling ID: 3182)
+✓ Verification TethysSoftwareDocuments::contactSpeedTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy captureControlApplication by argentSoftware.cdh.software.captureControl holds (on TethysFlightSoftware::argentSoftware.cdh.software.captureControl ID: 3183)
+? Verification TethysSoftwareAssurance::faultDetectionUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionUnit parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlatsat parameter "measuredDetection" has no argument and no default
+✓ Verification TethysSoftwareAssurance::faultDetectionModel verdict: pass
+✓ Verification TethysSoftwareDocuments::contactSpeedTestSoftware verdict: pass
+✓ Verification TethysSoftwareDocuments::faultResponseTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy autonomyApplication by argentSoftware.cdh.software.autonomy holds (on TethysFlightSoftware::argentSoftware.cdh.software.autonomy ID: 3184)
+? Verification TethysSoftwareAssurance::commandRoutingIntegration verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingIntegration parameter "measuredFailover" has no argument and no default
+? Verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop parameter "measuredFailover" has no argument and no default
+✓ Verification TethysSoftwareAssurance::commandRoutingModel verdict: pass
+✓ Verification TethysSoftwareDocuments::groundReadinessDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy fdirApplication by argentSoftware.cdh.software.fdir holds (on TethysFlightSoftware::argentSoftware.cdh.software.fdir ID: 3185)
+? Verification TethysSoftwareAssurance::faultDetectionUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionUnit parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlatsat parameter "measuredDetection" has no argument and no default
+✓ Verification TethysSoftwareAssurance::faultDetectionModel verdict: pass
+✓ Verification TethysSoftwareDocuments::faultResponseTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy modeManagementApplication by argentSoftware.cdh.software.modeManagement holds (on TethysFlightSoftware::argentSoftware.cdh.software.modeManagement ID: 3186)
+? Verification TethysSoftwareAssurance::faultDetectionUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionUnit parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop parameter "measuredDetection" has no argument and no default
+? Verification TethysSoftwareAssurance::faultDetectionFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::faultDetectionFlatsat parameter "measuredDetection" has no argument and no default
+✓ Verification TethysSoftwareAssurance::faultDetectionModel verdict: pass
+✓ Verification TethysSoftwareDocuments::faultResponseTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy parameterBootUpdateApplication by argentSoftware.cdh.software.parameterBootUpdate holds (on TethysFlightSoftware::argentSoftware.cdh.software.parameterBootUpdate ID: 3187)
+? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
+? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
+✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
+? Verification TethysSoftwareAssurance::modeManagementUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementUnit parameter "observedFinalMode" has no argument and no default
+? Verification TethysSoftwareAssurance::modeManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::modeManagementFlatsat parameter "observedFinalMode" has no argument and no default
+✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
+✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy commandValidation by meridianOperationsSuite.moc.commandBuilder holds (on TethysGroundSoftware::meridianOperationsSuite.moc.commandBuilder ID: 67)
 ✓ Verification TethysSoftwareAssurance::hazardousCommandInhibitModel verdict: pass
