@@ -168,10 +168,13 @@ package TethysSequence {
     action def ThrustArc {
         doc /* One thrust arc: the SEP string thrusts for the arc's duration at the given
              * thrust and burns the xenon that duration implies; the result is the xenon left. */
-        in arcDuration : DurationValue;
+        attribute arcDuration : DurationValue default 120.0 [d];
         in xenonPerArc : MassValue;
         in xenonBefore : MassValue;
         out xenonAfter : MassValue = xenonBefore - xenonPerArc;
+        first start;
+        then action thrusting accept after arcDuration;
+        then done;
     }
 
     action def DespinSequence {
@@ -296,7 +299,7 @@ package TethysSequence {
         then while outboundArcs < outboundArcPlan {
             action outboundArc {
                 action thrustArc : ThrustArc {
-                    in arcDuration = 120.0 [d];
+                    :>> arcDuration = 120.0 [d];
                     in xenonPerArc = 215.0 [kg];
                     in xenonBefore = xenonRemaining;
                 }
@@ -336,7 +339,7 @@ package TethysSequence {
         then while returnArcs < returnArcPlan {
             action returnArc {
                 action thrustArc : ThrustArc {
-                    in arcDuration = 250.0 [d];
+                    :>> arcDuration = 250.0 [d];
                     in xenonPerArc = 1250.0 [kg];
                     in xenonBefore = xenonRemaining;
                 }
@@ -364,7 +367,8 @@ package TethysSequence {
         then action utilisation accept after 300.0 [d];
         then action tugSeparation accept after 1.0 [d];
         then action disposalBurn accept after 30.0 [d];
-        then assign outcome := "disposed after " + ToString(outboundArcs + returnArcs) + " thrust arcs";
+        then assign outcome := (if xenonRemaining < xenonReserve ? "xenon reserve breached; " else "")
+            + "disposed after " + ToString(outboundArcs + returnArcs) + " thrust arcs";
         then done;
     }
 

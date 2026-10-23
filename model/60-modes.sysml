@@ -256,9 +256,11 @@ package TethysModes {
             :>> maximumBodyDiameter = 10.0 [m];
         }
         attribute rendezvousRange : LengthValue = 50.0 [km];
-        attribute arraysDeploymentTimeout : DurationValue = 2.0 [h];
+        attribute arraysDeploymentTimeout : DurationValue = 6.0 [h];
         attribute disposalBurnDuration : DurationValue = 30.0 [d];
+        attribute arraysDeployed : Boolean = false;
         attribute captured : Boolean = false;
+        attribute despun : Boolean = false;
         attribute thrustArcsStarted : Natural = 0;
         attribute safeModeEntries : Natural = 0;
         attribute sunPointingCycles : Natural = 0;
@@ -275,8 +277,7 @@ package TethysModes {
                 state onLauncher;
                 state deploying;
                 transition first onLauncher accept SeparationConfirmed via command then deploying;
-                transition first deploying accept ArraysDeployed via command then done;
-                transition first deploying accept after arraysDeploymentTimeout then done;
+                transition first deploying accept ArraysDeployed via command do assign arraysDeployed := true then done;
             }
             state freeFlight {
                 doc /* Modes before capture. Entered at coast; re-entered at coast after a
@@ -304,11 +305,10 @@ package TethysModes {
                 transition first capture accept CaptureComplete via command do assign captured := true then done;
             }
             state stacked {
-                doc /* Modes with the target captured: despin, return thrust and coast, DRO
+                doc /* Modes with the target captured and despun: return thrust and coast, DRO
                      * hold, visiting-vehicle docking, disposal. Re-entered at stackCoast after
                      * a safe-mode recovery. */
-                entry; then despin;
-                state despin;
+                entry; then stackCoast;
                 state stackCoast;
                 state stackThrust {
                     entry assign thrustArcsStarted := thrustArcsStarted + 1;
@@ -316,13 +316,16 @@ package TethysModes {
                 state droHold;
                 state dockedPassive;
                 state disposal;
-                transition first despin accept DespinComplete via command then stackCoast;
                 transition first stackCoast accept ReturnThrustGo via command then stackThrust;
                 transition first stackThrust accept ThrustArcEnd via command then stackCoast;
                 transition first stackCoast accept DroHoldGo via command then droHold;
                 transition first droHold accept DockingGo via command then dockedPassive;
                 transition first dockedPassive accept DisposalGo via command then disposal;
                 transition first disposal accept after disposalBurnDuration then done;
+            }
+            state despin {
+                doc /* The captured stack is despun with the hydrazine thrusters; the wheels
+                     * take over at DespinComplete. A safe-mode recovery returns here until then. */
             }
             state safe {
                 doc /* Sun-pointed, low-gain, thrusters and high-voltage bus off, waiting for
@@ -342,31 +345,39 @@ package TethysModes {
                 entry assign abortEntries := abortEntries + 1;
             }
             transition first launch then freeFlight;
-            transition first freeFlight if captured then stacked;
+            transition first freeFlight if captured then despin;
+            transition first despin accept DespinComplete via command do assign despun := true then stacked;
             transition first stacked then done;
+            transition first launch accept after arraysDeploymentTimeout if not arraysDeployed do assign lastSafeModeReason := "array deployment timeout" then safe;
             transition first launch accept r : SafeModeRequest do assign lastSafeModeReason := r.reason then safe;
             transition first freeFlight accept r : SafeModeRequest do assign lastSafeModeReason := r.reason then safe;
+            transition first despin accept r : SafeModeRequest do assign lastSafeModeReason := r.reason then safe;
             transition first stacked accept r : SafeModeRequest do assign lastSafeModeReason := r.reason then safe;
-            transition first safe accept SafeModeExit via command if not captured then freeFlight;
-            transition first safe accept SafeModeExit via command if captured then stacked;
+            transition first safe accept SafeModeExit via command if not arraysDeployed then launch;
+            transition first safe accept SafeModeExit via command if arraysDeployed and not captured then freeFlight;
+            transition first safe accept SafeModeExit via command if captured and not despun then despin;
+            transition first safe accept SafeModeExit via command if despun then stacked;
             transition first stacked accept a : AbortReturn do assign lastSafeModeReason := a.reason then abortHold;
             transition first abortHold accept SafeModeExit via command then stacked;
         }
 
         state sepString {
             doc /* The solar-electric propulsion string: off until commissioning, standby
-                 * between arcs, thrusting during one and during the approach until the
-                 * rendezvous range update; off in safe mode. */
+                 * between arcs, thrusting during one and during the approach until the range
+                 * update that reaches the rendezvous range, the timed disposal burn at the
+                 * end; off in safe mode and after disposal. */
             entry; then off;
             state off;
             state standby;
             state thrusting;
+            state disposalBurn;
             transition first off accept ArraysDeployed via command then standby;
             transition first standby accept ThrustArcGo via command then thrusting;
             transition first standby accept ProximityOperationsGo via command then thrusting;
-            transition first thrusting accept RangeUpdate via command then standby;
+            transition first thrusting accept u : RangeUpdate via command if u.range <= rendezvousRange then standby;
             transition first standby accept ReturnThrustGo via command then thrusting;
-            transition first standby accept DisposalGo via command then thrusting;
+            transition first standby accept DisposalGo via command then disposalBurn;
+            transition first disposalBurn accept after disposalBurnDuration then off;
             transition first thrusting accept ThrustArcEnd via command then standby;
             transition first standby accept SafeModeRequest then off;
             transition first thrusting accept SafeModeRequest then off;
@@ -412,7 +423,9 @@ package TethysModes {
             state deployed;
             state cinched;
             state released;
-            transition first stowed accept CaptureGo via command then deployed;
+            transition first stowed accept go : CaptureGo via command
+                if go.estimatedMass <= envelope.maximumBodyMass and go.estimatedDiameter <= envelope.maximumBodyDiameter
+                then deployed;
             transition first deployed accept CaptureComplete via command then cinched;
             transition first cinched accept DisposalGo via command then released;
         }
@@ -428,6 +441,7 @@ package TethysModes {
         attribute keepOutRadius : LengthValue = 200.0 [m];
         attribute checkoutDuration : DurationValue = 4.0 [h];
         attribute retreatDuration : DurationValue = 6.0 [h];
+        attribute passDuration : DurationValue = 8.0 [h];
         attribute checkedOut : Boolean = false;
         attribute imagingPasses : Natural = 0;
 
@@ -443,8 +457,8 @@ package TethysModes {
                 entry assign imagingPasses := imagingPasses + 1;
             }
             state retreat;
-            transition first stationKeeping accept InspectorImagingGo via command then imaging;
-            transition first imaging accept after 8.0 [h] then stationKeeping;
+            transition first stationKeeping accept go : InspectorImagingGo via command do assign passDuration := go.passDuration then imaging;
+            transition first imaging accept after passDuration then stationKeeping;
             transition first stationKeeping accept c : CollisionRisk via command if c.predictedMiss < keepOutRadius then retreat;
             transition first imaging accept c : CollisionRisk via command if c.predictedMiss < keepOutRadius then retreat;
             transition first retreat accept after retreatDuration then stationKeeping;

@@ -79,8 +79,8 @@
 [trace] materialize: envelope #8
 [trace]   eval literal 50.0 -> 50.0
 [trace] eval index -> 50.0 [km]
-[trace]   eval literal 2.0 -> 2.0
-[trace] eval index -> 2.0 [h]
+[trace]   eval literal 6.0 -> 6.0
+[trace] eval index -> 6.0 [h]
 [trace]   eval literal 30.0 -> 30.0
 [trace] eval index -> 30.0 [d]
 [trace] eval literal "" -> ""
@@ -94,6 +94,7 @@
 [trace] choice entering TugModes: next thrusters(entry), stowed(entry) (unordered; took thrusters(entry) first; independent)
 [trace] enter: thrusters
 [trace] enter: stowed
+[trace] eval feature arraysDeploymentTimeout -> 6.0 [h]
 [trace] run: performed action campaign of #2
 [trace] step 1: token 1@toSeparation
 [trace]   eval literal 0.05 -> 0.05
@@ -601,7 +602,6 @@ warning: TethysFdir::thrusterFaultScenario: materialization is bounded; not ever
 [trace] run: exhibited state machine modes of #4
 [trace] exit: onLauncher
 [trace] enter: deploying
-[trace] eval feature arraysDeploymentTimeout -> 2.0 [h]
 [trace] transition: onLauncher -> deploying (event: accept SeparationConfirmed)
 [trace] run: performed action campaign of #2
 [trace] step 4: token 1@deployment
@@ -613,6 +613,8 @@ warning: TethysFdir::thrusterFaultScenario: materialization is bounded; not ever
 [trace] run: exhibited state machine modes of #4
 [trace] choice on accept ArraysDeployed: next deploying(exit), off(exit), lowGain(exit), thrusters(exit) (unordered; took deploying(exit) first; independent)
 [trace] exit: deploying
+[trace] stmt assign arraysDeployed
+[trace]   eval literal true -> true
 [trace] enter: done
 [trace] transition: deploying -> done (event: accept ArraysDeployed)
 [trace] choice on accept ArraysDeployed: next off(exit), lowGain(exit), thrusters(exit) (unordered; took off(exit) first; independent)
@@ -643,7 +645,7 @@ warning: TethysFdir::thrusterFaultScenario: materialization is bounded; not ever
 [trace] step 8: token 1@run1
 [trace]   eval literal 5.0 -> 5.0
 [trace] eval index -> 5.0 [d]
-[trace] choice at t=440640.0: due state machine FdirSupervisor of object #4, state machine TugModes of object #4 (unordered; ran state machine TugModes of object #4 first; order-dependent: abortEntries, captured, flameoutRetries, healthyThrusters, lastEarthClosestApproach, lastImpactProbability, lastSafeModeReason, ppuTrips, safeModeEntries, safeModeRequests, thrustArcsStarted)
+[trace] choice at t=440640.0: due state machine FdirSupervisor of object #4, state machine TugModes of object #4 (unordered; ran state machine TugModes of object #4 first; order-dependent: abortEntries, arraysDeployed, captured, despun, flameoutRetries, healthyThrusters, lastEarthClosestApproach, lastImpactProbability, lastSafeModeReason, ppuTrips, safeModeEntries, safeModeRequests, thrustArcsStarted)
 [trace] run: exhibited state machine modes of #4
 [trace] choice on accept ThrustArcGo: next coast(exit), standby(exit) (unordered; took coast(exit) first; independent)
 [trace] exit: coast

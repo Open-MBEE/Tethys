@@ -55,11 +55,11 @@ warning: TethysModes::nominalFlight: materialization is bounded; not every featu
 ✓ Debugging state machine "modes" exhibited by object #4 of "TethysModes::nominalFlight.tug"
   Current state: onLauncher | off | lowGain | thrusters | stowed
   Time: 0.0
-  Events: 0
-✓ Advanced to 129600000.0 (29 event(s) processed)
-  Current state: done | thrusting | highGain | wheels | released
+  Events: 1
+✓ Advanced to 129600000.0 (30 event(s) processed)
+  Current state: done | off | highGain | wheels | released
   Last event at: 100491840.0
   Remaining events: 0
-  22 choice points (19 independent); %trace on to see them
+  23 choice points (19 independent); %trace on to see them
   Action steps taken: 40
   standing: value (observed: 1 run under reverse)

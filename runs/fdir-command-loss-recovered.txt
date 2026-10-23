@@ -55,7 +55,7 @@ warning: TethysFdir::commandLossScenario: materialization is bounded; not every 
 ✓ Debugging state machine "modes" exhibited by object #4 of "TethysFdir::commandLossScenario.tug"
   Current state: onLauncher | off | lowGain | thrusters | stowed
   Time: 0.0
-  Events: 0
+  Events: 1
 ✓ Advanced to 2160000.0 (9 event(s) processed)
   Current state: coast | standby | highGain | wheels | stowed
   Last event at: 2073600.0
