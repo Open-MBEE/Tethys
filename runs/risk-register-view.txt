@@ -1,4 +1,4 @@
-loaded 56 files:
+loaded 57 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -35,6 +35,7 @@ loaded 56 files:
   model/65-flight-behaviour.sysml
   model/68-software-icds-tooling.sysml
   model/68-software-icds.sysml
+  model/69-ground-software.sysml
   model/70-analyses.sysml
   model/71-trades.sysml
   model/72-montecarlo.sysml
@@ -91,6 +92,7 @@ loaded 56 files:
 ✓ package TethysFlightBehaviour
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
 ✓ package TethysAnalyses
 ✓ package TethysTrades
 ✓ package TethysMonteCarlo

@@ -374,6 +374,7 @@ package TethysOperations {
         attribute passDuration : DurationValue;
         attribute band : RfBand;
         attribute maximumElevation : AngularMeasureValue;
+        ref producedBy : GroundSoftwareComponent[0..1];
     }
 
     action def DownlinkActivity {
@@ -393,7 +394,10 @@ package TethysOperations {
 
     occurrence def DailyPassPlan {
         doc /* One day of the characterisation phase: three passes, one per station, 8 h each
-             * so the tug is tracked continuously, with the downlinks and tracking they carry. */
+             * so the tug is tracked continuously, with the downlinks and tracking they carry.
+             * A plan names the ground software component that produced it (the pass planner
+             * of TethysGroundSoftware); the baseline plan below is hand-built. */
+        ref producedBy : GroundSoftwareComponent[0..1];
         occurrence calderaPass : StationPass {
             ref :>> station = meridian.caldera;
             attribute :>> startTime = 0.0 [s];

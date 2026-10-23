@@ -277,8 +277,23 @@ Rows from the software scope review (`SW-###`), covered package by package in
 | SW-041 CCSDS Space Packet + MLS-2 link profile | WP-SW-6 | sat |
 | SW-042 software ICDs per interface (flight–ground, flight–Wren, app–app, app–RIU register maps) | WP-SW-6 | sat |
 | SW-064 flight-software interfaces, packet standard, time correlation, dictionary versioning | WP-SW-6 (WP-SW-2 rebinds the packet names) | sat |
+| SW-050 command generation from the dictionary, two-person rule | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat (finding F-SW701) |
+| SW-051 command validation against flight rules and mode | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-052 sequencing: checker, uplink product | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat (finding F-SW703) |
+| SW-053 telemetry decommutation by dictionary, EU conversion | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-054 ground alarms and limit monitoring | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-055 trending and consumables | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-056 flight dynamics: OD, ephemerides, manoeuvre design | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-057 pass planning and scheduling | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-058 link budget in operations, rate selection | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat (finding F-SW702) |
+| SW-059 data archive and distribution | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-060 anomaly response lifecycle and authority | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-061 proximity-operations and capture planning tools | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-062 simulators and test beds typing the `TestBed` parts | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-065 interfaces to ground elements (station↔MOC, MOC↔FDF, SDS↔archive) | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-067 operations roles mapped to software functions | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
 | SW-189 four-level allocation chain, specialised end redefinitions | WP-SW-6 probe | sat (finding F-SW602) |
 | SW-193 interfaces with ≥ 3 ends | WP-SW-6 probe and in-model topics | sat (finding F-SW601) |
 | SW-247 TI-02x reservation and `IcdRegister` software rows | WP-SW-6 | sat |
 | SW-254 house rules: every application allocated | WP-SW-1 (WP-SW-2 and WP-SW-5 add theirs) | sat for WP-SW-1 and WP-SW-2 |
-| SW-255 coverage and findings files | each software package | sat for WP-SW-1, WP-SW-2, WP-SW-6 |
+| SW-255 coverage and findings files | each software package | sat for WP-SW-1, WP-SW-2, WP-SW-6, WP-SW-7 |
