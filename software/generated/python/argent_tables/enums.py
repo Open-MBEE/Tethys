@@ -4,6 +4,7 @@
 # Model files: 64 files under model/ (81-physics.kerml … 99-house-rules.sysml)
 # Source elements:
 #   TethysTugStructure::TugMode
+#   TethysModes::InspectorMode
 #   TethysOperations::ApidClass
 #   TethysFdir::FdirLevel
 #   TethysFdir::FaultResponse
@@ -18,7 +19,6 @@
 #   TethysFlightBehaviour::ImageSlot
 #   TethysSoftwareIcds::BusErrorResponse
 #   TethysSoftwareIcds::RegisterAccess
-#   TethysModes::InspectorModes (leaf states)
 #   TethysFlightDictionary::Opcode
 #   TethysFlightDictionary::EventDefinition::eventId
 #   TethysFlightDictionary::ParameterRow::parameterId
@@ -45,6 +45,16 @@ class TugMode(IntEnum):
     DISPOSAL = 13
     SAFE = 14
     ABORT_HOLD = 15
+
+
+class InspectorMode(IntEnum):
+    STOWED = 0
+    CHECKOUT = 1
+    STATION_KEEPING = 2
+    IMAGING = 3
+    RETREAT = 4
+    SAFE = 5
+    RETIRED = 6
 
 
 class ApidClass(IntEnum):
@@ -144,16 +154,6 @@ class RegisterAccess(IntEnum):
     READ_ONLY = 0
     READ_WRITE = 1
     WRITE_ONLY = 2
-
-
-class InspectorMode(IntEnum):
-    STOWED = 0
-    CHECKOUT = 1
-    STATION_KEEPING = 2
-    IMAGING = 3
-    RETREAT = 4
-    SAFE = 5
-    RETIRED = 6
 
 
 class Opcode(IntEnum):

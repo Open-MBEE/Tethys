@@ -4,6 +4,7 @@
 // Model files: 64 files under model/ (81-physics.kerml … 99-house-rules.sysml)
 // Source elements:
 //   TethysTugStructure::TugMode
+//   TethysModes::InspectorMode
 //   TethysOperations::ApidClass
 //   TethysFdir::FdirLevel
 //   TethysFdir::FaultResponse
@@ -18,7 +19,6 @@
 //   TethysFlightBehaviour::ImageSlot
 //   TethysSoftwareIcds::BusErrorResponse
 //   TethysSoftwareIcds::RegisterAccess
-//   TethysModes::InspectorModes (leaf states)
 //   TethysFlightDictionary::Opcode
 //   TethysFlightDictionary::EventDefinition::eventId
 //   TethysFlightDictionary::ParameterRow::parameterId
@@ -59,6 +59,23 @@ const (
 const TugModeCount = 16
 
 var TugModeNames = [TugModeCount]string{"launch", "earlyOperations", "coast", "thrust", "approach", "proximityOperations", "retreat", "capture", "despin", "stackCoast", "stackThrust", "droHold", "dockedPassive", "disposal", "safe", "abortHold"}
+
+// InspectorMode is TethysModes::InspectorMode.
+type InspectorMode int
+
+const (
+	InspectorModeStowed         InspectorMode = 0
+	InspectorModeCheckout       InspectorMode = 1
+	InspectorModeStationKeeping InspectorMode = 2
+	InspectorModeImaging        InspectorMode = 3
+	InspectorModeRetreat        InspectorMode = 4
+	InspectorModeSafe           InspectorMode = 5
+	InspectorModeRetired        InspectorMode = 6
+)
+
+const InspectorModeCount = 7
+
+var InspectorModeNames = [InspectorModeCount]string{"stowed", "checkout", "stationKeeping", "imaging", "retreat", "safe", "retired"}
 
 // ApidClass is TethysOperations::ApidClass.
 type ApidClass int
@@ -256,23 +273,6 @@ const (
 const RegisterAccessCount = 3
 
 var RegisterAccessNames = [RegisterAccessCount]string{"readOnly", "readWrite", "writeOnly"}
-
-// InspectorMode is TethysModes::InspectorModes (leaf states).
-type InspectorMode int
-
-const (
-	InspectorModeStowed         InspectorMode = 0
-	InspectorModeCheckout       InspectorMode = 1
-	InspectorModeStationKeeping InspectorMode = 2
-	InspectorModeImaging        InspectorMode = 3
-	InspectorModeRetreat        InspectorMode = 4
-	InspectorModeSafe           InspectorMode = 5
-	InspectorModeRetired        InspectorMode = 6
-)
-
-const InspectorModeCount = 7
-
-var InspectorModeNames = [InspectorModeCount]string{"stowed", "checkout", "stationKeeping", "imaging", "retreat", "safe", "retired"}
 
 // Opcode is TethysFlightDictionary::Opcode.
 type Opcode int

@@ -86,9 +86,14 @@ reason given and can be changed in the emitter alone.
   is what the flight software implements as a predicate or action. Transitions reference them by index.
 - The `done` target of a completion transition is `ARGENT_STATE_DONE` (-2); no parent is
   `ARGENT_STATE_NONE` (-1).
-- A telemetry point's sample rate per mode is not a 961 × 16 matrix: housekeeping points are sampled
-  at the mode's `housekeepingPeriod` from the MLS-2 rate set, every other kind at its nominal `rate`
-  (`argent_tables.telemetry.sample_rate_hz` is the reference implementation).
+- A telemetry point's sample rate per mode is not stored as a 961 × 16 matrix: housekeeping points
+  are sampled at the mode's `housekeepingPeriod` from the MLS-2 rate set, every other kind at its
+  nominal `rate` (`argent_tables.telemetry.sample_rate_hz` is the reference implementation). The
+  full 961 × 16 matrix is recoverable from `argent_mode_rate_sets[]` and the per-point kind and
+  rate, so nothing the model states about per-mode sampling is lost by the compact form.
+- Every enumeration is a declared `enum def` of the model (`InspectorMode` is
+  `TethysModes::InspectorMode`, one literal per leaf state of `InspectorModes`); the generator
+  never synthesises a vocabulary the model does not declare.
 - Reals are `double`, counts `uint16_t`, flags `uint8_t`; strings are `const char *` literals.
 
 ## How stage-2 packages consume the tables
