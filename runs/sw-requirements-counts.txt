@@ -71,7 +71,7 @@ warning: TethysGroundSoftware::meridianOperationsSuite: materialization is bound
 ✓ TethysGroundSoftware::meridianOperationsSuite.componentCount
   = 12
 ✓ TethysFlightSoftware::argentSoftware.cdh.software.fdir.rate
-  = 1.0 [Hz]
+  = 16.0 [Hz]
 ✓ TethysFlightTiming::argentTiming.platformSchedule.fdirTask.period
   = 0.0625 [s]
 ✓ TethysFlightTiming::softwareBusBudget.slotsUsed

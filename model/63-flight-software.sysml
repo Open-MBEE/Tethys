@@ -307,7 +307,7 @@ package TethysFlightSoftware {
         attribute :>> dataSize = 12.0e6 [B];
         attribute :>> processorLoadMips = 90.0;
         attribute :>> criticality = SoftwareCriticality::safetyCritical;
-        attribute :>> rate = 10.0 [Hz];
+        attribute :>> rate = 16.0 [Hz];
         attribute :>> priority = 3;
         port sensorsAndActuators : DataBusPort;
     }
@@ -357,7 +357,7 @@ package TethysFlightSoftware {
              * inhibit chain. */
         attribute :>> processorLoadMips = 30.0;
         attribute :>> criticality = SoftwareCriticality::safetyCritical;
-        attribute :>> rate = 10.0 [Hz];
+        attribute :>> rate = 16.0 [Hz];
         attribute :>> priority = 7;
         attribute :>> activeModes = (TugMode::proximityOperations, TugMode::capture, TugMode::despin);
         ref part inhibitChain : InhibitChain;
@@ -380,6 +380,7 @@ package TethysFlightSoftware {
         attribute :>> processorLoadMips = 20.0;
         attribute :>> criticality = SoftwareCriticality::safetyCritical;
         attribute :>> priority = 1;
+        attribute :>> rate = 16.0 [Hz];
         attribute level : FdirLevel = FdirLevel::system;
         attribute responses : FaultResponse[*] = (FaultResponse::retry, FaultResponse::switchover,
             FaultResponse::loadShed, FaultResponse::safeMode, FaultResponse::abortReturn);

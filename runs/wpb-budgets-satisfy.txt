@@ -386,9 +386,8 @@
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy autonomyApplication by argentSoftware.cdh.software.autonomy holds (on TethysFlightSoftware::argentSoftware.cdh.software.autonomy ID: 3150)
   standing: holds (observed: 1 run under reverse)
-✗ satisfy fdirApplication by argentSoftware.cdh.software.fdir fails (on TethysFlightSoftware::argentSoftware.cdh.software.fdir ID: 3151)
-  Required condition evaluated to false: size(app.activeModes) == size(allFlightModes) and app.level == FdirLevel::system and app.rate >= 1.0 / fdirTaskPeriod.taskPeriod
-  standing: violated (witnessed: 1 run under reverse)
+✓ satisfy fdirApplication by argentSoftware.cdh.software.fdir holds (on TethysFlightSoftware::argentSoftware.cdh.software.fdir ID: 3151)
+  standing: holds (observed: 1 run under reverse)
 ✓ satisfy modeManagementApplication by argentSoftware.cdh.software.modeManagement holds (on TethysFlightSoftware::argentSoftware.cdh.software.modeManagement ID: 3152)
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy parameterBootUpdateApplication by argentSoftware.cdh.software.parameterBootUpdate holds (on TethysFlightSoftware::argentSoftware.cdh.software.parameterBootUpdate ID: 3153)
