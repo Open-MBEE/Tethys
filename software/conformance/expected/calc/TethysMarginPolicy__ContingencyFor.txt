@@ -1,0 +1,2 @@
+calc TethysMarginPolicy::ContingencyFor(maturity, policy) kind=real tol=1e-09 relative
+  not-driveable: policy is a MarginPolicyRow record; the policy table is exercised by the wpb-margin-policy run

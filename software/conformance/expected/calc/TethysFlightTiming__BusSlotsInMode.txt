@@ -1,0 +1,2 @@
+calc TethysFlightTiming::BusSlotsInMode(streams, mode) kind=real tol=1e-09 relative
+  not-driveable: streams is a sequence of BusSlotAssignment parts; compared per mode as argentSoftwareBudgets.busSlotsByMode below

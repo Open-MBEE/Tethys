@@ -1,0 +1,2 @@
+calc TethysFlightTiming::TaskDemandInFrame(task, frameIndex) kind=real tol=1e-09 relative
+  not-driveable: task is a ScheduledTask part; the sw-timing-budgets run covers the schedule

@@ -38,6 +38,7 @@ class Step:
 @dataclass
 class Measurements:
     steps: list = field(default_factory=list)
+    started: float = field(default_factory=time.monotonic)
 
     def measure(self, name: str):
         return _Timer(self, name)
@@ -46,7 +47,8 @@ class Measurements:
         lines = [f"{'step':40} {'wall s':>8} {'children peak RSS':>18} {'sysml-grpc peak RSS':>20} {'output':>10}"]
         for s in self.steps:
             lines.append(f"{s.name:40} {s.seconds:8.2f} {s.children_peak_rss_kb / 1024:15.0f} MB {s.grpc_peak_rss_kb / 1024:17.0f} MB {s.output_bytes:10d}")
-        lines.append(f"{'total':40} {sum(s.seconds for s in self.steps):8.2f}")
+        lines.append(f"{'sum of steps (parallel steps overlap)':40} {sum(s.seconds for s in self.steps):8.2f}")
+        lines.append(f"{'elapsed wall':40} {time.monotonic() - self.started:8.2f}")
         return "\n".join(lines) + "\n"
 
 

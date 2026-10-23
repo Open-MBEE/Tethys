@@ -13,7 +13,7 @@ import sys
 from . import EXPECTED, OUT
 from .measure import Measurements
 
-TIERS = ("trace",)
+TIERS = ("trace", "calc")
 
 
 def compare_tree(tier: str, write: bool) -> list[str]:
@@ -55,6 +55,10 @@ def main(argv=None) -> int:
             from . import trace_check
             print(trace_check.run_all(bridge, m), end="")
             problems += compare_tree("trace", opts.write_expected)
+        if "calc" in tiers:
+            from . import calc_check
+            print(calc_check.run_all(bridge, m), end="")
+            problems += compare_tree("calc", opts.write_expected)
     finally:
         bridge.close()
     report = m.report()

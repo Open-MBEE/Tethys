@@ -1,0 +1,6 @@
+calc TethysSafety::EnvelopeMargin(maximumBodyDiameterM, targetDiameterM) kind=real tol=1e-09 relative
+  grid: envelope 12 m vs the 6.8 m nominal target, the edge, empty and over
+  (maximumBodyDiameterM=12.0, targetDiameterM=6.8) model=0.43333333333333335 c=0.43333333333333335 go=0.43333333333333335
+  (maximumBodyDiameterM=12.0, targetDiameterM=12.0) model=0.0 c=0.0 go=0.0
+  (maximumBodyDiameterM=12.0, targetDiameterM=0.0) model=1.0 c=1.0 go=1.0
+  (maximumBodyDiameterM=10.0, targetDiameterM=11.0) model=-0.1 c=-0.1 go=-0.1

@@ -1,0 +1,2 @@
+calc TethysBudgets::SetReliability(failureRates, required, duration) kind=real tol=1e-09 relative
+  not-driveable: failureRates is a sequence
