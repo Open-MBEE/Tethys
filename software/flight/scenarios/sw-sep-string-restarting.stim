@@ -1,0 +1,16 @@
+# derived from runs/sw-sep-string-restarting.txt and the TethysFlightBehaviour::softwareThrusterFault scenario; horizon 876960 s
+t=4320 item SeparationConfirmed 
+t=8640 item ArraysDeployed 
+t=440640 item GroundContact 
+t=440640 item ThrustArcGo 200
+t=872640 item GroundContact 
+t=872640 item ThrusterFlameout 2
+t=1.30464e+06 item GroundContact 
+t=1.30464e+06 item ThrusterFlameout 2
+t=1.73664e+06 item GroundContact 
+t=1.73664e+06 item ThrusterFlameout 2
+t=2.16864e+06 item GroundContact 
+t=2.16864e+06 item PpuTrip 1
+t=2.60064e+06 item GroundContact 
+t=2.60064e+06 item ThrusterFlameout 3
+t=876960 expect SepStringController=restarting

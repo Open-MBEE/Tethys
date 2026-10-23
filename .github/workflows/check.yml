@@ -47,3 +47,12 @@ jobs:
         run: make tools
       - name: Ground software — pytest for meridian over the pinned model service, go vet/gofmt/test
         run: make software-ground-check
+
+  software-flight-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Build the Argent flight software (strict and sanitised), run its unit tests, scenarios and pinned-run comparisons
+        run: make software-flight-check

@@ -116,3 +116,12 @@ reason given and can be changed in the emitter alone.
   `sysml-grpc` built from the same checkout, never re-implemented. Gate: `make software-ground-check`.
 - Regeneration after a model change: `make software-generate`, review the diff of
   `software/generated/`, commit the generator change and the tables together; CI fails on drift.
+- Flight software (`software/flight/`, C11 host build): the Argent Flight Executive and its twelve
+  applications run on the tables alone — `argent_schedule.h` drives the Kestrel cyclic executive and
+  the AABP-1 slot accounting, `argent_commands.h`/`argent_telemetry.h`/`argent_packets.h`/
+  `argent_events.h`/`argent_parameters.h` drive the services, and one table-driven runner walks every
+  `argent_*_states[]`/`argent_*_transitions[]` with the guards and effects bound by named-expression id.
+  `make software-flight-check` (`software/flight/flight.mk`, CI job `software-flight-check`) builds
+  strict and sanitised, runs the unit tests, the banned-construct scan, the host scenarios derived from
+  the pinned `runs/sw-*.txt` and reports sizes against the model budgets; see `software/flight/README.md`
+  for the trace contract.

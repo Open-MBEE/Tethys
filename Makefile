@@ -87,3 +87,4 @@ software-check: $(SOFTWARE_PY) software-selftest
 	$(SOFTWARE_PY) -m pytest -q software/tests
 
 include software/ground/ground.mk
+include software/flight/flight.mk

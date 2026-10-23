@@ -1,0 +1,6 @@
+# derived from runs/sw-failover.txt and the TethysFlightBehaviour::failoverScenario scenario; horizon 600 s
+t=30 item Heartbeat 1
+t=60 item Heartbeat 1
+t=90 item ProcessorReset 
+t=150 item Heartbeat 2
+t=600 expect RedundancyManager=lastComputer

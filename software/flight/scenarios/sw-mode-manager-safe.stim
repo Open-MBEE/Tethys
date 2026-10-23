@@ -1,0 +1,8 @@
+# derived from runs/sw-mode-manager-safe.txt and the TethysFlightBehaviour::softwareCommandLoss scenario; horizon 1555200 s
+t=4320 item SeparationConfirmed 
+t=8640 item ArraysDeployed 
+t=432000 item GroundContact 
+t=864000 item GroundContact 
+t=1.9872e+06 item GroundContact 
+t=2.0736e+06 item SafeModeExit 
+t=1555200 expect TugModes=safe | off | lowGain | thrusters | stowed

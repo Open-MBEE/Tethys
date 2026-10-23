@@ -1,0 +1,6 @@
+# derived from runs/sw-capture-controller.txt and the TethysFlightBehaviour::captureNominal scenario; horizon 20000 s
+t=60 item CaptureArm 
+t=120 item GroundEnable 
+t=180 item CaptureGo 6 400000
+t=3780 item ContactDetected 1200
+t=20000 expect CaptureController=captured
