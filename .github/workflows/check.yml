@@ -45,5 +45,5 @@ jobs:
       - run: sudo apt-get install -y --no-install-recommends graphviz z3
       - name: Build OpenSysML at the pinned commit and fetch the pinned pilot validators
         run: make tools
-      - name: Ground software: pytest for meridian over the pinned model service, go vet/gofmt/test
+      - name: Ground software — pytest for meridian over the pinned model service, go vet/gofmt/test
         run: make software-ground-check
