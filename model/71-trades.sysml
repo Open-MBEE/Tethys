@@ -45,18 +45,20 @@ package TethysTrades {
     calc def PowerAvailableToSep {
         doc /* Electric power the propulsion system can draw at the far end of the heliocentric
              * range: the array's 1 AU power scaled by the solar flux ratio at the target's
-             * aphelion, less the housekeeping load. */
+             * aphelion, less the housekeeping load, and no more than the SEP's maximum power —
+             * a wing beyond what the power processing accepts buys mass and cost, not thrust. */
         in powerAtOneAuW : Real;
         in housekeepingW : Real;
-        return sepPowerW : Real =
-            powerAtOneAuW * SolarFlux(amaranth.orbit.aphelionAu) / SolarFlux(1.0) - housekeepingW;
+        in maximumSepPowerW : Real;
+        return sepPowerW : Real = RealFunctions::min(
+            powerAtOneAuW * SolarFlux(amaranth.orbit.aphelionAu) / SolarFlux(1.0) - housekeepingW, maximumSepPowerW);
     }
 
     analysis def ArrayPowerTrade :> TradeStudy {
         doc /* Trip time against array mass and cost: each option is scored by the days of
              * thrusting the mission's xenon takes at the power that option gives the thrusters at
-             * aphelion, plus a penalty in days per kilogram of wing and per cost unit; the least
-             * score wins. */
+             * aphelion (capped at the SEP's maximum power), plus a penalty in days per kilogram
+             * of wing and per cost unit; the least score wins. */
         subject :>> studyAlternatives : ArrayOption[1..*];
         in attribute xenonToProcessKg : Real default = 6300.0;
         in attribute housekeepingW : Real default = 2000.0;
@@ -67,7 +69,7 @@ package TethysTrades {
         }
         calc :>> evaluationFunction {
             in part option :>> alternative : ArrayOption;
-            attribute sepPowerW : Real = PowerAvailableToSep(option.powerAtOneAu / 1 [W], housekeepingW);
+            attribute sepPowerW : Real = PowerAvailableToSep(option.powerAtOneAu / 1 [W], housekeepingW, argent.sep.maximumPower / 1 [W]);
             attribute thrustN : Real = SepThrust(sepPowerW, argent.sep.specificImpulse / 1 [s], 0.65);
             attribute thrustDays : Real = ThrustDays(xenonToProcessKg, MassFlowRate(thrustN, argent.sep.specificImpulse / 1 [s]));
             return :>> result : Real = thrustDays

@@ -132,13 +132,16 @@ runt tooling-montecarlo $SYSML -analysis TethysAnalysesTooling::returnOverTarget
 runt tooling-montecarlo-continuous $SYSML -analysis TethysAnalysesTooling::returnOverContinuousMass -runs 200 -seed 7 $MODEL
 runt tooling-montecarlo-min $SYSML -analysis TethysAnalysesTooling::returnOverContinuousMass -draws min -runs 1 $MODEL
 runt tooling-montecarlo-max $SYSML -analysis TethysAnalysesTooling::returnOverContinuousMass -draws max -runs 1 $MODEL
-run tooling-dynamics $SYSML -action TethysAnalysesTooling::droRevolutionRk4 -action TethysAnalysesTooling::firstThrustArcRk4 $MODEL
+run tooling-dynamics-dro $SYSML -action TethysAnalysesTooling::droRevolutionRk4 $MODEL
+run tooling-dynamics-thrust-arc $SYSML -action TethysAnalysesTooling::firstThrustArcRk4 $MODEL
 run probe-F-F01 $SYSML -action TethysDynamicsIntegratorProbe::droRevolutionRk4 $MODEL model/probes/F-F01-state-space-integrator.sysml
 run probe-F-F02 $SYSML -analysis TethysVariantSubjectProbe::viaVariant -analysis TethysVariantSubjectProbe::viaConfiguration -analysis TethysVariantSubjectProbe::viaPlainPart $MODEL model/probes/F-F02-variant-as-subject.sysml
 run probe-F-F03 $SYSML -analysis TethysMetadataInBodyProbe::inline -analysis TethysMetadataInBodyProbe::outside $MODEL model/probes/F-F03-metadata-in-analysis-body.sysml
 run probe-F-F05 $SYSML -action NestedStateSpaceProbe::fall -analysis NestedStateSpaceProbe::drop model/probes/F-F05-nested-state-space-action.sysml
 run probe-F-F04 $SYSML -calc "TethysAmbiguousMinProbe::Smaller(2.0, 3.0)" -calc "TethysAmbiguousMinProbe::Larger(2.0, 3.0)" model/probes/F-F04-ambiguous-min.sysml
 run probe-F-F06 env OPENSYSML_TOOLS="$TOOLS" $SYSML -analysis TethysToolMultiplicityProbe::unmultipliedTransfer $MODEL model/probes/F-F06-tool-output-multiplicity.sysml
+run probe-F-F07 $SYSML -action StopTimeProbe::threeSeconds -action StopTimeProbe::thirtyDays model/probes/F-F07-shared-clock-stop-time.sysml
+run probe-F-F07-reverse $SYSML -action StopTimeProbe::thirtyDays -action StopTimeProbe::threeSeconds model/probes/F-F07-shared-clock-stop-time.sysml
 run variants-configurations $SYSML -instantiate TethysVariants::baselineConfiguration -validate=TethysVariants::baselineConfiguration -instantiate TethysVariants::smallTargetTugOnly -validate=TethysVariants::smallTargetTugOnly -instantiate TethysVariants::largeTargetStudy -validate=TethysVariants::largeTargetStudy -instantiate TethysVariants::fastSpinStudy -validate=TethysVariants::fastSpinStudy $MODEL
 run variants-calcs $SYSML -calc "TethysVariants::ReturnDeltaV(156700.0, 3020.0)" -calc "TethysVariants::ReturnDeltaV(362000.0, 5420.0)" -calc "TethysVariants::ReturnDeltaV(808000.0, 7220.0)" -calc "TethysVariants::ThrustTimeDays(4200.0, 2)" -calc "TethysVariants::ThrustTimeDays(6600.0, 3)" -calc "TethysVariants::ThrustTimeDays(8400.0, 4)" $MODEL
 run physics-strict $SYSML -validate -strict -warnings-as-errors model/81-physics.kerml

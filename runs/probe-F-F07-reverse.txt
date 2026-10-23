@@ -1,0 +1,25 @@
+✓ package StopTimeProbe
+✓ Started action executor for "StopTimeProbe::thirtyDays"
+  State: Running
+  Tokens: 1
+✓ Action completed
+  Final state: Completed
+  Results:
+    output = ⟨2592000.0⟩
+    stateSpace = ⟨2592000.0⟩
+    stopTime = 2592000 [s]
+    time = 2592000.0 [s]
+    timeStep = 86400 [s]
+  standing: value (observed: 1 run under reverse)
+✓ Started action executor for "StopTimeProbe::threeSeconds"
+  State: Running
+  Tokens: 1
+✓ Action completed
+  Final state: Completed
+  Results:
+    output = ⟨0.0⟩
+    stateSpace = ⟨0.0⟩
+    stopTime = 3 [s]
+    time = 2592000.0 [s]
+    timeStep = 1 [s]
+  standing: value (observed: 1 run under reverse)
