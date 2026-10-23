@@ -125,6 +125,8 @@ static argent_us_t next_deadline(const argent_system_t *sys, argent_us_t limit)
         /* A deadline already in the past belongs to a machine whose task is not scheduled in the current mode; it fires when the task next runs. */
         if (d >= now && d < next) next = d;
     }
+    /* The sequence engine's next step is a deadline too: a skip must not jump over it. */
+    if (sys->app.running_sequence != 0 && sys->app.sequence_next_us >= now && sys->app.sequence_next_us < next) next = sys->app.sequence_next_us;
     return next;
 }
 

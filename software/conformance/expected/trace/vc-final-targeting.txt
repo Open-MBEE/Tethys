@@ -1,10 +1,10 @@
 run vc-final-targeting: scenario TethysFdir::earthImpactScenario, machine TethysFdir::FdirTug::fdir on TethysFdir::earthImpactScenario.tug.fdir, horizon 2592000 s
-host: 272 traced frames, 17 skips, 20 events, 0 commands, final mode abortHold, rc 0
+host: 320 traced frames, 20 skips, 20 events, 0 commands, final mode abortHold, rc 0
 model: 157 trace events, 0 dropped, final time 2592000 s, states visited 14
 machine SepStringController: host-only (6 changes; the model scenario does not run it)
 machine PowerManager: host-only (1 changes; the model scenario does not run it)
 machine ThermalController: host-only (1 changes; the model scenario does not run it)
-machine TelecomManager: host-only (7 changes; the model scenario does not run it)
+machine TelecomManager: host-only (5 changes; the model scenario does not run it)
 machine InspectorHandler: host-only (6 changes; the model scenario does not run it)
 machine CaptureController: host-only (3 changes; the model scenario does not run it)
 machine RedundancyManager: host-only (4 changes; the model scenario does not run it)
@@ -23,8 +23,8 @@ machine TugModes: diverge (8 model changes vs 9 host changes) -- F-SW1305: the p
   host  t=8640 coast | standby | highGain | wheels | stowed
   host  t=440640 approach | thrusting | highGain | thrusters | stowed
   host  t=872640 capture | standby | highGain | thrusters | deployed
-  host  t=1131840 despin | standby | highGain | thrusters | cinched
-  host  t=1563839.125 despin | standby | relaying | thrusters | cinched
+  host  t=916440.125 capture | standby | relaying | thrusters | deployed
+  host  t=1131840 despin | standby | relaying | thrusters | cinched
   host  t=1563840 stackThrust | thrusting | relaying | wheels | cinched
   host  t=2427840 abortHold | off | relaying | wheels | cinched
 machine ModeManagementDispatcher: host-only (1 changes; the model scenario does not run it)

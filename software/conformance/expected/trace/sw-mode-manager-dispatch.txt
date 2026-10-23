@@ -1,5 +1,5 @@
 run sw-mode-manager-dispatch: scenario TethysFlightBehaviour::softwareNominalFlight, machine TethysFlightBehaviour::ModeManagementSoftware::dispatcher on TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement, horizon 129600000 s
-host: 384 traced frames, 24 skips, 24 events, 0 commands, final mode safe, rc 0
+host: 432 traced frames, 27 skips, 24 events, 0 commands, final mode safe, rc 0
 model: 579 trace events, 0 dropped, final time 129600000 s, states visited 17
 machine SepStringController: agree (4 changes, 10 model transitions, 10 model accepts)
   t=0 off
@@ -18,8 +18,8 @@ machine TelecomManager: agree (3 changes, 12 model transitions, 12 model accepts
 machine InspectorHandler: diverge (1 model changes vs 3 host changes) -- F-SW1304: the host's on-board sequence 3 sends InspectorCheckoutGo/InspectorReleaseGo/InspectorImagingGo as step items; the model's InspectorReleaseSequence (61) sends nothing
   model t=0 stowed
   host  t=0 stowed
-  host  t=39147839.125 checkout
-  host  t=39162239.125 retired
+  host  t=38889240.125 checkout
+  host  t=38903640.125 retired
 machine CaptureController: agree (1 changes, 2 model transitions, 2 model accepts)
   t=0 characterising
 machine RedundancyManager: agree (4 changes, 3 model transitions, 0 model accepts)
