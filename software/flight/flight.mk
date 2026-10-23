@@ -18,7 +18,10 @@ FLIGHT_HDRS := $(wildcard $(FLIGHT_DIR)/*/*.h $(FLIGHT_DIR)/hal/*/*.h $(FLIGHT_G
 FLIGHT_SCENARIOS := $(wildcard $(FLIGHT_DIR)/scenarios/*.stim)
 
 .PHONY: software-flight-build software-flight-unit software-flight-banned software-flight-scenarios \
-    software-flight-compare software-flight-sizes software-flight-check software-flight-clean
+    software-flight-compare software-flight-sizes software-flight-check software-flight-clean software-flight-scenarios-update
+
+software-flight-scenarios-update: $(FLIGHT_BUILD)/argent_host
+	python3 $(FLIGHT_DIR)/tests/compare_runs.py --host $(FLIGHT_BUILD)/argent_host --out $(FLIGHT_BUILD)/scenarios --shipped $(FLIGHT_DIR)/scenarios --write-shipped
 
 $(FLIGHT_BUILD)/argent_host: $(FLIGHT_SRC) $(FLIGHT_HOST_SRC) $(FLIGHT_HDRS) $(FLIGHT_DIR)/flight.mk
 	@mkdir -p $(FLIGHT_BUILD)
@@ -46,13 +49,12 @@ software-flight-banned:
 	sh $(FLIGHT_DIR)/tests/banned_constructs.sh $(FLIGHT_DIR)
 
 software-flight-scenarios: $(FLIGHT_BUILD)/argent_host $(FLIGHT_BUILD)/argent_host_san
-	sh $(FLIGHT_DIR)/tests/run_scenarios.sh $(FLIGHT_BUILD)/argent_host $(FLIGHT_BUILD)/traces $(FLIGHT_DIR)/scenarios
-	sh $(FLIGHT_DIR)/tests/run_scenarios.sh $(FLIGHT_BUILD)/argent_host_san $(FLIGHT_BUILD)/traces-san $(FLIGHT_DIR)/scenarios
+	python3 $(FLIGHT_DIR)/tests/compare_runs.py --host $(FLIGHT_BUILD)/argent_host --out $(FLIGHT_BUILD)/scenarios --shipped $(FLIGHT_DIR)/scenarios
+	UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 python3 $(FLIGHT_DIR)/tests/compare_runs.py --host $(FLIGHT_BUILD)/argent_host_san --out $(FLIGHT_BUILD)/scenarios-san --shipped $(FLIGHT_DIR)/scenarios
+	@for f in $(FLIGHT_BUILD)/scenarios/*.jsonl; do cmp "$$f" "$(FLIGHT_BUILD)/scenarios-san/$$(basename $$f)" || exit 1; done
+	@echo "traces identical between the strict and the sanitised build"
 
 software-flight-compare: software-flight-scenarios
-	python3 $(FLIGHT_DIR)/tests/compare_runs.py --traces $(FLIGHT_BUILD)/traces --runs runs --scenarios $(FLIGHT_DIR)/scenarios
-	python3 $(FLIGHT_DIR)/tests/compare_runs.py --traces $(FLIGHT_BUILD)/traces-san --runs runs --scenarios $(FLIGHT_DIR)/scenarios
-	cmp $(FLIGHT_BUILD)/traces/nominal-early-ops.jsonl $(FLIGHT_BUILD)/traces-san/nominal-early-ops.jsonl
 
 software-flight-sizes: $(FLIGHT_BUILD)/argent_host
 	sh $(FLIGHT_DIR)/tests/report_sizes.sh $(FLIGHT_BUILD)/argent_host runs/sw-fsw-structure.txt

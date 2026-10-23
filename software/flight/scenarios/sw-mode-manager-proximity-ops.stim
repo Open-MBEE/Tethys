@@ -1,0 +1,22 @@
+# derived from runs/sw-mode-manager-proximity-ops.txt and the TethysFlightBehaviour::softwareNominalFlight scenario; horizon 38016000 s
+t=4320 item SeparationConfirmed 
+t=8640 item ArraysDeployed 
+t=2.60064e+06 item ThrustArcGo 200
+t=1.98806e+07 item ThrustArcEnd 
+t=2.16086e+07 item ThrustArcGo 150
+t=3.45686e+07 item ThrustArcEnd 
+t=3.54326e+07 item ProximityOperationsGo 
+t=3.75926e+07 item RangeUpdate 20
+t=3.75926e+07 item InspectorCheckoutGo 
+t=3.7679e+07 item InspectorReleaseGo 
+t=3.7679e+07 item InspectorImagingGo 8
+t=3.88886e+07 item InspectorRetireGo 
+t=3.88886e+07 item CaptureGo 6.8 362000
+t=3.91478e+07 item CaptureComplete 
+t=4.00118e+07 item DespinComplete 
+t=4.00118e+07 item ReturnThrustGo 400
+t=7.45718e+07 item ThrustArcEnd 
+t=7.97558e+07 item DroHoldGo 
+t=8.23478e+07 item DockingGo 
+t=9.78998e+07 item DisposalGo 
+t=38016000 expect TugModes=safe | off | lowGain | thrusters | stowed

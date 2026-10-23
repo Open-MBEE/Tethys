@@ -12,6 +12,7 @@ scripts/runs.sh (the `-engine check` runs excepted) this script
 Nothing model-derived is copied into this file by hand.
 """
 import os
+import shutil
 import re
 import subprocess
 import sys
@@ -122,7 +123,18 @@ KNOWN_DIVERGENCES = {
 
 
 def main():
+    global HOST, OUT
+    import argparse
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--host", default=HOST, help="argent_host binary")
+    ap.add_argument("--out", default=OUT, help="directory for the derived .stim files and traces")
+    ap.add_argument("--shipped", default=None,
+                    help="directory of shipped .stim files; each derived file must be byte-identical to it")
+    ap.add_argument("--write-shipped", action="store_true", help="copy the derived .stim files into --shipped")
+    opts = ap.parse_args()
+    HOST, OUT = opts.host, opts.out
     os.makedirs(OUT, exist_ok=True)
+    shipped_mismatch = 0
     failures = 0
     total = 0
     for name, scenario, machine, _obj, advance in runs_sh():
@@ -150,6 +162,14 @@ def main():
                     regions[region] = "*"
             expected = " | ".join(regions)
             f.write(f"t={advance} expect {trace_name}={expected}\n")
+        if opts.shipped:
+            shipped = os.path.join(opts.shipped, os.path.basename(path))
+            if opts.write_shipped:
+                os.makedirs(opts.shipped, exist_ok=True)
+                shutil.copyfile(path, shipped)
+            elif not os.path.exists(shipped) or open(shipped, "rb").read() != open(path, "rb").read():
+                print(f"FAIL {name}: shipped scenario {shipped} differs from the one derived from runs/ (re-run with --write-shipped)")
+                shipped_mismatch += 1
         cmd = [HOST, "--scenario", path, "--major-frames", str(advance), "--fast-forward", "--trace", os.path.join(OUT, name + ".jsonl")]
         r = subprocess.run(cmd, capture_output=True, text=True)
         verdict = "ok  " if r.returncode == 0 else "FAIL"
@@ -158,6 +178,7 @@ def main():
         print(f"{verdict} {name}: {len(stim)} stimuli, horizon {advance} s, expect {trace_name} = '{expected}'")
         if r.returncode != 0:
             print("     " + r.stderr.strip().replace("\n", "\n     "))
+    failures += shipped_mismatch
     print(f"{total - failures}/{total} pinned runs reproduced")
     return 1 if failures or total == 0 else 0
 

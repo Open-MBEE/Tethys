@@ -1,10 +1,27 @@
 #include "svc/telemetry.h"
 #include <math.h>
+#include <stdbool.h>
 #include <string.h>
+
+/* Packet field -> telemetry point index, resolved once at initialisation (0xffff = no such point). */
+static uint16_t field_point[ARGENT_PACKET_FIELD_COUNT];
+static bool fields_indexed;
+
+static void index_fields(void)
+{
+    if (fields_indexed) return;
+    for (uint16_t f = 0; f < ARGENT_PACKET_FIELD_COUNT; f++) {
+        field_point[f] = 0xffffu;
+        for (uint16_t i = 0; i < ARGENT_TELEMETRY_POINT_COUNT; i++)
+            if (argent_telemetry_points[i].id == argent_packet_fields[f].point_id) { field_point[f] = i; break; }
+    }
+    fields_indexed = true;
+}
 
 void telemetry_init(telemetry_service_t *svc, telemetry_sample_fn sample, void *sample_ctx, telemetry_packet_fn emit, void *emit_ctx)
 {
     memset(svc, 0, sizeof(*svc));
+    index_fields();
     svc->sample = sample; svc->sample_ctx = sample_ctx;
     svc->emit = emit; svc->emit_ctx = emit_ctx;
 }
@@ -50,11 +67,20 @@ static uint64_t encode_field(const argent_telemetry_point_t *p, double value, ui
     return (uint64_t)scaled;
 }
 
+/* The tables are static const per translation unit: a caller's pointer may be another unit's copy, so match by mnemonic. */
+static uint16_t packet_index(const argent_packet_t *packet)
+{
+    if (packet >= argent_packets && packet < argent_packets + ARGENT_PACKET_COUNT) return (uint16_t)(packet - argent_packets);
+    for (uint16_t i = 0; i < ARGENT_PACKET_COUNT; i++) if (strcmp(argent_packets[i].mnemonic, packet->mnemonic) == 0) return i;
+    return 0;
+}
+
 uint16_t telemetry_build_packet(telemetry_service_t *svc, const argent_packet_t *packet, argent_us_t now)
 {
     uint16_t length = packet->length_octets;
     uint32_t bit = 0;
-    uint16_t seq = svc->sequence_count[packet - argent_packets];
+    uint16_t index = packet_index(packet);
+    uint16_t seq = svc->sequence_count[index];
     if (length > TELEMETRY_MAX_PACKET_OCTETS) length = TELEMETRY_MAX_PACKET_OCTETS;
     memset(svc->buffer, 0, length);
     /* CCSDS primary header: version, type (telemetry = 0), secondary header flag, APID, sequence flags (unsegmented), count, data length. */
@@ -69,13 +95,13 @@ uint16_t telemetry_build_packet(telemetry_service_t *svc, const argent_packet_t 
     put_bits(svc->buffer, bit, ARGENT_TIME_CODE_FINE_WIDTH, telemetry_time_code_fine(now)); bit += ARGENT_TIME_CODE_FINE_WIDTH;
     for (uint16_t f = 0; f < packet->field_count; f++) {
         const argent_packet_field_t *field = &argent_packet_fields[packet->first_field + f];
-        const argent_telemetry_point_t *p = NULL;
+        uint16_t idx = field_point[packet->first_field + f];
+        const argent_telemetry_point_t *p = idx != 0xffffu ? &argent_telemetry_points[idx] : NULL;
         uint32_t at = packet->header_bits + field->offset_bits;
-        uint16_t idx = 0;
-        for (uint16_t i = 0; i < ARGENT_TELEMETRY_POINT_COUNT; i++) if (argent_telemetry_points[i].id == field->point_id) { p = &argent_telemetry_points[i]; idx = i; break; }
         if (at + field->width_bits > (uint32_t)length * 8u) break;
         put_bits(svc->buffer, at, field->width_bits, encode_field(p, p != NULL ? svc->value[idx] : 0.0, field->width_bits));
     }
+    svc->sequence_count[index] = (uint16_t)((seq + 1u) % TELEMETRY_SEQUENCE_MODULO);
     return length;
 }
 
@@ -106,9 +132,9 @@ void telemetry_cycle(telemetry_service_t *svc, uint16_t mode, argent_us_t now)
         uint16_t length;
         if (pk->apid_class == ARGENT_APID_CLASS_HOUSEKEEPING && rs != NULL && rs->housekeeping_period_s > 0.0) hz = 1.0 / rs->housekeeping_period_s;
         if (hz <= 0.0 || now < svc->next_packet_us[k]) continue;
+        uint16_t seq = svc->sequence_count[k];
         length = telemetry_build_packet(svc, pk, now);
-        if (svc->emit != NULL) svc->emit(svc->emit_ctx, pk, svc->sequence_count[k], svc->buffer, length);
-        svc->sequence_count[k] = (uint16_t)((svc->sequence_count[k] + 1u) % TELEMETRY_SEQUENCE_MODULO);
+        if (svc->emit != NULL) svc->emit(svc->emit_ctx, pk, seq, svc->buffer, length);
         svc->packets_emitted[k]++;
         svc->packets++;
         svc->octets += length;
