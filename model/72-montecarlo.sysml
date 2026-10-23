@@ -109,8 +109,8 @@ package TethysMonteCarlo {
         in attribute coastDaysPerEvent : Real default = 7.0;
         in attribute safeModeEvents : Real default = 2.0;
         in attribute recoveryDaysPerEvent : Real default = 3.0;
-        in attribute thrustDays : Real default = 1134.0;
-        in attribute nonThrustDays : Real default = 270.0;
+        in attribute thrustDays : Real default = transferNominal.totalThrustDays;
+        in attribute nonThrustDays : Real default = TethysMission::tethys.nominalDuration / 1 [d] - transferNominal.thrustDayAllowance;
         return missionDays : Real = thrustDays + nonThrustDays + safeModeEvents * (coastDaysPerEvent + recoveryDaysPerEvent);
         objective fitsDuration : DurationMargin {
             doc /* The duration margin the drawn coasts are checked against. */
@@ -127,14 +127,14 @@ package TethysMonteCarlo {
 
     // ---- Lunar gravity assist and insertion ------------------------------------------------
 
-    calc def FlybyDeltaV {
-        doc /* Δv in km/s a powered-free flyby of a body with GM (km³/s²) gives at periapsis radius
-             * r (km) and hyperbolic excess speed v∞ (km/s): 2 v∞ sin(δ/2), sin(δ/2) = 1/(1 + r
-             * v∞²/GM). */
+    calc def FlybyTurnCosine {
+        doc /* Cosine of the turn angle δ a free flyby of a body with GM (km³/s²) gives the
+             * body-relative velocity at periapsis radius r (km) and relative speed v (km/s):
+             * sin(δ/2) = 1/(1 + r v²/GM), cos δ = 1 − 2 sin²(δ/2). */
         in gm : Real;
         in periapsisKm : Real;
-        in vInfinityKmPerS : Real;
-        return deltaVKmPerS : Real = 2.0 * vInfinityKmPerS / (1.0 + periapsisKm * vInfinityKmPerS ** 2 / gm);
+        in relativeSpeedKmPerS : Real;
+        return turnCosine : Real = 1.0 - 2.0 * (1.0 / (1.0 + periapsisKm * relativeSpeedKmPerS ** 2 / gm)) ** 2;
     }
 
     requirement def InsertionReserve {
@@ -148,10 +148,11 @@ package TethysMonteCarlo {
 
     analysis def InsertionDispersion {
         doc /* The return's end game with the Earth-approach v∞ and the insertion error drawn,
-             * in the co-linear idealisation: the stack arrives at the Moon's distance at the
-             * speed its v∞ gives, the lunar gravity assist takes the turn its periapsis allows
-             * off that speed, and the tug's xenon reserve on the stack must pay whatever is left
-             * above the local escape speed, the orbit shaping and the error. */
+             * in the planar idealisation: the stack overtakes the Moon along its orbital velocity
+             * at the speed its v∞ gives at the lunar distance, the flyby turns the Moon-relative
+             * velocity by the angle its periapsis allows, the Earth-relative departure speed is
+             * the vector sum, and the tug's xenon reserve on the stack must pay whatever of it is
+             * left above the local escape speed, the orbit shaping and the error. */
         subject tug : Tug;
         in attribute vInfinityKmPerS : Real default = 0.8;
         in attribute insertionErrorMPerS : Real default = 5.0;
@@ -164,9 +165,11 @@ package TethysMonteCarlo {
         attribute escapeAtMoonKmPerS : Real = EscapeSpeed(earth.gravitationalParameterKm3PerS2, lunarDistanceKm);
         attribute approachSpeedKmPerS : Real = sqrt(vInfinityKmPerS ** 2 + escapeAtMoonKmPerS ** 2);
         attribute moonRelativeKmPerS : Real = approachSpeedKmPerS - moonSpeedKmPerS;
-        attribute flybyDeltaVKmPerS : Real =
-            FlybyDeltaV(moon.gravitationalParameterKm3PerS2, moon.equatorialRadius / 1 [km] + periapsisAltitudeKm, moonRelativeKmPerS);
-        attribute unboundKmPerS : Real = max(approachSpeedKmPerS - flybyDeltaVKmPerS - escapeAtMoonKmPerS, 0.0);
+        attribute turnCosine : Real =
+            FlybyTurnCosine(moon.gravitationalParameterKm3PerS2, moon.equatorialRadius / 1 [km] + periapsisAltitudeKm, moonRelativeKmPerS);
+        attribute departureSpeedKmPerS : Real =
+            sqrt(moonSpeedKmPerS ** 2 + moonRelativeKmPerS ** 2 + 2.0 * moonSpeedKmPerS * moonRelativeKmPerS * turnCosine);
+        attribute unboundKmPerS : Real = max(departureSpeedKmPerS - escapeAtMoonKmPerS, 0.0);
         return insertionDeltaVMPerS : Real = 1000.0 * unboundKmPerS + shapingDeltaVMPerS + insertionErrorMPerS;
         out reserveDeltaVMPerS : Real =
             RocketEquationDeltaV(tug.sep.specificImpulse / 1 [s], stackMassKg, stackMassKg - xenonReserveKg);
