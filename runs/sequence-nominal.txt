@@ -1,0 +1,99 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysSequence::nominalCampaign
+  ID: 1
+  Use %features TethysSequence::nominalCampaign to inspect
+✓ Debugging action "mission" performed by object #1 of "TethysSequence::nominalCampaign"
+note: object #1 of "TethysSequence::nominalCampaign" already performs "TethysSequence::FlightCampaign::mission", so this session attaches to that running performance rather than starting a second one (as `%action TethysSequence::FlightCampaign::mission` would)
+  State: Waiting
+  Tokens: 1
+✓ Advanced to 190080000.0 (0 event(s) processed)
+  Action state: Completed
+  Tokens: 0
+  1 choice point (1 independent); %trace on to see them
+  Action steps taken: 30
+✓ Action completed
+  Results:
+    captureAndDespin.despin.initialSpinPeriod = [900.0 [s]]
+    captureAndDespin.despin.pulseTrains = 5
+    captureAndDespin.despin.spinPeriod = 9437.184 [s]
+    captureAndDespin.despin.wheelTakeoverPeriod = [7200.0 [s]]
+    captured = [true]
+    droCheckout.controlBox = [10.0 [km]]
+    droCheckout.cyclesPlanned = [3]
+    droCheckout.drift = 4.608 [km]
+    droCheckout.hydrazineUsed = [4.5 [kg]]
+    droCheckout.initialDrift = [180.0 [km]]
+    droCheckout.trimPerCycle = 1.5 [kg]
+    droCheckout.trims = [4]
+    droInsertion.corridorError = [1200.0 [km]]
+    droInsertion.corridorHalfWidth = [5000.0 [km]]
+    droInsertion.inserted = [true]
+    droInsertion.insertionArcDuration = 20.0 [d]
+    droInsertion.outcome = ["inserted into the DRO"]
+    envelope = [Instance(ID: 4)]
+    inserted = [true]
+    inspectorRelease.checkoutPassed = [true]
+    inspectorRelease.groundGo = [true]
+    inspectorRelease.holdReason = [""]
+    inspectorRelease.released = [true]
+    inspectorRelease.umbilicalDisconnected = true
+    inspectorReleased = true
+    lunarAssistAt = 11707200.0 [s]
+    outboundArcPlan = [3]
+    outboundArcs = 3
+    outcome = ["disposed after 7 thrust arcs"]
+    returnArcPlan = [4]
+    returnArcs = 4
+    target = [Instance(ID: 3)]
+    xenonRemaining = 955.0 [kg]
+    xenonReserve = 300.0 [kg]
+  standing: value (observed: 1 run under reverse)

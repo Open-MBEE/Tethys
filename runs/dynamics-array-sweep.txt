@@ -1,0 +1,59 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+sweep TethysDynamics::arrayPowerAtAphelionEnd — 5 run(s)
+missionDay | availableSepPowerW  | thrustN              | verdict
+-----------+---------------------+----------------------+------------------------
+0.0        | [40000.0]           | [1.8284566577535266] | enoughPower: satisfied
+550.0      | [38873.69722998602] | [1.7769717627915689] | enoughPower: satisfied
+1100.0     | [37812.90190754101] | [1.7284813060456097] | enoughPower: satisfied
+1650.0     | [37005.11903618245] | [1.6915564068167392] | enoughPower: satisfied
+2200.0     | [36337.7696812526]  | [1.661050922540014]  | enoughPower: satisfied
+  standing: table (observed: 5 rows)

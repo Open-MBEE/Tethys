@@ -1,0 +1,130 @@
+loaded 50 files:
+  model/00-tethys.sysml
+  model/01-environment.sysml
+  model/02-mission.sysml
+  model/03-interfaces.sysml
+  model/04-requirements.sysml
+  model/05-tug.sysml
+  model/06-inspector.sysml
+  model/07-target.sysml
+  model/08-launch.sysml
+  model/09-ground.sysml
+  model/10-system.sysml
+  model/20-stakeholders.sysml
+  model/21-requirements-l2.sysml
+  model/22-requirements-l3-l4.sysml
+  model/23-verification.sysml
+  model/24-verification-tooling.sysml
+  model/30-margin-policy.sysml
+  model/31-tug-structure.sysml
+  model/32-budgets.sysml
+  model/40-inspector.sysml
+  model/41-capture-system.sysml
+  model/42-proximity-ops.sysml
+  model/50-ground.sysml
+  model/51-icds.sysml
+  model/52-link-budgets.sysml
+  model/53-operations.sysml
+  model/54-icds-tooling.sysml
+  model/60-modes.sysml
+  model/61-sequence.sysml
+  model/62-fdir.sysml
+  model/70-analyses.sysml
+  model/71-trades.sysml
+  model/72-montecarlo.sysml
+  model/73-dynamics.sysml
+  model/74-analyses-tooling.sysml
+  model/80-variants.sysml
+  model/81-physics.kerml
+  model/82-notation-sweep.sysml
+  model/85-safety.sysml
+  model/86-risk.sysml
+  model/87-allocations-tooling.sysml
+  model/87-allocations.sysml
+  model/90-views.sysml
+  model/91-documents.sysml
+  model/92-layout.sysml
+  model/93-views-tooling.sysml
+  model/95-as-built.sysml
+  model/96-imported-data.sysml
+  model/97-disposal.sysml
+  model/99-house-rules.sysml
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+// view: TethysViews::segmentInterfaces
+// kind: interconnection
+// stated: view def InterconnectionView
+// not represented: 2 node(s) without a position, left undrawn
+// layout: neato -n2
+digraph "TethysViews::segmentInterfaces" {
+  graph [fontname="Helvetica", layout=neato, inputscale=72, dpi=72];
+  node [shape=box, style=filled, fillcolor=white, color="#181818", fontname="Helvetica", fontsize=14, penwidth=0.5];
+  edge [color="#181818", fontname="Helvetica", fontsize=13, penwidth=1];
+  subgraph "cluster_n0" {
+    label=<<font point-size="10"><i>«part»</i></font><br/><b>tethysSystem</b>>;
+    color=black;
+    penwidth=0.5;
+    bb="32,-468,928,-52";
+    "n0" [shape=point, style=invis, width=0, height=0, label="", pos="480,-260!", pin=true];
+    "n1" [style="rounded,filled", label=<<font point-size="10"><i>«part»</i></font><br/><b>flight</b>>, margin=0, pos="480,-120!", pin=true, width=3.0555555555555554, height=1.6666666666666667, fixedsize=true, comment="collapsed"];
+    "n2" [style="rounded,filled", label=<<font point-size="10"><i>«part»</i></font><br/><b>launch</b>>, margin=0, pos="150,-120!", pin=true, width=3.0555555555555554, height=1.6666666666666667, fixedsize=true, comment="collapsed"];
+    "n3" [style="rounded,filled", label=<<font point-size="10"><i>«part»</i></font><br/><b>ground</b>>, margin=0, pos="480,-400!", pin=true, width=3.0555555555555554, height=1.6666666666666667, fixedsize=true, comment="collapsed"];
+    "n4" [style="rounded,filled", label=<<font point-size="10"><i>«part»</i></font><br/><b>target</b>>, margin=0, fillcolor="#F4E3C1", color="#8A6D3B", pos="810,-120!", pin=true, width=3.0555555555555554, height=1.6666666666666667, fixedsize=true, comment="collapsed"];
+    "n4.0" [shape=box, label="", xlabel="surface", fontsize=8, width=0.16666666666666666, height=0.16666666666666666, fixedsize=true, pos="694,-120!", pin=true];
+    "n5" [style="rounded,filled", label=<<font point-size="10"><i>«part»</i></font><br/><b>visitor</b>>, margin=0, pos="810,-400!", pin=true, width=3.0555555555555554, height=1.6666666666666667, fixedsize=true, comment="collapsed"];
+    "n5.0" [shape=box, label="", xlabel="docking", fontsize=8, width=0.16666666666666666, height=0.16666666666666666, fixedsize=true, pos="810,-334!", pin=true];
+  }
+  "note:0" [shape=note, margin=0, label=<Segment-level interface control: one<br/>interface definition per edge<br/>(TethysInterfaces).>, pos="190,-470!", pin=true, width=4.166666666666667, height=0.8333333333333334, fixedsize=true];
+  "n1" -> "n2" [arrowhead=none, penwidth=3, pos="260,-120 260,-120 370,-120 370,-120"];
+  "n1" -> "n3" [arrowhead=none, penwidth=3, pos="480,-180 480,-180 480,-340 480,-340"];
+  "n1" -> "n4.0" [arrowhead=none, penwidth=3, pos="590,-120 590,-120 700,-120 700,-120"];
+  "n1" -> "n5.0" [arrowhead=none, penwidth=3, pos="590,-150 590,-150 810,-340 810,-340"];
+}

@@ -1,0 +1,63 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Constraint TethysRisk::riskRegister::noUnownedRedRisk passed
+  standing: holds (observed: 1 run under reverse)
+? Constraint TethysRisk::burnDown::registerBurningDown could not be evaluated
+  Error: constraint registerBurningDown: assertion evaluation failed: no value: condition is undetermined: consequence has no value in the model
+  standing: not covered (constraint registerBurningDown: assertion evaluation failed: no value: condition is undetermined: consequence has no value in the model)
+? Constraint TethysRisk::burnDown::earthImpactBurningDown could not be evaluated
+  Error: constraint earthImpactBurningDown: assertion evaluation failed: no value: condition is undetermined: consequence has no value in the model
+  standing: not covered (constraint earthImpactBurningDown: assertion evaluation failed: no value: condition is undetermined: consequence has no value in the model)
+✓ Constraint TethysRisk::marginIndicators::xenonFlagMatchesRegister passed
+  standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysRisk::technologyPlan::fallbackHoldsNominalTarget passed
+  standing: holds (observed: 1 run under reverse)
+exit 2

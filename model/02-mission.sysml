@@ -70,8 +70,9 @@ package TethysMission {
     }
 
     occurrence flightTimeline {
-        doc /* The flight from lift-off to disposal: the phases every requirement, budget and
-             * mode in the model refers to, and the events that bound them. The launcher injects
+        doc /* The flight from integration and test through lift-off to disposal: the phases
+             * every requirement, budget and mode in the model refers to, and the events that
+             * bound them. The launcher injects
              * the stack directly onto an Earth-escape trajectory; the tug thrusts in arcs to the
              * target, station-keeps while Wren characterises it, captures and despins it, and
              * returns through a lunar gravity assist into the distant retrograde orbit. */
@@ -84,6 +85,7 @@ package TethysMission {
         event occurrence captureCommit;
         event occurrence captureComplete;
         event occurrence despinComplete;
+        event occurrence inspectorRetirement;
         event occurrence departureFromTarget;
         event occurrence lunarGravityAssist;
         event occurrence droInsertion;
@@ -91,7 +93,9 @@ package TethysMission {
         event occurrence tugSeparation;
         event occurrence tugDisposalBurn;
 
+        occurrence integrationAndTest : MissionPhase;
         occurrence launchAndEarlyOperations : MissionPhase;
+        occurrence sepCommissioning : MissionPhase;
         occurrence outboundCruise : MissionPhase;
         occurrence approachAndRendezvous : MissionPhase;
         occurrence characterisation : MissionPhase;
@@ -102,10 +106,12 @@ package TethysMission {
         occurrence extendedMission : MissionPhase;
         occurrence disposal : MissionPhase;
 
+        first integrationAndTest then liftOff;
         first liftOff then launchAndEarlyOperations;
         first launchAndEarlyOperations then separationFromLauncher;
         first separationFromLauncher then arraysDeployed;
-        first arraysDeployed then outboundCruise;
+        first arraysDeployed then sepCommissioning;
+        first sepCommissioning then outboundCruise;
         first outboundCruise then firstThrustArc;
         first firstThrustArc then approachAndRendezvous;
         first approachAndRendezvous then rendezvous;
@@ -115,7 +121,8 @@ package TethysMission {
         first captureCommit then capture;
         first capture then captureComplete;
         first captureComplete then despinComplete;
-        first despinComplete then departureFromTarget;
+        first despinComplete then inspectorRetirement;
+        first inspectorRetirement then departureFromTarget;
         first departureFromTarget then returnCruise;
         first returnCruise then lunarGravityAssist;
         first lunarGravityAssist then droInsertion;

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tethys Retrieval — System Description</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysDocuments::SystemDescription">
+<h1 class="sysml-title">Tethys Retrieval — System Description</h1>
+<p class="sysml-paragraph" data-content="paragraph" data-name="summary">Tethys Retrieval is a fictional asteroid-retrieval mission: the solar-electric tug Argent flies to the small near-Earth asteroid 2031 QX Amaranth, characterises it with the free-flying inspector Wren, captures and despins it, and returns it to a lunar distant retrograde orbit for the visiting vehicle Lantern. Every name and number is invented; the physics is not.</p>
+<p class="sysml-paragraph" data-content="paragraph" data-name="provenance">This document is <em>generated</em> from the SysML v2 model by <code>sysml -render-documents</code>; the interface set is <a class="sysml-ref" href="TethysDocuments-InterfaceControlDocuments.html#interfaces" data-document="TethysDocuments::InterfaceControlDocuments">Interface definitions</a> and the verification matrix <a class="sysml-ref" href="TethysDocuments-VerificationMatrix.html#matrix" data-document="TethysDocuments::VerificationMatrix">Requirements</a></p>
+<section class="sysml-section" id="system" data-content="section" data-name="system">
+<h2>The system</h2>
+<p class="sysml-paragraph" data-content="paragraph" data-name="intro">The mission is one system of five segment-level parts: the flight segment (tug and inspector), the launch segment, the ground segment, the target body and the visiting vehicle that is external to the mission and present only through its docking interface.</p>
+<table class="sysml-table" data-content="table" data-name="segments" data-query="TethysDocuments::Segments">
+<caption class="sysml-caption">Segment-level parts of the system</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSystem::tethysSystem::flight" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">flight</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSystem::tethysSystem::launch" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">launch</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSystem::tethysSystem::ground" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ground</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSystem::tethysSystem::target" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">target</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSystem::tethysSystem::visitor" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">visitor</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSystem::tethysSystem::launchAdapter" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">launchAdapter</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSystem::tethysSystem::deepSpaceLink" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">deepSpaceLink</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSystem::tethysSystem::capture" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">capture</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSystem::tethysSystem::visitorDocking" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">visitorDocking</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+</tbody>
+</table>
+<figure class="sysml-diagram" data-content="diagram" data-name="icd" data-view="TethysViews::segmentInterfaces" data-diagram-kind="interconnection">
+<svg width="904pt" height="456pt"
+ viewBox="0.00 0.00 904.00 456.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 452)">
+<title>TethysViews::segmentInterfaces</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-452 900,-452 900,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster_n0</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="0,-32 0,-448 896,-448 896,-32 0,-32"/>
+<text text-anchor="start" x="432" y="-437" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="393.5" y="-423.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">tethysSystem</text>
+</g>
+<!-- n0 -->
+<!-- n1 -->
+<!-- collapsed -->
+<g id="node2" class="node">
+<title>n1</title>
+<path fill="white" stroke="#181818" stroke-width="0.5" d="M546,-440C546,-440 350,-440 350,-440 344,-440 338,-434 338,-428 338,-428 338,-332 338,-332 338,-326 344,-320 350,-320 350,-320 546,-320 546,-320 552,-320 558,-326 558,-332 558,-332 558,-428 558,-428 558,-434 552,-440 546,-440"/>
+<text text-anchor="start" x="432" y="-385" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="427" y="-371.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">flight</text>
+</g>
+<!-- n2 -->
+<!-- collapsed -->
+<g id="node3" class="node">
+<title>n2</title>
+<path fill="white" stroke="#181818" stroke-width="0.5" d="M216,-440C216,-440 20,-440 20,-440 14,-440 8,-434 8,-428 8,-428 8,-332 8,-332 8,-326 14,-320 20,-320 20,-320 216,-320 216,-320 222,-320 228,-326 228,-332 228,-332 228,-428 228,-428 228,-434 222,-440 216,-440"/>
+<text text-anchor="start" x="102" y="-385" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="92" y="-371.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">launch</text>
+</g>
+<!-- n1&#45;&gt;n2 -->
+<g id="edge1" class="edge">
+<title>n1&#45;&gt;n2</title>
+<path fill="none" stroke="#181818" stroke-width="3" d="M228,-380C228,-380 338,-380 338,-380"/>
+</g>
+<!-- n3 -->
+<!-- collapsed -->
+<g id="node4" class="node">
+<title>n3</title>
+<path fill="white" stroke="#181818" stroke-width="0.5" d="M546,-160C546,-160 350,-160 350,-160 344,-160 338,-154 338,-148 338,-148 338,-52 338,-52 338,-46 344,-40 350,-40 350,-40 546,-40 546,-40 552,-40 558,-46 558,-52 558,-52 558,-148 558,-148 558,-154 552,-160 546,-160"/>
+<text text-anchor="start" x="432" y="-105" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="420" y="-91.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">ground</text>
+</g>
+<!-- n1&#45;&gt;n3 -->
+<g id="edge2" class="edge">
+<title>n1&#45;&gt;n3</title>
+<path fill="none" stroke="#181818" stroke-width="3" d="M448,-320C448,-320 448,-160 448,-160"/>
+</g>
+<!-- n4.0 -->
+<g id="node6" class="node">
+<title>n4.0</title>
+<polygon fill="white" stroke="#181818" stroke-width="0.5" points="668,-386 656,-386 656,-374 668,-374 668,-386"/>
+<text text-anchor="middle" x="640.5" y="-388.6" font-family="Helvetica,sans-Serif" font-size="8.00">surface</text>
+</g>
+<!-- n1&#45;&gt;n4.0 -->
+<g id="edge3" class="edge">
+<title>n1&#45;&gt;n4.0</title>
+<path fill="none" stroke="#181818" stroke-width="3" d="M558,-380C558,-380 668,-380 668,-380"/>
+</g>
+<!-- n5.0 -->
+<g id="node8" class="node">
+<title>n5.0</title>
+<polygon fill="white" stroke="#181818" stroke-width="0.5" points="784,-172 772,-172 772,-160 784,-160 784,-172"/>
+<text text-anchor="middle" x="755.5" y="-174.6" font-family="Helvetica,sans-Serif" font-size="8.00">docking</text>
+</g>
+<!-- n1&#45;&gt;n5.0 -->
+<g id="edge4" class="edge">
+<title>n1&#45;&gt;n5.0</title>
+<path fill="none" stroke="#181818" stroke-width="3" d="M558,-350C558,-350 778,-160 778,-160"/>
+</g>
+<!-- n4 -->
+<!-- collapsed -->
+<g id="node5" class="node">
+<title>n4</title>
+<path fill="#f4e3c1" stroke="#8a6d3b" stroke-width="0.5" d="M876,-440C876,-440 680,-440 680,-440 674,-440 668,-434 668,-428 668,-428 668,-332 668,-332 668,-326 674,-320 680,-320 680,-320 876,-320 876,-320 882,-320 888,-326 888,-332 888,-332 888,-428 888,-428 888,-434 882,-440 876,-440"/>
+<text text-anchor="start" x="762" y="-385" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="753" y="-371.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">target</text>
+</g>
+<!-- n5 -->
+<!-- collapsed -->
+<g id="node7" class="node">
+<title>n5</title>
+<path fill="white" stroke="#181818" stroke-width="0.5" d="M876,-160C876,-160 680,-160 680,-160 674,-160 668,-154 668,-148 668,-148 668,-52 668,-52 668,-46 674,-40 680,-40 680,-40 876,-40 876,-40 882,-40 888,-46 888,-52 888,-52 888,-148 888,-148 888,-154 882,-160 876,-160"/>
+<text text-anchor="start" x="762" y="-105" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="753" y="-91.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">visitor</text>
+</g>
+<!-- note:0 -->
+<g id="node9" class="node">
+<title>note:0</title>
+<polygon fill="white" stroke="#181818" stroke-width="0.5" points="302,-60 8,-60 8,0 308,0 308,-54 302,-60"/>
+<polyline fill="none" stroke="#181818" stroke-width="0.5" points="302,-60 302,-54 "/>
+<polyline fill="none" stroke="#181818" stroke-width="0.5" points="308,-54 302,-54 "/>
+<text text-anchor="start" x="31.5" y="-41.3" font-family="Helvetica,sans-Serif" font-size="14.00">Segment&#45;level interface control: one</text>
+<text text-anchor="start" x="58.5" y="-26.3" font-family="Helvetica,sans-Serif" font-size="14.00">interface definition per edge</text>
+<text text-anchor="start" x="93" y="-11.3" font-family="Helvetica,sans-Serif" font-size="14.00">(TethysInterfaces).</text>
+</g>
+</g>
+</svg>
+<figcaption class="sysml-caption">Segment-level interface control (positioned by TethysLayout)</figcaption>
+</figure>
+<figure class="sysml-diagram" data-content="diagram" data-name="overview" data-view="TethysViewsTooling::systemOverview" data-diagram-kind="mixed">
+<svg width="904pt" height="424pt"
+ viewBox="0.00 0.00 904.00 424.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 420)">
+<title>TethysViewsTooling::systemOverview</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-420 900,-420 900,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster_n0</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="0,0 0,-416 896,-416 896,0 0,0"/>
+<text text-anchor="start" x="432" y="-405" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="393.5" y="-391.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">tethysSystem</text>
+</g>
+<!-- n0 -->
+<!-- n1 -->
+<!-- collapsed -->
+<g id="node2" class="node">
+<title>n1</title>
+<path fill="white" stroke="#181818" stroke-width="0.5" d="M546,-408C546,-408 350,-408 350,-408 344,-408 338,-402 338,-396 338,-396 338,-300 338,-300 338,-294 344,-288 350,-288 350,-288 546,-288 546,-288 552,-288 558,-294 558,-300 558,-300 558,-396 558,-396 558,-402 552,-408 546,-408"/>
+<text text-anchor="start" x="432" y="-353" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="427" y="-339.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">flight</text>
+</g>
+<!-- n2 -->
+<!-- collapsed -->
+<g id="node3" class="node">
+<title>n2</title>
+<path fill="white" stroke="#181818" stroke-width="0.5" d="M216,-408C216,-408 20,-408 20,-408 14,-408 8,-402 8,-396 8,-396 8,-300 8,-300 8,-294 14,-288 20,-288 20,-288 216,-288 216,-288 222,-288 228,-294 228,-300 228,-300 228,-396 228,-396 228,-402 222,-408 216,-408"/>
+<text text-anchor="start" x="102" y="-353" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="92" y="-339.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">launch</text>
+</g>
+<!-- n1&#45;&gt;n2 -->
+<g id="edge1" class="edge">
+<title>n1&#45;&gt;n2</title>
+<path fill="none" stroke="#181818" stroke-width="3" d="M228,-348C228,-348 338,-348 338,-348"/>
+</g>
+<!-- n3 -->
+<!-- collapsed -->
+<g id="node4" class="node">
+<title>n3</title>
+<path fill="white" stroke="#181818" stroke-width="0.5" d="M546,-128C546,-128 350,-128 350,-128 344,-128 338,-122 338,-116 338,-116 338,-20 338,-20 338,-14 344,-8 350,-8 350,-8 546,-8 546,-8 552,-8 558,-14 558,-20 558,-20 558,-116 558,-116 558,-122 552,-128 546,-128"/>
+<text text-anchor="start" x="432" y="-73" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="420" y="-59.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">ground</text>
+</g>
+<!-- n1&#45;&gt;n3 -->
+<g id="edge2" class="edge">
+<title>n1&#45;&gt;n3</title>
+<path fill="none" stroke="#181818" stroke-width="3" d="M448,-288C448,-288 448,-128 448,-128"/>
+</g>
+<!-- n4.0 -->
+<g id="node6" class="node">
+<title>n4.0</title>
+<polygon fill="white" stroke="#181818" stroke-width="0.5" points="668,-354 656,-354 656,-342 668,-342 668,-354"/>
+<text text-anchor="middle" x="640.5" y="-356.6" font-family="Helvetica,sans-Serif" font-size="8.00">surface</text>
+</g>
+<!-- n1&#45;&gt;n4.0 -->
+<g id="edge3" class="edge">
+<title>n1&#45;&gt;n4.0</title>
+<path fill="none" stroke="#181818" stroke-width="3" d="M558,-348C558,-348 668,-348 668,-348"/>
+</g>
+<!-- n5.0 -->
+<g id="node8" class="node">
+<title>n5.0</title>
+<polygon fill="white" stroke="#181818" stroke-width="0.5" points="784,-140 772,-140 772,-128 784,-128 784,-140"/>
+<text text-anchor="middle" x="755.5" y="-142.6" font-family="Helvetica,sans-Serif" font-size="8.00">docking</text>
+</g>
+<!-- n1&#45;&gt;n5.0 -->
+<g id="edge4" class="edge">
+<title>n1&#45;&gt;n5.0</title>
+<path fill="none" stroke="#181818" stroke-width="3" d="M558,-318C558,-318 778,-128 778,-128"/>
+</g>
+<!-- n4 -->
+<!-- collapsed -->
+<g id="node5" class="node">
+<title>n4</title>
+<path fill="#f4e3c1" stroke="#8a6d3b" stroke-width="0.5" d="M876,-408C876,-408 680,-408 680,-408 674,-408 668,-402 668,-396 668,-396 668,-300 668,-300 668,-294 674,-288 680,-288 680,-288 876,-288 876,-288 882,-288 888,-294 888,-300 888,-300 888,-396 888,-396 888,-402 882,-408 876,-408"/>
+<text text-anchor="start" x="762" y="-353" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="753" y="-339.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">target</text>
+</g>
+<!-- n5 -->
+<!-- collapsed -->
+<g id="node7" class="node">
+<title>n5</title>
+<path fill="white" stroke="#181818" stroke-width="0.5" d="M876,-128C876,-128 680,-128 680,-128 674,-128 668,-122 668,-116 668,-116 668,-20 668,-20 668,-14 674,-8 680,-8 680,-8 876,-8 876,-8 882,-8 888,-14 888,-20 888,-20 888,-116 888,-116 888,-122 882,-128 876,-128"/>
+<text text-anchor="start" x="762" y="-73" font-family="Helvetica,sans-Serif" font-style="italic" font-size="10.00">«part»</text>
+<text text-anchor="start" x="753" y="-59.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">visitor</text>
+</g>
+</g>
+</svg>
+<figcaption class="sysml-caption">The system&#39;s parts, ports and interfaces</figcaption>
+</figure>
+</section>
+<section class="sysml-section" id="tug" data-content="section" data-name="tug">
+<h2>The tug Argent</h2>
+<table class="sysml-table" data-content="table" data-name="subsystems" data-query="TethysDocuments::TugSubsystems">
+<caption class="sysml-caption">Subsystems of the flight tug</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysTug::argent::eps" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">eps</span></td>
+<td class="sysml-cell" data-column="type"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTug::argent::sep" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sep</span></td>
+<td class="sysml-cell" data-column="type"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTug::argent::rcs" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">rcs</span></td>
+<td class="sysml-cell" data-column="type"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTug::argent::captureSystem" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureSystem</span></td>
+<td class="sysml-cell" data-column="type"></td>
+</tr>
+</tbody>
+</table>
+<figure class="sysml-diagram" data-content="diagram" data-name="power" data-view="TethysViews::tugPowerBus" data-diagram-kind="interconnection">
+<pre class="mermaid">---
+config:
+  fontFamily: &#34;Helvetica, Arial, sans-serif&#34;
+  theme: base
+  themeCSS: &#34;.edgeLabel rect { opacity: 1 !important; } .cluster-label .nodeLabel { text-align: center; }&#34;
+  themeVariables:
+    fontFamily: &#34;Helvetica, Arial, sans-serif&#34;
+    fontSize: &#34;14px&#34;
+    primaryColor: &#34;#FFFFFF&#34;
+    secondaryColor: &#34;#FFFFFF&#34;
+    tertiaryColor: &#34;#FFFFFF&#34;
+    background: &#34;#FFFFFF&#34;
+    primaryBorderColor: &#34;#181818&#34;
+    primaryTextColor: &#34;#000000&#34;
+    lineColor: &#34;#181818&#34;
+    textColor: &#34;#000000&#34;
+    noteBkgColor: &#34;#FEFFDD&#34;
+    noteBorderColor: &#34;#181818&#34;
+    noteTextColor: &#34;#000000&#34;
+    clusterBkg: &#34;#FFFFFF&#34;
+    clusterBorder: &#34;#181818&#34;
+    edgeLabelBackground: &#34;#FFFFFF&#34;
+---
+%% TethysViews::tugPowerBus — interconnection rendering (view def InterconnectionView)
+flowchart LR
+  subgraph n0 [&#34;`*«part def»* **Tug**`&#34;]
+    direction LR
+    n1(&#34;`*«attribute»*
+**dryMass**`&#34;)
+    n2(&#34;`*«attribute»*
+**wetMass**`&#34;)
+    subgraph n3 [&#34;`*«part»* **structure**`&#34;]
+      direction LR
+      n4(&#34;`*«attribute»*
+**mass**`&#34;)
+    end
+    subgraph n5 [&#34;`*«part»* **thermal**`&#34;]
+      direction LR
+      n5.2[&#34;power&#34;]
+      n6(&#34;`*«attribute»*
+**mass**`&#34;)
+    end
+    subgraph n7 [&#34;`*«part»* **eps**`&#34;]
+      direction LR
+      n7.0[&#34;mainBus&#34;]
+      n7.1[&#34;highVoltageBus&#34;]
+      n8(&#34;`*«attribute»*
+**arrayPowerAtOneAu**`&#34;)
+      n9(&#34;`*«attribute»*
+**mass**`&#34;)
+    end
+    subgraph n10 [&#34;`*«part»* **cdh**`&#34;]
+      direction LR
+      n10.1[&#34;power&#34;]
+      n11(&#34;`*«attribute»*
+**mass**`&#34;)
+    end
+    subgraph n12 [&#34;`*«part»* **telecom**`&#34;]
+      direction LR
+      n12.2[&#34;power&#34;]
+      n13(&#34;`*«attribute»*
+**mass**`&#34;)
+    end
+    subgraph n14 [&#34;`*«part»* **gnc**`&#34;]
+      direction LR
+      n14.0[&#34;power&#34;]
+      n15(&#34;`*«attribute»*
+**mass**`&#34;)
+    end
+    subgraph n16 [&#34;`*«part»* **sep**`&#34;]
+      direction LR
+      n16.1[&#34;power&#34;]
+      n17(&#34;`*«attribute»*
+**xenonMass**`&#34;)
+      n18(&#34;`*«attribute»*
+**thrusterCount**`&#34;)
+      n19(&#34;`*«attribute»*
+**operatingThrusters**`&#34;)
+      n20(&#34;`*«attribute»*
+**specificImpulse**`&#34;)
+      n21(&#34;`*«attribute»*
+**maximumPower**`&#34;)
+      n22(&#34;`*«attribute»*
+**mass**`&#34;)
+    end
+    subgraph n23 [&#34;`*«part»* **rcs**`&#34;]
+      direction LR
+      n23.1[&#34;power&#34;]
+      n24(&#34;`*«attribute»*
+**hydrazineMass**`&#34;)
+      n25(&#34;`*«attribute»*
+**mass**`&#34;)
+    end
+    subgraph n26 [&#34;`*«part»* **captureSystem**`&#34;]
+      direction LR
+      n26.1[&#34;power&#34;]
+      n27(&#34;`*«attribute»*
+**maximumBodyDiameter**`&#34;)
+      n28(&#34;`*«attribute»*
+**maximumBodyMass**`&#34;)
+      n29(&#34;`*«attribute»*
+**mass**`&#34;)
+    end
+    subgraph n30 [&#34;`*«part»* **sensors**`&#34;]
+      direction LR
+      n30.0[&#34;power&#34;]
+      n31(&#34;`*«attribute»*
+**mass**`&#34;)
+    end
+  end
+  n7.0 === n10.1
+  n7.0 === n12.2
+  n7.0 === n14.0
+  n7.0 === n5.2
+  n7.0 === n23.1
+  n7.0 === n26.1
+  n7.0 === n30.0
+  n7.1 === n16.1
+  linkStyle 0 stroke-width:3px
+  linkStyle 1 stroke-width:3px
+  linkStyle 2 stroke-width:3px
+  linkStyle 3 stroke-width:3px
+  linkStyle 4 stroke-width:3px
+  linkStyle 5 stroke-width:3px
+  linkStyle 6 stroke-width:3px
+  linkStyle 7 stroke-width:3px</pre>
+<figcaption class="sysml-caption">The power bus from the electrical power subsystem to every load</figcaption>
+</figure>
+</section>
+<section class="sysml-section" id="timeline" data-content="section" data-name="timeline">
+<h2>Mission timeline</h2>
+<ol class="sysml-list" data-content="list" data-name="phases" data-query="TethysDocuments::FlightPhases">
+<li class="sysml-item" data-element="TethysMission::flightTimeline::liftOff" data-element-kind="occurrenceUsage">liftOff</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::separationFromLauncher" data-element-kind="occurrenceUsage">separationFromLauncher</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::arraysDeployed" data-element-kind="occurrenceUsage">arraysDeployed</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::firstThrustArc" data-element-kind="occurrenceUsage">firstThrustArc</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::rendezvous" data-element-kind="occurrenceUsage">rendezvous</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::inspectorRelease" data-element-kind="occurrenceUsage">inspectorRelease</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::captureCommit" data-element-kind="occurrenceUsage">captureCommit</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::captureComplete" data-element-kind="occurrenceUsage">captureComplete</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::despinComplete" data-element-kind="occurrenceUsage">despinComplete</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::inspectorRetirement" data-element-kind="occurrenceUsage">inspectorRetirement</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::departureFromTarget" data-element-kind="occurrenceUsage">departureFromTarget</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::lunarGravityAssist" data-element-kind="occurrenceUsage">lunarGravityAssist</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::droInsertion" data-element-kind="occurrenceUsage">droInsertion</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::visitingVehicleDocking" data-element-kind="occurrenceUsage">visitingVehicleDocking</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::tugSeparation" data-element-kind="occurrenceUsage">tugSeparation</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::tugDisposalBurn" data-element-kind="occurrenceUsage">tugDisposalBurn</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::integrationAndTest" data-element-kind="occurrenceUsage">integrationAndTest TethysMission::MissionPhase</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::launchAndEarlyOperations" data-element-kind="occurrenceUsage">launchAndEarlyOperations TethysMission::MissionPhase</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::sepCommissioning" data-element-kind="occurrenceUsage">sepCommissioning TethysMission::MissionPhase</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::outboundCruise" data-element-kind="occurrenceUsage">outboundCruise TethysMission::MissionPhase</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::approachAndRendezvous" data-element-kind="occurrenceUsage">approachAndRendezvous TethysMission::MissionPhase</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::characterisation" data-element-kind="occurrenceUsage">characterisation TethysMission::MissionPhase</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::capture" data-element-kind="occurrenceUsage">capture TethysMission::MissionPhase</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::returnCruise" data-element-kind="occurrenceUsage">returnCruise TethysMission::MissionPhase</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::droInsertionAndCheckout" data-element-kind="occurrenceUsage">droInsertionAndCheckout TethysMission::MissionPhase</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::utilisation" data-element-kind="occurrenceUsage">utilisation TethysMission::MissionPhase</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::extendedMission" data-element-kind="occurrenceUsage">extendedMission TethysMission::MissionPhase</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::disposal" data-element-kind="occurrenceUsage">disposal TethysMission::MissionPhase</li>
+</ol>
+<figure class="sysml-diagram" data-content="diagram" data-name="tree" data-view="TethysViews::missionTimeline" data-diagram-kind="tree" data-direction="LR">
+<pre class="mermaid">---
+config:
+  fontFamily: &#34;Helvetica, Arial, sans-serif&#34;
+  theme: base
+  themeCSS: &#34;.edgeLabel rect { opacity: 1 !important; } .cluster-label .nodeLabel { text-align: center; }&#34;
+  themeVariables:
+    fontFamily: &#34;Helvetica, Arial, sans-serif&#34;
+    fontSize: &#34;14px&#34;
+    primaryColor: &#34;#FFFFFF&#34;
+    secondaryColor: &#34;#FFFFFF&#34;
+    tertiaryColor: &#34;#FFFFFF&#34;
+    background: &#34;#FFFFFF&#34;
+    primaryBorderColor: &#34;#181818&#34;
+    primaryTextColor: &#34;#000000&#34;
+    lineColor: &#34;#181818&#34;
+    textColor: &#34;#000000&#34;
+    noteBkgColor: &#34;#FEFFDD&#34;
+    noteBorderColor: &#34;#181818&#34;
+    noteTextColor: &#34;#000000&#34;
+    clusterBkg: &#34;#FFFFFF&#34;
+    clusterBorder: &#34;#181818&#34;
+    edgeLabelBackground: &#34;#FFFFFF&#34;
+---
+%% TethysViews::missionTimeline — tree rendering
+flowchart LR
+  n0(&#34;`*«occurrence»*
+**flightTimeline**`&#34;)
+    n1(&#34;`*«occurrence»*
+**liftOff**`&#34;)
+  n0 --- n1
+    n2(&#34;`*«occurrence»*
+**separationFromLauncher**`&#34;)
+  n0 --- n2
+    n3(&#34;`*«occurrence»*
+**arraysDeployed**`&#34;)
+  n0 --- n3
+    n4(&#34;`*«occurrence»*
+**firstThrustArc**`&#34;)
+  n0 --- n4
+    n5(&#34;`*«occurrence»*
+**rendezvous**`&#34;)
+  n0 --- n5
+    n6(&#34;`*«occurrence»*
+**inspectorRelease**`&#34;)
+  n0 --- n6
+    n7(&#34;`*«occurrence»*
+**captureCommit**`&#34;)
+  n0 --- n7
+    n8(&#34;`*«occurrence»*
+**captureComplete**`&#34;)
+  n0 --- n8
+    n9(&#34;`*«occurrence»*
+**despinComplete**`&#34;)
+  n0 --- n9
+    n10(&#34;`*«occurrence»*
+**inspectorRetirement**`&#34;)
+  n0 --- n10
+    n11(&#34;`*«occurrence»*
+**departureFromTarget**`&#34;)
+  n0 --- n11
+    n12(&#34;`*«occurrence»*
+**lunarGravityAssist**`&#34;)
+  n0 --- n12
+    n13(&#34;`*«occurrence»*
+**droInsertion**`&#34;)
+  n0 --- n13
+    n14(&#34;`*«occurrence»*
+**visitingVehicleDocking**`&#34;)
+  n0 --- n14
+    n15(&#34;`*«occurrence»*
+**tugSeparation**`&#34;)
+  n0 --- n15
+    n16(&#34;`*«occurrence»*
+**tugDisposalBurn**`&#34;)
+  n0 --- n16
+    n17(&#34;`*«occurrence»*
+**integrationAndTest**`&#34;)
+  n0 --- n17
+    n18(&#34;`*«occurrence»*
+**launchAndEarlyOperations**`&#34;)
+  n0 --- n18
+    n19(&#34;`*«occurrence»*
+**sepCommissioning**`&#34;)
+  n0 --- n19
+    n20(&#34;`*«occurrence»*
+**outboundCruise**`&#34;)
+  n0 --- n20
+    n21(&#34;`*«occurrence»*
+**approachAndRendezvous**`&#34;)
+  n0 --- n21
+    n22(&#34;`*«occurrence»*
+**characterisation**`&#34;)
+  n0 --- n22
+    n23(&#34;`*«occurrence»*
+**capture**`&#34;)
+  n0 --- n23
+    n24(&#34;`*«occurrence»*
+**returnCruise**`&#34;)
+  n0 --- n24
+    n25(&#34;`*«occurrence»*
+**droInsertionAndCheckout**`&#34;)
+  n0 --- n25
+    n26(&#34;`*«occurrence»*
+**utilisation**`&#34;)
+  n0 --- n26
+    n27(&#34;`*«occurrence»*
+**extendedMission**`&#34;)
+  n0 --- n27
+    n28(&#34;`*«occurrence»*
+**disposal**`&#34;)
+  n0 --- n28
+    n29(&#34;`**succession**`&#34;)
+  n0 --- n29
+    n30(&#34;`**succession**`&#34;)
+  n0 --- n30
+    n31(&#34;`**succession**`&#34;)
+  n0 --- n31
+    n32(&#34;`**succession**`&#34;)
+  n0 --- n32
+    n33(&#34;`**succession**`&#34;)
+  n0 --- n33
+    n34(&#34;`**succession**`&#34;)
+  n0 --- n34
+    n35(&#34;`**succession**`&#34;)
+  n0 --- n35
+    n36(&#34;`**succession**`&#34;)
+  n0 --- n36
+    n37(&#34;`**succession**`&#34;)
+  n0 --- n37
+    n38(&#34;`**succession**`&#34;)
+  n0 --- n38
+    n39(&#34;`**succession**`&#34;)
+  n0 --- n39
+    n40(&#34;`**succession**`&#34;)
+  n0 --- n40
+    n41(&#34;`**succession**`&#34;)
+  n0 --- n41
+    n42(&#34;`**succession**`&#34;)
+  n0 --- n42
+    n43(&#34;`**succession**`&#34;)
+  n0 --- n43
+    n44(&#34;`**succession**`&#34;)
+  n0 --- n44
+    n45(&#34;`**succession**`&#34;)
+  n0 --- n45
+    n46(&#34;`**succession**`&#34;)
+  n0 --- n46
+    n47(&#34;`**succession**`&#34;)
+  n0 --- n47
+    n48(&#34;`**succession**`&#34;)
+  n0 --- n48
+    n49(&#34;`**succession**`&#34;)
+  n0 --- n49
+    n50(&#34;`**succession**`&#34;)
+  n0 --- n50
+    n51(&#34;`**succession**`&#34;)
+  n0 --- n51
+    n52(&#34;`**succession**`&#34;)
+  n0 --- n52
+    n53(&#34;`**succession**`&#34;)
+  n0 --- n53
+    n54(&#34;`**succession**`&#34;)
+  n0 --- n54
+    n55(&#34;`**succession**`&#34;)
+  n0 --- n55</pre>
+<figcaption class="sysml-caption">The flight timeline: phases and the events that bound them</figcaption>
+</figure>
+</section>
+<section class="sysml-section" id="requirements" data-content="section" data-name="requirements">
+<h2>Mission requirements</h2>
+<dl class="sysml-definitions" data-content="definitions" data-name="text" data-query="TethysDocuments::RequirementText">
+<div class="sysml-entry" data-element="TethysRequirements::retrieval" data-element-kind="requirementUsage">
+<dt class="sysml-term">TR-001</dt>
+<dd class="sysml-description">The mission shall deliver the target body 2031 QX, intact and with a mass of at least 100 t, into the designated lunar distant retrograde orbit.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysRequirements::missionDuration" data-element-kind="requirementUsage">
+<dt class="sysml-term">TR-002</dt>
+<dd class="sysml-description">The mission shall complete the insertion of the target into the distant retrograde orbit within 1 300 days of launch.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysRequirements::characterisation" data-element-kind="requirementUsage">
+<dt class="sysml-term">TR-003</dt>
+<dd class="sysml-description">Before committing to capture, the mission shall determine the target&#39;s shape, mass to within 10 % and spin state, and shall confirm that each lies within the capture system&#39;s design envelope.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysRequirements::launchCompatibility" data-element-kind="requirementUsage">
+<dt class="sysml-term">TR-004</dt>
+<dd class="sysml-description">The flight system shall be compatible with the Arcturus-5H launch vehicle and its direct injection to an Earth-escape trajectory.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysRequirements::groundCompatibility" data-element-kind="requirementUsage">
+<dt class="sysml-term">TR-005</dt>
+<dd class="sysml-description">The flight system shall communicate through the Meridian deep-space network at every Earth range of the mission.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysRequirements::cislunarSafety" data-element-kind="requirementUsage">
+<dt class="sysml-term">TR-006</dt>
+<dd class="sysml-description">The target body shall be placed in an orbit that remains bound to the Moon for at least 100 years without station-keeping, and no credible failure during the return shall place it on an Earth-impact trajectory.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysRequirements::missionClass" data-element-kind="requirementUsage">
+<dt class="sysml-term">TR-007</dt>
+<dd class="sysml-description">The flight system shall carry no single-point failure that ends the mission.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysRequirements::deflectionDemonstration" data-element-kind="requirementUsage">
+<dt class="sysml-term">TR-008</dt>
+<dd class="sysml-description">While attached to the target, the mission shall demonstrate a slow-push deflection and shall measure the resulting change in the target&#39;s heliocentric velocity to an accuracy of 1 mm/s.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysRequirements::utilisationAccess" data-element-kind="requirementUsage">
+<dt class="sysml-term">TR-009</dt>
+<dd class="sysml-description">After delivery, the tug shall hold the target in an attitude and with a docking interface that lets the visiting vehicle Lantern dock and reach the target&#39;s surface.</dd>
+</div>
+</dl>
+<figure class="sysml-diagram" data-content="diagram" data-name="tree" data-view="TethysViews::requirementsTree" data-diagram-kind="tree">
+<pre class="mermaid">---
+config:
+  fontFamily: &#34;Helvetica, Arial, sans-serif&#34;
+  theme: base
+  themeCSS: &#34;.edgeLabel rect { opacity: 1 !important; } .cluster-label .nodeLabel { text-align: center; }&#34;
+  themeVariables:
+    fontFamily: &#34;Helvetica, Arial, sans-serif&#34;
+    fontSize: &#34;14px&#34;
+    primaryColor: &#34;#FFFFFF&#34;
+    secondaryColor: &#34;#FFFFFF&#34;
+    tertiaryColor: &#34;#FFFFFF&#34;
+    background: &#34;#FFFFFF&#34;
+    primaryBorderColor: &#34;#181818&#34;
+    primaryTextColor: &#34;#000000&#34;
+    lineColor: &#34;#181818&#34;
+    textColor: &#34;#000000&#34;
+    noteBkgColor: &#34;#FEFFDD&#34;
+    noteBorderColor: &#34;#181818&#34;
+    noteTextColor: &#34;#000000&#34;
+    clusterBkg: &#34;#FFFFFF&#34;
+    clusterBorder: &#34;#181818&#34;
+    edgeLabelBackground: &#34;#FFFFFF&#34;
+---
+%% TethysViews::requirementsTree — tree rendering (render asTreeDiagram)
+flowchart TD
+  n0(&#34;`*«requirement»*
+**retrieval**`&#34;)
+  n1(&#34;`*«requirement»*
+**missionDuration**`&#34;)
+  n2(&#34;`*«requirement»*
+**characterisation**`&#34;)
+  n3(&#34;`*«requirement»*
+**launchCompatibility**`&#34;)
+  n4(&#34;`*«requirement»*
+**groundCompatibility**`&#34;)
+  n5(&#34;`*«requirement»*
+**cislunarSafety**`&#34;)
+  n6(&#34;`*«requirement»*
+**missionClass**`&#34;)
+  n7(&#34;`*«requirement»*
+**deflectionDemonstration**`&#34;)
+  n8(&#34;`*«requirement»*
+**utilisationAccess**`&#34;)</pre>
+<figcaption class="sysml-caption">The L1 requirements</figcaption>
+</figure>
+</section>
+</article>
+</body>
+</html>

@@ -1,0 +1,68 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysFdir::thrusterFaultScenario
+  ID: 1
+  Use %features TethysFdir::thrusterFaultScenario to inspect
+warning: TethysFdir::thrusterFaultScenario: materialization is bounded; not every feature value was checked
+✓ Debugging state machine "fdir" exhibited by object #4 of "TethysFdir::thrusterFaultScenario.tug"
+  Current state: armed | nominal | nominal | nominal | nominal | monitoring
+  Time: 0.0
+  Events: 1
+✓ Advanced to 1900800.0 (13 event(s) processed)
+  Current state: armed | onSpare | nominal | nominal | nominal | monitoring
+  Last event at: 1736640.0
+  Remaining events: 1
+  5 choice points (4 independent); %trace on to see them
+  Action steps taken: 16
+  Waiting on the clock:
+    t=2168640.0: action campaign of object #2, accept after waiting since step 18 for the clock to reach t=2168640.0
+    t=2341440.0: state machine FdirSupervisor of object #4, time -> expired
+  standing: value (observed: 1 run under reverse)

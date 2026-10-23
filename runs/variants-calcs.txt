@@ -1,0 +1,68 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ TethysVariants::ReturnDeltaV(156700.0, 3020.0)
+  = [524.3213079894124]
+  standing: value (observed: 1 run under reverse)
+✓ TethysVariants::ReturnDeltaV(362000.0, 5420.0)
+  = [416.25577626713095]
+  standing: value (observed: 1 run under reverse)
+✓ TethysVariants::ReturnDeltaV(808000.0, 7220.0)
+  = [251.2609651519581]
+  standing: value (observed: 1 run under reverse)
+✓ TethysVariants::ThrustTimeDays(4200.0, 2)
+  = [1134.1247033610925]
+  standing: value (observed: 1 run under reverse)
+✓ TethysVariants::ThrustTimeDays(6600.0, 3)
+  = [1188.1306416163827]
+  standing: value (observed: 1 run under reverse)
+✓ TethysVariants::ThrustTimeDays(8400.0, 4)
+  = [1134.1247033610925]
+  standing: value (observed: 1 run under reverse)

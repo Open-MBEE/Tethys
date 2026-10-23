@@ -30,6 +30,7 @@ package TethysInspector {
         part payload : ImagingPayload;
         part propulsion : ColdGasPropulsion;
         port carrierAttachment : ~MechanicalPort;
+        port stowedThermal : ~ThermalPort;
     }
 
     part wren : Inspector {

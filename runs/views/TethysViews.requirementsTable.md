@@ -1,0 +1,63 @@
+<!-- TethysViews::requirementsTable — table rendering (render asElementTable) -->
+| Element | Kind | Type | Declared in |
+| --- | --- | --- | --- |
+| TethysRequirements::retrieval | requirement | MissionRequirement |  |
+| deliveredMass | attribute | MassValue | TethysRequirements::retrieval |
+|  | metadata usage |  | TethysRequirements::retrieval |
+| method | attribute | VerificationMethodKind |  |
+| level | attribute | VerificationLevel |  |
+| stage | attribute | VerificationStage |  |
+|  | metadata usage |  | TethysRequirements::retrieval |
+|  | require constraint |  | TethysRequirements::retrieval |
+| TethysRequirements::missionDuration | requirement | MissionRequirement |  |
+| nominalDuration | attribute | DurationValue | TethysRequirements::missionDuration |
+|  | metadata usage |  | TethysRequirements::missionDuration |
+| method | attribute | VerificationMethodKind |  |
+| level | attribute | VerificationLevel |  |
+| stage | attribute | VerificationStage |  |
+|  | metadata usage |  | TethysRequirements::missionDuration |
+|  | require constraint |  | TethysRequirements::missionDuration |
+| TethysRequirements::characterisation | requirement | MissionRequirement |  |
+|  | metadata usage |  | TethysRequirements::characterisation |
+| method | attribute | VerificationMethodKind |  |
+| level | attribute | VerificationLevel |  |
+| stage | attribute | VerificationStage |  |
+|  | metadata usage |  | TethysRequirements::characterisation |
+| TethysRequirements::launchCompatibility | requirement | MissionRequirement |  |
+|  | metadata usage |  | TethysRequirements::launchCompatibility |
+| method | attribute | VerificationMethodKind |  |
+| level | attribute | VerificationLevel |  |
+| stage | attribute | VerificationStage |  |
+|  | metadata usage |  | TethysRequirements::launchCompatibility |
+| TethysRequirements::groundCompatibility | requirement | MissionRequirement |  |
+|  | metadata usage |  | TethysRequirements::groundCompatibility |
+| method | attribute | VerificationMethodKind |  |
+| level | attribute | VerificationLevel |  |
+| stage | attribute | VerificationStage |  |
+|  | metadata usage |  | TethysRequirements::groundCompatibility |
+| TethysRequirements::cislunarSafety | requirement | MissionRequirement |  |
+| stabilityHorizon | attribute | DurationValue | TethysRequirements::cislunarSafety |
+|  | metadata usage |  | TethysRequirements::cislunarSafety |
+| method | attribute | VerificationMethodKind |  |
+| level | attribute | VerificationLevel |  |
+| stage | attribute | VerificationStage |  |
+|  | metadata usage |  | TethysRequirements::cislunarSafety |
+|  | require constraint |  | TethysRequirements::cislunarSafety |
+| TethysRequirements::missionClass | requirement | MissionRequirement |  |
+|  | metadata usage |  | TethysRequirements::missionClass |
+| method | attribute | VerificationMethodKind |  |
+| level | attribute | VerificationLevel |  |
+| stage | attribute | VerificationStage |  |
+|  | metadata usage |  | TethysRequirements::missionClass |
+| TethysRequirements::deflectionDemonstration | requirement | MissionRequirement |  |
+|  | metadata usage |  | TethysRequirements::deflectionDemonstration |
+| method | attribute | VerificationMethodKind |  |
+| level | attribute | VerificationLevel |  |
+| stage | attribute | VerificationStage |  |
+|  | metadata usage |  | TethysRequirements::deflectionDemonstration |
+| TethysRequirements::utilisationAccess | requirement | MissionRequirement |  |
+|  | metadata usage |  | TethysRequirements::utilisationAccess |
+| method | attribute | VerificationMethodKind |  |
+| level | attribute | VerificationLevel |  |
+| stage | attribute | VerificationStage |  |
+|  | metadata usage |  | TethysRequirements::utilisationAccess |

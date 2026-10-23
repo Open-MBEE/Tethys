@@ -16,6 +16,13 @@ package TethysHouseRules {
         not r.documentation->isEmpty()
     }
 
+    constraint def requirementHasText {
+        doc /* Every requirement usage has a non-empty derived text (the body of its
+             * documentation), so a requirement is never only a name and a constraint. */
+        in r : SysML::RequirementUsage;
+        not r.text->isEmpty()
+    }
+
     constraint def portUsageIsTyped {
         doc /* Every port usage is typed by a port def from TethysInterfaces, so an ICD
              * can be written against it. */

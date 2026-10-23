@@ -1,0 +1,7 @@
+✓ package TethysAmbiguousMinProbe
+✓ TethysAmbiguousMinProbe::Smaller(2.0, 3.0)
+  = [2.0]
+  standing: value (observed: 1 run under reverse)
+✓ TethysAmbiguousMinProbe::Larger(2.0, 3.0)
+  = [3.0]
+  standing: value (observed: 1 run under reverse)

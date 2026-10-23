@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICD-002 Spacecraft–launcher interface</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysIcdDocuments::LaunchIcdDocument">
+<h1 class="sysml-title">ICD-002 Spacecraft–launcher interface</h1>
+<section class="sysml-section" id="ends" data-content="section" data-name="ends">
+<h2>Interface ends</h2>
+<table class="sysml-table" data-content="table" data-name="table" data-query="TethysIcdDocuments::IcdEnds">
+<caption class="sysml-caption">Ends and their port types</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysInterfaces::SpacecraftLauncherInterface::spacecraftSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">spacecraftSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::MechanicalPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::SpacecraftLauncherInterface::launcherSide" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">launcherSide</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::MechanicalPort</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="parameters" data-content="section" data-name="parameters">
+<h2>Interface parameters</h2>
+<table class="sysml-table" data-content="table" data-name="table" data-query="TethysIcdDocuments::IcdParameters">
+<caption class="sysml-caption">Parameters both sides agree on</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysIcds::LaunchIcd::adapterDiameter" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">adapterDiameter</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQBase::LengthValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::LaunchIcd::fairingEnvelopeDiameter" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">fairingEnvelopeDiameter</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQBase::LengthValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::LaunchIcd::fairingEnvelopeHeight" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">fairingEnvelopeHeight</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQBase::LengthValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::LaunchIcd::axialQuasiStatic" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">axialQuasiStatic</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQSpaceTime::AccelerationValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::LaunchIcd::lateralQuasiStatic" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">lateralQuasiStatic</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQSpaceTime::AccelerationValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::LaunchIcd::sineVibration" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sineVibration</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQSpaceTime::AccelerationValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::LaunchIcd::shockResponse" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">shockResponse</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQSpaceTime::AccelerationValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::LaunchIcd::acousticLevelDb" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">acousticLevelDb</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ScalarValues::Real</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::LaunchIcd::maximumStackMass" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">maximumStackMass</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQBase::MassValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::LaunchIcd::maximumCentreOfMassHeight" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">maximumCentreOfMassHeight</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQBase::LengthValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::LaunchIcd::separationSpeed" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">separationSpeed</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQSpaceTime::SpeedValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::LaunchIcd::tipOffRate" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">tipOffRate</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQSpaceTime::AngularVelocityValue</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::LaunchIcd::injectionC3ToleranceKm2PerS2" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">injectionC3ToleranceKm2PerS2</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ScalarValues::Real</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysIcds::LaunchIcd::umbilicalVoltage" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">umbilicalVoltage</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQElectromagnetism::ElectricPotentialValue</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+</article>
+</body>
+</html>

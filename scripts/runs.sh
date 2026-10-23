@@ -3,7 +3,7 @@
 set -eu
 mode=${1:-check}
 SYSML=${SYSML:-build/opensysml/sysml}
-MODEL=$(ls model/*.sysml | sort | tr '\n' ' ')
+MODEL=$(ls model/*.sysml model/*.kerml | sort | tr '\n' ' ')
 out=build/runs; rm -rf "$out"; mkdir -p "$out"
 run() { name=$1; shift; "$@" > "$out/$name.txt" 2>&1 || echo "exit $?" >> "$out/$name.txt"; }
 run validate $SYSML -validate $MODEL
@@ -11,4 +11,147 @@ run house-rules $SYSML -validate -self-check-package TethysHouseRules $MODEL
 run instantiate-system $SYSML -instantiate TethysSystem::tethysSystem $MODEL
 run environment-calcs $SYSML -calc "TethysEnvironment::SolarFlux(1.034)" -calc "TethysEnvironment::SolarFlux(1.003)" -calc "TethysEnvironment::CircularSpeed(398600.4418, 6578.137)" -calc "TethysEnvironment::EscapeSpeed(398600.4418, 6578.137)" -calc "TethysEnvironment::OrbitalPeriod(1.32712440018e11, 154.68e6)" -calc "TethysEnvironment::OneWayLightTime(60.0e6)" -calc "TethysEnvironment::SphereMass(6.8, 2200.0)" -calc "TethysEnvironment::SepThrust(40000.0, 2900.0, 0.65)" -calc "TethysEnvironment::NaturalLog(2.0)" -calc "TethysEnvironment::RocketEquationDeltaV(2900.0, 12600.0, 6000.0)" $MODEL
 # Work packages append their commands here; keep one `run <name> …` per line.
+run requirements-satisfy $SYSML -satisfy $MODEL
+run tpm-margins $SYSML -instantiate TethysStakeholders::technicalPerformanceMeasures -validate=TethysStakeholders::technicalPerformanceMeasures $MODEL
+run verification-cases $SYSML -analysis TethysVerification::captureEnvelopeTest -analysis TethysVerification::contactSpeedTest -analysis TethysVerification::sepHotFireTest -analysis TethysVerification::linkBudgetTest -analysis TethysVerification::faultResponseTest -analysis TethysVerification::autonomyTest -analysis TethysVerification::inspectorAcceptanceTest -analysis TethysVerification::separationTest -analysis TethysVerification::proximityNavigationTest -analysis TethysVerification::thermalBalanceTest -analysis TethysVerification::cinchMotorTest -analysis TethysVerification::propellantAnalysis -analysis TethysVerification::despinAnalysis -analysis TethysVerification::powerAnalysis -analysis TethysVerification::massBudgetAnalysis -analysis TethysVerification::returnSafetyAnalysis -analysis TethysVerification::deliveryAnalysis -analysis TethysVerification::characterisationAnalysis -analysis TethysVerification::deflectionAnalysis -analysis TethysVerification::dockingLoadsAnalysis -analysis TethysVerification::thrustModelValidation -analysis TethysVerification::redundancyInspection -analysis TethysVerification::documentInspection -analysis TethysVerification::groundInspection -analysis TethysVerification::groundReadinessDemo -analysis TethysVerification::sepCommissioning -analysis TethysVerification::inspectorCommissioning -analysis TethysVerification::dockingDemo -analysis TethysVerification::missionValidation -analysis TethysVerification::successCriteriaValidation -analysis TethysVerification::groundProceduresDemo -analysis TethysVerification::interfaceBaselineInspection -analysis TethysVerification::conOpsValidation $MODEL
+run unverified-requirements $SYSML -run-query "TethysVerificationTooling::UnverifiedRequirements" $MODEL
+run vv-matrix-l2 $SYSML -run-query "TethysVerificationTooling::VvMatrix root=TethysRequirementsL2" $MODEL
+run vv-report $SYSML -render-document TethysVerificationTooling::VvReport $MODEL
+run test-campaign $SYSML -action TethysVerification::runCampaign $MODEL
+# WP-B — Argent tug structure and engineering budgets (one expression per process: F-B01 in docs/findings/WP-B.md)
+run wpb-margin-policy $SYSML -calc "TethysMarginPolicy::ContingencyFor(TethysMarginPolicy::Maturity::modified, TethysMarginPolicy::activePolicy)" -calc "TethysMarginPolicy::WithContingency(100.0, TethysMarginPolicy::Maturity::newDesign, TethysMarginPolicy::activePolicy)" -calc "TethysMarginPolicy::MarginFraction(12.0, 10.0)" -constraint "TethysMarginPolicy::ClosesWithMargin(1200.0, 1000.0, TethysMarginPolicy::activePolicy)" $MODEL
+run wpb-margin-policy-alone $SYSML -calc "TethysMarginPolicy::ContingencyFor(TethysMarginPolicy::Maturity::modified, TethysMarginPolicy::activePolicy)" model/30-margin-policy.sysml
+run wpb-tug-dry-mass $SYSML -e "TethysTugStructure::argentDesign.dryMassEstimate" $MODEL
+run wpb-tug-dry-mass-allocated $SYSML -e "TethysTugStructure::argentDesign.dryMassAllocated" $MODEL
+run wpb-tug-sep-mass $SYSML -e "TethysTugStructure::argentDesign.sep.mass" $MODEL
+run wpb-unit-power-safe $SYSML -e "TethysTugStructure::UnitsPowerInMode(TethysTugStructure::argentDesign.cdh.flightComputers, TethysTugStructure::TugMode::safe)" $MODEL
+run wpb-unit-power-thrusting $SYSML -e "TethysTugStructure::UnitsPowerInMode(TethysTugStructure::argentDesign.sep.thrusters, TethysTugStructure::TugMode::thrusting)" $MODEL
+run wpb-power-budget-safe $SYSML -e "TethysBudgets::powerBudget.demandSafe" $MODEL
+run wpb-mass-budget $SYSML -e "TethysBudgets::massBudget.launchMass" $MODEL
+run wpb-xenon-large $SYSML -e "TethysBudgets::propellantBudget.xenonLarge" $MODEL
+run wpb-sep-thrust-aphelion $SYSML -e "TethysBudgets::propellantBudget.thrustAtAphelion" $MODEL
+run wpb-thrusting-time-large $SYSML -e "TethysBudgets::propellantBudget.thrustingTimeLarge" $MODEL
+run wpb-hydrazine-large $SYSML -e "TethysBudgets::hydrazineBudget.demandLarge" $MODEL
+run wpb-data-daily $SYSML -e "TethysBudgets::dataBudget.dailyGenerated" $MODEL
+run wpb-pointing-antenna $SYSML -e "TethysBudgets::pointingBudget.antennaPointingErrorDegrees" $MODEL
+run wpb-radiator-capacity $SYSML -e "TethysBudgets::thermalBudget.radiatorCapacity" $MODEL
+run wpb-reliability $SYSML -e "TethysBudgets::reliabilityBudget.missionReliability" $MODEL
+run wpb-budgets-satisfy $SYSML -satisfy $MODEL
+run wpc-inspector-calcs $SYSML -calc "TethysInspectorDetail::ForcedMotionDeltaVPerOrbit(50.0, 7200.0)" -calc "TethysInspectorDetail::CampaignDeltaV(12.0, 0.274, 5.0e-8, 7.0e5)" -calc "TethysInspectorDetail::ColdGasDeltaV(65.0, 24.0, 1.6)" $MODEL
+run wpc-capture-calcs $SYSML -calc "TethysCaptureSystem::SphereMomentOfInertia(362.0e3, 6.8)" -calc "TethysCaptureSystem::AngularMomentum(1.674e6, 252.0)" -calc "TethysCaptureSystem::EquatorialSurfaceSpeed(6.8, 252.0)" -calc "TethysCaptureSystem::DespinDuration(4.17e4, 120.0)" -calc "TethysCaptureSystem::DespinPropellant(4.17e4, 3.0, 220.0)" -calc "TethysCaptureSystem::ContactForce(362.0e3, 0.10, 0.5)" -calc "TethysCaptureSystem::ContactForce(1000.0e3, 0.10, 0.5)" -calc "TethysCaptureSystem::MinimumRotationPeriod(6.0e4, 1000.0e3, 10.0)" -calc "TethysCaptureSystem::MinimumRotationPeriod(6.0e4, 362.0e3, 6.8)" $MODEL
+run wpc-target-cases $SYSML -calc "TethysCaptureSystem::SphereMomentOfInertia(181.0e3, 5.4)" -calc "TethysCaptureSystem::SphereMomentOfInertia(1010.0e3, 8.2)" -calc "TethysCaptureSystem::AngularMomentum(5.278e5, 252.0)" -calc "TethysCaptureSystem::AngularMomentum(1.674e6, 252.0)" -calc "TethysCaptureSystem::AngularMomentum(6.791e6, 252.0)" -calc "TethysCaptureSystem::AngularMomentum(1.674e6, 120.0)" -calc "TethysCaptureSystem::DespinPropellant(1.316e4, 3.0, 220.0)" -calc "TethysCaptureSystem::DespinPropellant(4.17e4, 3.0, 220.0)" -calc "TethysCaptureSystem::DespinPropellant(1.693e5, 3.0, 220.0)" -calc "TethysCaptureSystem::DespinPropellant(8.76e4, 3.0, 220.0)" -calc "TethysCaptureSystem::EquatorialSurfaceSpeed(6.8, 120.0)" $MODEL
+run wpc-envelope-cases $SYSML -constraint TethysCaptureSystem::smallTargetCase::fits -constraint TethysCaptureSystem::nominalTargetCase::fits -constraint TethysCaptureSystem::largeTargetCase::fits -constraint TethysCaptureSystem::fastSpinTargetCase::fits -constraint TethysCaptureSystem::tumblingTargetCase::fits $MODEL
+run wpc-requirements $SYSML -requirement TethysInspectorDetail::circumnavigationDeltaV -requirement TethysCaptureSystem::contactSpeed -requirement TethysCaptureSystem::despinTorque -requirement TethysProximityOps::retreatRange $MODEL
+run wpc-individuals $SYSML -instantiate TethysInspectorDetail::wrenFM -instantiate TethysProximityOps::amaranthFM -instantiate TethysProximityOps::proxStackFM $MODEL
+run wpc-prox-ops-modes $SYSML -instantiate TethysProximityOps::proximityOperations -state "TethysProximityOps::ProximityOpsModes TethysProximityOps::proximityOperations" -advance 10000 $MODEL
+run wpc-capture-sequence $SYSML -instantiate TethysProximityOps::captureOperation -action "TethysProximityOps::CaptureSequence TethysProximityOps::captureOperation" -advance 10000 $MODEL
+run wpd-icd-matrix $SYSML -render "#matrix:TethysIcds::icdSystem" $MODEL
+run wpd-ground-matrix $SYSML -render "#matrix:TethysMeridian::MeridianNetwork" $MODEL
+run wpd-decibels $SYSML -calc "TethysLinkBudgets::Log10(1000.0)" -calc "TethysLinkBudgets::DecibelsFromRatio(2.0)" -calc "TethysLinkBudgets::RatioFromDecibels(30.0)" -calc "TethysLinkBudgets::FreeSpaceLossDb(60.0e9, 8.445e9)" -calc "TethysLinkBudgets::DishGainDbi(32.0, 8.445e9, 0.6)" -calc "TethysLinkBudgets::DishGainDbi(2.4, 32.05e9, 0.6)" -calc "TethysLinkBudgets::GainToNoiseTemperatureDbPerK(66.823, 25.0)" $MODEL
+run wpd-link-margins $SYSML -calc "TethysLinkBudgets::MarginReport(TethysLinkBudgets::xDownlinkAtMaximumRange)" -calc "TethysLinkBudgets::MarginReport(TethysLinkBudgets::xUplinkAtMaximumRange)" -calc "TethysLinkBudgets::MarginReport(TethysLinkBudgets::kaDownlinkAtTargetRange)" -calc "TethysLinkBudgets::MarginReport(TethysLinkBudgets::xDownlinkInDro)" -calc "TethysLinkBudgets::MarginReport(TethysLinkBudgets::proximityReturnLink)" $MODEL
+run wpd-link-satisfy $SYSML -satisfy=TethysLinkBudgets $MODEL
+run wpd-relay-load $SYSML -calc "TethysLinkBudgets::CharacterisationDataVolume(4.0, 0.005, 40.0, 12.0)" -calc "TethysLinkBudgets::CharacterisationDataVolume(6.8, 0.005, 40.0, 12.0)" -calc "TethysLinkBudgets::CharacterisationDataVolume(9.5, 0.005, 40.0, 12.0)" -calc "TethysLinkBudgets::RelayDaysRequired(965097263.18, 1.0e6, 3240.0)" -calc "TethysLinkBudgets::RelayDaysRequired(2789131090.60, 1.0e6, 3240.0)" -calc "TethysLinkBudgets::RelayDaysRequired(5443751750.14, 1.0e6, 3240.0)" $MODEL
+run wpd-operations-satisfy $SYSML -satisfy=TethysOperations $MODEL
+run wpd-thrust-arc-procedure $SYSML -instantiate TethysOperations::scenario -action "TethysOperations::OperationsScenario::moc::thrustArcProcedure scenario.moc" -advance 10 -render-run sequence=- $MODEL
+run wpd-flight-rules $SYSML -engine check -action TethysOperations::RelayThenThrustProcedure -check-property TethysOperations::RelayThenThrustProcedure::noThrustDuringRelay -check-property TethysOperations::RelayThenThrustProcedure::batteryFloor $MODEL
+run wpd-icd-register-document $SYSML -render-document TethysIcdDocuments::IcdRegisterDocument $MODEL
+run wpd-space-ground-icd-document $SYSML -render-document TethysIcdDocuments::SpaceGroundIcdDocument $MODEL
+run wpd-operations-timeline $SYSML -instantiate TethysOperations::opsTimeline -state "TethysOperations::OperationsTimeline::day TethysOperations::opsTimeline" -advance 50000 -render-run timeline=- $MODEL
+run as-built-individuals $SYSML -e "TethysAsBuilt::argentFM.identity.serialNumber" -e "TethysAsBuilt::argentFM.sep.identity.serialNumber" -e "TethysAsBuilt::wrenFM.identity.serialNumber" -e "TethysAsBuilt::argentFM.massDeviation" -e "TethysAsBuilt::wrenFM.massDeviation" -e "TethysAsBuilt::amaranthFM.massEstimateRatio" -e "TethysAsBuilt::asBuiltBaseline.tugState.dryMass" $MODEL
+run as-built-satisfy $SYSML -satisfy $MODEL
+run as-built-integration $SYSML -action TethysAsBuilt::integration $MODEL
+run import-dry-run $SYSML -import data/argent-telemetry.csv -import data/amaranth-ephemeris.json -import-map data/amaranth-ephemeris.map.json -import data/as-built-masses.txt -import-format tsv -import-as values -import-dry-run $MODEL
+run import-repl sh -c "printf '%s\n' '%import data/argent-telemetry.csv' '%import data/amaranth-ephemeris.json map data/amaranth-ephemeris.map.json' '%calc TethysImportedData::xenonUsedOutbound' '%calc TethysImportedData::xenonUsedReturn' '%eval TethysImportedData::amaranthTracked.approachEpoch3.ephemeris.earthRange' | $SYSML $MODEL"
+run disposal-requirements $SYSML -requirement TethysDisposal::heliocentricDisposal -requirement TethysDisposal::disposalPropellantReserve -requirement TethysDisposal::passivation -requirement TethysDisposal::separationSafety $MODEL
+run disposal-sequence $SYSML -action TethysDisposal::disposal $MODEL
+run disposal-states $SYSML -instantiate TethysDisposal::argentAtEndOfLife -state "TethysDisposal::TugEndOfLife argentAtEndOfLife" -advance 10 $MODEL
+run safety-constraints $SYSML -constraint TethysSafety::earthImpactTree::earthImpactExcluded -constraint TethysSafety::reliabilityBudget::reliabilityAllocationMet -constraint TethysSafety::envelopeCases::largeCaseFits -constraint TethysSafety::endOfLifeSafety::disposalPropellantSufficient -constraint TethysSafety::groundSafetyData::twoInhibits $MODEL
+run safety-calcs $SYSML -calc "TethysSafety::EnvelopeMargin(10.0, 5.0)" -calc "TethysSafety::EnvelopeMargin(10.0, 6.8)" -calc "TethysSafety::EnvelopeMargin(10.0, 7.7)" -calc "TethysSafety::Exp(-0.5)" -calc "TethysSafety::Reliability(10.0)" -calc "TethysSafety::FailureProbability(10.0)" -calc "TethysSafety::KOutOfNReliability3of4(0.876)" -calc "TethysSafety::AndGate(1.0e-3, 1.0e-3)" -calc "TethysSafety::OrGate(2.0e-3, 1.0e-6)" -calc "TethysSafety::AndGate(2.0e-2, 2.001e-3)" $MODEL
+run safety-instantiate $SYSML -instantiate TethysSafety::fmeca -instantiate TethysSafety::lossOfCaptureTree -instantiate TethysSafety::reliabilityBudget -instantiate TethysSafety::hazardLog $MODEL
+run safety-fj01-probe $SYSML -instantiate 'F-J01-multicausation-ends'::tree model/probes/F-J01-multicausation-ends.sysml
+run risk-constraints $SYSML -constraint TethysRisk::riskRegister::noUnownedRedRisk -constraint TethysRisk::burnDown::registerBurningDown -constraint TethysRisk::burnDown::earthImpactBurningDown -constraint TethysRisk::marginIndicators::xenonFlagMatchesRegister -constraint TethysRisk::technologyPlan::fallbackHoldsNominalTarget $MODEL
+run risk-calcs $SYSML -calc "TethysRisk::Score(TethysRisk::Likelihood::moderate, TethysRisk::Consequence::catastrophic)" -calc "TethysRisk::Score(TethysRisk::Likelihood::low, TethysRisk::Consequence::catastrophic)" -calc "TethysRisk::Score(TethysRisk::Likelihood::veryLow, TethysRisk::Consequence::catastrophic)" -calc "TethysRisk::Score(TethysRisk::Likelihood::high, TethysRisk::Consequence::major)" -calc "TethysRisk::Score(TethysRisk::Likelihood::moderate, TethysRisk::Consequence::major)" -calc "TethysRisk::RatingOf(TethysRisk::Likelihood::veryLow, TethysRisk::Consequence::catastrophic)" -calc "TethysRisk::RatingOf(TethysRisk::Likelihood::moderate, TethysRisk::Consequence::catastrophic)" -calc "TethysRisk::RatingOf(TethysRisk::Likelihood::moderate, TethysRisk::Consequence::major)" -calc "TethysRisk::RatingOf(TethysRisk::Likelihood::low, TethysRisk::Consequence::moderate)" -calc "TethysRisk::RatingOf(TethysRisk::Likelihood::veryHigh, TethysRisk::Consequence::negligible)" -calc "TethysRisk::ToLevel(4)" $MODEL
+run risk-instantiate $SYSML -instantiate TethysRisk::riskRegister -instantiate TethysRisk::marginIndicators -instantiate TethysRisk::lessonsLearned $MODEL
+run risk-register-view $SYSML -render TethysRisk::riskRegisterView -render-form csv $MODEL
+run risk-fj02-probe $SYSML -constraint "'F-J02-snapshot-inherited-values'::reader::snapshotProduct" model/probes/F-J02-snapshot-inherited-values.sysml
+run allocations-queries $SYSML -run-query "TethysAllocationQueries::UnallocatedFunctions root=TethysAllocations::missionFunctions" -run-query "TethysAllocationQueries::UnallocatedRequirements root=TethysRequirements" -run-query "TethysAllocationQueries::UnallocatedFunctions root=TethysRisk::riskRegister" -run-query "TethysAllocationQueries::AllocationTargets origin=TethysAllocations::missionFunctions::produceHeliocentricThrust" -run-query "TethysAllocationQueries::AllocationTargets origin=TethysRequirements::cislunarSafety" $MODEL
+run allocations-matrix $SYSML -render TethysAllocations::functionAllocationMatrix -render-form csv $MODEL
+run allocations-requirement-matrix $SYSML -render TethysAllocations::requirementAllocationMatrix -render-form csv $MODEL
+run allocations-instantiate $SYSML -instantiate TethysAllocations::missionFunctions -instantiate TethysAllocations::sourcingRecord $MODEL
+# WP-E — modes (model/60-modes.sysml): the mode machines under the nominal and large-target campaigns; clock in seconds (1 d = 86 400 s).
+run modes-table $SYSML -quiet -instantiate TethysModes::argentModeTable -e "TethysModes::argentModeTable.rows.mode" -e "TethysModes::argentModeTable.rows.busLoad" -e "TethysModes::argentModeTable.rows.sepThrusting" -e "TethysModes::argentModeTable.rows.highVoltageBusOn" $MODEL
+run modes-tug-early-ops $SYSML -quiet -instantiate TethysModes::nominalFlight -state TethysModes::nominalFlight.tug -advance 17280 -trace $MODEL
+run modes-tug-thrust-arc $SYSML -quiet -instantiate TethysModes::nominalFlight -state TethysModes::nominalFlight.tug -advance 2678400 $MODEL
+run modes-tug-proximity-ops $SYSML -quiet -instantiate TethysModes::nominalFlight -state TethysModes::nominalFlight.tug -advance 38016000 $MODEL
+run modes-tug-full-flight $SYSML -quiet -instantiate TethysModes::nominalFlight -state TethysModes::nominalFlight.tug -advance 129600000 $MODEL
+run modes-tug-large-target $SYSML -quiet -instantiate TethysModes::largeTargetFlight -state TethysModes::largeTargetFlight.tug -advance 129600000 $MODEL
+run modes-inspector-imaging $SYSML -quiet -instantiate TethysModes::nominalFlight -state TethysModes::nominalFlight.inspector -advance 38102400 $MODEL
+run modes-inspector-retired $SYSML -quiet -instantiate TethysModes::nominalFlight -state TethysModes::nominalFlight.inspector -advance 129600000 $MODEL
+# WP-E — sequence (model/61-sequence.sysml): phase plan, dated schedule, and the mission action run to completion for the small, nominal and large target cases (2 200 d = 190 080 000 s).
+run sequence-phase-plan $SYSML -quiet -instantiate TethysSequence::nominalPhasePlan -e "TethysSequence::nominalPhasePlan.phases.phase" -e "TethysSequence::nominalPhasePlan.phases.plannedDuration" -e "TethysSequence::nominalPhasePlan.plannedTotal" $MODEL
+run sequence-schedule $SYSML -quiet -instantiate TethysSequence::baselineSchedule -e "TethysSequence::baselineSchedule.events.eventName" -e "TethysSequence::baselineSchedule.events.dayAfterLaunch" $MODEL
+run sequence-small-target $SYSML -quiet -instantiate TethysSequence::smallTargetCampaign -action "TethysSequence::FlightCampaign::mission TethysSequence::smallTargetCampaign" -advance 190080000 $MODEL
+run sequence-nominal $SYSML -quiet -instantiate TethysSequence::nominalCampaign -action "TethysSequence::FlightCampaign::mission TethysSequence::nominalCampaign" -advance 190080000 $MODEL
+run sequence-large-target $SYSML -quiet -instantiate TethysSequence::largeTargetCampaign -action "TethysSequence::FlightCampaign::mission TethysSequence::largeTargetCampaign" -advance 190080000 $MODEL
+run sequence-nominal-trace $SYSML -quiet -instantiate TethysSequence::nominalCampaign -action "TethysSequence::FlightCampaign::mission TethysSequence::nominalCampaign" -advance 190080000 -trace $MODEL
+# WP-E — FDIR (model/62-fdir.sysml): the supervisor and the mode machine under three fault-injection campaigns (compressed day clock), and the inhibit chain under the schedule checker and the SMT engine.
+run fdir-command-loss-expired $SYSML -quiet -instantiate TethysFdir::commandLossScenario -state TethysFdir::commandLossScenario.tug.fdir -advance 1555200 $MODEL
+run fdir-command-loss-modes-safe $SYSML -quiet -instantiate TethysFdir::commandLossScenario -state TethysFdir::commandLossScenario.tug.modes -advance 1555200 $MODEL
+run fdir-command-loss-recovered $SYSML -quiet -instantiate TethysFdir::commandLossScenario -state TethysFdir::commandLossScenario.tug.modes -advance 2160000 $MODEL
+run fdir-thruster-restarting $SYSML -quiet -instantiate TethysFdir::thrusterFaultScenario -state TethysFdir::thrusterFaultScenario.tug.fdir -advance 876960 -trace $MODEL
+run fdir-thruster-on-spare $SYSML -quiet -instantiate TethysFdir::thrusterFaultScenario -state TethysFdir::thrusterFaultScenario.tug.fdir -advance 1900800 $MODEL
+run fdir-thruster-ppu-cross-strapped $SYSML -quiet -instantiate TethysFdir::thrusterFaultScenario -state TethysFdir::thrusterFaultScenario.tug.fdir -advance 2332800 $MODEL
+run fdir-thruster-string-lost $SYSML -quiet -instantiate TethysFdir::thrusterFaultScenario -state TethysFdir::thrusterFaultScenario.tug.fdir -advance 2764800 $MODEL
+run fdir-thruster-modes-safe $SYSML -quiet -instantiate TethysFdir::thrusterFaultScenario -state TethysFdir::thrusterFaultScenario.tug.modes -advance 2764800 $MODEL
+run fdir-earth-impact-nominal-return $SYSML -quiet -instantiate TethysFdir::earthImpactScenario -state TethysFdir::earthImpactScenario.tug.modes -advance 2160000 $MODEL
+run fdir-earth-impact-aborted $SYSML -quiet -instantiate TethysFdir::earthImpactScenario -state TethysFdir::earthImpactScenario.tug.fdir -advance 2592000 $MODEL
+run fdir-earth-impact-abort-hold $SYSML -quiet -instantiate TethysFdir::earthImpactScenario -state TethysFdir::earthImpactScenario.tug.modes -advance 2592000 $MODEL
+run fdir-inhibit-chain-held $SYSML -quiet -instantiate TethysFdir::inhibitedChain -action "TethysFdir::InhibitChain::cinch TethysFdir::inhibitedChain" $MODEL
+run fdir-inhibit-chain-check $SYSML -quiet -engine check -instantiate TethysFdir::armedChain -action "TethysFdir::InhibitChain::cinch TethysFdir::armedChain" -check-property TethysFdir::InhibitChain::noFireWithoutInhibitsRemoved $MODEL
+run fdir-inhibit-chain-smt $SYSML -quiet -engine smt -instantiate TethysFdir::armedChain -action "TethysFdir::InhibitChain::cinch TethysFdir::armedChain" -check-input armCommanded -check-input groundEnable -check-input inCaptureMode -check-property TethysFdir::InhibitChain::noFireWithoutInhibitsRemoved $MODEL
+run fdir-command-loss-timeline $SYSML -quiet -instantiate TethysFdir::commandLossScenario -state TethysFdir::commandLossScenario.tug.fdir -advance 2160000 -render-run timeline=- -render-form text $MODEL
+# Analyses, trades, Monte Carlo, dynamics (TethysAnalyses, TethysTrades, TethysMonteCarlo,
+# TethysDynamics, TethysAnalysesTooling). `runt` drops the wall-time column of sweep and run
+# tables so the output pins; the external tool manifest must live outside the working tree.
+runt() { name=$1; shift; "$@" 2>&1 | sed -E -e 's/ *\| *time$//' -e 's/\+-+$//' -e 's/ *\| *[0-9.]+(ms|µs|ns|s)$//' > "$out/$name.txt" || echo "exit $?" >> "$out/$name.txt"; }
+TOOLS="${TMPDIR:-/tmp}/tethys-tools"; rm -rf "$TOOLS"; cp -r scripts/tools/thrust-arc "$TOOLS"
+run analyses-transfer $SYSML -analysis TethysAnalyses::transferSmall -analysis TethysAnalyses::transferNominal -analysis TethysAnalyses::transferLarge -analysis TethysAnalyses::verifyDurationNominal -analysis TethysAnalyses::verifyDurationLarge $MODEL
+run analyses-capture $SYSML -analysis TethysAnalyses::captureNominal -analysis TethysAnalyses::captureLarge -analysis TethysAnalyses::captureFastSpin $MODEL
+run analyses-external-tool env OPENSYSML_TOOLS="$TOOLS" $SYSML -analysis TethysAnalyses::externalTransfer -record-run TethysAnalyses::externalTransfer -record-run TethysAnalyses::transferNominal $MODEL
+runt analyses-sweep $SYSML -analysis TethysAnalyses::transferNominal -sweep "outboundDeltaVMPerS=1500.0..3000.0:500.0" $MODEL
+run trades $SYSML -analysis TethysTrades::arrayPowerTrade -analysis TethysTrades::specificImpulseTrade -analysis TethysTrades::departureTrade -analysis TethysTrades::destinationOrbitTrade -analysis TethysTrades::captureMechanismTrade $MODEL
+runt trades-sweep $SYSML -analysis TethysTrades::arrayPowerTrade -sweep "costPenaltyDaysPerUnit=0.0..10.0:2.5" $MODEL
+runt montecarlo-return $SYSML -analysis TethysMonteCarlo::returnDispersion -sweep "bodyMassKg=215000.0..644000.0" -samples 100 -seed 7 $MODEL
+runt montecarlo-capture $SYSML -analysis TethysMonteCarlo::captureDispersion -sweep "diameterM=5.4..8.2" -sweep "rotationPeriodS=120.0..600.0" -samples 100 -seed 7 $MODEL
+runt montecarlo-missed-thrust $SYSML -analysis TethysMonteCarlo::missedThrustDispersion -sweep "coastDaysPerEvent=2.0..30.0" -sweep "safeModeEvents=0.0..12.0" -samples 100 -seed 7 $MODEL
+runt montecarlo-insertion $SYSML -analysis TethysMonteCarlo::insertionDispersion -sweep "vInfinityKmPerS=0.5..1.5" -sweep "insertionErrorMPerS=0.0..20.0" -samples 100 -seed 7 $MODEL
+run dynamics-tables $SYSML -calc "TethysDynamics::ArrayDegradationAt(900.0)" -calc "TethysDynamics::ArrayDegradationAt(3000.0)" -calc "TethysDynamics::SolarFluxFromTable(1.034)" -calc "TethysDynamics::SolarFluxFromTable(1.1393)" -analysis TethysDynamics::arrayPowerAtAphelionEnd $MODEL
+runt dynamics-array-sweep $SYSML -analysis TethysDynamics::arrayPowerAtAphelionEnd -sweep "missionDay=0.0..2200.0:550.0" $MODEL
+run dynamics-standard $SYSML -action TethysDynamics::droRevolution -action TethysDynamics::firstThrustArc -action TethysDynamics::despinNominal -analysis TethysDynamics::droStability $MODEL
+runt tooling-montecarlo $SYSML -analysis TethysAnalysesTooling::returnOverTargetCases -runs 200 -seed 7 $MODEL
+runt tooling-montecarlo-continuous $SYSML -analysis TethysAnalysesTooling::returnOverContinuousMass -runs 200 -seed 7 $MODEL
+runt tooling-montecarlo-min $SYSML -analysis TethysAnalysesTooling::returnOverContinuousMass -draws min -runs 1 $MODEL
+runt tooling-montecarlo-max $SYSML -analysis TethysAnalysesTooling::returnOverContinuousMass -draws max -runs 1 $MODEL
+run tooling-dynamics $SYSML -action TethysAnalysesTooling::droRevolutionRk4 -action TethysAnalysesTooling::firstThrustArcRk4 $MODEL
+run probe-F-F01 $SYSML -action TethysDynamicsIntegratorProbe::droRevolutionRk4 $MODEL model/probes/F-F01-state-space-integrator.sysml
+run probe-F-F02 $SYSML -analysis TethysVariantSubjectProbe::viaVariant -analysis TethysVariantSubjectProbe::viaConfiguration -analysis TethysVariantSubjectProbe::viaPlainPart $MODEL model/probes/F-F02-variant-as-subject.sysml
+run probe-F-F03 $SYSML -analysis TethysMetadataInBodyProbe::inline -analysis TethysMetadataInBodyProbe::outside $MODEL model/probes/F-F03-metadata-in-analysis-body.sysml
+run probe-F-F05 $SYSML -action NestedStateSpaceProbe::fall -analysis NestedStateSpaceProbe::drop model/probes/F-F05-nested-state-space-action.sysml
+run probe-F-F04 $SYSML -calc "TethysAmbiguousMinProbe::Smaller(2.0, 3.0)" -calc "TethysAmbiguousMinProbe::Larger(2.0, 3.0)" model/probes/F-F04-ambiguous-min.sysml
+run probe-F-F06 env OPENSYSML_TOOLS="$TOOLS" $SYSML -analysis TethysToolMultiplicityProbe::unmultipliedTransfer $MODEL model/probes/F-F06-tool-output-multiplicity.sysml
+run variants-configurations $SYSML -instantiate TethysVariants::baselineConfiguration -validate=TethysVariants::baselineConfiguration -instantiate TethysVariants::smallTargetTugOnly -validate=TethysVariants::smallTargetTugOnly -instantiate TethysVariants::largeTargetStudy -validate=TethysVariants::largeTargetStudy -instantiate TethysVariants::fastSpinStudy -validate=TethysVariants::fastSpinStudy $MODEL
+run variants-calcs $SYSML -calc "TethysVariants::ReturnDeltaV(156700.0, 3020.0)" -calc "TethysVariants::ReturnDeltaV(362000.0, 5420.0)" -calc "TethysVariants::ReturnDeltaV(808000.0, 7220.0)" -calc "TethysVariants::ThrustTimeDays(4200.0, 2)" -calc "TethysVariants::ThrustTimeDays(6600.0, 3)" -calc "TethysVariants::ThrustTimeDays(8400.0, 4)" $MODEL
+run physics-strict $SYSML -validate -strict -warnings-as-errors model/81-physics.kerml
+run physics-calcs $SYSML -calc "TethysPhysics::TwoBody::OrbitalPeriod(1.32712440018e20, 1.5468e11)" -calc "TethysPhysics::TwoBody::VisVivaSpeed(1.32712440018e20, 1.4996e11, 1.5468e11)" -calc "TethysPhysics::TwoBody::HohmannDeltaV(1.32712440018e20, 1.495978707e11, 1.5468e11)" -calc "TethysPhysics::TwoBody::SynodicPeriod(31558149.8, 33179917.1)" -calc "TethysPhysics::TwoBody::DepartureSpeed(3.986004418e14, 6578137.0, 1414.2)" -calc "TethysPhysics::ThreeBody::MassRatio(5.9722e24, 7.342e22)" -calc "TethysPhysics::ThreeBody::HillRadius(3.844e8, 5.9722e24, 7.342e22)" -calc "TethysPhysics::ThreeBody::JacobiConstant(0.01215, 1.1, 0.0, 0.3)" -calc "TethysPhysics::LowThrust::EdelbaumDeltaV(29290.0, 29780.0, 0.01047)" -calc "TethysPhysics::LowThrust::Exponential(1.0)" -calc "TethysPhysics::LowThrust::PropellantForDeltaV(12600.0, 2800.0, 28439.285)" -calc "TethysPhysics::LowThrust::ThrustTime(5420.0, 6.43e-5)" -calc "TethysPhysics::ElectricPropulsion::ExhaustVelocity(2900.0)" -calc "TethysPhysics::ElectricPropulsion::Thrust(40000.0, 2900.0, 0.65)" -calc "TethysPhysics::ElectricPropulsion::MassFlowRate(1.8285, 28439.285)" -calc "TethysPhysics::ElectricPropulsion::JetPower(1.8285, 28439.285)" -calc "TethysPhysics::ElectricPropulsion::ArrayPowerAtDistance(48000.0, 1.034, 0.97)" -calc "TethysPhysics::SmallBodies::SphereMass(6.8, 2200.0)" -calc "TethysPhysics::SmallBodies::BreakupPeriod(2200.0)" -calc "TethysPhysics::SmallBodies::SurfaceGravity(362000.0, 3.4)" -calc "TethysPhysics::SmallBodies::EquatorialAcceleration(252.0, 3.4)" $MODEL
+run physics-predicate $SYSML -calc "TethysPhysics::ElectricPropulsion::PowerCloses(43600.0, 13333.0, 3)" $MODEL
+run notation-readiness $SYSML -instantiate TethysNotation::baselineReadiness -validate=TethysNotation::baselineReadiness -calc "TethysNotation::SpinPeriodBelieved(null, 252.0)" -calc "TethysNotation::SpinPeriodBelieved(248.0, 252.0)" -calc "TethysNotation::SpareIsUnpaired(3)" -calc "TethysNotation::InspectorDecisionConsistent(true, false)" -calc "TethysNotation::HeavierBodyNeedsMoreXenon(808000.0, 8400.0)" -calc "TethysNotation::VolumeScale(1.2059)" $MODEL
+# WP-H views, documents and layout (model/90-92). Documents embed a positioned view drawn by the `dot` on PATH (graphviz 2.43).
+run list-views $SYSML -list all -quiet $MODEL
+run render-all $SYSML -render-all "$out/views" -quiet $MODEL
+run render-segment-interfaces-dot $SYSML -render TethysViews::segmentInterfaces -render-form dot -quiet $MODEL
+run render-mass-budget-csv $SYSML -render TethysViews::massBudget -render-form csv -quiet $MODEL
+run render-documents-md $SYSML -render-documents "$out/documents" -quiet $MODEL
+run render-documents-html $SYSML -render-documents "$out/documents-html" -doc-form html -quiet $MODEL
+run tool-version sh -c "\"$SYSML\" -version | grep -v 'Build time:'"
+run document-queries $SYSML -run-query TethysDocuments::MissionRequirements -run-query TethysDocuments::InterfaceEnds -run-query TethysDocuments::FlightPhases -run-query TethysDocuments::Risks -quiet $MODEL
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi

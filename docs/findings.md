@@ -4,6 +4,9 @@ Each row is a place where the mission model showed OpenSysML to be wrong, incomp
 Columns: id, date found, OpenSysML version, the smallest construct (file:line or snippet),
 observed, expected (with the spec clause), status (open / fixed in vX.Y.Z / by design).
 
+Findings met inside one work package are in `docs/findings/WP-*.md`; those only the integrated
+model shows are in `docs/findings/integration.md`.
+
 | ID | Found | Version | Construct | Observed | Expected (spec §) | Status |
 | --- | --- | --- | --- | --- | --- | --- |
 | F-001 | 2026-10-21 | OpenSysML v0.10.1-2054 / pilot library at the vendored pin | `RealFunctions` | The Kernel Function Library has no natural logarithm or exponential (`RealFunctions` is arithmetic, `sqrt`, `floor`, `round`, comparisons), so the rocket equation cannot be written against the standard library alone. | KerML 9.3 Kernel Function Library gives no `ln`/`exp`; this is a standard-library gap, not a tool defect. The model carries a series `TethysEnvironment::NaturalLog` (error < 3e-5 on 0.3–3); OpenSysML's non-standard `OpenSysMLMathFunctions::ln` is not used (standard SysML only). | open — upstream library gap, candidate OMG issue |

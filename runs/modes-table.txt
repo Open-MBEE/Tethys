@@ -1,0 +1,61 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysModes::argentModeTable
+  ID: 1
+  Use %features TethysModes::argentModeTable to inspect
+✓ TethysModes::argentModeTable.rows.mode
+  = [TugMode::launch, TugMode::coast, TugMode::thrust, TugMode::approach, TugMode::proximityOperations, TugMode::retreat, TugMode::capture, TugMode::despin, TugMode::stackCoast, TugMode::stackThrust, TugMode::droHold, TugMode::dockedPassive, TugMode::disposal, TugMode::safe, TugMode::abortHold]
+✓ TethysModes::argentModeTable.rows.busLoad
+  = [0.9 [kW], 1.6 [kW], 41.5 [kW], 42.3 [kW], 2.4 [kW], 2.2 [kW], 2.9 [kW], 2.0 [kW], 1.7 [kW], 41.6 [kW], 1.5 [kW], 1.3 [kW], 41.5 [kW], 1.1 [kW], 1.6 [kW]]
+✓ TethysModes::argentModeTable.rows.sepThrusting
+  = [false, false, true, true, false, false, false, false, false, true, false, false, true, false, false]
+✓ TethysModes::argentModeTable.rows.highVoltageBusOn
+  = [false, false, true, true, false, false, false, false, false, true, false, false, true, false, false]

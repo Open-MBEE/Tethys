@@ -1,0 +1,60 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ satisfy dictionaryConsistent by dictionary holds (on TethysOperations::dictionary ID: 1)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy operationsReadiness by orrStatus holds (on TethysOperations::orrStatus ID: 3)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy resourceMarginPositive by xenonTrend holds (on TethysOperations::xenonTrend ID: 4)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy resourceMarginPositive by batteryCapacityTrend holds (on TethysOperations::batteryCapacityTrend ID: 5)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy extendedMissionAffordable by extendedMission holds (on TethysOperations::extendedMission ID: 6)
+  standing: holds (observed: 1 run under reverse)

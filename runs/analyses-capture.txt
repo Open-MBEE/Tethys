@@ -1,0 +1,69 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ TethysAnalyses::captureNominal
+  angularMomentumNMS = [41758.529248113104]
+  despinTimeS = [316.35249430388717]
+  despinHydrazineKg = [6.451795349153629]
+  objective fitsEnvelope: satisfied
+  standing: value (observed: 1 run under reverse)
+✓ TethysAnalyses::captureLarge
+  angularMomentumNMS = [92683.82374090109]
+  despinTimeS = [702.1501798553113]
+  despinHydrazineKg = [14.319878446876588]
+  objective fitsEnvelope: satisfied
+  standing: value (observed: 1 run under reverse)
+✗ TethysAnalyses::captureFastSpin
+  angularMomentumNMS = [87692.91142103753]
+  despinTimeS = [664.3402380381631]
+  despinHydrazineKg = [13.548770233222623]
+  objective fitsEnvelope: not satisfied: surfaceSpeedMPerS <= maximumSurfaceSpeedMPerS
+  standing: value (observed: 1 run under reverse)
+exit 1

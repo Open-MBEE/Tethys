@@ -1,0 +1,87 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysNotation::baselineReadiness
+  ID: 1
+  Use %features TethysNotation::baselineReadiness to inspect
+error: feature value baselineReadiness.bodyCount: usage captureOperation: performed action capture of object #93: invoke action CommitDecision: initialize action: initialize attributes: eval attribute default go: type mismatch: operator '<=' is not defined for a sequence and a quantity; DataFunctions::'<=' takes one DataValue per operand
+✓ assert constraint inspectorDecisionIsExclusive holds (on TethysNotation::baselineReadiness ID: 1)
+✓ assert constraint carriedMeansLifted holds (on TethysNotation::baselineReadiness ID: 1)
+✓ assert constraint spareIsReal holds (on TethysNotation::baselineReadiness ID: 1)
+✓ assert constraint windowIsOrdered holds (on TethysNotation::baselineReadiness ID: 1)
+✓ assert constraint identityChecks holds (on TethysNotation::baselineReadiness ID: 1)
+✓ assert constraint captureEnvelope holds (on TethysNotation::baselineReadiness.configuration ID: 2)
+✓ assert constraint spinWithinGrappleRate holds (on TethysNotation::baselineReadiness.configuration ID: 2)
+✓ assert constraint powerCloses holds (on TethysNotation::baselineReadiness.configuration ID: 2)
+✓ assert constraint returnCloses holds (on TethysNotation::baselineReadiness.configuration ID: 2)
+✓ assert constraint thrustTimeFits holds (on TethysNotation::baselineReadiness.configuration ID: 2)
+✓ assert constraint launcherLifts holds (on TethysNotation::baselineReadiness.configuration ID: 2)
+✓ assert constraint stringsMatchArray holds (on TethysNotation::baselineReadiness.configuration ID: 2)
+✓ TethysNotation::baselineReadiness is valid: all 12 assertions hold
+  standing: holds (observed: 1 run under reverse)
+✓ TethysNotation::SpinPeriodBelieved(null, 252.0)
+  = [252.0]
+  standing: value (observed: 1 run under reverse)
+✓ TethysNotation::SpinPeriodBelieved(248.0, 252.0)
+  = [248.0]
+  standing: value (observed: 1 run under reverse)
+✓ TethysNotation::SpareIsUnpaired(3)
+  = [true]
+  standing: value (observed: 1 run under reverse)
+✓ TethysNotation::InspectorDecisionConsistent(true, false)
+  = [true]
+  standing: value (observed: 1 run under reverse)
+✓ TethysNotation::HeavierBodyNeedsMoreXenon(808000.0, 8400.0)
+  = [true]
+  standing: value (observed: 1 run under reverse)
+✓ TethysNotation::VolumeScale(1.2059)
+  = [1.7536135213789998]
+  standing: value (observed: 1 run under reverse)
+exit 2

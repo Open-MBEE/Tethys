@@ -1,0 +1,65 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysFdir::inhibitedChain
+  ID: 1
+  Use %features TethysFdir::inhibitedChain to inspect
+✓ Debugging action "cinch" performed by object #1 of "TethysFdir::inhibitedChain"
+note: object #1 of "TethysFdir::inhibitedChain" already performs "TethysFdir::InhibitChain::cinch", so this session attaches to that running performance rather than starting a second one (as `%action TethysFdir::InhibitChain::cinch` would)
+  State: Completed
+  Tokens: 0
+✓ Action already completed
+  Results:
+    armCommanded = [true]
+    fired = [false]
+    groundEnable = [false]
+    holdReason = ["cinch inhibited: an inhibit is still in place"]
+    inCaptureMode = [true]
+  standing: value (observed: 1 run under reverse)

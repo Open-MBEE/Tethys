@@ -83,10 +83,30 @@ package TethysInterfaces {
 
     // ---- interface definitions, one per ICD class --------------------------------------
     interface def TugInspectorInterface {
-        doc /* Tug ↔ inspector before release: mechanical dispenser, umbilical and thermal. The
+        doc /* Tug ↔ inspector before release, the electrical umbilical: keep-alive power,
+             * checkout data and the separation signal. The stowed stack's mechanical and
+             * thermal disciplines are InspectorDispenserInterface and InspectorThermalInterface,
+             * each a binary interface of its own so every usage stays a two-ended connect; the
              * relay link takes over after release. */
         end tugSide : UmbilicalPort;
         end inspectorSide : ~UmbilicalPort;
+    }
+    interface def InspectorDispenserInterface {
+        doc /* Tug ↔ inspector mechanical while stowed: the dispenser rails and release
+             * mechanism carrying Wren's launch loads into the tug structure. */
+        end tugSide : MechanicalPort;
+        end inspectorSide : ~MechanicalPort;
+    }
+    interface def InspectorThermalInterface {
+        doc /* Tug ↔ inspector thermal while stowed: heat conducted through the dispenser
+             * rails that keeps Wren's battery above its survival temperature. */
+        end tugSide : ThermalPort;
+        end inspectorSide : ~ThermalPort;
+    }
+    interface def PropellantFeedInterface {
+        doc /* Tank ↔ ground fill-and-drain: the xenon and hydrazine loading lines on the pad. */
+        end tankSide : FluidPort;
+        end groundSide : ~FluidPort;
     }
     interface def SpacecraftLauncherInterface {
         doc /* Stack ↔ launcher: adapter, loads, umbilical and separation. */
@@ -108,6 +128,12 @@ package TethysInterfaces {
              * capture, despin and the return thrust arcs. */
         end tugSide : MechanicalPort;
         end bodySide : ~MechanicalPort;
+        attribute contactSpeedLimit : SpeedValue;
+        attribute cinchPreload : ForceValue;
+        attribute maximumDespinTorque : TorqueValue;
+        attribute slipTorqueLimit : TorqueValue;
+        attribute minimumTemperature : ThermodynamicTemperatureValue;
+        attribute maximumTemperature : ThermodynamicTemperatureValue;
     }
     interface def DockingInterface {
         doc /* Tug ↔ visiting vehicle in the distant retrograde orbit. */

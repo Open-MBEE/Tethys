@@ -1,0 +1,64 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysProximityOps::proximityOperations
+  ID: 1
+  Use %features TethysProximityOps::proximityOperations to inspect
+warning: TethysProximityOps::proximityOperations: materialization is bounded; not every feature value was checked
+✓ Debugging state machine "modes" exhibited by object #1 of "TethysProximityOps::proximityOperations"
+note: object #1 of "TethysProximityOps::proximityOperations" already exhibits "TethysProximityOps::ProximityOpsModes", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysProximityOps::proximityOperations` would)
+  Current state: cinched
+  Time: 0.0
+  Events: 0
+✓ Advanced to 10000.0 (0 event(s) processed)
+  Current state: cinched
+  Last event at: 0.0
+  Remaining events: 0
+  standing: value (observed: 1 run under reverse)

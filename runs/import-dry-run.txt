@@ -1,0 +1,92 @@
+loaded 50 files:
+  model/00-tethys.sysml
+  model/01-environment.sysml
+  model/02-mission.sysml
+  model/03-interfaces.sysml
+  model/04-requirements.sysml
+  model/05-tug.sysml
+  model/06-inspector.sysml
+  model/07-target.sysml
+  model/08-launch.sysml
+  model/09-ground.sysml
+  model/10-system.sysml
+  model/20-stakeholders.sysml
+  model/21-requirements-l2.sysml
+  model/22-requirements-l3-l4.sysml
+  model/23-verification.sysml
+  model/24-verification-tooling.sysml
+  model/30-margin-policy.sysml
+  model/31-tug-structure.sysml
+  model/32-budgets.sysml
+  model/40-inspector.sysml
+  model/41-capture-system.sysml
+  model/42-proximity-ops.sysml
+  model/50-ground.sysml
+  model/51-icds.sysml
+  model/52-link-budgets.sysml
+  model/53-operations.sysml
+  model/54-icds-tooling.sysml
+  model/60-modes.sysml
+  model/61-sequence.sysml
+  model/62-fdir.sysml
+  model/70-analyses.sysml
+  model/71-trades.sysml
+  model/72-montecarlo.sysml
+  model/73-dynamics.sysml
+  model/74-analyses-tooling.sysml
+  model/80-variants.sysml
+  model/81-physics.kerml
+  model/82-notation-sweep.sysml
+  model/85-safety.sysml
+  model/86-risk.sysml
+  model/87-allocations-tooling.sysml
+  model/87-allocations.sysml
+  model/90-views.sysml
+  model/91-documents.sysml
+  model/92-layout.sysml
+  model/93-views-tooling.sysml
+  model/95-as-built.sysml
+  model/96-imported-data.sysml
+  model/97-disposal.sysml
+  model/99-house-rules.sysml
+dry run: would import 20 values into 4 elements from data/argent-telemetry.csv; the model is unchanged
+  TethysImportedData::argentFlight::afterArraysDeployed::telemetry::missionElapsedTime = 2.0 [d] (redefines TethysImportedData::TelemetrySample::missionElapsedTime)
+  TethysImportedData::argentFlight::afterArraysDeployed::telemetry::xenonRemaining = 6600.0 [kg] (redefines TethysImportedData::TelemetrySample::xenonRemaining)
+  TethysImportedData::argentFlight::afterArraysDeployed::telemetry::hydrazineRemaining = 400.0 [kg] (redefines TethysImportedData::TelemetrySample::hydrazineRemaining)
+  TethysImportedData::argentFlight::afterArraysDeployed::telemetry::arrayPower = 47.6 [kW] (redefines TethysImportedData::TelemetrySample::arrayPower)
+  TethysImportedData::argentFlight::afterArraysDeployed::telemetry::batteryStateOfCharge = 0.98 (redefines TethysImportedData::TelemetrySample::batteryStateOfCharge)
+  TethysImportedData::argentFlight::atRendezvous::telemetry::missionElapsedTime = 610.0 [d] (redefines TethysImportedData::TelemetrySample::missionElapsedTime)
+  TethysImportedData::argentFlight::atRendezvous::telemetry::xenonRemaining = 3310.0 [kg] (redefines TethysImportedData::TelemetrySample::xenonRemaining)
+  TethysImportedData::argentFlight::atRendezvous::telemetry::hydrazineRemaining = 391.0 [kg] (redefines TethysImportedData::TelemetrySample::hydrazineRemaining)
+  TethysImportedData::argentFlight::atRendezvous::telemetry::arrayPower = 44.1 [kW] (redefines TethysImportedData::TelemetrySample::arrayPower)
+  TethysImportedData::argentFlight::atRendezvous::telemetry::batteryStateOfCharge = 0.97 (redefines TethysImportedData::TelemetrySample::batteryStateOfCharge)
+  TethysImportedData::argentFlight::atCaptureComplete::telemetry::missionElapsedTime = 790.0 [d] (redefines TethysImportedData::TelemetrySample::missionElapsedTime)
+  TethysImportedData::argentFlight::atCaptureComplete::telemetry::xenonRemaining = 3290.0 [kg] (redefines TethysImportedData::TelemetrySample::xenonRemaining)
+  TethysImportedData::argentFlight::atCaptureComplete::telemetry::hydrazineRemaining = 352.0 [kg] (redefines TethysImportedData::TelemetrySample::hydrazineRemaining)
+  TethysImportedData::argentFlight::atCaptureComplete::telemetry::arrayPower = 43.8 [kW] (redefines TethysImportedData::TelemetrySample::arrayPower)
+  TethysImportedData::argentFlight::atCaptureComplete::telemetry::batteryStateOfCharge = 0.95 (redefines TethysImportedData::TelemetrySample::batteryStateOfCharge)
+  TethysImportedData::argentFlight::atDroInsertion::telemetry::missionElapsedTime = 2150.0 [d] (redefines TethysImportedData::TelemetrySample::missionElapsedTime)
+  TethysImportedData::argentFlight::atDroInsertion::telemetry::xenonRemaining = 540.0 [kg] (redefines TethysImportedData::TelemetrySample::xenonRemaining)
+  TethysImportedData::argentFlight::atDroInsertion::telemetry::hydrazineRemaining = 318.0 [kg] (redefines TethysImportedData::TelemetrySample::hydrazineRemaining)
+  TethysImportedData::argentFlight::atDroInsertion::telemetry::arrayPower = 41.9 [kW] (redefines TethysImportedData::TelemetrySample::arrayPower)
+  TethysImportedData::argentFlight::atDroInsertion::telemetry::batteryStateOfCharge = 0.96 (redefines TethysImportedData::TelemetrySample::batteryStateOfCharge)
+dry run: would import 12 values into 3 elements from data/amaranth-ephemeris.json; the model is unchanged
+  TethysImportedData::amaranthTracked::approachEpoch1::ephemeris::earthRange = 7.9e6 [km] (redefines TethysImportedData::EphemerisSample::earthRange)
+  TethysImportedData::amaranthTracked::approachEpoch1::ephemeris::epoch = 560.0 [d] (redefines TethysImportedData::EphemerisSample::epoch)
+  TethysImportedData::amaranthTracked::approachEpoch1::ephemeris::heliocentricDistanceAu = 1.0521 (redefines TethysImportedData::EphemerisSample::heliocentricDistanceAu)
+  TethysImportedData::amaranthTracked::approachEpoch1::ephemeris::rangeRate = -1210.0 [m/s] (redefines TethysImportedData::EphemerisSample::rangeRate)
+  TethysImportedData::amaranthTracked::approachEpoch2::ephemeris::earthRange = 9.4e6 [km] (redefines TethysImportedData::EphemerisSample::earthRange)
+  TethysImportedData::amaranthTracked::approachEpoch2::ephemeris::epoch = 590.0 [d] (redefines TethysImportedData::EphemerisSample::epoch)
+  TethysImportedData::amaranthTracked::approachEpoch2::ephemeris::heliocentricDistanceAu = 1.0488 (redefines TethysImportedData::EphemerisSample::heliocentricDistanceAu)
+  TethysImportedData::amaranthTracked::approachEpoch2::ephemeris::rangeRate = -640.0 [m/s] (redefines TethysImportedData::EphemerisSample::rangeRate)
+  TethysImportedData::amaranthTracked::approachEpoch3::ephemeris::earthRange = 10.6e6 [km] (redefines TethysImportedData::EphemerisSample::earthRange)
+  TethysImportedData::amaranthTracked::approachEpoch3::ephemeris::epoch = 610.0 [d] (redefines TethysImportedData::EphemerisSample::epoch)
+  TethysImportedData::amaranthTracked::approachEpoch3::ephemeris::heliocentricDistanceAu = 1.0462 (redefines TethysImportedData::EphemerisSample::heliocentricDistanceAu)
+  TethysImportedData::amaranthTracked::approachEpoch3::ephemeris::rangeRate = -12.0 [m/s] (redefines TethysImportedData::EphemerisSample::rangeRate)
+dry run: would import 6 values into 6 elements from data/as-built-masses.txt; the model is unchanged
+  TethysAsBuilt::argentFM::asMeasuredMass = 5638.4 [kg]
+  TethysAsBuilt::argentFM::sep::asMeasuredMass = 1196.2 [kg]
+  TethysAsBuilt::argentFM::eps::asMeasuredMass = 1251.5 [kg]
+  TethysAsBuilt::argentFM::captureSystem::asMeasuredMass = 833.9 [kg]
+  TethysAsBuilt::argentFM::rcs::asMeasuredMass = 207.1 [kg]
+  TethysAsBuilt::wrenFM::asMeasuredMass = 24.9 [kg]

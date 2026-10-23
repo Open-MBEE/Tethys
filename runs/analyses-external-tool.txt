@@ -1,0 +1,71 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ TethysAnalyses::externalTransfer
+  thrustDays = [54.583138065179746]
+  deltaVMPerS = [692.7315385190694]
+  propellantKg = [303.20631301965994]
+  objective fitsAllowance: satisfied
+  standing: value (observed: 1 run under reverse)
+✓ TethysAnalyses::externalTransfer
+  thrustDays = [54.583138065179746]
+  deltaVMPerS = [692.7315385190694]
+  propellantKg = [303.20631301965994]
+  objective fitsAllowance: satisfied
+  standing: value (observed: 1 run under reverse)
+  recorded Records::externalTransfer_run1 (Records::ExternalTransferRun)
+✓ TethysAnalyses::transferNominal
+  returnDeltaVMPerS = [417.0981974800674]
+  outboundThrustDays = [154.03545065123998]
+  returnThrustDays = [980.0892527098525]
+  totalThrustDays = [1134.1247033610925]
+  objective canReturn: satisfied
+  standing: value (observed: 1 run under reverse)
+  recorded Records::transferNominal_run1 (Records::TransferNominalRun)
