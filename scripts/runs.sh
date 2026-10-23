@@ -153,5 +153,5 @@ run render-mass-budget-csv $SYSML -render TethysViews::massBudget -render-form c
 run render-documents-md $SYSML -render-documents "$out/documents" -quiet $MODEL
 run render-documents-html $SYSML -render-documents "$out/documents-html" -doc-form html -quiet $MODEL
 run tool-version sh -c "\"$SYSML\" -version | grep -v 'Build time:'"
-run document-queries $SYSML -run-query TethysDocuments::MissionRequirements -run-query TethysDocuments::InterfaceEnds -run-query TethysDocuments::FlightPhases -run-query TethysDocuments::Risks -quiet $MODEL
+run document-queries $SYSML -run-query TethysDocuments::MissionRequirements -run-query TethysDocuments::InterfaceEnds -run-query TethysDocuments::FlightPhases -run-query TethysDocuments::Risks -run-query TethysDocuments::MassBudgetLines -run-query TethysDocuments::SubsystemMasses -quiet $MODEL
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi

@@ -19,10 +19,6 @@ The mission is one system of five segment-level parts: the flight segment (tug a
 | ground |  |
 | target |  |
 | visitor |  |
-| launchAdapter |  |
-| deepSpaceLink |  |
-| capture |  |
-| visitorDocking |  |
 
 *Segment-level interface control (positioned by TethysLayout)*
 
@@ -222,10 +218,16 @@ The mission is one system of five segment-level parts: the flight segment (tug a
 
 | name | type |
 | --- | --- |
-| eps |  |
-| sep |  |
-| rcs |  |
-| captureSystem |  |
+| structure | TethysTug::StructureAndMechanisms |
+| thermal | TethysTug::ThermalControl |
+| eps | TethysTug::ElectricalPowerSystem |
+| cdh | TethysTug::CommandAndDataHandling |
+| telecom | TethysTug::Telecommunications |
+| gnc | TethysTug::GuidanceNavigationControl |
+| sep | TethysTug::SolarElectricPropulsion |
+| rcs | TethysTug::ReactionControl |
+| captureSystem | TethysTug::CaptureSystem |
+| sensors | TethysTug::CharacterisationSensors |
 
 *The power bus from the electrical power subsystem to every load*
 
@@ -358,36 +360,64 @@ flowchart LR
   linkStyle 7 stroke-width:3px
 ```
 
+## Mass budget
+
+The mass budget is closed in the model (TethysBudgets::massBudget); the tables show its evaluated values and the subsystem masses they sum from.
+
+*Phase B mass budget of the tug, evaluated*
+
+| dry estimate | dry with contingency | dry allocation | dry margin | xenon | hydrazine | inspector | launch mass | launcher capability | launch margin |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 3725.5 \[kg\] | 4300.922000000001 \[kg\] | 5600 \[kg\] | 0.30204639842340764 | 6600 \[kg\] | 400 \[kg\] | 24 \[kg\] | 12624 \[kg\] | 17200 \[kg\] | 0.36248415716096327 |
+
+*Subsystem masses of the tug design*
+
+| subsystem | mass |
+| --- | --- |
+| structure | 1182 \[kg\] |
+| thermal | 346 \[kg\] |
+| eps | 1095 \[kg\] |
+| cdh | 48 \[kg\] |
+| telecom | 64.2 \[kg\] |
+| gnc | 74.8 \[kg\] |
+| sep | 380.8 \[kg\] |
+| rcs | 70.4 \[kg\] |
+| captureSystem | 451 \[kg\] |
+| sensors | 13.3 \[kg\] |
+
 ## Mission timeline
 
-1. liftOff
-2. separationFromLauncher
-3. arraysDeployed
-4. firstThrustArc
-5. rendezvous
-6. inspectorRelease
-7. captureCommit
-8. captureComplete
-9. despinComplete
-10. inspectorRetirement
-11. departureFromTarget
-12. lunarGravityAssist
-13. droInsertion
-14. visitingVehicleDocking
-15. tugSeparation
-16. tugDisposalBurn
-17. integrationAndTest TethysMission::MissionPhase
-18. launchAndEarlyOperations TethysMission::MissionPhase
-19. sepCommissioning TethysMission::MissionPhase
-20. outboundCruise TethysMission::MissionPhase
-21. approachAndRendezvous TethysMission::MissionPhase
-22. characterisation TethysMission::MissionPhase
-23. capture TethysMission::MissionPhase
-24. returnCruise TethysMission::MissionPhase
-25. droInsertionAndCheckout TethysMission::MissionPhase
-26. utilisation TethysMission::MissionPhase
-27. extendedMission TethysMission::MissionPhase
-28. disposal TethysMission::MissionPhase
+1. integrationAndTest
+2. launchAndEarlyOperations
+3. sepCommissioning
+4. outboundCruise
+5. approachAndRendezvous
+6. characterisation
+7. capture
+8. returnCruise
+9. droInsertionAndCheckout
+10. utilisation
+11. extendedMission
+12. disposal
+
+The events that bound the phases, in flight order:
+
+- liftOff
+- separationFromLauncher
+- arraysDeployed
+- firstThrustArc
+- rendezvous
+- inspectorRelease
+- captureCommit
+- captureComplete
+- despinComplete
+- inspectorRetirement
+- departureFromTarget
+- lunarGravityAssist
+- droInsertion
+- visitingVehicleDocking
+- tugSeparation
+- tugDisposalBurn
 
 *The flight timeline: phases and the events that bound them*
 

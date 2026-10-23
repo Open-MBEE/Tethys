@@ -28,11 +28,16 @@ package TethysDocuments {
             properties = ("shortName", "documentation"))
     }
     calc def Segments :> Query {
-        doc /* The system's segment-level parts: name, type and description. */
+        doc /* The system's segment-level parts: name, type and description. An interface usage
+             * is a part usage in the metamodel, so the interfaces are taken out again. */
         Project(
-            source = WhereType(
-                source = OwnedElements(source = Named(qualifiedName = "TethysSystem::tethysSystem")),
-                type = "PartUsage"),
+            source = Except(
+                source = WhereType(
+                    source = OwnedElements(source = Named(qualifiedName = "TethysSystem::tethysSystem")),
+                    type = "PartUsage"),
+                exclude = WhereType(
+                    source = OwnedElements(source = Named(qualifiedName = "TethysSystem::tethysSystem")),
+                    type = "InterfaceUsage")),
             properties = ("name", "documentation"))
     }
     calc def SystemInterfaces :> Query {
@@ -72,41 +77,92 @@ package TethysDocuments {
             properties = ("name", "documentation"))
     }
     calc def Items :> Query {
-        doc /* The items that flow across the interfaces. */
+        doc /* The items that flow across the interfaces. Part and interface definitions are item
+             * definitions in the metamodel, so they are taken out again. */
         Project(
-            source = WhereType(
-                source = OwnedElements(source = Named(qualifiedName = "TethysInterfaces")),
-                type = "ItemDefinition"),
+            source = Except(
+                source = WhereType(
+                    source = OwnedElements(source = Named(qualifiedName = "TethysInterfaces")),
+                    type = "ItemDefinition"),
+                exclude = WhereType(
+                    source = OwnedElements(source = Named(qualifiedName = "TethysInterfaces")),
+                    type = ("PartDefinition", "InterfaceDefinition"))),
             properties = ("name", "documentation"))
     }
     calc def TugSubsystems :> Query {
-        doc /* The tug's subsystems with their declared budget attributes. */
+        doc /* The ten subsystems the tug definition declares, with their types; the power
+             * interfaces among the definition's part usages are taken out again. */
         Project(
-            source = WhereType(
-                source = OwnedElements(source = Named(qualifiedName = "TethysTug::argent")),
-                type = "PartUsage"),
+            source = Except(
+                source = WhereType(
+                    source = OwnedElements(source = Named(qualifiedName = "TethysTug::Tug")),
+                    type = "PartUsage"),
+                exclude = WhereType(
+                    source = OwnedElements(source = Named(qualifiedName = "TethysTug::Tug")),
+                    type = "InterfaceUsage")),
             properties = ("name", "type"))
     }
     calc def FlightPhases :> Query {
-        doc /* The flight phases in declaration (succession) order. */
+        doc /* The flight phases, typed MissionPhase, in the order the timeline declares them,
+             * which is the order its successions chain them. */
         Project(
             source = WhereType(
                 source = OwnedElements(source = Named(qualifiedName = "TethysMission::flightTimeline")),
-                type = "OccurrenceUsage"),
-            properties = ("name", "type"))
+                type = "TethysMission::MissionPhase"),
+            properties = ("name", "documentation"))
+    }
+    calc def FlightEvents :> Query {
+        doc /* The events that bound the phases, in the order the timeline declares them. */
+        Project(
+            source = WhereType(
+                source = OwnedElements(source = Named(qualifiedName = "TethysMission::flightTimeline")),
+                type = "EventOccurrenceUsage"),
+            properties = ("name"))
+    }
+    calc def MassBudgetLines :> Query {
+        doc /* The Phase B mass budget of the tug, evaluated: the dry estimate, the dry mass with
+             * contingency against the allocation, the propellants, the inspector, the launch mass
+             * against the launcher and the two margins. Cells read the budget part's attributes,
+             * so the table shows the numbers the budget closes on, not the attribute names. */
+        Project(
+            source = Named(qualifiedName = "TethysBudgets::massBudget"),
+            columns = (
+                Column(name = "dry estimate", cell = { in row : TethysBudgets::MassBudget; row.dryEstimate ?? "" }),
+                Column(name = "dry with contingency", cell = { in row : TethysBudgets::MassBudget; row.dryWithContingency ?? "" }),
+                Column(name = "dry allocation", cell = { in row : TethysBudgets::MassBudget; row.dryAllocation ?? "" }),
+                Column(name = "dry margin", cell = { in row : TethysBudgets::MassBudget; row.dryMargin ?? "" }),
+                Column(name = "xenon", cell = { in row : TethysBudgets::MassBudget; row.xenon ?? "" }),
+                Column(name = "hydrazine", cell = { in row : TethysBudgets::MassBudget; row.hydrazine ?? "" }),
+                Column(name = "inspector", cell = { in row : TethysBudgets::MassBudget; row.inspector ?? "" }),
+                Column(name = "launch mass", cell = { in row : TethysBudgets::MassBudget; row.launchMass ?? "" }),
+                Column(name = "launcher capability", cell = { in row : TethysBudgets::MassBudget; row.launcherCapability ?? "" }),
+                Column(name = "launch margin", cell = { in row : TethysBudgets::MassBudget; row.launchMargin ?? "" })))
+    }
+    calc def SubsystemMasses :> Query {
+        doc /* The subsystems of the tug design (ArgentTug) with the mass each sums from its units;
+             * the collection that gathers them is taken out. */
+        Project(
+            source = Except(
+                source = WhereType(
+                    source = OwnedElements(source = Named(qualifiedName = "TethysTugStructure::ArgentTug")),
+                    type = "TethysTugStructure::Assembly"),
+                exclude = WhereName(
+                    source = OwnedElements(source = Named(qualifiedName = "TethysTugStructure::ArgentTug")),
+                    operator = "=", value = "subsystems")),
+            columns = (
+                Column(name = "subsystem", path = "name"),
+                Column(name = "mass", cell = { in row : TethysTug::Subsystem; row.mass ?? "" })))
     }
     calc def Risks :> Query {
-        doc /* Every element annotated as a risk anywhere under the Tethys packages (RiskMetadata),
-             * with its documentation. The register fills as the safety and risk package lands. */
+        doc /* Every element annotated RiskMetadata::Risk under the packages that carry risks: the
+             * risk and safety packages first, then the vehicles, segments, mission, modes, FDIR
+             * and disposal. A package that starts carrying risks is added to this list. */
         Project(
             source = WhereMetadata(
-                source = Union(
-                    source = Union(
-                        source = Descendants(source = Named(qualifiedName = "TethysTug")),
-                        other = Descendants(source = Named(qualifiedName = "TethysInspector"))),
-                    other = Union(
-                        source = Descendants(source = Named(qualifiedName = "TethysSystem")),
-                        other = Descendants(source = Named(qualifiedName = "TethysMission")))),
+                source = Descendants(source = Named(qualifiedName = (
+                    "TethysRisk", "TethysSafety", "TethysTug", "TethysInspector", "TethysTarget",
+                    "TethysGround", "TethysLaunch", "TethysSystem", "TethysMission", "TethysModes",
+                    "TethysFdir", "TethysDisposal"))),
                 'metadata' = "RiskMetadata::Risk"),
             properties = ("name", "documentation"))
     }
@@ -167,11 +223,33 @@ package TethysDocuments {
             }
         }
 
+        part mass : Section {
+            attribute redefines title = "Mass budget";
+            part intro : Paragraph {
+                attribute redefines text = "The mass budget is closed in the model (TethysBudgets::massBudget); the tables show its evaluated values and the subsystem masses they sum from.";
+            }
+            part budget : Table {
+                attribute redefines caption = "Phase B mass budget of the tug, evaluated";
+                calc rows : MassBudgetLines;
+            }
+            part subsystems : Table {
+                attribute redefines caption = "Subsystem masses of the tug design";
+                calc rows : SubsystemMasses;
+            }
+        }
+
         part timeline : Section {
             attribute redefines title = "Mission timeline";
             part phases : List {
                 attribute redefines style = "number";
                 calc items : FlightPhases;
+            }
+            part events : Paragraph {
+                attribute redefines text = "The events that bound the phases, in flight order:";
+            }
+            part eventList : List {
+                attribute redefines style = "bullet";
+                calc items : FlightEvents;
             }
             part tree : Diagram {
                 attribute redefines caption = "The flight timeline: phases and the events that bound them";
@@ -268,9 +346,8 @@ package TethysDocuments {
     }
 
     part def RiskRegister :> Document {
-        doc /* The risk register: every element annotated RiskMetadata::Risk under the mission
-             * packages. Empty until the safety and risk package annotates its risks, and visibly
-             * so — the table renders with its header. */
+        doc /* The risk register: every element annotated RiskMetadata::Risk under the packages
+             * the Risks query names, the risk package's own register first. */
         attribute redefines title = "Tethys Retrieval — Risk Register";
 
         part intro : Paragraph {

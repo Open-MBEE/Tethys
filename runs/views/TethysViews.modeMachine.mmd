@@ -29,6 +29,113 @@ config:
     specialStateColor: "#181818"
 ---
 %% TethysViews::modeMachine — state rendering (view def StateTransitionView)
-%% not represented: part def TethysTug::Tug is no state machine; a state rendering does not show it
 stateDiagram-v2
-  state "the rendering is empty: nothing the view exposes is shown by a state rendering" as empty
+  state "«state def» TugModes" as n0 {
+    state "«region» flightMode" as n1 {
+      state "«state» launch<br>initial" as n6 {
+        state "«state»<br>onLauncher<br>initial" as n7
+        state "«state»<br>deploying" as n8
+        [*] --> n7
+        n8 --> [*] : accept ArraysDeployed via command
+        n8 --> [*] : after arraysDeploymentTimeout
+      }
+      state "«state» freeFlight" as n9 {
+        state "«state»<br>coast<br>initial" as n10
+        state "«state»<br>thrust<br>entry / thrustArcsStarted := thrustArcsStarted + 1" as n11
+        state "«state»<br>approach" as n12
+        state "«state»<br>proximityOperations" as n13
+        state "«state»<br>retreat" as n14
+        state "«state»<br>capture" as n15
+        [*] --> n10
+        n15 --> [*] : accept CaptureComplete via command / captured #58;= true
+      }
+      state "«state» stacked" as n16 {
+        state "«state»<br>despin<br>initial" as n17
+        state "«state»<br>stackCoast" as n18
+        state "«state»<br>stackThrust<br>entry / thrustArcsStarted := thrustArcsStarted + 1" as n19
+        state "«state»<br>droHold" as n20
+        state "«state»<br>dockedPassive" as n21
+        state "«state»<br>disposal" as n22
+        [*] --> n17
+        n22 --> [*] : after disposalBurnDuration
+      }
+      state "«state»<br>safe<br>entry / safeModeEntries := safeModeEntries + 1, do / sunPointingHold" as n23
+      state "«state»<br>abortHold<br>entry / abortEntries := abortEntries + 1" as n24
+      [*] --> n6
+      n16 --> [*]
+    }
+    state "«region» sepString" as n2 {
+      state "«state»<br>off<br>initial" as n25
+      state "«state»<br>standby" as n26
+      state "«state»<br>thrusting" as n27
+      [*] --> n25
+    }
+    state "«region» telecom" as n3 {
+      state "«state»<br>lowGain<br>initial" as n28
+      state "«state»<br>highGain" as n29
+      state "«state»<br>relaying" as n30
+      [*] --> n28
+    }
+    state "«region» attitudeControl" as n4 {
+      state "«state»<br>thrusters<br>initial" as n31
+      state "«state»<br>wheels" as n32
+      [*] --> n31
+    }
+    state "«region» captureMechanism" as n5 {
+      state "«state»<br>stowed<br>initial" as n33
+      state "«state»<br>deployed" as n34
+      state "«state»<br>cinched" as n35
+      state "«state»<br>released" as n36
+      [*] --> n33
+    }
+  }
+  n6 --> n9
+  n6 --> n23 : accept r #58; SafeModeRequest / lastSafeModeReason #58;= r.reason
+  n7 --> n8 : accept SeparationConfirmed via command
+  n9 --> n16 : [captured]
+  n9 --> n23 : accept r #58; SafeModeRequest / lastSafeModeReason #58;= r.reason
+  n10 --> n11 : accept ThrustArcGo via command
+  n10 --> n12 : accept ProximityOperationsGo via command
+  n11 --> n10 : accept ThrustArcEnd via command
+  n12 --> n13 : accept u #58; RangeUpdate via command [u.range #lt;= rendezvousRange]
+  n13 --> n15 : accept go #58; CaptureGo via command [go.estimatedMass #lt;= envelope.maximumBodyMass and go.estimatedDiameter #lt;= envelope.maximumBodyDiameter]
+  n13 --> n14 : accept go #58; CaptureGo via command [go.estimatedMass #gt; envelope.maximumBodyMass or go.estimatedDiameter #gt; envelope.maximumBodyDiameter]
+  n14 --> n13 : accept ProximityOperationsGo via command
+  n16 --> n23 : accept r #58; SafeModeRequest / lastSafeModeReason #58;= r.reason
+  n16 --> n24 : accept a #58; AbortReturn / lastSafeModeReason #58;= a.reason
+  n17 --> n18 : accept DespinComplete via command
+  n18 --> n19 : accept ReturnThrustGo via command
+  n18 --> n20 : accept DroHoldGo via command
+  n19 --> n18 : accept ThrustArcEnd via command
+  n20 --> n21 : accept DockingGo via command
+  n21 --> n22 : accept DisposalGo via command
+  n23 --> n9 : accept SafeModeExit via command [not captured]
+  n23 --> n16 : accept SafeModeExit via command [captured]
+  n24 --> n16 : accept SafeModeExit via command
+  n25 --> n26 : accept ArraysDeployed via command
+  n25 --> n26 : accept SafeModeExit via command
+  n26 --> n27 : accept ThrustArcGo via command
+  n26 --> n27 : accept ProximityOperationsGo via command
+  n26 --> n27 : accept ReturnThrustGo via command
+  n26 --> n27 : accept DisposalGo via command
+  n26 --> n25 : accept SafeModeRequest
+  n27 --> n26 : accept RangeUpdate via command
+  n27 --> n26 : accept ThrustArcEnd via command
+  n27 --> n25 : accept SafeModeRequest
+  n27 --> n25 : accept AbortReturn
+  n28 --> n29 : accept ArraysDeployed via command
+  n28 --> n29 : accept SafeModeExit via command
+  n29 --> n30 : accept InspectorReleaseGo via command
+  n29 --> n28 : accept SafeModeRequest
+  n30 --> n29 : accept InspectorRetireGo via command
+  n30 --> n28 : accept SafeModeRequest
+  n31 --> n32 : accept ArraysDeployed via command
+  n31 --> n32 : accept DespinComplete via command
+  n31 --> n32 : accept DisposalGo via command
+  n31 --> n32 : accept SafeModeExit via command
+  n32 --> n31 : accept ProximityOperationsGo via command
+  n32 --> n31 : accept DockingGo via command
+  n32 --> n31 : accept SafeModeRequest
+  n33 --> n34 : accept CaptureGo via command
+  n34 --> n35 : accept CaptureComplete via command
+  n35 --> n36 : accept DisposalGo via command

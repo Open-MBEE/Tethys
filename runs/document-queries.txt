@@ -193,91 +193,106 @@
     owner = "TethysInterfaces::ThermalInterface"
     name = "cold"
     type = "TethysInterfaces::ThermalPort"
-✓ Query TethysDocuments::FlightPhases returned 28 rows
-  Columns: name, type
-  Row 1: TethysMission::flightTimeline::liftOff
-    name = "liftOff"
-    type = (none)
-  Row 2: TethysMission::flightTimeline::separationFromLauncher
-    name = "separationFromLauncher"
-    type = (none)
-  Row 3: TethysMission::flightTimeline::arraysDeployed
-    name = "arraysDeployed"
-    type = (none)
-  Row 4: TethysMission::flightTimeline::firstThrustArc
-    name = "firstThrustArc"
-    type = (none)
-  Row 5: TethysMission::flightTimeline::rendezvous
-    name = "rendezvous"
-    type = (none)
-  Row 6: TethysMission::flightTimeline::inspectorRelease
-    name = "inspectorRelease"
-    type = (none)
-  Row 7: TethysMission::flightTimeline::captureCommit
-    name = "captureCommit"
-    type = (none)
-  Row 8: TethysMission::flightTimeline::captureComplete
-    name = "captureComplete"
-    type = (none)
-  Row 9: TethysMission::flightTimeline::despinComplete
-    name = "despinComplete"
-    type = (none)
-  Row 10: TethysMission::flightTimeline::inspectorRetirement
-    name = "inspectorRetirement"
-    type = (none)
-  Row 11: TethysMission::flightTimeline::departureFromTarget
-    name = "departureFromTarget"
-    type = (none)
-  Row 12: TethysMission::flightTimeline::lunarGravityAssist
-    name = "lunarGravityAssist"
-    type = (none)
-  Row 13: TethysMission::flightTimeline::droInsertion
-    name = "droInsertion"
-    type = (none)
-  Row 14: TethysMission::flightTimeline::visitingVehicleDocking
-    name = "visitingVehicleDocking"
-    type = (none)
-  Row 15: TethysMission::flightTimeline::tugSeparation
-    name = "tugSeparation"
-    type = (none)
-  Row 16: TethysMission::flightTimeline::tugDisposalBurn
-    name = "tugDisposalBurn"
-    type = (none)
-  Row 17: TethysMission::flightTimeline::integrationAndTest
-    name = "integrationAndTest"
-    type = "TethysMission::MissionPhase"
-  Row 18: TethysMission::flightTimeline::launchAndEarlyOperations
-    name = "launchAndEarlyOperations"
-    type = "TethysMission::MissionPhase"
-  Row 19: TethysMission::flightTimeline::sepCommissioning
-    name = "sepCommissioning"
-    type = "TethysMission::MissionPhase"
-  Row 20: TethysMission::flightTimeline::outboundCruise
-    name = "outboundCruise"
-    type = "TethysMission::MissionPhase"
-  Row 21: TethysMission::flightTimeline::approachAndRendezvous
-    name = "approachAndRendezvous"
-    type = "TethysMission::MissionPhase"
-  Row 22: TethysMission::flightTimeline::characterisation
-    name = "characterisation"
-    type = "TethysMission::MissionPhase"
-  Row 23: TethysMission::flightTimeline::capture
-    name = "capture"
-    type = "TethysMission::MissionPhase"
-  Row 24: TethysMission::flightTimeline::returnCruise
-    name = "returnCruise"
-    type = "TethysMission::MissionPhase"
-  Row 25: TethysMission::flightTimeline::droInsertionAndCheckout
-    name = "droInsertionAndCheckout"
-    type = "TethysMission::MissionPhase"
-  Row 26: TethysMission::flightTimeline::utilisation
-    name = "utilisation"
-    type = "TethysMission::MissionPhase"
-  Row 27: TethysMission::flightTimeline::extendedMission
-    name = "extendedMission"
-    type = "TethysMission::MissionPhase"
-  Row 28: TethysMission::flightTimeline::disposal
-    name = "disposal"
-    type = "TethysMission::MissionPhase"
-✓ Query TethysDocuments::Risks returned 0 rows
+✓ Query TethysDocuments::FlightPhases returned 12 rows
   Columns: name, documentation
+  Row 1: TethysMission::flightTimeline::integrationAndTest
+    name = "integrationAndTest"
+    documentation = (none)
+  Row 2: TethysMission::flightTimeline::launchAndEarlyOperations
+    name = "launchAndEarlyOperations"
+    documentation = (none)
+  Row 3: TethysMission::flightTimeline::sepCommissioning
+    name = "sepCommissioning"
+    documentation = (none)
+  Row 4: TethysMission::flightTimeline::outboundCruise
+    name = "outboundCruise"
+    documentation = (none)
+  Row 5: TethysMission::flightTimeline::approachAndRendezvous
+    name = "approachAndRendezvous"
+    documentation = (none)
+  Row 6: TethysMission::flightTimeline::characterisation
+    name = "characterisation"
+    documentation = (none)
+  Row 7: TethysMission::flightTimeline::capture
+    name = "capture"
+    documentation = (none)
+  Row 8: TethysMission::flightTimeline::returnCruise
+    name = "returnCruise"
+    documentation = (none)
+  Row 9: TethysMission::flightTimeline::droInsertionAndCheckout
+    name = "droInsertionAndCheckout"
+    documentation = (none)
+  Row 10: TethysMission::flightTimeline::utilisation
+    name = "utilisation"
+    documentation = (none)
+  Row 11: TethysMission::flightTimeline::extendedMission
+    name = "extendedMission"
+    documentation = (none)
+  Row 12: TethysMission::flightTimeline::disposal
+    name = "disposal"
+    documentation = (none)
+✓ Query TethysDocuments::Risks returned 6 rows
+  Columns: name, documentation
+  Row 1: TethysRisk::riskRegister::earthImpactRisk
+    name = "earthImpactRisk"
+    documentation = "The returned body could be placed on an Earth-impact trajectory."
+  Row 2: TethysRisk::riskRegister::targetSizeRisk
+    name = "targetSizeRisk"
+    documentation = "The target may be larger, heavier or faster-spinning than the characterisation\nenvelope (the design driver of the mission)."
+  Row 3: TethysRisk::riskRegister::thrusterLifeRisk
+    name = "thrusterLifeRisk"
+    documentation = "The Hall thrusters may not reach the 20 000 h per-string life the return needs."
+  Row 4: TethysRisk::riskRegister::proximityOperationsRisk
+    name = "proximityOperationsRisk"
+    documentation = "Relative navigation at the target may be less robust than designed."
+  Row 5: TethysRisk::riskRegister::xenonMarginRisk
+    name = "xenonMarginRisk"
+    documentation = "The xenon margin may be consumed by target mass growth."
+  Row 6: TethysRisk::riskRegister::captureBagTechnology
+    name = "captureBagTechnology"
+    documentation = "The inflatable capture bag is the mission's least mature technology."
+✓ Query TethysDocuments::MassBudgetLines returned 1 row
+  Columns: dry estimate, dry with contingency, dry allocation, dry margin, xenon, hydrazine, inspector, launch mass, launcher capability, launch margin
+  Row 1: TethysBudgets::massBudget
+    dry estimate = 3725.5 [kg]
+    dry with contingency = 4300.922000000001 [kg]
+    dry allocation = 5600.0 [kg]
+    dry margin = 0.30204639842340764
+    xenon = 6600.0 [kg]
+    hydrazine = 400.0 [kg]
+    inspector = 24.0 [kg]
+    launch mass = 12624.0 [kg]
+    launcher capability = 17200 [kg]
+    launch margin = 0.36248415716096327
+✓ Query TethysDocuments::SubsystemMasses returned 10 rows
+  Columns: subsystem, mass
+  Row 1: TethysTugStructure::ArgentTug::structure
+    subsystem = "structure"
+    mass = 1182 [kg]
+  Row 2: TethysTugStructure::ArgentTug::thermal
+    subsystem = "thermal"
+    mass = 346 [kg]
+  Row 3: TethysTugStructure::ArgentTug::eps
+    subsystem = "eps"
+    mass = 1095 [kg]
+  Row 4: TethysTugStructure::ArgentTug::cdh
+    subsystem = "cdh"
+    mass = 48 [kg]
+  Row 5: TethysTugStructure::ArgentTug::telecom
+    subsystem = "telecom"
+    mass = 64.2 [kg]
+  Row 6: TethysTugStructure::ArgentTug::gnc
+    subsystem = "gnc"
+    mass = 74.8 [kg]
+  Row 7: TethysTugStructure::ArgentTug::sep
+    subsystem = "sep"
+    mass = 380.8 [kg]
+  Row 8: TethysTugStructure::ArgentTug::rcs
+    subsystem = "rcs"
+    mass = 70.4 [kg]
+  Row 9: TethysTugStructure::ArgentTug::captureSystem
+    subsystem = "captureSystem"
+    mass = 451 [kg]
+  Row 10: TethysTugStructure::ArgentTug::sensors
+    subsystem = "sensors"
+    mass = 13.3 [kg]
