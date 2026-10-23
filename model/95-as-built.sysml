@@ -74,7 +74,6 @@ package TethysAsBuilt {
     individual part def WrenFlightModel :> Inspector, AsBuiltUnit {
         doc /* The single Wren inspector that flew, weighed with its cold-gas propellant
              * loaded. */
-        attribute :>> designMass = wetMass;
     }
 
     individual part def AmaranthAsCharacterised :> SmallBody {
@@ -182,7 +181,8 @@ package TethysAsBuilt {
             attribute :>> lotNumber = "LSS-12U-7";
             attribute :>> drawingRevision = "A";
         }
-        attribute :>> wetMass = 24.0 [kg];
+        attribute :>> designMass = 24.0 [kg];
+        attribute :>> wetMass = 24.9 [kg];
         attribute :>> asMeasuredMass = 24.9 [kg];
         part :>> bus { attribute :>> mass = 14.6 [kg]; }
         part :>> payload { attribute :>> mass = 6.1 [kg]; }
