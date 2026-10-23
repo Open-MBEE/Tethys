@@ -23,6 +23,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import apijson  # noqa: E402
 import emit_c  # noqa: E402
+import emit_go  # noqa: E402
 import emit_py  # noqa: E402
 import extract  # noqa: E402
 from emit_common import GENERATOR_VERSION  # noqa: E402
@@ -93,10 +94,13 @@ def main(argv=None) -> int:
     t2 = time.monotonic()
     c_files = emit_c.emit(data, pin)
     py_files = emit_py.emit(data, pin)
+    go_files = emit_go.emit(data, pin)
+    go_mod = emit_go.emit_module(pin)
     c_dir = os.path.join(args.out, "c")
     py_dir = os.path.join(args.out, "python", "argent_tables")
-    size = write_tree(c_dir, c_files) + write_tree(py_dir, py_files)
-    rels = [f"c/{n}" for n in c_files] + [f"python/argent_tables/{n}" for n in py_files]
+    go_dir = os.path.join(args.out, "go", "argenttables")
+    size = write_tree(c_dir, c_files) + write_tree(py_dir, py_files) + write_tree(go_dir, go_files) + write_tree(os.path.join(args.out, "go"), go_mod)
+    rels = [f"c/{n}" for n in c_files] + [f"python/argent_tables/{n}" for n in py_files] + [f"go/argenttables/{n}" for n in go_files] + [f"go/{n}" for n in go_mod]
     with open(os.path.join(args.out, "MANIFEST.sha256"), "w", encoding="utf-8", newline="\n") as f:
         f.write(manifest(args.out, rels))
     t3 = time.monotonic()

@@ -107,5 +107,12 @@ reason given and can be changed in the emitter alone.
 - Ground (Python): `import argent_tables` from `software/generated/python`; the dictionaries are
   `NamedTuple` rows with `*_BY_*` lookup dictionaries, and `enums` are `IntEnum`s shared with the C
   values. A Go emitter is a third `emit_*` module when a package needs one.
+- Ground (Python and Go, `software/ground/`): the Meridian Operations Suite imports `argent_tables`
+  for everything table-driven (command building, flight-rule and sequence checks, decommutation,
+  limits, pass planning, archive cataloguing) and the `ground` table for the model's flight rules,
+  on-board sequences, component catalogue, stations and retention rules; its Go services import
+  `software/generated/go/argenttables` (`emit_go.py`, same rows as the Python tables with exported
+  fields and `*ByX` lookups). Model calculations are evaluated through the pinned client against a
+  `sysml-grpc` built from the same checkout, never re-implemented. Gate: `make software-ground-check`.
 - Regeneration after a model change: `make software-generate`, review the diff of
   `software/generated/`, commit the generator change and the tables together; CI fails on drift.

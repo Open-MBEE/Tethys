@@ -15,8 +15,9 @@ from . import modes
 from . import state_machines
 from . import schedule
 from . import interfaces
+from . import ground
 
 GENERATOR_VERSION = '1.0.0'
 MODEL_TOOL_VERSION = '5cd37f2'
 MODEL_TOOL_COMMIT = '5cd37f288fef171d62737d6045f4caff772b6014'
-__all__ = ['enums', 'commands', 'telemetry', 'events', 'packets', 'parameters', 'modes', 'state_machines', 'schedule', 'interfaces']
+__all__ = ['enums', 'commands', 'telemetry', 'events', 'packets', 'parameters', 'modes', 'state_machines', 'schedule', 'interfaces', 'ground']
