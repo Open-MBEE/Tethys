@@ -91,3 +91,11 @@ reproduces `apid`, `sequence_count`, `time_coarse`, `time_fine` and every `raw` 
 calibration reproduces `engineering`. Regenerate with
 `PYTHONPATH=software/ground:software/generated/python build/software/venv/bin/python -m meridian.fixtures`
 (`test_lantern.py` fails on drift).
+
+## Command packet contract
+
+A command packet is a CCSDS primary header with `type = 1` and no secondary header, followed by the
+16-bit `opcodeNumber` of the `CommandDefinition` and its arguments at their dictionary widths, in
+order (`meridian/forge/builder.py: pack_command`). The uplink service reads the opcode at bit 48 and
+treats APID 1 as the carrier of Warden's `LoadSequence` loads. The dictionary declares the opcode
+width and the argument widths but not this framing, so it is this package's own contract.
