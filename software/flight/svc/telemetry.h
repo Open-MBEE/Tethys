@@ -37,6 +37,8 @@ const argent_mode_rate_set_t *telemetry_rate_set(uint16_t mode);
 void telemetry_cycle(telemetry_service_t *svc, uint16_t mode, argent_us_t now);
 /* Builds one packet into svc->buffer; returns its total length in octets. */
 uint16_t telemetry_build_packet(telemetry_service_t *svc, const argent_packet_t *packet, argent_us_t now);
+/* Builds the named packet with the given sequence count into svc->buffer (golden-packet cross-check); 0 if unknown. */
+uint16_t telemetry_build_golden(telemetry_service_t *svc, const char *packet_mnemonic, uint16_t sequence_count, argent_us_t now);
 void telemetry_set_value(telemetry_service_t *svc, const char *mnemonic, double value);
 double telemetry_get_value(const telemetry_service_t *svc, const char *mnemonic);
 uint32_t telemetry_time_code_coarse(argent_us_t now);

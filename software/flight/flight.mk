@@ -18,7 +18,7 @@ FLIGHT_HDRS := $(wildcard $(FLIGHT_DIR)/*/*.h $(FLIGHT_DIR)/hal/*/*.h $(FLIGHT_G
 FLIGHT_SCENARIOS := $(wildcard $(FLIGHT_DIR)/scenarios/*.stim)
 
 .PHONY: software-flight-build software-flight-unit software-flight-banned software-flight-scenarios \
-    software-flight-compare software-flight-sizes software-flight-check software-flight-clean software-flight-scenarios-update
+    software-flight-compare software-flight-golden software-flight-sizes software-flight-check software-flight-clean software-flight-scenarios-update
 
 software-flight-scenarios-update: $(FLIGHT_BUILD)/argent_host
 	python3 $(FLIGHT_DIR)/tests/compare_runs.py --host $(FLIGHT_BUILD)/argent_host --out $(FLIGHT_BUILD)/scenarios --shipped $(FLIGHT_DIR)/scenarios --write-shipped
@@ -54,7 +54,10 @@ software-flight-scenarios: $(FLIGHT_BUILD)/argent_host $(FLIGHT_BUILD)/argent_ho
 	@for f in $(FLIGHT_BUILD)/scenarios/*.jsonl; do cmp "$$f" "$(FLIGHT_BUILD)/scenarios-san/$$(basename $$f)" || exit 1; done
 	@echo "traces identical between the strict and the sanitised build"
 
-software-flight-compare: software-flight-scenarios
+software-flight-golden: $(FLIGHT_BUILD)/argent_host
+	python3 $(FLIGHT_DIR)/tests/golden_packets.py $(FLIGHT_BUILD)/argent_host software/ground/fixtures/packets.json $(FLIGHT_BUILD)/golden.txt
+
+software-flight-compare: software-flight-scenarios software-flight-golden
 
 software-flight-sizes: $(FLIGHT_BUILD)/argent_host
 	sh $(FLIGHT_DIR)/tests/report_sizes.sh $(FLIGHT_BUILD)/argent_host runs/sw-fsw-structure.txt

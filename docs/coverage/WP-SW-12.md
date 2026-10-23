@@ -18,7 +18,7 @@ the state-machine unit tests. Findings: `docs/findings/WP-SW-12.md` (F-SW1201 �
 | RIU register maps, 2 maps / 16 registers (68) | `hal/host/hal_host.c` register file addressed by the table | Register contents come from `hal/sim/` plant models | `argent_host` scenarios |
 | MLS-2 link profile, 16 per-mode rate sets (68) | `svc/telemetry.c` `telemetry_rate_set()`; housekeeping period scales sampling and HK packets | Link availability is a scenario `link up/down` | `test_telemetry.c`: 16 rate sets, a minute of cycling emits packets |
 | Command dictionary: 344 commands, 206 arguments, 51 hazardous, allowed modes, criticality (64, 88) | `svc/command.c`: binary search, argument count/type/range/width, mode mask, two-step arm/execute, inhibit register (`INHIBIT_*`) | — | `test_command.c`: all 344 found; all 51 hazardous refused with inhibits set (16 cinch chain, 19 high-voltage hold, 16 two-step); arm window expiry; mode mask |
-| Telemetry: 961 points (320 HK), 51 packets / 961 fields, CCSDS primary header, CUC time code (64, 68) | `svc/telemetry.c`: sampling at the table rate × mode scale, `telemetry_build_packet()` | Point values come from the plant models and application state via the sampler callback | `test_telemetry.c`: every packet builds with the header bits and the table length, 14-bit sequence wrap |
+| Telemetry: 961 points (320 HK), 51 packets / 961 fields, CCSDS primary header, CUC time code (64, 68) | `svc/telemetry.c`: sampling at the table rate × mode scale, `telemetry_build_packet()` (field offsets are absolute, calibration spans the red limits) | Point values come from the plant models and application state via the sampler callback | `test_telemetry.c`: every packet builds with the header bits and the table length, 14-bit sequence wrap; `tests/golden_packets.py`: the ground package's 51 golden packets byte for byte |
 | Events: 181 (65 fault), severities, FDIR relevance (64) | `svc/event.c` → FDIR sink → `FdirSupervisor` machine | — | `test_services.c` |
 | Parameter tables 48 rows / 12 tables, 6 flight limits, 12 monitor limits, 5 fault-event types (64, 62) | `svc/parameter.c`: range-checked writes, table CRC, red/yellow monitors | — | `test_services.c` |
 | Boot/update: image slots, segments, verify, activate, rollback (65 `BootUpdateManager`) | `svc/image.c` + `app_pbu.c` | Image store is a length/checksum ledger (`hal_image_*`), no bytes kept | `runs/sw-boot.txt` (`running`), `test_services.c` |
@@ -47,11 +47,12 @@ register is `test_command.c`.
 | --- | --- |
 | Source | 3 429 lines of C/Python/sh under `software/flight/` |
 | Strict host build (`-O2`) | ~2.3 s; sanitised ~3.6 s; four binaries ~9 s |
-| Unit tests | 9 053 checks, 29 cases, 0.03 s strict / 0.06 s sanitised |
+| Unit tests | 9 277 checks, 29 cases, 0.03 s strict / 0.06 s sanitised |
+| Golden packets | 51/51 packets of `software/ground/fixtures/packets.json` reproduced byte for byte (header, CUC time code, every field) |
 | Scenarios | 14 pinned runs, horizons 600 s … 129 600 000 s, all 14 in 0.2 s with `--fast-forward`; 2.0 MB of JSONL in total |
 | `make software-flight-check` | 11.4 s wall on the development VM |
-| `argent_host` size | file 528 264 B, text 303 178 B, data 199 777 B, bss 2 393 696 B |
-| Model budgets (`runs/sw-fsw-structure.txt`) | codeSize 18 700 000 B, dataSize 78 000 000 B, budgetedMemory 1 900 000 000 B — text/codeSize 1.62 %, (data+bss)/dataSize 3.32 % (host build; reported, never resized) |
+| `argent_host` size | file 528 440 B, text 304 577 B, data 199 793 B, bss 2 410 880 B |
+| Model budgets (`runs/sw-fsw-structure.txt`) | codeSize 18 700 000 B, dataSize 78 000 000 B, budgetedMemory 1 900 000 000 B — text/codeSize 1.63 %, (data+bss)/dataSize 3.35 % (host build; reported, never resized) |
 | Deliberate failures kept visible | bus reserve 36/64 in three modes (`reserve_ok:false` in the trace, `bus_reserve_check()` false); power margin and SA-001/SA-002 gate are ground/model verdicts, untouched |
 
 ## Oracles per test

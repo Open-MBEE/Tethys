@@ -64,7 +64,7 @@ static uint64_t encode_field(const argent_telemetry_point_t *p, double value, ui
     if (p != NULL && p->has_limits && p->red_high > p->red_low) scaled = (value - p->red_low) / (p->red_high - p->red_low) * (double)max;
     if (scaled < 0.0) return 0;
     if (scaled > (double)max) return max;
-    return (uint64_t)scaled;
+    return (uint64_t)(scaled + 0.5);   /* nearest count: raw -> engineering -> raw round-trips */
 }
 
 /* The tables are static const per translation unit: a caller's pointer may be another unit's copy, so match by mnemonic. */
@@ -97,7 +97,7 @@ uint16_t telemetry_build_packet(telemetry_service_t *svc, const argent_packet_t 
         const argent_packet_field_t *field = &argent_packet_fields[packet->first_field + f];
         uint16_t idx = field_point[packet->first_field + f];
         const argent_telemetry_point_t *p = idx != 0xffffu ? &argent_telemetry_points[idx] : NULL;
-        uint32_t at = packet->header_bits + field->offset_bits;
+        uint32_t at = field->offset_bits;   /* offsets are absolute: the first field sits at header_bits */
         if (at + field->width_bits > (uint32_t)length * 8u) break;
         put_bits(svc->buffer, at, field->width_bits, encode_field(p, p != NULL ? svc->value[idx] : 0.0, field->width_bits));
     }
@@ -152,4 +152,14 @@ double telemetry_get_value(const telemetry_service_t *svc, const char *mnemonic)
 {
     const argent_telemetry_point_t *p = telemetry_point(mnemonic);
     return p != NULL ? svc->value[p - argent_telemetry_points] : NAN;
+}
+
+uint16_t telemetry_build_golden(telemetry_service_t *svc, const char *packet_mnemonic, uint16_t sequence_count, argent_us_t now)
+{
+    for (uint16_t i = 0; i < ARGENT_PACKET_COUNT; i++) {
+        if (strcmp(argent_packets[i].mnemonic, packet_mnemonic) != 0) continue;
+        svc->sequence_count[i] = sequence_count;
+        return telemetry_build_packet(svc, &argent_packets[i], now);
+    }
+    return 0;
 }

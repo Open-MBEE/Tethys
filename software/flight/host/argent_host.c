@@ -4,6 +4,7 @@
 #define _POSIX_C_SOURCE 200809L
 #include "apps/apps.h"
 #include "apps/system.h"
+#include "svc/telemetry.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -127,6 +128,34 @@ static argent_us_t next_deadline(const argent_system_t *sys, argent_us_t limit)
     return next;
 }
 
+/* Golden packets: `value <point> <engineering>` lines set points, `packet <mnemonic> <seq> <coarse> <fine>` builds
+ * one packet from them and prints `<mnemonic> <hex>`; the ground fixture is compared by tests/golden_packets.py. */
+static int run_golden(const char *path)
+{
+    static telemetry_service_t svc;
+    FILE *f = fopen(path, "r");
+    char line[256];
+    if (f == NULL) { fprintf(stderr, "argent_host: cannot read %s\n", path); return 1; }
+    telemetry_init(&svc, NULL, NULL, NULL, NULL);
+    while (fgets(line, sizeof line, f) != NULL) {
+        char kind[16], name[64];
+        double a = 0, b = 0, c = 0;
+        int n = sscanf(line, "%15s %63s %lf %lf %lf", kind, name, &a, &b, &c);
+        if (n >= 3 && strcmp(kind, "value") == 0) telemetry_set_value(&svc, name, a);
+        else if (n == 5 && strcmp(kind, "packet") == 0) {
+            argent_us_t now = (argent_us_t)a * ARGENT_US_PER_S + ((argent_us_t)b * ARGENT_US_PER_S) / 65536u;
+            uint16_t len = telemetry_build_golden(&svc, name, (uint16_t)c, now);
+            if (len == 0) { fprintf(stderr, "argent_host: unknown packet %s\n", name); fclose(f); return 5; }
+            printf("%s ", name);
+            for (uint16_t k = 0; k < len; k++) printf("%02x", svc.buffer[k]);
+            printf("\n");
+            telemetry_init(&svc, NULL, NULL, NULL, NULL);
+        }
+    }
+    fclose(f);
+    return 0;
+}
+
 int main(int argc, char **argv)
 {
     const char *scenario = NULL, *trace_path = NULL;
@@ -140,7 +169,8 @@ int main(int argc, char **argv)
         else if (strcmp(argv[i], "--major-frames") == 0 && i + 1 < argc) major_frames = strtoull(argv[++i], NULL, 10);
         else if (strcmp(argv[i], "--trace") == 0 && i + 1 < argc) trace_path = argv[++i];
         else if (strcmp(argv[i], "--fast-forward") == 0) fast_forward = 1;
-        else { fprintf(stderr, "usage: argent_host [--scenario file] [--major-frames N] [--trace out.jsonl] [--fast-forward]\n"); return 1; }
+        else if (strcmp(argv[i], "--golden") == 0 && i + 1 < argc) return run_golden(argv[++i]);
+        else { fprintf(stderr, "usage: argent_host [--scenario file] [--major-frames N] [--trace out.jsonl] [--fast-forward] | --golden file\n"); return 1; }
     }
     if (scenario != NULL && parse_stimulus_file(scenario) != 0) return 5;
     if (trace_path != NULL) { trace_out = fopen(trace_path, "w"); if (trace_out == NULL) { fprintf(stderr, "argent_host: cannot write %s\n", trace_path); return 1; } }
