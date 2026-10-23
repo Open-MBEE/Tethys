@@ -241,4 +241,29 @@ run sw-assurance-vcrm-document $SYSML -render-document TethysSoftwareAssuranceTo
 run sw-assurance-model-cases $SYSML -analysis TethysSoftwareAssurance::finalTargetingModel -analysis TethysSoftwareAssurance::captureAbortModel -analysis TethysSoftwareAssurance::commandRoutingModel -analysis TethysSoftwareAssurance::thrustArcModel -analysis TethysSoftwareAssurance::captureSequenceModel -analysis TethysSoftwareAssurance::faultDetectionModel -analysis TethysSoftwareAssurance::modeManagementModel -analysis TethysSoftwareAssurance::bootAndParameterModel -analysis TethysSoftwareAssurance::hazardousCommandInhibitModel -analysis TethysSoftwareAssurance::groundTwoStepModel $MODEL
 run sw-assurance-probe-reference-subsetting $SYSML -instantiate F_SW801::rowSub -e "F_SW801::rowSub.component.level" -e "F_SW801::rowEq.component.level" -e "F_SW801::rowBoth.component.level" model/probes/F-SW801-reference-subsetting-value.sysml
 run sw-assurance-probe-case-value $SYSML -instantiate F_SW802::reg -e "F_SW802::reg.n" -e "F_SW802::reg.v1" -e "F_SW802::reg.v2" model/probes/F-SW802-verification-usage-as-value.sysml
+
+# ---- software document set (TethysSoftwareDocuments, TethysSoftwareDocumentsTooling) -----------
+run sw-doc-register $SYSML -instantiate TethysSoftwareDocuments::softwareDocumentSet -e "TethysSoftwareDocuments::softwareDocumentSet.documentCount" -e "TethysSoftwareDocuments::softwareDocumentSet.volumeCount" -e "TethysSoftwareDocuments::softwareDocumentSet.releasedCount" -e "TethysSoftwareDocuments::softwareDocumentSet.records.id" $MODEL
+run sw-doc-test-beds $SYSML -instantiate TethysGroundSoftware::meridianOperationsSuite -e "TethysGroundSoftware::meridianOperationsSuite.testBeds.flatsat.productName" -e "TethysGroundSoftware::meridianOperationsSuite.testBeds.flatsat.fidelity" -e "TethysGroundSoftware::meridianOperationsSuite.simulatorCount" $MODEL
+run sw-doc-verify-links $SYSML -run-query "TethysSoftwareDocumentsTooling::SoftwareRequirementVerification" $MODEL
+run sw-doc-unverified $SYSML -run-query "TethysSoftwareDocumentsTooling::UnverifiedSoftwareRequirements" $MODEL
+run sw-doc-system-cases $SYSML -run-query "TethysSoftwareDocumentsTooling::SystemCasesCoveringSoftware" $MODEL
+run sw-doc-budget-verdicts $SYSML -run-query "TethysSoftwareDocumentsTooling::BudgetVerdicts" $MODEL
+run sw-doc-index $SYSML -render-document TethysSoftwareDocumentsTooling::SoftwareDocumentIndex -quiet $MODEL
+run sw-doc-architecture-description $SYSML -render-document TethysSoftwareDocumentsTooling::SoftwareArchitectureDescription -quiet $MODEL
+run sw-doc-requirements-specification $SYSML -render-document TethysSoftwareDocumentsTooling::SoftwareRequirementsSpecification -quiet $MODEL
+run sw-doc-icd-volume $SYSML -render-document TethysSoftwareDocumentsTooling::SoftwareInterfaceControlVolume -quiet $MODEL
+run sw-doc-dictionary-volume $SYSML -render-document TethysSoftwareDocumentsTooling::FlightDictionaryVolume -quiet $MODEL
+run sw-doc-test-plan $SYSML -render-document TethysSoftwareDocumentsTooling::SoftwareTestPlan -quiet $MODEL
+run sw-doc-operations-handbook $SYSML -render-document TethysSoftwareDocumentsTooling::SoftwareOperationsHandbook -quiet $MODEL
+for d in Cdh Gnc SepControl PowerManagement ThermalControl Telecom InspectorHandling CaptureControl Autonomy Fdir ModeManagement ParameterBootUpdate; do
+    run sw-doc-sdd-flight-$d $SYSML -render-document TethysSoftwareDocumentsTooling::${d}DesignDescription -quiet $MODEL
+done
+for d in CommandBuilder Sequencer TelemetryServer PassPlanner AnomalyTracker ProximityPlanner FlightDynamicsTool DataArchive Flatsat CaptureRig DynamicsSimulator TrajectoryTool; do
+    run sw-doc-sdd-ground-$d $SYSML -render-document TethysSoftwareDocumentsTooling::${d}DesignDescription -quiet $MODEL
+done
+run sw-doc-probe-query-binding $SYSML -render-document F_SW901::OneDoc model/probes/F-SW901-query-binding-from-attribute.sysml
+run sw-doc-probe-query-binding-literal $SYSML -render-document F_SW901::BoundByLiteral model/probes/F-SW901-query-binding-from-attribute.sysml
+run sw-doc-probe-same-named-verify $SYSML -validate -strict -warnings-as-errors model/probes/F-SW902-same-named-verify-members.sysml
+run sw-doc-probe-inherited-order $SYSML -render-document F_SW903::Volume model/probes/F-SW903-inherited-blocks-render-last.sysml
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi

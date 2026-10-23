@@ -752,7 +752,7 @@ package TethysGroundSoftware {
         part moc : SoftwareOperationsCentre;
         part fdf : SoftwareFlightDynamics;
         part sds : SoftwareScienceDataSystem;
-        part testBeds : SimulatedTestBedSet;
+        part testBeds : SimulatedTestBedSet :> TethysVerification::testBeds;
         part software : ArgentFlightSoftware;
         interface spaceLink : SpaceLinkProfileIcd connect software.telecom.spaceLink to moc.gateway.packets;
         interface flatsatLink : SpaceLinkProfileIcd connect testBeds.flatsat.packets to moc.gateway.packets;

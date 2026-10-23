@@ -50,6 +50,8 @@
 | abortHoldRates | TethysSoftwareIcds::LinkRateSet |  |
 | uplinkRateFloor | ISQInformation::BinaryDigitRateValue | 2000 \[bit/s\] |
 
+<a id="rateSets"></a>
+
 ## Rate sets per tug mode
 
 *Downlink and uplink rates and housekeeping period by mode; safeRates is the fallback*

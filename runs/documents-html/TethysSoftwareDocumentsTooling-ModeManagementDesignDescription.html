@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mode management application design description</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysSoftwareDocumentsTooling::ModeManagementDesignDescription">
+<h1 class="sysml-title">Mode management application design description</h1>
+<section class="sysml-section" id="purpose" data-content="section" data-name="purpose">
+<h2>Purpose</h2>
+<table class="sysml-table" data-content="table" data-name="definition" data-query="TethysSoftwareDocumentsTooling::Purpose">
+<caption class="sysml-caption">Application definition</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightSoftware::ModeManagementApplication" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ModeManagementApplication</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Mode and safe-mode management: the tug mode machine realised in software, taking ground commands and on-board events on the command port and holding the current mode every other application reads.</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="behaviour" data-query="TethysSoftwareDocumentsTooling::Purpose">
+<caption class="sysml-caption">Behavioural specialisation</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::ModeManagementSoftware" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ModeManagementSoftware</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The mode manager: TugModes exhibited as the software mode machine on `command`, beside the dispatcher that turns each mode command it receives on `dispatch` (the command ingest&#39;s second copy of the uplink) into the application commands the mode&#39;s SubsystemConfiguration row implies and reports each dispatch on the event port. FDIR requests arrive on `fdirRequests`; the dispatcher raises them on the application for the mode machine and sheds the applications.</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="interfaces" data-content="section" data-name="interfaces">
+<h2>Ports</h2>
+<table class="sysml-table" data-content="table" data-name="ports" data-query="TethysSoftwareDocumentsTooling::NamedPorts">
+<caption class="sysml-caption">Ports of the application</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightSoftware::ModeManagementApplication::command" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">command</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysModes::CommandPort</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="behaviourPorts" data-query="TethysSoftwareDocumentsTooling::NamedPorts">
+<caption class="sysml-caption">Ports added by the behavioural specialisation</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::ModeManagementSoftware::dispatch" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dispatch</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysModes::CommandPort</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::ModeManagementSoftware::fdirRequests" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">fdirRequests</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysModes::CommandPort</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::ModeManagementSoftware::sepCommands" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sepCommands</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysModes::CommandPort</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::ModeManagementSoftware::telecomCommands" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telecomCommands</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysModes::CommandPort</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::ModeManagementSoftware::powerCommands" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">powerCommands</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysModes::CommandPort</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::ModeManagementSoftware::thermalCommands" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thermalCommands</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysModes::CommandPort</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::ModeManagementSoftware::captureCommands" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureCommands</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysModes::CommandPort</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::ModeManagementSoftware::inspectorCommands" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorCommands</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysModes::CommandPort</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::ModeManagementSoftware::autonomyCommands" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">autonomyCommands</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysModes::CommandPort</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="stateMachine" data-content="section" data-name="stateMachine">
+<h2>State machine</h2>
+<table class="sysml-table" data-content="table" data-name="exhibited" data-query="TethysSoftwareDocumentsTooling::NamedStates">
+<caption class="sysml-caption">Exhibited state machines</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::ModeManagementSoftware::modes" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">modes</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysModes::TugModes</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::ModeManagementSoftware::dispatcher" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dispatcher</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="states" data-query="TethysSoftwareDocumentsTooling::NamedStates">
+<caption class="sysml-caption">States</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysModes::TugModes::flightMode" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">flightMode</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModes::sepString" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sepString</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The solar-electric propulsion string: off until commissioning, standby between arcs, thrusting during one and during the approach until the rendezvous range update; off in safe mode.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModes::telecom" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telecom</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Deep-space link: low-gain omni from launch and in safe mode, high-gain when pointed; the proximity relay is on with the inspector in flight.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModes::attitudeControl" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">attitudeControl</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Reaction wheels for cruise and thrust; hydrazine thrusters for proximity operations, capture and despin, and for the sun-pointed safe mode.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModes::captureMechanism" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureMechanism</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Capture bag: stowed until CaptureGo, deployed during capture, cinched on completion, released at disposal.</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="parameters" data-content="section" data-name="parameters">
+<h2>Parameter table</h2>
+<table class="sysml-table" data-content="table" data-name="rows" data-query="TethysSoftwareDocumentsTooling::ParameterRows">
+<caption class="sysml-caption">Parameters: id, value, range, unit</caption>
+<thead>
+<tr>
+<th scope="col" data-column="parameterId">parameterId</th>
+<th scope="col" data-column="value">value</th>
+<th scope="col" data-column="minimum">minimum</th>
+<th scope="col" data-column="maximum">maximum</th>
+<th scope="col" data-column="unitSymbol">unitSymbol</th>
+<th scope="col" data-column="inRange">inRange</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modParameterTable::r1" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="parameterId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">41</span></td>
+<td class="sysml-cell" data-column="value" data-value-kind="real"><span class="sysml-value" data-value-kind="real">300</span></td>
+<td class="sysml-cell" data-column="minimum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">1</span></td>
+<td class="sysml-cell" data-column="maximum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">3600</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">s</span></td>
+<td class="sysml-cell" data-column="inRange" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modParameterTable::r2" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="parameterId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">42</span></td>
+<td class="sysml-cell" data-column="value" data-value-kind="real"><span class="sysml-value" data-value-kind="real">600</span></td>
+<td class="sysml-cell" data-column="minimum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">10</span></td>
+<td class="sysml-cell" data-column="maximum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">3600</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">s</span></td>
+<td class="sysml-cell" data-column="inRange" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modParameterTable::r3" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="parameterId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">43</span></td>
+<td class="sysml-cell" data-column="value" data-value-kind="real"><span class="sysml-value" data-value-kind="real">11</span></td>
+<td class="sysml-cell" data-column="minimum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0</span></td>
+<td class="sysml-cell" data-column="maximum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">11</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+<td class="sysml-cell" data-column="inRange" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modParameterTable::r4" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="parameterId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">44</span></td>
+<td class="sysml-cell" data-column="value" data-value-kind="real"><span class="sysml-value" data-value-kind="real">1</span></td>
+<td class="sysml-cell" data-column="minimum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0</span></td>
+<td class="sysml-cell" data-column="maximum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">1</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+<td class="sysml-cell" data-column="inRange" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="schedule" data-content="section" data-name="schedule">
+<h2>Rate, worst-case execution time and deadline</h2>
+<table class="sysml-table" data-content="table" data-name="task" data-query="TethysSoftwareDocumentsTooling::TaskOf">
+<caption class="sysml-caption">Scheduled task</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="period">period</th>
+<th scope="col" data-column="wcet">wcet</th>
+<th scope="col" data-column="deadline">deadline</th>
+<th scope="col" data-column="utilisation">utilisation</th>
+<th scope="col" data-column="activeModes">activeModes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightTiming::argentTiming::platformSchedule::modeManagementTask" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">modeManagementTask</span></td>
+<td class="sysml-cell" data-column="period" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.125" data-unit="s">0.125 [s]</span></td>
+<td class="sysml-cell" data-column="wcet" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.003" data-unit="s">0.003 [s]</span></td>
+<td class="sysml-cell" data-column="deadline" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.125" data-unit="s">0.125 [s]</span></td>
+<td class="sysml-cell" data-column="utilisation" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0.024</span></td>
+<td class="sysml-cell" data-column="activeModes" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::earlyOperations" data-element-kind="enumUsage">earlyOperations</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::thrust" data-element-kind="enumUsage">thrust</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::approach" data-element-kind="enumUsage">approach</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::stackThrust" data-element-kind="enumUsage">stackThrust</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::disposal" data-element-kind="enumUsage">disposal</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::coast" data-element-kind="enumUsage">coast</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::stackCoast" data-element-kind="enumUsage">stackCoast</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::dockedPassive" data-element-kind="enumUsage">dockedPassive</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::proximityOperations" data-element-kind="enumUsage">proximityOperations</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::retreat" data-element-kind="enumUsage">retreat</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::capture" data-element-kind="enumUsage">capture</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::despin" data-element-kind="enumUsage">despin</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::droHold" data-element-kind="enumUsage">droHold</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::safe" data-element-kind="enumUsage">safe</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::abortHold" data-element-kind="enumUsage">abortHold</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="dictionary" data-content="section" data-name="dictionary">
+<h2>Commands, telemetry, events and packets owned</h2>
+<table class="sysml-table" data-content="table" data-name="commands" data-query="TethysSoftwareDocumentsTooling::CommandsOf">
+<caption class="sysml-caption">Commands</caption>
+<thead>
+<tr>
+<th scope="col" data-column="mnemonic">mnemonic</th>
+<th scope="col" data-column="opcodeNumber">opcodeNumber</th>
+<th scope="col" data-column="criticality">criticality</th>
+<th scope="col" data-column="hazardous">hazardous</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modSetMode" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_SET_MODE</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2817</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Transition the tug to a commanded mode.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modConfirmMode" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_CONFIRM_MODE</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2818</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Confirm a pending two-step mode transition.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modCancelPendingMode" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_CANCEL_PENDING_MODE</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2819</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::routine" data-element-kind="enumUsage">routine</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Cancel a pending two-step mode transition.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modLoadModeTable" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_LOAD_MODE_TABLE</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2820</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Load the mode × subsystem table.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modEnableAutoTransition" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_ENABLE_AUTO_TRANSITION</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2821</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Allow on-board events to drive mode transitions.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modDisableAutoTransition" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_DISABLE_AUTO_TRANSITION</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2822</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Only ground commands may drive mode transitions.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modHoldMode" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_HOLD_MODE</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2823</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::routine" data-element-kind="enumUsage">routine</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Hold the current mode against events.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modResumeMode" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_RESUME_MODE</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2824</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::routine" data-element-kind="enumUsage">routine</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Release a mode hold.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modSetTransitionTimeout" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_SET_TRANSITION_TIMEOUT</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2825</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::routine" data-element-kind="enumUsage">routine</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Set the time a transition may take before it is declared failed.</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="telemetry" data-query="TethysSoftwareDocumentsTooling::TelemetryOf">
+<caption class="sysml-caption">Telemetry points</caption>
+<thead>
+<tr>
+<th scope="col" data-column="mnemonic">mnemonic</th>
+<th scope="col" data-column="pointId">pointId</th>
+<th scope="col" data-column="kind">kind</th>
+<th scope="col" data-column="rate">rate</th>
+<th scope="col" data-column="unitSymbol">unitSymbol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modCurrentMode" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_CURRENT_MODE</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11001</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modPreviousMode" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_PREVIOUS_MODE</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11002</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modModeTime" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_MODE_TIME</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11003</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">s</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modTransitionCount" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_TRANSITION_COUNT</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11004</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modPendingMode" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_PENDING_MODE</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11005</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modAutoTransitionEn" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_AUTO_TRANSITION_EN</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11006</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modModeTableId" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_MODE_TABLE_ID</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11007</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modModeTableCrc" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_MODE_TABLE_CRC</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11008</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modSubsystemState01" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_SUBSYSTEM_STATE_01</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11009</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modSubsystemState02" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_SUBSYSTEM_STATE_02</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11010</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modSubsystemState03" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_SUBSYSTEM_STATE_03</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11011</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modSubsystemState04" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_SUBSYSTEM_STATE_04</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11012</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modSubsystemState05" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_SUBSYSTEM_STATE_05</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11013</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modSubsystemState06" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_SUBSYSTEM_STATE_06</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11014</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modSubsystemState07" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_SUBSYSTEM_STATE_07</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11015</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modSubsystemState08" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_SUBSYSTEM_STATE_08</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11016</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modSubsystemState09" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_SUBSYSTEM_STATE_09</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11017</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modSubsystemState10" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_SUBSYSTEM_STATE_10</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11018</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modSubsystemState11" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_SUBSYSTEM_STATE_11</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11019</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modSubsystemState12" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_SUBSYSTEM_STATE_12</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11020</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modModeHold" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_MODE_HOLD</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11021</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modTransitionTimeout" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_TRANSITION_TIMEOUT</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">11022</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">s</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="events" data-query="TethysSoftwareDocumentsTooling::EventsOf">
+<caption class="sysml-caption">Events (the fault-relevant ones are the fault-protection interface)</caption>
+<thead>
+<tr>
+<th scope="col" data-column="mnemonic">mnemonic</th>
+<th scope="col" data-column="eventId">eventId</th>
+<th scope="col" data-column="severity">severity</th>
+<th scope="col" data-column="fdirRelevant">fdirRelevant</th>
+<th scope="col" data-column="text">text</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modEvtStarted" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_EVT_STARTED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1101</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::info" data-element-kind="enumUsage">info</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">application started</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modEvtStopped" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_EVT_STOPPED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1102</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::warning" data-element-kind="enumUsage">warning</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">application stopped</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modEvtCmdAccepted" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_EVT_CMD_ACCEPTED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1103</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::info" data-element-kind="enumUsage">info</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">command accepted</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modEvtCmdRejected" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_EVT_CMD_REJECTED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1104</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::warning" data-element-kind="enumUsage">warning</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">command rejected</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modEvtTableLoaded" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_EVT_TABLE_LOADED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1105</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::info" data-element-kind="enumUsage">info</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">parameter table loaded</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modEvtTableInvalid" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_EVT_TABLE_INVALID</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1106</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::fault" data-element-kind="enumUsage">fault</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">parameter table failed validation</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modEvtWatchdogMissed" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_EVT_WATCHDOG_MISSED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1107</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::fault" data-element-kind="enumUsage">fault</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">application missed its watchdog window</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modEvtModeChangeSeen" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_EVT_MODE_CHANGE_SEEN</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1108</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::info" data-element-kind="enumUsage">info</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">application applied a mode change</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modEvtModeEntered" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_EVT_MODE_ENTERED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1109</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::info" data-element-kind="enumUsage">info</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">mode entered</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modEvtModePending" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_EVT_MODE_PENDING</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1110</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::info" data-element-kind="enumUsage">info</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">two-step transition pending</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modEvtModeRejected" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_EVT_MODE_REJECTED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1111</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::warning" data-element-kind="enumUsage">warning</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">transition rejected by table</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modEvtTransitionTimeout" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_EVT_TRANSITION_TIMEOUT</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1112</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::fault" data-element-kind="enumUsage">fault</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">transition did not complete</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modEvtAutoTransition" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_EVT_AUTO_TRANSITION</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1113</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::warning" data-element-kind="enumUsage">warning</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">event-driven transition</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="packets" data-query="TethysSoftwareDocumentsTooling::PacketsOf">
+<caption class="sysml-caption">Packets</caption>
+<thead>
+<tr>
+<th scope="col" data-column="mnemonic">mnemonic</th>
+<th scope="col" data-column="apid">apid</th>
+<th scope="col" data-column="apidClass">apidClass</th>
+<th scope="col" data-column="rate">rate</th>
+<th scope="col" data-column="lengthOctets">lengthOctets</th>
+<th scope="col" data-column="layoutConsistent">layoutConsistent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modHkPacket01" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_HK_01</span></td>
+<td class="sysml-cell" data-column="apid" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">42</span></td>
+<td class="sysml-cell" data-column="apidClass" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::ApidClass::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="lengthOctets" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">41</span></td>
+<td class="sysml-cell" data-column="layoutConsistent" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::modEngPacket01" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MOD_ENG_01</span></td>
+<td class="sysml-cell" data-column="apid" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">43</span></td>
+<td class="sysml-cell" data-column="apidClass" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::ApidClass::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="lengthOctets" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">20</span></td>
+<td class="sysml-cell" data-column="layoutConsistent" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="requirements" data-content="section" data-name="requirements">
+<h2>Requirements satisfied</h2>
+<table class="sysml-table" data-content="table" data-name="satisfied" data-query="TethysSoftwareDocumentsTooling::Satisfied">
+<caption class="sysml-caption">Software requirements satisfied</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="satisfies">satisfies</th>
+<th scope="col" data-column="rows">rows</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightSoftware::ArgentFlightSoftware::modeManagement" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">modeManagement</span></td>
+<td class="sysml-cell" data-column="satisfies" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareRequirements::safeModeEntry" data-element-kind="requirementUsage">safeModeEntry</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareRequirements::modeTransitions" data-element-kind="requirementUsage">modeTransitions</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareRequirements::modeManagementApplication" data-element-kind="requirementUsage">modeManagementApplication</span></td>
+<td class="sysml-cell" data-column="rows" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="criticality" data-content="section" data-name="criticality">
+<h2>Assurance classification</h2>
+<table class="sysml-table" data-content="table" data-name="level" data-query="TethysSoftwareDocumentsTooling::Classification">
+<caption class="sysml-caption">Classification register row</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="level">level</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::modeManagement" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">modeManagement</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The mode manager: safe-mode entry, the capture-mode inhibit, the command dispatcher.</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<p class="sysml-paragraph" data-content="paragraph" data-name="scope">One volume per application of the Argent flight software, in the order of TethysFlightSoftware::ArgentFlightSoftware. Every table is a query over TethysFlightSoftware, TethysFlightBehaviour, TethysFlightTiming, TethysFlightDictionary, TethysSoftwareRequirements and TethysSoftwareAssurance.</p>
+</article>
+</body>
+</html>

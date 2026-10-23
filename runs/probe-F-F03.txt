@@ -56,6 +56,8 @@
 ✓ package TethysDocuments
 ✓ package TethysLayout
 ✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
 ✓ package TethysAsBuilt
 ✓ package TethysImportedData
 ✓ package TethysDisposal

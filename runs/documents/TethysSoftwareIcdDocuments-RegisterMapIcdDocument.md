@@ -9,6 +9,8 @@
 | a | TethysInterfaces::DataBusPort |
 | b | TethysInterfaces::DataBusPort |
 
+<a id="parameters"></a>
+
 ## Register access parameters
 
 *Address and data widths, access frame and burst*

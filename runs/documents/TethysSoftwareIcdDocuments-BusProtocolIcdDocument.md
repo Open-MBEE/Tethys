@@ -1,5 +1,7 @@
 # SCD-020 AABP-1 on-board bus protocol
 
+<a id="ends"></a>
+
 ## Interface ends
 
 *Ends and their port types*

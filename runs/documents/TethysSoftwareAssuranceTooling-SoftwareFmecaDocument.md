@@ -2,6 +2,8 @@
 
 One row per application and one for the executive: failure mode, local and end effect, detection, response and criticality, with the assurance level of the component.
 
+<a id="rows"></a>
+
 *Software failure modes*
 
 | shortName | name | failureMode | localEffect | endEffect | detection | response | criticality | level |
