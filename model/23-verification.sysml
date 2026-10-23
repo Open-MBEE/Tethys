@@ -94,8 +94,9 @@ package TethysVerification {
         attribute fidelity : String;
         attribute readyBy : String;
     }
-    part testBeds {
-        doc /* The simulators and test beds. */
+    part def TestBedSet {
+        doc /* The simulators and test beds of the programme; TethysGroundSoftware retypes
+             * each by the simulator or test-bed software that runs it. */
         part flatsat : TestBed {
             doc /* Engineering-model avionics with flight software, used for fault-response and
                  * autonomy tests. */
@@ -118,6 +119,9 @@ package TethysVerification {
             attribute :>> fidelity = "n-body with SRP, validated";
             attribute :>> readyBy = "PDR";
         }
+    }
+    part testBeds : TestBedSet {
+        doc /* The simulators and test beds. */
     }
 
     // ---- Verification cases: test -----------------------------------------------------------

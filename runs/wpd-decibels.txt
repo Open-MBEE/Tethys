@@ -35,6 +35,7 @@
 ✓ package TethysFlightTiming
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
 ✓ package TethysAnalyses
 ✓ package TethysTrades
 ✓ package TethysMonteCarlo

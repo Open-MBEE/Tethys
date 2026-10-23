@@ -117,6 +117,14 @@ package TethysMeridian {
         attribute positionsPerShift : Natural;
     }
 
+    part def GroundSoftwareComponent {
+        doc /* A software component of the ground segment as the facilities see it: a named
+             * product at a version. The Meridian Operations Suite (TethysGroundSoftware)
+             * specialises it component by component and retypes the parts below. */
+        attribute productName : String;
+        attribute version : String;
+    }
+
     part def MeridianOperationsCentre :> MissionOperationsCentre {
         doc /* The Tethys operations centre: a flight-director console, spacecraft and
              * ground-system positions, and the planning team that builds the weekly plan. */
@@ -141,6 +149,12 @@ package TethysMeridian {
             attribute :>> shiftLength = 8.0 [h];
             attribute :>> positionsPerShift = 2;
         }
+        part commandBuilder : GroundSoftwareComponent;
+        part sequencer : GroundSoftwareComponent;
+        part telemetryServer : GroundSoftwareComponent;
+        part passPlanner : GroundSoftwareComponent;
+        part anomalyTracker : GroundSoftwareComponent;
+        part proximityPlanner : GroundSoftwareComponent;
         port stationFeed : ProductPort;
         port toFlightDynamics : ProductPort;
         port toScience : ProductPort;
@@ -155,6 +169,7 @@ package TethysMeridian {
             attribute :>> positionsPerShift = 2;
         }
         attribute odArcLength : DurationValue = 7.0 [d];
+        part flightDynamicsTool : GroundSoftwareComponent;
         port fromOperations : ProductPort;
         port toScience : ProductPort;
     }
@@ -168,6 +183,7 @@ package TethysMeridian {
             attribute :>> positionsPerShift = 1;
         }
         attribute archiveCapacity : StorageCapacityValue = 400.0e12 [B];
+        part dataArchive : GroundSoftwareComponent;
         port fromOperations : ProductPort;
         port fromFlightDynamics : ProductPort;
         port archive : ProductPort;

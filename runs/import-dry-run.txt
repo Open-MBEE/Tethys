@@ -36,6 +36,7 @@ loaded 57 files:
   model/66-flight-timing.sysml
   model/68-software-icds-tooling.sysml
   model/68-software-icds.sysml
+  model/69-ground-software.sysml
   model/70-analyses.sysml
   model/71-trades.sysml
   model/72-montecarlo.sysml
