@@ -1,0 +1,48 @@
+run sw-mode-manager-full-flight: scenario TethysFlightBehaviour::softwareNominalFlight, machine TethysFlightBehaviour::ModeManagementSoftware::modes on TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement, horizon 129600000 s
+host: 384 traced frames, 24 skips, 24 events, 0 commands, final mode safe, rc 0
+model: 579 trace events, 0 dropped, final time 129600000 s, states visited 24
+machine SepStringController: agree (4 changes, 10 model transitions, 10 model accepts)
+  t=0 off
+  t=8640 standby
+  t=604800 off
+  t=19880640 thrusting
+machine PowerManager: agree (1 changes, 2 model transitions, 2 model accepts)
+  t=0 nominal
+machine ThermalController: agree (2 changes, 1 model transitions, 1 model accepts)
+  t=0 operational | heaterOff
+  t=604800 survival | heaterOff
+machine TelecomManager: agree (3 changes, 12 model transitions, 12 model accepts)
+  t=0 safeRate
+  t=8640 highGainIdle
+  t=604800 safeRate
+machine InspectorHandler: diverge (1 model changes vs 3 host changes) -- F-SW1304: the host's on-board sequence 3 sends InspectorCheckoutGo/InspectorReleaseGo/InspectorImagingGo as step items; the model's InspectorReleaseSequence (61) sends nothing
+  model t=0 stowed
+  host  t=0 stowed
+  host  t=39147839.125 checkout
+  host  t=39162239.125 retired
+machine CaptureController: agree (1 changes, 2 model transitions, 2 model accepts)
+  t=0 characterising
+machine RedundancyManager: agree (4 changes, 3 model transitions, 0 model accepts)
+  t=0 primeActive
+  t=60 switchingToRedundant
+  t=90 redundantActive
+  t=150 lastComputer
+machine BootUpdateManager: agree (3 changes, 2 model transitions, 0 model accepts)
+  t=0 bootRom
+  t=5 loadingImage
+  t=125 safeImage
+machine TugModes: agree (7 changes, 17 model transitions, 9 model accepts)
+  t=0 onLauncher | off | lowGain | thrusters | stowed
+  t=4320 deploying | off | lowGain | thrusters | stowed
+  t=8640 coast | standby | highGain | wheels | stowed
+  t=604800 safe | off | lowGain | thrusters | stowed
+  t=38888640 safe | off | lowGain | thrusters | deployed
+  t=39147840 safe | off | lowGain | thrusters | cinched
+  t=97899840 safe | off | lowGain | thrusters | released
+machine ModeManagementDispatcher: agree (1 changes, 16 model transitions, 16 model accepts)
+  t=0 dispatching
+machine FdirSupervisor: agree (2 changes, 1 model transitions, 0 model accepts)
+  t=0 armed | nominal | nominal | nominal | nominal | monitoring
+  t=604800 expired | nominal | nominal | nominal | nominal | monitoring
+machine FdirResponseRelay: agree (1 changes, 1 model transitions, 1 model accepts)
+  t=0 relaying

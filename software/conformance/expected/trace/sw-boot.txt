@@ -1,0 +1,26 @@
+run sw-boot: scenario TethysFlightBehaviour::bootScenario, machine TethysFlightBehaviour::ParameterBootUpdateSoftware::manager on TethysFlightBehaviour::bootScenario.bootUpdate, horizon 3000 s
+host: 256 traced frames, 16 skips, 0 events, 0 commands, final mode launch, rc 0
+model: 53 trace events, 0 dropped, final time 3000 s, states visited 13
+machine SepStringController: host-only (1 changes; the model scenario does not run it)
+machine PowerManager: host-only (1 changes; the model scenario does not run it)
+machine ThermalController: host-only (1 changes; the model scenario does not run it)
+machine TelecomManager: host-only (1 changes; the model scenario does not run it)
+machine InspectorHandler: host-only (1 changes; the model scenario does not run it)
+machine CaptureController: host-only (1 changes; the model scenario does not run it)
+machine RedundancyManager: host-only (4 changes; the model scenario does not run it)
+machine BootUpdateManager: agree (11 changes, 12 model transitions, 8 model accepts)
+  t=0 bootRom
+  t=5 loadingImage
+  t=30 running
+  t=630 receivingUpdate
+  t=810 uploadVerifiedIdle
+  t=870 bootRom
+  t=875 loadingImage
+  t=995 safeImage
+  t=1470 bootRom
+  t=1475 loadingImage
+  t=1500 running
+machine TugModes: host-only (1 changes; the model scenario does not run it)
+machine ModeManagementDispatcher: host-only (1 changes; the model scenario does not run it)
+machine FdirSupervisor: host-only (1 changes; the model scenario does not run it)
+machine FdirResponseRelay: host-only (1 changes; the model scenario does not run it)
