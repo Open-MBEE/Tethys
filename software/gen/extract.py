@@ -24,7 +24,7 @@ APP_MACHINES = (
     "InspectorHandler", "CaptureController", "RedundancyManager", "BootUpdateManager",
 )
 ENUM_DEFS = (
-    "TethysTugStructure__TugMode", "TethysOperations__ApidClass", "TethysFdir__FdirLevel",
+    "TethysTugStructure__TugMode", "TethysModes__InspectorMode", "TethysOperations__ApidClass", "TethysFdir__FdirLevel",
     "TethysFdir__FaultResponse", "TethysFlightSoftware__SoftwareLayer",
     "TethysFlightSoftware__SchedulingPolicy", "TethysFlightSoftware__SoftwareCriticality",
     "TethysFlightDictionary__ApplicationName", "TethysFlightDictionary__CommandCriticality",
@@ -213,9 +213,7 @@ def extract(rd: Reader) -> dict:
         lits = [k.name for k in rd.kids(d, "EnumerationUsage")]
         enums[qname(d).rsplit("::", 1)[-1]] = {"source": qname(d), "literals": lits}
     modes = enums["TugMode"]["literals"]
-    out["inspector_modes"] = inspector = machine(rd, "TethysModes__InspectorModes", "InspectorModes")
-    enums["InspectorMode"] = {"source": "TethysModes::InspectorModes (leaf states)",
-                              "literals": [s["name"] for s in inspector["states"] if s["leaf"]]}
+    out["inspector_modes"] = machine(rd, "TethysModes__InspectorModes", "InspectorModes")
 
     out["apid_classes"] = apids(rd)
     out["commands"] = commands(rd, modes)

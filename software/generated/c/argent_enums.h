@@ -5,6 +5,7 @@
  * Model files: 64 files under model/ (81-physics.kerml … 99-house-rules.sysml)
  * Source elements:
  *   TethysTugStructure::TugMode
+ *   TethysModes::InspectorMode
  *   TethysOperations::ApidClass
  *   TethysFdir::FdirLevel
  *   TethysFdir::FaultResponse
@@ -19,7 +20,6 @@
  *   TethysFlightBehaviour::ImageSlot
  *   TethysSoftwareIcds::BusErrorResponse
  *   TethysSoftwareIcds::RegisterAccess
- *   TethysModes::InspectorModes (leaf states)
  *   TethysFlightDictionary::Opcode
  *   TethysFlightDictionary::EventDefinition::eventId
  *   TethysFlightDictionary::ParameterRow::parameterId
@@ -71,6 +71,28 @@ static const char *const argent_tug_mode_names[16] = {
     "disposal",
     "safe",
     "abortHold",
+};
+
+typedef enum {
+    ARGENT_INSPECTOR_MODE_STOWED = 0,
+    ARGENT_INSPECTOR_MODE_CHECKOUT = 1,
+    ARGENT_INSPECTOR_MODE_STATION_KEEPING = 2,
+    ARGENT_INSPECTOR_MODE_IMAGING = 3,
+    ARGENT_INSPECTOR_MODE_RETREAT = 4,
+    ARGENT_INSPECTOR_MODE_SAFE = 5,
+    ARGENT_INSPECTOR_MODE_RETIRED = 6,
+    ARGENT_INSPECTOR_MODE_COUNT = 7
+} argent_inspector_mode_t;
+#define ARGENT_INSPECTOR_MODE_LITERAL_COUNT 7
+
+static const char *const argent_inspector_mode_names[7] = {
+    "stowed",
+    "checkout",
+    "stationKeeping",
+    "imaging",
+    "retreat",
+    "safe",
+    "retired",
 };
 
 typedef enum {
@@ -297,28 +319,6 @@ static const char *const argent_register_access_names[3] = {
     "readOnly",
     "readWrite",
     "writeOnly",
-};
-
-typedef enum {
-    ARGENT_INSPECTOR_MODE_STOWED = 0,
-    ARGENT_INSPECTOR_MODE_CHECKOUT = 1,
-    ARGENT_INSPECTOR_MODE_STATION_KEEPING = 2,
-    ARGENT_INSPECTOR_MODE_IMAGING = 3,
-    ARGENT_INSPECTOR_MODE_RETREAT = 4,
-    ARGENT_INSPECTOR_MODE_SAFE = 5,
-    ARGENT_INSPECTOR_MODE_RETIRED = 6,
-    ARGENT_INSPECTOR_MODE_COUNT = 7
-} argent_inspector_mode_t;
-#define ARGENT_INSPECTOR_MODE_LITERAL_COUNT 7
-
-static const char *const argent_inspector_mode_names[7] = {
-    "stowed",
-    "checkout",
-    "stationKeeping",
-    "imaging",
-    "retreat",
-    "safe",
-    "retired",
 };
 
 typedef enum {
