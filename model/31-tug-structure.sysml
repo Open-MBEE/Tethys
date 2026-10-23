@@ -441,9 +441,9 @@ package TethysTugStructure {
         attribute :>> failureRate = 9.0e-11 [Hz];
         attribute :>> dataRate = 4000 ['bit/s'];
         attribute processorCapacityMips : Real = 1200.0;
-        attribute processorLoadMips : Real = 560.0;
+        attribute processorLoadMips : Real default = 560.0;
         attribute memoryCapacity : StorageCapacityValue = 4.0e9 [B];
-        attribute memoryAllocated : StorageCapacityValue = 1.9e9 [B];
+        attribute memoryAllocated : StorageCapacityValue default = 1.9e9 [B];
         attribute imageSlots : Natural = 2;
         port bus : DataBusPort;
         port crossStrap : DataBusPort;

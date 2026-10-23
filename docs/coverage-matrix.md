@@ -258,7 +258,12 @@ Rows from the software scope review (`SW-###`), covered package by package in
 | SW-250 `FdirSupervisor` exhibited by the FDIR application; thresholds from a table | WP-SW-3 | sat (table local until WP-SW-2) |
 | SW-036 software-to-processor allocation | WP-SW-1 | sat |
 | SW-241 flight software attached to C&DH | WP-SW-1 | sat |
-| SW-245 `FlightComputer` image and bus ports | WP-SW-1 (WP-SW-4 binds the load figures) | sat |
+| SW-245 `FlightComputer` image and bus ports | WP-SW-1 (WP-SW-4 binds the load figures) | sat — `TethysFlightTiming::TimedFlightComputer` binds `processorLoadMips`/`memoryAllocated` from the software budgets (WP-SW-4) |
+| SW-010 executive scheduler: rate groups, major/minor frame schedule, deadlines, jitter | WP-SW-4 | sat — `docs/coverage/WP-SW-4.md` |
+| SW-011 memory and CPU budgets per application and partition with reserve policy | WP-SW-4 | sat |
+| SW-037 bus allocation: AABP-1 slots per node per frame, bus utilisation budget | WP-SW-4 | sat — the all-streams bus budget does not close at the 50 % reserve (0.5625), kept visible |
+| SW-038 per-application rate/WCET/deadline/jitter; end-to-end latency chains | WP-SW-4 | sat |
+| SW-246 `ProcessorBudget` consumes per-application sums; `BusBudget`, `LatencyBudget` | WP-SW-4 | sat |
 | SW-252 `SoftwareDeployment` and new `SoftwareFunction` leaves | WP-SW-1 | sat |
 | SW-003 time service / time code | WP-SW-2 flight dictionary | sat — `docs/coverage/WP-SW-2.md` |
 | SW-005 table service | WP-SW-2 | sat |
