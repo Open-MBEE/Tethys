@@ -215,9 +215,18 @@
         attribute envelopeMass : MassValue = $::TethysEnvironment::amaranth.mass;
         attribute strings : Natural[2..*] = (configuration.thrusterCount, configuration.operatingThrusters);
 
-        assert constraint inspectorDecisionIsExclusive {
-            doc /* Either the inspector flies or the tug's sensors are sized to replace it. */
-            inspectorCarried xor tugSensorsSuffice
+        attribute heavyLoad : Boolean = configuration.xenonLoad == TethysVariants::XenonLoadChoice::heavy {
+            doc /* The heavy xenon load fills the bay that otherwise berths the inspector. */
+        }
+        assert constraint characterisationChosen {
+            doc /* Some means of characterising the body is in the configuration: the inspector
+                 * flies, or the body is small enough for the tug's own sensors. */
+            inspectorCarried or tugSensorsSuffice
+        }
+        assert constraint berthIsExclusive {
+            doc /* The heavy tank bay and the inspector berth are the same volume: one or the
+                 * other, never both. */
+            heavyLoad xor inspectorCarried
         }
         assert constraint carriedMeansLifted {
             doc /* Carrying Wren implies the stack mass includes it. */
@@ -228,9 +237,11 @@
             configuration.operatingThrusters < configuration.thrusterCount &
             configuration.operatingThrusters > 0
         }
-        assert constraint windowIsOrdered {
-            doc /* The window opens before it closes and is not marked marginal. */
-            (firstWindow.opens < firstWindow.closes) | firstWindow.marginal == true
+        assert constraint windowIsUsable {
+            doc /* The window opens before it closes, and a marginal window counts only when it
+                 * is at least thirty days long. */
+            (firstWindow.opens < firstWindow.closes) and
+            (not firstWindow.marginal | windowLength >= 30.0 [d])
         }
         assert constraint identityChecks {
             doc /* The configuration's target is one of the declared cases, and its launcher is
@@ -289,11 +300,11 @@
         return : Boolean = stringCount % 2 == 1;
     }
 
-    calc def InspectorDecisionConsistent {
-        doc /* Exactly one of the two characterisation means is chosen. */
+    calc def BerthIsExclusive {
+        doc /* Exactly one of the heavy xenon load and the inspector occupies the shared bay. */
+        in heavyLoad : Boolean;
         in inspectorCarried : Boolean;
-        in tugSensorsSuffice : Boolean;
-        return : Boolean = inspectorCarried xor tugSensorsSuffice;
+        return : Boolean = heavyLoad xor inspectorCarried;
     }
 
     calc def HeavierBodyNeedsMoreXenon {
