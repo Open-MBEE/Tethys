@@ -412,7 +412,9 @@ package TethysModes {
             state deployed;
             state cinched;
             state released;
-            transition first stowed accept CaptureGo via command then deployed;
+            transition first stowed accept go : CaptureGo via command
+                if go.estimatedMass <= envelope.maximumBodyMass and go.estimatedDiameter <= envelope.maximumBodyDiameter
+                then deployed;
             transition first deployed accept CaptureComplete via command then cinched;
             transition first cinched accept DisposalGo via command then released;
         }
