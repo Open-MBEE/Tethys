@@ -125,3 +125,10 @@ reason given and can be changed in the emitter alone.
   strict and sanitised, runs the unit tests, the banned-construct scan, the host scenarios derived from
   the pinned `runs/sw-*.txt` and reports sizes against the model budgets; see `software/flight/README.md`
   for the trace contract.
+
+`software/conformance/` is the conformance harness: `make software-conformance-check` runs the flight host
+with `--trace` and the model through `sysml-grpc` for every pinned `sw-*` run and compares the state
+sequences machine by machine, evaluates every calc the software uses interpreted and compiled (C, Go) over
+a fixed grid, and runs the software VCRM's planned flight-software-in-the-loop cases as evidence files under
+`software/conformance/evidence/`; outputs are compared byte for byte with `software/conformance/expected/`.
+See `software/conformance/README.md`.

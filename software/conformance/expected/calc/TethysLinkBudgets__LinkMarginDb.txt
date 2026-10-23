@@ -1,0 +1,5 @@
+calc TethysLinkBudgets::LinkMarginDb(eirpDbw, pathLossDb, otherLossesDb, gOverTDbPerK, dataRateBps, requiredEbN0Db, implementationLossDb) kind=real tol=1e-09 relative
+  grid: downlink at 100 kbps and 1 kbps, Ka return
+  (eirpDbw=60.0, pathLossDb=270.0, otherLossesDb=2.0, gOverTDbPerK=30.0, dataRateBps=100000.0, requiredEbN0Db=2.5, implementationLossDb=1.5) model=-7.4000000000000625 c=-7.4000000000000625 go=-7.4000000000000625
+  (eirpDbw=60.0, pathLossDb=270.0, otherLossesDb=2.0, gOverTDbPerK=30.0, dataRateBps=1000.0, requiredEbN0Db=2.5, implementationLossDb=1.5) model=12.59999999999992 c=12.59999999999992 go=12.59999999999992
+  (eirpDbw=80.0, pathLossDb=262.0, otherLossesDb=1.0, gOverTDbPerK=50.0, dataRateBps=2000000.0, requiredEbN0Db=4.0, implementationLossDb=2.0) model=26.58970004336004 c=26.58970004336004 go=26.58970004336004

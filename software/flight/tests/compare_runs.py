@@ -11,6 +11,7 @@ scripts/runs.sh (the `-engine check` runs excepted) this script
     with --fast-forward to the same horizon and lets its trailing `expect` line judge the state.
 Nothing model-derived is copied into this file by hand.
 """
+import math
 import os
 import shutil
 import re
@@ -57,8 +58,43 @@ def args_of(text):
     return [float(v) for v in NUM_RE.findall(text or "")]
 
 
-def stimuli_from_sequence(scenario):
-    """Messages from the external driver to the top-level object of the scenario's sequence render."""
+def script_quantum(scenario):
+    """The gcd (in whole seconds) of every `accept after` delay in the scenario's driver scripts.
+
+    The sequence render prints times with six significant digits, so a campaign time such as
+    19880640 appears as 1.98806e+07; every delay of a driver script is a multiple of this
+    quantum, so a printed time is snapped back to the nearest multiple when it lies within the
+    print rounding error."""
+    models = [os.path.join(ROOT, "model", f) for f in sorted(os.listdir(os.path.join(ROOT, "model"))) if f.endswith(".sysml")]
+    text = "\n".join(open(p).read() for p in models)
+    m = re.search(r"part %s : (\w+)\b" % re.escape(scenario), text)
+    if not m:
+        return 0
+    body = re.search(r"part def %s\b[^{]*\{(.*?)\n    \}" % re.escape(m.group(1)), text, re.S)
+    if not body:
+        return 0
+    delays = []
+    for d in re.findall(r"part \w+ : (\w+);", body.group(1)):
+        driver = re.search(r"part def %s\b[^{]*\{(.*?)\n    \}" % re.escape(d), text, re.S)
+        if not driver:
+            continue
+        for a, unit in re.findall(r"accept after ([0-9.e+]+) \[(s|min|h|d)\]", driver.group(1)):
+            delays.append(int(round(float(a) * {"s": 1.0, "min": 60.0, "h": 3600.0, "d": 86400.0}[unit])))
+    return math.gcd(*delays) if delays else 0
+
+
+def snap(t, quantum):
+    if quantum <= 0:
+        return t
+    exact = round(t / quantum) * quantum
+    return float(exact) if abs(exact - t) <= abs(t) * 5e-6 else t
+
+
+def stimuli_from_sequence(scenario, obj):
+    """Messages from the external driver to `obj`, the top-level part the run's machine lives in,
+    in the scenario's sequence render; messages to other top-level parts (the inspector's own
+    uplink) are not stimuli of this host."""
+    quantum = script_quantum(scenario)
     stim = []
     for fn in sorted(os.listdir(RUNS)):
         if not fn.endswith("-sequence.txt"):
@@ -77,9 +113,9 @@ def stimuli_from_sequence(scenario):
                 continue  # self-sent (internal) message, not a stimulus
             sender_short = sender.split("::")[-1].split(".")
             receiver_short = receiver.split("::")[-1].split(".")
-            if len(sender_short) != 2 or len(receiver_short) != 2:
-                continue  # only driver -> top-level object messages are stimuli
-            key = (float(m.group(3)), m.group(4))
+            if len(sender_short) != 2 or receiver_short != obj:
+                continue  # only driver -> this top-level object messages are stimuli
+            key = (snap(float(m.group(3)), quantum), m.group(4))
             if key in seen:
                 continue
             seen.add(key)
@@ -115,11 +151,13 @@ def stimuli_from_model(scenario):
 
 # Regions where the pinned run and the table-driven runner are known to disagree; each names the
 # finding that records the oracle evidence. The region is compared as '*' and the divergence printed.
-KNOWN_DIVERGENCES = {
-    ("sw-mode-manager-full-flight", "TugModes", 3): "F-SW1201: the pinned run leaves attitudeControl in "
-        "'thrusters' although DespinComplete/DisposalGo rows thrusters -> wheels are enabled "
-        "(the sequence render marks DespinComplete '(not accepted)' at t=4.001184e7)",
-}
+# Empty since the runner keeps unaccepted items in flight as the model does (attitudeControl, once
+# F-SW1201, now agrees in every run).
+KNOWN_DIVERGENCES = {}
+
+
+def fmt_time(t):
+    return f"{t:.0f}" if float(t).is_integer() else f"{t:.6f}".rstrip("0").rstrip(".")
 
 
 def main():
@@ -146,14 +184,15 @@ def main():
             continue
         short = scenario.split("::")[-1]
         # The sequence render stops at its own horizon; the model script carries the whole campaign.
-        from_seq, from_model = stimuli_from_sequence(short), stimuli_from_model(short)
+        obj = _obj.split("::")[-1].split(".")[:2]
+        from_seq, from_model = stimuli_from_sequence(short, obj), stimuli_from_model(short)
         stim = from_model if len(from_model) > len(from_seq) else from_seq
         total += 1
         path = os.path.join(OUT, name + ".stim")
         with open(path, "w") as f:
             f.write(f"# derived from runs/{name}.txt and the {scenario} scenario; horizon {advance} s\n")
             for t, item, args in stim:
-                f.write(f"t={t:g} item {item} " + " ".join(f"{a:g}" for a in args) + "\n")
+                f.write(f"t={fmt_time(t)} item {item} " + " ".join(f"{a:g}" for a in args) + "\n")
             expected = states[-1]
             regions = expected.split(" | ")
             for (run, machine_name, region), finding in KNOWN_DIVERGENCES.items():

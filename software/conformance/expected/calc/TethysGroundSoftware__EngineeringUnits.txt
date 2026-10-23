@@ -1,0 +1,6 @@
+calc TethysGroundSoftware::EngineeringUnits(rawCount, scale, offset) kind=real tol=1e-09 relative
+  grid: 12-bit and 16-bit counts
+  (rawCount=0, scale=1.0, offset=0.0) model=0.0 c=0.0 go=0.0
+  (rawCount=4095, scale=0.01, offset=-20.0) model=20.950000000000003 c=20.950000000000003 go=20.950000000000003
+  (rawCount=2048, scale=1.5, offset=3.0) model=3075.0 c=3075.0 go=3075.0
+  (rawCount=65535, scale=1.0, offset=0.0) model=65535.0 c=65535.0 go=65535.0

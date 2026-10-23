@@ -137,11 +137,32 @@ static void test_every_machine_starts(void)
     }
 }
 
+static void test_held_items(void)
+{
+    /* SysML v2 7.17.8/7.18.3: an item no active state takes stays in flight until one does; an
+     * item no row of the machine names is discarded. */
+    sm_instance_t sm; ctx_t c = { false, false, 0 }; char buf[SM_CONFIG_LEN]; const char *missing;
+    CHECK(sm_init(&sm, machine("SepStringController"), &c));
+    bind_all_noop(&sm);
+    CHECK(sm_fully_bound(&sm, &missing));
+    sm_start(&sm, 0);
+    sm_config(&sm, buf, sizeof buf); CHECK_EQ_STR(buf, "off");
+    send(&sm, "SepThrust", 10);
+    sm_config(&sm, buf, sizeof buf); CHECK_EQ_STR(buf, "off");
+    CHECK(sm.held_count == 1 && sm.events_held == 1 && sm.events_ignored == 0);
+    send(&sm, "CaptureGo", 11);
+    CHECK(sm.held_count == 1 && sm.events_ignored == 1);
+    send(&sm, "SepStandby", 20);
+    sm_config(&sm, buf, sizeof buf); CHECK_EQ_STR(buf, "thrusting");
+    CHECK(sm.held_count == 0 && sm.events_consumed == 2 && sm.transitions_taken == 2);
+}
+
 const test_case_t sm_tests[] = {
     { "sm: capture controller nominal reaches captured", "runs/sw-capture-controller.txt", test_capture_nominal },
     { "sm: capture controller premature contact stays inhibited", "runs/sw-capture-controller-inhibited.txt", test_capture_inhibited },
     { "sm: TugModes early operations and safe mode", "runs/sw-mode-manager-early-ops.txt", test_tug_modes_early_ops },
     { "sm: FdirSupervisor command-loss timer", "runs/sw-fdir-command-loss-expired.txt", test_fdir_supervisor },
     { "sm: every generated machine starts", "TF-019", test_every_machine_starts },
+    { "sm: an item no active state takes stays in flight until one does", "F-SW1301", test_held_items },
 };
 const unsigned sm_test_count = sizeof sm_tests / sizeof sm_tests[0];

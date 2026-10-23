@@ -1,0 +1,19 @@
+# TethysFdir::earthImpactScenario (EarthImpactInjector, model 62) on the tug uplink: a nominal
+# trajectory solution, then one inside the Earth exclusion sphere; pinned run fdir-earth-impact-aborted.
+t=4320 item SeparationConfirmed 
+t=8640 item ArraysDeployed 
+t=440640 item GroundContact 
+t=440640 item ProximityOperationsGo 
+t=872640 item GroundContact 
+t=872640 item RangeUpdate 20
+t=872640 item CaptureGo 6.8 362000
+t=1131840 item GroundContact 
+t=1131840 item CaptureComplete 
+t=1563840 item GroundContact 
+t=1563840 item DespinComplete 
+t=1563840 item ReturnThrustGo 400
+t=1995840 item GroundContact 
+t=1995840 item TrajectoryUpdate 384400 1e-07
+t=2427840 item GroundContact 
+t=2427840 item TrajectoryUpdate 12000 0.002
+t=2592000 expect FdirSupervisor=armed | nominal | nominal | nominal | nominal | aborted

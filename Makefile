@@ -88,3 +88,4 @@ software-check: $(SOFTWARE_PY) software-selftest
 
 include software/ground/ground.mk
 include software/flight/flight.mk
+include software/conformance/conformance.mk

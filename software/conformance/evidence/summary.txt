@@ -1,0 +1,7 @@
+as-run verification cases (TethysSoftwareAssurance, level flightSoftwareInTheLoop): host + model + ground
+finalTargetingFlightSoftwareInTheLoop: pass
+thrustArcFlightSoftwareInTheLoop: pass
+captureSequenceFlightSoftwareInTheLoop: pass
+faultDetectionFlightSoftwareInTheLoop: pass
+groundTwoStepIntegration: pass
+run 5: pass 5, fail 0; 26 planned cases not runnable here (12 unit, 4 integration, 4 hardwareInTheLoop, 6 flatsat)

@@ -1,0 +1,2 @@
+calc TethysGroundSoftware::ValidateCommand(request, command, argument) kind=real tol=1e-09 relative
+  not-driveable: record-typed inputs; software-ground-check compares the ground forge against it

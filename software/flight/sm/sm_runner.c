@@ -1,4 +1,5 @@
 #include "sm/sm_runner.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -294,13 +295,11 @@ static bool event_matches(const argent_transition_t *t, const sm_event_t *ev)
     return true;
 }
 
-uint32_t sm_dispatch(sm_instance_t *sm, const sm_event_t *ev, argent_us_t now)
+static unsigned dispatch_core(sm_instance_t *sm, const sm_event_t *ev)
 {
     int16_t chosen[SM_MAX_STATES];
     int16_t chosen_region[SM_MAX_STATES];
     unsigned chosen_count = 0;
-    sm->now = now;
-    sm->last_fired = 0;
     /* Per orthogonal region, the enabled transition with the deepest source wins; ties by table order. */
     for (uint16_t i = 0; i < sm->def->transition_count; i++) {
         const argent_transition_t *t = &sm->def->transitions[i];
@@ -316,8 +315,57 @@ uint32_t sm_dispatch(sm_instance_t *sm, const sm_event_t *ev, argent_us_t now)
         /* An earlier firing in this dispatch may have left the source; re-check before firing. */
         if ((sm->active & BIT(sm->def->transitions[chosen[k]].source)) != 0) fire(sm, (uint16_t)chosen[k], ev);
     }
-    if (chosen_count > 0) sm->events_consumed++; else sm->events_ignored++;
-    run_completions(sm);
+    if (chosen_count > 0) run_completions(sm);
+    return chosen_count;
+}
+
+static bool may_take(const sm_instance_t *sm, const sm_event_t *ev)
+{
+    /* Some row of the machine, active or not, names this event on a compatible port. */
+    for (uint16_t i = 0; i < sm->def->transition_count; i++)
+        if (event_matches(&sm->def->transitions[i], ev)) return true;
+    return false;
+}
+
+static void hold(sm_instance_t *sm, const sm_event_t *ev)
+{
+    sm_held_t *h;
+    if (sm->held_count >= SM_MAX_HELD) { sm->events_ignored++; return; }
+    h = &sm->held[sm->held_count++];
+    memset(h, 0, sizeof(*h));
+    snprintf(h->name, sizeof h->name, "%s", ev->name);
+    if (ev->port != NULL) { snprintf(h->port, sizeof h->port, "%s", ev->port); h->has_port = true; }
+    if (ev->text != NULL) { snprintf(h->text, sizeof h->text, "%s", ev->text); h->has_text = true; }
+    memcpy(h->arg, ev->arg, sizeof h->arg);
+    sm->events_held++;
+}
+
+static void offer_held(sm_instance_t *sm)
+{
+    /* After a firing, the oldest held item an active state now takes fires; its firing may enable another. */
+    for (unsigned rounds = 0; rounds < SM_MAX_HELD * SM_MAX_HELD && sm->held_count > 0; rounds++) {
+        bool fired = false;
+        for (uint8_t i = 0; i < sm->held_count && !fired; i++) {
+            sm_held_t h = sm->held[i];
+            sm_event_t ev = { h.name, h.has_port ? h.port : NULL, { 0, 0, 0, 0 }, h.has_text ? h.text : NULL };
+            memcpy(ev.arg, h.arg, sizeof ev.arg);
+            if (dispatch_core(sm, &ev) == 0) continue;
+            memmove(&sm->held[i], &sm->held[i + 1], (size_t)(sm->held_count - i - 1u) * sizeof(sm_held_t));
+            sm->held_count--;
+            sm->events_consumed++;
+            fired = true;
+        }
+        if (!fired) break;
+    }
+}
+
+uint32_t sm_dispatch(sm_instance_t *sm, const sm_event_t *ev, argent_us_t now)
+{
+    sm->now = now;
+    sm->last_fired = 0;
+    if (dispatch_core(sm, ev) > 0) { sm->events_consumed++; offer_held(sm); }
+    else if (may_take(sm, ev)) hold(sm, ev);
+    else sm->events_ignored++;
     return sm->last_fired;
 }
 
@@ -338,6 +386,7 @@ uint32_t sm_tick(sm_instance_t *sm, argent_us_t now)
         if (!fired) break;
     }
     run_completions(sm);
+    if (sm->last_fired > 0) offer_held(sm);
     return sm->last_fired;
 }
 

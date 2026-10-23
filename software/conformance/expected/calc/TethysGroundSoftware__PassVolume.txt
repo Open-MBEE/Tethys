@@ -1,0 +1,2 @@
+calc TethysGroundSoftware::PassVolume(rateSet, passDurationHours, lockUpSeconds) kind=real tol=1e-09 relative
+  not-driveable: rateSet is a LinkRateSet part
