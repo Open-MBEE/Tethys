@@ -1,4 +1,4 @@
-loaded 60 files:
+loaded 62 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -34,6 +34,8 @@ loaded 60 files:
   model/64-flight-dictionary.sysml
   model/65-flight-behaviour.sysml
   model/66-flight-timing.sysml
+  model/67-software-requirements-tooling.sysml
+  model/67-software-requirements.sysml
   model/68-software-icds-tooling.sysml
   model/68-software-icds.sysml
   model/69-ground-software.sysml
@@ -94,6 +96,8 @@ loaded 60 files:
 ✓ package TethysFlightDictionary
 ✓ package TethysFlightBehaviour
 ✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysGroundSoftware
@@ -147,5 +151,6 @@ wrote build/runs/documents-html/TethysSoftwareIcdDocuments-InspectorRelayProfile
 wrote build/runs/documents-html/TethysSoftwareIcdDocuments-MessageCatalogueDocument.html (html, 41535 bytes)
 wrote build/runs/documents-html/TethysSoftwareIcdDocuments-RegisterMapIcdDocument.html (html, 22184 bytes)
 wrote build/runs/documents-html/TethysSoftwareIcdDocuments-SpaceLinkProfileIcdDocument.html (html, 39409 bytes)
+wrote build/runs/documents-html/TethysSoftwareRequirementsTooling-SoftwareRequirementsDocument.html (html, 96420 bytes)
 wrote build/runs/documents-html/TethysVerificationTooling-VvReport.html (html, 178346 bytes)
 wrote build/runs/documents-html/sysml-document.css (css, 4632 bytes)
