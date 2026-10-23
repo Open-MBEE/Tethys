@@ -17,6 +17,7 @@ from apijson import Element, ModelIndex
 PACKAGES = (
     "TethysTugStructure", "TethysOperations", "TethysModes", "TethysFdir", "TethysFlightSoftware",
     "TethysFlightDictionary", "TethysFlightBehaviour", "TethysFlightTiming", "TethysSoftwareIcds",
+    "TethysSequence", "TethysGroundSoftware", "TethysMeridian",
 )
 
 APP_MACHINES = (
@@ -128,6 +129,8 @@ class Reader:
                 v = self.ev(args[0], depth)
                 if isinstance(v, (int, float)):
                     return -v
+                if isinstance(v, Quantity):
+                    return Quantity(-v.value, v.unit)
             return Expr(e.text or op)
         if t == "FeatureChainExpression" and e.get("targetFeature") and depth < 4:
             target = self.el(e.get("targetFeature"))
@@ -260,6 +263,7 @@ def extract(rd: Reader) -> dict:
     out["space_link"] = literal_attributes(rd, "TethysSoftwareIcds__SpaceLinkProfileIcd")
     out["relay_profile"] = literal_attributes(rd, "TethysSoftwareIcds__InspectorRelaySoftwareIcd")
     out["register_maps"] = register_maps(rd)
+    out["ground"] = ground(rd, out["rate_sets"])
     return out
 
 
@@ -712,3 +716,160 @@ def register_maps(rd):
                      "address_limit": int(rd.attr(d, "addressLimit") or 0), "data_width_bits": int(rd.attr(d, "dataWidth") or 0),
                      "registers": regs})
     return maps
+
+
+# -- ground software ---------------------------------------------------------------------------
+
+def doc_of(rd, eid) -> str:
+    """The element's documentation body, whitespace-collapsed."""
+    for k in rd.kids(eid, "Documentation"):
+        return " ".join((k.get("body") or "").split())
+    return ""
+
+
+def result_text(rd, eid) -> str:
+    """The source text of a constraint or calc definition's result expression."""
+    for k in rd.kids(eid):
+        if k.type.endswith("Expression") and (k.text or "").strip():
+            return " ".join(k.text.split())
+    return ""
+
+
+def literal_members(rd, eid) -> dict:
+    """``name → (value, unit)`` of the literal-valued attributes of an element."""
+    rows = {}
+    for r in literal_attributes(rd, eid)["rows"]:
+        rows[r["name"]] = (r["value"], r["unit"])
+    return rows
+
+
+def chain_tail(v) -> str:
+    """The last segment of a feature-chain expression (``a.b.c`` → ``c``)."""
+    return lit(v).replace("::", ".").rsplit(".", 1)[-1] if isinstance(v, (Expr, Ref)) else str(v)
+
+
+def ground(rd, rate_sets) -> dict:
+    """The ground-software tables: flight rules (53), on-board sequences (61), the checker's
+    constants, the suite's components, retention, proximity and pass-planning data (69, 50)."""
+    ops = "TethysOperations"
+    constraints = {}
+    for k in rd.kids(ops, "ConstraintDefinition"):
+        m = re.match(r"(FR-\d+):", doc_of(rd, k.id))
+        if m:
+            constraints[m.group(1)] = k
+    rules = []
+    for k in rd.kids(ops, "RequirementUsage"):
+        short = k.get("declaredShortName") or ""
+        if not short.startswith("FR-"):
+            continue
+        c = constraints.get(short)
+        params = [{"name": n, "value": v, "unit": u} for n, (v, u) in literal_members(rd, k.id).items()]
+        rules.append({"id": short, "name": k.name, "item": qname(k.id), "text": doc_of(rd, k.id),
+                      "constraint": qname(c.id) if c else "", "expression": result_text(rd, c.id) if c else "",
+                      "inputs": [x.name for x in rd.kids(c.id, "ReferenceUsage", "AttributeUsage")] if c else [],
+                      "parameters": params})
+    rules.sort(key=lambda r: r["id"])
+
+    sequences = []
+    for k in rd.kids("TethysSequence", "ActionDefinition"):
+        if "TethysSequence__OnBoardSequence" not in rd.idx.supertypes(k.id) or k.id == "TethysSequence__OnBoardSequence":
+            continue
+        sequences.append({"sequence_id": int(rd.attr(k.id, "sequenceId") or 0), "name": k.name, "item": qname(k.id),
+                          "time_tagged": bool(rd.attr(k.id, "timeTagged", True)), "text": doc_of(rd, k.id)})
+    sequences.sort(key=lambda s_: s_["sequence_id"])
+
+    gs = "TethysGroundSoftware"
+    stored = rd.attr(f"{gs}__FlightRuleChecker", "storedSequences") or []
+    limits = {}
+    for name in ("keepOutRadius", "exclusionHalfAngle", "stateOfChargeFloor"):
+        v, u = qty(rd.attr(f"{gs}__GroundSequenceCheck__rules", name))
+        limits[name] = {"value": v, "unit": u}
+    flight_modes = [lit(m) for group in (rd.attr("TethysTugStructure", "allFlightModes") or []) for m in (group if isinstance(group, list) else [group])]
+    thrusting_modes = [lit(m) for m in (rd.attr("TethysTugStructure", "thrustingModes") or [])]
+    check = {"source": f"{gs}::GroundSequenceCheck", "stored_sequences": [int(x) for x in stored], "limits": limits,
+             "flight_modes": flight_modes, "thrusting_modes": thrusting_modes,
+             "reasons": [], "verdicts": [x.name for x in rd.kids(f"{gs}__SequenceVerdict", "EnumerationUsage")]}
+    check["reasons"] = re.findall(r'"([^"]*)"', result_text(rd, f"{gs}__CheckFlightRules__violated") or rd.text_of(f"{gs}__CheckFlightRules__violated_pvalue"))
+
+    suite_parts = {}
+    for p in rd.kids(f"{gs}__MeridianOperationsSuite", "PartUsage"):
+        for tname in rd.idx.types_of(p.id):
+            suite_parts[tname] = p.name
+    components = []
+    for container in ("SoftwareOperationsCentre", "SoftwareFlightDynamics", "SoftwareScienceDataSystem", "SimulatedTestBedSet"):
+        cid = f"{gs}__{container}"
+        suite_part = suite_parts.get(cid, "")
+        for p in sorted(rd.kids(cid, "PartUsage"), key=lambda x: x.index):
+            for tid in rd.idx.types_of(p.id):
+                if rd.attr(tid, "productName") is None:
+                    continue
+                pname = p.name or qname(p.id).rsplit("::", 1)[-1]
+                components.append({"suite_part": suite_part, "part": pname, "path": f"{suite_part}.{pname}", "definition": qname(tid),
+                                   "product_name": lit(rd.attr(tid, "productName")), "version": lit(rd.attr(tid, "version")),
+                                   "simulator": container == "SimulatedTestBedSet",
+                                   "flight_software_in_the_loop": bool(rd.attr(tid, "flightSoftwareInTheLoop", False)),
+                                   "hardware_in_the_loop": bool(rd.attr(tid, "hardwareInTheLoop", False)),
+                                   "text": doc_of(rd, tid)})
+
+    retention = []
+    for k in sorted(rd.kids(f"{gs}__DataArchive", "AttributeUsage"), key=lambda x: x.index):
+        if f"{gs}__RetentionRule" not in rd.idx.types_of(k.id) or rd.attr(k.id, "level") is None:
+            continue
+        v, u = qty(rd.attr(k.id, "retention"))
+        retention.append({"rule": k.name, "level": lit(rd.attr(k.id, "level")), "retention": v, "unit": u,
+                          "distributed": bool(rd.attr(k.id, "distributed"))})
+    archive = {"checksum_width": int(rd.attr(f"{gs}__DataArchive", "checksumWidth") or 0), "rules": retention}
+
+    pp = f"{gs}__ProximityPlanner"
+    products = {}
+    for k in rd.kids(pp, "AttributeUsage"):
+        if f"{gs}__RelativeNavigationProduct" in rd.idx.types_of(k.id):
+            products[k.name] = {n: {"value": v, "unit": u} for n, (v, u) in literal_members(rd, k.id).items()}
+    checklist = literal_members(rd, f"{pp}__checklist")
+    proximity = {"keep_out_radius": dict(zip(("value", "unit"), qty(rd.attr(pp, "keepOutRadius")))),
+                 "abort_range_rate": dict(zip(("value", "unit"), qty(rd.attr(pp, "abortRangeRate")))),
+                 "abort_range_uncertainty": dict(zip(("value", "unit"), qty(rd.attr(pp, "abortRangeUncertainty")))),
+                 "products": products,
+                 "checklist": {"items_total": int(checklist.get("itemsTotal", (0, ""))[0] or 0), "items_go": int(checklist.get("itemsGo", (0, ""))[0] or 0)}}
+
+    stations = []
+    for k in sorted(rd.kids("TethysMeridian__MeridianNetwork", "PartUsage"), key=lambda x: x.index):
+        lon = rd.attr(k.id, "longitude")
+        if lon is None:
+            continue
+        v, u = qty(lon)
+        stations.append({"name": k.name, "longitude": v, "unit": u})
+    passes = []
+    for k in sorted(rd.kids(f"{ops}__DailyPassPlan", "OccurrenceUsage"), key=lambda x: x.index):
+        members = {qname(c.id).rsplit("::", 1)[-1]: rd.ev(c.get("value")) for c in rd.kids(k.id) if c.get("value")}
+        if "passDuration" not in members:
+            continue
+        d, du = qty(members["passDuration"])
+        passes.append({"name": k.name, "station": chain_tail(members.get("station", "")), "duration": d, "unit": du})
+    activities = []
+    for k in sorted(rd.kids(f"{ops}__DailyPassPlan", "PerformActionUsage"), key=lambda x: x.index):
+        members = {qname(c.id).rsplit("::", 1)[-1]: rd.ev(c.get("value")) for c in rd.kids(k.id) if c.get("value")}
+        if "volume" not in members:
+            continue
+        v, u = qty(members["volume"])
+        activities.append({"name": k.name, "volume": v, "unit": u})
+    allocations = []
+    for k in rd.kids(f"{ops}__DailyPassPlan", "AllocationUsage"):
+        ends = [qname(rs.get("referencedFeature")).rsplit("::", 1)[-1] for e in rd.kids(k.id, "ReferenceUsage")
+                for rs in rd.kids(e.id, "ReferenceSubsetting") if rs.get("referencedFeature")]
+        if k.name and len(ends) == 2:
+            allocations.append({"name": k.name, "activity": ends[0], "pass": ends[1]})
+    rate_name = chain_tail(rd.attr(f"{gs}__PassPlanner__plannedDay", "rateSet") or rd.attr(f"{gs}__PassPlanner", "proximityRates") or "")
+    planned_mode = next((r["mode"] for r in rate_sets if r["name"] == rate_name), "")
+    hw, hu = qty(rd.attr(f"{gs}__PassPlanner", "visibilityHalfWidth"))
+    lu, luu = qty(rd.attr(f"{gs}__PlannedDailyPassPlan", "lockUp"))
+    pass_planning = {"visibility_half_width": {"value": hw, "unit": hu}, "lock_up": {"value": lu, "unit": luu},
+                     "planned_rate_set": rate_name, "planned_mode": planned_mode, "stations": stations, "passes": passes,
+                     "activities": activities, "allocations": allocations}
+
+    machines = [machine(rd, f"{gs}__AlarmLifecycle", "AlarmLifecycle"), machine(rd, f"{gs}__AnomalyLifecycle", "AnomalyLifecycle")]
+    enums = {}
+    for e in ("CommandVerdict", "SequenceVerdict", "AlarmSeverity", "AnomalyDisposition", "DecisionAuthority"):
+        enums[e] = {"source": f"{gs}::{e}", "literals": [x.name for x in rd.kids(f"{gs}__{e}", "EnumerationUsage")]}
+    return {"flight_rules": rules, "sequences": sequences, "check": check, "components": components, "archive": archive,
+            "proximity": proximity, "pass_planning": pass_planning, "machines": machines, "enums": enums}

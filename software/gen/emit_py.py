@@ -203,7 +203,73 @@ def emit(data: dict, pin: dict) -> dict[str, str]:
                                         "TethysSoftwareIcds::SpaceLinkProfileIcd", "TethysSoftwareIcds::InspectorRelaySoftwareIcd",
                                         "TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap", "TethysSoftwareIcds::MechanismRiuRegisterMap"], "from typing import NamedTuple", body)
 
-    mods = ["enums", "commands", "telemetry", "events", "packets", "parameters", "modes", "state_machines", "schedule", "interfaces"]
+    # -- ground ----------------------------------------------------------------------------------------------------------------
+    g = data["ground"]
+    q = "class Quantity(NamedTuple):\n    value: float\n    unit: str\n\n\n"
+    body = q
+    for enum, info in g["enums"].items():
+        body += f"class {enum}(IntEnum):\n" + "".join(f"    {upper(l)} = {k}\n" for k, l in enumerate(info["literals"])) + "\n\n"
+    body += "class RuleParameter(NamedTuple):\n    name: str\n    value: float\n    unit: str\n\n\n"
+    fr_fields = [("id", "str"), ("name", "str"), ("item", "str"), ("text", "str"), ("constraint", "str"), ("expression", "str"),
+                 ("inputs", "tuple[str, ...]"), ("parameters", "tuple[RuleParameter, ...]")]
+    rows = [[r["id"], r["name"], r["item"], r["text"], r["constraint"], r["expression"], tuple(r["inputs"]),
+             _Raw("(" + "".join(f"RuleParameter({py_val(x['name'])}, {py_val(x['value'])}, {py_val(x['unit'])}), " for x in r["parameters"]) + ")")]
+            for r in g["flight_rules"]]
+    body += rows_block("FLIGHT_RULES", "FlightRule", fr_fields, rows)
+    body += "\n" + rows_block("ON_BOARD_SEQUENCES", "OnBoardSequence", [("sequence_id", "int"), ("name", "str"), ("item", "str"), ("time_tagged", "bool"), ("text", "str")],
+                              [[x["sequence_id"], x["name"], x["item"], x["time_tagged"], x["text"]] for x in g["sequences"]])
+    c = g["check"]
+    body += f"\nSEQUENCE_CHECK_SOURCE = {py_val(c['source'])}\nSTORED_SEQUENCES = {tuple(c['stored_sequences'])!r}\n"
+    body += "CHECK_LIMITS = {\n" + "".join(f"    {py_val(k)}: Quantity({py_val(v['value'])}, {py_val(v['unit'])}),\n" for k, v in c["limits"].items()) + "}\n"
+    body += f"FLIGHT_MODES = {tuple(c['flight_modes'])!r}\nTHRUSTING_MODES = {tuple(c['thrusting_modes'])!r}\n"
+    body += f"CHECK_REASONS = {tuple(c['reasons'])!r}\n"
+    gc_fields = [("suite_part", "str"), ("part", "str"), ("path", "str"), ("definition", "str"), ("product_name", "str"), ("version", "str"),
+                 ("simulator", "bool"), ("flight_software_in_the_loop", "bool"), ("hardware_in_the_loop", "bool"), ("text", "str")]
+    body += "\n" + rows_block("GROUND_COMPONENTS", "GroundComponent", gc_fields, [[x[k] for k, _ in gc_fields] for x in g["components"]])
+    body += "\n" + rows_block("RETENTION_RULES", "RetentionRule", [("rule", "str"), ("level", "str"), ("retention", "float"), ("unit", "str"), ("distributed", "bool")],
+                              [[x["rule"], x["level"], x["retention"], x["unit"], x["distributed"]] for x in g["archive"]["rules"]])
+    body += f"CHECKSUM_WIDTH = {g['archive']['checksum_width']}\n"
+    pr = g["proximity"]
+    body += "\n" + rows_block("PROXIMITY_PRODUCTS", "RelativeNavigationProduct", [("name", "str"), ("range", "Quantity"), ("range_rate", "Quantity"), ("range_uncertainty", "Quantity")],
+                              [[n, _Raw(f"Quantity({py_val(v['range']['value'])}, {py_val(v['range']['unit'])})"),
+                                _Raw(f"Quantity({py_val(v['rangeRate']['value'])}, {py_val(v['rangeRate']['unit'])})"),
+                                _Raw(f"Quantity({py_val(v['rangeUncertainty']['value'])}, {py_val(v['rangeUncertainty']['unit'])})")] for n, v in pr["products"].items()])
+    body += "PROXIMITY_LIMITS = {\n" + "".join(f"    {py_val(k)}: Quantity({py_val(pr[k]['value'])}, {py_val(pr[k]['unit'])}),\n"
+                                              for k in ("keep_out_radius", "abort_range_rate", "abort_range_uncertainty")) + "}\n"
+    body += f"CHECKLIST_ITEMS_TOTAL = {pr['checklist']['items_total']}\nCHECKLIST_ITEMS_GO = {pr['checklist']['items_go']}\n"
+    pp = g["pass_planning"]
+    body += "\n" + rows_block("STATIONS", "Station", [("name", "str"), ("longitude", "float"), ("unit", "str")], [[x["name"], x["longitude"], x["unit"]] for x in pp["stations"]])
+    body += "\n" + rows_block("STATION_PASSES", "StationPass", [("name", "str"), ("station", "str"), ("duration", "float"), ("unit", "str")],
+                              [[x["name"], x["station"], x["duration"], x["unit"]] for x in pp["passes"]])
+    body += "\n" + rows_block("DOWNLINK_ACTIVITIES", "DownlinkActivity", [("name", "str"), ("volume", "float"), ("unit", "str")],
+                              [[x["name"], x["volume"], x["unit"]] for x in pp["activities"]])
+    body += "\n" + rows_block("PASS_ALLOCATIONS", "PassAllocation", [("name", "str"), ("activity", "str"), ("station_pass", "str")],
+                              [[x["name"], x["activity"], x["pass"]] for x in pp["allocations"]])
+    body += f"\nVISIBILITY_HALF_WIDTH = Quantity({py_val(pp['visibility_half_width']['value'])}, {py_val(pp['visibility_half_width']['unit'])})\n"
+    body += f"LOCK_UP = Quantity({py_val(pp['lock_up']['value'])}, {py_val(pp['lock_up']['unit'])})\n"
+    body += f"PLANNED_RATE_SET = {py_val(pp['planned_rate_set'])}\nPLANNED_MODE = {py_val(pp['planned_mode'])}\n"
+    for m in g["machines"]:
+        body += f"\n{upper(m['name'])} = StateMachine(\n    {py_val(m['name'])}, {py_val(m['source'])}, {py_val(m['initial'])},\n    (\n"
+        for st in m["states"]:
+            body += f"        State({py_val(st['name'])}, {py_val(st['id'])}, {py_val(st['parent'])}, {py_val(st['initial'])}, {py_val(st['leaf'])}, '', ''),\n"
+        body += "    ),\n    (\n"
+        for tr in m["transitions"]:
+            g_ = tr["trigger"]
+            body += f"        Transition({py_val(tr['source'])}, {py_val(tr['target'])}, {py_val(g_['event'])}, {py_val(g_['parameter'])}, {py_val(g_['port'])}, {py_val(g_['timed'])}, {py_val(tr['guard'])}, {py_val(tr['effect'])}),\n"
+        body += "    ),\n    (" + "".join(f"NamedExpression({py_val(x['id'])}, {py_val(x['text'])}), " for x in m["guards"]) + "),\n"
+        body += "    (" + "".join(f"NamedExpression({py_val(x['id'])}, {py_val(x['text'])}), " for x in m["effects"]) + "),\n)\n"
+    body += "\nFLIGHT_RULES_BY_ID = {r.id: r for r in FLIGHT_RULES}\nSEQUENCES_BY_ID = {s.sequence_id: s for s in ON_BOARD_SEQUENCES}\n"
+    body += "COMPONENTS_BY_PRODUCT = {c.product_name: c for c in GROUND_COMPONENTS}\nCOMPONENTS_BY_PATH = {c.path: c for c in GROUND_COMPONENTS}\n"
+    body += "STATIONS_BY_NAME = {s.name: s for s in STATIONS}\nPROXIMITY_PRODUCTS_BY_NAME = {p.name: p for p in PROXIMITY_PRODUCTS}\n"
+    out["ground.py"] = module(pin, ["TethysOperations::noThrustDuringRelay … batteryDepthOfDischarge (FR-001 … FR-004) and their constraint definitions",
+                                    "TethysSequence::OnBoardSequence specialisations", "TethysGroundSoftware::GroundSequenceCheck, FlightRuleChecker, CheckFlightRules",
+                                    "TethysTugStructure::allFlightModes, thrustingModes", "TethysGroundSoftware::MeridianOperationsSuite (components)",
+                                    "TethysGroundSoftware::DataArchive, ProximityPlanner, PassPlanner, PlannedDailyPassPlan", "TethysMeridian::MeridianNetwork",
+                                    "TethysOperations::DailyPassPlan", "TethysGroundSoftware::AlarmLifecycle, AnomalyLifecycle",
+                                    "TethysGroundSoftware::CommandVerdict, SequenceVerdict, AlarmSeverity, AnomalyDisposition, DecisionAuthority"],
+                              "from enum import IntEnum\nfrom typing import NamedTuple\n\nfrom .state_machines import NamedExpression, State, StateMachine, Transition", body)
+
+    mods = ["enums", "commands", "telemetry", "events", "packets", "parameters", "modes", "state_machines", "schedule", "interfaces", "ground"]
     out["__init__.py"] = py_header(pin, ["every module of this package"]) + "\n" + "".join(f"from . import {m}\n" for m in mods) + \
         f"\nGENERATOR_VERSION = {py_val(pin.get('generator', ''))}\nMODEL_TOOL_VERSION = {py_val(pin.get('version', ''))}\nMODEL_TOOL_COMMIT = {py_val(pin.get('commit', ''))}\n" + \
         f"__all__ = {mods!r}\n"
