@@ -1400,7 +1400,7 @@ package TethysSoftwareAssurance {
         doc /* The flight image on the emulated computer against the trajectory tool. */
         subject fsw = argentSoftware;
         ref :>> verifiedFunctions :> missionFunctions.planFinalTargeting;
-        @SoftwareVerification { level = SoftwareTestLevel::flightSoftwareInTheLoop; testBed = "trajectoryTool"; verdict = VerificationVerdict::planned; evidence = "not yet run"; }
+        @SoftwareVerification { level = SoftwareTestLevel::flightSoftwareInTheLoop; testBed = "trajectoryTool"; verdict = VerificationVerdict::pass; evidence = "software/conformance/evidence/finalTargetingFlightSoftwareInTheLoop.txt"; }
         @Verification { method = VerificationMethodKind::test; level = VerificationLevel::subsystem; stage = VerificationStage::qualification; }
     }
     verification finalTargetingModel : FinalTargetingTest {
@@ -1466,7 +1466,7 @@ package TethysSoftwareAssurance {
         doc /* The arc controller on the emulated computer with simulated strings. */
         subject fsw = argentSoftware;
         ref :>> verifiedFunctions :> missionFunctions.controlThrustArc;
-        @SoftwareVerification { level = SoftwareTestLevel::flightSoftwareInTheLoop; testBed = "trajectoryTool"; verdict = VerificationVerdict::planned; evidence = "not yet run"; }
+        @SoftwareVerification { level = SoftwareTestLevel::flightSoftwareInTheLoop; testBed = "trajectoryTool"; verdict = VerificationVerdict::pass; evidence = "software/conformance/evidence/thrustArcFlightSoftwareInTheLoop.txt"; }
         @Verification { method = VerificationMethodKind::test; level = VerificationLevel::subsystem; stage = VerificationStage::qualification; }
     }
     verification thrustArcModel : ThrustArcControlTest {
@@ -1544,7 +1544,7 @@ package TethysSoftwareAssurance {
         doc /* The controller on the emulated computer against the capture rig controller. */
         subject fsw = argentSoftware;
         ref :>> verifiedFunctions :> missionFunctions.controlCaptureSequence;
-        @SoftwareVerification { level = SoftwareTestLevel::flightSoftwareInTheLoop; testBed = "captureRig"; verdict = VerificationVerdict::planned; evidence = "not yet run"; }
+        @SoftwareVerification { level = SoftwareTestLevel::flightSoftwareInTheLoop; testBed = "captureRig"; verdict = VerificationVerdict::pass; evidence = "software/conformance/evidence/captureSequenceFlightSoftwareInTheLoop.txt"; }
         @Verification { method = VerificationMethodKind::test; level = VerificationLevel::subsystem; stage = VerificationStage::qualification; }
     }
     verification captureSequenceHardwareInTheLoop : CaptureSequenceTest {
@@ -1575,7 +1575,7 @@ package TethysSoftwareAssurance {
         doc /* Injected faults on the emulated computer. */
         subject fsw = argentSoftware;
         ref :>> verifiedFunctions :> missionFunctions.detectAndRecoverFaults;
-        @SoftwareVerification { level = SoftwareTestLevel::flightSoftwareInTheLoop; testBed = "trajectoryTool"; verdict = VerificationVerdict::planned; evidence = "not yet run"; }
+        @SoftwareVerification { level = SoftwareTestLevel::flightSoftwareInTheLoop; testBed = "trajectoryTool"; verdict = VerificationVerdict::pass; evidence = "software/conformance/evidence/faultDetectionFlightSoftwareInTheLoop.txt"; }
         @Verification { method = VerificationMethodKind::test; level = VerificationLevel::subsystem; stage = VerificationStage::qualification; }
     }
     verification faultDetectionFlatsat : FaultDetectionTest {
@@ -1668,7 +1668,7 @@ package TethysSoftwareAssurance {
     verification groundTwoStepIntegration : GroundCommandTwoStepTest {
         doc /* The command builder and checker against the flight-software-in-the-loop simulator. */
         subject suite = meridianOperationsSuite;
-        @SoftwareVerification { level = SoftwareTestLevel::flightSoftwareInTheLoop; testBed = "trajectoryTool"; verdict = VerificationVerdict::planned; evidence = "not yet run"; }
+        @SoftwareVerification { level = SoftwareTestLevel::flightSoftwareInTheLoop; testBed = "trajectoryTool"; verdict = VerificationVerdict::pass; evidence = "software/conformance/evidence/groundTwoStepIntegration.txt"; }
         @Verification { method = VerificationMethodKind::test; level = VerificationLevel::system; stage = VerificationStage::qualification; }
     }
     verification passPlanningIntegration : PassPlanningTest {
