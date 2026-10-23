@@ -1,4 +1,4 @@
-loaded 58 files:
+loaded 60 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -34,6 +34,8 @@ loaded 58 files:
   model/64-flight-dictionary.sysml
   model/65-flight-behaviour.sysml
   model/66-flight-timing.sysml
+  model/67-software-requirements-tooling.sysml
+  model/67-software-requirements.sysml
   model/68-software-icds-tooling.sysml
   model/68-software-icds.sysml
   model/69-ground-software.sysml
@@ -92,6 +94,8 @@ loaded 58 files:
 ✓ package TethysFlightDictionary
 ✓ package TethysFlightBehaviour
 ✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysGroundSoftware
@@ -196,7 +200,7 @@ Every message between the flight applications and services is a space packet on 
 | mechanismRiuRegisters | TethysSoftwareIcds::RemoteInterfaceUnitRegisterIcd | Register access to the mechanism remote interface unit. |
 | spaceLinkProfile | TethysSoftwareIcds::SpaceLinkProfileIcd | MLS-2 between the telecom application and the Meridian packet gateway. |
 | inspectorRelayProfile | TethysSoftwareIcds::InspectorRelaySoftwareIcd | The relay profile between inspector handling and Wren. |
-loaded 58 files:
+loaded 60 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -232,6 +236,8 @@ loaded 58 files:
   model/64-flight-dictionary.sysml
   model/65-flight-behaviour.sysml
   model/66-flight-timing.sysml
+  model/67-software-requirements-tooling.sysml
+  model/67-software-requirements.sysml
   model/68-software-icds-tooling.sysml
   model/68-software-icds.sysml
   model/69-ground-software.sysml
@@ -290,6 +296,8 @@ loaded 58 files:
 ✓ package TethysFlightDictionary
 ✓ package TethysFlightBehaviour
 ✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysGroundSoftware
@@ -346,7 +354,7 @@ loaded 58 files:
 | checksumFailure | TethysSoftwareIcds::BusErrorResponse | requestRetry |
 | retryExhausted | TethysSoftwareIcds::BusErrorResponse | raiseFault |
 | unknownAddress | TethysSoftwareIcds::BusErrorResponse | discardAndCount |
-loaded 58 files:
+loaded 60 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -382,6 +390,8 @@ loaded 58 files:
   model/64-flight-dictionary.sysml
   model/65-flight-behaviour.sysml
   model/66-flight-timing.sysml
+  model/67-software-requirements-tooling.sysml
+  model/67-software-requirements.sysml
   model/68-software-icds-tooling.sysml
   model/68-software-icds.sysml
   model/69-ground-software.sysml
@@ -440,6 +450,8 @@ loaded 58 files:
 ✓ package TethysFlightDictionary
 ✓ package TethysFlightBehaviour
 ✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysGroundSoftware
@@ -537,7 +549,7 @@ loaded 58 files:
 | dockedPassiveRates | dockedPassive | 32000 \[bit/s\] | 2000 \[bit/s\] | 60 \[s\] |
 | disposalRates | disposal | 8000 \[bit/s\] | 2000 \[bit/s\] | 60 \[s\] |
 | abortHoldRates | abortHold | 2000 \[bit/s\] | 2000 \[bit/s\] | 60 \[s\] |
-loaded 58 files:
+loaded 60 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -573,6 +585,8 @@ loaded 58 files:
   model/64-flight-dictionary.sysml
   model/65-flight-behaviour.sysml
   model/66-flight-timing.sysml
+  model/67-software-requirements-tooling.sysml
+  model/67-software-requirements.sysml
   model/68-software-icds-tooling.sysml
   model/68-software-icds.sysml
   model/69-ground-software.sysml
@@ -631,6 +645,8 @@ loaded 58 files:
 ✓ package TethysFlightDictionary
 ✓ package TethysFlightBehaviour
 ✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysGroundSoftware
@@ -680,7 +696,7 @@ loaded 58 files:
 | acknowledgementTimeout | ISQBase::DurationValue | 2 \[s\] |
 | retryLimit | ScalarValues::Natural | 3 |
 | maximumRelayLatency | ISQBase::DurationValue | 5 \[s\] |
-loaded 58 files:
+loaded 60 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -716,6 +732,8 @@ loaded 58 files:
   model/64-flight-dictionary.sysml
   model/65-flight-behaviour.sysml
   model/66-flight-timing.sysml
+  model/67-software-requirements-tooling.sysml
+  model/67-software-requirements.sysml
   model/68-software-icds-tooling.sysml
   model/68-software-icds.sysml
   model/69-ground-software.sysml
@@ -774,6 +792,8 @@ loaded 58 files:
 ✓ package TethysFlightDictionary
 ✓ package TethysFlightBehaviour
 ✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysGroundSoftware

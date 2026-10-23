@@ -1,4 +1,4 @@
-loaded 58 files:
+loaded 60 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -34,6 +34,8 @@ loaded 58 files:
   model/64-flight-dictionary.sysml
   model/65-flight-behaviour.sysml
   model/66-flight-timing.sysml
+  model/67-software-requirements-tooling.sysml
+  model/67-software-requirements.sysml
   model/68-software-icds-tooling.sysml
   model/68-software-icds.sysml
   model/69-ground-software.sysml
@@ -92,6 +94,8 @@ loaded 58 files:
 ✓ package TethysFlightDictionary
 ✓ package TethysFlightBehaviour
 ✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysGroundSoftware
@@ -140,6 +144,7 @@ document  TethysSoftwareIcdDocuments::InspectorRelayProfileIcdDocument
 document  TethysSoftwareIcdDocuments::MessageCatalogueDocument
 document  TethysSoftwareIcdDocuments::RegisterMapIcdDocument
 document  TethysSoftwareIcdDocuments::SpaceLinkProfileIcdDocument
+document  TethysSoftwareRequirementsTooling::SoftwareRequirementsDocument
 document  TethysVerificationTooling::VvReport
 view      matrix           TethysAllocations::AllocationMatrixView
 view      matrix           TethysAllocations::functionAllocationMatrix
