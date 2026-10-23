@@ -52,11 +52,9 @@
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy operationsReadiness by orrStatus holds (on TethysOperations::orrStatus ID: 3)
   standing: holds (observed: 1 run under reverse)
-✗ satisfy resourceMarginPositive by xenonTrend fails (on TethysOperations::xenonTrend ID: 4)
-  Required condition evaluated to false: trend.margin >= 0.0
-  standing: violated (witnessed: 1 run under reverse)
-✓ satisfy resourceMarginPositive by batteryCapacityTrend holds (on TethysOperations::batteryCapacityTrend ID: 5)
+✓ satisfy resourceMarginPositive by xenonTrend holds (on TethysOperations::xenonTrend ID: 4)
   standing: holds (observed: 1 run under reverse)
-✓ satisfy extendedMissionAffordable by extendedMission holds (on TethysOperations::extendedMission ID: 6)
+✓ satisfy resourceMarginPositive by batteryCapacityTrend holds (on TethysOperations::batteryCapacityTrend ID: 152)
   standing: holds (observed: 1 run under reverse)
-exit 1
+✓ satisfy extendedMissionAffordable by extendedMission holds (on TethysOperations::extendedMission ID: 153)
+  standing: holds (observed: 1 run under reverse)
