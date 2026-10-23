@@ -17,6 +17,10 @@ class Simulator:
         return ground.COMPONENTS_BY_PATH[self.path]
 
     @property
+    def model(self) -> ground.GroundComponent:
+        return self.table
+
+    @property
     def product_name(self) -> str:
         return self.table.product_name
 
