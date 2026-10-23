@@ -80,7 +80,6 @@ package TethysCaptureSystem {
         attribute contactStopDistance : LengthValue;
         attribute loadPathForceLimit : ForceValue;
         attribute maximumAngularMomentum : AngularMomentumValue;
-        attribute minimumRotationPeriod : DurationValue;
         attribute maximumDespinTorque : TorqueValue;
         attribute slipTorqueLimit : TorqueValue;
         attribute minimumTemperature : ThermodynamicTemperatureValue;
@@ -92,10 +91,10 @@ package TethysCaptureSystem {
         doc /* Argent's capture mechanism: a 12 m bag on 7 m booms, 20 kN load path over a
              * 0.5 m stop, 6.0 × 10⁴ N·m·s of despin authority (the 10 kg of hydrazine the
              * reaction control allocates to despin at 3 m arm and 220 s), a 120 N·m torque
-             * limit under a 150 N·m slip limit, 0.10 m/s at contact. The minimum rotation
-             * period follows from the angular-momentum limit for the largest body the backbone
-             * admits (10 m, 1 000 t): MinimumRotationPeriod below gives 1 047 s; for the
-             * nominal body the same limit admits 175 s. */
+             * limit under a 150 N·m slip limit, 0.10 m/s at contact. The angular-momentum
+             * limit is what bounds the spin a body may arrive with: MinimumRotationPeriod below
+             * gives 1 047 s for the largest body the backbone admits (10 m, 1 000 t) and 175 s
+             * for the nominal body. */
         attribute :>> maximumBodyDiameter = 10.0 [m];
         attribute :>> maximumBodyMass = 1000.0e3 [kg];
         part :>> bag {
@@ -115,7 +114,6 @@ package TethysCaptureSystem {
         attribute :>> contactStopDistance = 0.5 [m];
         attribute :>> loadPathForceLimit = 20.0e3 [N];
         attribute :>> maximumAngularMomentum = 6.0e4 ['N⋅m⋅s'];
-        attribute :>> minimumRotationPeriod = 175.0 [s];
         attribute :>> maximumDespinTorque = 120.0 ['N⋅m'];
         attribute :>> slipTorqueLimit = 150.0 ['N⋅m'];
         attribute :>> minimumTemperature = 173.0 [K];
@@ -177,13 +175,15 @@ package TethysCaptureSystem {
 
     constraint def CaptureEnvelope {
         doc /* A target is capturable when it fits the bag, weighs no more than the return
-             * trajectory and the load path take, rotates slowly enough for the despin budget
-             * and does so about a principal axis. */
+             * trajectory and the load path take, carries no more angular momentum than the
+             * despin budget removes (a homogeneous sphere: (2/5) m (d/2)² · 2π/T) and rotates
+             * about a principal axis. */
         in body : CaptureTargetCase;
         in system : CaptureMechanism;
         body.meanDiameter <= system.maximumBodyDiameter
             and body.mass <= system.maximumBodyMass
-            and body.rotationPeriod >= system.minimumRotationPeriod
+            and 0.1 * body.mass * body.meanDiameter * body.meanDiameter * 2.0 * pi / body.rotationPeriod
+                <= system.maximumAngularMomentum
             and body.spinState == SpinState::principalAxis
     }
 
@@ -211,7 +211,7 @@ package TethysCaptureSystem {
         assert not constraint fits : CaptureEnvelope { in body = target; in system = mechanism; }
     }
     part fastSpinTargetCase : EnvelopeCase {
-        doc /* The fast-spinning body: outside the envelope on rotation period. */
+        doc /* The fast-spinning body: outside the envelope on angular momentum. */
         part :>> target = CaptureTargetCase::fastSpin;
         part :>> mechanism = captureMechanism;
         assert not constraint fits : CaptureEnvelope { in body = target; in system = mechanism; }
