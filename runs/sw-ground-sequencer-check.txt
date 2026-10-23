@@ -32,6 +32,7 @@
 ✓ package TethysFlightDictionaryDocuments
 ✓ package TethysFlightDictionary
 ✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysGroundSoftware
@@ -117,6 +118,7 @@ note: object #2 of "TethysGroundSoftware::nominalUplink.checker" already perform
 ✓ package TethysFlightDictionaryDocuments
 ✓ package TethysFlightDictionary
 ✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysGroundSoftware
