@@ -336,10 +336,12 @@ package TethysTugStructure {
 
     // ---- electrical power ----------------------------------------------------------------
     part def SolarArrayWing :> PassiveUnit {
-        doc /* A roll-out solar array wing: 24 kW at 1 AU and 1361 W/m² at beginning of life. */
+        doc /* A roll-out solar array wing: 24 kW at 1 AU and 1361 W/m² at beginning of life.
+             * One wing sustains the bus and half-power thrusting, so a wing loss degrades the
+             * thrusting time rather than ending the mission. */
         attribute :>> mass = 415 [kg];
         attribute :>> maturity = Maturity::newDesign;
-        attribute :>> required = 2;
+        attribute :>> required = 1;
         attribute :>> predictedHotTemperature = 355 [K];
         attribute :>> predictedColdTemperature = 180 [K];
         attribute :>> failureRate = 3.0e-12 [Hz];
@@ -348,10 +350,11 @@ package TethysTugStructure {
         attribute endOfLifeFactor : Real = 0.94;
     }
     part def ArrayDriveMechanism :> ElectronicUnit {
-        doc /* The single-axis drive and slip-ring assembly of one wing. */
+        doc /* The single-axis drive and slip-ring assembly of one wing; a seized drive leaves its
+             * wing fixed and the other wing tracking. */
         attribute :>> mass = 29 [kg];
         attribute :>> maturity = Maturity::modified;
-        attribute :>> required = 2;
+        attribute :>> required = 1;
         attribute :>> operatingPower = 15 [W];
         attribute :>> failureRate = 4.0e-11 [Hz];
     }
@@ -694,7 +697,9 @@ package TethysTugStructure {
         doc /* The solar electric propulsion subsystem of Argent. */
         #Critical part thrusters : HallThruster[4];
         #Critical part powerProcessingUnits : PowerProcessingUnit[4];
-        #Critical part xenonTanks : XenonTank[2];
+        #Critical part xenonTanks : XenonTank[2] {
+            @SinglePointWaiver { rationale = "both tanks are needed for the full xenon load; each is a passive pressure vessel qualified to 1.5 x MEOP and isolated by a latch valve, so a leak loses that tank's xenon and shortens the mission rather than ending it"; }
+        }
         #Critical part flowControllers : XenonFlowController[4];
         #Critical part gimbals : ThrusterGimbal[4];
         #Critical part propellantManagement : PropellantManagementAssembly {
@@ -1023,7 +1028,6 @@ package TethysTugStructure {
              * and the typed flows on the backbone interfaces. Dry mass is the rollup over the
              * subsystems; the backbone's typed-in value is the allocation it is compared to. */
         part :>> structure : ArgentStructure {
-            perform functions.captureBody;
         }
         part :>> thermal : ArgentThermal {
             perform functions.rejectHeat;
@@ -1048,6 +1052,7 @@ package TethysTugStructure {
             perform functions.feedXenon;
         }
         part :>> rcs : ArgentReactionControl {
+            perform functions.captureBody;
             perform functions.despinBody;
         }
         part :>> captureSystem : ArgentCapture;
