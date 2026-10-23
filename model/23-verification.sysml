@@ -242,13 +242,14 @@ package TethysVerification {
              * and camera sensitivity on the optical bench. */
         subject tug : Tug;
         in attribute measuredPositionError : LengthValue;
+        in attribute measuredVelocityError : SpeedValue;
         in attribute measuredLimitingMagnitude : Real;
         objective {
             doc /* Relative position to 0.1 m at 100 m; the camera reaches magnitude 12.5. */
             verify relativeNavigation { doc /* Verified by this case. */ }
             verify narrowAngleCameraSensitivity { doc /* Verified by this case. */ }
         }
-        PassIf(measuredPositionError <= 0.1 [m] and measuredLimitingMagnitude >= 12.5)
+        PassIf(measuredPositionError <= 0.1 [m] and measuredVelocityError <= 0.001 [m/s] and measuredLimitingMagnitude >= 12.5)
     }
     metadata VerificationMethod about ProximityNavigationTest { kind = VerificationMethodKind::test; }
     verification def ThermalBalanceTest {
@@ -303,14 +304,17 @@ package TethysVerification {
     }
     metadata VerificationMethod about DespinAnalysis { kind = VerificationMethodKind::analyze; }
     verification def PowerAnalysis {
-        doc /* Array power at 1.034 AU against the SEP throttle point and bus load. */
+        doc /* Array power at 1.034 AU against the SEP throttle point and bus load, and the
+             * transfer timeline (TS-003's thrust, coast, proximity and reserve allocations)
+             * against the nominal duration. */
         subject tug : Tug;
         objective {
             doc /* 38 kW plus 6 kW available at the target. */
             verify arrayPowerAtTarget { doc /* Verified by this case. */ }
             verify transferDuration { doc /* Verified by this case. */ }
         }
-        PassIf(tug.eps.arrayPowerAtOneAu * (TethysEnvironment::SolarFlux(1.034) / TethysEnvironment::SolarFlux(1.0)) >= 44.0 [kW])
+        PassIf(tug.eps.arrayPowerAtOneAu * (TethysEnvironment::SolarFlux(1.034) / TethysEnvironment::SolarFlux(1.0)) >= 44.0 [kW]
+            and 1100 [d] + 650 [d] + 150 [d] + 300 [d] <= TethysMission::tethys.nominalDuration)
     }
     metadata VerificationMethod about PowerAnalysis { kind = VerificationMethodKind::analyze; }
     verification def MassBudgetAnalysis {
@@ -334,7 +338,7 @@ package TethysVerification {
             verify droStability { doc /* Verified by this case. */ }
             verify cislunarSafety { doc /* Verified by this case. */ }
         }
-        PassIf(missionMeasures.earthImpactProbability <= 1.0e-6 and TethysEnvironment::destinationDro.stabilityHorizon >= 36525.0 [d])
+        PassIf(missionMeasures.earthImpactProbability < 1.0e-6 and TethysEnvironment::destinationDro.stabilityHorizon >= 36525.0 [d])
     }
     metadata VerificationMethod about ReturnSafetyAnalysis { kind = VerificationMethodKind::analyze; }
     verification def DeliveryAnalysis {
@@ -482,6 +486,7 @@ package TethysVerification {
         subject ground : TethysGroundSegment;
         in attribute demonstratedTurnaround : DurationValue;
         in attribute demonstratedAutomation : Real;
+        in attribute screenedArcFraction : Real;
         objective {
             doc /* Each procedure runs to its requirement. */
             verify sequenceTurnaround { doc /* Verified by this case. */ }
@@ -489,7 +494,7 @@ package TethysVerification {
             verify impactScreening { doc /* Verified by this case. */ }
             verify scienceArchive { doc /* Verified by this case. */ }
         }
-        PassIf(demonstratedTurnaround <= 4 [h] and demonstratedAutomation >= 0.95)
+        PassIf(demonstratedTurnaround <= 4 [h] and demonstratedAutomation >= 0.95 and screenedArcFraction == 1.0)
     }
     metadata VerificationMethod about GroundProceduresDemo { kind = VerificationMethodKind::demo; }
     verification def SepCommissioning {
@@ -540,6 +545,10 @@ package TethysVerification {
         subject flight : TethysFlightSegment;
         in attribute deliveredBodyMass : MassValue;
         in attribute daysToDelivery : DurationValue;
+        in attribute massUncertaintyAchieved : Real;
+        in attribute impactProbabilityShown : Real;
+        in attribute deflectionAccuracyAchieved : SpeedValue;
+        in attribute targetCasesCovered : Natural;
         objective {
             doc /* The needs are met as stated, not merely the requirements derived from them. */
             verify returnedBodyNeed { doc /* Verified by this case. */ }
@@ -549,7 +558,9 @@ package TethysVerification {
             verify deflectionKnowledgeNeed { doc /* Verified by this case. */ }
             verify robustToTargetNeed { doc /* Verified by this case. */ }
         }
-        PassIf(deliveredBodyMass >= 100.0e3 [kg] and daysToDelivery <= 2200 [d])
+        PassIf(deliveredBodyMass >= 100.0e3 [kg] and daysToDelivery <= 2200 [d]
+            and massUncertaintyAchieved <= 0.10 and impactProbabilityShown < 1.0e-6
+            and deflectionAccuracyAchieved <= 0.001 [m/s] and targetCasesCovered >= 4)
     }
     metadata VerificationMethod about MissionValidation { kind = VerificationMethodKind::demo; }
     verification def SuccessCriteriaValidation {
@@ -586,7 +597,7 @@ package TethysVerification {
 
     // ---- The verification programme: usages with as-run results -----------------------------
 
-    verification captureEnvelopeTest : CaptureEnvelopeTest {
+    verification <'VC-001'> captureEnvelopeTest : CaptureEnvelopeTest {
         doc /* Capture qualification test on the capture rig, run after CDR. */
         subject tug = argent;
         @TestSpecification { procedure = "TP-CAP-001 bag deployment, inflation and cinch"; facility = "captureRig"; report = "TR-CAP-001"; }
@@ -594,7 +605,7 @@ package TethysVerification {
         @CampaignStep { campaignPhase = "subsystem qualification"; sequence = 3; }
         @Closure { closedBy = "capture lead"; evidence = "TR-CAP-001"; status = StatusKind::closed; }
     }
-    verification contactSpeedTest : ContactSpeedTest {
+    verification <'VC-002'> contactSpeedTest : ContactSpeedTest {
         doc /* Contact test on the capture rig: the bag tolerated 0.38 m/s. */
         subject tug = argent;
         in measuredToleratedSpeed = 0.38 [m/s];
@@ -604,7 +615,7 @@ package TethysVerification {
         @Nonconformance { reference = "NCR-017"; description = "Cinch line abrasion after the third contact run."; disposition = "use as is, add abrasion sleeve on flight lines"; status = StatusKind::closed; }
         @Closure { closedBy = "capture lead"; evidence = "TR-CAP-002, NCR-017"; status = StatusKind::closed; }
     }
-    verification sepHotFireTest : SepHotFireTest {
+    verification <'VC-003'> sepHotFireTest : SepHotFireTest {
         doc /* Thrust-stand hot fire: 1.86 N three-string, 0.62 N single. */
         subject tug = argent;
         in measuredThrust = 1.86 [N];
@@ -614,7 +625,7 @@ package TethysVerification {
         @CampaignStep { campaignPhase = "subsystem qualification"; sequence = 1; }
         @Closure { closedBy = "propulsion lead"; evidence = "TR-SEP-001"; status = StatusKind::closed; }
     }
-    verification linkBudgetTest : LinkBudgetTest {
+    verification <'VC-004'> linkBudgetTest : LinkBudgetTest {
         doc /* Station compatibility test: 2 050 W EIRP, 3.4 dB margin at design range. */
         subject tug = argent;
         in measuredEirp = 2050.0 [W];
@@ -624,7 +635,7 @@ package TethysVerification {
         @CampaignStep { campaignPhase = "system test"; sequence = 9; }
         @Closure { closedBy = "telecom lead"; evidence = "TR-TEL-001"; status = StatusKind::closed; }
     }
-    verification faultResponseTest : FaultResponseTest {
+    verification <'VC-005'> faultResponseTest : FaultResponseTest {
         doc /* Flatsat fault injection: 0.35 s detection, 1.6 s to safe. */
         subject tug = argent;
         in measuredDetection = 0.35 [s];
@@ -634,7 +645,7 @@ package TethysVerification {
         @CampaignStep { campaignPhase = "system test"; sequence = 7; }
         @Closure { closedBy = "software lead"; evidence = "TR-FSW-004"; status = StatusKind::closed; }
     }
-    verification autonomyTest : AutonomyTest {
+    verification <'VC-006'> autonomyTest : AutonomyTest {
         doc /* Seven-day unattended flatsat run. */
         subject tug = argent;
         in unattendedDuration = 7.5 [d];
@@ -643,7 +654,7 @@ package TethysVerification {
         @CampaignStep { campaignPhase = "system test"; sequence = 8; }
         @Closure { closedBy = "flight operations"; evidence = "TR-FSW-005"; status = StatusKind::closed; }
     }
-    verification inspectorAcceptanceTest : InspectorAcceptanceTest {
+    verification <'VC-007'> inspectorAcceptanceTest : InspectorAcceptanceTest {
         doc /* Wren acceptance on the bench. */
         subject inspector = wren;
         in measuredKeepAlive = 3.8 [W];
@@ -654,7 +665,7 @@ package TethysVerification {
         @CampaignStep { campaignPhase = "subsystem acceptance"; sequence = 5; }
         @Closure { closedBy = "inspector lead"; evidence = "TR-WRN-001"; status = StatusKind::closed; }
     }
-    verification separationTest : SeparationTest {
+    verification <'VC-008'> separationTest : SeparationTest {
         doc /* Dispenser release on the offload rig: 3.1 cm/s. */
         subject tug = argent;
         in measuredSeparationSpeed = 0.031 [m/s];
@@ -663,17 +674,18 @@ package TethysVerification {
         @CampaignStep { campaignPhase = "subsystem acceptance"; sequence = 6; }
         @Closure { closedBy = "mechanisms lead"; evidence = "TR-MEC-002"; status = StatusKind::open; }
     }
-    verification proximityNavigationTest : ProximityNavigationTest {
+    verification <'VC-009'> proximityNavigationTest : ProximityNavigationTest {
         doc /* Closed-loop navigation on the dynamics simulator and camera bench. */
         subject tug = argent;
         in measuredPositionError = 0.07 [m];
+        in measuredVelocityError = 0.0007 [m/s];
         in measuredLimitingMagnitude = 13.1;
         @TestSpecification { procedure = "TP-GNC-003 relative navigation"; facility = "dynamicsSimulator"; report = "TR-GNC-003"; }
         @Verification { method = VerificationMethodKind::test; level = VerificationLevel::subsystem; stage = VerificationStage::qualification; }
         @CampaignStep { campaignPhase = "subsystem qualification"; sequence = 2; }
         @Closure { closedBy = "GNC lead"; evidence = "TR-GNC-003"; status = StatusKind::closed; }
     }
-    verification thermalBalanceTest : ThermalBalanceTest {
+    verification <'VC-010'> thermalBalanceTest : ThermalBalanceTest {
         doc /* Thermal balance at perihelion flux. */
         subject tug = argent;
         in measuredRejection = 8.6 [kW];
@@ -682,7 +694,7 @@ package TethysVerification {
         @CampaignStep { campaignPhase = "system test"; sequence = 10; }
         @Closure { closedBy = "thermal lead"; evidence = "TR-THM-001"; status = StatusKind::closed; }
     }
-    verification cinchMotorTest : CinchMotorTest {
+    verification <'VC-011'> cinchMotorTest : CinchMotorTest {
         doc /* Cinch motor stall torque, qualified by similarity to the heritage boom motor plus
              * a delta test at cold. */
         subject tug = argent;
@@ -693,63 +705,63 @@ package TethysVerification {
         @CampaignStep { campaignPhase = "unit qualification"; sequence = 0; }
         @Closure { closedBy = "capture lead"; evidence = "TR-CAP-003 and heritage file"; status = StatusKind::closed; }
     }
-    verification propellantAnalysis : PropellantAnalysis {
+    verification <'VC-012'> propellantAnalysis : PropellantAnalysis {
         doc /* Propellant analysis for the current xenon load. */
         subject tug = argent;
         @TestSpecification { procedure = "AN-PROP-001 rocket equation"; facility = "mission design"; report = "AR-PROP-001"; }
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::system; stage = VerificationStage::qualification; }
         @Closure { closedBy = "propulsion lead"; evidence = "AR-PROP-001"; status = StatusKind::tbr; }
     }
-    verification despinAnalysis : DespinAnalysis {
+    verification <'VC-013'> despinAnalysis : DespinAnalysis {
         doc /* Despin budget. */
         subject tug = argent;
         @TestSpecification { procedure = "AN-GNC-002 despin budget"; facility = "GNC analysis"; report = "AR-GNC-002"; }
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::system; stage = VerificationStage::qualification; }
         @Closure { closedBy = "GNC lead"; evidence = "AR-GNC-002"; status = StatusKind::closed; }
     }
-    verification powerAnalysis : PowerAnalysis {
+    verification <'VC-014'> powerAnalysis : PowerAnalysis {
         doc /* Power at the target. */
         subject tug = argent;
         @TestSpecification { procedure = "AN-EPS-001 power budget"; facility = "power analysis"; report = "AR-EPS-001"; }
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::subsystem; stage = VerificationStage::qualification; }
         @Closure { closedBy = "power lead"; evidence = "AR-EPS-001"; status = StatusKind::closed; }
     }
-    verification massBudgetAnalysis : MassBudgetAnalysis {
+    verification <'VC-015'> massBudgetAnalysis : MassBudgetAnalysis {
         doc /* Mass and launch budget. */
         subject tug = argent;
         @TestSpecification { procedure = "AN-SYS-001 mass budget"; facility = "systems engineering"; report = "AR-SYS-001"; }
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::system; stage = VerificationStage::acceptance; }
         @Closure { closedBy = "systems engineering"; evidence = "AR-SYS-001"; status = StatusKind::closed; }
     }
-    verification returnSafetyAnalysis : ReturnSafetyAnalysis {
+    verification <'VC-016'> returnSafetyAnalysis : ReturnSafetyAnalysis {
         doc /* Return safety Monte Carlo on the trajectory tool. */
         subject flight = tethysSystem.flight;
         @TestSpecification { procedure = "AN-FD-003 thrust-loss Monte Carlo"; facility = "trajectoryTool"; report = "AR-FD-003"; }
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::mission; stage = VerificationStage::qualification; }
         @Closure { closedBy = "cislunar safety board"; evidence = "AR-FD-003"; status = StatusKind::closed; }
     }
-    verification deliveryAnalysis : DeliveryAnalysis {
+    verification <'VC-017'> deliveryAnalysis : DeliveryAnalysis {
         doc /* Delivered mass and schedule. */
         subject flight = tethysSystem.flight;
         @TestSpecification { procedure = "AN-MD-001 reference trajectory"; facility = "mission design"; report = "AR-MD-001"; }
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::mission; stage = VerificationStage::qualification; }
         @Closure { closedBy = "mission design"; evidence = "AR-MD-001"; status = StatusKind::closed; }
     }
-    verification characterisationAnalysis : CharacterisationAnalysis {
+    verification <'VC-018'> characterisationAnalysis : CharacterisationAnalysis {
         doc /* Characterisation covariance. */
         subject flight = tethysSystem.flight;
         @TestSpecification { procedure = "AN-NAV-002 covariance"; facility = "navigation analysis"; report = "AR-NAV-002"; }
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::system; stage = VerificationStage::qualification; }
         @Closure { closedBy = "navigation lead"; evidence = "AR-NAV-002"; status = StatusKind::closed; }
     }
-    verification deflectionAnalysis : DeflectionAnalysis {
+    verification <'VC-019'> deflectionAnalysis : DeflectionAnalysis {
         doc /* Deflection measurement covariance. */
         subject flight = tethysSystem.flight;
         @TestSpecification { procedure = "AN-NAV-003 arc covariance"; facility = "navigation analysis"; report = "AR-NAV-003"; }
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::mission; stage = VerificationStage::qualification; }
         @Closure { closedBy = "navigation lead"; evidence = "AR-NAV-003"; status = StatusKind::closed; }
     }
-    verification dockingLoadsAnalysis : DockingLoadsAnalysis {
+    verification <'VC-020'> dockingLoadsAnalysis : DockingLoadsAnalysis {
         doc /* Docking load path analysis. */
         subject tug = argent;
         in analysedCapability = 6200.0 [N];
@@ -757,7 +769,7 @@ package TethysVerification {
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::subsystem; stage = VerificationStage::qualification; }
         @Closure { closedBy = "structures lead"; evidence = "AR-STR-004"; status = StatusKind::tbr; }
     }
-    verification thrustModelValidation : ThrustModelValidation {
+    verification <'VC-021'> thrustModelValidation : ThrustModelValidation {
         doc /* The SepThrust model validated against the hot-fire measurement. */
         subject tug = argent;
         in measuredThrust = 1.86 [N];
@@ -765,28 +777,28 @@ package TethysVerification {
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::subsystem; stage = VerificationStage::qualification; }
         @Closure { closedBy = "propulsion lead"; evidence = "AR-SEP-002"; status = StatusKind::closed; }
     }
-    verification redundancyInspection : RedundancyInspection {
+    verification <'VC-022'> redundancyInspection : RedundancyInspection {
         doc /* Redundancy inspection at CDR. */
         subject tug = argent;
         @TestSpecification { procedure = "IN-SYS-002 fault tree review"; facility = "CDR"; report = "IR-SYS-002"; }
         @Verification { method = VerificationMethodKind::inspect; level = VerificationLevel::system; stage = VerificationStage::qualification; }
         @Closure { closedBy = "systems engineering"; evidence = "IR-SYS-002"; status = StatusKind::closed; }
     }
-    verification documentInspection : DocumentInspection {
+    verification <'VC-023'> documentInspection : DocumentInspection {
         doc /* Baseline inspection at PDR. */
         subject mission = tethysSystem;
         @TestSpecification { procedure = "IN-SYS-001 baseline review"; facility = "PDR"; report = "IR-SYS-001"; }
         @Verification { method = VerificationMethodKind::inspect; level = VerificationLevel::system; stage = VerificationStage::qualification; }
         @Closure { closedBy = "systems engineering"; evidence = "IR-SYS-001"; status = StatusKind::closed; }
     }
-    verification groundInspection : GroundInspection {
+    verification <'VC-024'> groundInspection : GroundInspection {
         doc /* Station inventory inspection. */
         subject ground = tethysSystem.ground;
         @TestSpecification { procedure = "IN-GND-001 inventory"; facility = "Meridian"; report = "IR-GND-001"; }
         @Verification { method = VerificationMethodKind::inspect; level = VerificationLevel::subsystem; stage = VerificationStage::preLaunch; }
         @Closure { closedBy = "ground segment"; evidence = "IR-GND-001"; status = StatusKind::closed; }
     }
-    verification groundReadinessDemo : GroundReadinessDemo {
+    verification <'VC-025'> groundReadinessDemo : GroundReadinessDemo {
         doc /* Operations readiness demonstration before launch. */
         subject ground = tethysSystem.ground;
         in demonstratedTurnaround = 3.2 [h];
@@ -796,7 +808,7 @@ package TethysVerification {
         @CampaignStep { campaignPhase = "operations readiness"; sequence = 11; }
         @Closure { closedBy = "flight operations"; evidence = "DR-OPS-001"; status = StatusKind::closed; }
     }
-    verification sepCommissioning : SepCommissioning {
+    verification <'VC-026'> sepCommissioning : SepCommissioning {
         doc /* In-orbit SEP commissioning; all four strings fired. */
         subject tug = argent;
         in firedStrings = 4;
@@ -804,7 +816,7 @@ package TethysVerification {
         @Verification { method = VerificationMethodKind::demo; level = VerificationLevel::system; stage = VerificationStage::inFlight; }
         @Closure { closedBy = "propulsion lead"; evidence = "DR-SEP-010"; status = StatusKind::open; }
     }
-    verification inspectorCommissioning : InspectorCommissioning {
+    verification <'VC-027'> inspectorCommissioning : InspectorCommissioning {
         doc /* In-orbit Wren checkout. */
         subject inspector = wren;
         in linkAcquired = true;
@@ -812,7 +824,7 @@ package TethysVerification {
         @Verification { method = VerificationMethodKind::demo; level = VerificationLevel::subsystem; stage = VerificationStage::inFlight; }
         @Closure { closedBy = "inspector lead"; evidence = "DR-WRN-010"; status = StatusKind::open; }
     }
-    verification dockingDemo : DockingDemo {
+    verification <'VC-028'> dockingDemo : DockingDemo {
         doc /* Docking demonstration with Lantern in the DRO. */
         subject flight = tethysSystem.flight;
         in demonstratedAttitudeHold = 0.005 [rad];
@@ -820,16 +832,20 @@ package TethysVerification {
         @Verification { method = VerificationMethodKind::demo; level = VerificationLevel::mission; stage = VerificationStage::inFlight; }
         @Closure { closedBy = "utilisation office"; evidence = "DR-UTL-001"; status = StatusKind::open; }
     }
-    verification missionValidation : MissionValidation {
+    verification <'VC-029'> missionValidation : MissionValidation {
         doc /* End-of-mission validation against the needs. */
         subject flight = tethysSystem.flight;
         in deliveredBodyMass = 358.0e3 [kg];
         in daysToDelivery = 1950 [d];
+        in massUncertaintyAchieved = 0.07;
+        in impactProbabilityShown = 4.0e-7;
+        in deflectionAccuracyAchieved = 0.0006 [m/s];
+        in targetCasesCovered = 4;
         @TestSpecification { procedure = "VL-MIS-001 end-of-mission review"; facility = "programme board"; report = "VR-MIS-001"; }
         @Verification { method = VerificationMethodKind::demo; level = VerificationLevel::mission; stage = VerificationStage::inFlight; }
         @Closure { closedBy = "programme board"; evidence = "VR-MIS-001"; status = StatusKind::open; }
     }
-    verification successCriteriaValidation : SuccessCriteriaValidation {
+    verification <'VC-030'> successCriteriaValidation : SuccessCriteriaValidation {
         doc /* Success criteria judged at the end-of-mission review. */
         subject flight = tethysSystem.flight;
         in criteriaMet = 4;
@@ -837,17 +853,18 @@ package TethysVerification {
         @Verification { method = VerificationMethodKind::demo; level = VerificationLevel::mission; stage = VerificationStage::inFlight; }
         @Closure { closedBy = "programme board"; evidence = "VR-MIS-002"; status = StatusKind::open; }
     }
-    verification groundProceduresDemo : GroundProceduresDemo {
+    verification <'VC-031'> groundProceduresDemo : GroundProceduresDemo {
         doc /* Procedures demonstration during operations readiness. */
         subject ground = tethysSystem.ground;
         in demonstratedTurnaround = 3.2 [h];
         in demonstratedAutomation = 0.97;
+        in screenedArcFraction = 1.0;
         @TestSpecification { procedure = "DM-OPS-002 procedures"; facility = "operations centre"; report = "DR-OPS-002"; }
         @Verification { method = VerificationMethodKind::demo; level = VerificationLevel::system; stage = VerificationStage::preLaunch; }
         @CampaignStep { campaignPhase = "operations readiness"; sequence = 12; }
         @Closure { closedBy = "flight operations"; evidence = "DR-OPS-002"; status = StatusKind::closed; }
     }
-    verification interfaceBaselineInspection : InterfaceBaselineInspection {
+    verification <'VC-032'> interfaceBaselineInspection : InterfaceBaselineInspection {
         doc /* ICD baseline inspection at PDR. */
         subject mission = tethysSystem;
         in icdsBaselined = 2;
@@ -855,7 +872,7 @@ package TethysVerification {
         @Verification { method = VerificationMethodKind::inspect; level = VerificationLevel::system; stage = VerificationStage::qualification; }
         @Closure { closedBy = "systems engineering"; evidence = "IR-SYS-003"; status = StatusKind::closed; }
     }
-    verification conOpsValidation : ConOpsValidation {
+    verification <'VC-033'> conOpsValidation : ConOpsValidation {
         doc /* Design reference mission validated end to end on the simulators. */
         subject flight = tethysSystem.flight;
         in threadsRun = 9;
