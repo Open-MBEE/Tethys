@@ -142,11 +142,11 @@ package TethysVerification {
         subject tug : Tug;
         in attribute measuredToleratedSpeed : SpeedValue;
         objective {
-            doc /* The bag survives contact at the large case's equatorial speed. */
+            doc /* The bag survives contact at the largest case's equatorial speed. */
             verify proximityContactEnvironment { doc /* Verified by this case. */ }
             verify contactSpeedTolerance { doc /* Verified by this case. */ }
         }
-        PassIf(measuredToleratedSpeed >= 3.14159265 * targetCases.largest.meanDiameter / targetCases.large.rotationPeriod)
+        PassIf(measuredToleratedSpeed >= 3.14159265 * targetCases.largest.meanDiameter / targetCases.largest.rotationPeriod)
     }
     metadata VerificationMethod about ContactSpeedTest { kind = VerificationMethodKind::test; }
     verification def SepHotFireTest {
