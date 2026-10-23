@@ -385,7 +385,7 @@ package TethysStakeholders {
         attribute :>> returnedMass = TethysEnvironment::amaranth.mass;
         attribute :>> returnedMassPerXenon = TethysEnvironment::amaranth.mass / TethysTug::argent.sep.xenonMass;
         attribute :>> timeToDelivery = 2200 [d];
-        attribute :>> earthImpactProbability = 1.0e-6;
+        attribute :>> earthImpactProbability = 4.0e-7;
         attribute :>> targetEnvelopeCoverage = 0.95;
         attribute :>> sepThrust = TethysEnvironment::SepThrust(40000.0, 2900.0, 0.65) [N];
         attribute :>> specificImpulse = TethysTug::argent.sep.specificImpulse;
@@ -397,68 +397,79 @@ package TethysStakeholders {
 
     // ---- Technical performance measures with margins -------------------------------------
 
-    attribute def TechnicalPerformanceMeasure {
-        doc /* A tracked quantity with its allocated, current best estimate, growth contingency and
-             * the margin the allocated leaves over the contingency-loaded estimate. */
-        attribute allocated : Real;
-        attribute currentBestEstimate : Real;
+    attribute def MassTpm {
+        doc /* A tracked mass with its allocation, current best estimate, growth contingency and
+             * the margin the allocation leaves over the contingency-loaded estimate. */
+        attribute allocated : MassValue;
+        attribute currentBestEstimate : MassValue;
         attribute contingencyFraction : Real;
-        attribute predicted : Real = currentBestEstimate * (1.0 + contingencyFraction);
+        attribute predicted : MassValue = currentBestEstimate * (1.0 + contingencyFraction);
         attribute marginFraction : Real = (allocated - predicted) / allocated;
-        attribute unit : String;
+    }
+    attribute def PowerTpm {
+        doc /* A tracked power with allocation, estimate, contingency and margin. */
+        attribute allocated : PowerValue;
+        attribute currentBestEstimate : PowerValue;
+        attribute contingencyFraction : Real;
+        attribute predicted : PowerValue = currentBestEstimate * (1.0 + contingencyFraction);
+        attribute marginFraction : Real = (allocated - predicted) / allocated;
+    }
+    attribute def DurationTpm {
+        doc /* A tracked duration with allocation, estimate, contingency and margin. */
+        attribute allocated : DurationValue;
+        attribute currentBestEstimate : DurationValue;
+        attribute contingencyFraction : Real;
+        attribute predicted : DurationValue = currentBestEstimate * (1.0 + contingencyFraction);
+        attribute marginFraction : Real = (allocated - predicted) / allocated;
     }
 
     constraint def MarginAtLeast {
         doc /* A TPM keeps at least the required margin at this lifecycle stage. */
-        in tpm : TechnicalPerformanceMeasure;
+        in margin : Real;
         in required : Real;
-        tpm.marginFraction >= required
+        margin >= required
     }
 
     part technicalPerformanceMeasures {
-        doc /* The TPM register at the current (PDR) stage; the house margin at PDR is 20 % on mass
-             * and power, 10 % on propellant and duration. The estimates are the backbone values. */
-        attribute tugDryMass : TechnicalPerformanceMeasure {
-            doc /* Argent dry mass against the 7 000 kg allocated. */
-            attribute :>> allocated = 7000.0;
-            attribute :>> currentBestEstimate = TethysTug::argent.dryMass / 1 [kg];
+        doc /* The TPM register at the current (PDR) stage; the house margin at PDR is 15 % on mass
+             * and power, 10 % on propellant and 5 % on duration. The estimates are the backbone
+             * values where it carries them. */
+        attribute tugDryMass : MassTpm {
+            doc /* Argent dry mass against the 7 000 kg allocation. */
+            attribute :>> allocated = 7000.0 [kg];
+            attribute :>> currentBestEstimate = TethysTug::argent.dryMass;
             attribute :>> contingencyFraction = 0.0;
-            attribute :>> unit = "kg";
         }
-        attribute arrayPower : TechnicalPerformanceMeasure {
-            doc /* Array power at 1 AU, end of life, against the 40 kW SEP demand plus 8 kW bus;
-                 * margin is the excess over demand, so allocated is the generated power. */
-            attribute :>> allocated = TethysTug::argent.eps.arrayPowerAtOneAu / 1 [W];
-            attribute :>> currentBestEstimate = 38000.0;
+        attribute arrayPower : PowerTpm {
+            doc /* Power demand at 1 AU (SEP plus bus) against the array power generated; margin is
+                 * the excess of generation over demand. */
+            attribute :>> allocated = TethysTug::argent.eps.arrayPowerAtOneAu;
+            attribute :>> currentBestEstimate = 38000.0 [W];
             attribute :>> contingencyFraction = 0.0;
-            attribute :>> unit = "W";
         }
-        attribute xenonLoad : TechnicalPerformanceMeasure {
+        attribute xenonLoad : MassTpm {
             doc /* Xenon required for the nominal return against the 6 600 kg loaded. */
-            attribute :>> allocated = TethysTug::argent.sep.xenonMass / 1 [kg];
-            attribute :>> currentBestEstimate = 5300.0;
+            attribute :>> allocated = TethysTug::argent.sep.xenonMass;
+            attribute :>> currentBestEstimate = 5300.0 [kg];
             attribute :>> contingencyFraction = 0.10;
-            attribute :>> unit = "kg";
         }
-        attribute missionDuration : TechnicalPerformanceMeasure {
-            doc /* Launch-to-DRO duration against the 2 200 d allocated. */
-            attribute :>> allocated = 2200.0;
-            attribute :>> currentBestEstimate = 1900.0;
+        attribute missionDuration : DurationTpm {
+            doc /* Launch-to-DRO duration against the 2 200 d allocation. */
+            attribute :>> allocated = 2200.0 [d];
+            attribute :>> currentBestEstimate = 1900.0 [d];
             attribute :>> contingencyFraction = 0.05;
-            attribute :>> unit = "d";
         }
-        attribute launchMass : TechnicalPerformanceMeasure {
+        attribute launchMass : MassTpm {
             doc /* Stack launch mass against the Arcturus-5H performance at C3 = 2 km2/s2. */
-            attribute :>> allocated = TethysLaunch::arcturus5H.performanceAtC3 / 1 [kg];
-            attribute :>> currentBestEstimate = TethysTug::argent.wetMass / 1 [kg] + TethysInspector::wren.wetMass / 1 [kg];
+            attribute :>> allocated = TethysLaunch::arcturus5H.performanceAtC3;
+            attribute :>> currentBestEstimate = TethysTug::argent.wetMass + TethysInspector::wren.wetMass;
             attribute :>> contingencyFraction = 0.10;
-            attribute :>> unit = "kg";
         }
-        assert constraint tugDryMassMargin : MarginAtLeast { in tpm = tugDryMass; in required = 0.15; }
-        assert constraint arrayPowerMargin : MarginAtLeast { in tpm = arrayPower; in required = 0.15; }
-        assert constraint xenonMargin : MarginAtLeast { in tpm = xenonLoad; in required = 0.10; }
-        assert constraint durationMargin : MarginAtLeast { in tpm = missionDuration; in required = 0.05; }
-        assert constraint launchMassMargin : MarginAtLeast { in tpm = launchMass; in required = 0.10; }
+        assert constraint tugDryMassMargin : MarginAtLeast { in margin = tugDryMass.marginFraction; in required = 0.15; }
+        assert constraint arrayPowerMargin : MarginAtLeast { in margin = arrayPower.marginFraction; in required = 0.15; }
+        assert constraint xenonMargin : MarginAtLeast { in margin = xenonLoad.marginFraction; in required = 0.10; }
+        assert constraint durationMargin : MarginAtLeast { in margin = missionDuration.marginFraction; in required = 0.05; }
+        assert constraint launchMassMargin : MarginAtLeast { in margin = launchMass.marginFraction; in required = 0.10; }
     }
 
     // ---- Mission context and capabilities -------------------------------------------------
