@@ -35,12 +35,19 @@ package TethysDisposal {
              * departure and lunar-flyby targeting need. Checked against the gauged xenon of
              * the DRO-insertion snapshot. */
         subject tug : Tug;
-        attribute xenonReserve : MassValue;
+        attribute xenonReserve : MassValue = argentFlight.atDroInsertion.telemetry.xenonRemaining;
+        attribute dryMass : MassValue = argentFM.dryMass;
+        attribute specificImpulse : DurationValue = 2900.0 [s];
         attribute departureDeltaV : SpeedValue = 180.0 ['m/s'];
         attribute margin : Real = 1.5;
-        attribute deltaVCapability : Real = RocketEquationDeltaV(2900.0, 5638.4 + 540.0, 5638.4);
+        attribute initialMass : MassValue = dryMass + xenonReserve;
+        attribute deltaVCapability : SpeedValue =
+            RocketEquationDeltaV(specificImpulse.num, initialMass.num, dryMass.num) ['m/s'];
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::system; stage = VerificationStage::inFlight; }
-        require constraint { deltaVCapability >= margin * 180.0 }
+        require constraint {
+            doc /* The gauged reserve gives the dry tug at least margin × the departure Δv. */
+            deltaVCapability >= margin * departureDeltaV
+        }
     }
 
     requirement <'TS-292'> passivation : SystemRequirement {
@@ -53,34 +60,35 @@ package TethysDisposal {
         attribute batteryDisconnected : Boolean = argentAtEndOfLife.passivated.batteryDisconnected;
         attribute transmitterOff : Boolean = argentAtEndOfLife.passivated.transmitterOff;
         attribute deadline : DurationValue = 30.0 [d];
+        attribute passivationDelay : DurationValue = closeout.passivationCompleteTime - closeout.disposalBurnTime;
         @Verification { method = VerificationMethodKind::test; level = VerificationLevel::system; stage = VerificationStage::inFlight; }
         require constraint {
             xenonTankPressure <= 1.0e5 [Pa] and hydrazineResidual <= 2.0 [kg]
-                and batteryDisconnected and transmitterOff
+                and batteryDisconnected and transmitterOff and passivationDelay <= deadline
         }
     }
 
     calc def SeparationDeltaV {
         doc /* Velocity the separation impulse imparts to the body: impulse in N·s over the
              * body mass in kg, in m/s. */
-        in impulse : Real;
-        in bodyMass : Real;
-        return : Real = impulse / bodyMass;
+        in impulse : ImpulseValue;
+        in bodyMass : MassValue;
+        return : SpeedValue = impulse / bodyMass;
     }
 
     requirement <'TS-293'> separationSafety : SystemRequirement {
         doc /* Separation of the tug from the captured body shall impart less than 1 mm/s to
              * the body, for the small, nominal and large target cases and for the body as
              * characterised, so the body stays in its DRO. */
-        attribute separationImpulse : Real = 25.0;
-        attribute smallBodyDeltaV : Real = SeparationDeltaV(separationImpulse, 150.0e3);
-        attribute nominalBodyDeltaV : Real = SeparationDeltaV(separationImpulse, 362.0e3);
-        attribute largeBodyDeltaV : Real = SeparationDeltaV(separationImpulse, 620.0e3);
-        attribute asCharacterisedDeltaV : Real = SeparationDeltaV(separationImpulse, 438.8e3);
+        attribute separationImpulse : ImpulseValue = 25.0 ['N⋅s'];
+        attribute smallBodyDeltaV : SpeedValue = SeparationDeltaV(separationImpulse, 150.0e3 [kg]);
+        attribute nominalBodyDeltaV : SpeedValue = SeparationDeltaV(separationImpulse, 362.0e3 [kg]);
+        attribute largeBodyDeltaV : SpeedValue = SeparationDeltaV(separationImpulse, 620.0e3 [kg]);
+        attribute asCharacterisedDeltaV : SpeedValue = SeparationDeltaV(separationImpulse, 438.8e3 [kg]);
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::system; stage = VerificationStage::acceptance; }
         require constraint {
             doc /* The small case bounds the others. */
-            smallBodyDeltaV <= 0.001 and asCharacterisedDeltaV <= 0.001
+            smallBodyDeltaV <= 1.0e-3 ['m/s'] and asCharacterisedDeltaV <= 1.0e-3 ['m/s']
         }
     }
 
