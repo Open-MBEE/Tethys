@@ -464,6 +464,19 @@ package TethysModes {
     }
 
     // ---- 4. Inspector mode machine ------------------------------------------------------
+    enum def InspectorMode {
+        doc /* The one mode vocabulary of the inspector: one literal per leaf state of the
+             * inspector mode machine (TethysModes::InspectorModes), in the order the machine
+             * declares them, as TethysTugStructure::TugMode is to TethysModes::TugModes. The
+             * generated software tables read this enumeration, not the machine's state names. */
+        enum stowed;
+        enum checkout;
+        enum stationKeeping;
+        enum imaging;
+        enum retreat;
+        enum safe;
+        enum retired;
+    }
     state def InspectorModes {
         doc /* Wren's modes: stowed on the tug's dispenser (umbilical power) through checkout,
              * free flight after release, imaging passes, a retreat on collision risk, safe

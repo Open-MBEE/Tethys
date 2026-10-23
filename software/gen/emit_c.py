@@ -5,7 +5,7 @@ from __future__ import annotations
 from emit_common import c_bool, c_header, c_num, c_str, mode_mask, upper
 
 ENUM_SOURCES = {
-    "TugMode": "TethysTugStructure::TugMode", "InspectorMode": "TethysModes::InspectorModes",
+    "TugMode": "TethysTugStructure::TugMode", "InspectorMode": "TethysModes::InspectorMode",
 }
 
 
