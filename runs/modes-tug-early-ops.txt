@@ -58,8 +58,8 @@
 [trace] materialize: envelope #6
 [trace]   eval literal 50.0 -> 50.0
 [trace] eval index -> 50.0 [km]
-[trace]   eval literal 2.0 -> 2.0
-[trace] eval index -> 2.0 [h]
+[trace]   eval literal 6.0 -> 6.0
+[trace] eval index -> 6.0 [h]
 [trace]   eval literal 30.0 -> 30.0
 [trace] eval index -> 30.0 [d]
 [trace] eval literal "" -> ""
@@ -73,6 +73,7 @@
 [trace] choice entering TugModes: next thrusters(entry), stowed(entry) (unordered; took thrusters(entry) first; independent)
 [trace] enter: thrusters
 [trace] enter: stowed
+[trace] eval feature arraysDeploymentTimeout -> 6.0 [h]
 [trace] materialize: ModedInspector #7
 [trace] start: exhibited state machine modes of #7
 [trace] materialize: InspectorModes #8
@@ -82,6 +83,8 @@
 [trace] eval index -> 4.0 [h]
 [trace]   eval literal 6.0 -> 6.0
 [trace] eval index -> 6.0 [h]
+[trace]   eval literal 8.0 -> 8.0
+[trace] eval index -> 8.0 [h]
 [trace] enter: stowed
 [trace] run: performed action nominalCampaign of #2
 [trace] step 1: token 1@toSeparation
@@ -602,30 +605,30 @@
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: Telecommand #226
 warning: TethysModes::nominalFlight: materialization is bounded; not every feature value was checked
 [trace] run: performed action nominalCampaign of #2
 [trace] step 2: token 1@separation
 [trace] stmt send
-[trace] materialize: SeparationConfirmed #227
+[trace] materialize: SeparationConfirmed #226
 [trace] step 3: token 1@toDeployment
 [trace]   eval literal 0.05 -> 0.05
 [trace] eval index -> 0.05 [d]
 [trace] run: exhibited state machine modes of #4
 [trace] exit: onLauncher
 [trace] enter: deploying
-[trace] eval feature arraysDeploymentTimeout -> 2.0 [h]
 [trace] transition: onLauncher -> deploying (event: accept SeparationConfirmed)
 [trace] run: performed action nominalCampaign of #2
 [trace] step 4: token 1@deployment
 [trace] stmt send
-[trace] materialize: ArraysDeployed #228
+[trace] materialize: ArraysDeployed #227
 [trace] step 5: token 1@commissioning
 [trace]   eval literal 30.0 -> 30.0
 [trace] eval index -> 30.0 [d]
 [trace] run: exhibited state machine modes of #4
 [trace] choice on accept ArraysDeployed: next deploying(exit), off(exit), lowGain(exit), thrusters(exit) (unordered; took deploying(exit) first; independent)
 [trace] exit: deploying
+[trace] stmt assign arraysDeployed
+[trace]   eval literal true -> true
 [trace] enter: done
 [trace] transition: deploying -> done (event: accept ArraysDeployed)
 [trace] choice on accept ArraysDeployed: next off(exit), lowGain(exit), thrusters(exit) (unordered; took off(exit) first; independent)
@@ -647,7 +650,7 @@ warning: TethysModes::nominalFlight: materialization is bounded; not every featu
 ✓ Debugging state machine "modes" exhibited by object #4 of "TethysModes::nominalFlight.tug"
   Current state: onLauncher | off | lowGain | thrusters | stowed
   Time: 0.0
-  Events: 0
+  Events: 1
 ✓ Advanced to 17280.0 (3 event(s) processed)
   Current state: coast | standby | highGain | wheels | stowed
   Last event at: 8640.0

@@ -55,7 +55,7 @@ warning: TethysFdir::earthImpactScenario: materialization is bounded; not every 
 ✓ Debugging state machine "modes" exhibited by object #4 of "TethysFdir::earthImpactScenario.tug"
   Current state: onLauncher | off | lowGain | thrusters | stowed
   Time: 0.0
-  Events: 0
+  Events: 1
 ✓ Advanced to 2160000.0 (16 event(s) processed)
   Current state: stackThrust | thrusting | highGain | wheels | cinched
   Last event at: 1563840.0
