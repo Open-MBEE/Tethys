@@ -12,7 +12,7 @@ Files: `software/gen/` (generator), `software/generated/` (tables, manifest, C s
 | Model element (file) | C | Python | Rows |
 | --- | --- | --- | --- |
 | `TethysTugStructure::TugMode` (31) | `argent_tug_mode_t`, `argent_mode_mask_t` | `enums.TugMode` | 16 |
-| `TethysModes::InspectorModes` leaf states (60) | `argent_inspector_mode_t` | `enums.InspectorMode` | 7 |
+| `TethysModes::InspectorMode` (60) | `argent_inspector_mode_t` | `enums.InspectorMode` | 7 |
 | `TethysFdir::FdirLevel`, `FaultResponse` (62) | enums | enums | 3, 5 |
 | `TethysOperations::ApidClass` (53), `TethysFlightDictionary::flightApids` (64) | `argent_apid_class_t`, `ARGENT_APID_BASE_*` | `enums.ApidClass`, `packets.APID_BASES` | 6 |
 | `TethysFlightDictionary::Opcode` + `CommandDefinition::opcodeNumber` (64) | `argent_opcode_t` | `enums.Opcode` | 344 |
