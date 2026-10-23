@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Argent flight software FMECA</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysSoftwareAssuranceTooling::SoftwareFmecaDocument">
+<h1 class="sysml-title">Argent flight software FMECA</h1>
+<p class="sysml-paragraph" data-content="paragraph" data-name="scope">One row per application and one for the executive: failure mode, local and end effect, detection, response and criticality, with the assurance level of the component.</p>
+<table class="sysml-table sysml-table-landscape" data-content="table" data-name="rows" data-query="TethysSoftwareAssuranceTooling::SoftwareFmecaRows">
+<caption class="sysml-caption">Software failure modes</caption>
+<thead>
+<tr>
+<th scope="col" data-column="shortName">shortName</th>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="failureMode">failureMode</th>
+<th scope="col" data-column="localEffect">localEffect</th>
+<th scope="col" data-column="endEffect">endEffect</th>
+<th scope="col" data-column="detection">detection</th>
+<th scope="col" data-column="response">response</th>
+<th scope="col" data-column="criticality">criticality</th>
+<th scope="col" data-column="level">level</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::softwareFmeca::executiveSchedulerStall" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SFM-01</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">executiveSchedulerStall</span></td>
+<td class="sysml-cell" data-column="failureMode" data-value-kind="string"><span class="sysml-value" data-value-kind="string">partition scheduler stall: a major frame is not released</span></td>
+<td class="sysml-cell" data-column="localEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">every application misses its rate group</span></td>
+<td class="sysml-cell" data-column="endEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">watchdog resets the computer; redundant computer takes over</span></td>
+<td class="sysml-cell" data-column="detection" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::DetectionMeans::builtInTest" data-element-kind="enumUsage">builtInTest</span></td>
+<td class="sysml-cell" data-column="response" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFdir::FaultResponse::switchover" data-element-kind="enumUsage">switchover</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::Severity::major" data-element-kind="enumUsage">major</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::softwareFmeca::cdhRoutingLoss" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SFM-02</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">cdhRoutingLoss</span></td>
+<td class="sysml-cell" data-column="failureMode" data-value-kind="string"><span class="sysml-value" data-value-kind="string">message bus queue overflow drops commands</span></td>
+<td class="sysml-cell" data-column="localEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">commands not delivered to their application</span></td>
+<td class="sysml-cell" data-column="endEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">loss of commandability until the command-loss timer safes the tug</span></td>
+<td class="sysml-cell" data-column="detection" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::DetectionMeans::telemetryLimit" data-element-kind="enumUsage">telemetryLimit</span></td>
+<td class="sysml-cell" data-column="response" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFdir::FaultResponse::safeMode" data-element-kind="enumUsage">safeMode</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::Severity::major" data-element-kind="enumUsage">major</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::softwareFmeca::gncTargetingError" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SFM-03</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">gncTargetingError</span></td>
+<td class="sysml-cell" data-column="failureMode" data-value-kind="string"><span class="sysml-value" data-value-kind="string">targeting solution from a stale ephemeris</span></td>
+<td class="sysml-cell" data-column="localEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">burn vector inside the Earth corridor</span></td>
+<td class="sysml-cell" data-column="endEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Earth-impact trajectory unless the exclusion monitor aborts</span></td>
+<td class="sysml-cell" data-column="detection" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::DetectionMeans::navigationResidual" data-element-kind="enumUsage">navigationResidual</span></td>
+<td class="sysml-cell" data-column="response" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFdir::FaultResponse::abortReturn" data-element-kind="enumUsage">abortReturn</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::Severity::catastrophic" data-element-kind="enumUsage">catastrophic</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::softwareFmeca::sepUncommandedThrust" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SFM-04</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sepUncommandedThrust</span></td>
+<td class="sysml-cell" data-column="failureMode" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thrust arc not terminated at its end time</span></td>
+<td class="sysml-cell" data-column="localEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thrust continues past the planned arc</span></td>
+<td class="sysml-cell" data-column="endEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">trajectory error; on the final arc an Earth-corridor entry</span></td>
+<td class="sysml-cell" data-column="detection" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::DetectionMeans::telemetryLimit" data-element-kind="enumUsage">telemetryLimit</span></td>
+<td class="sysml-cell" data-column="response" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFdir::FaultResponse::safeMode" data-element-kind="enumUsage">safeMode</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::Severity::catastrophic" data-element-kind="enumUsage">catastrophic</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::softwareFmeca::powerLoadShedMissed" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SFM-05</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">powerLoadShedMissed</span></td>
+<td class="sysml-cell" data-column="failureMode" data-value-kind="string"><span class="sysml-value" data-value-kind="string">battery floor comparison against a stale measurement</span></td>
+<td class="sysml-cell" data-column="localEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">loads stay on below the floor</span></td>
+<td class="sysml-cell" data-column="endEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">battery depth of discharge exceeded; FDIR safes the tug</span></td>
+<td class="sysml-cell" data-column="detection" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::DetectionMeans::telemetryLimit" data-element-kind="enumUsage">telemetryLimit</span></td>
+<td class="sysml-cell" data-column="response" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFdir::FaultResponse::loadShed" data-element-kind="enumUsage">loadShed</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::Severity::major" data-element-kind="enumUsage">major</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::softwareFmeca::thermalSetpointError" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SFM-06</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thermalSetpointError</span></td>
+<td class="sysml-cell" data-column="failureMode" data-value-kind="string"><span class="sysml-value" data-value-kind="string">setpoint table index off by one</span></td>
+<td class="sysml-cell" data-column="localEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">one zone too cold or too warm</span></td>
+<td class="sysml-cell" data-column="endEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">component out of its allowable range; trended by the ground</span></td>
+<td class="sysml-cell" data-column="detection" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::DetectionMeans::groundTrending" data-element-kind="enumUsage">groundTrending</span></td>
+<td class="sysml-cell" data-column="response" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFdir::FaultResponse::retry" data-element-kind="enumUsage">retry</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::Severity::minor" data-element-kind="enumUsage">minor</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC" data-element-kind="enumUsage">levelC</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::softwareFmeca::telecomTransmitterStuck" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SFM-07</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telecomTransmitterStuck</span></td>
+<td class="sysml-cell" data-column="failureMode" data-value-kind="string"><span class="sysml-value" data-value-kind="string">transmitter-off command lost at the arc start</span></td>
+<td class="sysml-cell" data-column="localEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">transmitter on while thrusting</span></td>
+<td class="sysml-cell" data-column="endEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">flight rule FR-001 violated; power margin consumed</span></td>
+<td class="sysml-cell" data-column="detection" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::DetectionMeans::telemetryLimit" data-element-kind="enumUsage">telemetryLimit</span></td>
+<td class="sysml-cell" data-column="response" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFdir::FaultResponse::retry" data-element-kind="enumUsage">retry</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::Severity::minor" data-element-kind="enumUsage">minor</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::softwareFmeca::inspectorRelayLoss" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SFM-08</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorRelayLoss</span></td>
+<td class="sysml-cell" data-column="failureMode" data-value-kind="string"><span class="sysml-value" data-value-kind="string">relay buffer overrun</span></td>
+<td class="sysml-cell" data-column="localEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">survey frames lost</span></td>
+<td class="sysml-cell" data-column="endEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">characterisation products delayed</span></td>
+<td class="sysml-cell" data-column="detection" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::DetectionMeans::groundTrending" data-element-kind="enumUsage">groundTrending</span></td>
+<td class="sysml-cell" data-column="response" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFdir::FaultResponse::retry" data-element-kind="enumUsage">retry</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::Severity::negligible" data-element-kind="enumUsage">negligible</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC" data-element-kind="enumUsage">levelC</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::softwareFmeca::captureCinchWithInhibit" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SFM-09</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureCinchWithInhibit</span></td>
+<td class="sysml-cell" data-column="failureMode" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inhibit gate bypassed</span></td>
+<td class="sysml-cell" data-column="localEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">cinch motor runs before the envelope check</span></td>
+<td class="sysml-cell" data-column="endEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">bag torn on an over-envelope body</span></td>
+<td class="sysml-cell" data-column="detection" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::DetectionMeans::builtInTest" data-element-kind="enumUsage">builtInTest</span></td>
+<td class="sysml-cell" data-column="response" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFdir::FaultResponse::abortReturn" data-element-kind="enumUsage">abortReturn</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::Severity::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::softwareFmeca::autonomyAbortMissed" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SFM-10</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">autonomyAbortMissed</span></td>
+<td class="sysml-cell" data-column="failureMode" data-value-kind="string"><span class="sysml-value" data-value-kind="string">abort rule disabled by a parameter load</span></td>
+<td class="sysml-cell" data-column="localEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">keep-out breach continues</span></td>
+<td class="sysml-cell" data-column="endEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">collision with the target</span></td>
+<td class="sysml-cell" data-column="detection" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::DetectionMeans::navigationResidual" data-element-kind="enumUsage">navigationResidual</span></td>
+<td class="sysml-cell" data-column="response" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFdir::FaultResponse::abortReturn" data-element-kind="enumUsage">abortReturn</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::Severity::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::softwareFmeca::fdirMonitorMasked" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SFM-11</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">fdirMonitorMasked</span></td>
+<td class="sysml-cell" data-column="failureMode" data-value-kind="string"><span class="sysml-value" data-value-kind="string">monitor mask left set after a test</span></td>
+<td class="sysml-cell" data-column="localEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">fault not detected</span></td>
+<td class="sysml-cell" data-column="endEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">no abort on an Earth-corridor entry</span></td>
+<td class="sysml-cell" data-column="detection" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::DetectionMeans::groundTrending" data-element-kind="enumUsage">groundTrending</span></td>
+<td class="sysml-cell" data-column="response" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFdir::FaultResponse::safeMode" data-element-kind="enumUsage">safeMode</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::Severity::catastrophic" data-element-kind="enumUsage">catastrophic</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::softwareFmeca::modeManagerWrongMode" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SFM-12</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">modeManagerWrongMode</span></td>
+<td class="sysml-cell" data-column="failureMode" data-value-kind="string"><span class="sysml-value" data-value-kind="string">mode flag not cleared on exit</span></td>
+<td class="sysml-cell" data-column="localEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">the capture-mode inhibit is removed</span></td>
+<td class="sysml-cell" data-column="endEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">one of three cinch inhibits lost</span></td>
+<td class="sysml-cell" data-column="detection" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::DetectionMeans::telemetryLimit" data-element-kind="enumUsage">telemetryLimit</span></td>
+<td class="sysml-cell" data-column="response" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFdir::FaultResponse::safeMode" data-element-kind="enumUsage">safeMode</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::Severity::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::softwareFmeca::bootImageCorrupt" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SFM-13</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">bootImageCorrupt</span></td>
+<td class="sysml-cell" data-column="failureMode" data-value-kind="string"><span class="sysml-value" data-value-kind="string">image checksum mismatch after upload</span></td>
+<td class="sysml-cell" data-column="localEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">boot falls back to the safe image</span></td>
+<td class="sysml-cell" data-column="endEffect" data-value-kind="string"><span class="sysml-value" data-value-kind="string">mission software reverted until reload</span></td>
+<td class="sysml-cell" data-column="detection" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::DetectionMeans::builtInTest" data-element-kind="enumUsage">builtInTest</span></td>
+<td class="sysml-cell" data-column="response" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFdir::FaultResponse::retry" data-element-kind="enumUsage">retry</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSafety::Severity::minor" data-element-kind="enumUsage">minor</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="tree" data-query="TethysSoftwareAssuranceTooling::FaultTreeEvents">
+<caption class="sysml-caption">Premature-cinch fault tree events</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="probability">probability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::prematureCinchTree::controllerFiresInhibited" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">controllerFiresInhibited</span></td>
+<td class="sysml-cell" data-column="probability" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0.0001</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::prematureCinchTree::modeFlagStuck" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">modeFlagStuck</span></td>
+<td class="sysml-cell" data-column="probability" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0.001</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::prematureCinchTree::groundEnableWithoutApproval" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">groundEnableWithoutApproval</span></td>
+<td class="sysml-cell" data-column="probability" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0.001</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::prematureCinchTree::driverSpuriousFire" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">driverSpuriousFire</span></td>
+<td class="sysml-cell" data-column="probability" data-value-kind="real"><span class="sysml-value" data-value-kind="real">1e-06</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::prematureCinchTree::allInhibitsLost" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">allInhibitsLost</span></td>
+<td class="sysml-cell" data-column="probability"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::prematureCinchTree::cinchFiresPrematurely" data-element-kind="occurrenceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">cinchFiresPrematurely</span></td>
+<td class="sysml-cell" data-column="probability"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::prematureCinchTree::inhibitsLostGate" data-element-kind="connectionUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inhibitsLostGate</span></td>
+<td class="sysml-cell" data-column="probability"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::prematureCinchTree::topGate" data-element-kind="connectionUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">topGate</span></td>
+<td class="sysml-cell" data-column="probability"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::prematureCinchTree::withinBudget" data-element-kind="constraintUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">withinBudget</span></td>
+<td class="sysml-cell" data-column="probability"></td>
+</tr>
+</tbody>
+</table>
+</article>
+</body>
+</html>

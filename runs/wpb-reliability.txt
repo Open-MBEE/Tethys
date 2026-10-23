@@ -51,6 +51,8 @@ loaded 60 files:
   model/86-risk.sysml
   model/87-allocations-tooling.sysml
   model/87-allocations.sysml
+  model/88-software-assurance-tooling.sysml
+  model/88-software-assurance.sysml
   model/90-views.sysml
   model/91-documents.sysml
   model/92-layout.sysml
@@ -111,6 +113,8 @@ loaded 60 files:
 ✓ package TethysRisk
 ✓ package TethysAllocationQueries
 ✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout

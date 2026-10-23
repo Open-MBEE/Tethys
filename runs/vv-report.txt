@@ -51,6 +51,8 @@ loaded 60 files:
   model/86-risk.sysml
   model/87-allocations-tooling.sysml
   model/87-allocations.sysml
+  model/88-software-assurance-tooling.sysml
+  model/88-software-assurance.sysml
   model/90-views.sysml
   model/91-documents.sysml
   model/92-layout.sysml
@@ -111,6 +113,8 @@ loaded 60 files:
 ✓ package TethysRisk
 ✓ package TethysAllocationQueries
 ✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
@@ -165,27 +169,27 @@ Every requirement of the Tethys tree (L1 to L4, needs, objectives and success cr
 
 | shortName | name | Verification::method | Verification::level | Verification::stage | verifiedBy | cases | satisfiedBy | derivedFrom |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| TS-001 | captureEnvelope | test | system | qualification | CaptureEnvelopeTest | 1 | argent |  |
+| TS-001 | captureEnvelope | test | system | qualification | CaptureEnvelopeTest, CaptureSequenceTest | 2 | argent |  |
 | TS-002 | deliveredMass | analyze | mission | inFlight | DeliveryAnalysis | 1 | flight |  |
 | TS-003 | transferDuration | analyze | mission | qualification | PowerAnalysis | 1 | flight |  |
 | TS-004 | propellantCapacity | analyze | system | qualification | PropellantAnalysis | 1 | argent |  |
-| TS-005 | characterisationProducts | analyze | system | inFlight | CharacterisationAnalysis | 1 | flight |  |
+| TS-005 | characterisationProducts | analyze | system | inFlight | CharacterisationAnalysis, InspectorRelayTest | 2 | flight |  |
 | TS-006 | launchCompatibility | inspect | system | preLaunch | MassBudgetAnalysis | 1 |  |  |
-| TS-007 | deepSpaceLink | test | system | preLaunch | LinkBudgetTest | 1 |  |  |
-| TS-008 | earthImpactExclusion | analyze | mission | qualification | ReturnSafetyAnalysis | 1 | flight |  |
+| TS-007 | deepSpaceLink | test | system | preLaunch | LinkBudgetTest, SpaceLinkTest | 2 |  |  |
+| TS-008 | earthImpactExclusion | analyze | mission | qualification | ReturnSafetyAnalysis, FinalTargetingTest | 2 | flight |  |
 | TS-009 | droStability | analyze | mission | qualification | ReturnSafetyAnalysis | 1 | flight |  |
-| TS-010 | thrustRedundancy | inspect | system | qualification | RedundancyInspection, SepCommissioning | 2 | argent |  |
+| TS-010 | thrustRedundancy | inspect | system | qualification | RedundancyInspection, SepCommissioning, ThrustArcControlTest | 3 | argent |  |
 | TS-011 | deflectionMeasurement | analyze | mission | inFlight | DeflectionAnalysis | 1 | flight |  |
 | TS-012 | visitorDocking | demo | mission | inFlight | DockingDemo | 1 |  |  |
-| TS-013 | autonomousSurvival | test | system | qualification | AutonomyTest | 1 | flight |  |
+| TS-013 | autonomousSurvival | test | system | qualification | AutonomyTest, CaptureAbortTest, ModeManagementTest | 3 | flight |  |
 | TS-014 | proximityContactEnvironment | test | subsystem | qualification | ContactSpeedTest | 1 | argent |  |
-| TS-015 | faultResponse | test | system | qualification | FaultResponseTest | 1 | flight |  |
+| TS-015 | faultResponse | test | system | qualification | FaultResponseTest, FaultDetectionTest | 2 | flight |  |
 | TS-016 | massBudget | analyze | system | acceptance | MassBudgetAnalysis | 1 | argent |  |
-| TS-017 | captureQualification | test | subsystem | qualification | CaptureEnvelopeTest | 1 |  |  |
+| TS-017 | captureQualification | test | subsystem | qualification | CaptureEnvelopeTest, CaptureSequenceTest | 2 |  |  |
 | TS-018 | inspectorDeployment | test | system | acceptance | SeparationTest | 1 | flight |  |
 | TS-019 | despinCapacity | analyze | system | qualification | DespinAnalysis | 1 | argent |  |
 | TS-020 | groundCoverage | demo | system | preLaunch | GroundReadinessDemo | 1 | ground |  |
-| TS-021 | commandLatency | demo | system | preLaunch | GroundReadinessDemo | 1 | ground |  |
+| TS-021 | commandLatency | demo | system | preLaunch | GroundReadinessDemo, CommandRoutingTest | 2 | ground |  |
 | TS-022 | operatorWorkload | demo | system | preLaunch | GroundReadinessDemo | 1 | ground |  |
 |  | flightPerformanceRequirements | inspect | system | qualification | DocumentInspection | 1 |  |  |
 |  | flightSafetyAndAutonomyRequirements | inspect | system | qualification | DocumentInspection | 1 |  |  |
@@ -198,17 +202,17 @@ Every requirement of the Tethys tree (L1 to L4, needs, objectives and success cr
 
 | shortName | name | Verification::method | Verification::level | Verification::stage | verifiedBy | cases | satisfiedBy | derivedFrom |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| TA-001 | sepThrust | test | subsystem | qualification | SepHotFireTest, ThrustModelValidation, SepCommissioning | 3 | sep | transferDuration |
-| TA-002 | arrayPowerAtTarget | analyze | subsystem | qualification | PowerAnalysis | 1 | eps | transferDuration |
+| TA-001 | sepThrust | test | subsystem | qualification | SepHotFireTest, ThrustModelValidation, SepCommissioning, ThrustArcControlTest | 4 | sep | transferDuration |
+| TA-002 | arrayPowerAtTarget | analyze | subsystem | qualification | PowerAnalysis, PowerManagementTest | 2 | eps | transferDuration |
 | TA-003 | captureBagDiameter | test | subsystem | qualification | CaptureEnvelopeTest | 1 | captureSystem | captureEnvelope |
 | TA-004 | contactSpeedTolerance | test | subsystem | qualification | ContactSpeedTest | 1 | captureSystem | proximityContactEnvironment |
 | TA-005 | despinTorque | analyze | subsystem | qualification | DespinAnalysis | 1 | rcs | despinCapacity |
 | TA-006 | hydrazineLoad | inspect | subsystem | acceptance | DespinAnalysis | 1 | rcs | despinCapacity |
-| TA-007 | deepSpaceEirp | test | subsystem | acceptance | LinkBudgetTest | 1 | telecom | deepSpaceLink |
-| TA-008 | proximityLinkRange | test | subsystem | acceptance | InspectorAcceptanceTest, InspectorCommissioning | 2 | telecom | inspectorDeployment |
-| TA-009 | relativeNavigation | test | subsystem | qualification | ProximityNavigationTest | 1 | gnc | characterisationProducts |
-| TA-010 | faultDetectionLatency | test | subsystem | qualification | FaultResponseTest | 1 | cdh | faultResponse |
-| TA-011 | heatRejection | test | subsystem | qualification | ThermalBalanceTest | 1 | thermal | proximityContactEnvironment |
+| TA-007 | deepSpaceEirp | test | subsystem | acceptance | LinkBudgetTest, SpaceLinkTest | 2 | telecom | deepSpaceLink |
+| TA-008 | proximityLinkRange | test | subsystem | acceptance | InspectorAcceptanceTest, InspectorCommissioning, InspectorRelayTest | 3 | telecom | inspectorDeployment |
+| TA-009 | relativeNavigation | test | subsystem | qualification | ProximityNavigationTest, RelativeStateEstimationTest | 2 | gnc | characterisationProducts |
+| TA-010 | faultDetectionLatency | test | subsystem | qualification | FaultResponseTest, FaultDetectionTest | 2 | cdh | faultResponse |
+| TA-011 | heatRejection | test | subsystem | qualification | ThermalBalanceTest, ThermalControlTest | 2 | thermal | proximityContactEnvironment |
 | TA-012 | dockingLoads | analyze | subsystem | qualification | DockingLoadsAnalysis | 1 | structure | visitorDocking |
 | TA-013 | inspectorSeparation | test | subsystem | acceptance | SeparationTest | 1 | structure | inspectorDeployment |
 | TA-014 | spinStateSensing | analyze | subsystem | qualification | CharacterisationAnalysis | 1 | sensors | characterisationProducts |
@@ -220,15 +224,15 @@ Every requirement of the Tethys tree (L1 to L4, needs, objectives and success cr
 | TG-001 | stationAperture | inspect | subsystem | preLaunch | LinkBudgetTest | 1 | primaryStation | deepSpaceLink |
 | TG-002 | stationSpacing | inspect | subsystem | preLaunch | GroundInspection | 1 | network | deepSpaceLink |
 | TG-003 | rangingAccuracy | demo | subsystem | preLaunch | DeflectionAnalysis | 1 | fdf | deflectionMeasurement |
-| TG-004 | impactScreening | demo | subsystem | preLaunch | GroundProceduresDemo | 1 | fdf | earthImpactExclusion |
-| TG-005 | sequenceTurnaround | demo | subsystem | preLaunch | GroundProceduresDemo | 1 | moc | commandLatency |
-| TG-006 | monitoringAutomation | demo | subsystem | preLaunch | GroundProceduresDemo | 1 | moc | operatorWorkload |
+| TG-004 | impactScreening | demo | subsystem | preLaunch | GroundProceduresDemo, FinalTargetingTest | 2 | fdf | earthImpactExclusion |
+| TG-005 | sequenceTurnaround | demo | subsystem | preLaunch | GroundProceduresDemo, GroundCommandTwoStepTest | 2 | moc | commandLatency |
+| TG-006 | monitoringAutomation | demo | subsystem | preLaunch | GroundProceduresDemo, PassPlanningTest | 2 | moc | operatorWorkload |
 | TG-007 | scienceArchive | demo | subsystem | preLaunch | GroundProceduresDemo | 1 | sds | characterisationProducts |
 | TC-001 | thrusterUnitThrust | test | unit | qualification | SepHotFireTest | 1 | sep | sepThrust, transferDuration |
 | TC-002 | powerProcessingEfficiency | test | unit | acceptance | SepHotFireTest | 1 | sep | sepThrust, transferDuration |
-| TC-003 | cinchMotorTorque | test | unit | acceptance | CinchMotorTest | 1 | captureSystem | captureBagDiameter, captureEnvelope |
+| TC-003 | cinchMotorTorque | test | unit | acceptance | CinchMotorTest, CaptureSequenceTest | 2 | captureSystem | captureBagDiameter, captureEnvelope |
 | TC-004 | narrowAngleCameraSensitivity | test | unit | qualification | ProximityNavigationTest | 1 | sensors | relativeNavigation, characterisationProducts |
-| TC-005 | fdirTaskPeriod | test | unit | acceptance | FaultResponseTest | 1 | cdh | faultDetectionLatency, faultResponse |
+| TC-005 | fdirTaskPeriod | test | unit | acceptance | FaultResponseTest, FaultDetectionTest | 2 | cdh | faultDetectionLatency, faultResponse |
 | TC-006 | inspectorDetectorPitch | inspect | unit | acceptance | InspectorAcceptanceTest | 1 | payload | imagingResolution, characterisationProducts |
 
 ## Requirements without a verification case

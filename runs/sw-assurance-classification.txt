@@ -1,0 +1,202 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Query TethysSoftwareAssuranceTooling::ClassificationRows returned 35 rows
+  Columns: name, level, rationale
+  Row 1: TethysSoftwareAssurance::classificationRegister::captureControl
+    name = "captureControl"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+    rationale = "cinch firing (TH-003 bag tear if fired on an over-envelope body) and despin (TH-004); holds the arm, ground-enable and capture-mode inhibits of TethysFdir::ArmAndFireCaptureCinch"
+  Row 2: TethysSoftwareAssurance::classificationRegister::fdir
+    name = "fdir"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+    rationale = "the Earth-impact exclusion monitor and abort (TH-001), safe-mode requests on command loss, thruster and PPU fault recovery (TH-004, TH-005)"
+  Row 3: TethysSoftwareAssurance::classificationRegister::modeManagement
+    name = "modeManagement"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+    rationale = "safe-mode entry and the capture-mode inhibit (TH-003); dispatches every hazardous command (TH-001, TH-006)"
+  Row 4: TethysSoftwareAssurance::classificationRegister::gnc
+    name = "gnc"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+    rationale = "computes the lunar gravity-assist targeting burn (TH-001 erroneous final targeting) and the relative state in proximity operations (TH-002)"
+  Row 5: TethysSoftwareAssurance::classificationRegister::autonomy
+    name = "autonomy"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+    rationale = "autonomous abort to the 500 m hold point (TH-002, TS-803) and the on-board sequence interlock on uncleared thrust arcs (TH-001)"
+  Row 6: TethysSoftwareAssurance::classificationRegister::sepControl
+    name = "sepControl"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+    rationale = "thrust on the final targeting arc (TH-001) and the software inhibit on PPU high voltage before separation plus 600 s (TH-006, TS-807)"
+  Row 7: TethysSoftwareAssurance::classificationRegister::executive
+    name = "executive"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+    rationale = "schedules and isolates every level-A application; a scheduling failure removes every software control at once"
+  Row 8: TethysSoftwareAssurance::classificationRegister::boardSupport
+    name = "boardSupport"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+    rationale = "drives the remote interface units that actuate the cinch, the PPUs and the thrusters; the last software element before each hazardous actuator"
+  Row 9: TethysSoftwareAssurance::classificationRegister::cdh
+    name = "cdh"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+    rationale = "routes commands and telemetry; a failure loses contact until the redundant computer takes over, no hazard cause of its own"
+  Row 10: TethysSoftwareAssurance::classificationRegister::powerManagement
+    name = "powerManagement"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+    rationale = "load shedding keeps the battery above the floor; a failure degrades to safe mode, no hazard cause"
+  Row 11: TethysSoftwareAssurance::classificationRegister::telecom
+    name = "telecom"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+    rationale = "carries the ground enable and the ground authority of TS-802; a failure is a loss of contact handled by the command-loss timer"
+  Row 12: TethysSoftwareAssurance::classificationRegister::parameterBootUpdate
+    name = "parameterBootUpdate"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+    rationale = "a corrupted image or table is caught by the boot check and the safe image; no hazard cause"
+  Row 13: TethysSoftwareAssurance::classificationRegister::thermalControl
+    name = "thermalControl"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC
+    rationale = "heater failures are slow and trended by the ground"
+  Row 14: TethysSoftwareAssurance::classificationRegister::inspectorHandling
+    name = "inspectorHandling"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC
+    rationale = "the release is a two-step command; a relay failure loses survey products, not the mission"
+  Row 15: TethysSoftwareAssurance::classificationRegister::time
+    name = "time"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+    rationale = "time-tags every sequence and the inhibit hold timer of TS-807"
+  Row 16: TethysSoftwareAssurance::classificationRegister::events
+    name = "events"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+    rationale = "carries the fault events the supervisor acts on"
+  Row 17: TethysSoftwareAssurance::classificationRegister::tables
+    name = "tables"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+    rationale = "holds the monitor limits and the two-step window"
+  Row 18: TethysSoftwareAssurance::classificationRegister::dataStore
+    name = "dataStore"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+    rationale = "recorder for telemetry and images; loss is recoverable by replay"
+  Row 19: TethysSoftwareAssurance::classificationRegister::commandIngest
+    name = "commandIngest"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+    rationale = "checks the confirmation key of every hazardous command before dispatch"
+  Row 20: TethysSoftwareAssurance::classificationRegister::telemetryOutput
+    name = "telemetryOutput"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+    rationale = "the ground's view of the inhibit states and the fault log"
+  Row 21: TethysSoftwareAssurance::classificationRegister::housekeeping
+    name = "housekeeping"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC
+    rationale = "periodic health packets; loss is a degraded trend"
+  Row 22: TethysSoftwareAssurance::classificationRegister::scheduler
+    name = "scheduler"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+    rationale = "rate groups of the applications within the executive's partitions"
+  Row 23: TethysSoftwareAssurance::classificationRegister::bootUpdate
+    name = "bootUpdate"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+    rationale = "image checks and the fallback to the safe image"
+  Row 24: TethysSoftwareAssurance::classificationRegister::commandBuilder
+    name = "commandBuilder"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+    rationale = "the two-step rule for hazardous commands and the ground enable of the cinch; a human approves each step (TH-001, TH-003)"
+  Row 25: TethysSoftwareAssurance::classificationRegister::sequencer
+    name = "sequencer"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+    rationale = "refuses uncleared thrust arcs (FR-001) and keep-out violations (FR-002); the on-board interlock backs it"
+  Row 26: TethysSoftwareAssurance::classificationRegister::telemetryServer
+    name = "telemetryServer"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+    rationale = "the operators' view of inhibit states and alarms"
+  Row 27: TethysSoftwareAssurance::classificationRegister::flightDynamicsTool
+    name = "flightDynamicsTool"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+    rationale = "confirms the post-manoeuvre trajectory misses Earth before the final targeting enable (TS-802, TH-001)"
+  Row 28: TethysSoftwareAssurance::classificationRegister::passPlanner
+    name = "passPlanner"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC
+    rationale = "a bad plan loses a pass, caught by the next"
+  Row 29: TethysSoftwareAssurance::classificationRegister::dataArchive
+    name = "dataArchive"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelD
+    rationale = "archive and distribution; no operational decision depends on it in real time"
+  Row 30: TethysSoftwareAssurance::classificationRegister::anomalyTracker
+    name = "anomalyTracker"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelD
+    rationale = "record keeping for the anomaly board"
+  Row 31: TethysSoftwareAssurance::classificationRegister::proximityPlanner
+    name = "proximityPlanner"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC
+    rationale = "plans within the keep-out; the checklist is reviewed by the flight director before the capture go"
+  Row 32: TethysSoftwareAssurance::classificationRegister::flatsatSimulator
+    name = "flatsatSimulator"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC
+    rationale = "test equipment: a wrong result is caught by the independent model-in-the-loop comparison"
+  Row 33: TethysSoftwareAssurance::classificationRegister::captureRigSimulator
+    name = "captureRigSimulator"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC
+    rationale = "test equipment driving a rotating mock body on the ground"
+  Row 34: TethysSoftwareAssurance::classificationRegister::dynamicsSimulatorSoftware
+    name = "dynamicsSimulatorSoftware"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC
+    rationale = "test equipment"
+  Row 35: TethysSoftwareAssurance::classificationRegister::flightSoftwareSimulator
+    name = "flightSoftwareSimulator"
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC
+    rationale = "test equipment; sequence validation before uplink is backed by the flight-rule checker"

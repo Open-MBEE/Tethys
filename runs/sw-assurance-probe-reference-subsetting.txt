@@ -1,0 +1,6 @@
+✓ package F_SW801
+✓ Created instance of F_SW801::rowSub
+  ID: 1
+  Use %features F_SW801::rowSub to inspect
+sysml: F_SW801::rowSub.component.level: evaluation failed: uninitialized feature value: component
+exit 2
