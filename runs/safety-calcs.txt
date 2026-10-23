@@ -48,15 +48,6 @@
 ✓ package TethysImportedData
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
-✓ TethysSafety::EnvelopeMargin(10.0, 5.0)
-  = [0.5]
-  standing: value (observed: 1 run under reverse)
-✓ TethysSafety::EnvelopeMargin(10.0, 6.8)
-  = [0.32]
-  standing: value (observed: 1 run under reverse)
-✓ TethysSafety::EnvelopeMargin(10.0, 7.7)
-  = [0.22999999999999998]
-  standing: value (observed: 1 run under reverse)
 ✓ TethysSafety::Exp(-0.5)
   = [0.6065306648375496]
   standing: value (observed: 1 run under reverse)

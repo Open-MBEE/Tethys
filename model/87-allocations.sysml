@@ -224,7 +224,7 @@ package TethysAllocations {
         attribute hostOfRelativeState : String = "GNC processor";
         attribute hostOfFinalTargeting : String = "GNC processor";
         attribute hostOfAbort : String = "command and data handling processor";
-        attribute safetyCriticalSoftwareFunctions : Natural = 2;
+        attribute safetyCriticalSoftwareFunctions : Natural = 3;
     }
 
     // ---------------------------------------------------------------- views

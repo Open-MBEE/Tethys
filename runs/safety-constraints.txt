@@ -52,7 +52,13 @@
   standing: holds (observed: 1 run under reverse)
 ✓ Constraint TethysSafety::reliabilityBudget::reliabilityAllocationMet passed
   standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysSafety::envelopeCases::smallCaseFits passed
+  standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysSafety::envelopeCases::nominalCaseFits passed
+  standing: holds (observed: 1 run under reverse)
 ✓ Constraint TethysSafety::envelopeCases::largeCaseFits passed
+  standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysSafety::envelopeCases::largeCaseMarginAsSized passed
   standing: holds (observed: 1 run under reverse)
 ✓ Constraint TethysSafety::endOfLifeSafety::disposalPropellantSufficient passed
   standing: holds (observed: 1 run under reverse)

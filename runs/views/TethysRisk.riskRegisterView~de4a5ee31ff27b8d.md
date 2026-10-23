@@ -1,4 +1,4 @@
-<!-- TethysRisk::riskRegisterView — table rendering (view def GridView) -->
+<!-- TethysRisk::riskRegisterView — table rendering (render asElementTable) -->
 | Element | Kind | Type | Declared in |
 | --- | --- | --- | --- |
 | TethysRisk::riskRegister::earthImpactRisk | part | RiskItem |  |
