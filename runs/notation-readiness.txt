@@ -52,10 +52,11 @@
   ID: 1
   Use %features TethysNotation::baselineReadiness to inspect
 error: feature value baselineReadiness.bodyCount: usage captureOperation: performed action capture of object #93: invoke action CommitDecision: initialize action: initialize attributes: eval attribute default go: type mismatch: operator '<=' is not defined for a sequence and a quantity; DataFunctions::'<=' takes one DataValue per operand
-✓ assert constraint inspectorDecisionIsExclusive holds (on TethysNotation::baselineReadiness ID: 1)
+✓ assert constraint characterisationChosen holds (on TethysNotation::baselineReadiness ID: 1)
+✓ assert constraint berthIsExclusive holds (on TethysNotation::baselineReadiness ID: 1)
 ✓ assert constraint carriedMeansLifted holds (on TethysNotation::baselineReadiness ID: 1)
 ✓ assert constraint spareIsReal holds (on TethysNotation::baselineReadiness ID: 1)
-✓ assert constraint windowIsOrdered holds (on TethysNotation::baselineReadiness ID: 1)
+✓ assert constraint windowIsUsable holds (on TethysNotation::baselineReadiness ID: 1)
 ✓ assert constraint identityChecks holds (on TethysNotation::baselineReadiness ID: 1)
 ✓ assert constraint captureEnvelope holds (on TethysNotation::baselineReadiness.configuration ID: 2)
 ✓ assert constraint spinWithinGrappleRate holds (on TethysNotation::baselineReadiness.configuration ID: 2)
@@ -64,7 +65,7 @@ error: feature value baselineReadiness.bodyCount: usage captureOperation: perfor
 ✓ assert constraint thrustTimeFits holds (on TethysNotation::baselineReadiness.configuration ID: 2)
 ✓ assert constraint launcherLifts holds (on TethysNotation::baselineReadiness.configuration ID: 2)
 ✓ assert constraint stringsMatchArray holds (on TethysNotation::baselineReadiness.configuration ID: 2)
-✓ TethysNotation::baselineReadiness is valid: all 12 assertions hold
+✓ TethysNotation::baselineReadiness is valid: all 13 assertions hold
   standing: holds (observed: 1 run under reverse)
 ✓ TethysNotation::SpinPeriodBelieved(null, 252.0)
   = [252.0]
@@ -75,7 +76,7 @@ error: feature value baselineReadiness.bodyCount: usage captureOperation: perfor
 ✓ TethysNotation::SpareIsUnpaired(3)
   = [true]
   standing: value (observed: 1 run under reverse)
-✓ TethysNotation::InspectorDecisionConsistent(true, false)
+✓ TethysNotation::BerthIsExclusive(false, true)
   = [true]
   standing: value (observed: 1 run under reverse)
 ✓ TethysNotation::HeavierBodyNeedsMoreXenon(808000.0, 8400.0)

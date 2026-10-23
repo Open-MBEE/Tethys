@@ -147,11 +147,21 @@ package TethysVariants {
         attribute powerPerString : PowerValue = argent.sep.maximumPower / argent.sep.operatingThrusters {
             doc /* Argent's per-string input power, 40 kW over three strings. */
         }
-        attribute arrayPowerAtTarget : PowerValue = arrayPower * SolarFlux(amaranth.orbit.semiMajorAxisAu) / SolarFlux(1.0) {
-            doc /* Array power at the target's heliocentric distance, inverse-square from 1 AU. */
+        attribute arrayPowerAtAphelion : PowerValue = arrayPower * SolarFlux(amaranth.orbit.semiMajorAxisAu * (1.0 + amaranth.orbit.eccentricity)) / SolarFlux(1.0) {
+            doc /* Array power at the target orbit's aphelion, a(1 + e) = 1.065 AU, inverse-square
+                 * from 1 AU: the least power the cruise ever has. */
         }
-        attribute propulsionPower : PowerValue = operatingThrusters * powerPerString {
+        attribute ratedPropulsionPower : PowerValue = operatingThrusters * powerPerString {
             doc /* Power the operating strings draw at full throttle. */
+        }
+        attribute minimumStringPower : PowerValue = (0.6 * powerPerString.num) [kW] {
+            doc /* Lowest throttle point of a string: below 60 % of rated power the grids lose
+                 * beam focus. */
+        }
+        attribute propulsionPower : PowerValue = if arrayPowerAtAphelion < ratedPropulsionPower ? arrayPowerAtAphelion else ratedPropulsionPower {
+            doc /* Power the strings actually run at: full throttle when the array covers it,
+                 * throttled to the array at aphelion otherwise, so thrust and thrust time are
+                 * the worst-case values. */
         }
         attribute thrust : ForceValue = SepThrust(propulsionPower.num * 1000.0, argent.sep.specificImpulse.num, 0.65) [N] {
             doc /* Thrust at full throttle from the TethysEnvironment thrust model. */
@@ -202,8 +212,9 @@ package TethysVariants {
             target.rotationPeriod >= minimumRotationPeriod
         }
         assert constraint powerCloses {
-            doc /* The array at the target's distance powers every operating string. */
-            arrayPowerAtTarget >= propulsionPower
+            doc /* The array at aphelion keeps every operating string above its minimum
+                 * throttle point. */
+            arrayPowerAtAphelion >= operatingThrusters * minimumStringPower
         }
         assert constraint returnCloses {
             doc /* The return xenon buys the required Δv with the body attached. */
