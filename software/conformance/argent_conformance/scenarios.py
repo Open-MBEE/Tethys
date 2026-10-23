@@ -12,9 +12,17 @@ class Run:
     machine: str            # state machine definition usage the pinned run names
     performer: str          # object the machine runs on
     advance: int            # horizon in seconds (one host major frame per second)
+    stim_dir: str = ""      # directory of the host scenario file (default software/flight/scenarios)
+    pinned: str = ""        # pinned run whose Current state: lines are the oracle (default: name)
 
 
 RUNS = (
+    # The verification cases' own run: the Earth-impact exclusion scenario of TethysFdir driven
+    # into the host from software/conformance/scenarios (pinned run fdir-earth-impact-aborted).
+    Run("vc-final-targeting", "TethysFdir::earthImpactScenario", "TethysFdir::FdirTug::fdir",
+        "TethysFdir::earthImpactScenario.tug.fdir", 2592000, stim_dir="software/conformance/scenarios", pinned="fdir-earth-impact-aborted"),
+    Run("vc-thrust-arc", "TethysFlightBehaviour::softwareThrusterFault", "TethysFlightBehaviour::SepControlSoftware::controller",
+        "TethysFlightBehaviour::softwareThrusterFault.tug.cdh.software.sepControl", 1300000, stim_dir="software/conformance/scenarios", pinned="sw-sep-string-restarting"),
     Run("sw-mode-manager-early-ops", "TethysFlightBehaviour::softwareNominalFlight", "TethysFlightBehaviour::ModeManagementSoftware::modes",
         "TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement", 17280),
     Run("sw-mode-manager-thrust-arc", "TethysFlightBehaviour::softwareNominalFlight", "TethysFlightBehaviour::ModeManagementSoftware::modes",
@@ -53,6 +61,9 @@ MACHINE_MAP = {
     ("modeManagement", "modes"): "TugModes",
     ("modeManagement", "dispatcher"): "ModeManagementDispatcher",
     ("fdir", "supervisor"): "FdirSupervisor",
+    ("tug", "fdir"): "FdirSupervisor",
+    ("fdir", "fdir"): "FdirSupervisor",  # the FdirTug's own exhibit: the traced object is the state usage itself
+    ("tug", "modes"): "TugModes",
     ("fdir", "responseRelay"): "FdirResponseRelay",
     ("sepControl", "controller"): "SepStringController",
     ("powerManagement", "manager"): "PowerManager",
@@ -71,6 +82,8 @@ HOST_MACHINES = ("SepStringController", "PowerManager", "ThermalController", "Te
 
 # Divergences adjudicated in docs/findings/WP-SW-13.md; keyed by (run name or "*", host machine).
 ADJUDICATED: dict[tuple[str, str], str] = {
+    ("vc-final-targeting", "TugModes"): "F-SW1305: the pinned run instantiates a second FdirSupervisor for the scenario's general "
+                                        "`tug` part that no uplink reaches; its command-loss timer requests safe mode at t=604800",
     ("*", "InspectorHandler"): "F-SW1304: the host's on-board sequence 3 sends InspectorCheckoutGo/InspectorReleaseGo/"
                                "InspectorImagingGo as step items; the model's InspectorReleaseSequence (61) sends nothing",
 }

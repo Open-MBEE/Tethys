@@ -31,7 +31,7 @@ def run_host(run, out_dir: str | None = None) -> tuple[str, float, int]:
     out_dir = out_dir or os.path.join(OUT, "trace")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, run.name + ".host.jsonl")
-    cmd = [HOST, "--scenario", os.path.join(SCENARIOS, run.name + ".stim"), "--major-frames", str(run.advance),
+    cmd = [HOST, "--scenario", os.path.join(os.path.join(ROOT, run.stim_dir) if run.stim_dir else SCENARIOS, run.name + ".stim"), "--major-frames", str(run.advance),
            "--fast-forward", "--trace", path]
     t0 = time.monotonic()
     proc = subprocess.run(cmd, capture_output=True, text=True)

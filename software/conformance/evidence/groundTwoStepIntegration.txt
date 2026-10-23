@@ -1,0 +1,11 @@
+case groundTwoStepIntegration : GroundCommandTwoStepTest
+level: flightSoftwareInTheLoop; test bed as planned: trajectoryTool; run on: flight host (argent_host --trace), model (sysml-grpc ExecuteState trace, Model.eval) and the ground suite
+tool pin: OpenSysML 5cd37f288fef171d62737d6045f4caff772b6014
+criterion: PassIf(sequenceRefusedOnRuleViolation and secondApprovalRequired)
+inputs: TethysGroundSoftware::CommandBuilder::resetWithOneApproval and thrustArcRequest; TethysGroundSoftware::nominalUplink and relayConflictUplink exchanges
+  ground forge: resetWithOneApproval -> AWAITING_SECOND_APPROVAL (approvals_sufficient=false); thrustArcRequest -> ACCEPTED
+  model ValidateCommand: resetWithOneApproval -> awaitingSecondApproval; thrustArcRequest -> accepted
+  nominalUplink: ground cleared (cleared for uplink); model pinned run cleared (cleared for uplink), live CheckFlightRules allPassed=true
+  relayConflictUplink: ground refused (FR-001 thrust during a relay pass); model pinned run refused (FR-001 thrust during a relay pass), live CheckFlightRules allPassed=false
+  sequenceRefusedOnRuleViolation: true; secondApprovalRequired: true
+verdict: pass

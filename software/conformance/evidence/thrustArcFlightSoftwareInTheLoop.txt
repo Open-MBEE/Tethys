@@ -1,0 +1,12 @@
+case thrustArcFlightSoftwareInTheLoop : ThrustArcControlTest
+level: flightSoftwareInTheLoop; test bed as planned: trajectoryTool; run on: flight host (argent_host --trace), model (sysml-grpc ExecuteState trace, Model.eval) and the ground suite
+tool pin: OpenSysML 5cd37f288fef171d62737d6045f4caff772b6014
+criterion: PassIf(stringLossHandled and thrustHeldDuringRelay)
+inputs: software/conformance/scenarios/vc-thrust-arc.stim (sw-sep-string-restarting run on to 1300000 s: ThrusterFlameout 2 at t=872640 during the first arc, restartDelay 2 h) and sw-fdir-thruster-restarting; a thrust-arc sequence planned into a relay pass
+  host  SepStringController: t=0 off; t=8640 standby; t=440640 thrusting; t=872640 restarting; t=879840 thrusting
+  model SepStringController: t=0 off; t=8640 standby; t=440640 thrusting; t=872640 restarting; t=879840 thrusting
+  host  FdirSupervisor: t=0 armed | nominal | nominal | nominal | nominal | monitoring; t=872640 armed | restarting | nominal | nominal | nominal | monitoring
+  model FdirSupervisor: t=0 armed | nominal | nominal | nominal | nominal | monitoring; t=872640 armed | restarting | nominal | nominal | nominal | monitoring
+  stringLossHandled: host=true model=true (controller restarts the string and thrusts again; FDIR agrees: true)
+  thrustHeldDuringRelay: ground FR-001 noThrustDuringRelay=false model CheckFlightRules=false -> held=true
+verdict: pass

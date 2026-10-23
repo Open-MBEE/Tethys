@@ -87,8 +87,10 @@ class Rebuild:
         self.active = [a for a in self.active if a != gone and not a.startswith(gone + "::")]
 
 
-def rebuild(events, pinned_final: dict[str, str] | None = None) -> dict[str, Rebuild]:
-    """Rebuild every mapped machine of a traced run; keys are host machine names."""
+def rebuild(events, pinned_final: dict[str, str] | None = None, preferred: str | None = None) -> dict[str, Rebuild]:
+    """Rebuild every mapped machine of a traced run; keys are host machine names. When a run
+    traces two instances of one machine (the scenario's general part and its specialisation both
+    exhibit it), the instance whose usage is ``preferred`` (the run's own) is the one rebuilt."""
     machines: dict[str, Rebuild] = {}
     pending: dict[str, float] = {}
 
@@ -108,13 +110,16 @@ def rebuild(events, pinned_final: dict[str, str] | None = None) -> dict[str, Reb
                     next_transition_target[i] = later.to_state
                     break
     seen_elements: dict[str, str] = {}
+    for ev in events:
+        name, element = key(ev)
+        if name is not None and (name not in seen_elements or element == preferred):
+            seen_elements[name] = element
     for i, ev in enumerate(events):
         name, element = key(ev)
         if name is None:
             continue
-        if name in seen_elements and seen_elements[name] != element:
-            continue  # the system-level copy of a machine the software also runs
-        seen_elements.setdefault(name, element)
+        if seen_elements[name] != element:
+            continue  # the system-level copy of a machine the software also runs, or the general part's
         rb = machines.setdefault(name, Rebuild(TABLES[name]))
         t = t_of(ev)
         before = rb.config()

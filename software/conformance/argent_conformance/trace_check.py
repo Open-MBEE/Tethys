@@ -13,7 +13,7 @@ from .scenarios import ADJUDICATED, HOST_MACHINES, RUNS
 
 def pinned_final(run) -> dict[str, str]:
     """``Current state:`` lines of the pinned run, keyed by host machine name where known."""
-    path = os.path.join(ROOT, "runs", run.name + ".txt")
+    path = os.path.join(ROOT, "runs", (run.pinned or run.name) + ".txt")
     out = {}
     if os.path.exists(path):
         with open(path) as f:
@@ -29,6 +29,16 @@ def fmt_t(t: float) -> str:
     return f"{t:.0f}" if t.is_integer() else f"{t:.6f}".rstrip("0").rstrip(".")
 
 
+RESULTS: dict = {}  # run name -> (HostTrace, model rebuild, ExecuteState result), for the case tier
+
+
+def results_for(name: str, bridge, measurements):
+    if name not in RESULTS:
+        run = next(r for r in RUNS if r.name == name)
+        compare_run(run, bridge, measurements)
+    return RESULTS[name]
+
+
 def compare_run(run, bridge, measurements) -> tuple[str, dict]:
     stats = {"machines": 0, "agree": 0, "diverge": 0, "host_only": 0, "changes": 0, "transitions": 0, "accepts": 0}
     lines = [f"run {run.name}: scenario {run.scenario}, machine {run.machine} on {run.performer}, horizon {run.advance} s"]
@@ -40,7 +50,8 @@ def compare_run(run, bridge, measurements) -> tuple[str, dict]:
     with measurements.measure(f"model {run.name}") as m:
         result, _ = execute(bridge, run)
         m.output_bytes = sum(len(ev.text or "") for ev in result["trace"])
-    model = rebuild(result["trace"])
+    model = rebuild(result["trace"], preferred=run.machine)
+    RESULTS[run.name] = (host, model, result)
     lines.append(f"model: {len(result['trace'])} trace events, {result.get('trace_dropped', 0)} dropped, final time {fmt_t(result['final_time'])} s, "
                  f"states visited {len(result['states_visited'])}")
     for name in HOST_MACHINES:

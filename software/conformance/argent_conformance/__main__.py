@@ -10,14 +10,15 @@ import os
 import shutil
 import sys
 
-from . import EXPECTED, OUT
+from . import EVIDENCE, EXPECTED, OUT
 from .measure import Measurements
 
-TIERS = ("trace", "calc")
+TIERS = ("trace", "calc", "cases")
 
 
 def compare_tree(tier: str, write: bool) -> list[str]:
-    fresh, committed = os.path.join(OUT, "expected", tier), os.path.join(EXPECTED, tier)
+    fresh = os.path.join(OUT, "expected", tier)
+    committed = EVIDENCE if tier == "cases" else os.path.join(EXPECTED, tier)
     problems = []
     if write:
         os.makedirs(committed, exist_ok=True)
@@ -28,7 +29,7 @@ def compare_tree(tier: str, write: bool) -> list[str]:
     for fn in names:
         a, b = os.path.join(fresh, fn), os.path.join(committed, fn)
         if not os.path.exists(b):
-            problems.append(f"{tier}/{fn}: produced but not committed under software/conformance/expected/")
+            problems.append(f"{tier}/{fn}: produced but not committed under {os.path.relpath(committed, os.path.dirname(EXPECTED))}/")
         elif not os.path.exists(a):
             problems.append(f"{tier}/{fn}: committed but no longer produced")
         elif not filecmp.cmp(a, b, shallow=False):
@@ -59,6 +60,10 @@ def main(argv=None) -> int:
             from . import calc_check
             print(calc_check.run_all(bridge, m), end="")
             problems += compare_tree("calc", opts.write_expected)
+        if "cases" in tiers:
+            from . import case_check
+            print(case_check.run_all(bridge, m), end="")
+            problems += compare_tree("cases", opts.write_expected)
     finally:
         bridge.close()
     report = m.report()
