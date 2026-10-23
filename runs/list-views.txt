@@ -123,6 +123,11 @@ view      matrix           TethysAllocations::AllocationMatrixView
 view      matrix           TethysAllocations::functionAllocationMatrix
 view      matrix           TethysAllocations::requirementAllocationMatrix
 view      table            TethysRisk::RiskRegisterView
+view      tree             TethysRisk::RiskRegisterView::asElementTable::columnView
+view      table            TethysRisk::RiskRegisterView::asElementTable::columnView::ratingColumn
+view      table            TethysRisk::RiskRegisterView::asElementTable::columnView::scoreColumn
+view      table            TethysRisk::RiskRegisterView::asElementTable::columnView::statusColumn
+view      table            TethysRisk::ScoreColumn
 view      table            TethysRisk::riskRegisterView
 view      tree             TethysVerification::VvMatrix
 view      tree             TethysVerification::l1Matrix

@@ -284,6 +284,8 @@ package TethysSafety {
             }
         }
 
+        #causation connect earthImpactByTarget.returnTrajectoryInsideCorridor to earthImpactByTarget.earthImpact;
+        #causation connect earthImpactByTarget.lossOfThrustOnFinalArc to earthImpactByTarget.earthImpact;
         #causation connect earthImpactByTarget.erroneousFinalTargeting to earthImpactByTarget.earthImpact;
         #causation connect tugTargetCollision.relativeNavigationLoss to tugTargetCollision.structuralBreach;
         #causation connect tugTargetCollision.thrusterStuckOpen to tugTargetCollision.structuralBreach;
@@ -298,21 +300,29 @@ package TethysSafety {
     calc def EnvelopeMargin {
         doc /* Capture-envelope margin for a target of the given diameter: the fraction of the
              * bag's maximum body diameter left over. Negative means the body does not fit. */
-        in maximumBodyDiameterM : Real;
-        in targetDiameterM : Real;
-        return : Real = (maximumBodyDiameterM - targetDiameterM) / maximumBodyDiameterM;
+        in maximumBodyDiameter : LengthValue;
+        in targetDiameter : LengthValue;
+        return : Real = (maximumBodyDiameter - targetDiameter) / maximumBodyDiameter;
     }
 
     part envelopeCases {
-        doc /* The small, nominal and large target cases against the Phase B bag (10 m). The large
-             * case is the characterisation envelope's upper bound, not the nominal 6.8 m body. */
+        doc /* The small, nominal and large target cases against the bag as sized on the tug
+             * (argent.captureSystem.maximumBodyDiameter). The nominal case is Amaranth's mean
+             * diameter; the large case is the characterisation envelope's upper bound. */
+        attribute bagDiameter : LengthValue = argent.captureSystem.maximumBodyDiameter;
         attribute smallTargetDiameter : LengthValue = 5.0 [m];
-        attribute nominalTargetDiameter : LengthValue = argent.captureSystem.maximumBodyDiameter * 0.68;
+        attribute nominalTargetDiameter : LengthValue = TethysEnvironment::amaranth.meanDiameter;
         attribute largeTargetDiameter : LengthValue = 7.7 [m];
-        attribute smallMargin : Real = EnvelopeMargin(10.0, 5.0);
-        attribute nominalMargin : Real = EnvelopeMargin(10.0, 6.8);
-        attribute largeMargin : Real = EnvelopeMargin(10.0, 7.7);
+        attribute smallMargin : Real = EnvelopeMargin(bagDiameter, smallTargetDiameter);
+        attribute nominalMargin : Real = EnvelopeMargin(bagDiameter, nominalTargetDiameter);
+        attribute largeMargin : Real = EnvelopeMargin(bagDiameter, largeTargetDiameter);
+        assert constraint smallCaseFits { smallMargin >= 0.0 }
+        assert constraint nominalCaseFits { nominalMargin >= 0.0 }
         assert constraint largeCaseFits { largeMargin >= 0.0 }
+        assert constraint largeCaseMarginAsSized {
+            doc /* With the 10 m Phase B bag the large case leaves 23 percent; a smaller bag moves this. */
+            largeMargin >= 0.20
+        }
     }
 
     // ---------------------------------------------------------------- FMECA (SE-172, SE-174, SE-177)
@@ -349,8 +359,8 @@ package TethysSafety {
     }
 
     calc def Reliability {
-        doc /* Constant-failure-rate reliability R = e^(−t/MTTF) for exposure t and mean time to
-             * failure MTTF, both in the same unit; the hook the budgets package rolls up. */
+        doc /* Constant-failure-rate reliability R = e^(−t/MTTF) from the ratio MTTF/t of two
+             * durations; the hook the budgets package rolls up. */
         in mttfOverExposure : Real;
         return : Real = Exp(-1.0 / mttfOverExposure);
     }
@@ -670,16 +680,16 @@ package TethysSafety {
              * over the nominal mission (thruster strings over the 1 100 thrust days), the series string of the single-string subsystems and the
              * three-of-four SEP set. The budgets package rolls these into the mission reliability
              * figure; the allocation here is the Phase B starting point. */
-        attribute missionHours : Real = 2200.0 * 24.0;
-        attribute thrustHours : Real = 1100.0 * 24.0;
-        attribute structureMttfHours : Real = 2.0e6;
-        attribute epsMttfHours : Real = 6.0e5;
-        attribute cdhMttfHours : Real = 5.0e5;
-        attribute thrusterStringMttfHours : Real = 2.0e5;
-        attribute structureReliability : Real = Reliability(structureMttfHours / missionHours);
-        attribute epsReliability : Real = Reliability(epsMttfHours / missionHours);
-        attribute cdhReliability : Real = Reliability(cdhMttfHours / missionHours);
-        attribute sepReliability : Real = KOutOfNReliability3of4(Reliability(thrusterStringMttfHours / thrustHours));
+        attribute missionDuration : DurationValue = 2200.0 [d];
+        attribute thrustDuration : DurationValue = 1100.0 [d];
+        attribute structureMttf : DurationValue = 2.0e6 [h];
+        attribute epsMttf : DurationValue = 6.0e5 [h];
+        attribute cdhMttf : DurationValue = 5.0e5 [h];
+        attribute thrusterStringMttf : DurationValue = 2.0e5 [h];
+        attribute structureReliability : Real = Reliability(structureMttf / missionDuration);
+        attribute epsReliability : Real = Reliability(epsMttf / missionDuration);
+        attribute cdhReliability : Real = Reliability(cdhMttf / missionDuration);
+        attribute sepReliability : Real = KOutOfNReliability3of4(Reliability(thrusterStringMttf / thrustDuration));
         attribute busReliability : Real = SeriesReliability(structureReliability, epsReliability, cdhReliability);
         attribute missionReliability : Real = busReliability * sepReliability;
         attribute requiredMissionReliability : Real = 0.70;

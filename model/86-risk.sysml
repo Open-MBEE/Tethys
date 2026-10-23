@@ -12,6 +12,7 @@ package TethysRisk {
     private import SI::*;
     private import RiskMetadata::*;
     private import StandardViewDefinitions::*;
+    private import Views::*;
     private import TethysTug::*;
     private import TethysMission::*;
     private import TethysRequirements::*;
@@ -272,8 +273,13 @@ package TethysRisk {
         }
 
         assert constraint noUnownedRedRisk {
-            doc /* Every red risk has a mitigation plan under way. */
+            doc /* Every red risk in the register has a mitigation plan under way. */
             not (earthImpactRisk.rating == Rating::red and earthImpactRisk.status == RiskStatus::open)
+            and not (targetSizeRisk.rating == Rating::red and targetSizeRisk.status == RiskStatus::open)
+            and not (thrusterLifeRisk.rating == Rating::red and thrusterLifeRisk.status == RiskStatus::open)
+            and not (proximityOperationsRisk.rating == Rating::red and proximityOperationsRisk.status == RiskStatus::open)
+            and not (xenonMarginRisk.rating == Rating::red and xenonMarginRisk.status == RiskStatus::open)
+            and not (captureBagTechnology.rating == Rating::red and captureBagTechnology.status == RiskStatus::open)
         }
     }
 
@@ -380,9 +386,22 @@ package TethysRisk {
 
     // ---------------------------------------------------------------- views
 
+    view def ScoreColumn :> GridView {
+        doc /* A column of the register table: one attribute of the risk item in the row. */
+        filter @SysML::AttributeUsage;
+    }
+
     view def RiskRegisterView :> GridView {
-        doc /* The register as a grid, one row per risk item. */
+        doc /* The register as an element table, one row per risk item, with the score and the
+             * rating as columns (Views::asElementTable with its columnViews). */
         filter @SysML::PartUsage;
+        render asElementTable {
+            view :>> columnView {
+                view scoreColumn : ScoreColumn { expose RiskItem::score; }
+                view ratingColumn : ScoreColumn { expose RiskItem::rating; }
+                view statusColumn : ScoreColumn { expose RiskItem::status; }
+            }
+        }
     }
 
     view riskRegisterView : RiskRegisterView {
