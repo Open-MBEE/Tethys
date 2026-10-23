@@ -15,7 +15,7 @@ import tempfile
 from dataclasses import dataclass, field
 
 KEEP_KEYS = (
-    "@type", "@id", "declaredName", "sysx:sourceLine", "sysx:memberIndex", "owner",
+    "@type", "@id", "declaredName", "declaredShortName", "sysx:sourceLine", "sysx:memberIndex", "owner",
     "value", "referent", "operator", "argument", "redefines", "source", "target",
     "triggerAction", "guardExpression", "effectAction", "payloadParameter", "payloadArgument",
     "receiverArgument", "succession", "isVariant", "direction", "typedFeature", "type",
@@ -78,7 +78,7 @@ class ModelIndex:
                 v = obj[k]
                 if k == "sysx:sourceText" and obj.get("@type") not in TEXT_TYPES:
                     continue
-                props[k] = _ref(v) if k not in ("declaredName", "body", "sysx:sourceText", "operator", "kind", "direction", "visibility", "isVariant", "@type", "@id", "sysx:sourceLine", "sysx:memberIndex") else v
+                props[k] = _ref(v) if k not in ("declaredName", "declaredShortName", "body", "sysx:sourceText", "operator", "kind", "direction", "visibility", "isVariant", "@type", "@id", "sysx:sourceLine", "sysx:memberIndex") else v
         el = Element(eid, obj.get("@type", ""), obj.get("declaredName"), obj.get("sysx:sourceLine", 0), obj.get("sysx:memberIndex", -1), props.get("owner"), props)
         self.elements[eid] = el
         if el.owner:

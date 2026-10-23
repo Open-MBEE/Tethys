@@ -32,6 +32,21 @@ jobs:
         run: make tools
       - name: Regenerate the software tables, compile the C self-test, run the Python tests
         run: make software-check
+  software-ground-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '21' }
+      - uses: actions/setup-go@v5
+        with: { go-version: '1.25' }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: sudo apt-get install -y --no-install-recommends graphviz z3
+      - name: Build OpenSysML at the pinned commit and fetch the pinned pilot validators
+        run: make tools
+      - name: Ground software — pytest for meridian over the pinned model service, go vet/gofmt/test
+        run: make software-ground-check
 
   software-flight-check:
     runs-on: ubuntu-latest
