@@ -175,6 +175,9 @@ package TethysSequence {
         in xenonPerArc : MassValue;
         in xenonBefore : MassValue;
         out xenonAfter : MassValue = xenonBefore - xenonPerArc;
+        first start;
+        then action burn accept after arcDuration;
+        then done;
     }
 
     action def DespinSequence {
