@@ -33,6 +33,8 @@
 ✓ package TethysFlightDictionary
 ✓ package TethysFlightBehaviour
 ✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysGroundSoftware

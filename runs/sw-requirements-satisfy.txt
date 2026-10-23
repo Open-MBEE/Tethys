@@ -1,0 +1,143 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ satisfy commandIngest by argentSoftware.cdh.software.commandIngest holds (on TethysFlightSoftware::argentSoftware.cdh.software.commandIngest ID: 33)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy hazardousTwoStep by argentSoftware.cdh.software.commandIngest holds (on TethysFlightSoftware::argentSoftware.cdh.software.commandIngest ID: 33)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy telemetryRatesByMode by argentSoftware.cdh.software.telecom holds (on TethysFlightSoftware::argentSoftware.cdh.software.telecom ID: 43)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy eventLogging by argentSoftware.cdh.software.events holds (on TethysFlightSoftware::argentSoftware.cdh.software.events ID: 30)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy parameterTables by argentSoftware.cdh.software.tables holds (on TethysFlightSoftware::argentSoftware.cdh.software.tables ID: 31)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy timeCorrelation by argentSoftware.cdh.software.time holds (on TethysFlightSoftware::argentSoftware.cdh.software.time ID: 29)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy imageIntegrity by argentSoftware.cdh.software.bootUpdate holds (on TethysFlightSoftware::argentSoftware.cdh.software.bootUpdate ID: 37)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy bootFallback by softwareNominalFlight.tug.cdh.software.parameterBootUpdate holds (on TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.parameterBootUpdate ID: 693)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy partitionIsolation by argentSoftware.cdh.software.executive holds (on TethysFlightSoftware::argentSoftware.cdh.software.executive ID: 28)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy processorMemoryReserve by softwareProcessorBudget holds (on TethysFlightTiming::softwareProcessorBudget ID: 717)
+  standing: holds (observed: 1 run under reverse)
+✗ satisfy busReserve by softwareBusBudget fails (on TethysFlightTiming::softwareBusBudget ID: 884)
+  Required condition evaluated to false: utilisation <= 1.0 - reserve
+  standing: violated (witnessed: 1 run under reverse)
+✓ satisfy busReserveCoast by softwareBusBudgetCoast holds (on TethysFlightTiming::softwareBusBudgetCoast ID: 899)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy faultDetectionChain by argentLatency.faultDetection holds (on TethysFlightTiming::argentLatency.faultDetection ID: 901)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy safeConfigurationLatency by argentLatency.safeConfiguration holds (on TethysFlightTiming::argentLatency.safeConfiguration ID: 902)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy fdirTaskRate by argentTiming.platformSchedule.fdirTask holds (on TethysFlightTiming::argentTiming.platformSchedule.fdirTask ID: 727)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy commandDispatchLatency by argentLatency.commandDispatch holds (on TethysFlightTiming::argentLatency.commandDispatch ID: 903)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy telemetrySampleLatency by argentLatency.telemetrySample holds (on TethysFlightTiming::argentLatency.telemetrySample ID: 904)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy safeModeEntry by argentSoftware.cdh.software.modeManagement holds (on TethysFlightSoftware::argentSoftware.cdh.software.modeManagement ID: 48)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy modeTransitions by argentSoftware.cdh.software.modeManagement holds (on TethysFlightSoftware::argentSoftware.cdh.software.modeManagement ID: 48)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy sequencingEngine by argentSoftware.cdh.software.autonomy holds (on TethysFlightSoftware::argentSoftware.cdh.software.autonomy ID: 46)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy redundancyManagement by argentSoftware.cdh holds (on TethysFlightSoftware::argentSoftware.cdh ID: 9)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy heartbeatFailover by softwareNominalFlight.tug.cdh holds (on TethysFlightBehaviour::softwareNominalFlight.tug.cdh ID: 655)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy busMessaging by argentSoftware.cdh.software.softwareBus holds (on TethysFlightSoftware::argentSoftware.cdh.software.softwareBus ID: 1021)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy dataStoreRetention by argentSoftware.cdh.software.dataStore holds (on TethysFlightSoftware::argentSoftware.cdh.software.dataStore ID: 32)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy telemetryOutput by argentSoftware.cdh.software.telemetryOutput holds (on TethysFlightSoftware::argentSoftware.cdh.software.telemetryOutput ID: 34)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy housekeepingSampling by argentSoftware.cdh.software.housekeeping holds (on TethysFlightSoftware::argentSoftware.cdh.software.housekeeping ID: 35)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy schedulerCapacity by argentSoftware.cdh.software.scheduler holds (on TethysFlightSoftware::argentSoftware.cdh.software.scheduler ID: 36)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy boardSupportWatchdog by argentSoftware.cdh.software.boardSupport holds (on TethysFlightSoftware::argentSoftware.cdh.software.boardSupport ID: 27)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy cdhApplication by argentSoftware.cdh.software.cdh holds (on TethysFlightSoftware::argentSoftware.cdh.software.cdh ID: 38)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy gncApplication by argentSoftware.cdh.software.gnc holds (on TethysFlightSoftware::argentSoftware.cdh.software.gnc ID: 39)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy sepControlApplication by argentSoftware.cdh.software.sepControl holds (on TethysFlightSoftware::argentSoftware.cdh.software.sepControl ID: 40)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy powerManagementApplication by argentSoftware.cdh.software.powerManagement holds (on TethysFlightSoftware::argentSoftware.cdh.software.powerManagement ID: 41)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy thermalControlApplication by argentSoftware.cdh.software.thermalControl holds (on TethysFlightSoftware::argentSoftware.cdh.software.thermalControl ID: 42)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy telecomApplication by argentSoftware.cdh.software.telecom holds (on TethysFlightSoftware::argentSoftware.cdh.software.telecom ID: 43)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy inspectorHandlingApplication by argentSoftware.cdh.software.inspectorHandling holds (on TethysFlightSoftware::argentSoftware.cdh.software.inspectorHandling ID: 44)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy captureControlApplication by argentSoftware.cdh.software.captureControl holds (on TethysFlightSoftware::argentSoftware.cdh.software.captureControl ID: 45)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy autonomyApplication by argentSoftware.cdh.software.autonomy holds (on TethysFlightSoftware::argentSoftware.cdh.software.autonomy ID: 46)
+  standing: holds (observed: 1 run under reverse)
+✗ satisfy fdirApplication by argentSoftware.cdh.software.fdir fails (on TethysFlightSoftware::argentSoftware.cdh.software.fdir ID: 47)
+  Required condition evaluated to false: size(app.activeModes) == size(allFlightModes) and app.level == FdirLevel::system and app.rate >= 1.0 / fdirTaskPeriod.taskPeriod
+  standing: violated (witnessed: 1 run under reverse)
+✓ satisfy modeManagementApplication by argentSoftware.cdh.software.modeManagement holds (on TethysFlightSoftware::argentSoftware.cdh.software.modeManagement ID: 48)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy parameterBootUpdateApplication by argentSoftware.cdh.software.parameterBootUpdate holds (on TethysFlightSoftware::argentSoftware.cdh.software.parameterBootUpdate ID: 49)
+  standing: holds (observed: 1 run under reverse)
+exit 1

@@ -1,0 +1,90 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ satisfy commandValidation by meridianOperationsSuite.moc.commandBuilder holds (on TethysGroundSoftware::meridianOperationsSuite.moc.commandBuilder ID: 3)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy hazardousApproval by meridianOperationsSuite.moc.commandBuilder holds (on TethysGroundSoftware::meridianOperationsSuite.moc.commandBuilder ID: 3)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy sequenceClearance by meridianOperationsSuite.moc.sequencer holds (on TethysGroundSoftware::meridianOperationsSuite.moc.sequencer ID: 4)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy telemetryDecommutation by meridianOperationsSuite.moc.telemetryServer holds (on TethysGroundSoftware::meridianOperationsSuite.moc.telemetryServer ID: 7)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy limitAlarming by meridianOperationsSuite.moc.telemetryServer holds (on TethysGroundSoftware::meridianOperationsSuite.moc.telemetryServer ID: 7)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy trendingAutomation by meridianOperationsSuite.moc.telemetryServer holds (on TethysGroundSoftware::meridianOperationsSuite.moc.telemetryServer ID: 7)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy flightDynamicsProducts by meridianOperationsSuite.fdf.flightDynamicsTool holds (on TethysGroundSoftware::meridianOperationsSuite.fdf.flightDynamicsTool ID: 19)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy passPlanningVolume by meridianOperationsSuite.moc.passPlanner holds (on TethysGroundSoftware::meridianOperationsSuite.moc.passPlanner ID: 9)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy archiveRetention by meridianOperationsSuite.sds.dataArchive holds (on TethysGroundSoftware::meridianOperationsSuite.sds.dataArchive ID: 21)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy anomalyDisposition by meridianOperationsSuite.moc.anomalyTracker holds (on TethysGroundSoftware::meridianOperationsSuite.moc.anomalyTracker ID: 15)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy proximityGoNoGo by meridianOperationsSuite.moc.proximityPlanner holds (on TethysGroundSoftware::meridianOperationsSuite.moc.proximityPlanner ID: 17)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy simulatorFidelity by meridianOperationsSuite.testBeds.flatsat holds (on TethysGroundSoftware::meridianOperationsSuite.testBeds.flatsat ID: 23)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy simulatorFidelity by meridianOperationsSuite.testBeds.trajectoryTool holds (on TethysGroundSoftware::meridianOperationsSuite.testBeds.trajectoryTool ID: 26)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy simulatorFidelity by meridianOperationsSuite.testBeds.dynamicsSimulator holds (on TethysGroundSoftware::meridianOperationsSuite.testBeds.dynamicsSimulator ID: 25)
+  standing: holds (observed: 1 run under reverse)
+✓ satisfy simulatorFidelity by meridianOperationsSuite.testBeds.captureRig holds (on TethysGroundSoftware::meridianOperationsSuite.testBeds.captureRig ID: 24)
+  standing: holds (observed: 1 run under reverse)

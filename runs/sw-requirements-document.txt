@@ -1,0 +1,203 @@
+loaded 60 files:
+  model/00-tethys.sysml
+  model/01-environment.sysml
+  model/02-mission.sysml
+  model/03-interfaces.sysml
+  model/04-requirements.sysml
+  model/05-tug.sysml
+  model/06-inspector.sysml
+  model/07-target.sysml
+  model/08-launch.sysml
+  model/09-ground.sysml
+  model/10-system.sysml
+  model/20-stakeholders.sysml
+  model/21-requirements-l2.sysml
+  model/22-requirements-l3-l4.sysml
+  model/23-verification.sysml
+  model/24-verification-tooling.sysml
+  model/30-margin-policy.sysml
+  model/31-tug-structure.sysml
+  model/32-budgets.sysml
+  model/40-inspector.sysml
+  model/41-capture-system.sysml
+  model/42-proximity-ops.sysml
+  model/50-ground.sysml
+  model/51-icds.sysml
+  model/52-link-budgets.sysml
+  model/53-operations.sysml
+  model/54-icds-tooling.sysml
+  model/60-modes.sysml
+  model/61-sequence.sysml
+  model/62-fdir.sysml
+  model/63-flight-software.sysml
+  model/64-flight-dictionary-tooling.sysml
+  model/64-flight-dictionary.sysml
+  model/65-flight-behaviour.sysml
+  model/66-flight-timing.sysml
+  model/67-software-requirements-tooling.sysml
+  model/67-software-requirements.sysml
+  model/68-software-icds-tooling.sysml
+  model/68-software-icds.sysml
+  model/69-ground-software.sysml
+  model/70-analyses.sysml
+  model/71-trades.sysml
+  model/72-montecarlo.sysml
+  model/73-dynamics.sysml
+  model/74-analyses-tooling.sysml
+  model/80-variants.sysml
+  model/81-physics.kerml
+  model/82-notation-sweep.sysml
+  model/85-safety.sysml
+  model/86-risk.sysml
+  model/87-allocations-tooling.sysml
+  model/87-allocations.sysml
+  model/90-views.sysml
+  model/91-documents.sysml
+  model/92-layout.sysml
+  model/93-views-tooling.sysml
+  model/95-as-built.sysml
+  model/96-imported-data.sysml
+  model/97-disposal.sysml
+  model/99-house-rules.sysml
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+# Tethys software requirements
+
+The flight software requirements (TF-) on the Argent Flight Executive, its core services and applications, and the ground software requirements (TM-) on the Meridian Operations Suite; each row derives from the system rows it refines and names the software element that satisfies it; the verdicts of the constraints are the pinned satisfaction runs.
+
+*Software requirements: derivation sources and satisfiers*
+
+| shortName | name | Verification::method | Verification::level | derivedFrom | satisfiedBy | satisfiers |
+| --- | --- | --- | --- | --- | --- | --- |
+| TF-001 | commandIngest | test | software | dictionaryConsistent, commandLatency | commandIngest | 1 |
+| TF-002 | hazardousTwoStep | test | software | dictionaryConsistent, noThrustDuringRelay | commandIngest | 1 |
+| TF-003 | telemetryRatesByMode | test | software | deepSpaceLink, groundCoverage | telecom | 1 |
+| TF-004 | eventLogging | test | software | autonomousSurvival, faultDetectionLatency | events | 1 |
+| TF-005 | parameterTables | test | software | dictionaryConsistent, fdirTaskPeriod | tables | 1 |
+| TF-006 | timeCorrelation | test | software | deepSpaceLink, rangingAccuracy | time | 1 |
+| TF-007 | imageIntegrity | test | software | autonomousSurvival | bootUpdate | 1 |
+| TF-008 | bootFallback | test | software | autonomousSurvival | parameterBootUpdate | 1 |
+| TF-009 | partitionIsolation | analyze | software | faultResponse, processorBudgetCloses | executive | 1 |
+| TF-010 | processorMemoryReserve | analyze | software | processorBudgetCloses | softwareProcessorBudget | 1 |
+| TF-011 | busReserve | analyze | software | busBudgetCloses | softwareBusBudget | 1 |
+| TF-012 | busReserveCoast | analyze | software | busBudgetCloses | softwareBusBudgetCoast | 1 |
+| TF-013 | faultDetectionChain | analyze | software | faultDetectionLatency, latencyBudgetCloses | faultDetection | 1 |
+| TF-014 | safeConfigurationLatency | analyze | software | faultResponse, latencyBudgetCloses | safeConfiguration | 1 |
+| TF-015 | fdirTaskRate | analyze | software | fdirTaskPeriod | fdirTask | 1 |
+| TF-016 | commandDispatchLatency | analyze | software | commandLatency, latencyBudgetCloses | commandDispatch | 1 |
+| TF-017 | telemetrySampleLatency | analyze | software | deepSpaceLink, latencyBudgetCloses | telemetrySample | 1 |
+| TF-018 | safeModeEntry | test | software | autonomousSurvival, faultResponse | modeManagement | 1 |
+| TF-019 | modeTransitions | test | software | autonomousSurvival | modeManagement | 1 |
+| TF-020 | sequencingEngine | test | software | commandLatency, noThrustDuringRelay, batteryDepthOfDischarge | autonomy | 1 |
+| TF-021 | redundancyManagement | test | software | autonomousSurvival | cdh | 1 |
+| TF-022 | heartbeatFailover | test | software | autonomousSurvival, faultResponse | cdh | 1 |
+| TF-023 | busMessaging | test | software | busBudgetCloses | softwareBus | 1 |
+| TF-024 | dataStoreRetention | analyze | software | deepSpaceLink, autonomousSurvival | dataStore | 1 |
+| TF-025 | telemetryOutput | test | software | dictionaryConsistent, deepSpaceLink | telemetryOutput | 1 |
+| TF-026 | housekeepingSampling | test | software | deepSpaceLink | housekeeping | 1 |
+| TF-027 | schedulerCapacity | test | software | commandLatency | scheduler | 1 |
+| TF-028 | boardSupportWatchdog | test | software | autonomousSurvival, faultResponse | boardSupport | 1 |
+| TF-030 | cdhApplication | test | software | autonomousSurvival | cdh | 1 |
+| TF-031 | gncApplication | test | software | faultResponse | gnc | 1 |
+| TF-032 | sepControlApplication | test | software | noThrustDuringRelay | sepControl | 1 |
+| TF-033 | powerManagementApplication | test | software | batteryDepthOfDischarge | powerManagement | 1 |
+| TF-034 | thermalControlApplication | test | software | autonomousSurvival | thermalControl | 1 |
+| TF-035 | telecomApplication | test | software | deepSpaceLink | telecom | 1 |
+| TF-036 | inspectorHandlingApplication | test | software | proximityContactEnvironment | inspectorHandling | 1 |
+| TF-037 | captureControlApplication | test | software | faultResponse, proximityContactEnvironment | captureControl | 1 |
+| TF-038 | autonomyApplication | test | software | commandLatency | autonomy | 1 |
+| TF-039 | fdirApplication | test | software | faultDetectionLatency, fdirTaskPeriod | fdir | 1 |
+| TF-040 | modeManagementApplication | test | software | faultResponse | modeManagement | 1 |
+| TF-041 | parameterBootUpdateApplication | test | software | autonomousSurvival | parameterBootUpdate | 1 |
+| TM-001 | commandValidation | analyze | software | commandValidation, dictionaryConsistent, commandLatency | commandBuilder | 1 |
+| TM-002 | hazardousApproval | demo | software | commandValidation, noThrustDuringRelay, operatorWorkload | commandBuilder | 1 |
+| TM-003 | sequenceClearance | demo | software | sequenceClearance, commandLatency, noThrustDuringRelay, batteryDepthOfDischarge, sequenceTurnaround | sequencer | 1 |
+| TM-004 | telemetryDecommutation | analyze | software | dictionaryDrivenTelemetry, dictionaryConsistent | telemetryServer | 1 |
+| TM-005 | limitAlarming | analyze | software | dictionaryDrivenTelemetry, batteryDepthOfDischarge, monitoringAutomation | telemetryServer | 1 |
+| TM-006 | trendingAutomation | analyze | software | monitoringAutomation, operatorWorkload | telemetryServer | 1 |
+| TM-007 | flightDynamicsProducts | analyze | software | autonomousSurvival, rangingAccuracy, impactScreening | flightDynamicsTool | 1 |
+| TM-008 | passPlanningVolume | analyze | software | plannedPassesFitTheLink, deepSpaceLink, groundCoverage | passPlanner | 1 |
+| TM-009 | archiveRetention | analyze | software | scienceArchive | dataArchive | 1 |
+| TM-010 | anomalyDisposition | demo | software | operatorWorkload, operationsReadiness | anomalyTracker | 1 |
+| TM-011 | proximityGoNoGo | demo | software | approachKeepOut, sunExclusion, proximityContactEnvironment | proximityPlanner | 1 |
+| TM-012 | simulatorFidelity | test | software | captureQualification | flatsat, trajectoryTool, dynamicsSimulator, captureRig | 4 |
+
+## Coverage gates
+
+*Software requirements without a derivation source (expected empty)*
+
+| shortName | name |
+| --- | --- |
+
+*Software requirements without a satisfier (expected empty)*
+
+| shortName | name |
+| --- | --- |
+
+*Flight software elements satisfying no requirement (expected empty)*
+
+| qualifiedName |
+| --- |
+
+*Meridian suite elements satisfying no requirement (expected empty)*
+
+| qualifiedName |
+| --- |
