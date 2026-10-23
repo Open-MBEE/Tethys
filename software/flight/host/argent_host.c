@@ -123,7 +123,7 @@ static argent_us_t next_deadline(const argent_system_t *sys, argent_us_t limit)
     for (unsigned i = 0; i < SM_INDEX_COUNT; i++) {
         argent_us_t d = sm_next_deadline(&sys->sm[i]);
         /* A deadline already in the past belongs to a machine whose task is not scheduled in the current mode; it fires when the task next runs. */
-        if (d > now && d < next) next = d;
+        if (d >= now && d < next) next = d;
     }
     return next;
 }
