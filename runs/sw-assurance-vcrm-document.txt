@@ -1,0 +1,209 @@
+loaded 60 files:
+  model/00-tethys.sysml
+  model/01-environment.sysml
+  model/02-mission.sysml
+  model/03-interfaces.sysml
+  model/04-requirements.sysml
+  model/05-tug.sysml
+  model/06-inspector.sysml
+  model/07-target.sysml
+  model/08-launch.sysml
+  model/09-ground.sysml
+  model/10-system.sysml
+  model/20-stakeholders.sysml
+  model/21-requirements-l2.sysml
+  model/22-requirements-l3-l4.sysml
+  model/23-verification.sysml
+  model/24-verification-tooling.sysml
+  model/30-margin-policy.sysml
+  model/31-tug-structure.sysml
+  model/32-budgets.sysml
+  model/40-inspector.sysml
+  model/41-capture-system.sysml
+  model/42-proximity-ops.sysml
+  model/50-ground.sysml
+  model/51-icds.sysml
+  model/52-link-budgets.sysml
+  model/53-operations.sysml
+  model/54-icds-tooling.sysml
+  model/60-modes.sysml
+  model/61-sequence.sysml
+  model/62-fdir.sysml
+  model/63-flight-software.sysml
+  model/64-flight-dictionary-tooling.sysml
+  model/64-flight-dictionary.sysml
+  model/65-flight-behaviour.sysml
+  model/66-flight-timing.sysml
+  model/68-software-icds-tooling.sysml
+  model/68-software-icds.sysml
+  model/69-ground-software.sysml
+  model/70-analyses.sysml
+  model/71-trades.sysml
+  model/72-montecarlo.sysml
+  model/73-dynamics.sysml
+  model/74-analyses-tooling.sysml
+  model/80-variants.sysml
+  model/81-physics.kerml
+  model/82-notation-sweep.sysml
+  model/85-safety.sysml
+  model/86-risk.sysml
+  model/87-allocations-tooling.sysml
+  model/87-allocations.sysml
+  model/88-software-assurance-tooling.sysml
+  model/88-software-assurance.sysml
+  model/90-views.sysml
+  model/91-documents.sysml
+  model/92-layout.sysml
+  model/93-views-tooling.sysml
+  model/95-as-built.sysml
+  model/96-imported-data.sysml
+  model/97-disposal.sysml
+  model/99-house-rules.sysml
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+# Argent flight software and Meridian verification cross-reference matrix
+
+Every software verification case with its level, test bed, as-run verdict and evidence, the system requirements it verifies and the software functions it exercises. Planned cases have not run.
+
+*Verification cross-reference matrix*
+
+| name | SoftwareVerification::level | SoftwareVerification::testBed | SoftwareVerification::verdict | SoftwareVerification::evidence | Verification::method | verifies | rows |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| relativeStateUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
+| relativeStateDynamics | integration | dynamicsSimulator | planned | not yet run | test |  | 0 |
+| finalTargetingUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
+| finalTargetingFlightSoftwareInTheLoop | flightSoftwareInTheLoop | trajectoryTool | planned | not yet run | test |  | 0 |
+| finalTargetingModel | modelInTheLoop | executable model | pass | fdir-earth-impact-aborted, fdir-earth-impact-abort-hold pinned runs | analyze |  | 0 |
+| captureAbortUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
+| captureAbortFlatsat | flatsat | flatsat | planned | not yet run | test |  | 0 |
+| captureAbortModel | modelInTheLoop | executable model | pass | sw-autonomy-engine pinned run: storedSequences 1 to 6 | analyze |  | 0 |
+| commandRoutingIntegration | integration | software integration bench | planned | not yet run | test |  | 0 |
+| commandRoutingHardwareInTheLoop | hardwareInTheLoop | flatsat | planned | not yet run | test |  | 0 |
+| commandRoutingModel | modelInTheLoop | executable model | pass | sw-failover pinned run, advanced 600 s | analyze |  | 0 |
+| thrustArcUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
+| thrustArcFlightSoftwareInTheLoop | flightSoftwareInTheLoop | trajectoryTool | planned | not yet run | test |  | 0 |
+| thrustArcModel | modelInTheLoop | executable model | pass | sw-sep-string-restarting, fdir-thruster-string-lost, wpd-flight-rules pinned runs | analyze |  | 0 |
+| powerManagementUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
+| powerManagementFlatsat | flatsat | flatsat | planned | not yet run | test |  | 0 |
+| thermalControlUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
+| thermalControlFlatsat | flatsat | flatsat | planned | not yet run | test |  | 0 |
+| spaceLinkUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
+| spaceLinkHardwareInTheLoop | hardwareInTheLoop | flatsat | planned | not yet run | test |  | 0 |
+| inspectorRelayUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
+| inspectorRelayIntegration | integration | software integration bench | planned | not yet run | test |  | 0 |
+| captureSequenceUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
+| captureSequenceFlightSoftwareInTheLoop | flightSoftwareInTheLoop | captureRig | planned | not yet run | test |  | 0 |
+| captureSequenceHardwareInTheLoop | hardwareInTheLoop | captureRig | planned | not yet run | test |  | 0 |
+| captureSequenceModel | modelInTheLoop | executable model | pass | fdir-inhibit-chain-check, fdir-inhibit-chain-held, sw-capture-controller-check, sw-capture-controller-check-inhibited pinned runs | analyze |  | 0 |
+| faultDetectionUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
+| faultDetectionFlightSoftwareInTheLoop | flightSoftwareInTheLoop | trajectoryTool | planned | not yet run | test |  | 0 |
+| faultDetectionFlatsat | flatsat | flatsat | planned | not yet run | test |  | 0 |
+| faultDetectionModel | modelInTheLoop | executable model | pass | fdir-command-loss-expired, fdir-command-loss-modes-safe, sw-fdir-command-loss-expired, sw-fdir-thruster-restarting pinned runs | analyze |  | 0 |
+| modeManagementUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
+| modeManagementFlatsat | flatsat | flatsat | planned | not yet run | test |  | 0 |
+| modeManagementModel | modelInTheLoop | executable model | pass | sw-mode-manager-safe, sw-mode-manager-recovered, sw-mode-manager-full-flight, modes-tug-full-flight pinned runs | analyze |  | 0 |
+| bootAndParameterUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
+| bootAndParameterHardwareInTheLoop | hardwareInTheLoop | flatsat | planned | not yet run | test |  | 0 |
+| bootAndParameterModel | modelInTheLoop | executable model | pass | sw-boot, sw-boot-sequence pinned runs | analyze |  | 0 |
+| hazardousCommandInhibitModel | modelInTheLoop | executable model | pass | sw-assurance-coverage pinned run | analyze |  | 0 |
+| hazardousCommandInhibitFlatsat | flatsat | flatsat | planned | not yet run | test |  | 0 |
+| groundTwoStepModel | modelInTheLoop | executable model | pass | sw-ground-sequencer-check pinned run: verdict refused, reason FR-001 | analyze |  | 0 |
+| groundTwoStepIntegration | flightSoftwareInTheLoop | trajectoryTool | planned | not yet run | test |  | 0 |
+| passPlanningIntegration | integration | operations centre integration | planned | not yet run | test |  | 0 |
+
+*Software functions and their cases*
+
+| name | verifiedBy | cases | hostedOn |
+| --- | --- | --- | --- |
+| estimateRelativeState | verifiedFunctions, verifiedFunctions | 2 | gnc, gnc, gncPartition, prime, redundant |
+| planFinalTargeting | verifiedFunctions, verifiedFunctions, verifiedFunctions | 3 | gnc, gnc, gncPartition, prime, redundant |
+| abortCapture | verifiedFunctions, verifiedFunctions | 2 | cdh, autonomy, autonomyPartition, prime, redundant |
+| routeCommandsAndTelemetry | verifiedFunctions, verifiedFunctions, verifiedFunctions, verifiedFunctions, verifiedFunctions | 5 | cdh, cdh, platformPartition, prime, redundant |
+| controlThrustArc | verifiedFunctions, verifiedFunctions, verifiedFunctions | 3 | sep, sepControl, subsystemPartition, prime, redundant |
+| manageBatteryAndLoads | verifiedFunctions, verifiedFunctions | 2 | eps, powerManagement, subsystemPartition, prime, redundant |
+| regulateHeaterZones | verifiedFunctions, verifiedFunctions | 2 | thermal, thermalControl, subsystemPartition, prime, redundant |
+| manageSpaceLink | verifiedFunctions, verifiedFunctions | 2 | telecom, telecom, subsystemPartition, prime, redundant |
+| relayInspector | verifiedFunctions, verifiedFunctions | 2 | cdh, inspectorHandling, payloadPartition, prime, redundant |
+| controlCaptureSequence | verifiedFunctions, verifiedFunctions, verifiedFunctions, verifiedFunctions | 4 | captureSystem, captureControl, autonomyPartition, prime, redundant |
+| executeOnBoardSequences | verifiedFunctions | 1 | cdh, autonomy, autonomyPartition, prime, redundant |
+| detectAndRecoverFaults | verifiedFunctions, verifiedFunctions, verifiedFunctions, verifiedFunctions | 4 | cdh, fdir, platformPartition, prime, redundant |
+| manageModes | verifiedFunctions, verifiedFunctions, verifiedFunctions | 3 | cdh, modeManagement, platformPartition, prime, redundant |
+| manageParametersAndImages | verifiedFunctions, verifiedFunctions, verifiedFunctions | 3 | cdh, parameterBootUpdate, platformPartition, prime, redundant |
+
+*Software functions without a case (expected empty)*
+
+| name |
+| --- |
+
+*Cases passed at this baseline*
+
+| name | SoftwareVerification::level | SoftwareVerification::evidence |
+| --- | --- | --- |
+| finalTargetingModel | modelInTheLoop | fdir-earth-impact-aborted, fdir-earth-impact-abort-hold pinned runs |
+| captureAbortModel | modelInTheLoop | sw-autonomy-engine pinned run: storedSequences 1 to 6 |
+| commandRoutingModel | modelInTheLoop | sw-failover pinned run, advanced 600 s |
+| thrustArcModel | modelInTheLoop | sw-sep-string-restarting, fdir-thruster-string-lost, wpd-flight-rules pinned runs |
+| captureSequenceModel | modelInTheLoop | fdir-inhibit-chain-check, fdir-inhibit-chain-held, sw-capture-controller-check, sw-capture-controller-check-inhibited pinned runs |
+| faultDetectionModel | modelInTheLoop | fdir-command-loss-expired, fdir-command-loss-modes-safe, sw-fdir-command-loss-expired, sw-fdir-thruster-restarting pinned runs |
+| modeManagementModel | modelInTheLoop | sw-mode-manager-safe, sw-mode-manager-recovered, sw-mode-manager-full-flight, modes-tug-full-flight pinned runs |
+| bootAndParameterModel | modelInTheLoop | sw-boot, sw-boot-sequence pinned runs |
+| hazardousCommandInhibitModel | modelInTheLoop | sw-assurance-coverage pinned run |
+| groundTwoStepModel | modelInTheLoop | sw-ground-sequencer-check pinned run: verdict refused, reason FR-001 |

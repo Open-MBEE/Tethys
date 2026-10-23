@@ -1,4 +1,4 @@
-loaded 58 files:
+loaded 60 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -49,6 +49,8 @@ loaded 58 files:
   model/86-risk.sysml
   model/87-allocations-tooling.sysml
   model/87-allocations.sysml
+  model/88-software-assurance-tooling.sysml
+  model/88-software-assurance.sysml
   model/90-views.sysml
   model/91-documents.sysml
   model/92-layout.sysml
@@ -107,6 +109,8 @@ loaded 58 files:
 ✓ package TethysRisk
 ✓ package TethysAllocationQueries
 ✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
@@ -196,7 +200,7 @@ Every message between the flight applications and services is a space packet on 
 | mechanismRiuRegisters | TethysSoftwareIcds::RemoteInterfaceUnitRegisterIcd | Register access to the mechanism remote interface unit. |
 | spaceLinkProfile | TethysSoftwareIcds::SpaceLinkProfileIcd | MLS-2 between the telecom application and the Meridian packet gateway. |
 | inspectorRelayProfile | TethysSoftwareIcds::InspectorRelaySoftwareIcd | The relay profile between inspector handling and Wren. |
-loaded 58 files:
+loaded 60 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -247,6 +251,8 @@ loaded 58 files:
   model/86-risk.sysml
   model/87-allocations-tooling.sysml
   model/87-allocations.sysml
+  model/88-software-assurance-tooling.sysml
+  model/88-software-assurance.sysml
   model/90-views.sysml
   model/91-documents.sysml
   model/92-layout.sysml
@@ -305,6 +311,8 @@ loaded 58 files:
 ✓ package TethysRisk
 ✓ package TethysAllocationQueries
 ✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
@@ -346,7 +354,7 @@ loaded 58 files:
 | checksumFailure | TethysSoftwareIcds::BusErrorResponse | requestRetry |
 | retryExhausted | TethysSoftwareIcds::BusErrorResponse | raiseFault |
 | unknownAddress | TethysSoftwareIcds::BusErrorResponse | discardAndCount |
-loaded 58 files:
+loaded 60 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -397,6 +405,8 @@ loaded 58 files:
   model/86-risk.sysml
   model/87-allocations-tooling.sysml
   model/87-allocations.sysml
+  model/88-software-assurance-tooling.sysml
+  model/88-software-assurance.sysml
   model/90-views.sysml
   model/91-documents.sysml
   model/92-layout.sysml
@@ -455,6 +465,8 @@ loaded 58 files:
 ✓ package TethysRisk
 ✓ package TethysAllocationQueries
 ✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
@@ -537,7 +549,7 @@ loaded 58 files:
 | dockedPassiveRates | dockedPassive | 32000 \[bit/s\] | 2000 \[bit/s\] | 60 \[s\] |
 | disposalRates | disposal | 8000 \[bit/s\] | 2000 \[bit/s\] | 60 \[s\] |
 | abortHoldRates | abortHold | 2000 \[bit/s\] | 2000 \[bit/s\] | 60 \[s\] |
-loaded 58 files:
+loaded 60 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -588,6 +600,8 @@ loaded 58 files:
   model/86-risk.sysml
   model/87-allocations-tooling.sysml
   model/87-allocations.sysml
+  model/88-software-assurance-tooling.sysml
+  model/88-software-assurance.sysml
   model/90-views.sysml
   model/91-documents.sysml
   model/92-layout.sysml
@@ -646,6 +660,8 @@ loaded 58 files:
 ✓ package TethysRisk
 ✓ package TethysAllocationQueries
 ✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
@@ -680,7 +696,7 @@ loaded 58 files:
 | acknowledgementTimeout | ISQBase::DurationValue | 2 \[s\] |
 | retryLimit | ScalarValues::Natural | 3 |
 | maximumRelayLatency | ISQBase::DurationValue | 5 \[s\] |
-loaded 58 files:
+loaded 60 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -731,6 +747,8 @@ loaded 58 files:
   model/86-risk.sysml
   model/87-allocations-tooling.sysml
   model/87-allocations.sysml
+  model/88-software-assurance-tooling.sysml
+  model/88-software-assurance.sysml
   model/90-views.sysml
   model/91-documents.sysml
   model/92-layout.sysml
@@ -789,6 +807,8 @@ loaded 58 files:
 ✓ package TethysRisk
 ✓ package TethysAllocationQueries
 ✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout

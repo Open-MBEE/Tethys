@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Argent flight software assurance report</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysSoftwareAssuranceTooling::SoftwareAssuranceReport">
+<h1 class="sysml-title">Argent flight software assurance report</h1>
+<table class="sysml-table" data-content="table" data-name="classification" data-query="TethysSoftwareAssuranceTooling::ClassificationRows">
+<caption class="sysml-caption">Software classification register</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="level">level</th>
+<th scope="col" data-column="rationale">rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::captureControl" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureControl</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">cinch firing (TH-003 bag tear if fired on an over-envelope body) and despin (TH-004); holds the arm, ground-enable and capture-mode inhibits of TethysFdir::ArmAndFireCaptureCinch</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::fdir" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">fdir</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">the Earth-impact exclusion monitor and abort (TH-001), safe-mode requests on command loss, thruster and PPU fault recovery (TH-004, TH-005)</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::modeManagement" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">modeManagement</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">safe-mode entry and the capture-mode inhibit (TH-003); dispatches every hazardous command (TH-001, TH-006)</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::gnc" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">gnc</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">computes the lunar gravity-assist targeting burn (TH-001 erroneous final targeting) and the relative state in proximity operations (TH-002)</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::autonomy" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">autonomy</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">autonomous abort to the 500 m hold point (TH-002, TS-803) and the on-board sequence interlock on uncleared thrust arcs (TH-001)</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::sepControl" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sepControl</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thrust on the final targeting arc (TH-001) and the software inhibit on PPU high voltage before separation plus 600 s (TH-006, TS-807)</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::executive" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">executive</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">schedules and isolates every level-A application; a scheduling failure removes every software control at once</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::boardSupport" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">boardSupport</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">drives the remote interface units that actuate the cinch, the PPUs and the thrusters; the last software element before each hazardous actuator</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::cdh" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">cdh</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">routes commands and telemetry; a failure loses contact until the redundant computer takes over, no hazard cause of its own</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::powerManagement" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">powerManagement</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">load shedding keeps the battery above the floor; a failure degrades to safe mode, no hazard cause</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::telecom" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telecom</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">carries the ground enable and the ground authority of TS-802; a failure is a loss of contact handled by the command-loss timer</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::parameterBootUpdate" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">parameterBootUpdate</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">a corrupted image or table is caught by the boot check and the safe image; no hazard cause</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::thermalControl" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thermalControl</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC" data-element-kind="enumUsage">levelC</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">heater failures are slow and trended by the ground</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::inspectorHandling" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorHandling</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC" data-element-kind="enumUsage">levelC</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">the release is a two-step command; a relay failure loses survey products, not the mission</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::time" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">time</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">time-tags every sequence and the inhibit hold timer of TS-807</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::events" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">events</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">carries the fault events the supervisor acts on</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::tables" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">tables</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">holds the monitor limits and the two-step window</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::dataStore" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dataStore</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">recorder for telemetry and images; loss is recoverable by replay</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::commandIngest" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">commandIngest</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">checks the confirmation key of every hazardous command before dispatch</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::telemetryOutput" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telemetryOutput</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">the ground&#39;s view of the inhibit states and the fault log</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::housekeeping" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">housekeeping</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC" data-element-kind="enumUsage">levelC</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">periodic health packets; loss is a degraded trend</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::scheduler" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">scheduler</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">rate groups of the applications within the executive&#39;s partitions</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::bootUpdate" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">bootUpdate</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">image checks and the fallback to the safe image</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::commandBuilder" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">commandBuilder</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">the two-step rule for hazardous commands and the ground enable of the cinch; a human approves each step (TH-001, TH-003)</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::sequencer" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sequencer</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">refuses uncleared thrust arcs (FR-001) and keep-out violations (FR-002); the on-board interlock backs it</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::telemetryServer" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telemetryServer</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">the operators&#39; view of inhibit states and alarms</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::flightDynamicsTool" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">flightDynamicsTool</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA" data-element-kind="enumUsage">levelA</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">confirms the post-manoeuvre trajectory misses Earth before the final targeting enable (TS-802, TH-001)</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::passPlanner" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">passPlanner</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC" data-element-kind="enumUsage">levelC</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">a bad plan loses a pass, caught by the next</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::dataArchive" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dataArchive</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelD" data-element-kind="enumUsage">levelD</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">archive and distribution; no operational decision depends on it in real time</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::anomalyTracker" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">anomalyTracker</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelD" data-element-kind="enumUsage">levelD</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">record keeping for the anomaly board</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::proximityPlanner" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">proximityPlanner</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC" data-element-kind="enumUsage">levelC</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">plans within the keep-out; the checklist is reviewed by the flight director before the capture go</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::flatsatSimulator" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">flatsatSimulator</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC" data-element-kind="enumUsage">levelC</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">test equipment: a wrong result is caught by the independent model-in-the-loop comparison</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::captureRigSimulator" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureRigSimulator</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC" data-element-kind="enumUsage">levelC</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">test equipment driving a rotating mock body on the ground</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::dynamicsSimulatorSoftware" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dynamicsSimulatorSoftware</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC" data-element-kind="enumUsage">levelC</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">test equipment</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::flightSoftwareSimulator" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">flightSoftwareSimulator</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC" data-element-kind="enumUsage">levelC</span></td>
+<td class="sysml-cell" data-column="rationale" data-value-kind="string"><span class="sysml-value" data-value-kind="string">test equipment; sequence validation before uplink is backed by the flight-rule checker</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="unclassified" data-query="TethysSoftwareAssuranceTooling::UnclassifiedSoftwareRows">
+<caption class="sysml-caption">Rows without a level (expected empty)</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="level">level</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="gate" data-query="TethysSoftwareAssuranceTooling::ReleaseGateRows">
+<caption class="sysml-caption">Release-readiness requirements</caption>
+<thead>
+<tr>
+<th scope="col" data-column="shortName">shortName</th>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="Verification::method">Verification::method</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::releaseReadiness" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SA-001</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">releaseReadiness</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::inspect" data-element-kind="enumUsage">inspect</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::levelAHasIndependentVv" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SA-002</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">levelAHasIndependentVv</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::inspect" data-element-kind="enumUsage">inspect</span></td>
+</tr>
+</tbody>
+</table>
+</article>
+</body>
+</html>

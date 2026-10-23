@@ -48,6 +48,8 @@
 ✓ package TethysRisk
 ✓ package TethysAllocationQueries
 ✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
@@ -64,8 +66,8 @@
     Verification::method = VerificationCases::VerificationMethodKind::test
     Verification::level = TethysRequirements::VerificationLevel::system
     Verification::stage = TethysRequirements::VerificationStage::qualification
-    verifiedBy = TethysVerification::CaptureEnvelopeTest
-    cases = 1
+    verifiedBy = [TethysVerification::CaptureEnvelopeTest, TethysSoftwareAssurance::CaptureSequenceTest]
+    cases = 2
     satisfiedBy = TethysTug::argent
     derivedFrom = (none)
   Row 2: TethysRequirementsL2::deliveredMass
@@ -104,8 +106,8 @@
     Verification::method = VerificationCases::VerificationMethodKind::analyze
     Verification::level = TethysRequirements::VerificationLevel::system
     Verification::stage = TethysRequirements::VerificationStage::inFlight
-    verifiedBy = TethysVerification::CharacterisationAnalysis
-    cases = 1
+    verifiedBy = [TethysVerification::CharacterisationAnalysis, TethysSoftwareAssurance::InspectorRelayTest]
+    cases = 2
     satisfiedBy = TethysSystem::tethysSystem::flight
     derivedFrom = (none)
   Row 6: TethysRequirementsL2::launchCompatibility
@@ -124,8 +126,8 @@
     Verification::method = VerificationCases::VerificationMethodKind::test
     Verification::level = TethysRequirements::VerificationLevel::system
     Verification::stage = TethysRequirements::VerificationStage::preLaunch
-    verifiedBy = TethysVerification::LinkBudgetTest
-    cases = 1
+    verifiedBy = [TethysVerification::LinkBudgetTest, TethysSoftwareAssurance::SpaceLinkTest]
+    cases = 2
     satisfiedBy = (none)
     derivedFrom = (none)
   Row 8: TethysRequirementsL2::earthImpactExclusion
@@ -134,8 +136,8 @@
     Verification::method = VerificationCases::VerificationMethodKind::analyze
     Verification::level = TethysRequirements::VerificationLevel::mission
     Verification::stage = TethysRequirements::VerificationStage::qualification
-    verifiedBy = TethysVerification::ReturnSafetyAnalysis
-    cases = 1
+    verifiedBy = [TethysVerification::ReturnSafetyAnalysis, TethysSoftwareAssurance::FinalTargetingTest]
+    cases = 2
     satisfiedBy = TethysSystem::tethysSystem::flight
     derivedFrom = (none)
   Row 9: TethysRequirementsL2::droStability
@@ -154,8 +156,8 @@
     Verification::method = VerificationCases::VerificationMethodKind::inspect
     Verification::level = TethysRequirements::VerificationLevel::system
     Verification::stage = TethysRequirements::VerificationStage::qualification
-    verifiedBy = [TethysVerification::RedundancyInspection, TethysVerification::SepCommissioning]
-    cases = 2
+    verifiedBy = [TethysVerification::RedundancyInspection, TethysVerification::SepCommissioning, TethysSoftwareAssurance::ThrustArcControlTest]
+    cases = 3
     satisfiedBy = TethysTug::argent
     derivedFrom = (none)
   Row 11: TethysRequirementsL2::deflectionMeasurement
@@ -184,8 +186,8 @@
     Verification::method = VerificationCases::VerificationMethodKind::test
     Verification::level = TethysRequirements::VerificationLevel::system
     Verification::stage = TethysRequirements::VerificationStage::qualification
-    verifiedBy = TethysVerification::AutonomyTest
-    cases = 1
+    verifiedBy = [TethysVerification::AutonomyTest, TethysSoftwareAssurance::CaptureAbortTest, TethysSoftwareAssurance::ModeManagementTest]
+    cases = 3
     satisfiedBy = TethysSystem::tethysSystem::flight
     derivedFrom = (none)
   Row 14: TethysRequirementsL2::proximityContactEnvironment
@@ -204,8 +206,8 @@
     Verification::method = VerificationCases::VerificationMethodKind::test
     Verification::level = TethysRequirements::VerificationLevel::system
     Verification::stage = TethysRequirements::VerificationStage::qualification
-    verifiedBy = TethysVerification::FaultResponseTest
-    cases = 1
+    verifiedBy = [TethysVerification::FaultResponseTest, TethysSoftwareAssurance::FaultDetectionTest]
+    cases = 2
     satisfiedBy = TethysSystem::tethysSystem::flight
     derivedFrom = (none)
   Row 16: TethysRequirementsL2::massBudget
@@ -224,8 +226,8 @@
     Verification::method = VerificationCases::VerificationMethodKind::test
     Verification::level = TethysRequirements::VerificationLevel::subsystem
     Verification::stage = TethysRequirements::VerificationStage::qualification
-    verifiedBy = TethysVerification::CaptureEnvelopeTest
-    cases = 1
+    verifiedBy = [TethysVerification::CaptureEnvelopeTest, TethysSoftwareAssurance::CaptureSequenceTest]
+    cases = 2
     satisfiedBy = (none)
     derivedFrom = (none)
   Row 18: TethysRequirementsL2::inspectorDeployment
@@ -264,8 +266,8 @@
     Verification::method = VerificationCases::VerificationMethodKind::demo
     Verification::level = TethysRequirements::VerificationLevel::system
     Verification::stage = TethysRequirements::VerificationStage::preLaunch
-    verifiedBy = TethysVerification::GroundReadinessDemo
-    cases = 1
+    verifiedBy = [TethysVerification::GroundReadinessDemo, TethysSoftwareAssurance::CommandRoutingTest]
+    cases = 2
     satisfiedBy = TethysSystem::tethysSystem::ground
     derivedFrom = (none)
   Row 22: TethysRequirementsL2::operatorWorkload

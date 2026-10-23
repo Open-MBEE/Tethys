@@ -1,4 +1,4 @@
-loaded 58 files:
+loaded 60 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -49,6 +49,8 @@ loaded 58 files:
   model/86-risk.sysml
   model/87-allocations-tooling.sysml
   model/87-allocations.sysml
+  model/88-software-assurance-tooling.sysml
+  model/88-software-assurance.sysml
   model/90-views.sysml
   model/91-documents.sysml
   model/92-layout.sysml
@@ -107,6 +109,8 @@ loaded 58 files:
 ✓ package TethysRisk
 ✓ package TethysAllocationQueries
 ✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
@@ -135,10 +139,13 @@ wrote build/runs/documents-html/TethysIcdDocuments-PropellantFeedIcdDocument.htm
 wrote build/runs/documents-html/TethysIcdDocuments-SpaceGroundIcdDocument.html (html, 9859 bytes)
 wrote build/runs/documents-html/TethysIcdDocuments-ThermalIcdDocument.html (html, 4672 bytes)
 wrote build/runs/documents-html/TethysIcdDocuments-TugInspectorIcdDocument.html (html, 4123 bytes)
+wrote build/runs/documents-html/TethysSoftwareAssuranceTooling-SoftwareAssuranceReport.html (html, 29531 bytes)
+wrote build/runs/documents-html/TethysSoftwareAssuranceTooling-SoftwareFmecaDocument.html (html, 30586 bytes)
+wrote build/runs/documents-html/TethysSoftwareAssuranceTooling-SoftwareVcrmDocument.html (html, 109938 bytes)
 wrote build/runs/documents-html/TethysSoftwareIcdDocuments-BusProtocolIcdDocument.html (html, 12081 bytes)
 wrote build/runs/documents-html/TethysSoftwareIcdDocuments-InspectorRelayProfileIcdDocument.html (html, 7791 bytes)
 wrote build/runs/documents-html/TethysSoftwareIcdDocuments-MessageCatalogueDocument.html (html, 41535 bytes)
 wrote build/runs/documents-html/TethysSoftwareIcdDocuments-RegisterMapIcdDocument.html (html, 22184 bytes)
 wrote build/runs/documents-html/TethysSoftwareIcdDocuments-SpaceLinkProfileIcdDocument.html (html, 39409 bytes)
-wrote build/runs/documents-html/TethysVerificationTooling-VvReport.html (html, 173290 bytes)
+wrote build/runs/documents-html/TethysVerificationTooling-VvReport.html (html, 178346 bytes)
 wrote build/runs/documents-html/sysml-document.css (css, 4632 bytes)

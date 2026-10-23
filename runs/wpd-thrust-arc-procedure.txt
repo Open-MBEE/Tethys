@@ -48,6 +48,8 @@
 ✓ package TethysRisk
 ✓ package TethysAllocationQueries
 ✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
