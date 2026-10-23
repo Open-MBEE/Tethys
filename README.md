@@ -35,4 +35,6 @@ The model is written in standard SysML v2 and exists for two purposes:
 make tools      # build OpenSysML from source at the pinned commit (scripts/fetch-tools.sh) and fetch the pinned OMG pilot validators into build/
 make check      # every gate: validate (strict), pilot (mission tier standalone, all files batch), house rules, runs/ diff
 make runs       # re-record runs/ after an intentional model change
+make software-generate  # regenerate the stage-2 software tables (software/generated/) from the model; software/README.md
+make software-check     # the software gate: regenerate, fail on drift, compile the C self-test, run the Python tests
 ```

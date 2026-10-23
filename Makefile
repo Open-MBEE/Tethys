@@ -48,3 +48,40 @@ runs:
 
 runs-check:
 	SYSML=$(SYSML) scripts/runs.sh check
+
+# ---- stage-2 software: the generator toolchain -------------------------------------------------
+# The generator reads the model through the pinned OpenSysML (`-convert api-json`) and writes the
+# C11 and Python tables under software/generated/. `make check` stays model-only; the software
+# gate is `make software-check`, a separate CI job.
+PYTHON ?= python3
+SOFTWARE_VENV ?= build/software/venv
+SOFTWARE_PY := $(SOFTWARE_VENV)/bin/python
+CFLAGS_STRICT := -std=c11 -Wall -Wextra -Werror -pedantic
+
+.PHONY: software-venv software-generate software-selftest software-test software-check
+
+# The Python client of the pinned OpenSysML checkout, so generator and model agree on the pin.
+software-venv: $(SOFTWARE_PY)
+$(SOFTWARE_PY): build/opensysml-src/client/python/pyproject.toml
+	$(PYTHON) -m venv $(SOFTWARE_VENV)
+	$(SOFTWARE_PY) -m pip install --quiet --upgrade pip
+	$(SOFTWARE_PY) -m pip install --quiet ./build/opensysml-src/client/python pytest
+
+software-generate: $(SOFTWARE_PY)
+	$(SOFTWARE_PY) software/gen/generate.py --sysml $(SYSML)
+
+software-selftest:
+	mkdir -p build/software
+	$(CC) $(CFLAGS_STRICT) -Isoftware/generated/c software/generated/c/selftest.c -o build/software/selftest
+	build/software/selftest
+
+software-test: $(SOFTWARE_PY)
+	$(SOFTWARE_PY) -m pytest -q software/tests
+
+# Regenerate into a scratch directory and fail on any byte of drift against the committed tables.
+software-check: $(SOFTWARE_PY) software-selftest
+	rm -rf build/software/regen
+	$(SOFTWARE_PY) software/gen/generate.py --sysml $(SYSML) --out build/software/regen --cache build/software/regen.api.json --quiet
+	diff -r --exclude=__pycache__ --exclude=selftest.c software/generated build/software/regen > build/software/drift.txt \
+		|| { echo "software-check: generated tables drift from the model (build/software/drift.txt):"; cat build/software/drift.txt; exit 1; }
+	$(SOFTWARE_PY) -m pytest -q software/tests
