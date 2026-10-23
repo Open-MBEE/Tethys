@@ -43,22 +43,6 @@
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">visitor</span></td>
 <td class="sysml-cell" data-column="documentation"></td>
 </tr>
-<tr class="sysml-row" data-element="TethysSystem::tethysSystem::launchAdapter" data-element-kind="interfaceUsage">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">launchAdapter</span></td>
-<td class="sysml-cell" data-column="documentation"></td>
-</tr>
-<tr class="sysml-row" data-element="TethysSystem::tethysSystem::deepSpaceLink" data-element-kind="interfaceUsage">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">deepSpaceLink</span></td>
-<td class="sysml-cell" data-column="documentation"></td>
-</tr>
-<tr class="sysml-row" data-element="TethysSystem::tethysSystem::capture" data-element-kind="interfaceUsage">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">capture</span></td>
-<td class="sysml-cell" data-column="documentation"></td>
-</tr>
-<tr class="sysml-row" data-element="TethysSystem::tethysSystem::visitorDocking" data-element-kind="interfaceUsage">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">visitorDocking</span></td>
-<td class="sysml-cell" data-column="documentation"></td>
-</tr>
 </tbody>
 </table>
 <figure class="sysml-diagram" data-content="diagram" data-name="icd" data-view="TethysViews::segmentInterfaces" data-diagram-kind="interconnection">
@@ -261,21 +245,45 @@
 </tr>
 </thead>
 <tbody>
-<tr class="sysml-row" data-element="TethysTug::argent::eps" data-element-kind="partUsage">
+<tr class="sysml-row" data-element="TethysTug::Tug::structure" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">structure</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::StructureAndMechanisms</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTug::Tug::thermal" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thermal</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::ThermalControl</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTug::Tug::eps" data-element-kind="partUsage">
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">eps</span></td>
-<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::ElectricalPowerSystem</span></td>
 </tr>
-<tr class="sysml-row" data-element="TethysTug::argent::sep" data-element-kind="partUsage">
+<tr class="sysml-row" data-element="TethysTug::Tug::cdh" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">cdh</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::CommandAndDataHandling</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTug::Tug::telecom" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telecom</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::Telecommunications</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTug::Tug::gnc" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">gnc</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::GuidanceNavigationControl</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTug::Tug::sep" data-element-kind="partUsage">
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sep</span></td>
-<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::SolarElectricPropulsion</span></td>
 </tr>
-<tr class="sysml-row" data-element="TethysTug::argent::rcs" data-element-kind="partUsage">
+<tr class="sysml-row" data-element="TethysTug::Tug::rcs" data-element-kind="partUsage">
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">rcs</span></td>
-<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::ReactionControl</span></td>
 </tr>
-<tr class="sysml-row" data-element="TethysTug::argent::captureSystem" data-element-kind="partUsage">
+<tr class="sysml-row" data-element="TethysTug::Tug::captureSystem" data-element-kind="partUsage">
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureSystem</span></td>
-<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::CaptureSystem</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTug::Tug::sensors" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sensors</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::CharacterisationSensors</span></td>
 </tr>
 </tbody>
 </table>
@@ -409,9 +417,110 @@ flowchart LR
 <figcaption class="sysml-caption">The power bus from the electrical power subsystem to every load</figcaption>
 </figure>
 </section>
+<section class="sysml-section" id="mass" data-content="section" data-name="mass">
+<h2>Mass budget</h2>
+<p class="sysml-paragraph" data-content="paragraph" data-name="intro">The mass budget is closed in the model (TethysBudgets::massBudget); the tables show its evaluated values and the subsystem masses they sum from.</p>
+<table class="sysml-table sysml-table-landscape" data-content="table" data-name="budget" data-query="TethysDocuments::MassBudgetLines">
+<caption class="sysml-caption">Phase B mass budget of the tug, evaluated</caption>
+<thead>
+<tr>
+<th scope="col" data-column="dry estimate">dry estimate</th>
+<th scope="col" data-column="dry with contingency">dry with contingency</th>
+<th scope="col" data-column="dry allocation">dry allocation</th>
+<th scope="col" data-column="dry margin">dry margin</th>
+<th scope="col" data-column="xenon">xenon</th>
+<th scope="col" data-column="hydrazine">hydrazine</th>
+<th scope="col" data-column="inspector">inspector</th>
+<th scope="col" data-column="launch mass">launch mass</th>
+<th scope="col" data-column="launcher capability">launcher capability</th>
+<th scope="col" data-column="launch margin">launch margin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysBudgets::massBudget" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="dry estimate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="3725.5" data-unit="kg">3725.5 [kg]</span></td>
+<td class="sysml-cell" data-column="dry with contingency" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="4300.922000000001" data-unit="kg">4300.922000000001 [kg]</span></td>
+<td class="sysml-cell" data-column="dry allocation" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="5600" data-unit="kg">5600 [kg]</span></td>
+<td class="sysml-cell" data-column="dry margin" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0.30204639842340764</span></td>
+<td class="sysml-cell" data-column="xenon" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="6600" data-unit="kg">6600 [kg]</span></td>
+<td class="sysml-cell" data-column="hydrazine" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="400" data-unit="kg">400 [kg]</span></td>
+<td class="sysml-cell" data-column="inspector" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="24" data-unit="kg">24 [kg]</span></td>
+<td class="sysml-cell" data-column="launch mass" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="12624" data-unit="kg">12624 [kg]</span></td>
+<td class="sysml-cell" data-column="launcher capability" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="17200" data-unit="kg">17200 [kg]</span></td>
+<td class="sysml-cell" data-column="launch margin" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0.36248415716096327</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="subsystems" data-query="TethysDocuments::SubsystemMasses">
+<caption class="sysml-caption">Subsystem masses of the tug design</caption>
+<thead>
+<tr>
+<th scope="col" data-column="subsystem">subsystem</th>
+<th scope="col" data-column="mass">mass</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysTugStructure::ArgentTug::structure" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="subsystem" data-value-kind="string"><span class="sysml-value" data-value-kind="string">structure</span></td>
+<td class="sysml-cell" data-column="mass" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1182" data-unit="kg">1182 [kg]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTugStructure::ArgentTug::thermal" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="subsystem" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thermal</span></td>
+<td class="sysml-cell" data-column="mass" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="346" data-unit="kg">346 [kg]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTugStructure::ArgentTug::eps" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="subsystem" data-value-kind="string"><span class="sysml-value" data-value-kind="string">eps</span></td>
+<td class="sysml-cell" data-column="mass" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1095" data-unit="kg">1095 [kg]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTugStructure::ArgentTug::cdh" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="subsystem" data-value-kind="string"><span class="sysml-value" data-value-kind="string">cdh</span></td>
+<td class="sysml-cell" data-column="mass" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="48" data-unit="kg">48 [kg]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTugStructure::ArgentTug::telecom" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="subsystem" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telecom</span></td>
+<td class="sysml-cell" data-column="mass" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="64.2" data-unit="kg">64.2 [kg]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTugStructure::ArgentTug::gnc" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="subsystem" data-value-kind="string"><span class="sysml-value" data-value-kind="string">gnc</span></td>
+<td class="sysml-cell" data-column="mass" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="74.8" data-unit="kg">74.8 [kg]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTugStructure::ArgentTug::sep" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="subsystem" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sep</span></td>
+<td class="sysml-cell" data-column="mass" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="380.8" data-unit="kg">380.8 [kg]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTugStructure::ArgentTug::rcs" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="subsystem" data-value-kind="string"><span class="sysml-value" data-value-kind="string">rcs</span></td>
+<td class="sysml-cell" data-column="mass" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="70.4" data-unit="kg">70.4 [kg]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTugStructure::ArgentTug::captureSystem" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="subsystem" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureSystem</span></td>
+<td class="sysml-cell" data-column="mass" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="451" data-unit="kg">451 [kg]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTugStructure::ArgentTug::sensors" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="subsystem" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sensors</span></td>
+<td class="sysml-cell" data-column="mass" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="13.3" data-unit="kg">13.3 [kg]</span></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section class="sysml-section" id="timeline" data-content="section" data-name="timeline">
 <h2>Mission timeline</h2>
 <ol class="sysml-list" data-content="list" data-name="phases" data-query="TethysDocuments::FlightPhases">
+<li class="sysml-item" data-element="TethysMission::flightTimeline::integrationAndTest" data-element-kind="occurrenceUsage">integrationAndTest</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::launchAndEarlyOperations" data-element-kind="occurrenceUsage">launchAndEarlyOperations</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::sepCommissioning" data-element-kind="occurrenceUsage">sepCommissioning</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::outboundCruise" data-element-kind="occurrenceUsage">outboundCruise</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::approachAndRendezvous" data-element-kind="occurrenceUsage">approachAndRendezvous</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::characterisation" data-element-kind="occurrenceUsage">characterisation</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::capture" data-element-kind="occurrenceUsage">capture</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::returnCruise" data-element-kind="occurrenceUsage">returnCruise</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::droInsertionAndCheckout" data-element-kind="occurrenceUsage">droInsertionAndCheckout</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::utilisation" data-element-kind="occurrenceUsage">utilisation</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::extendedMission" data-element-kind="occurrenceUsage">extendedMission</li>
+<li class="sysml-item" data-element="TethysMission::flightTimeline::disposal" data-element-kind="occurrenceUsage">disposal</li>
+</ol>
+<p class="sysml-paragraph" data-content="paragraph" data-name="events">The events that bound the phases, in flight order:</p>
+<ul class="sysml-list" data-content="list" data-name="eventList" data-query="TethysDocuments::FlightEvents">
 <li class="sysml-item" data-element="TethysMission::flightTimeline::liftOff" data-element-kind="occurrenceUsage">liftOff</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::separationFromLauncher" data-element-kind="occurrenceUsage">separationFromLauncher</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::arraysDeployed" data-element-kind="occurrenceUsage">arraysDeployed</li>
@@ -428,19 +537,7 @@ flowchart LR
 <li class="sysml-item" data-element="TethysMission::flightTimeline::visitingVehicleDocking" data-element-kind="occurrenceUsage">visitingVehicleDocking</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::tugSeparation" data-element-kind="occurrenceUsage">tugSeparation</li>
 <li class="sysml-item" data-element="TethysMission::flightTimeline::tugDisposalBurn" data-element-kind="occurrenceUsage">tugDisposalBurn</li>
-<li class="sysml-item" data-element="TethysMission::flightTimeline::integrationAndTest" data-element-kind="occurrenceUsage">integrationAndTest TethysMission::MissionPhase</li>
-<li class="sysml-item" data-element="TethysMission::flightTimeline::launchAndEarlyOperations" data-element-kind="occurrenceUsage">launchAndEarlyOperations TethysMission::MissionPhase</li>
-<li class="sysml-item" data-element="TethysMission::flightTimeline::sepCommissioning" data-element-kind="occurrenceUsage">sepCommissioning TethysMission::MissionPhase</li>
-<li class="sysml-item" data-element="TethysMission::flightTimeline::outboundCruise" data-element-kind="occurrenceUsage">outboundCruise TethysMission::MissionPhase</li>
-<li class="sysml-item" data-element="TethysMission::flightTimeline::approachAndRendezvous" data-element-kind="occurrenceUsage">approachAndRendezvous TethysMission::MissionPhase</li>
-<li class="sysml-item" data-element="TethysMission::flightTimeline::characterisation" data-element-kind="occurrenceUsage">characterisation TethysMission::MissionPhase</li>
-<li class="sysml-item" data-element="TethysMission::flightTimeline::capture" data-element-kind="occurrenceUsage">capture TethysMission::MissionPhase</li>
-<li class="sysml-item" data-element="TethysMission::flightTimeline::returnCruise" data-element-kind="occurrenceUsage">returnCruise TethysMission::MissionPhase</li>
-<li class="sysml-item" data-element="TethysMission::flightTimeline::droInsertionAndCheckout" data-element-kind="occurrenceUsage">droInsertionAndCheckout TethysMission::MissionPhase</li>
-<li class="sysml-item" data-element="TethysMission::flightTimeline::utilisation" data-element-kind="occurrenceUsage">utilisation TethysMission::MissionPhase</li>
-<li class="sysml-item" data-element="TethysMission::flightTimeline::extendedMission" data-element-kind="occurrenceUsage">extendedMission TethysMission::MissionPhase</li>
-<li class="sysml-item" data-element="TethysMission::flightTimeline::disposal" data-element-kind="occurrenceUsage">disposal TethysMission::MissionPhase</li>
-</ol>
+</ul>
 <figure class="sysml-diagram" data-content="diagram" data-name="tree" data-view="TethysViews::missionTimeline" data-diagram-kind="tree" data-direction="LR">
 <pre class="mermaid">---
 config:

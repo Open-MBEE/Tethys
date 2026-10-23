@@ -254,8 +254,11 @@ package TethysViews {
         }
     }
     view massBudget : BudgetView {
-        doc /* The flight elements that carry mass: the tug, its subsystems and the inspector. */
-        expose TethysTug::argent;
+        doc /* The elements that carry the mass budget: the closed budget itself, the tug design
+             * whose subsystems sum it, and the inspector it carries. A view lists the elements;
+             * the evaluated numbers are the mass-budget tables of the system description. */
+        expose TethysBudgets::massBudget;
+        expose TethysTugStructure::argentDesign;
         expose TethysInspector::wren;
         satisfy budgetViewpoint {
             doc /* This view answers the budgetViewpoint. */
@@ -276,10 +279,8 @@ package TethysViews {
         }
     }
     view modeMachine : ModeView {
-        doc /* The flight system's mode machine. Until the mode package lands its state
-             * definition this view exposes the tug, which the renderer reports is no state
-             * machine; the exposed element then moves to that definition. */
-        expose TethysTug::Tug;
+        doc /* The flight system's mode machine: the tug's parallel mode state definition. */
+        expose TethysModes::TugModes;
         satisfy operationsViewpoint {
             doc /* This view answers the operationsViewpoint. */
         }

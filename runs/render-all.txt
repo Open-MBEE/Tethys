@@ -130,12 +130,10 @@ wrote build/runs/views/TethysViews.segmentInterfaces.mmd (mermaid, 1979 bytes)
 wrote build/runs/views/TethysViews.flightSegmentWiring.mmd (mermaid, 4279 bytes)
 wrote build/runs/views/TethysViews.tugPowerBus.mmd (mermaid, 3090 bytes)
 wrote build/runs/views/TethysViews.interfaceDefinitions.md (markdown, 5670 bytes)
-wrote build/runs/views/TethysViews.massBudget.md (markdown, 1102 bytes)
+wrote build/runs/views/TethysViews.massBudget.md (markdown, 873 bytes)
 wrote build/runs/views/TethysViews.missionTimeline.mmd (mermaid, 3646 bytes)
 wrote build/runs/views/TethysViews.projectLifecycle.mmd (mermaid, 1828 bytes)
-TethysViews::modeMachine: note: renders empty
-TethysViews::modeMachine: note: part def TethysTug::Tug is no state machine; a state rendering does not show it
-wrote build/runs/views/TethysViews.modeMachine.mmd (mermaid, 1131 bytes)
+wrote build/runs/views/TethysViews.modeMachine.mmd (mermaid, 6065 bytes)
 TethysViews::environmentText: skipped: textual rendering (render asTextualNotation) is not supported; the notation itself is written by `sysml <model> -convert sysml`
 wrote build/runs/views/TethysViewsTooling.systemOverview.mmd (mermaid, 1713 bytes)
 wrote build/runs/views/TethysViewsTooling.systemOverview.interfaces.mmd (mermaid, 1805 bytes)
