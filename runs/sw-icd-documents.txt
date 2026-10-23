@@ -1,4 +1,4 @@
-loaded 56 files:
+loaded 57 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -33,6 +33,7 @@ loaded 56 files:
   model/64-flight-dictionary-tooling.sysml
   model/64-flight-dictionary.sysml
   model/65-flight-behaviour.sysml
+  model/66-flight-timing.sysml
   model/68-software-icds-tooling.sysml
   model/68-software-icds.sysml
   model/70-analyses.sysml
@@ -89,6 +90,7 @@ loaded 56 files:
 ✓ package TethysFlightDictionaryDocuments
 ✓ package TethysFlightDictionary
 ✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
@@ -192,7 +194,7 @@ Every message between the flight applications and services is a space packet on 
 | mechanismRiuRegisters | TethysSoftwareIcds::RemoteInterfaceUnitRegisterIcd | Register access to the mechanism remote interface unit. |
 | spaceLinkProfile | TethysSoftwareIcds::SpaceLinkProfileIcd | MLS-2 between the telecom application and the Meridian packet gateway. |
 | inspectorRelayProfile | TethysSoftwareIcds::InspectorRelaySoftwareIcd | The relay profile between inspector handling and Wren. |
-loaded 56 files:
+loaded 57 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -227,6 +229,7 @@ loaded 56 files:
   model/64-flight-dictionary-tooling.sysml
   model/64-flight-dictionary.sysml
   model/65-flight-behaviour.sysml
+  model/66-flight-timing.sysml
   model/68-software-icds-tooling.sysml
   model/68-software-icds.sysml
   model/70-analyses.sysml
@@ -283,6 +286,7 @@ loaded 56 files:
 ✓ package TethysFlightDictionaryDocuments
 ✓ package TethysFlightDictionary
 ✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
@@ -338,7 +342,7 @@ loaded 56 files:
 | checksumFailure | TethysSoftwareIcds::BusErrorResponse | requestRetry |
 | retryExhausted | TethysSoftwareIcds::BusErrorResponse | raiseFault |
 | unknownAddress | TethysSoftwareIcds::BusErrorResponse | discardAndCount |
-loaded 56 files:
+loaded 57 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -373,6 +377,7 @@ loaded 56 files:
   model/64-flight-dictionary-tooling.sysml
   model/64-flight-dictionary.sysml
   model/65-flight-behaviour.sysml
+  model/66-flight-timing.sysml
   model/68-software-icds-tooling.sysml
   model/68-software-icds.sysml
   model/70-analyses.sysml
@@ -429,6 +434,7 @@ loaded 56 files:
 ✓ package TethysFlightDictionaryDocuments
 ✓ package TethysFlightDictionary
 ✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
@@ -525,7 +531,7 @@ loaded 56 files:
 | dockedPassiveRates | dockedPassive | 32000 \[bit/s\] | 2000 \[bit/s\] | 60 \[s\] |
 | disposalRates | disposal | 8000 \[bit/s\] | 2000 \[bit/s\] | 60 \[s\] |
 | abortHoldRates | abortHold | 2000 \[bit/s\] | 2000 \[bit/s\] | 60 \[s\] |
-loaded 56 files:
+loaded 57 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -560,6 +566,7 @@ loaded 56 files:
   model/64-flight-dictionary-tooling.sysml
   model/64-flight-dictionary.sysml
   model/65-flight-behaviour.sysml
+  model/66-flight-timing.sysml
   model/68-software-icds-tooling.sysml
   model/68-software-icds.sysml
   model/70-analyses.sysml
@@ -616,6 +623,7 @@ loaded 56 files:
 ✓ package TethysFlightDictionaryDocuments
 ✓ package TethysFlightDictionary
 ✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
@@ -664,7 +672,7 @@ loaded 56 files:
 | acknowledgementTimeout | ISQBase::DurationValue | 2 \[s\] |
 | retryLimit | ScalarValues::Natural | 3 |
 | maximumRelayLatency | ISQBase::DurationValue | 5 \[s\] |
-loaded 56 files:
+loaded 57 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -699,6 +707,7 @@ loaded 56 files:
   model/64-flight-dictionary-tooling.sysml
   model/64-flight-dictionary.sysml
   model/65-flight-behaviour.sysml
+  model/66-flight-timing.sysml
   model/68-software-icds-tooling.sysml
   model/68-software-icds.sysml
   model/70-analyses.sysml
@@ -755,6 +764,7 @@ loaded 56 files:
 ✓ package TethysFlightDictionaryDocuments
 ✓ package TethysFlightDictionary
 ✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
 ✓ package TethysSoftwareIcdDocuments
 ✓ package TethysSoftwareIcds
 ✓ package TethysAnalyses
