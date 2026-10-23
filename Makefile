@@ -85,3 +85,5 @@ software-check: $(SOFTWARE_PY) software-selftest
 	diff -r --exclude=__pycache__ --exclude=selftest.c software/generated build/software/regen > build/software/drift.txt \
 		|| { echo "software-check: generated tables drift from the model (build/software/drift.txt):"; cat build/software/drift.txt; exit 1; }
 	$(SOFTWARE_PY) -m pytest -q software/tests
+
+include software/ground/ground.mk
