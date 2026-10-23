@@ -92,12 +92,16 @@ package TethysProximityOps {
         out characterisation : TargetCharacterisation;
     }
     action def CommitDecision {
-        doc /* The go/no-go: the characterisation held against the mechanism's envelope. */
+        doc /* The go/no-go: the characterisation held against the mechanism's envelope, with
+             * the mass taken at the top of its reported uncertainty so an estimate that may
+             * exceed the limit is a no-go. */
         in characterisation : TargetCharacterisation;
         in mechanism : CaptureMechanism;
+        attribute upperMass : MassValue = characterisation.mass * (1.0 + characterisation.massUncertaintyFraction);
         out go : Boolean = characterisation.meanDiameter <= mechanism.maximumBodyDiameter
-            and characterisation.mass <= mechanism.maximumBodyMass
-            and characterisation.rotationPeriod >= mechanism.minimumRotationPeriod
+            and upperMass <= mechanism.maximumBodyMass
+            and 0.1 * upperMass * characterisation.meanDiameter * characterisation.meanDiameter
+                * 2.0 * pi / characterisation.rotationPeriod <= mechanism.maximumAngularMomentum
             and characterisation.spinState == SpinState::principalAxis;
     }
     action def FinalApproach {
@@ -196,11 +200,11 @@ package TethysProximityOps {
         part dataHandler : ProximityDataHandler;
         flow imageryLink : ProximityLinkFlow of ImageFrame
             from inspector.payload.visibleCamera.frames to dataHandler.imagery {
-            attribute :>> linkRate = 2.0e6 ['bit/s'];
+            attribute :>> linkRate = 200.0e3 ['bit/s'];
         }
         flow radarLink : ProximityLinkFlow of RadarEcho
             from inspector.payload.radarReceiver.echoes to dataHandler.radar {
-            attribute :>> linkRate = 0.5e6 ['bit/s'];
+            attribute :>> linkRate = 50.0e3 ['bit/s'];
         }
         flow of TargetCharacterisation from inspector.payload.characterisation to dataHandler.characterisation;
         message characterisationReport of TargetCharacterisation from inspector to dataHandler;

@@ -48,5 +48,5 @@
 ✓ package TethysImportedData
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
-sysml: instantiation failed: performed action capture of object #1: invoke action CommitDecision: initialize action: initialize attributes: eval attribute default go: type mismatch: operator '<=' is not defined for a sequence and a quantity; DataFunctions::'<=' takes one DataValue per operand
+sysml: instantiation failed: performed action capture of object #1: invoke action CommitDecision: initialize action: initialize attributes: eval attribute default upperMass: type mismatch: operator '+' is not defined for a Rational and a sequence
 exit 2
