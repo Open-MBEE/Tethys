@@ -100,4 +100,4 @@ loaded 50 files:
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
 ✓ TethysBudgets::powerBudget.demandSafe
-  = 0.0 [W]
+  = 832.0 [W]

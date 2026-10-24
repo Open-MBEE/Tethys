@@ -56,11 +56,11 @@ warning: TethysModes::nominalFlight: materialization is bounded; not every featu
   Current state: stowed
   Time: 0.0
   Events: 0
-✓ Advanced to 38102400.0 (15 event(s) processed)
+✓ Advanced to 38102400.0 (14 event(s) processed)
   Current state: stationKeeping
   Last event at: 37707840.0
   Remaining events: 0
-  12 choice points (10 independent); %trace on to see them
+  11 choice points (10 independent); %trace on to see them
   Action steps taken: 21
   Waiting on the clock:
     t=38888640.0: action nominalCampaign of object #2, accept after waiting since step 23 for the clock to reach t=38888640.0

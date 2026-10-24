@@ -279,6 +279,7 @@ package TethysFdir {
     part def FdirTug :> ModedTug {
         doc /* The tug with its FDIR supervisor beside the mode machine. */
         exhibit state fdir : FdirSupervisor;
+        bind fdir.command = command;
     }
     part def FaultInjector {
         doc /* A test conductor injecting faults and events into the tug's command port. */

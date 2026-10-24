@@ -1,0 +1,9 @@
+✓ package NestedRedefinitionProbe
+sysml: analysis run failed: analysis NestedRedefinitionProbe::dropA: invoke action FreeFall: initialize action: unsupported state-space dynamics: zero crossing ground of action fall binds no guard
+  standing: not covered (analysis NestedRedefinitionProbe::dropA: invoke action FreeFall: initialize action: unsupported state-space dynamics: zero crossing ground of action fall binds no guard)
+sysml: analysis run failed: analysis NestedRedefinitionProbe::dropC: invoke action FreeFall: initialize action: unsupported state-space dynamics: zero crossing ground of action fall binds no guard
+  standing: not covered (analysis NestedRedefinitionProbe::dropC: invoke action FreeFall: initialize action: unsupported state-space dynamics: zero crossing ground of action fall binds no guard)
+✓ NestedRedefinitionProbe::dropB
+  finalHeight = [55.855000000000004]
+  standing: value (observed: 1 run under reverse)
+exit 2

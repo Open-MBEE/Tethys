@@ -63,9 +63,9 @@
   recorded Records::externalTransfer_run1 (Records::ExternalTransferRun)
 ✓ TethysAnalyses::transferNominal
   returnDeltaV = [297.21660126501666 ['m/s']]
-  outboundThrustTime = [258.4854522189743 [d]]
-  returnThrustTime = [548.564792202807 [d]]
-  totalThrustTime = [807.0502444217813 [d]]
+  outboundThrustTime = [263.6447367818764 [d]]
+  returnThrustTime = [559.5139649313596 [d]]
+  totalThrustTime = [823.158701713236 [d]]
   objective canReturn: satisfied
   standing: value (observed: 1 run under reverse)
   recorded Records::transferNominal_run1 (Records::TransferNominalRun)

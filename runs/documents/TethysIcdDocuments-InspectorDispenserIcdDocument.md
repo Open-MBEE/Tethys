@@ -13,8 +13,8 @@
 
 *Parameters both sides agree on*
 
-| name | type |
-| --- | --- |
-| railPreload | ISQMechanics::ForceValue |
-| ejectionSpeed | ISQSpaceTime::SpeedValue |
-| inspectorMassMaximum | ISQBase::MassValue |
+| name | type | valuation |
+| --- | --- | --- |
+| railPreload | ISQMechanics::ForceValue | 400 \[N\] |
+| ejectionSpeed | ISQSpaceTime::SpeedValue | 0.3 \['m/s'\] |
+| inspectorMassMaximum | ISQBase::MassValue | 26 \[kg\] |

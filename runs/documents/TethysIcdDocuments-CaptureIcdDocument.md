@@ -13,11 +13,11 @@
 
 *Parameters both sides agree on*
 
-| name | type |
-| --- | --- |
-| maximumContactForce | ISQMechanics::ForceValue |
-| maximumContactSpeed | ISQSpaceTime::SpeedValue |
-| maximumBodySpinRate | ISQSpaceTime::AngularVelocityValue |
-| despinTorque | ISQMechanics::TorqueValue |
-| surfaceTemperatureMinimum | ISQBase::ThermodynamicTemperatureValue |
-| surfaceTemperatureMaximum | ISQBase::ThermodynamicTemperatureValue |
+| name | type | valuation |
+| --- | --- | --- |
+| maximumContactForce | ISQMechanics::ForceValue | 2500 \[N\] |
+| maximumContactSpeed | ISQSpaceTime::SpeedValue | 0.1 \['m/s'\] |
+| maximumBodySpinRate | ISQSpaceTime::AngularVelocityValue | 0.0175 \['rad⋅s⁻¹'\] |
+| despinTorque | ISQMechanics::TorqueValue | 120 \['N⋅m'\] |
+| surfaceTemperatureMinimum | ISQBase::ThermodynamicTemperatureValue | 180 \[K\] |
+| surfaceTemperatureMaximum | ISQBase::ThermodynamicTemperatureValue | 340 \[K\] |

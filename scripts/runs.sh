@@ -134,11 +134,15 @@ runt tooling-montecarlo-continuous $SYSML -analysis TethysAnalysesTooling::retur
 runt tooling-montecarlo-min $SYSML -analysis TethysAnalysesTooling::returnOverContinuousMass -draws min -runs 1 $MODEL
 runt tooling-montecarlo-max $SYSML -analysis TethysAnalysesTooling::returnOverContinuousMass -draws max -runs 1 $MODEL
 run tooling-dynamics $SYSML -action TethysAnalysesTooling::droRevolutionRk4 -action TethysAnalysesTooling::firstThrustArcRk4 $MODEL
+run tooling-dro-stability $SYSML -analysis TethysAnalysesTooling::droStabilityRk4 $MODEL
 run probe-F-F01 $SYSML -action TethysDynamicsIntegratorProbe::droRevolutionRk4 $MODEL model/probes/F-F01-state-space-integrator.sysml
 run probe-F-F02 $SYSML -analysis TethysVariantSubjectProbe::viaVariant -analysis TethysVariantSubjectProbe::viaConfiguration -analysis TethysVariantSubjectProbe::viaPlainPart $MODEL model/probes/F-F02-variant-as-subject.sysml
 run probe-F-F07 $SYSML -e "TethysNestedChainProbe::baselineChained.chainedReturnXenon" -e "TethysNestedChainProbe::heavyChained.rendezvousXenon" -e "TethysNestedChainProbe::heavyChained.chainedReturnXenon" $MODEL model/probes/F-F07-nested-chain-step-limit.sysml
 run probe-F-F03 $SYSML -analysis TethysMetadataInBodyProbe::inline -analysis TethysMetadataInBodyProbe::outside $MODEL model/probes/F-F03-metadata-in-analysis-body.sysml
 run probe-F-F05 $SYSML -action NestedStateSpaceProbe::fall -analysis NestedStateSpaceProbe::drop model/probes/F-F05-nested-state-space-action.sysml
+run probe-F-F09 $SYSML -action FF09::fall -action FF09::fall model/probes/F-F09-second-run-of-state-space-action.sysml
+run probe-F-F10 $SYSML -analysis NestedRedefinitionProbe::dropA -analysis NestedRedefinitionProbe::dropC -analysis NestedRedefinitionProbe::dropB model/probes/F-F10-nested-action-redefinition.sysml
+run probe-F-C05 $SYSML -instantiate "'F-C05'::operation" -e "'F-C05'::operation.run.system.limit" -e "'F-C05'::operation.run.check.mechanism.limit" -e "'F-C05'::operation.run.check.go" model/probes/F-C05-nested-in-parameter-from-enclosing-in.sysml
 run probe-F-F04 $SYSML -calc "TethysAmbiguousMinProbe::Smaller(2.0, 3.0)" -calc "TethysAmbiguousMinProbe::Larger(2.0, 3.0)" model/probes/F-F04-ambiguous-min.sysml
 runt probe-F-F08 $SYSML -analysis TethysSweepQuantityProbe::typed -sweep "speed=1.0..3.0:1.0" model/probes/F-F08-sweep-quantity-range.sysml
 runt probe-F-F08-plain $SYSML -analysis TethysSweepQuantityProbe::plain -sweep "speedMPerS=1.0..3.0:1.0" model/probes/F-F08-sweep-quantity-range.sysml

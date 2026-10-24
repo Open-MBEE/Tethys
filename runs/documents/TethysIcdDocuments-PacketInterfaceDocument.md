@@ -13,7 +13,7 @@
 
 *Parameters both sides agree on*
 
-| name | type |
-| --- | --- |
-| maximumPacketLength | ISQInformation::StorageCapacityValue |
-| housekeepingApid | ScalarValues::Natural |
+| name | type | valuation |
+| --- | --- | --- |
+| maximumPacketLength | ISQInformation::StorageCapacityValue | 65542 \[B\] |
+| housekeepingApid | ScalarValues::Natural | 1 |

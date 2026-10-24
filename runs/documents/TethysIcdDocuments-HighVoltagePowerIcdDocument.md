@@ -13,7 +13,7 @@
 
 *Parameters both sides agree on*
 
-| name | type |
-| --- | --- |
-| busVoltage | ISQElectromagnetism::ElectricPotentialValue |
-| maximumLoadPower | ISQMechanics::PowerValue |
+| name | type | valuation |
+| --- | --- | --- |
+| busVoltage | ISQElectromagnetism::ElectricPotentialValue | 300 \[V\] |
+| maximumLoadPower | ISQMechanics::PowerValue | 40 \[kW\] |

@@ -23,7 +23,7 @@ and surface speed are computed per case (`runs/wpc-target-cases.txt`).
 | SE-152 mode × subsystem | `TethysTarget::SmallBody::spinState` and `CaptureTargetCase` (moved to the backbone at integration) feed `TethysModes` through `TethysProximityOps` | `make check` (both) | partial — WP-E carries the matrix; Wren's units per mode are not modelled here |
 | SE-153 subsystem machines with orthogonal regions | `42:ProximityOpsModes::circumnavigating parallel { imaging; sounding }` | as SE-151 | partial: Wren's payload regions only |
 | SE-154 mission sequence | `40:CircumnavigationCampaign` (checkoutComplete → release → linkAcquired → imagingPasses → radarSounding → closePasses → characterisationDelivered → retreatToHold) | `make check` (both) | done — WP-C's segment of the timeline; `TethysMission::flightTimeline` now carries the `inspectorRetirement` event the campaign ends at |
-| SE-155 critical sequences with timing and go/no-go | `42:CaptureSequence` (`decide; if commit.go … else retreat`, `accept contact : ContactLoad`), `41:CaptureEnvelope` over the five cases, `42:ProximityOpsModes` (`accept after 7200.0 [s]`) | `runs/wpc-envelope-cases.txt`, `runs/wpc-capture-sequence.txt` | go/no-go satisfied (constraint verdicts per case); the sequence itself validates (both) but does not execute — F-C04 |
+| SE-155 critical sequences with timing and go/no-go | `42:CaptureSequence` (`decide; if commit.go … else retreat`, `accept contact : ContactLoad`), `41:CaptureEnvelope` over the five cases, `42:ProximityOpsModes` (`accept after 7200.0 [s]`) | `runs/wpc-envelope-cases.txt`, `runs/wpc-capture-sequence.txt` | go/no-go satisfied (constraint verdicts per case); the sequence itself validates (both) and instantiates (F-C04 fixed in pin) but `commit.go` does not evaluate — F-C05 |
 | SE-156 (replaced by the thrust-arc campaign) | — | — | not WP-C |
 | SE-157 capture sequence P10–P12 | `42:CaptureSequence` approach → contact → cinch → despin; `41:ContactForce`, `DespinDuration`, `DespinPropellant`, `MinimumRotationPeriod`; `TR-041`, `TR-042` | `runs/wpc-capture-calcs.txt`, `runs/wpc-requirements.txt` | satisfied: 10 kN at 0.10 m/s on 1 000 t over 0.5 m; 348 s and 6.44 kg for 4.17 × 10⁴ N·m·s at 120 N·m; 1 047 s minimum period for the largest body |
 | SE-158 Wren release and tug retreat | `42:proxStackFM` snapshots `beforeRelease`/`afterRelease` (12 624 → 12 600 kg), `40:wrenFM` snapshots `atRelease`/`atEndOfCampaign`, `40:WrenCampaignOutcome` variants `nominal`/`linkLost`/`notReleased` (F18, F19), `42:Retreat`, `TR-043` | `runs/wpc-individuals.txt`, `runs/wpc-requirements.txt` | satisfied |
@@ -55,5 +55,5 @@ and surface speed are computed per case (`runs/wpc-target-cases.txt`).
 
 F-C01 (`individual #Tag def` rejected by OpenSysML), F-C02 (metadata before `individual` accepted
 by OpenSysML, rejected by the pilot), F-C03 (redefinition direction not checked by OpenSysML),
-F-C04 (action output default evaluated before its input is bound — blocks `-action` on
+F-C04 (fixed in pin — action output default evaluated before its input is bound — blocks `-action` on
 `CaptureSequence`). Rows in `docs/findings/WP-C.md`, probes in `model/probes/`.

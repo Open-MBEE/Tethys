@@ -13,8 +13,8 @@
 
 *Parameters both sides agree on*
 
-| name | type |
-| --- | --- |
-| busRate | ISQInformation::BinaryDigitRateValue |
-| maximumPacketLength | ISQInformation::StorageCapacityValue |
-| pollingPeriod | ISQBase::DurationValue |
+| name | type | valuation |
+| --- | --- | --- |
+| busRate | ISQInformation::BinaryDigitRateValue | 1000000 \[bit/s\] |
+| maximumPacketLength | ISQInformation::StorageCapacityValue | 1024 \[B\] |
+| pollingPeriod | ISQBase::DurationValue | 0.125 \[s\] |

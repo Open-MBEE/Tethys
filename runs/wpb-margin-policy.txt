@@ -51,7 +51,7 @@
 ✓ Constraint TethysMarginPolicy::ClosesWithMargin(1200.0, 1000.0, TethysMarginPolicy::activePolicy) passed
   standing: holds (observed: 1 run under reverse)
 ✓ TethysMarginPolicy::ContingencyFor(TethysMarginPolicy::Maturity::modified, TethysMarginPolicy::activePolicy)
-  = [0.2]
+  = [0.1]
   standing: value (observed: 1 run under reverse)
 ✓ TethysMarginPolicy::WithContingency(100.0, TethysMarginPolicy::Maturity::newDesign, TethysMarginPolicy::activePolicy)
   = [120.0]

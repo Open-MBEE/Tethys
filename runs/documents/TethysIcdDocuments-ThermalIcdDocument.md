@@ -13,9 +13,9 @@
 
 *Parameters both sides agree on*
 
-| name | type |
-| --- | --- |
-| conductance | ISQThermodynamics::ThermalConductanceValue |
-| maximumHeat | ISQMechanics::PowerValue |
-| interfaceTemperatureMinimum | ISQBase::ThermodynamicTemperatureValue |
-| interfaceTemperatureMaximum | ISQBase::ThermodynamicTemperatureValue |
+| name | type | valuation |
+| --- | --- | --- |
+| conductance | ISQThermodynamics::ThermalConductanceValue | 2.5 \[W/K\] |
+| maximumHeat | ISQMechanics::PowerValue | 150 \[W\] |
+| interfaceTemperatureMinimum | ISQBase::ThermodynamicTemperatureValue | 253 \[K\] |
+| interfaceTemperatureMaximum | ISQBase::ThermodynamicTemperatureValue | 313 \[K\] |

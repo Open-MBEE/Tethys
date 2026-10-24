@@ -466,11 +466,13 @@ package TethysModes {
         doc /* The Argent tug with its mode machine; `command` is the tug end of the uplink. */
         port command : CommandPort;
         exhibit state modes : TugModes;
+        bind modes.command = command;
     }
     part def ModedInspector :> Inspector {
         doc /* The Wren inspector with its mode machine; `command` is the relay end. */
         port command : CommandPort;
         exhibit state modes : InspectorModes;
+        bind modes.command = command;
     }
 
     attribute def TargetEstimate {

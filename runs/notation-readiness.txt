@@ -51,7 +51,6 @@
 ✓ Created instance of TethysNotation::baselineReadiness
   ID: 1
   Use %features TethysNotation::baselineReadiness to inspect
-error: feature value baselineReadiness.bodyCount: usage captureOperation: performed action capture of object #207: invoke action CommitDecision: initialize action: initialize attributes: eval attribute default go: type mismatch: operator '<=' is not defined for a sequence and a quantity; DataFunctions::'<=' takes one DataValue per operand
 ✓ assert constraint inspectorDecisionIsExclusive holds (on TethysNotation::baselineReadiness ID: 1)
 ✓ assert constraint carriedMeansLifted holds (on TethysNotation::baselineReadiness ID: 1)
 ✓ assert constraint spareIsReal holds (on TethysNotation::baselineReadiness ID: 1)
@@ -84,4 +83,3 @@ error: feature value baselineReadiness.bodyCount: usage captureOperation: perfor
 ✓ TethysNotation::VolumeScale(1.2059)
   = [1.7536135213789998]
   standing: value (observed: 1 run under reverse)
-exit 2

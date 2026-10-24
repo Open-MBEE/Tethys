@@ -91,6 +91,18 @@ package TethysAnalysesTooling {
         event occurrence :>> xAxisCrossing : ZeroCrossing { :>> guard = stateSpace.elements#(2); }
     }
 
+    analysis droStabilityRk4 : DroStabilityAnalysis {
+        doc /* The DRO stability analysis with StateSpaceIntegration::RK4 bound as the integrator of
+             * its revolution and the x-axis crossing guarded on y, so the closure and period the
+             * objective asks for are evaluated here; the mission-tier `droStability` keeps the
+             * model's own RungeKutta4 (findings F-F01). */
+        subject :>> tug = argent;
+        action :>> revolution {
+            calc :>> getNextState { calc :>> integrate : RK4; }
+            event occurrence :>> xAxisCrossing : ZeroCrossing { :>> guard = stateSpace.elements#(2); }
+        }
+    }
+
     action firstThrustArcRk4 : ThrustCoastDynamics {
         doc /* Thirty days of full thrust from 1 AU with StateSpaceIntegration::RK4. */
         attribute thrustN : Real = SepThrust(argent.sep.maximumPower / 1 [W], argent.sep.specificImpulse / 1 [s], 0.65);
