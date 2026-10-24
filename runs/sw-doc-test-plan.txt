@@ -254,7 +254,7 @@ Every software verification case with its level, test bed, as-run verdict and ev
 | relativeStateUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
 | relativeStateDynamics | integration | dynamicsSimulator | planned | not yet run | test |  | 0 |
 | finalTargetingUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
-| finalTargetingFlightSoftwareInTheLoop | flightSoftwareInTheLoop | trajectoryTool | planned | not yet run | test |  | 0 |
+| finalTargetingFlightSoftwareInTheLoop | flightSoftwareInTheLoop | trajectoryTool | pass | software/conformance/evidence/finalTargetingFlightSoftwareInTheLoop.txt | test |  | 0 |
 | finalTargetingModel | modelInTheLoop | executable model | pass | fdir-earth-impact-aborted, fdir-earth-impact-abort-hold pinned runs | analyze |  | 0 |
 | captureAbortUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
 | captureAbortFlatsat | flatsat | flatsat | planned | not yet run | test |  | 0 |
@@ -263,7 +263,7 @@ Every software verification case with its level, test bed, as-run verdict and ev
 | commandRoutingHardwareInTheLoop | hardwareInTheLoop | flatsat | planned | not yet run | test |  | 0 |
 | commandRoutingModel | modelInTheLoop | executable model | pass | sw-failover pinned run, advanced 600 s | analyze |  | 0 |
 | thrustArcUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
-| thrustArcFlightSoftwareInTheLoop | flightSoftwareInTheLoop | trajectoryTool | planned | not yet run | test |  | 0 |
+| thrustArcFlightSoftwareInTheLoop | flightSoftwareInTheLoop | trajectoryTool | pass | software/conformance/evidence/thrustArcFlightSoftwareInTheLoop.txt | test |  | 0 |
 | thrustArcModel | modelInTheLoop | executable model | pass | sw-sep-string-restarting, fdir-thruster-string-lost, wpd-flight-rules pinned runs | analyze |  | 0 |
 | powerManagementUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
 | powerManagementFlatsat | flatsat | flatsat | planned | not yet run | test |  | 0 |
@@ -274,11 +274,11 @@ Every software verification case with its level, test bed, as-run verdict and ev
 | inspectorRelayUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
 | inspectorRelayIntegration | integration | software integration bench | planned | not yet run | test |  | 0 |
 | captureSequenceUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
-| captureSequenceFlightSoftwareInTheLoop | flightSoftwareInTheLoop | captureRig | planned | not yet run | test |  | 0 |
+| captureSequenceFlightSoftwareInTheLoop | flightSoftwareInTheLoop | captureRig | pass | software/conformance/evidence/captureSequenceFlightSoftwareInTheLoop.txt | test |  | 0 |
 | captureSequenceHardwareInTheLoop | hardwareInTheLoop | captureRig | planned | not yet run | test |  | 0 |
 | captureSequenceModel | modelInTheLoop | executable model | pass | fdir-inhibit-chain-check, fdir-inhibit-chain-held, sw-capture-controller-check, sw-capture-controller-check-inhibited pinned runs | analyze |  | 0 |
 | faultDetectionUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
-| faultDetectionFlightSoftwareInTheLoop | flightSoftwareInTheLoop | trajectoryTool | planned | not yet run | test |  | 0 |
+| faultDetectionFlightSoftwareInTheLoop | flightSoftwareInTheLoop | trajectoryTool | pass | software/conformance/evidence/faultDetectionFlightSoftwareInTheLoop.txt | test |  | 0 |
 | faultDetectionFlatsat | flatsat | flatsat | planned | not yet run | test |  | 0 |
 | faultDetectionModel | modelInTheLoop | executable model | pass | fdir-command-loss-expired, fdir-command-loss-modes-safe, sw-fdir-command-loss-expired, sw-fdir-thruster-restarting pinned runs | analyze |  | 0 |
 | modeManagementUnit | unit | developer workstation | planned | not yet run | test |  | 0 |
@@ -290,7 +290,7 @@ Every software verification case with its level, test bed, as-run verdict and ev
 | hazardousCommandInhibitModel | modelInTheLoop | executable model | pass | sw-assurance-coverage pinned run | analyze |  | 0 |
 | hazardousCommandInhibitFlatsat | flatsat | flatsat | planned | not yet run | test |  | 0 |
 | groundTwoStepModel | modelInTheLoop | executable model | pass | sw-ground-sequencer-check pinned run: verdict refused, reason FR-001 | analyze |  | 0 |
-| groundTwoStepIntegration | flightSoftwareInTheLoop | trajectoryTool | planned | not yet run | test |  | 0 |
+| groundTwoStepIntegration | flightSoftwareInTheLoop | trajectoryTool | pass | software/conformance/evidence/groundTwoStepIntegration.txt | test |  | 0 |
 | passPlanningIntegration | integration | operations centre integration | planned | not yet run | test |  | 0 |
 
 *Software functions and their cases*
@@ -321,13 +321,18 @@ Every software verification case with its level, test bed, as-run verdict and ev
 
 | name | SoftwareVerification::level | SoftwareVerification::evidence |
 | --- | --- | --- |
+| finalTargetingFlightSoftwareInTheLoop | flightSoftwareInTheLoop | software/conformance/evidence/finalTargetingFlightSoftwareInTheLoop.txt |
 | finalTargetingModel | modelInTheLoop | fdir-earth-impact-aborted, fdir-earth-impact-abort-hold pinned runs |
 | captureAbortModel | modelInTheLoop | sw-autonomy-engine pinned run: storedSequences 1 to 6 |
 | commandRoutingModel | modelInTheLoop | sw-failover pinned run, advanced 600 s |
+| thrustArcFlightSoftwareInTheLoop | flightSoftwareInTheLoop | software/conformance/evidence/thrustArcFlightSoftwareInTheLoop.txt |
 | thrustArcModel | modelInTheLoop | sw-sep-string-restarting, fdir-thruster-string-lost, wpd-flight-rules pinned runs |
+| captureSequenceFlightSoftwareInTheLoop | flightSoftwareInTheLoop | software/conformance/evidence/captureSequenceFlightSoftwareInTheLoop.txt |
 | captureSequenceModel | modelInTheLoop | fdir-inhibit-chain-check, fdir-inhibit-chain-held, sw-capture-controller-check, sw-capture-controller-check-inhibited pinned runs |
+| faultDetectionFlightSoftwareInTheLoop | flightSoftwareInTheLoop | software/conformance/evidence/faultDetectionFlightSoftwareInTheLoop.txt |
 | faultDetectionModel | modelInTheLoop | fdir-command-loss-expired, fdir-command-loss-modes-safe, sw-fdir-command-loss-expired, sw-fdir-thruster-restarting pinned runs |
 | modeManagementModel | modelInTheLoop | sw-mode-manager-safe, sw-mode-manager-recovered, sw-mode-manager-full-flight, modes-tug-full-flight pinned runs |
 | bootAndParameterModel | modelInTheLoop | sw-boot, sw-boot-sequence pinned runs |
 | hazardousCommandInhibitModel | modelInTheLoop | sw-assurance-coverage pinned run |
 | groundTwoStepModel | modelInTheLoop | sw-ground-sequencer-check pinned run: verdict refused, reason FR-001 |
+| groundTwoStepIntegration | flightSoftwareInTheLoop | software/conformance/evidence/groundTwoStepIntegration.txt |

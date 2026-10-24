@@ -1,0 +1,18 @@
+trace conformance: pinned runs, host (--fast-forward --trace) vs model (ExecuteState trace=true)
+vc-final-targeting: 2 machines compared, 1 agree, 1 diverge, 10 host-only, 11 configuration changes
+vc-thrust-arc: 12 machines compared, 12 agree, 0 diverge, 0 host-only, 28 configuration changes
+sw-mode-manager-early-ops: 12 machines compared, 12 agree, 0 diverge, 0 host-only, 21 configuration changes
+sw-mode-manager-thrust-arc: 12 machines compared, 12 agree, 0 diverge, 0 host-only, 26 configuration changes
+sw-mode-manager-proximity-ops: 12 machines compared, 12 agree, 0 diverge, 0 host-only, 27 configuration changes
+sw-mode-manager-full-flight: 12 machines compared, 11 agree, 1 diverge, 0 host-only, 32 configuration changes
+sw-mode-manager-dispatch: 12 machines compared, 11 agree, 1 diverge, 0 host-only, 32 configuration changes
+sw-mode-manager-safe: 12 machines compared, 12 agree, 0 diverge, 0 host-only, 26 configuration changes
+sw-mode-manager-recovered: 12 machines compared, 12 agree, 0 diverge, 0 host-only, 31 configuration changes
+sw-fdir-command-loss-expired: 12 machines compared, 12 agree, 0 diverge, 0 host-only, 26 configuration changes
+sw-fdir-thruster-restarting: 12 machines compared, 12 agree, 0 diverge, 0 host-only, 26 configuration changes
+sw-sep-string-restarting: 12 machines compared, 12 agree, 0 diverge, 0 host-only, 26 configuration changes
+sw-capture-controller: 1 machines compared, 1 agree, 0 diverge, 11 host-only, 5 configuration changes
+sw-capture-controller-inhibited: 1 machines compared, 1 agree, 0 diverge, 11 host-only, 3 configuration changes
+sw-boot: 1 machines compared, 1 agree, 0 diverge, 11 host-only, 11 configuration changes
+sw-failover: 12 machines compared, 12 agree, 0 diverge, 0 host-only, 17 configuration changes
+total: 149 machine-runs compared, 146 agree, 3 diverge, 43 host-only, 348 configuration changes, 434 model transitions, 282 model accepts

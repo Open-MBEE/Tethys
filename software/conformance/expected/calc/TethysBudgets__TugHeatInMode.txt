@@ -1,0 +1,6 @@
+calc TethysBudgets::TugHeatInMode(mode) kind=real tol=1e-09 relative
+  grid: two tug modes
+  c: does-not-compile-at-pin: sysml: not compilable: in calc TethysBudgets::TugHeatInMode: heat: type ISQMechanics::PowerValue is not Integer, Real, Boolean, String or an enumeration
+  go: does-not-compile-at-pin: sysml: not compilable: in calc TethysBudgets::TugHeatInMode: heat: type ISQMechanics::PowerValue is not Integer, Real, Boolean, String or an enumeration
+  (mode=TugMode::safe) model=762.4 [W]
+  (mode=TugMode::thrust) model=5088.4 [W]

@@ -1,0 +1,2 @@
+calc TethysGroundSoftware::ManoeuvreDesign(deltaV, stackMass, exhaustVelocity, acceleration) kind=real tol=1e-09 relative
+  not-driveable: quantity-typed inputs whose units (m/s, m/s^2) have no one-line literal at the pin; software-ground-check compares the ground planner against it

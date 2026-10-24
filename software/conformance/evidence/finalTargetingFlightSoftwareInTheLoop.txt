@@ -1,0 +1,9 @@
+case finalTargetingFlightSoftwareInTheLoop : FinalTargetingTest
+level: flightSoftwareInTheLoop; test bed as planned: trajectoryTool; run on: flight host (argent_host --trace), model (sysml-grpc ExecuteState trace, Model.eval) and the ground suite
+tool pin: OpenSysML 5cd37f288fef171d62737d6045f4caff772b6014
+criterion: PassIf(abortRaisedInsideCorridor)
+inputs: software/conformance/scenarios/vc-final-targeting.stim (TethysFdir::earthImpactScenario: nominal solution 384400 km / 1e-7, then 12000 km / 2e-3 inside the 63781.37 km exclusion sphere)
+  host  FdirSupervisor: t=0 armed | nominal | nominal | nominal | nominal | monitoring; t=2427840 armed | nominal | nominal | nominal | nominal | aborted
+  model FdirSupervisor: t=0 armed | nominal | nominal | nominal | nominal | monitoring; t=2427840 armed | nominal | nominal | nominal | nominal | aborted
+  abortRaisedInsideCorridor: host=true model=true (nominal solution left monitoring, violating one aborted)
+verdict: pass

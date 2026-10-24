@@ -1,0 +1,8 @@
+calc TethysMarginPolicy::MarginFraction(capability, demand) kind=real tol=1e-09 relative
+  grid: capability/demand pairs around the 15 % policy; 1119/1000 is the array margin shape
+  c: does-not-compile-at-pin: sysml: not compilable: in calc TethysMarginPolicy::MarginFraction: capability: type Quantities::ScalarQuantityValue is not Integer, Real, Boolean, String or an enumeration
+  go: does-not-compile-at-pin: sysml: not compilable: in calc TethysMarginPolicy::MarginFraction: capability: type Quantities::ScalarQuantityValue is not Integer, Real, Boolean, String or an enumeration
+  (capability=115.0 [SI::W], demand=100.0 [SI::W]) model=0.15
+  (capability=100.0 [SI::W], demand=100.0 [SI::W]) model=0.0
+  (capability=1119.0 [SI::W], demand=1000.0 [SI::W]) model=0.119
+  (capability=90.0 [SI::W], demand=100.0 [SI::W]) model=-0.1

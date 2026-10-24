@@ -1,0 +1,12 @@
+case faultDetectionFlightSoftwareInTheLoop : FaultDetectionTest
+level: flightSoftwareInTheLoop; test bed as planned: trajectoryTool; run on: flight host (argent_host --trace), model (sysml-grpc ExecuteState trace, Model.eval) and the ground suite
+tool pin: OpenSysML 5cd37f288fef171d62737d6045f4caff772b6014
+criterion: PassIf(measuredDetection <= 0.5 [s] and safeConfigurationReached)
+inputs: sw-fdir-thruster-restarting (ThrusterFlameout 2 at t=872640) and sw-mode-manager-safe (command loss, no ground contact until the timer expires)
+  host  FdirSupervisor: t=0 armed | nominal | nominal | nominal | nominal | monitoring; t=872640 armed | restarting | nominal | nominal | nominal | monitoring
+  model FdirSupervisor: t=0 armed | nominal | nominal | nominal | nominal | monitoring; t=872640 armed | restarting | nominal | nominal | nominal | monitoring
+  measuredDetection: host=0 s model=0 s (first FdirSupervisor configuration change after the fault; host minor frame 0.125 s)
+  host  TugModes: t=0 onLauncher | off | lowGain | thrusters | stowed; t=4320 deploying | off | lowGain | thrusters | stowed; t=8640 coast | standby | highGain | wheels | stowed; t=1468800 safe | off | lowGain | thrusters | stowed
+  model TugModes: t=0 onLauncher | off | lowGain | thrusters | stowed; t=4320 deploying | off | lowGain | thrusters | stowed; t=8640 coast | standby | highGain | wheels | stowed; t=1468800 safe | off | lowGain | thrusters | stowed
+  safeConfigurationReached: true (TugModes main region safe on both sides)
+verdict: pass

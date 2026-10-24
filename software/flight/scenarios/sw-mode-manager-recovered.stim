@@ -1,0 +1,8 @@
+# derived from runs/sw-mode-manager-recovered.txt and the TethysFlightBehaviour::softwareCommandLoss scenario; horizon 2160000 s
+t=4320 item SeparationConfirmed 
+t=8640 item ArraysDeployed 
+t=432000 item GroundContact 
+t=864000 item GroundContact 
+t=1987200 item GroundContact 
+t=2073600 item SafeModeExit 
+t=2160000 expect TugModes=coast | standby | highGain | wheels | stowed

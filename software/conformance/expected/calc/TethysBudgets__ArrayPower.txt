@@ -1,0 +1,7 @@
+calc TethysBudgets::ArrayPower(ratedAtOneAu, distanceAu, endOfLifeFactor, cosineLoss) kind=real tol=1e-09 relative
+  grid: inverse-square points at 1, 1.6 and 0.8 AU
+  c: does-not-compile-at-pin: sysml: not compilable: in calc TethysBudgets::ArrayPower: ratedAtOneAu: type ISQMechanics::PowerValue is not Integer, Real, Boolean, String or an enumeration
+  go: does-not-compile-at-pin: sysml: not compilable: in calc TethysBudgets::ArrayPower: ratedAtOneAu: type ISQMechanics::PowerValue is not Integer, Real, Boolean, String or an enumeration
+  (ratedAtOneAu=1200.0 [SI::W], distanceAu=1.0, endOfLifeFactor=1.0, cosineLoss=1.0) model=1200 [SI::W]
+  (ratedAtOneAu=1200.0 [SI::W], distanceAu=1.6, endOfLifeFactor=0.9, cosineLoss=0.95) model=400.781 [SI::W]
+  (ratedAtOneAu=1200.0 [SI::W], distanceAu=0.8, endOfLifeFactor=1.0, cosineLoss=1.0) model=1875 [SI::W]

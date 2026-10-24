@@ -1,0 +1,16 @@
+# sw-sep-string-restarting (TethysFlightBehaviour::softwareThrusterFault) run on to 1300000 s so the restarted string is seen thrusting again before the next injected flameout.
+t=4320 item SeparationConfirmed 
+t=8640 item ArraysDeployed 
+t=440640 item GroundContact 
+t=440640 item ThrustArcGo 200
+t=872640 item GroundContact 
+t=872640 item ThrusterFlameout 2
+t=1304640 item GroundContact 
+t=1304640 item ThrusterFlameout 2
+t=1736640 item GroundContact 
+t=1736640 item ThrusterFlameout 2
+t=2168640 item GroundContact 
+t=2168640 item PpuTrip 1
+t=2600640 item GroundContact 
+t=2600640 item ThrusterFlameout 3
+t=1300000 expect SepStringController=thrusting

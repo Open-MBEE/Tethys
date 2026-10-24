@@ -1,0 +1,2 @@
+calc TethysBudgets::ReturnableBodyMass(xenonAvailable, systemMargin, tugAloneXenon, tugMassAtTarget) kind=real tol=1e-09 relative
+  not-driveable: body-local attributes read the mission design (forReturnArcs, returnFraction)
