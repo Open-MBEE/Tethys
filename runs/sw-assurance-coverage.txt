@@ -1,0 +1,136 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Query TethysSoftwareAssuranceTooling::SoftwareFunctionCoverage returned 14 rows
+  Columns: name, verifiedBy, cases, hostedOn
+  Row 1: TethysAllocations::missionFunctions::estimateRelativeState
+    name = "estimateRelativeState"
+    verifiedBy = [TethysSoftwareAssurance::relativeStateUnit::verifiedFunctions, TethysSoftwareAssurance::relativeStateDynamics::verifiedFunctions]
+    cases = 2
+    hostedOn = [TethysTug::Tug::gnc, TethysFlightSoftware::ArgentFlightSoftware::gnc, TethysFlightSoftware::ArgentFlightSoftware::executive::gncPartition, TethysFlightSoftware::CdhWithSoftware::prime, TethysFlightSoftware::CdhWithSoftware::redundant]
+  Row 2: TethysAllocations::missionFunctions::planFinalTargeting
+    name = "planFinalTargeting"
+    verifiedBy = [TethysSoftwareAssurance::finalTargetingUnit::verifiedFunctions, TethysSoftwareAssurance::finalTargetingFlightSoftwareInTheLoop::verifiedFunctions, TethysSoftwareAssurance::finalTargetingModel::verifiedFunctions]
+    cases = 3
+    hostedOn = [TethysTug::Tug::gnc, TethysFlightSoftware::ArgentFlightSoftware::gnc, TethysFlightSoftware::ArgentFlightSoftware::executive::gncPartition, TethysFlightSoftware::CdhWithSoftware::prime, TethysFlightSoftware::CdhWithSoftware::redundant]
+  Row 3: TethysAllocations::missionFunctions::abortCapture
+    name = "abortCapture"
+    verifiedBy = [TethysSoftwareAssurance::captureAbortUnit::verifiedFunctions, TethysSoftwareAssurance::captureAbortFlatsat::verifiedFunctions]
+    cases = 2
+    hostedOn = [TethysTug::Tug::cdh, TethysFlightSoftware::ArgentFlightSoftware::autonomy, TethysFlightSoftware::ArgentFlightSoftware::executive::autonomyPartition, TethysFlightSoftware::CdhWithSoftware::prime, TethysFlightSoftware::CdhWithSoftware::redundant]
+  Row 4: TethysAllocations::missionFunctions::routeCommandsAndTelemetry
+    name = "routeCommandsAndTelemetry"
+    verifiedBy = [TethysSoftwareAssurance::commandRoutingIntegration::verifiedFunctions, TethysSoftwareAssurance::commandRoutingHardwareInTheLoop::verifiedFunctions, TethysSoftwareAssurance::commandRoutingModel::verifiedFunctions, TethysSoftwareAssurance::hazardousCommandInhibitModel::verifiedFunctions, TethysSoftwareAssurance::hazardousCommandInhibitFlatsat::verifiedFunctions]
+    cases = 5
+    hostedOn = [TethysTug::Tug::cdh, TethysFlightSoftware::ArgentFlightSoftware::cdh, TethysFlightSoftware::ArgentFlightSoftware::executive::platformPartition, TethysFlightSoftware::CdhWithSoftware::prime, TethysFlightSoftware::CdhWithSoftware::redundant]
+  Row 5: TethysAllocations::missionFunctions::controlThrustArc
+    name = "controlThrustArc"
+    verifiedBy = [TethysSoftwareAssurance::thrustArcUnit::verifiedFunctions, TethysSoftwareAssurance::thrustArcFlightSoftwareInTheLoop::verifiedFunctions, TethysSoftwareAssurance::thrustArcModel::verifiedFunctions]
+    cases = 3
+    hostedOn = [TethysTug::argent::sep, TethysFlightSoftware::ArgentFlightSoftware::sepControl, TethysFlightSoftware::ArgentFlightSoftware::executive::subsystemPartition, TethysFlightSoftware::CdhWithSoftware::prime, TethysFlightSoftware::CdhWithSoftware::redundant]
+  Row 6: TethysAllocations::missionFunctions::manageBatteryAndLoads
+    name = "manageBatteryAndLoads"
+    verifiedBy = [TethysSoftwareAssurance::powerManagementUnit::verifiedFunctions, TethysSoftwareAssurance::powerManagementFlatsat::verifiedFunctions]
+    cases = 2
+    hostedOn = [TethysTug::argent::eps, TethysFlightSoftware::ArgentFlightSoftware::powerManagement, TethysFlightSoftware::ArgentFlightSoftware::executive::subsystemPartition, TethysFlightSoftware::CdhWithSoftware::prime, TethysFlightSoftware::CdhWithSoftware::redundant]
+  Row 7: TethysAllocations::missionFunctions::regulateHeaterZones
+    name = "regulateHeaterZones"
+    verifiedBy = [TethysSoftwareAssurance::thermalControlUnit::verifiedFunctions, TethysSoftwareAssurance::thermalControlFlatsat::verifiedFunctions]
+    cases = 2
+    hostedOn = [TethysTug::Tug::thermal, TethysFlightSoftware::ArgentFlightSoftware::thermalControl, TethysFlightSoftware::ArgentFlightSoftware::executive::subsystemPartition, TethysFlightSoftware::CdhWithSoftware::prime, TethysFlightSoftware::CdhWithSoftware::redundant]
+  Row 8: TethysAllocations::missionFunctions::manageSpaceLink
+    name = "manageSpaceLink"
+    verifiedBy = [TethysSoftwareAssurance::spaceLinkUnit::verifiedFunctions, TethysSoftwareAssurance::spaceLinkHardwareInTheLoop::verifiedFunctions]
+    cases = 2
+    hostedOn = [TethysTug::Tug::telecom, TethysFlightSoftware::ArgentFlightSoftware::telecom, TethysFlightSoftware::ArgentFlightSoftware::executive::subsystemPartition, TethysFlightSoftware::CdhWithSoftware::prime, TethysFlightSoftware::CdhWithSoftware::redundant]
+  Row 9: TethysAllocations::missionFunctions::relayInspector
+    name = "relayInspector"
+    verifiedBy = [TethysSoftwareAssurance::inspectorRelayUnit::verifiedFunctions, TethysSoftwareAssurance::inspectorRelayIntegration::verifiedFunctions]
+    cases = 2
+    hostedOn = [TethysTug::Tug::cdh, TethysFlightSoftware::ArgentFlightSoftware::inspectorHandling, TethysFlightSoftware::ArgentFlightSoftware::executive::payloadPartition, TethysFlightSoftware::CdhWithSoftware::prime, TethysFlightSoftware::CdhWithSoftware::redundant]
+  Row 10: TethysAllocations::missionFunctions::controlCaptureSequence
+    name = "controlCaptureSequence"
+    verifiedBy = [TethysSoftwareAssurance::captureSequenceUnit::verifiedFunctions, TethysSoftwareAssurance::captureSequenceFlightSoftwareInTheLoop::verifiedFunctions, TethysSoftwareAssurance::captureSequenceHardwareInTheLoop::verifiedFunctions, TethysSoftwareAssurance::captureSequenceModel::verifiedFunctions]
+    cases = 4
+    hostedOn = [TethysTug::argent::captureSystem, TethysFlightSoftware::ArgentFlightSoftware::captureControl, TethysFlightSoftware::ArgentFlightSoftware::executive::autonomyPartition, TethysFlightSoftware::CdhWithSoftware::prime, TethysFlightSoftware::CdhWithSoftware::redundant]
+  Row 11: TethysAllocations::missionFunctions::executeOnBoardSequences
+    name = "executeOnBoardSequences"
+    verifiedBy = TethysSoftwareAssurance::captureAbortModel::verifiedFunctions
+    cases = 1
+    hostedOn = [TethysTug::Tug::cdh, TethysFlightSoftware::ArgentFlightSoftware::autonomy, TethysFlightSoftware::ArgentFlightSoftware::executive::autonomyPartition, TethysFlightSoftware::CdhWithSoftware::prime, TethysFlightSoftware::CdhWithSoftware::redundant]
+  Row 12: TethysAllocations::missionFunctions::detectAndRecoverFaults
+    name = "detectAndRecoverFaults"
+    verifiedBy = [TethysSoftwareAssurance::faultDetectionUnit::verifiedFunctions, TethysSoftwareAssurance::faultDetectionFlightSoftwareInTheLoop::verifiedFunctions, TethysSoftwareAssurance::faultDetectionFlatsat::verifiedFunctions, TethysSoftwareAssurance::faultDetectionModel::verifiedFunctions]
+    cases = 4
+    hostedOn = [TethysTug::Tug::cdh, TethysFlightSoftware::ArgentFlightSoftware::fdir, TethysFlightSoftware::ArgentFlightSoftware::executive::platformPartition, TethysFlightSoftware::CdhWithSoftware::prime, TethysFlightSoftware::CdhWithSoftware::redundant]
+  Row 13: TethysAllocations::missionFunctions::manageModes
+    name = "manageModes"
+    verifiedBy = [TethysSoftwareAssurance::modeManagementUnit::verifiedFunctions, TethysSoftwareAssurance::modeManagementFlatsat::verifiedFunctions, TethysSoftwareAssurance::modeManagementModel::verifiedFunctions]
+    cases = 3
+    hostedOn = [TethysTug::Tug::cdh, TethysFlightSoftware::ArgentFlightSoftware::modeManagement, TethysFlightSoftware::ArgentFlightSoftware::executive::platformPartition, TethysFlightSoftware::CdhWithSoftware::prime, TethysFlightSoftware::CdhWithSoftware::redundant]
+  Row 14: TethysAllocations::missionFunctions::manageParametersAndImages
+    name = "manageParametersAndImages"
+    verifiedBy = [TethysSoftwareAssurance::bootAndParameterUnit::verifiedFunctions, TethysSoftwareAssurance::bootAndParameterHardwareInTheLoop::verifiedFunctions, TethysSoftwareAssurance::bootAndParameterModel::verifiedFunctions]
+    cases = 3
+    hostedOn = [TethysTug::Tug::cdh, TethysFlightSoftware::ArgentFlightSoftware::parameterBootUpdate, TethysFlightSoftware::ArgentFlightSoftware::executive::platformPartition, TethysFlightSoftware::CdhWithSoftware::prime, TethysFlightSoftware::CdhWithSoftware::redundant]

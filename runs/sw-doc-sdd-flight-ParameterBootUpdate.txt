@@ -1,0 +1,320 @@
+loaded 64 files:
+  model/00-tethys.sysml
+  model/01-environment.sysml
+  model/02-mission.sysml
+  model/03-interfaces.sysml
+  model/04-requirements.sysml
+  model/05-tug.sysml
+  model/06-inspector.sysml
+  model/07-target.sysml
+  model/08-launch.sysml
+  model/09-ground.sysml
+  model/10-system.sysml
+  model/20-stakeholders.sysml
+  model/21-requirements-l2.sysml
+  model/22-requirements-l3-l4.sysml
+  model/23-verification.sysml
+  model/24-verification-tooling.sysml
+  model/30-margin-policy.sysml
+  model/31-tug-structure.sysml
+  model/32-budgets.sysml
+  model/40-inspector.sysml
+  model/41-capture-system.sysml
+  model/42-proximity-ops.sysml
+  model/50-ground.sysml
+  model/51-icds.sysml
+  model/52-link-budgets.sysml
+  model/53-operations.sysml
+  model/54-icds-tooling.sysml
+  model/60-modes.sysml
+  model/61-sequence.sysml
+  model/62-fdir.sysml
+  model/63-flight-software.sysml
+  model/64-flight-dictionary-tooling.sysml
+  model/64-flight-dictionary.sysml
+  model/65-flight-behaviour.sysml
+  model/66-flight-timing.sysml
+  model/67-software-requirements-tooling.sysml
+  model/67-software-requirements.sysml
+  model/68-software-icds-tooling.sysml
+  model/68-software-icds.sysml
+  model/69-ground-software.sysml
+  model/70-analyses.sysml
+  model/71-trades.sysml
+  model/72-montecarlo.sysml
+  model/73-dynamics.sysml
+  model/74-analyses-tooling.sysml
+  model/80-variants.sysml
+  model/81-physics.kerml
+  model/82-notation-sweep.sysml
+  model/85-safety.sysml
+  model/86-risk.sysml
+  model/87-allocations-tooling.sysml
+  model/87-allocations.sysml
+  model/88-software-assurance-tooling.sysml
+  model/88-software-assurance.sysml
+  model/90-views.sysml
+  model/91-documents.sysml
+  model/92-layout.sysml
+  model/93-views-tooling.sysml
+  model/94-software-documents-tooling.sysml
+  model/94-software-documents.sysml
+  model/95-as-built.sysml
+  model/96-imported-data.sysml
+  model/97-disposal.sysml
+  model/99-house-rules.sysml
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+# Parameter, boot and update application design description
+
+## Purpose
+
+*Application definition*
+
+| name | type | documentation |
+| --- | --- | --- |
+| ParameterBootUpdateApplication |  | Parameter, boot and image update management: the ground's view of the table<br>service and the boot and update service — table loads and dumps, image uplink<br>and slot selection. |
+
+*Behavioural specialisation*
+
+| name | type | documentation |
+| --- | --- | --- |
+| ParameterBootUpdateSoftware |  | The boot/update application exhibiting the boot and update manager. |
+
+## Ports
+
+*Ports of the application*
+
+| name | type | documentation |
+| --- | --- | --- |
+| tables | TethysFlightSoftware::TablePort |  |
+| update | TethysFlightSoftware::UpdatePort |  |
+
+*Ports added by the behavioural specialisation*
+
+| name | type | documentation |
+| --- | --- | --- |
+| command | TethysModes::CommandPort |  |
+
+## State machine
+
+*Exhibited state machines*
+
+| name | type | documentation |
+| --- | --- | --- |
+| manager | TethysFlightBehaviour::BootUpdateManager |  |
+
+*States*
+
+| name | type | documentation |
+| --- | --- | --- |
+| bootRom |  |  |
+| loadingImage |  |  |
+| running |  |  |
+| safeImage |  |  |
+| receivingUpdate |  |  |
+| uploadVerifiedIdle |  |  |
+
+## Parameter table
+
+*Parameters: id, value, range, unit*
+
+| parameterId | value | minimum | maximum | unitSymbol | inRange |
+| --- | --- | --- | --- | --- | --- |
+| 45 | 65536 | 4096 | 65536 | 1 | true |
+| 46 | 3 | 1 | 5 | 1 | true |
+| 47 | 100000 | 1000 | 100000 | 1 | true |
+| 48 | 12 | 1 | 12 | 1 | true |
+
+## Rate, worst-case execution time and deadline
+
+*Scheduled task*
+
+| name | period | wcet | deadline | utilisation | activeModes |
+| --- | --- | --- | --- | --- | --- |
+| parameterBootUpdateTask | 1 \[s\] | 0.004 \[s\] | 1 \[s\] | 0.004 | earlyOperations, thrust, approach, stackThrust, disposal, coast, stackCoast, dockedPassive, proximityOperations, retreat, capture, despin, droHold, safe, abortHold |
+
+## Commands, telemetry, events and packets owned
+
+*Commands*
+
+| mnemonic | opcodeNumber | criticality | hazardous | documentation |
+| --- | --- | --- | --- | --- |
+| PBU\_LOAD\_TABLE | 3073 | critical | false | Load a parameter table into the staging buffer. |
+| PBU\_DUMP\_TABLE | 3074 | routine | false | Downlink a parameter table. |
+| PBU\_ACTIVATE\_TABLE | 3075 | critical | true | Activate a staged table after validation. |
+| PBU\_VERIFY\_TABLE | 3076 | routine | false | Recompute and report a table checksum. |
+| PBU\_SET\_PARAMETER | 3077 | critical | false | Set one parameter by id. |
+| PBU\_GET\_PARAMETER | 3078 | routine | false | Report one parameter by id. |
+| PBU\_START\_BOOT\_UPDATE | 3079 | critical | true | Start receiving a boot image. |
+| PBU\_ABORT\_BOOT\_UPDATE | 3080 | critical | false | Abort a boot image transfer. |
+| PBU\_SELECT\_BOOT\_IMAGE | 3081 | critical | true | Select the boot image used at the next reset. |
+| PBU\_COMMIT\_BOOT\_IMAGE | 3082 | critical | true | Mark the running image good so the boot loader stops falling back. |
+| PBU\_TABLE\_RESET\_01 | 3083 | critical | false | Reset parameter table 1 to its flight defaults. |
+| PBU\_TABLE\_RESET\_02 | 3084 | critical | false | Reset parameter table 2 to its flight defaults. |
+| PBU\_TABLE\_RESET\_03 | 3085 | critical | false | Reset parameter table 3 to its flight defaults. |
+| PBU\_TABLE\_RESET\_04 | 3086 | critical | false | Reset parameter table 4 to its flight defaults. |
+| PBU\_TABLE\_RESET\_05 | 3087 | critical | false | Reset parameter table 5 to its flight defaults. |
+| PBU\_TABLE\_RESET\_06 | 3088 | critical | false | Reset parameter table 6 to its flight defaults. |
+| PBU\_TABLE\_RESET\_07 | 3089 | critical | false | Reset parameter table 7 to its flight defaults. |
+| PBU\_TABLE\_RESET\_08 | 3090 | critical | false | Reset parameter table 8 to its flight defaults. |
+| PBU\_TABLE\_RESET\_09 | 3091 | critical | false | Reset parameter table 9 to its flight defaults. |
+| PBU\_TABLE\_RESET\_10 | 3092 | critical | false | Reset parameter table 10 to its flight defaults. |
+| PBU\_TABLE\_RESET\_11 | 3093 | critical | false | Reset parameter table 11 to its flight defaults. |
+| PBU\_TABLE\_RESET\_12 | 3094 | critical | false | Reset parameter table 12 to its flight defaults. |
+
+*Telemetry points*
+
+| mnemonic | pointId | kind | rate | unitSymbol |
+| --- | --- | --- | --- | --- |
+| PBU\_TABLE\_ID\_01 | 12001 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_ID\_02 | 12002 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_ID\_03 | 12003 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_ID\_04 | 12004 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_ID\_05 | 12005 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_ID\_06 | 12006 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_ID\_07 | 12007 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_ID\_08 | 12008 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_ID\_09 | 12009 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_ID\_10 | 12010 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_ID\_11 | 12011 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_ID\_12 | 12012 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_CRC\_01 | 12013 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_CRC\_02 | 12014 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_CRC\_03 | 12015 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_CRC\_04 | 12016 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_CRC\_05 | 12017 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_CRC\_06 | 12018 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_CRC\_07 | 12019 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_CRC\_08 | 12020 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_CRC\_09 | 12021 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_CRC\_10 | 12022 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_CRC\_11 | 12023 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_CRC\_12 | 12024 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_STATE\_01 | 12025 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_STATE\_02 | 12026 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_STATE\_03 | 12027 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_STATE\_04 | 12028 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_STATE\_05 | 12029 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_STATE\_06 | 12030 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_STATE\_07 | 12031 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_STATE\_08 | 12032 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_STATE\_09 | 12033 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_STATE\_10 | 12034 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_STATE\_11 | 12035 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_TABLE\_STATE\_12 | 12036 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_BOOT\_IMAGE\_SEL | 12037 | housekeeping | 0.1 \[Hz\] | 1 |
+| PBU\_BOOT\_IMAGE\_CRC\_01 | 12038 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_BOOT\_IMAGE\_CRC\_02 | 12039 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_UPDATE\_PROGRESS | 12040 | housekeeping | 1 \[Hz\] | 1 |
+| PBU\_UPDATE\_STATE | 12041 | housekeeping | 1 \[Hz\] | 1 |
+| PBU\_PARAM\_WRITE\_COUNT | 12042 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_PARAM\_REJECT\_COUNT | 12043 | engineering | 0.1 \[Hz\] | 1 |
+| PBU\_EEPROM\_WRITE\_CYCLES | 12044 | engineering | 0.01 \[Hz\] | 1 |
+
+*Events (the fault-relevant ones are the fault-protection interface)*
+
+| mnemonic | eventId | severity | fdirRelevant | text |
+| --- | --- | --- | --- | --- |
+| PBU\_EVT\_STARTED | 1201 | info | false | application started |
+| PBU\_EVT\_STOPPED | 1202 | warning | false | application stopped |
+| PBU\_EVT\_CMD\_ACCEPTED | 1203 | info | false | command accepted |
+| PBU\_EVT\_CMD\_REJECTED | 1204 | warning | false | command rejected |
+| PBU\_EVT\_TABLE\_LOADED | 1205 | info | false | parameter table loaded |
+| PBU\_EVT\_TABLE\_INVALID | 1206 | fault | true | parameter table failed validation |
+| PBU\_EVT\_WATCHDOG\_MISSED | 1207 | fault | true | application missed its watchdog window |
+| PBU\_EVT\_MODE\_CHANGE\_SEEN | 1208 | info | false | application applied a mode change |
+| PBU\_EVT\_TABLE\_ACTIVATED | 1209 | info | false | table activated |
+| PBU\_EVT\_TABLE\_CRC\_MISMATCH | 1210 | fault | true | table checksum mismatch |
+| PBU\_EVT\_BOOT\_UPDATE\_STARTED | 1211 | warning | false | boot image transfer started |
+| PBU\_EVT\_BOOT\_UPDATE\_COMPLETE | 1212 | critical | true | boot image written |
+| PBU\_EVT\_BOOT\_FALLBACK | 1213 | critical | true | boot loader fell back to the previous image |
+| PBU\_EVT\_PARAMETER\_REJECTED | 1214 | warning | false | parameter outside its range |
+
+*Packets*
+
+| mnemonic | apid | apidClass | rate | lengthOctets | layoutConsistent |
+| --- | --- | --- | --- | --- | --- |
+| PBU\_HK\_01 | 44 | housekeeping | 0.1 \[Hz\] | 72 | true |
+| PBU\_HK\_02 | 45 | housekeeping | 1 \[Hz\] | 16 | true |
+| PBU\_ENG\_01 | 46 | housekeeping | 0.1 \[Hz\] | 80 | true |
+
+## Requirements satisfied
+
+*Software requirements satisfied*
+
+| name | satisfies | rows |
+| --- | --- | --- |
+| parameterBootUpdate | parameterBootUpdateApplication | 1 |
+
+## Assurance classification
+
+*Classification register row*
+
+| name | level | documentation |
+| --- | --- | --- |
+| parameterBootUpdate | levelB | Parameter tables and software images. |
+
+One volume per application of the Argent flight software, in the order of TethysFlightSoftware::ArgentFlightSoftware. Every table is a query over TethysFlightSoftware, TethysFlightBehaviour, TethysFlightTiming, TethysFlightDictionary, TethysSoftwareRequirements and TethysSoftwareAssurance.

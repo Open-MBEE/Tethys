@@ -1,0 +1,8 @@
+model/probes/F-SW902-same-named-verify-members.sysml:18:21: error[name-conflict]: Duplicate of other owned member name
+        objective { verify sequenceClearance { doc /* System row. */ } verify F_SW902_Software::sequenceClearance { doc /* Software row. */ } }
+                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+model/probes/F-SW902-same-named-verify-members.sysml:18:72: error[name-conflict]: Duplicate of other owned member name
+        objective { verify sequenceClearance { doc /* System row. */ } verify F_SW902_Software::sequenceClearance { doc /* Software row. */ } }
+                                                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+sysml: model/probes/F-SW902-same-named-verify-members.sysml did not analyse cleanly; no check was made
+exit 2

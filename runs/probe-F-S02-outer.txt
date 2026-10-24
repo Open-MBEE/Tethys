@@ -1,0 +1,43 @@
+✓ package FS02
+[trace] materialize: outer #1
+[trace] materialize: Inner #2
+[trace] start: exhibited state machine m of #2
+[trace] materialize: Base #3
+[trace] enter: one
+[trace]   eval literal 1.0 -> 1.0
+[trace] eval index -> 1.0 [s]
+[trace] run: exhibited state machine m of #2
+✓ Created instance of FS02::outer
+  ID: 1
+  Use %features FS02::outer to inspect
+[trace] materialize: entryAction #4
+[trace] materialize: Action #5
+[trace] materialize: Action #6
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] run: exhibited state machine m of #2
+[trace] exit: one
+[trace] stmt assign writes
+[trace]     eval feature writes -> 0
+[trace]     eval literal 1 -> 1
+[trace]   eval operator + -> 1
+[trace] enter: two
+[trace] transition: one -> two (event: time)
+✓ Debugging state machine "m" exhibited by object #2 of "FS02::outer.inner"
+note: object #2 of "FS02::outer.inner" already exhibits "FS02::Inner::m", so this session attaches to that running machine rather than starting a second performance of it (as `%state FS02::outer.inner` would)
+  Current state: one
+  Time: 0.0
+  Events: 1
+✓ Advanced to 10.0 (1 event(s) processed)
+  Current state: two
+  Last event at: 1.0
+  Remaining events: 0
+  standing: value (observed: 1 run under reverse)

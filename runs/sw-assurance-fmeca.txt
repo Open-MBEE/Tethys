@@ -1,0 +1,196 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Query TethysSoftwareAssuranceTooling::SoftwareFmecaRows returned 13 rows
+  Columns: shortName, name, failureMode, localEffect, endEffect, detection, response, criticality, level
+  Row 1: TethysSoftwareAssurance::softwareFmeca::executiveSchedulerStall
+    shortName = "SFM-01"
+    name = "executiveSchedulerStall"
+    failureMode = "partition scheduler stall: a major frame is not released"
+    localEffect = "every application misses its rate group"
+    endEffect = "watchdog resets the computer; redundant computer takes over"
+    detection = TethysSafety::DetectionMeans::builtInTest
+    response = TethysFdir::FaultResponse::switchover
+    criticality = TethysSafety::Severity::major
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+  Row 2: TethysSoftwareAssurance::softwareFmeca::cdhRoutingLoss
+    shortName = "SFM-02"
+    name = "cdhRoutingLoss"
+    failureMode = "message bus queue overflow drops commands"
+    localEffect = "commands not delivered to their application"
+    endEffect = "loss of commandability until the command-loss timer safes the tug"
+    detection = TethysSafety::DetectionMeans::telemetryLimit
+    response = TethysFdir::FaultResponse::safeMode
+    criticality = TethysSafety::Severity::major
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+  Row 3: TethysSoftwareAssurance::softwareFmeca::gncTargetingError
+    shortName = "SFM-03"
+    name = "gncTargetingError"
+    failureMode = "targeting solution from a stale ephemeris"
+    localEffect = "burn vector inside the Earth corridor"
+    endEffect = "Earth-impact trajectory unless the exclusion monitor aborts"
+    detection = TethysSafety::DetectionMeans::navigationResidual
+    response = TethysFdir::FaultResponse::abortReturn
+    criticality = TethysSafety::Severity::catastrophic
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+  Row 4: TethysSoftwareAssurance::softwareFmeca::sepUncommandedThrust
+    shortName = "SFM-04"
+    name = "sepUncommandedThrust"
+    failureMode = "thrust arc not terminated at its end time"
+    localEffect = "thrust continues past the planned arc"
+    endEffect = "trajectory error; on the final arc an Earth-corridor entry"
+    detection = TethysSafety::DetectionMeans::telemetryLimit
+    response = TethysFdir::FaultResponse::safeMode
+    criticality = TethysSafety::Severity::catastrophic
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+  Row 5: TethysSoftwareAssurance::softwareFmeca::powerLoadShedMissed
+    shortName = "SFM-05"
+    name = "powerLoadShedMissed"
+    failureMode = "battery floor comparison against a stale measurement"
+    localEffect = "loads stay on below the floor"
+    endEffect = "battery depth of discharge exceeded; FDIR safes the tug"
+    detection = TethysSafety::DetectionMeans::telemetryLimit
+    response = TethysFdir::FaultResponse::loadShed
+    criticality = TethysSafety::Severity::major
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+  Row 6: TethysSoftwareAssurance::softwareFmeca::thermalSetpointError
+    shortName = "SFM-06"
+    name = "thermalSetpointError"
+    failureMode = "setpoint table index off by one"
+    localEffect = "one zone too cold or too warm"
+    endEffect = "component out of its allowable range; trended by the ground"
+    detection = TethysSafety::DetectionMeans::groundTrending
+    response = TethysFdir::FaultResponse::retry
+    criticality = TethysSafety::Severity::minor
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC
+  Row 7: TethysSoftwareAssurance::softwareFmeca::telecomTransmitterStuck
+    shortName = "SFM-07"
+    name = "telecomTransmitterStuck"
+    failureMode = "transmitter-off command lost at the arc start"
+    localEffect = "transmitter on while thrusting"
+    endEffect = "flight rule FR-001 violated; power margin consumed"
+    detection = TethysSafety::DetectionMeans::telemetryLimit
+    response = TethysFdir::FaultResponse::retry
+    criticality = TethysSafety::Severity::minor
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB
+  Row 8: TethysSoftwareAssurance::softwareFmeca::inspectorRelayLoss
+    shortName = "SFM-08"
+    name = "inspectorRelayLoss"
+    failureMode = "relay buffer overrun"
+    localEffect = "survey frames lost"
+    endEffect = "characterisation products delayed"
+    detection = TethysSafety::DetectionMeans::groundTrending
+    response = TethysFdir::FaultResponse::retry
+    criticality = TethysSafety::Severity::negligible
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelC
+  Row 9: TethysSoftwareAssurance::softwareFmeca::captureCinchWithInhibit
+    shortName = "SFM-09"
+    name = "captureCinchWithInhibit"
+    failureMode = "inhibit gate bypassed"
+    localEffect = "cinch motor runs before the envelope check"
+    endEffect = "bag torn on an over-envelope body"
+    detection = TethysSafety::DetectionMeans::builtInTest
+    response = TethysFdir::FaultResponse::abortReturn
+    criticality = TethysSafety::Severity::critical
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+  Row 10: TethysSoftwareAssurance::softwareFmeca::autonomyAbortMissed
+    shortName = "SFM-10"
+    name = "autonomyAbortMissed"
+    failureMode = "abort rule disabled by a parameter load"
+    localEffect = "keep-out breach continues"
+    endEffect = "collision with the target"
+    detection = TethysSafety::DetectionMeans::navigationResidual
+    response = TethysFdir::FaultResponse::abortReturn
+    criticality = TethysSafety::Severity::critical
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+  Row 11: TethysSoftwareAssurance::softwareFmeca::fdirMonitorMasked
+    shortName = "SFM-11"
+    name = "fdirMonitorMasked"
+    failureMode = "monitor mask left set after a test"
+    localEffect = "fault not detected"
+    endEffect = "no abort on an Earth-corridor entry"
+    detection = TethysSafety::DetectionMeans::groundTrending
+    response = TethysFdir::FaultResponse::safeMode
+    criticality = TethysSafety::Severity::catastrophic
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+  Row 12: TethysSoftwareAssurance::softwareFmeca::modeManagerWrongMode
+    shortName = "SFM-12"
+    name = "modeManagerWrongMode"
+    failureMode = "mode flag not cleared on exit"
+    localEffect = "the capture-mode inhibit is removed"
+    endEffect = "one of three cinch inhibits lost"
+    detection = TethysSafety::DetectionMeans::telemetryLimit
+    response = TethysFdir::FaultResponse::safeMode
+    criticality = TethysSafety::Severity::critical
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelA
+  Row 13: TethysSoftwareAssurance::softwareFmeca::bootImageCorrupt
+    shortName = "SFM-13"
+    name = "bootImageCorrupt"
+    failureMode = "image checksum mismatch after upload"
+    localEffect = "boot falls back to the safe image"
+    endEffect = "mission software reverted until reload"
+    detection = TethysSafety::DetectionMeans::builtInTest
+    response = TethysFdir::FaultResponse::retry
+    criticality = TethysSafety::Severity::minor
+    level = TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB

@@ -12,7 +12,8 @@ The model is written in standard SysML v2 and exists for two purposes:
 
 1. to show what a *complete* mission model looks like — stakeholders and needs, requirement
    tiers with derivation and verification, functional/logical/physical architecture with
-   allocations, interface control, every engineering budget with margins, modes and fault
+   allocations, the flight software and its deployment onto the computers, interface control,
+   every engineering budget with margins, modes and fault
    management, trades and Monte Carlo analyses, risks, the as-built individual with imported
    telemetry, operations products, views and rendered documents — all executable and queryable;
 2. to find where [OpenSysML](https://github.com/Open-MBEE/OpenSysML) stops being correct,

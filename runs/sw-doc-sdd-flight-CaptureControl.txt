@@ -1,0 +1,337 @@
+loaded 64 files:
+  model/00-tethys.sysml
+  model/01-environment.sysml
+  model/02-mission.sysml
+  model/03-interfaces.sysml
+  model/04-requirements.sysml
+  model/05-tug.sysml
+  model/06-inspector.sysml
+  model/07-target.sysml
+  model/08-launch.sysml
+  model/09-ground.sysml
+  model/10-system.sysml
+  model/20-stakeholders.sysml
+  model/21-requirements-l2.sysml
+  model/22-requirements-l3-l4.sysml
+  model/23-verification.sysml
+  model/24-verification-tooling.sysml
+  model/30-margin-policy.sysml
+  model/31-tug-structure.sysml
+  model/32-budgets.sysml
+  model/40-inspector.sysml
+  model/41-capture-system.sysml
+  model/42-proximity-ops.sysml
+  model/50-ground.sysml
+  model/51-icds.sysml
+  model/52-link-budgets.sysml
+  model/53-operations.sysml
+  model/54-icds-tooling.sysml
+  model/60-modes.sysml
+  model/61-sequence.sysml
+  model/62-fdir.sysml
+  model/63-flight-software.sysml
+  model/64-flight-dictionary-tooling.sysml
+  model/64-flight-dictionary.sysml
+  model/65-flight-behaviour.sysml
+  model/66-flight-timing.sysml
+  model/67-software-requirements-tooling.sysml
+  model/67-software-requirements.sysml
+  model/68-software-icds-tooling.sysml
+  model/68-software-icds.sysml
+  model/69-ground-software.sysml
+  model/70-analyses.sysml
+  model/71-trades.sysml
+  model/72-montecarlo.sysml
+  model/73-dynamics.sysml
+  model/74-analyses-tooling.sysml
+  model/80-variants.sysml
+  model/81-physics.kerml
+  model/82-notation-sweep.sysml
+  model/85-safety.sysml
+  model/86-risk.sysml
+  model/87-allocations-tooling.sysml
+  model/87-allocations.sysml
+  model/88-software-assurance-tooling.sysml
+  model/88-software-assurance.sysml
+  model/90-views.sysml
+  model/91-documents.sysml
+  model/92-layout.sysml
+  model/93-views-tooling.sysml
+  model/94-software-documents-tooling.sysml
+  model/94-software-documents.sysml
+  model/95-as-built.sysml
+  model/96-imported-data.sysml
+  model/97-disposal.sysml
+  model/99-house-rules.sysml
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+# Capture control application design description
+
+## Purpose
+
+*Application definition*
+
+| name | type | documentation |
+| --- | --- | --- |
+| CaptureControlApplication |  | Capture system control: the enclosure sequence, the cinch inhibit chain and the<br>despin, safety-critical because the cinch is the hazardous function of the<br>inhibit chain. |
+
+*Behavioural specialisation*
+
+| name | type | documentation |
+| --- | --- | --- |
+| CaptureControlSoftware |  | The capture application exhibiting the capture controller; the controller's<br>inhibits are the software interlocks of the inhibit chain. |
+
+## Ports
+
+*Ports of the application*
+
+| name | type | documentation |
+| --- | --- | --- |
+| mechanisms | TethysInterfaces::DataBusPort |  |
+
+*Ports added by the behavioural specialisation*
+
+| name | type | documentation |
+| --- | --- | --- |
+| command | TethysModes::CommandPort |  |
+
+## State machine
+
+*Exhibited state machines*
+
+| name | type | documentation |
+| --- | --- | --- |
+| controller | TethysFlightBehaviour::CaptureController |  |
+
+*States*
+
+| name | type | documentation |
+| --- | --- | --- |
+| characterising |  |  |
+| armed |  |  |
+| committed |  |  |
+| cinching |  |  |
+| inhibited |  |  |
+| despinning |  |  |
+| captured |  |  |
+
+## Parameter table
+
+*Parameters: id, value, range, unit*
+
+| parameterId | value | minimum | maximum | unitSymbol | inRange |
+| --- | --- | --- | --- | --- | --- |
+| 29 | 0.1 | 0.01 | 0.5 | m/s | true |
+| 30 | 200 | 1 | 500 | N | true |
+| 31 | 1000 | 10 | 2000 | N | true |
+| 32 | 0.5 | 0 | 1 | 1 | true |
+
+## Rate, worst-case execution time and deadline
+
+*Scheduled task*
+
+| name | period | wcet | deadline | utilisation | activeModes |
+| --- | --- | --- | --- | --- | --- |
+| captureControlTask | 0.0625 \[s\] | 0.006 \[s\] | 0.0625 \[s\] | 0.096 | proximityOperations, capture, despin |
+
+## Commands, telemetry, events and packets owned
+
+*Commands*
+
+| mnemonic | opcodeNumber | criticality | hazardous | documentation |
+| --- | --- | --- | --- | --- |
+| CAP\_ARM\_CAPTURE | 2049 | critical | true | Arm the capture mechanism. |
+| CAP\_DISARM\_CAPTURE | 2050 | critical | false | Disarm the capture mechanism. |
+| CAP\_DEPLOY\_BAG | 2051 | hazardous | true | Deploy the capture bag. |
+| CAP\_CLOSE\_BAG | 2052 | hazardous | true | Close the capture bag around the body. |
+| CAP\_CINCH\_BAG | 2053 | critical | true | Cinch the bag to the commanded tension. |
+| CAP\_START\_DESPIN | 2054 | critical | true | Start the despin controller. |
+| CAP\_STOP\_DESPIN | 2055 | critical | false | Stop the despin controller. |
+| CAP\_SET\_DESPIN\_TORQUE | 2056 | critical | false | Set the despin torque fraction. |
+| CAP\_LATCH\_BODY | 2057 | critical | true | Engage the body latches. |
+| CAP\_RELEASE\_BODY | 2058 | hazardous | true | Release the body latches and the bag; irreversible for the mission. |
+| CAP\_ABORT\_CAPTURE | 2059 | critical | true | Abort the capture: open the bag and retreat. |
+| CAP\_SET\_APPROACH\_RATE | 2060 | critical | false | Set the closing rate limit for the final approach. |
+| CAP\_ENABLE\_PROXIMITY\_SENSORS | 2061 | routine | false | Power and enable the proximity sensor suite. |
+| CAP\_DISABLE\_PROXIMITY\_SENSORS | 2062 | routine | false | Disable the proximity sensor suite. |
+| CAP\_SET\_CONTACT\_FORCE\_LIMIT | 2063 | critical | false | Set the contact force at which the controller backs off. |
+| CAP\_SET\_BODY\_MASS\_ESTIMATE | 2064 | routine | false | Load the ground estimate of the body mass into the controller. |
+| CAP\_PETAL\_OPEN\_1 | 2065 | critical | true | Open bag petal 1. |
+| CAP\_PETAL\_CLOSE\_1 | 2066 | critical | true | Close bag petal 1. |
+| CAP\_PETAL\_OPEN\_2 | 2067 | critical | true | Open bag petal 2. |
+| CAP\_PETAL\_CLOSE\_2 | 2068 | critical | true | Close bag petal 2. |
+| CAP\_PETAL\_OPEN\_3 | 2069 | critical | true | Open bag petal 3. |
+| CAP\_PETAL\_CLOSE\_3 | 2070 | critical | true | Close bag petal 3. |
+| CAP\_PETAL\_OPEN\_4 | 2071 | critical | true | Open bag petal 4. |
+| CAP\_PETAL\_CLOSE\_4 | 2072 | critical | true | Close bag petal 4. |
+
+*Telemetry points*
+
+| mnemonic | pointId | kind | rate | unitSymbol |
+| --- | --- | --- | --- | --- |
+| CAP\_BAG\_DEPLOY\_POS\_01 | 8001 | housekeeping | 1 \[Hz\] | 1 |
+| CAP\_BAG\_DEPLOY\_POS\_02 | 8002 | housekeeping | 1 \[Hz\] | 1 |
+| CAP\_BAG\_DEPLOY\_POS\_03 | 8003 | housekeeping | 1 \[Hz\] | 1 |
+| CAP\_BAG\_DEPLOY\_POS\_04 | 8004 | housekeeping | 1 \[Hz\] | 1 |
+| CAP\_PETAL\_ANGLE\_01 | 8005 | housekeeping | 1 \[Hz\] | rad |
+| CAP\_PETAL\_ANGLE\_02 | 8006 | housekeeping | 1 \[Hz\] | rad |
+| CAP\_PETAL\_ANGLE\_03 | 8007 | housekeeping | 1 \[Hz\] | rad |
+| CAP\_PETAL\_ANGLE\_04 | 8008 | housekeeping | 1 \[Hz\] | rad |
+| CAP\_PETAL\_MOTOR\_I\_01 | 8009 | engineering | 1 \[Hz\] | A |
+| CAP\_PETAL\_MOTOR\_I\_02 | 8010 | engineering | 1 \[Hz\] | A |
+| CAP\_PETAL\_MOTOR\_I\_03 | 8011 | engineering | 1 \[Hz\] | A |
+| CAP\_PETAL\_MOTOR\_I\_04 | 8012 | engineering | 1 \[Hz\] | A |
+| CAP\_PETAL\_T\_01 | 8013 | engineering | 0.1 \[Hz\] | K |
+| CAP\_PETAL\_T\_02 | 8014 | engineering | 0.1 \[Hz\] | K |
+| CAP\_PETAL\_T\_03 | 8015 | engineering | 0.1 \[Hz\] | K |
+| CAP\_PETAL\_T\_04 | 8016 | engineering | 0.1 \[Hz\] | K |
+| CAP\_CINCH\_TENSION\_01 | 8017 | housekeeping | 1 \[Hz\] | N |
+| CAP\_CINCH\_TENSION\_02 | 8018 | housekeeping | 1 \[Hz\] | N |
+| CAP\_LATCH\_STATE\_01 | 8019 | housekeeping | 1 \[Hz\] | 1 |
+| CAP\_LATCH\_STATE\_02 | 8020 | housekeeping | 1 \[Hz\] | 1 |
+| CAP\_LATCH\_STATE\_03 | 8021 | housekeeping | 1 \[Hz\] | 1 |
+| CAP\_LATCH\_STATE\_04 | 8022 | housekeeping | 1 \[Hz\] | 1 |
+| CAP\_PROX\_RANGE\_01 | 8023 | engineering | 10 \[Hz\] | m |
+| CAP\_PROX\_RANGE\_02 | 8024 | engineering | 10 \[Hz\] | m |
+| CAP\_PROX\_RANGE\_03 | 8025 | engineering | 10 \[Hz\] | m |
+| CAP\_PROX\_RANGE\_04 | 8026 | engineering | 10 \[Hz\] | m |
+| CAP\_PROX\_RANGE\_05 | 8027 | engineering | 10 \[Hz\] | m |
+| CAP\_PROX\_RANGE\_06 | 8028 | engineering | 10 \[Hz\] | m |
+| CAP\_PROX\_RANGE\_07 | 8029 | engineering | 10 \[Hz\] | m |
+| CAP\_PROX\_RANGE\_08 | 8030 | engineering | 10 \[Hz\] | m |
+| CAP\_PROX\_STATE\_01 | 8031 | engineering | 1 \[Hz\] | 1 |
+| CAP\_PROX\_STATE\_02 | 8032 | engineering | 1 \[Hz\] | 1 |
+| CAP\_PROX\_STATE\_03 | 8033 | engineering | 1 \[Hz\] | 1 |
+| CAP\_PROX\_STATE\_04 | 8034 | engineering | 1 \[Hz\] | 1 |
+| CAP\_PROX\_STATE\_05 | 8035 | engineering | 1 \[Hz\] | 1 |
+| CAP\_PROX\_STATE\_06 | 8036 | engineering | 1 \[Hz\] | 1 |
+| CAP\_PROX\_STATE\_07 | 8037 | engineering | 1 \[Hz\] | 1 |
+| CAP\_PROX\_STATE\_08 | 8038 | engineering | 1 \[Hz\] | 1 |
+| CAP\_BODY\_SPIN\_RATE\_01 | 8039 | housekeeping | 1 \[Hz\] | rad/s |
+| CAP\_BODY\_SPIN\_RATE\_02 | 8040 | housekeeping | 1 \[Hz\] | rad/s |
+| CAP\_BODY\_SPIN\_RATE\_03 | 8041 | housekeeping | 1 \[Hz\] | rad/s |
+| CAP\_DESPIN\_TORQUE | 8042 | housekeeping | 1 \[Hz\] | 1 |
+| CAP\_DESPIN\_PROGRESS | 8043 | housekeeping | 0.1 \[Hz\] | 1 |
+| CAP\_CAPTURE\_ARMED | 8044 | housekeeping | 1 \[Hz\] | 1 |
+| CAP\_CAPTURE\_STATE | 8045 | housekeeping | 1 \[Hz\] | 1 |
+| CAP\_CONTACT\_FORCE\_01 | 8046 | housekeeping | 10 \[Hz\] | N |
+| CAP\_CONTACT\_FORCE\_02 | 8047 | housekeeping | 10 \[Hz\] | N |
+| CAP\_CONTACT\_FORCE\_03 | 8048 | housekeeping | 10 \[Hz\] | N |
+| CAP\_BODY\_MASS\_EST | 8049 | housekeeping | 0.01 \[Hz\] | kg |
+| CAP\_APPROACH\_RATE | 8050 | housekeeping | 1 \[Hz\] | m/s |
+| CAP\_MECHANISM\_T\_01 | 8051 | engineering | 0.1 \[Hz\] | K |
+| CAP\_MECHANISM\_T\_02 | 8052 | engineering | 0.1 \[Hz\] | K |
+| CAP\_MECHANISM\_T\_03 | 8053 | engineering | 0.1 \[Hz\] | K |
+| CAP\_MECHANISM\_T\_04 | 8054 | engineering | 0.1 \[Hz\] | K |
+
+*Events (the fault-relevant ones are the fault-protection interface)*
+
+| mnemonic | eventId | severity | fdirRelevant | text |
+| --- | --- | --- | --- | --- |
+| CAP\_EVT\_STARTED | 801 | info | false | application started |
+| CAP\_EVT\_STOPPED | 802 | warning | false | application stopped |
+| CAP\_EVT\_CMD\_ACCEPTED | 803 | info | false | command accepted |
+| CAP\_EVT\_CMD\_REJECTED | 804 | warning | false | command rejected |
+| CAP\_EVT\_TABLE\_LOADED | 805 | info | false | parameter table loaded |
+| CAP\_EVT\_TABLE\_INVALID | 806 | fault | true | parameter table failed validation |
+| CAP\_EVT\_WATCHDOG\_MISSED | 807 | fault | true | application missed its watchdog window |
+| CAP\_EVT\_MODE\_CHANGE\_SEEN | 808 | info | false | application applied a mode change |
+| CAP\_EVT\_CAPTURE\_ARMED | 809 | warning | false | capture armed |
+| CAP\_EVT\_BAG\_DEPLOYED | 810 | critical | true | capture bag deployed |
+| CAP\_EVT\_BAG\_CLOSED | 811 | critical | true | capture bag closed |
+| CAP\_EVT\_CONTACT | 812 | warning | false | body contact detected |
+| CAP\_EVT\_CONTACT\_FORCE\_HIGH | 813 | fault | true | contact force above limit |
+| CAP\_EVT\_DESPIN\_COMPLETE | 814 | info | false | despin complete |
+| CAP\_EVT\_LATCHED | 815 | critical | true | body latched |
+| CAP\_EVT\_CAPTURE\_ABORTED | 816 | critical | true | capture aborted |
+| CAP\_EVT\_PETAL\_STALL | 817 | fault | true | petal motor stalled |
+| CAP\_EVT\_PROXIMITY\_SENSOR\_FAULT | 818 | fault | true | proximity sensor fault |
+
+*Packets*
+
+| mnemonic | apid | apidClass | rate | lengthOctets | layoutConsistent |
+| --- | --- | --- | --- | --- | --- |
+| CAP\_HK\_01 | 192 | capture | 10 \[Hz\] | 68 | true |
+| CAP\_HK\_02 | 193 | capture | 1 \[Hz\] | 20 | true |
+| CAP\_ENG\_01 | 194 | capture | 10 \[Hz\] | 68 | true |
+| CAP\_ENG\_02 | 195 | capture | 0.1 \[Hz\] | 20 | true |
+
+## Requirements satisfied
+
+*Software requirements satisfied*
+
+| name | satisfies | rows |
+| --- | --- | --- |
+| captureControl | captureControlApplication | 1 |
+
+## Assurance classification
+
+*Classification register row*
+
+| name | level | documentation |
+| --- | --- | --- |
+| captureControl | levelA | Fires the cinch through the three-inhibit gate and runs despin. |
+
+One volume per application of the Argent flight software, in the order of TethysFlightSoftware::ArgentFlightSoftware. Every table is a query over TethysFlightSoftware, TethysFlightBehaviour, TethysFlightTiming, TethysFlightDictionary, TethysSoftwareRequirements and TethysSoftwareAssurance.

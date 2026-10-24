@@ -1,0 +1,118 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysGroundSoftware::meridianOperationsSuite
+  ID: 1
+  Use %features TethysGroundSoftware::meridianOperationsSuite to inspect
+warning: TethysGroundSoftware::meridianOperationsSuite: materialization is bounded; not every feature value was checked
+✓ TethysGroundSoftware::meridianOperationsSuite.componentCount
+  = 12
+✓ TethysGroundSoftware::meridianOperationsSuite.productNames
+  = ["Meridian Forge", "Meridian Warden", "Meridian Lantern", "Meridian Almanac", "Meridian Ledger", "Meridian Compass", "Meridian Sextant", "Meridian Vault", "Meridian Anvil", "Meridian Capstan", "Meridian Orrery", "Meridian Mirror"]
+✓ TethysGroundSoftware::meridianOperationsSuite.simulatorCount
+  = 4
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.commandBuilder.dictionaryCommandCount
+  = 344
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.commandBuilder.thrustArcVerdict.verdict
+  = [CommandVerdict::accepted]
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.commandBuilder.thrustArcInCoastVerdict.verdict
+  = [CommandVerdict::modeNotAllowed]
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.commandBuilder.resetOneApprovalVerdict.verdict
+  = [CommandVerdict::awaitingSecondApproval]
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.commandBuilder.resetKeyVerdict.verdict
+  = [CommandVerdict::argumentOutOfRange]
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.commandBuilder.misspelledVerdict.verdict
+  = [CommandVerdict::unknownOpcode]
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.telemetryServer.dictionaryPacketCount
+  = 51
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.telemetryServer.dictionaryPointCount
+  = 961
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.telemetryServer.allPacketsDecommutate
+  = true
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.telemetryServer.frameLength
+  = 1115.0 [B]
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.telemetryServer.busVoltageAlarm.severity
+  = [AlarmSeverity::nominal]
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.telemetryServer.lowBatteryAlarm.severity
+  = [AlarmSeverity::violation]
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.telemetryServer.xenonTrend.projected
+  = [1836.0]
+✓ TethysGroundSoftware::meridianOperationsSuite.fdf.flightDynamicsTool.argentOd.positionUncertainty
+  = [0.9819805060619657 [km]]
+✓ TethysGroundSoftware::meridianOperationsSuite.fdf.flightDynamicsTool.returnArc.arcDuration
+  = [45000000.0 [SI::s]]
+✓ TethysGroundSoftware::meridianOperationsSuite.fdf.flightDynamicsTool.returnArc.xenon
+  = 1008000/11 [kg]
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.passPlanner.calderaSeesTheTug.visible
+  = [true]
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.passPlanner.tablelandSeesTheTug.visible
+  = [false]
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.passPlanner.plannedDay.calderaVolume.volumeBits
+  = [114000000000.0]
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.passPlanner.plannedDay.imageryFits
+  = true
+✓ TethysGroundSoftware::meridianOperationsSuite.sds.dataArchive.distributedLevels
+  = 3
+✓ TethysGroundSoftware::meridianOperationsSuite.moc.proximityPlanner.checklist.go
+  = true

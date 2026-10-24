@@ -1,4 +1,4 @@
-loaded 50 files:
+loaded 64 files:
   model/00-tethys.sysml
   model/01-environment.sysml
   model/02-mission.sysml
@@ -29,6 +29,16 @@ loaded 50 files:
   model/60-modes.sysml
   model/61-sequence.sysml
   model/62-fdir.sysml
+  model/63-flight-software.sysml
+  model/64-flight-dictionary-tooling.sysml
+  model/64-flight-dictionary.sysml
+  model/65-flight-behaviour.sysml
+  model/66-flight-timing.sysml
+  model/67-software-requirements-tooling.sysml
+  model/67-software-requirements.sysml
+  model/68-software-icds-tooling.sysml
+  model/68-software-icds.sysml
+  model/69-ground-software.sysml
   model/70-analyses.sysml
   model/71-trades.sysml
   model/72-montecarlo.sysml
@@ -41,10 +51,14 @@ loaded 50 files:
   model/86-risk.sysml
   model/87-allocations-tooling.sysml
   model/87-allocations.sysml
+  model/88-software-assurance-tooling.sysml
+  model/88-software-assurance.sysml
   model/90-views.sysml
   model/91-documents.sysml
   model/92-layout.sysml
   model/93-views-tooling.sysml
+  model/94-software-documents-tooling.sysml
+  model/94-software-documents.sysml
   model/95-as-built.sysml
   model/96-imported-data.sysml
   model/97-disposal.sysml
@@ -79,6 +93,16 @@ loaded 50 files:
 ✓ package TethysModes
 ✓ package TethysSequence
 ✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
 ✓ package TethysAnalyses
 ✓ package TethysTrades
 ✓ package TethysMonteCarlo
@@ -91,10 +115,14 @@ loaded 50 files:
 ✓ package TethysRisk
 ✓ package TethysAllocationQueries
 ✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
 ✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
 ✓ package TethysAsBuilt
 ✓ package TethysImportedData
 ✓ package TethysDisposal
@@ -103,11 +131,12 @@ wrote build/runs/documents/TethysDocuments-InterfaceControlDocuments.md (markdow
 wrote build/runs/documents/TethysDocuments-RiskRegister.md (markdown, 228 bytes)
 wrote build/runs/documents/TethysDocuments-SystemDescription.md (markdown, 23394 bytes)
 wrote build/runs/documents/TethysDocuments-VerificationMatrix.md (markdown, 6207 bytes)
+wrote build/runs/documents/TethysFlightDictionaryDocuments-FlightDictionaryDocument.md (markdown, 168924 bytes)
 wrote build/runs/documents/TethysIcdDocuments-CaptureIcdDocument.md (markdown, 759 bytes)
 wrote build/runs/documents/TethysIcdDocuments-DataBusIcdDocument.md (markdown, 496 bytes)
 wrote build/runs/documents/TethysIcdDocuments-DockingIcdDocument.md (markdown, 634 bytes)
 wrote build/runs/documents/TethysIcdDocuments-HighVoltagePowerIcdDocument.md (markdown, 443 bytes)
-wrote build/runs/documents/TethysIcdDocuments-IcdRegisterDocument.md (markdown, 5405 bytes)
+wrote build/runs/documents/TethysIcdDocuments-IcdRegisterDocument.md (markdown, 8845 bytes)
 wrote build/runs/documents/TethysIcdDocuments-InspectorDispenserIcdDocument.md (markdown, 501 bytes)
 wrote build/runs/documents/TethysIcdDocuments-InspectorRelayIcdDocument.md (markdown, 862 bytes)
 wrote build/runs/documents/TethysIcdDocuments-InspectorThermalIcdDocument.md (markdown, 449 bytes)
@@ -118,4 +147,46 @@ wrote build/runs/documents/TethysIcdDocuments-PropellantFeedIcdDocument.md (mark
 wrote build/runs/documents/TethysIcdDocuments-SpaceGroundIcdDocument.md (markdown, 1138 bytes)
 wrote build/runs/documents/TethysIcdDocuments-ThermalIcdDocument.md (markdown, 596 bytes)
 wrote build/runs/documents/TethysIcdDocuments-TugInspectorIcdDocument.md (markdown, 543 bytes)
-wrote build/runs/documents/TethysVerificationTooling-VvReport.md (markdown, 10691 bytes)
+wrote build/runs/documents/TethysSoftwareAssuranceTooling-SoftwareAssuranceReport.md (markdown, 4450 bytes)
+wrote build/runs/documents/TethysSoftwareAssuranceTooling-SoftwareFmecaDocument.md (markdown, 3396 bytes)
+wrote build/runs/documents/TethysSoftwareAssuranceTooling-SoftwareVcrmDocument.md (markdown, 8597 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-AnomalyTrackerDesignDescription.md (markdown, 1531 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-AutonomyDesignDescription.md (markdown, 9537 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-CaptureControlDesignDescription.md (markdown, 10124 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-CaptureRigDesignDescription.md (markdown, 1476 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-CdhDesignDescription.md (markdown, 11081 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-CommandBuilderDesignDescription.md (markdown, 2005 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-DataArchiveDesignDescription.md (markdown, 1703 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-DynamicsSimulatorDesignDescription.md (markdown, 1531 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-FdirDesignDescription.md (markdown, 15741 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-FlatsatDesignDescription.md (markdown, 1546 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-FlightApplicationDesignDescription.md (markdown, 333 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-FlightDictionaryVolume.md (markdown, 172789 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-FlightDynamicsToolDesignDescription.md (markdown, 1566 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-GncDesignDescription.md (markdown, 13063 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-GroundComponentDesignDescription.md (markdown, 302 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-InspectorHandlingDesignDescription.md (markdown, 8054 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-ModeManagementDesignDescription.md (markdown, 7998 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-ParameterBootUpdateDesignDescription.md (markdown, 9464 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-PassPlannerDesignDescription.md (markdown, 1650 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-PowerManagementDesignDescription.md (markdown, 17565 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-ProximityPlannerDesignDescription.md (markdown, 1734 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-SepControlDesignDescription.md (markdown, 10598 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-SequencerDesignDescription.md (markdown, 1637 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-SoftwareArchitectureDescription.md (markdown, 18909 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-SoftwareDocumentIndex.md (markdown, 2502 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-SoftwareInterfaceControlVolume.md (markdown, 12464 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-SoftwareOperationsHandbook.md (markdown, 12816 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-SoftwareRequirementsSpecification.md (markdown, 15576 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-SoftwareTestPlan.md (markdown, 19886 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-TelecomDesignDescription.md (markdown, 8470 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-TelemetryServerDesignDescription.md (markdown, 1941 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-ThermalControlDesignDescription.md (markdown, 26139 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-TrajectoryToolDesignDescription.md (markdown, 1674 bytes)
+wrote build/runs/documents/TethysSoftwareIcdDocuments-BusProtocolIcdDocument.md (markdown, 1270 bytes)
+wrote build/runs/documents/TethysSoftwareIcdDocuments-InspectorRelayProfileIcdDocument.md (markdown, 914 bytes)
+wrote build/runs/documents/TethysSoftwareIcdDocuments-MessageCatalogueDocument.md (markdown, 10187 bytes)
+wrote build/runs/documents/TethysSoftwareIcdDocuments-RegisterMapIcdDocument.md (markdown, 2229 bytes)
+wrote build/runs/documents/TethysSoftwareIcdDocuments-SpaceLinkProfileIcdDocument.md (markdown, 3862 bytes)
+wrote build/runs/documents/TethysSoftwareRequirementsTooling-SoftwareRequirementsDocument.md (markdown, 6499 bytes)
+wrote build/runs/documents/TethysVerificationTooling-VvReport.md (markdown, 11160 bytes)

@@ -1,0 +1,9 @@
+✓ package FS10
+✓ Created instance of FS10::chain
+  ID: 1
+  Use %features FS10::chain to inspect
+✓ FS10::chain.endToEnd
+  = 249.375 [s]
+✓ assert constraint latency holds (on FS10::chain ID: 1)
+✓ FS10::chain is valid: its 1 assertion holds
+  standing: holds (observed: 1 run under reverse)

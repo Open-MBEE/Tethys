@@ -1,0 +1,14 @@
+run - sequence rendering (the trace of a run to t = 3000)
+
+object TethysFlightBehaviour::bootScenario.conductor : BootConductor
+object TethysFlightBehaviour::bootScenario.bootUpdate : ParameterBootUpdateSoftware
+
+messages:
+  TethysFlightBehaviour::bootScenario.conductor => TethysFlightBehaviour::bootScenario.bootUpdate: t=30 ImageVerify
+  TethysFlightBehaviour::bootScenario.conductor => TethysFlightBehaviour::bootScenario.bootUpdate: t=630 ImageSegment (length = 4000000.0 [B], offset = 0.0 [B])
+  TethysFlightBehaviour::bootScenario.conductor => TethysFlightBehaviour::bootScenario.bootUpdate: t=690 ImageSegment (length = 4000000.0 [B], offset = 4000000.0 [B])
+  TethysFlightBehaviour::bootScenario.conductor => TethysFlightBehaviour::bootScenario.bootUpdate: t=750 ImageSegment (length = 4000000.0 [B], offset = 8000000.0 [B])
+  TethysFlightBehaviour::bootScenario.conductor => TethysFlightBehaviour::bootScenario.bootUpdate: t=810 ImageVerify
+  TethysFlightBehaviour::bootScenario.conductor => TethysFlightBehaviour::bootScenario.bootUpdate: t=870 ImageActivate
+  TethysFlightBehaviour::bootScenario.conductor => TethysFlightBehaviour::bootScenario.bootUpdate: t=1470 ImageRollback
+  TethysFlightBehaviour::bootScenario.conductor => TethysFlightBehaviour::bootScenario.bootUpdate: t=1500 ImageVerify

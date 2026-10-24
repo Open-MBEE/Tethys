@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parameter, boot and update application design description</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysSoftwareDocumentsTooling::ParameterBootUpdateDesignDescription">
+<h1 class="sysml-title">Parameter, boot and update application design description</h1>
+<section class="sysml-section" id="purpose" data-content="section" data-name="purpose">
+<h2>Purpose</h2>
+<table class="sysml-table" data-content="table" data-name="definition" data-query="TethysSoftwareDocumentsTooling::Purpose">
+<caption class="sysml-caption">Application definition</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightSoftware::ParameterBootUpdateApplication" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ParameterBootUpdateApplication</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Parameter, boot and image update management: the ground&#39;s view of the table service and the boot and update service — table loads and dumps, image uplink and slot selection.</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="behaviour" data-query="TethysSoftwareDocumentsTooling::Purpose">
+<caption class="sysml-caption">Behavioural specialisation</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::ParameterBootUpdateSoftware" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ParameterBootUpdateSoftware</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The boot/update application exhibiting the boot and update manager.</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="interfaces" data-content="section" data-name="interfaces">
+<h2>Ports</h2>
+<table class="sysml-table" data-content="table" data-name="ports" data-query="TethysSoftwareDocumentsTooling::NamedPorts">
+<caption class="sysml-caption">Ports of the application</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightSoftware::ParameterBootUpdateApplication::tables" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">tables</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysFlightSoftware::TablePort</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightSoftware::ParameterBootUpdateApplication::update" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">update</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysFlightSoftware::UpdatePort</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="behaviourPorts" data-query="TethysSoftwareDocumentsTooling::NamedPorts">
+<caption class="sysml-caption">Ports added by the behavioural specialisation</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::ParameterBootUpdateSoftware::command" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">command</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysModes::CommandPort</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="stateMachine" data-content="section" data-name="stateMachine">
+<h2>State machine</h2>
+<table class="sysml-table" data-content="table" data-name="exhibited" data-query="TethysSoftwareDocumentsTooling::NamedStates">
+<caption class="sysml-caption">Exhibited state machines</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::ParameterBootUpdateSoftware::manager" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">manager</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysFlightBehaviour::BootUpdateManager</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="states" data-query="TethysSoftwareDocumentsTooling::NamedStates">
+<caption class="sysml-caption">States</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::BootUpdateManager::bootRom" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">bootRom</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::BootUpdateManager::loadingImage" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">loadingImage</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::BootUpdateManager::running" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">running</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::BootUpdateManager::safeImage" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">safeImage</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::BootUpdateManager::receivingUpdate" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">receivingUpdate</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightBehaviour::BootUpdateManager::uploadVerifiedIdle" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">uploadVerifiedIdle</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="parameters" data-content="section" data-name="parameters">
+<h2>Parameter table</h2>
+<table class="sysml-table" data-content="table" data-name="rows" data-query="TethysSoftwareDocumentsTooling::ParameterRows">
+<caption class="sysml-caption">Parameters: id, value, range, unit</caption>
+<thead>
+<tr>
+<th scope="col" data-column="parameterId">parameterId</th>
+<th scope="col" data-column="value">value</th>
+<th scope="col" data-column="minimum">minimum</th>
+<th scope="col" data-column="maximum">maximum</th>
+<th scope="col" data-column="unitSymbol">unitSymbol</th>
+<th scope="col" data-column="inRange">inRange</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuParameterTable::r1" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="parameterId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">45</span></td>
+<td class="sysml-cell" data-column="value" data-value-kind="real"><span class="sysml-value" data-value-kind="real">65536</span></td>
+<td class="sysml-cell" data-column="minimum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">4096</span></td>
+<td class="sysml-cell" data-column="maximum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">65536</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+<td class="sysml-cell" data-column="inRange" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuParameterTable::r2" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="parameterId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">46</span></td>
+<td class="sysml-cell" data-column="value" data-value-kind="real"><span class="sysml-value" data-value-kind="real">3</span></td>
+<td class="sysml-cell" data-column="minimum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">1</span></td>
+<td class="sysml-cell" data-column="maximum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">5</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+<td class="sysml-cell" data-column="inRange" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuParameterTable::r3" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="parameterId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">47</span></td>
+<td class="sysml-cell" data-column="value" data-value-kind="real"><span class="sysml-value" data-value-kind="real">100000</span></td>
+<td class="sysml-cell" data-column="minimum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">1000</span></td>
+<td class="sysml-cell" data-column="maximum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">100000</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+<td class="sysml-cell" data-column="inRange" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuParameterTable::r4" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="parameterId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">48</span></td>
+<td class="sysml-cell" data-column="value" data-value-kind="real"><span class="sysml-value" data-value-kind="real">12</span></td>
+<td class="sysml-cell" data-column="minimum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">1</span></td>
+<td class="sysml-cell" data-column="maximum" data-value-kind="real"><span class="sysml-value" data-value-kind="real">12</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+<td class="sysml-cell" data-column="inRange" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="schedule" data-content="section" data-name="schedule">
+<h2>Rate, worst-case execution time and deadline</h2>
+<table class="sysml-table" data-content="table" data-name="task" data-query="TethysSoftwareDocumentsTooling::TaskOf">
+<caption class="sysml-caption">Scheduled task</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="period">period</th>
+<th scope="col" data-column="wcet">wcet</th>
+<th scope="col" data-column="deadline">deadline</th>
+<th scope="col" data-column="utilisation">utilisation</th>
+<th scope="col" data-column="activeModes">activeModes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightTiming::argentTiming::platformSchedule::parameterBootUpdateTask" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">parameterBootUpdateTask</span></td>
+<td class="sysml-cell" data-column="period" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="s">1 [s]</span></td>
+<td class="sysml-cell" data-column="wcet" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.004" data-unit="s">0.004 [s]</span></td>
+<td class="sysml-cell" data-column="deadline" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="s">1 [s]</span></td>
+<td class="sysml-cell" data-column="utilisation" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0.004</span></td>
+<td class="sysml-cell" data-column="activeModes" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::earlyOperations" data-element-kind="enumUsage">earlyOperations</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::thrust" data-element-kind="enumUsage">thrust</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::approach" data-element-kind="enumUsage">approach</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::stackThrust" data-element-kind="enumUsage">stackThrust</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::disposal" data-element-kind="enumUsage">disposal</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::coast" data-element-kind="enumUsage">coast</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::stackCoast" data-element-kind="enumUsage">stackCoast</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::dockedPassive" data-element-kind="enumUsage">dockedPassive</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::proximityOperations" data-element-kind="enumUsage">proximityOperations</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::retreat" data-element-kind="enumUsage">retreat</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::capture" data-element-kind="enumUsage">capture</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::despin" data-element-kind="enumUsage">despin</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::droHold" data-element-kind="enumUsage">droHold</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::safe" data-element-kind="enumUsage">safe</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::abortHold" data-element-kind="enumUsage">abortHold</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="dictionary" data-content="section" data-name="dictionary">
+<h2>Commands, telemetry, events and packets owned</h2>
+<table class="sysml-table" data-content="table" data-name="commands" data-query="TethysSoftwareDocumentsTooling::CommandsOf">
+<caption class="sysml-caption">Commands</caption>
+<thead>
+<tr>
+<th scope="col" data-column="mnemonic">mnemonic</th>
+<th scope="col" data-column="opcodeNumber">opcodeNumber</th>
+<th scope="col" data-column="criticality">criticality</th>
+<th scope="col" data-column="hazardous">hazardous</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuLoadTable" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_LOAD_TABLE</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3073</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Load a parameter table into the staging buffer.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuDumpTable" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_DUMP_TABLE</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3074</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::routine" data-element-kind="enumUsage">routine</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Downlink a parameter table.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuActivateTable" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_ACTIVATE_TABLE</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3075</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Activate a staged table after validation.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuVerifyTable" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_VERIFY_TABLE</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3076</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::routine" data-element-kind="enumUsage">routine</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Recompute and report a table checksum.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuSetParameter" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_SET_PARAMETER</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3077</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Set one parameter by id.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuGetParameter" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_GET_PARAMETER</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3078</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::routine" data-element-kind="enumUsage">routine</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Report one parameter by id.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuStartBootUpdate" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_START_BOOT_UPDATE</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3079</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Start receiving a boot image.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuAbortBootUpdate" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_ABORT_BOOT_UPDATE</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3080</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Abort a boot image transfer.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuSelectBootImage" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_SELECT_BOOT_IMAGE</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3081</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Select the boot image used at the next reset.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuCommitBootImage" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_COMMIT_BOOT_IMAGE</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3082</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Mark the running image good so the boot loader stops falling back.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableReset01" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_RESET_01</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3083</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Reset parameter table 1 to its flight defaults.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableReset02" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_RESET_02</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3084</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Reset parameter table 2 to its flight defaults.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableReset03" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_RESET_03</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3085</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Reset parameter table 3 to its flight defaults.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableReset04" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_RESET_04</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3086</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Reset parameter table 4 to its flight defaults.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableReset05" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_RESET_05</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3087</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Reset parameter table 5 to its flight defaults.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableReset06" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_RESET_06</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3088</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Reset parameter table 6 to its flight defaults.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableReset07" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_RESET_07</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3089</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Reset parameter table 7 to its flight defaults.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableReset08" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_RESET_08</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3090</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Reset parameter table 8 to its flight defaults.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableReset09" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_RESET_09</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3091</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Reset parameter table 9 to its flight defaults.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableReset10" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_RESET_10</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3092</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Reset parameter table 10 to its flight defaults.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableReset11" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_RESET_11</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3093</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Reset parameter table 11 to its flight defaults.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableReset12" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_RESET_12</span></td>
+<td class="sysml-cell" data-column="opcodeNumber" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3094</span></td>
+<td class="sysml-cell" data-column="criticality" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::CommandCriticality::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="hazardous" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Reset parameter table 12 to its flight defaults.</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="telemetry" data-query="TethysSoftwareDocumentsTooling::TelemetryOf">
+<caption class="sysml-caption">Telemetry points</caption>
+<thead>
+<tr>
+<th scope="col" data-column="mnemonic">mnemonic</th>
+<th scope="col" data-column="pointId">pointId</th>
+<th scope="col" data-column="kind">kind</th>
+<th scope="col" data-column="rate">rate</th>
+<th scope="col" data-column="unitSymbol">unitSymbol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableId01" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_ID_01</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12001</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableId02" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_ID_02</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12002</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableId03" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_ID_03</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12003</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableId04" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_ID_04</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12004</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableId05" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_ID_05</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12005</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableId06" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_ID_06</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12006</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableId07" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_ID_07</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12007</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableId08" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_ID_08</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12008</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableId09" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_ID_09</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12009</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableId10" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_ID_10</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12010</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableId11" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_ID_11</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12011</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableId12" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_ID_12</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12012</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableCrc01" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_CRC_01</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12013</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableCrc02" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_CRC_02</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12014</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableCrc03" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_CRC_03</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12015</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableCrc04" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_CRC_04</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12016</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableCrc05" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_CRC_05</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12017</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableCrc06" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_CRC_06</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12018</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableCrc07" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_CRC_07</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12019</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableCrc08" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_CRC_08</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12020</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableCrc09" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_CRC_09</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12021</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableCrc10" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_CRC_10</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12022</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableCrc11" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_CRC_11</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12023</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableCrc12" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_CRC_12</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12024</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableState01" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_STATE_01</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12025</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableState02" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_STATE_02</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12026</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableState03" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_STATE_03</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12027</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableState04" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_STATE_04</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12028</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableState05" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_STATE_05</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12029</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableState06" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_STATE_06</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12030</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableState07" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_STATE_07</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12031</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableState08" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_STATE_08</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12032</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableState09" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_STATE_09</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12033</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableState10" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_STATE_10</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12034</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableState11" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_STATE_11</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12035</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuTableState12" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_TABLE_STATE_12</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12036</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuBootImageSel" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_BOOT_IMAGE_SEL</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12037</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuBootImageCrc01" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_BOOT_IMAGE_CRC_01</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12038</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuBootImageCrc02" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_BOOT_IMAGE_CRC_02</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12039</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuUpdateProgress" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_UPDATE_PROGRESS</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12040</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuUpdateState" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_UPDATE_STATE</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12041</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuParamWriteCount" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_PARAM_WRITE_COUNT</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12042</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuParamRejectCount" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_PARAM_REJECT_COUNT</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12043</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEepromWriteCycles" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_EEPROM_WRITE_CYCLES</span></td>
+<td class="sysml-cell" data-column="pointId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">12044</span></td>
+<td class="sysml-cell" data-column="kind" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::TelemetryKind::engineering" data-element-kind="enumUsage">engineering</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.01" data-unit="Hz">0.01 [Hz]</span></td>
+<td class="sysml-cell" data-column="unitSymbol" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="events" data-query="TethysSoftwareDocumentsTooling::EventsOf">
+<caption class="sysml-caption">Events (the fault-relevant ones are the fault-protection interface)</caption>
+<thead>
+<tr>
+<th scope="col" data-column="mnemonic">mnemonic</th>
+<th scope="col" data-column="eventId">eventId</th>
+<th scope="col" data-column="severity">severity</th>
+<th scope="col" data-column="fdirRelevant">fdirRelevant</th>
+<th scope="col" data-column="text">text</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEvtStarted" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_EVT_STARTED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1201</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::info" data-element-kind="enumUsage">info</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">application started</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEvtStopped" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_EVT_STOPPED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1202</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::warning" data-element-kind="enumUsage">warning</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">application stopped</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEvtCmdAccepted" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_EVT_CMD_ACCEPTED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1203</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::info" data-element-kind="enumUsage">info</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">command accepted</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEvtCmdRejected" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_EVT_CMD_REJECTED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1204</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::warning" data-element-kind="enumUsage">warning</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">command rejected</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEvtTableLoaded" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_EVT_TABLE_LOADED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1205</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::info" data-element-kind="enumUsage">info</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">parameter table loaded</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEvtTableInvalid" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_EVT_TABLE_INVALID</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1206</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::fault" data-element-kind="enumUsage">fault</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">parameter table failed validation</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEvtWatchdogMissed" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_EVT_WATCHDOG_MISSED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1207</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::fault" data-element-kind="enumUsage">fault</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">application missed its watchdog window</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEvtModeChangeSeen" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_EVT_MODE_CHANGE_SEEN</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1208</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::info" data-element-kind="enumUsage">info</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">application applied a mode change</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEvtTableActivated" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_EVT_TABLE_ACTIVATED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1209</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::info" data-element-kind="enumUsage">info</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">table activated</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEvtTableCrcMismatch" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_EVT_TABLE_CRC_MISMATCH</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1210</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::fault" data-element-kind="enumUsage">fault</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">table checksum mismatch</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEvtBootUpdateStarted" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_EVT_BOOT_UPDATE_STARTED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1211</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::warning" data-element-kind="enumUsage">warning</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">boot image transfer started</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEvtBootUpdateComplete" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_EVT_BOOT_UPDATE_COMPLETE</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1212</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">boot image written</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEvtBootFallback" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_EVT_BOOT_FALLBACK</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1213</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::critical" data-element-kind="enumUsage">critical</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">boot loader fell back to the previous image</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEvtParameterRejected" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_EVT_PARAMETER_REJECTED</span></td>
+<td class="sysml-cell" data-column="eventId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1214</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightDictionary::EventSeverity::warning" data-element-kind="enumUsage">warning</span></td>
+<td class="sysml-cell" data-column="fdirRelevant" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="text" data-value-kind="string"><span class="sysml-value" data-value-kind="string">parameter outside its range</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="packets" data-query="TethysSoftwareDocumentsTooling::PacketsOf">
+<caption class="sysml-caption">Packets</caption>
+<thead>
+<tr>
+<th scope="col" data-column="mnemonic">mnemonic</th>
+<th scope="col" data-column="apid">apid</th>
+<th scope="col" data-column="apidClass">apidClass</th>
+<th scope="col" data-column="rate">rate</th>
+<th scope="col" data-column="lengthOctets">lengthOctets</th>
+<th scope="col" data-column="layoutConsistent">layoutConsistent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuHkPacket01" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_HK_01</span></td>
+<td class="sysml-cell" data-column="apid" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">44</span></td>
+<td class="sysml-cell" data-column="apidClass" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::ApidClass::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="lengthOctets" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">72</span></td>
+<td class="sysml-cell" data-column="layoutConsistent" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuHkPacket02" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_HK_02</span></td>
+<td class="sysml-cell" data-column="apid" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">45</span></td>
+<td class="sysml-cell" data-column="apidClass" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::ApidClass::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="Hz">1 [Hz]</span></td>
+<td class="sysml-cell" data-column="lengthOctets" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="layoutConsistent" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFlightDictionary::pbuEngPacket01" data-element-kind="itemUsage">
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PBU_ENG_01</span></td>
+<td class="sysml-cell" data-column="apid" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">46</span></td>
+<td class="sysml-cell" data-column="apidClass" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::ApidClass::housekeeping" data-element-kind="enumUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="rate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="0.1" data-unit="Hz">0.1 [Hz]</span></td>
+<td class="sysml-cell" data-column="lengthOctets" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">80</span></td>
+<td class="sysml-cell" data-column="layoutConsistent" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="requirements" data-content="section" data-name="requirements">
+<h2>Requirements satisfied</h2>
+<table class="sysml-table" data-content="table" data-name="satisfied" data-query="TethysSoftwareDocumentsTooling::Satisfied">
+<caption class="sysml-caption">Software requirements satisfied</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="satisfies">satisfies</th>
+<th scope="col" data-column="rows">rows</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightSoftware::ArgentFlightSoftware::parameterBootUpdate" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">parameterBootUpdate</span></td>
+<td class="sysml-cell" data-column="satisfies" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareRequirements::parameterBootUpdateApplication" data-element-kind="requirementUsage">parameterBootUpdateApplication</span></td>
+<td class="sysml-cell" data-column="rows" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="criticality" data-content="section" data-name="criticality">
+<h2>Assurance classification</h2>
+<table class="sysml-table" data-content="table" data-name="level" data-query="TethysSoftwareDocumentsTooling::Classification">
+<caption class="sysml-caption">Classification register row</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="level">level</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareAssurance::classificationRegister::parameterBootUpdate" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">parameterBootUpdate</span></td>
+<td class="sysml-cell" data-column="level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareAssurance::SoftwareAssuranceLevel::levelB" data-element-kind="enumUsage">levelB</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Parameter tables and software images.</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<p class="sysml-paragraph" data-content="paragraph" data-name="scope">One volume per application of the Argent flight software, in the order of TethysFlightSoftware::ArgentFlightSoftware. Every table is a query over TethysFlightSoftware, TethysFlightBehaviour, TethysFlightTiming, TethysFlightDictionary, TethysSoftwareRequirements and TethysSoftwareAssurance.</p>
+</article>
+</body>
+</html>

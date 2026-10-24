@@ -1,0 +1,87 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysFlightBehaviour::softwareThrusterFault
+  ID: 1
+  Use %features TethysFlightBehaviour::softwareThrusterFault to inspect
+warning: TethysFlightBehaviour::softwareThrusterFault: materialization is bounded; not every feature value was checked
+✓ Debugging state machine "controller" exhibited by object #33 of "TethysFlightBehaviour::softwareThrusterFault.tug.cdh.software.sepControl"
+note: object #33 of "TethysFlightBehaviour::softwareThrusterFault.tug.cdh.software.sepControl" already exhibits "TethysFlightBehaviour::SepControlSoftware::controller", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysFlightBehaviour::softwareThrusterFault.tug.cdh.software.sepControl` would)
+  Current state: off
+  Time: 0.0
+  Events: 0
+✓ Advanced to 876960.0 (20 event(s) processed)
+  Current state: restarting
+  Last event at: 872640.0
+  Remaining events: 1
+  17 choice points (8 independent); %trace on to see them
+  Action steps taken: 13
+  Waiting on the clock:
+    t=879840.0: state machine FdirSupervisor of object #4, time -> nominal
+    t=879840.0: state machine SepStringController of object #33, time -> thrusting
+    t=879840.0: state machine FdirSupervisor of object #47, time -> nominal
+    t=1304640.0: action campaign of object #2, accept after waiting since step 12 for the clock to reach t=1304640.0
+    t=1477440.0: state machine FdirSupervisor of object #4, time -> expired
+    t=1477440.0: state machine FdirSupervisor of object #47, time -> expired
+  standing: value (observed: 1 run under reverse)
