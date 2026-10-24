@@ -15,8 +15,10 @@ package TethysAnalysesTooling {
     private import TethysEnvironment::*;
     private import TethysTug::*;
     private import TethysAnalyses::*;
+    private import TethysTarget::targetCases;
     private import TethysMonteCarlo::*;
     private import TethysDynamics::*;
+    private import TethysMission::transferBook;
 
     // ---- Monte Carlo over the target-uncertainty table ---------------------------------------
 
@@ -24,9 +26,9 @@ package TethysAnalysesTooling {
         doc /* One target case per run, weighted by the pre-arrival belief: small 25 %, nominal
              * 50 %, large 25 %. */
         out bodyMassKg : Real;
-        action small assign bodyMassKg := smallTarget.mass / 1 [kg];
-        action nominal assign bodyMassKg := nominalTarget.mass / 1 [kg];
-        action large assign bodyMassKg := largeTarget.mass / 1 [kg];
+        action small assign bodyMassKg := targetCases.small.mass / 1 [kg];
+        action nominal assign bodyMassKg := targetCases.nominal.mass / 1 [kg];
+        action large assign bodyMassKg := targetCases.large.mass / 1 [kg];
         first start; then decide pick;
         then small { @Probability { p = 0.25; } }
         then nominal { @Probability { p = 0.50; } }
@@ -43,14 +45,14 @@ package TethysAnalysesTooling {
             subject :>> tug = analysed;
             in bodyMassKg = draw.bodyMassKg;
         }
-        attribute :>> observed = dispersion.returnDeltaVMPerS;
+        attribute :>> observed = dispersion.returnDeltaV / 1 ['m/s'];
         objective canReturn : ReturnCapability {
             doc /* The return capability this case must show. */
             subject :>> tug = analysed;
-            in returnDeltaVMPerS = dispersion.returnDeltaVMPerS;
-            in requiredReturnDeltaVMPerS = 350.0;
-            in totalThrustDays = dispersion.totalThrustDays;
-            in thrustDayAllowance = 1930.0;
+            in returnDeltaV = dispersion.returnDeltaV;
+            in requiredReturnDeltaV = transferBook.deltaVRequiredReturn;
+            in totalThrustTime = dispersion.totalThrustTime;
+            in thrustTimeAllowance = transferBook.thrustingTimeAllowed;
         }
     }
     analysis returnOverTargetCases : ReturnOverTargetCases { subject :>> analysed = argent; }
@@ -60,19 +62,19 @@ package TethysAnalysesTooling {
              * small–nominal–large range; `-draws min -runs 1` and `-draws max -runs 1` give the
              * worst-case corners. */
         subject :>> analysed : Tug;
-        attribute bodyMassKg : Real = triangular(smallTarget.mass / 1 [kg], nominalTarget.mass / 1 [kg], largeTarget.mass / 1 [kg]);
+        attribute bodyMassKg : Real = triangular(targetCases.small.mass / 1 [kg], targetCases.nominal.mass / 1 [kg], targetCases.large.mass / 1 [kg]);
         analysis dispersion : ReturnDispersion {
             subject :>> tug = analysed;
             in bodyMassKg = bodyMassKg;
         }
-        attribute :>> observed = dispersion.returnDeltaVMPerS;
+        attribute :>> observed = dispersion.returnDeltaV / 1 ['m/s'];
         objective canReturn : ReturnCapability {
             doc /* The return capability this case must show. */
             subject :>> tug = analysed;
-            in returnDeltaVMPerS = dispersion.returnDeltaVMPerS;
-            in requiredReturnDeltaVMPerS = 350.0;
-            in totalThrustDays = dispersion.totalThrustDays;
-            in thrustDayAllowance = 1930.0;
+            in returnDeltaV = dispersion.returnDeltaV;
+            in requiredReturnDeltaV = transferBook.deltaVRequiredReturn;
+            in totalThrustTime = dispersion.totalThrustTime;
+            in thrustTimeAllowance = transferBook.thrustingTimeAllowed;
         }
     }
     analysis returnOverContinuousMass : ReturnOverContinuousMass { subject :>> analysed = argent; }
@@ -83,8 +85,8 @@ package TethysAnalysesTooling {
         doc /* One revolution of the destination DRO with StateSpaceIntegration::RK4 bound as the
              * integrator and the x-axis crossing guarded on y. */
         :>> stateSpace = VectorOf((dro70000.x0, 0.0, 0.0, dro70000.vy0));
-        :>> timeStep = 0.01 [s];
-        :>> stopTime = 3.20 [s];
+        :>> timeStep = (dro70000.periodTimeUnits / 320.0) [s];
+        :>> stopTime = dro70000.periodTimeUnits [s];
         calc :>> getNextState { calc :>> integrate : RK4; }
         event occurrence :>> xAxisCrossing : ZeroCrossing { :>> guard = stateSpace.elements#(2); }
     }

@@ -61,7 +61,7 @@
   = [1049.4996707902096]
   standing: value (observed: 1 run under reverse)
 ✓ TethysDynamics::arrayPowerAtAphelionEnd
-  availableSepPowerW = [36796.20967290006]
-  thrustN = [1.682006863912721]
+  availableSepPower = [36796.20967290006 [W]]
+  thrust = [1.682006863912721 [N]]
   objective enoughPower: satisfied
   standing: value (observed: 1 run under reverse)

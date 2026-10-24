@@ -1,3 +1,2 @@
-sysml v0.10.1-2054-g0a5fa2d94
   Commit:     0a5fa2d94
   Go version: go1.25.11

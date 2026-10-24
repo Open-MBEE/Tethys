@@ -64,7 +64,7 @@ package TethysRequirements {
     }
     requirement <'TR-002'> missionDuration : MissionRequirement {
         doc /* The mission shall complete the insertion of the target into the distant
-             * retrograde orbit within 1 300 days of launch. */
+             * retrograde orbit within 2 200 days of launch (TethysMission::tethys.nominalDuration). */
         attribute nominalDuration : DurationValue;
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::mission; stage = VerificationStage::inFlight; }
         @original;

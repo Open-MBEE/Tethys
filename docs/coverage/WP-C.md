@@ -8,9 +8,11 @@ Files: `model/40-inspector.sysml` (`TethysInspectorDetail`), `model/41-capture-s
 `sysml -validate -strict -warnings-as-errors` and by the pilot validator.
 
 Target uncertainty: every target-dependent number is carried over the cases of
-`TethysCaptureSystem::CaptureTargetCase` (small 181 t, nominal 362 t, large 1 010 t, fast-spin
-120 s, tumbling) — the envelope is asserted to hold for the first two and asserted *not* to hold
-for the other three (`runs/wpc-envelope-cases.txt`), and the despin propellant, angular momentum
+`TethysTarget::CaptureTargetCase` (small 213 t, nominal 362 t, large 506 t, densest 576 t, largest 987 t, fast-spin
+120 s, tumbling) — the mechanism's envelope is asserted to hold for the small, nominal, large and
+densest bodies and asserted *not* to hold for the largest (100 s spin), fast-spin and tumbling
+ones (`runs/wpc-envelope-cases.txt`); the densest body is refused at commit by the return
+envelope (`TethysBudgets::captureCommitEnvelope`) instead, and the despin propellant, angular momentum
 and surface speed are computed per case (`runs/wpc-target-cases.txt`).
 
 ## SE rows (reading per `docs/small-body-domain-list.md` §8)

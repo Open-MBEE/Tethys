@@ -49,11 +49,11 @@
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
 sweep TethysDynamics::arrayPowerAtAphelionEnd — 5 run(s)
-missionDay | availableSepPowerW  | thrustN              | verdict
------------+---------------------+----------------------+------------------------
-0.0        | [40000.0]           | [1.8284566577535266] | enoughPower: satisfied
-550.0      | [38873.69722998602] | [1.7769717627915689] | enoughPower: satisfied
-1100.0     | [37812.90190754101] | [1.7284813060456097] | enoughPower: satisfied
-1650.0     | [37005.11903618245] | [1.6915564068167392] | enoughPower: satisfied
-2200.0     | [36337.7696812526]  | [1.661050922540014]  | enoughPower: satisfied
+missionDay | availableSepPower       | thrust                   | verdict
+-----------+-------------------------+--------------------------+------------------------
+0.0        | [40000.0 [W]]           | [1.8284566577535266 [N]] | enoughPower: satisfied
+550.0      | [38873.69722998603 [W]] | [1.7769717627915695 [N]] | enoughPower: satisfied
+1100.0     | [37812.90190754101 [W]] | [1.7284813060456097 [N]] | enoughPower: satisfied
+1650.0     | [37005.11903618245 [W]] | [1.6915564068167392 [N]] | enoughPower: satisfied
+2200.0     | [36337.7696812526 [W]]  | [1.661050922540014 [N]]  | enoughPower: satisfied
   standing: table (observed: 5 rows)

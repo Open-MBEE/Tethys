@@ -99,5 +99,5 @@ loaded 50 files:
 ✓ package TethysImportedData
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
-✓ TethysTugStructure::UnitsPowerInMode(TethysTugStructure::argentDesign.sep.thrusters, TethysTugStructure::TugMode::thrusting)
+✓ TethysTugStructure::UnitsPowerInMode(TethysTugStructure::argentDesign.sep.thrusters, TethysTugStructure::TugMode::thrust)
   = [33.0 [kW]]

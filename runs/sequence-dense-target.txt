@@ -1,0 +1,83 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysSequence::denseTargetCampaign
+  ID: 1
+  Use %features TethysSequence::denseTargetCampaign to inspect
+✓ Debugging action "mission" performed by object #1 of "TethysSequence::denseTargetCampaign"
+note: object #1 of "TethysSequence::denseTargetCampaign" already performs "TethysSequence::FlightCampaign::mission", so this session attaches to that running performance rather than starting a second one (as `%action TethysSequence::FlightCampaign::mission` would)
+  State: Waiting
+  Tokens: 1
+✓ Advanced to 190080000.0 (0 event(s) processed)
+  Action state: Completed
+  Tokens: 0
+  1 choice point (1 independent); %trace on to see them
+  Action steps taken: 14
+✓ Action completed
+  Results:
+    captured = [false]
+    envelope = [Instance(ID: 4)]
+    inserted = [false]
+    inspectorRelease.checkoutPassed = [true]
+    inspectorRelease.groundGo = [true]
+    inspectorRelease.holdReason = [""]
+    inspectorRelease.released = [true]
+    inspectorRelease.umbilicalDisconnected = true
+    inspectorReleased = true
+    lunarAssistAt = <unset>
+    outboundArcPlan = [3]
+    outboundArcs = 3
+    outcome = ["capture refused: target estimate outside the capture-commit envelope"]
+    returnArcPlan = [4]
+    returnArcs = 0
+    target = [Instance(ID: 3)]
+    xenonRemaining = 5955.0 [kg]
+    xenonReserve = 132.0 [kg]
+  standing: value (observed: 1 run under reverse)

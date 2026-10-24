@@ -100,4 +100,10 @@ loaded 50 files:
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
 ✓ TethysBudgets::propellantBudget.xenonLarge
-  = 5350.800465426826 [kg]
+  = 5340.502117998087 [kg]
+✓ TethysBudgets::propellantBudget.returnableBodyMass
+  = 542485.809768173 [kg]
+✓ TethysBudgets::propellantBudget.returnableBodyMassNoMargin
+  = 651928.2130205248 [kg]
+✓ TethysBudgets::captureCommitEnvelope.maximumBodyMass
+  = 542485.809768173 [kg]
