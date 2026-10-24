@@ -570,13 +570,24 @@ package TethysOperations {
         attribute margin : Real = projected - floor;
     }
     part xenonTrend : ResourceTrend {
-        doc /* Xenon in kg at the start of the return cruise: about 5 235 kg aboard (6 468 kg usable less the
-             * 1 233 kg of the outbound and rendezvous arcs), 5.2 kg a day of thrust, 1 000 days
-             * to go, 300 kg reserve floor. */
+        doc /* Xenon in kg at the start of the return cruise, read from the propellant book
+             * (TethysBudgets::propellantBudget) so the trend and the budget cannot disagree:
+             * aboard is the usable load less the outbound and rendezvous arcs (about 5 235 kg);
+             * the rate is the SEP string's mass flow at aphelion while thrusting (about 5.2 kg a
+             * day); the days to go are the thrusting days the nominal case's return and
+             * insertion arcs need with the missed-thrust allowance (about 550, not the calendar
+             * length of the cruise, which is mostly coast); the floor is the 300 kg reserve. */
+        attribute returnArcsXenon : MassValue = TethysBudgets::propellantBudget.xenonNominal
+            - (TethysBudgets::propellantBudget.outboundAlone + TethysBudgets::propellantBudget.rendezvousAlone)
+                * (1.0 + TethysMission::transferBook.missedThrustMargin) {
+            doc /* Xenon the return and insertion arcs take for the nominal case, with the
+                 * missed-thrust allowance: the mission's xenon less the arcs already flown. */
+        }
         attribute :>> resourceName = "xenon (kg)";
-        attribute :>> current = 5235.0;
-        attribute :>> ratePerDay = -5.2;
-        attribute :>> daysRemaining = 1000.0;
+        attribute :>> current = (TethysBudgets::propellantBudget.usable
+            - TethysBudgets::propellantBudget.outboundAlone - TethysBudgets::propellantBudget.rendezvousAlone) / (1 [kg]);
+        attribute :>> ratePerDay = -(TethysBudgets::propellantBudget.massFlowAtAphelion / (1 ['kg⋅s⁻¹'])) * 86400.0;
+        attribute :>> daysRemaining = (returnArcsXenon / (1 [kg])) / (-ratePerDay);
         attribute :>> floor = 300.0;
     }
     part batteryCapacityTrend : ResourceTrend {
