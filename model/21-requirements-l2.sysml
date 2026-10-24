@@ -227,14 +227,14 @@ package TethysRequirementsL2 {
         @Waiver { relief = "3 d during launch and early operations"; scope = "launchAndEarlyOperations"; approvedBy = "programme board"; expires = "arraysDeployed"; }
     }
     requirement <'TS-014'> proximityContactEnvironment : EnvironmentalRequirement {
-        doc /* The capture system shall withstand contact with a surface moving at the large
-             * case's equatorial speed and the thermal environment at the minimum heliocentric
-             * range, including solar flux at perihelion. */
+        doc /* The capture system shall withstand contact with a surface moving at the largest
+             * case's equatorial speed (9.5 m at 100 s) and the thermal environment at the minimum
+             * heliocentric range, including solar flux at perihelion. */
         subject tug : Tug;
         attribute :>> environment = "proximity operations and contact";
         attribute perihelionFlux : Real = TethysEnvironment::SolarFlux(1.003);
         attribute designFlux : Real = 1450.0;
-        attribute largeCaseSurfaceSpeed : SpeedValue = 3.14159265 * targetCases.largest.meanDiameter / targetCases.large.rotationPeriod;
+        attribute largeCaseSurfaceSpeed : SpeedValue = 3.14159265 * targetCases.largest.meanDiameter / targetCases.largest.rotationPeriod;
         attribute designContactSpeed : SpeedValue = 0.35 [m/s];
         require constraint { designFlux >= perihelionFlux }
         require constraint { designContactSpeed >= largeCaseSurfaceSpeed }
@@ -280,11 +280,12 @@ package TethysRequirementsL2 {
         @Rationale { text = "The separation speed is TBD pending the dispenser spring trade."; }
     }
     requirement <'TS-019'> despinCapacity : PerformanceRequirement {
-        doc /* With the large case attached the tug shall remove the body's spin angular momentum
-             * within 24 h using the reaction-control system, keeping the hydrazine used below a
-             * quarter of the load. The momentum is 0.4 M R^2 omega for a sphere. */
+        doc /* With the largest case attached (9.5 m, 987 t, 100 s) the tug shall remove the body's
+             * spin angular momentum within 24 h using the reaction-control system, keeping the
+             * hydrazine used below a quarter of the load. The momentum is 0.4 M R^2 omega for a
+             * sphere. */
         subject tug : Tug;
-        attribute largeCaseMomentum : Real = 0.4 * (targetCases.largest.mass / 1 [kg]) * (targetCases.largest.meanDiameter / 2 [m]) * (targetCases.largest.meanDiameter / 2 [m]) * 2.0 * 3.14159265 / (targetCases.large.rotationPeriod / 1 [s]);
+        attribute largeCaseMomentum : Real = 0.4 * (targetCases.largest.mass / 1 [kg]) * (targetCases.largest.meanDiameter / 2 [m]) * (targetCases.largest.meanDiameter / 2 [m]) * 2.0 * 3.14159265 / (targetCases.largest.rotationPeriod / 1 [s]);
         attribute leverArm : LengthValue = 3.0 [m];
         attribute rcsSpecificImpulse : DurationValue = 220 [s];
         attribute hydrazineUsed : MassValue = (largeCaseMomentum / ((leverArm / 1 [m]) * (rcsSpecificImpulse / 1 [s]) * TethysEnvironment::standardGravityMPerS2)) [kg];

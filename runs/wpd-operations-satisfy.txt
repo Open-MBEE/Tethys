@@ -64,11 +64,9 @@
 ✓ package TethysHouseRules
 ✓ satisfy operationsReadiness by orrStatus holds (on TethysOperations::orrStatus ID: 1)
   standing: holds (observed: 1 run under reverse)
-✗ satisfy resourceMarginPositive by xenonTrend fails (on TethysOperations::xenonTrend ID: 2)
-  Required condition evaluated to false: trend.margin >= 0.0
-  standing: violated (witnessed: 1 run under reverse)
-✓ satisfy resourceMarginPositive by batteryCapacityTrend holds (on TethysOperations::batteryCapacityTrend ID: 3)
+✓ satisfy resourceMarginPositive by xenonTrend holds (on TethysOperations::xenonTrend ID: 2)
   standing: holds (observed: 1 run under reverse)
-✓ satisfy extendedMissionAffordable by extendedMission holds (on TethysOperations::extendedMission ID: 4)
+✓ satisfy resourceMarginPositive by batteryCapacityTrend holds (on TethysOperations::batteryCapacityTrend ID: 150)
   standing: holds (observed: 1 run under reverse)
-exit 1
+✓ satisfy extendedMissionAffordable by extendedMission holds (on TethysOperations::extendedMission ID: 151)
+  standing: holds (observed: 1 run under reverse)

@@ -130,16 +130,16 @@
 ✓ satisfy despinCapacity by TethysTug::argent holds (on TethysTug::argent ID: 1)
 ✓ Verification TethysVerification::despinAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy groundCoverage by tethysSystem.ground holds (on TethysSystem::tethysSystem.ground ID: 49)
+✓ satisfy groundCoverage by tethysSystem.ground holds (on TethysSystem::tethysSystem.ground ID: 48)
 ✓ Verification TethysVerification::groundReadinessDemo verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy commandLatency by tethysSystem.ground holds (on TethysSystem::tethysSystem.ground ID: 49)
+✓ satisfy commandLatency by tethysSystem.ground holds (on TethysSystem::tethysSystem.ground ID: 48)
 ✓ Verification TethysVerification::groundReadinessDemo verdict: pass
 ? Verification TethysSoftwareAssurance::commandRoutingIntegration verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingIntegration parameter "measuredFailover" has no argument and no default
 ? Verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop verdict: error — unbound parameter: verification TethysSoftwareAssurance::commandRoutingHardwareInTheLoop parameter "measuredFailover" has no argument and no default
 ✓ Verification TethysSoftwareAssurance::commandRoutingModel verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy operatorWorkload by tethysSystem.ground holds (on TethysSystem::tethysSystem.ground ID: 49)
+✓ satisfy operatorWorkload by tethysSystem.ground holds (on TethysSystem::tethysSystem.ground ID: 48)
 ✓ Verification TethysVerification::groundReadinessDemo verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy sepThrust by argent.sep holds (on TethysTug::argent.sep ID: 41)
@@ -161,10 +161,10 @@
 ✓ satisfy contactSpeedTolerance by argent.captureSystem holds (on TethysTug::argent.captureSystem ID: 2)
 ✓ Verification TethysVerification::contactSpeedTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy despinTorque by argent.rcs holds (on TethysTug::argent.rcs ID: 48)
+✓ satisfy despinTorque by argent.rcs holds (on TethysTug::argent.rcs ID: 47)
 ✓ Verification TethysVerification::despinAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy hydrazineLoad by argent.rcs holds (on TethysTug::argent.rcs ID: 48)
+✓ satisfy hydrazineLoad by argent.rcs holds (on TethysTug::argent.rcs ID: 47)
 ✓ Verification TethysVerification::despinAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy deepSpaceEirp by argent.telecom holds (on TethysTug::argent.telecom ID: 54)
@@ -214,16 +214,16 @@
 ✓ Verification TethysVerification::inspectorAcceptanceTest verdict: pass
 ✓ Verification TethysVerification::inspectorCommissioning verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy inspectorMass by wren holds (on TethysInspector::wren ID: 46)
+✓ satisfy inspectorMass by wren holds (on TethysInspector::wren ID: 45)
 ✓ Verification TethysVerification::inspectorAcceptanceTest verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy dopplerForMass by wren.bus holds (on TethysInspector::wren.bus ID: 62)
 ✓ Verification TethysVerification::inspectorAcceptanceTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy stationAperture by tethysSystem.ground.network.primaryStation holds (on TethysSystem::tethysSystem.ground.network.primaryStation ID: 51)
+✓ satisfy stationAperture by tethysSystem.ground.network.primaryStation holds (on TethysSystem::tethysSystem.ground.network.primaryStation ID: 50)
 ✓ Verification TethysVerification::linkBudgetTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy stationSpacing by tethysSystem.ground.network holds (on TethysSystem::tethysSystem.ground.network ID: 50)
+✓ satisfy stationSpacing by tethysSystem.ground.network holds (on TethysSystem::tethysSystem.ground.network ID: 49)
 ✓ Verification TethysVerification::groundInspection verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy TethysRequirementsL3L4::rangingAccuracy by tethysSystem.ground.network.fdf holds (on TethysSystem::tethysSystem.ground.network.fdf ID: 63)
@@ -317,9 +317,8 @@
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy operationsReadiness by orrStatus holds (on TethysOperations::orrStatus ID: 466)
   standing: holds (observed: 1 run under reverse)
-✗ satisfy resourceMarginPositive by xenonTrend fails (on TethysOperations::xenonTrend ID: 467)
-  Required condition evaluated to false: trend.margin >= 0.0
-  standing: violated (witnessed: 1 run under reverse)
+✓ satisfy resourceMarginPositive by xenonTrend holds (on TethysOperations::xenonTrend ID: 467)
+  standing: holds (observed: 1 run under reverse)
 ✓ satisfy resourceMarginPositive by batteryCapacityTrend holds (on TethysOperations::batteryCapacityTrend ID: 468)
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy extendedMissionAffordable by extendedMission holds (on TethysOperations::extendedMission ID: 469)
