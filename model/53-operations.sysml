@@ -572,11 +572,13 @@ package TethysOperations {
     part xenonTrend : ResourceTrend {
         doc /* Xenon in kg at the start of the return cruise, read from the propellant book
              * (TethysBudgets::propellantBudget) so the trend and the budget cannot disagree:
-             * aboard is the usable load less the outbound and rendezvous arcs (about 5 235 kg);
-             * the rate is the SEP string's mass flow at aphelion while thrusting (about 5.2 kg a
-             * day); the days to go are the thrusting days the nominal case's return and
-             * insertion arcs need with the missed-thrust allowance (about 550, not the calendar
-             * length of the cruise, which is mostly coast); the floor is the 300 kg reserve. */
+             * aboard is the usable load less the outbound and rendezvous arcs with their
+             * missed-thrust allowance spent (about 5 112 kg, the budget's case); the rate is the
+             * SEP string's mass flow at aphelion while thrusting (about 5.2 kg a day); the days to
+             * go are the thrusting days the nominal case's return and insertion arcs need with
+             * the same allowance (about 550, not the calendar length of the cruise, which is
+             * mostly coast); the floor is the 300 kg reserve. The projection is then the budget's
+             * usable load less its nominal-case xenon, above the floor. */
         attribute returnArcsXenon : MassValue = TethysBudgets::propellantBudget.xenonNominal
             - (TethysBudgets::propellantBudget.outboundAlone + TethysBudgets::propellantBudget.rendezvousAlone)
                 * (1.0 + TethysMission::transferBook.missedThrustMargin) {
@@ -585,7 +587,8 @@ package TethysOperations {
         }
         attribute :>> resourceName = "xenon (kg)";
         attribute :>> current = (TethysBudgets::propellantBudget.usable
-            - TethysBudgets::propellantBudget.outboundAlone - TethysBudgets::propellantBudget.rendezvousAlone) / (1 [kg]);
+            - (TethysBudgets::propellantBudget.outboundAlone + TethysBudgets::propellantBudget.rendezvousAlone)
+                * (1.0 + TethysMission::transferBook.missedThrustMargin)) / (1 [kg]);
         attribute :>> ratePerDay = -(TethysBudgets::propellantBudget.massFlowAtAphelion / (1 ['kg⋅s⁻¹'])) * 86400.0;
         attribute :>> daysRemaining = (returnArcsXenon / (1 [kg])) / (-ratePerDay);
         attribute :>> floor = 300.0;
