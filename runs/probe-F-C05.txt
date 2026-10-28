@@ -1,0 +1,11 @@
+✓ package 'F-C05'
+✓ Created instance of 'F-C05'::operation
+  ID: 1
+  Use %features 'F-C05'::operation to inspect
+error: in run: feature value check.go: type mismatch: operator '<=' is not defined for a Rational and a sequence; DataFunctions::'<=' takes one DataValue per operand
+✓ 'F-C05'::operation.run.system.limit
+  = [200.0]
+✓ 'F-C05'::operation.run.check.mechanism.limit
+  = []
+sysml: 'F-C05'::operation.run.check.go: evaluation failed: feature value check.go: type mismatch: operator '<=' is not defined for a Rational and a sequence; DataFunctions::'<=' takes one DataValue per operand
+exit 2

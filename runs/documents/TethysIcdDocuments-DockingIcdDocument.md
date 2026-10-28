@@ -13,10 +13,10 @@
 
 *Parameters both sides agree on*
 
-| name | type |
-| --- | --- |
-| ringDiameter | ISQBase::LengthValue |
-| captureSpeedMaximum | ISQSpaceTime::SpeedValue |
-| transferVoltage | ISQElectromagnetism::ElectricPotentialValue |
-| transferPower | ISQMechanics::PowerValue |
-| dataRate | ISQInformation::BinaryDigitRateValue |
+| name | type | valuation |
+| --- | --- | --- |
+| ringDiameter | ISQBase::LengthValue | 0.8 \[m\] |
+| captureSpeedMaximum | ISQSpaceTime::SpeedValue | 0.05 \['m/s'\] |
+| transferVoltage | ISQElectromagnetism::ElectricPotentialValue | 120 \[V\] |
+| transferPower | ISQMechanics::PowerValue | 2 \[kW\] |
+| dataRate | ISQInformation::BinaryDigitRateValue | 10000000 \[bit/s\] |

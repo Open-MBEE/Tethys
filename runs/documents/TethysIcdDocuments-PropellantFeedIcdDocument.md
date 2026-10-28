@@ -13,8 +13,8 @@
 
 *Parameters both sides agree on*
 
-| name | type |
-| --- | --- |
-| fillPressure | ISQMechanics::PressureValue |
-| fillRate | ISQMechanics::MassFlowRateValue |
-| loadedMass | ISQBase::MassValue |
+| name | type | valuation |
+| --- | --- | --- |
+| fillPressure | ISQMechanics::PressureValue | 15000000 \[Pa\] |
+| fillRate | ISQMechanics::MassFlowRateValue | 0.02 \['kg⋅s⁻¹'\] |
+| loadedMass | ISQBase::MassValue |  |

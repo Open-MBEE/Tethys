@@ -43,13 +43,12 @@ package TethysIcdDocuments {
         )
     }
     calc def IcdParameters :> Query {
-        doc /* One row per parameter the named ICD carries: its name and quantity type. The
-             * value itself is not a property DocumentQueries can project (docs/findings/WP-D.md
-             * F-D04), so the table lists the parameters and the model holds their values. */
+        doc /* One row per parameter the named ICD carries: its name, quantity type and the
+             * value the model binds to it, read through the `valuation` property. */
         in icd : String;
         Project(
             source = WhereType(source = OwnedElements(source = Named(qualifiedName = icd)), type = "AttributeUsage"),
-            properties = ("name", "type")
+            properties = ("name", "type", "valuation")
         )
     }
 

@@ -13,7 +13,7 @@
 
 *Parameters both sides agree on*
 
-| name | type |
-| --- | --- |
-| survivalTemperature | ISQBase::ThermodynamicTemperatureValue |
-| heaterPower | ISQMechanics::PowerValue |
+| name | type | valuation |
+| --- | --- | --- |
+| survivalTemperature | ISQBase::ThermodynamicTemperatureValue | 263 \[K\] |
+| heaterPower | ISQMechanics::PowerValue | 4 \[W\] |

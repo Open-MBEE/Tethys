@@ -50,30 +50,30 @@
 ✓ package TethysHouseRules
 ✓ TethysAnalyses::transferSmall
   returnDeltaV = [495.69853730532293 ['m/s']]
-  outboundThrustTime = [258.4854522189743 [d]]
-  returnThrustTime = [330.06185634955347 [d]]
-  totalThrustTime = [588.5473085685278 [d]]
+  outboundThrustTime = [263.6447367818764 [d]]
+  returnThrustTime = [336.6497823842632 [d]]
+  totalThrustTime = [600.2945191661396 [d]]
   objective canReturn: satisfied
   standing: value (observed: 1 run under reverse)
 ✓ TethysAnalyses::transferNominal
   returnDeltaV = [297.21660126501666 ['m/s']]
-  outboundThrustTime = [258.4854522189743 [d]]
-  returnThrustTime = [548.564792202807 [d]]
-  totalThrustTime = [807.0502444217813 [d]]
+  outboundThrustTime = [263.6447367818764 [d]]
+  returnThrustTime = [559.5139649313596 [d]]
+  totalThrustTime = [823.158701713236 [d]]
   objective canReturn: satisfied
   standing: value (observed: 1 run under reverse)
 ✓ TethysAnalyses::transferLarge
   returnDeltaV = [214.30050179876562 ['m/s']]
-  outboundThrustTime = [258.4854522189743 [d]]
-  returnThrustTime = [759.7061669219731 [d]]
-  totalThrustTime = [1018.1916191409474 [d]]
+  outboundThrustTime = [263.6447367818764 [d]]
+  returnThrustTime = [774.8696520067032 [d]]
+  totalThrustTime = [1038.5143887885797 [d]]
   objective canReturn: satisfied
   standing: value (observed: 1 run under reverse)
 ✗ TethysAnalyses::transferDensest
   returnDeltaV = [188.4751713140319 ['m/s']]
-  outboundThrustTime = [258.4854522189743 [d]]
-  returnThrustTime = [863.4113180038564 [d]]
-  totalThrustTime = [1121.8967702228306 [d]]
+  outboundThrustTime = [263.6447367818764 [d]]
+  returnThrustTime = [880.6447237764902 [d]]
+  totalThrustTime = [1144.2894605583667 [d]]
   objective canReturn: not satisfied: returnDeltaV >= requiredReturnDeltaV
   standing: value (observed: 1 run under reverse)
 ✓ TethysAnalyses::verifyDurationNominal

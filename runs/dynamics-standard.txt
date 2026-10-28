@@ -48,11 +48,9 @@
 ✓ package TethysImportedData
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
-✓ TethysDynamics::droStability
-  closure = [0.0 [km]]
-  periodShown = [1202363.5748597751 [s]]
-  objective closes: satisfied
-  standing: value (observed: 1 run under reverse)
+sysml: analysis run failed: analysis TethysDynamics::droStability: invoke action ThreeBodyDynamics: initialize action: unsupported state-space dynamics: zero crossing xAxisCrossing of action revolution binds no guard
+  objective closes: undecided: analysis TethysDynamics::droStability: invoke action ThreeBodyDynamics: initialize action: unsupported state-space dynamics: zero crossing xAxisCrossing of action revolution binds no guard
+  standing: not covered (analysis TethysDynamics::droStability: invoke action ThreeBodyDynamics: initialize action: unsupported state-space dynamics: zero crossing xAxisCrossing of action revolution binds no guard)
 sysml: failed to create executor: initialize action: unsupported state-space dynamics: action droRevolution binds integrate to RungeKutta4; the runtime integrates by StateSpaceIntegration::Euler or StateSpaceIntegration::RK4
   standing: not covered (failed to create executor: initialize action: unsupported state-space dynamics: action droRevolution binds integrate to RungeKutta4; the runtime integrates by StateSpaceIntegration::Euler or StateSpaceIntegration::RK4)
 sysml: failed to create executor: initialize action: unsupported state-space dynamics: action firstThrustArc binds integrate to RungeKutta4; the runtime integrates by StateSpaceIntegration::Euler or StateSpaceIntegration::RK4

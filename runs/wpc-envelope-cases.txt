@@ -48,22 +48,17 @@
 ✓ package TethysImportedData
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
-✗ Constraint TethysCaptureSystem::smallTargetCase::fits failed
-  Assertion evaluated to false: body.meanDiameter <= system.maximumBodyDiameter and body.mass <= system.maximumBodyMass and body.rotationPeriod >= system.minimumRotationPeriod and body.spinState == SpinState::principalAxis
-  standing: violated (witnessed: 1 run under reverse)
-✗ Constraint TethysCaptureSystem::nominalTargetCase::fits failed
-  Assertion evaluated to false: body.meanDiameter <= system.maximumBodyDiameter and body.mass <= system.maximumBodyMass and body.rotationPeriod >= system.minimumRotationPeriod and body.spinState == SpinState::principalAxis
-  standing: violated (witnessed: 1 run under reverse)
-✗ Constraint TethysCaptureSystem::largeTargetCase::fits failed
-  Assertion evaluated to false: body.meanDiameter <= system.maximumBodyDiameter and body.mass <= system.maximumBodyMass and body.rotationPeriod >= system.minimumRotationPeriod and body.spinState == SpinState::principalAxis
-  standing: violated (witnessed: 1 run under reverse)
-✗ Constraint TethysCaptureSystem::densestTargetCase::fits failed
-  Assertion evaluated to false: body.meanDiameter <= system.maximumBodyDiameter and body.mass <= system.maximumBodyMass and body.rotationPeriod >= system.minimumRotationPeriod and body.spinState == SpinState::principalAxis
-  standing: violated (witnessed: 1 run under reverse)
+✓ Constraint TethysCaptureSystem::smallTargetCase::fits passed
+  standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysCaptureSystem::nominalTargetCase::fits passed
+  standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysCaptureSystem::largeTargetCase::fits passed
+  standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysCaptureSystem::densestTargetCase::fits passed
+  standing: holds (observed: 1 run under reverse)
 ✓ Constraint TethysCaptureSystem::largestTargetCase::fits passed
   standing: holds (observed: 1 run under reverse)
 ✓ Constraint TethysCaptureSystem::fastSpinTargetCase::fits passed
   standing: holds (observed: 1 run under reverse)
 ✓ Constraint TethysCaptureSystem::tumblingTargetCase::fits passed
   standing: holds (observed: 1 run under reverse)
-exit 1

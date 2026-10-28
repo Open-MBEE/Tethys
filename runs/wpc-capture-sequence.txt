@@ -48,5 +48,19 @@
 ✓ package TethysImportedData
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
-sysml: instantiation failed: performed action capture of object #1: invoke action CommitDecision: initialize action: initialize attributes: eval attribute default go: type mismatch: operator '<=' is not defined for a sequence and a quantity; DataFunctions::'<=' takes one DataValue per operand
+✓ Created instance of TethysProximityOps::captureOperation
+  ID: 1
+  Use %features TethysProximityOps::captureOperation to inspect
+error: in capture: feature value commit.go: type mismatch: operator '<=' is not defined for a quantity and a sequence; DataFunctions::'<=' takes one DataValue per operand
+warning: TethysProximityOps::captureOperation: materialization is bounded; not every feature value was checked
+✓ Debugging action "capture" performed by object #1 of "TethysProximityOps::captureOperation"
+note: object #1 of "TethysProximityOps::captureOperation" already performs "TethysProximityOps::CaptureSequence", so this session attaches to that running performance rather than starting a second one (as `%action TethysProximityOps::CaptureSequence` would)
+  State: Waiting
+  Tokens: 1
+✓ Advanced to 10000.0 (0 event(s) processed)
+  Action state: Waiting
+  Tokens: 1
+sysml: action TethysProximityOps::CaptureSequence stopped at Waiting at simulation time 10000.0 without completing
+  Token 1: accept contact waiting since step 6 for a message of type ContactLoad
+  standing: value (observed: 1 run under reverse)
 exit 2

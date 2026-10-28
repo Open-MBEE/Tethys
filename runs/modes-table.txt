@@ -54,7 +54,7 @@
 ✓ TethysModes::argentModeTable.rows.mode
   = [TugMode::launch, TugMode::earlyOperations, TugMode::coast, TugMode::thrust, TugMode::approach, TugMode::proximityOperations, TugMode::retreat, TugMode::capture, TugMode::despin, TugMode::stackCoast, TugMode::stackThrust, TugMode::droHold, TugMode::dockedPassive, TugMode::disposal, TugMode::safe, TugMode::abortHold]
 ✓ TethysModes::argentModeTable.rows.busLoad
-  = [0.0 [W], 0.0 [W], 0.0 [W], 0.0 [W], 0.0 [W], 0.0 [W], 0.0 [W], 0.0 [W], 0.0 [W], 0.0 [W], 0.0 [W], 0.0 [W], 0.0 [W], 0.0 [W], 0.0 [W], 0.0 [W]]
+  = [0.0 [W], 822.0 [W], 868.0 [W], 35518.0 [W], 35518.0 [W], 908.0 [W], 908.0 [W], 1461.0 [W], 837.0 [W], 868.0 [W], 35518.0 [W], 897.0 [W], 868.0 [W], 35518.0 [W], 832.0 [W], 832.0 [W]]
 ✓ TethysModes::argentModeTable.rows.sepThrusting
   = [false, false, false, true, true, false, false, false, false, false, true, false, false, true, false, false]
 ✓ TethysModes::argentModeTable.rows.highVoltageBusOn

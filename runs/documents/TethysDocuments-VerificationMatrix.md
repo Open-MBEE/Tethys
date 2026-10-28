@@ -8,17 +8,17 @@ One row per requirement. The verification cases that close each row are added by
 
 *L1 requirements*
 
-| Id | Name | Statement | Tier |
-| --- | --- | --- | --- |
-| TR-001 | retrieval | The mission shall deliver the target body 2031 QX, intact and with a mass of at<br>least 100 t, into the designated lunar distant retrograde orbit. | mission |
-| TR-002 | missionDuration | The mission shall complete the insertion of the target into the distant<br>retrograde orbit within 2 200 days of launch (TethysMission::tethys.nominalDuration). | mission |
-| TR-003 | characterisation | Before committing to capture, the mission shall determine the target's shape,<br>mass to within 10 % and spin state, and shall confirm that each lies within the<br>capture system's design envelope. | mission |
-| TR-004 | launchCompatibility | The flight system shall be compatible with the Arcturus-5H launch vehicle and its<br>direct injection to an Earth-escape trajectory. | mission |
-| TR-005 | groundCompatibility | The flight system shall communicate through the Meridian deep-space network at<br>every Earth range of the mission. | mission |
-| TR-006 | cislunarSafety | The target body shall be placed in an orbit that remains bound to the Moon for at<br>least 100 years without station-keeping, and no credible failure during the return<br>shall place it on an Earth-impact trajectory. | mission |
-| TR-007 | missionClass | The flight system shall carry no single-point failure that ends the mission. | mission |
-| TR-008 | deflectionDemonstration | While attached to the target, the mission shall demonstrate a slow-push<br>deflection and shall measure the resulting change in the target's heliocentric<br>velocity to an accuracy of 1 mm/s. | mission |
-| TR-009 | utilisationAccess | After delivery, the tug shall hold the target in an attitude and with a docking<br>interface that lets the visiting vehicle Lantern dock and reach the target's<br>surface. | mission |
+| Id | Name | Statement | Tier | Method | Level | Stage |
+| --- | --- | --- | --- | --- | --- | --- |
+| TR-001 | retrieval | The mission shall deliver the target body 2031 QX, intact and with a mass of at<br>least 100 t, into the designated lunar distant retrograde orbit. | mission | analyze | mission | inFlight |
+| TR-002 | missionDuration | The mission shall complete the insertion of the target into the distant<br>retrograde orbit within 2 200 days of launch (TethysMission::tethys.nominalDuration). | mission | analyze | mission | inFlight |
+| TR-003 | characterisation | Before committing to capture, the mission shall determine the target's shape,<br>mass to within 10 % and spin state, and shall confirm that each lies within the<br>capture system's design envelope. | mission | analyze | mission | inFlight |
+| TR-004 | launchCompatibility | The flight system shall be compatible with the Arcturus-5H launch vehicle and its<br>direct injection to an Earth-escape trajectory. | mission | test | system | acceptance |
+| TR-005 | groundCompatibility | The flight system shall communicate through the Meridian deep-space network at<br>every Earth range of the mission. | mission | test | system | preLaunch |
+| TR-006 | cislunarSafety | The target body shall be placed in an orbit that remains bound to the Moon for at<br>least 100 years without station-keeping, and no credible failure during the return<br>shall place it on an Earth-impact trajectory. | mission | analyze | mission | qualification |
+| TR-007 | missionClass | The flight system shall carry no single-point failure that ends the mission. | mission | analyze | system | qualification |
+| TR-008 | deflectionDemonstration | While attached to the target, the mission shall demonstrate a slow-push<br>deflection and shall measure the resulting change in the target's heliocentric<br>velocity to an accuracy of 1 mm/s. | mission | demo | mission | inFlight |
+| TR-009 | utilisationAccess | After delivery, the tug shall hold the target in an attitude and with a docking<br>interface that lets the visiting vehicle Lantern dock and reach the target's<br>surface. | mission | demo | mission | inFlight |
 
 *The same requirements as an element table*
 

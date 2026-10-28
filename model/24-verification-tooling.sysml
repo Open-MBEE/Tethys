@@ -50,12 +50,13 @@ package TethysVerificationTooling {
     }
 
     calc def VvMatrix :> Query {
-        doc /* The V&V matrix: each requirement with the number of verification cases that verify
-             * it, the cases themselves and the parts that satisfy it. */
+        doc /* The V&V matrix: each requirement with the method, level and stage its @Verification
+             * annotation declares, the number of verification cases that verify it, the cases
+             * themselves and the parts that satisfy it. */
         in root : Element[0..*] ordered;
         Project(
             source = RequirementRows(root = root),
-            properties = ("shortName", "name"),
+            properties = ("shortName", "name", "Verification::method", "Verification::level", "Verification::stage"),
             columns = (
                 RelatedColumn(name = "verifiedBy", relationshipKind = "verification", direction = "incoming", aggregate = "list"),
                 RelatedColumn(name = "cases", relationshipKind = "verification", direction = "incoming", aggregate = "count"),

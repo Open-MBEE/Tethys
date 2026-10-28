@@ -1,6 +1,6 @@
 ✓ package NestedStateSpaceProbe
 ✓ NestedStateSpaceProbe::drop
-  finalHeight = [100.0]
+  finalHeight = [55.855000000000004]
   standing: value (observed: 1 run under reverse)
 ✓ Started action executor for "NestedStateSpaceProbe::fall"
   State: Running
@@ -9,8 +9,8 @@
   Final state: Completed
   Results:
     input = ⟨0.0⟩
-    output = ⟨55.855000000000004⟩
-    stateSpace = ⟨55.855000000000004, -29.429999999999996⟩
+    output = ⟨100.0⟩
+    stateSpace = ⟨100.0, 0.0⟩
     stopTime = 3 [s]
     time = 3.0 [s]
     timeStep = 1 [s]
