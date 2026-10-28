@@ -49,25 +49,32 @@
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
 ✓ TethysAnalyses::transferSmall
-  returnDeltaVMPerS = [690.9618905858129]
-  outboundThrustDays = [154.03545065123998]
-  returnThrustDays = [980.0892527098525]
-  totalThrustDays = [1134.1247033610925]
+  returnDeltaV = [495.69853730532293 ['m/s']]
+  outboundThrustTime = [258.4854522189743 [d]]
+  returnThrustTime = [330.06185634955347 [d]]
+  totalThrustTime = [588.5473085685278 [d]]
   objective canReturn: satisfied
   standing: value (observed: 1 run under reverse)
 ✓ TethysAnalyses::transferNominal
-  returnDeltaVMPerS = [417.0981974800674]
-  outboundThrustDays = [154.03545065123998]
-  returnThrustDays = [980.0892527098525]
-  totalThrustDays = [1134.1247033610925]
+  returnDeltaV = [297.21660126501666 ['m/s']]
+  outboundThrustTime = [258.4854522189743 [d]]
+  returnThrustTime = [548.564792202807 [d]]
+  totalThrustTime = [807.0502444217813 [d]]
   objective canReturn: satisfied
   standing: value (observed: 1 run under reverse)
-✗ TethysAnalyses::transferLarge
-  returnDeltaVMPerS = [237.2592114570476]
-  outboundThrustDays = [154.03545065123998]
-  returnThrustDays = [980.0892527098525]
-  totalThrustDays = [1134.1247033610925]
-  objective canReturn: not satisfied: returnDeltaVMPerS >= requiredReturnDeltaVMPerS
+✓ TethysAnalyses::transferLarge
+  returnDeltaV = [214.30050179876562 ['m/s']]
+  outboundThrustTime = [258.4854522189743 [d]]
+  returnThrustTime = [759.7061669219731 [d]]
+  totalThrustTime = [1018.1916191409474 [d]]
+  objective canReturn: satisfied
+  standing: value (observed: 1 run under reverse)
+✗ TethysAnalyses::transferDensest
+  returnDeltaV = [188.4751713140319 ['m/s']]
+  outboundThrustTime = [258.4854522189743 [d]]
+  returnThrustTime = [863.4113180038564 [d]]
+  totalThrustTime = [1121.8967702228306 [d]]
+  objective canReturn: not satisfied: returnDeltaV >= requiredReturnDeltaV
   standing: value (observed: 1 run under reverse)
 ✓ TethysAnalyses::verifyDurationNominal
   verdict = [VerdictKind::pass]

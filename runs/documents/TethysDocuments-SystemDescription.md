@@ -563,7 +563,7 @@ flowchart LR
 
 **TR-001** — The mission shall deliver the target body 2031 QX, intact and with a mass of at least 100 t, into the designated lunar distant retrograde orbit.
 
-**TR-002** — The mission shall complete the insertion of the target into the distant retrograde orbit within 1 300 days of launch.
+**TR-002** — The mission shall complete the insertion of the target into the distant retrograde orbit within 2 200 days of launch (TethysMission::tethys.nominalDuration).
 
 **TR-003** — Before committing to capture, the mission shall determine the target's shape, mass to within 10 % and spin state, and shall confirm that each lies within the capture system's design envelope.
 

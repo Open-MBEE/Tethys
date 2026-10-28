@@ -58,7 +58,7 @@
   Row 2: TethysRequirements::missionDuration
     shortName = "TR-002"
     name = "missionDuration"
-    documentation = "The mission shall complete the insertion of the target into the distant\nretrograde orbit within 1 300 days of launch."
+    documentation = "The mission shall complete the insertion of the target into the distant\nretrograde orbit within 2 200 days of launch (TethysMission::tethys.nominalDuration)."
     tier = TethysRequirements::RequirementTier::mission
   Row 3: TethysRequirements::characterisation
     shortName = "TR-003"

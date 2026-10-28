@@ -12,10 +12,13 @@ package TethysSequence {
     private import Time::*;
     private import BaseFunctions::ToString;
     private import TethysModes::TargetEstimate;
-    private import TethysModes::CaptureEnvelope;
+    private import TethysBudgets::CaptureCommitEnvelope;
+    private import TethysBudgets::captureCommitEnvelope;
+    private import TethysBudgets::propellantBudget;
     private import TethysModes::smallTarget;
     private import TethysModes::nominalTarget;
     private import TethysModes::largeTarget;
+    private import TethysModes::denseTarget;
 
     // ---- 1. Phases with entry and exit criteria -----------------------------------------
     attribute def PhaseCriteria {
@@ -61,7 +64,7 @@ package TethysSequence {
         }
         attribute capture : PhaseCriteria {
             :>> phase = "capture";
-            :>> entryCriterion = "capture commit (estimate inside the capture envelope)";
+            :>> entryCriterion = "capture commit (estimate inside the capture-commit envelope)";
             :>> exitCriterion = "bag cinched, stack despun below the control threshold";
             :>> plannedDuration = 13.0 [d];
         }
@@ -277,14 +280,16 @@ package TethysSequence {
              * the mission in a retreat hold (`terminate`). The lunar assist is waited for as a
              * timed event (`accept at` a clock instant scheduled after the return arcs). */
         in target : TargetEstimate;
-        in envelope : CaptureEnvelope;
+        in envelope : CaptureCommitEnvelope;
         in outboundArcPlan : Natural;
         in returnArcPlan : Natural;
-        attribute xenonRemaining : MassValue = 6600.0 [kg];
+        attribute xenonRemaining : MassValue = propellantBudget.loaded;
         attribute outboundArcs : Natural = 0;
         attribute returnArcs : Natural = 0;
         attribute inspectorReleased : Boolean = false;
-        attribute xenonReserve : MassValue = 300.0 [kg];
+        attribute xenonReserve : MassValue = propellantBudget.loaded * propellantBudget.residualFraction {
+            doc /* The residual the tanks cannot deliver, from the propellant budget. */
+        }
         attribute lunarAssistAt : TimeInstantValue;
         out captured : Boolean = false;
         out inserted : Boolean = false;
@@ -323,7 +328,7 @@ package TethysSequence {
         then decide captureCommit;
             if target.estimatedMass <= envelope.maximumBodyMass and target.estimatedDiameter <= envelope.maximumBodyDiameter then captureAndDespin;
             else retreatHold;
-        action retreatHold assign outcome := "capture refused: target estimate outside the capture envelope";
+        action retreatHold assign outcome := "capture refused: target estimate outside the capture-commit envelope";
         then terminate;
         action captureAndDespin {
             action capture accept after 3.0 [d];
@@ -372,9 +377,9 @@ package TethysSequence {
     part def FlightCampaign {
         doc /* One flight of the mission sequence against a target estimate and an arc plan. */
         attribute target : TargetEstimate;
-        attribute envelope : CaptureEnvelope {
-            :>> maximumBodyMass = 1000.0e3 [kg];
-            :>> maximumBodyDiameter = 10.0 [m];
+        attribute envelope : CaptureCommitEnvelope {
+            :>> maximumBodyMass = captureCommitEnvelope.maximumBodyMass;
+            :>> maximumBodyDiameter = captureCommitEnvelope.maximumBodyDiameter;
         }
         attribute outboundArcPlan : Natural default 3;
         attribute returnArcPlan : Natural default 4;
@@ -395,7 +400,13 @@ package TethysSequence {
         attribute :>> target = nominalTarget;
     }
     part largeTargetCampaign : FlightCampaign {
-        doc /* Large target: the commit is refused and the flight ends in the retreat hold. */
+        doc /* Large design target (506 t): inside the commit envelope, capture accepted; the
+             * return takes the full arc plan. */
         attribute :>> target = largeTarget;
+    }
+    part denseTargetCampaign : FlightCampaign {
+        doc /* Densest body (576 t): over the return envelope, the commit is refused and the
+             * flight ends in the retreat hold. */
+        attribute :>> target = denseTarget;
     }
 }

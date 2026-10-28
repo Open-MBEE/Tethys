@@ -101,8 +101,8 @@ loaded 50 files:
 ✓ package TethysHouseRules
 wrote build/runs/documents/TethysDocuments-InterfaceControlDocuments.md (markdown, 12638 bytes)
 wrote build/runs/documents/TethysDocuments-RiskRegister.md (markdown, 228 bytes)
-wrote build/runs/documents/TethysDocuments-SystemDescription.md (markdown, 23354 bytes)
-wrote build/runs/documents/TethysDocuments-VerificationMatrix.md (markdown, 5847 bytes)
+wrote build/runs/documents/TethysDocuments-SystemDescription.md (markdown, 23394 bytes)
+wrote build/runs/documents/TethysDocuments-VerificationMatrix.md (markdown, 5887 bytes)
 wrote build/runs/documents/TethysIcdDocuments-CaptureIcdDocument.md (markdown, 642 bytes)
 wrote build/runs/documents/TethysIcdDocuments-DataBusIcdDocument.md (markdown, 431 bytes)
 wrote build/runs/documents/TethysIcdDocuments-DockingIcdDocument.md (markdown, 543 bytes)

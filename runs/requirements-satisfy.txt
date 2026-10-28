@@ -51,64 +51,64 @@
 ✓ satisfy captureEnvelope by TethysTug::argent holds (on TethysTug::argent ID: 1)
 ✓ Verification TethysVerification::captureEnvelopeTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy deliveredMass by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 9)
+✓ satisfy deliveredMass by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 10)
 ✓ Verification TethysVerification::deliveryAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy transferDuration by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 9)
+✓ satisfy transferDuration by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 10)
 ✓ Verification TethysVerification::powerAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy propellantCapacity by TethysTug::argent holds (on TethysTug::argent ID: 1)
 ✓ Verification TethysVerification::propellantAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy characterisationProducts by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 9)
+✓ satisfy characterisationProducts by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 10)
 ✓ Verification TethysVerification::characterisationAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy earthImpactExclusion by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 9)
+✓ satisfy earthImpactExclusion by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 10)
 ✓ Verification TethysVerification::returnSafetyAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy droStability by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 9)
+✓ satisfy droStability by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 10)
 ✓ Verification TethysVerification::returnSafetyAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy thrustRedundancy by TethysTug::argent holds (on TethysTug::argent ID: 1)
 ✓ Verification TethysVerification::redundancyInspection verdict: pass
 ✓ Verification TethysVerification::sepCommissioning verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy deflectionMeasurement by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 9)
+✓ satisfy deflectionMeasurement by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 10)
 ✓ Verification TethysVerification::deflectionAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy autonomousSurvival by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 9)
+✓ satisfy autonomousSurvival by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 10)
 ✓ Verification TethysVerification::autonomyTest verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy proximityContactEnvironment by TethysTug::argent holds (on TethysTug::argent ID: 1)
 ✓ Verification TethysVerification::contactSpeedTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy faultResponse by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 9)
+✓ satisfy faultResponse by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 10)
 ✓ Verification TethysVerification::faultResponseTest verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy massBudget by TethysTug::argent holds (on TethysTug::argent ID: 1)
 ✓ Verification TethysVerification::massBudgetAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy inspectorDeployment by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 9)
+✓ satisfy inspectorDeployment by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 10)
 ✓ Verification TethysVerification::separationTest verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy despinCapacity by TethysTug::argent holds (on TethysTug::argent ID: 1)
 ✓ Verification TethysVerification::despinAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy groundCoverage by tethysSystem.ground holds (on TethysSystem::tethysSystem.ground ID: 23)
+✓ satisfy groundCoverage by tethysSystem.ground holds (on TethysSystem::tethysSystem.ground ID: 24)
 ✓ Verification TethysVerification::groundReadinessDemo verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy commandLatency by tethysSystem.ground holds (on TethysSystem::tethysSystem.ground ID: 23)
+✓ satisfy commandLatency by tethysSystem.ground holds (on TethysSystem::tethysSystem.ground ID: 24)
 ✓ Verification TethysVerification::groundReadinessDemo verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy operatorWorkload by tethysSystem.ground holds (on TethysSystem::tethysSystem.ground ID: 23)
+✓ satisfy operatorWorkload by tethysSystem.ground holds (on TethysSystem::tethysSystem.ground ID: 24)
 ✓ Verification TethysVerification::groundReadinessDemo verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy sepThrust by argent.sep holds (on TethysTug::argent.sep ID: 14)
+✓ satisfy sepThrust by argent.sep holds (on TethysTug::argent.sep ID: 15)
 ✓ Verification TethysVerification::sepHotFireTest verdict: pass
 ✓ Verification TethysVerification::thrustModelValidation verdict: pass
 ✓ Verification TethysVerification::sepCommissioning verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy arrayPowerAtTarget by argent.eps holds (on TethysTug::argent.eps ID: 28)
+✓ satisfy arrayPowerAtTarget by argent.eps holds (on TethysTug::argent.eps ID: 29)
 ✓ Verification TethysVerification::powerAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy captureBagDiameter by argent.captureSystem holds (on TethysTug::argent.captureSystem ID: 2)
@@ -117,104 +117,104 @@
 ✓ satisfy contactSpeedTolerance by argent.captureSystem holds (on TethysTug::argent.captureSystem ID: 2)
 ✓ Verification TethysVerification::contactSpeedTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy despinTorque by argent.rcs holds (on TethysTug::argent.rcs ID: 21)
+✓ satisfy despinTorque by argent.rcs holds (on TethysTug::argent.rcs ID: 22)
 ✓ Verification TethysVerification::despinAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy hydrazineLoad by argent.rcs holds (on TethysTug::argent.rcs ID: 21)
+✓ satisfy hydrazineLoad by argent.rcs holds (on TethysTug::argent.rcs ID: 22)
 ✓ Verification TethysVerification::despinAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy deepSpaceEirp by argent.telecom holds (on TethysTug::argent.telecom ID: 29)
+✓ satisfy deepSpaceEirp by argent.telecom holds (on TethysTug::argent.telecom ID: 31)
 ✓ Verification TethysVerification::linkBudgetTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy proximityLinkRange by argent.telecom holds (on TethysTug::argent.telecom ID: 29)
+✓ satisfy proximityLinkRange by argent.telecom holds (on TethysTug::argent.telecom ID: 31)
 ✓ Verification TethysVerification::inspectorAcceptanceTest verdict: pass
 ✓ Verification TethysVerification::inspectorCommissioning verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy relativeNavigation by argent.gnc holds (on TethysTug::argent.gnc ID: 30)
+✓ satisfy relativeNavigation by argent.gnc holds (on TethysTug::argent.gnc ID: 32)
 ✓ Verification TethysVerification::proximityNavigationTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy faultDetectionLatency by argent.cdh holds (on TethysTug::argent.cdh ID: 31)
+✓ satisfy faultDetectionLatency by argent.cdh holds (on TethysTug::argent.cdh ID: 33)
 ✓ Verification TethysVerification::faultResponseTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy heatRejection by argent.thermal holds (on TethysTug::argent.thermal ID: 32)
+✓ satisfy heatRejection by argent.thermal holds (on TethysTug::argent.thermal ID: 34)
 ✓ Verification TethysVerification::thermalBalanceTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy dockingLoads by argent.structure holds (on TethysTug::argent.structure ID: 33)
+✓ satisfy dockingLoads by argent.structure holds (on TethysTug::argent.structure ID: 35)
 ✓ Verification TethysVerification::dockingLoadsAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy inspectorSeparation by argent.structure holds (on TethysTug::argent.structure ID: 33)
+✓ satisfy inspectorSeparation by argent.structure holds (on TethysTug::argent.structure ID: 35)
 ✓ Verification TethysVerification::separationTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy spinStateSensing by argent.sensors holds (on TethysTug::argent.sensors ID: 34)
+✓ satisfy spinStateSensing by argent.sensors holds (on TethysTug::argent.sensors ID: 36)
 ✓ Verification TethysVerification::characterisationAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy imagingResolution by wren.payload holds (on TethysInspector::wren.payload ID: 35)
+✓ satisfy imagingResolution by wren.payload holds (on TethysInspector::wren.payload ID: 37)
 ✓ Verification TethysVerification::inspectorAcceptanceTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy circumnavigationPropellant by wren.propulsion holds (on TethysInspector::wren.propulsion ID: 36)
+✓ satisfy circumnavigationPropellant by wren.propulsion holds (on TethysInspector::wren.propulsion ID: 38)
 ✓ Verification TethysVerification::characterisationAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy keepAlivePower by wren.bus holds (on TethysInspector::wren.bus ID: 37)
+✓ satisfy keepAlivePower by wren.bus holds (on TethysInspector::wren.bus ID: 39)
 ✓ Verification TethysVerification::inspectorAcceptanceTest verdict: pass
 ✓ Verification TethysVerification::inspectorCommissioning verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy inspectorMass by wren holds (on TethysInspector::wren ID: 19)
+✓ satisfy inspectorMass by wren holds (on TethysInspector::wren ID: 20)
 ✓ Verification TethysVerification::inspectorAcceptanceTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy dopplerForMass by wren.bus holds (on TethysInspector::wren.bus ID: 37)
+✓ satisfy dopplerForMass by wren.bus holds (on TethysInspector::wren.bus ID: 39)
 ✓ Verification TethysVerification::inspectorAcceptanceTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy stationAperture by tethysSystem.ground.network.primaryStation holds (on TethysSystem::tethysSystem.ground.network.primaryStation ID: 38)
+✓ satisfy stationAperture by tethysSystem.ground.network.primaryStation holds (on TethysSystem::tethysSystem.ground.network.primaryStation ID: 40)
 ✓ Verification TethysVerification::linkBudgetTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy stationSpacing by tethysSystem.ground.network holds (on TethysSystem::tethysSystem.ground.network ID: 24)
+✓ satisfy stationSpacing by tethysSystem.ground.network holds (on TethysSystem::tethysSystem.ground.network ID: 25)
 ✓ Verification TethysVerification::groundInspection verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy TethysRequirementsL3L4::rangingAccuracy by tethysSystem.ground.network.fdf holds (on TethysSystem::tethysSystem.ground.network.fdf ID: 39)
+✓ satisfy TethysRequirementsL3L4::rangingAccuracy by tethysSystem.ground.network.fdf holds (on TethysSystem::tethysSystem.ground.network.fdf ID: 41)
 ✓ Verification TethysVerification::deflectionAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy impactScreening by tethysSystem.ground.network.fdf holds (on TethysSystem::tethysSystem.ground.network.fdf ID: 39)
+✓ satisfy impactScreening by tethysSystem.ground.network.fdf holds (on TethysSystem::tethysSystem.ground.network.fdf ID: 41)
 ✓ Verification TethysVerification::groundProceduresDemo verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy sequenceTurnaround by tethysSystem.ground.network.moc holds (on TethysSystem::tethysSystem.ground.network.moc ID: 40)
+✓ satisfy sequenceTurnaround by tethysSystem.ground.network.moc holds (on TethysSystem::tethysSystem.ground.network.moc ID: 42)
 ✓ Verification TethysVerification::groundProceduresDemo verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy monitoringAutomation by tethysSystem.ground.network.moc holds (on TethysSystem::tethysSystem.ground.network.moc ID: 40)
+✓ satisfy monitoringAutomation by tethysSystem.ground.network.moc holds (on TethysSystem::tethysSystem.ground.network.moc ID: 42)
 ✓ Verification TethysVerification::groundProceduresDemo verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy scienceArchive by tethysSystem.ground.network.sds holds (on TethysSystem::tethysSystem.ground.network.sds ID: 41)
+✓ satisfy scienceArchive by tethysSystem.ground.network.sds holds (on TethysSystem::tethysSystem.ground.network.sds ID: 43)
 ✓ Verification TethysVerification::groundProceduresDemo verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy thrusterUnitThrust by argent.sep holds (on TethysTug::argent.sep ID: 14)
+✓ satisfy thrusterUnitThrust by argent.sep holds (on TethysTug::argent.sep ID: 15)
 ✓ Verification TethysVerification::sepHotFireTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy powerProcessingEfficiency by argent.sep holds (on TethysTug::argent.sep ID: 14)
+✓ satisfy powerProcessingEfficiency by argent.sep holds (on TethysTug::argent.sep ID: 15)
 ✓ Verification TethysVerification::sepHotFireTest verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy cinchMotorTorque by argent.captureSystem holds (on TethysTug::argent.captureSystem ID: 2)
 ✓ Verification TethysVerification::cinchMotorTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy narrowAngleCameraSensitivity by argent.sensors holds (on TethysTug::argent.sensors ID: 34)
+✓ satisfy narrowAngleCameraSensitivity by argent.sensors holds (on TethysTug::argent.sensors ID: 36)
 ✓ Verification TethysVerification::proximityNavigationTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy fdirTaskPeriod by argent.cdh holds (on TethysTug::argent.cdh ID: 31)
+✓ satisfy fdirTaskPeriod by argent.cdh holds (on TethysTug::argent.cdh ID: 33)
 ✓ Verification TethysVerification::faultResponseTest verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy inspectorDetectorPitch by wren.payload holds (on TethysInspector::wren.payload ID: 35)
+✓ satisfy inspectorDetectorPitch by wren.payload holds (on TethysInspector::wren.payload ID: 37)
 ✓ Verification TethysVerification::inspectorAcceptanceTest verdict: pass
   standing: holds (observed: 1 run under reverse)
 ? satisfy verificationViewpoint needs an object of TethysVerification::VvMatrix: none is instantiated
-✓ satisfy massBudgetCloses by massBudget holds (on TethysBudgets::massBudget ID: 267)
+✓ satisfy massBudgetCloses by massBudget holds (on TethysBudgets::massBudget ID: 269)
   standing: holds (observed: 1 run under reverse)
-✓ satisfy powerBudgetCloses by powerBudget holds (on TethysBudgets::powerBudget ID: 404)
+✓ satisfy powerBudgetCloses by powerBudget holds (on TethysBudgets::powerBudget ID: 406)
   standing: holds (observed: 1 run under reverse)
-✓ satisfy energyBudgetCloses by energyBudget holds (on TethysBudgets::energyBudget ID: 406)
+✓ satisfy energyBudgetCloses by energyBudget holds (on TethysBudgets::energyBudget ID: 408)
   standing: holds (observed: 1 run under reverse)
-✓ satisfy inspectorEnergyBudgetCloses by inspectorEnergyBudget holds (on TethysBudgets::inspectorEnergyBudget ID: 407)
+✓ satisfy inspectorEnergyBudgetCloses by inspectorEnergyBudget holds (on TethysBudgets::inspectorEnergyBudget ID: 409)
   standing: holds (observed: 1 run under reverse)
-✓ satisfy dataBudgetCloses by dataBudget holds (on TethysBudgets::dataBudget ID: 408)
+✓ satisfy dataBudgetCloses by dataBudget holds (on TethysBudgets::dataBudget ID: 410)
   standing: holds (observed: 1 run under reverse)
-✓ satisfy propellantBudgetCloses by propellantBudget holds (on TethysBudgets::propellantBudget ID: 409)
+✓ satisfy propellantBudgetCloses by propellantBudget holds (on TethysBudgets::propellantBudget ID: 411)
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy hydrazineBudgetCloses by hydrazineBudget holds (on TethysBudgets::hydrazineBudget ID: 413)
   standing: holds (observed: 1 run under reverse)

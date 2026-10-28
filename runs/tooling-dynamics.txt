@@ -56,11 +56,11 @@
   Results:
     constants = Instance(ID: 2)
     input = ⟨0.0⟩
-    output = ⟨0.18211014385737295⟩
-    stateSpace = ⟨0.8057554713502632, -0.0024289598645587714, -0.0034335952938240946, 0.519331526105718⟩
-    stopTime = 3.2 [s]
-    time = 3.2 [s]
-    timeStep = 0.01 [s]
+    output = ⟨0.1821019739781136⟩
+    stateSpace = ⟨0.8057474419439837, 2.787426730318371e-08, 3.55201802554328e-08, 0.5193635880800765⟩
+    stopTime = 3.20467695 [s]
+    time = 3.20467695 [s]
+    timeStep = 0.01001461546875 [s]
   standing: value (observed: 1 run under reverse)
 ✓ Started action executor for "TethysAnalysesTooling::firstThrustArcRk4"
   State: Running
@@ -73,6 +73,6 @@
     stateSpace = ⟨131297253.0666045, 72012067.20754626, -14.326890785023359, 26.49542027439917, 12438.9066039576⟩
     stopTime = 2592000 [s]
     thrustN = [1.8284566577535266]
-    time = 2505603.2 [s]
+    time = 2505603.20467695 [s]
     timeStep = 86400 [s]
   standing: value (observed: 1 run under reverse)

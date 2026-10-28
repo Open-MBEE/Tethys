@@ -49,14 +49,14 @@
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
 runs TethysAnalysesTooling::returnOverContinuousMass — 1 run(s), no seed
-run | observed          | verdict
-----+-------------------+----------------------
-1   | 690.9618905858129 | canReturn: satisfied
-observed: 1 run(s), min 690.9618905858129, mean 690.9618905858129, max 690.9618905858129, p50 690.9618905858129, p90 690.9618905858129
-  690.9618905858129 #################### 1
+run | observed           | verdict
+----+--------------------+----------------------
+1   | 495.69853730532293 | canReturn: satisfied
+observed: 1 run(s), min 495.69853730532293, mean 495.69853730532293, max 495.69853730532293, p50 495.69853730532293, p90 495.69853730532293
+  495.69853730532293 #################### 1
 ✓ TethysAnalysesTooling::returnOverContinuousMass over 1 run(s)
   runs = 1
-  mean = 690.9618905858129
+  mean = 495.69853730532293
   deviation = null
   outOfSpec = 0
   standing: table (observed: 1 row)

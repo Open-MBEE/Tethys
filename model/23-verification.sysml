@@ -127,14 +127,14 @@ package TethysVerification {
              * mock body of the large case's diameter in vacuum. */
         subject tug : Tug;
         objective {
-            doc /* The bag accommodates the large and dense cases. */
+            doc /* The bag accommodates the largest and densest cases. */
             verify captureEnvelope { doc /* Verified by this case. */ }
             verify captureBagDiameter { doc /* Verified by this case. */ }
             verify captureQualification { doc /* Verified by this case. */ }
         }
-        PassIf(tug.captureSystem.maximumBodyDiameter >= targetCases.large.meanDiameter + 0.5 [m]
-            and tug.captureSystem.maximumBodyMass >= targetCases.large.mass
-            and tug.captureSystem.maximumBodyMass >= targetCases.dense.mass)
+        PassIf(tug.captureSystem.maximumBodyDiameter >= targetCases.largest.meanDiameter + 0.5 [m]
+            and tug.captureSystem.maximumBodyMass >= targetCases.largest.mass
+            and tug.captureSystem.maximumBodyMass >= targetCases.densest.mass)
     }
     metadata VerificationMethod about CaptureEnvelopeTest { kind = VerificationMethodKind::test; }
     verification def ContactSpeedTest {
@@ -142,11 +142,11 @@ package TethysVerification {
         subject tug : Tug;
         in attribute measuredToleratedSpeed : SpeedValue;
         objective {
-            doc /* The bag survives contact at the large case's equatorial speed. */
+            doc /* The bag survives contact at the largest case's equatorial speed. */
             verify proximityContactEnvironment { doc /* Verified by this case. */ }
             verify contactSpeedTolerance { doc /* Verified by this case. */ }
         }
-        PassIf(measuredToleratedSpeed >= 3.14159265 * targetCases.large.meanDiameter / targetCases.large.rotationPeriod)
+        PassIf(measuredToleratedSpeed >= 3.14159265 * targetCases.largest.meanDiameter / targetCases.largest.rotationPeriod)
     }
     metadata VerificationMethod about ContactSpeedTest { kind = VerificationMethodKind::test; }
     verification def SepHotFireTest {
@@ -286,7 +286,7 @@ package TethysVerification {
         }
         PassIf(TethysEnvironment::RocketEquationDeltaV(2900.0, tug.wetMass / 1 [kg], (tug.wetMass - 1500 [kg]) / 1 [kg]) >= 3200.0
             and TethysEnvironment::RocketEquationDeltaV(2900.0, (tug.wetMass - 1500 [kg] + targetCases.nominal.mass) / 1 [kg], (tug.wetMass - 1500 [kg] + targetCases.nominal.mass - (tug.sep.xenonMass - 1500 [kg])) / 1 [kg]) >= 300.0
-            and TethysEnvironment::RocketEquationDeltaV(2900.0, (tug.wetMass - 1500 [kg] + targetCases.dense.mass) / 1 [kg], (tug.wetMass - 1500 [kg] + targetCases.dense.mass - (tug.sep.xenonMass - 1500 [kg])) / 1 [kg]) >= 240.0)
+            and TethysEnvironment::RocketEquationDeltaV(2900.0, (tug.wetMass - 1500 [kg] + targetCases.densest.mass) / 1 [kg], (tug.wetMass - 1500 [kg] + targetCases.densest.mass - (tug.sep.xenonMass - 1500 [kg])) / 1 [kg]) >= 240.0)
     }
     metadata VerificationMethod about PropellantAnalysis { kind = VerificationMethodKind::analyze; }
     verification def DespinAnalysis {

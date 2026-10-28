@@ -1,0 +1,3 @@
+✓ package TethysSweepQuantityProbe
+sysml: invalid sweep range: range start 1.0 of speed: type mismatch: cannot write 1.0 (a Real) to a feature typed by SpeedValue
+  standing: not covered

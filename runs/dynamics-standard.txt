@@ -49,8 +49,8 @@
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
 ✓ TethysDynamics::droStability
-  closureKm = [0.0]
-  periodShownDays = [13.916245079395546]
+  closure = [0.0 [km]]
+  periodShown = [1202363.5748597751 [s]]
   objective closes: satisfied
   standing: value (observed: 1 run under reverse)
 sysml: failed to create executor: initialize action: unsupported state-space dynamics: action droRevolution binds integrate to RungeKutta4; the runtime integrates by StateSpaceIntegration::Euler or StateSpaceIntegration::RK4
@@ -64,7 +64,7 @@ sysml: failed to create executor: initialize action: unsupported state-space dyn
   Final state: Completed
   Results:
     input = ⟨132.0, 60.0, 0.020394324259558567⟩
-    momentOfInertiaKgM2 = 1674811.2392133435
+    momentOfInertiaKgM2 = 1673888.0
     output = ⟨6283185307.17958⟩
     stateSpace = ⟨0.0, 7.341956733441085⟩
     stopTime = 360 [s]

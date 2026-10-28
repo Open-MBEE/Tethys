@@ -21,38 +21,57 @@ package TethysTugStructure {
 
     // ---- modes and the per-mode power model -------------------------------------------------
     enum def TugMode {
-        doc /* The power and thermal modes of the tug; TethysModes gives each its state
-             * machine, the budgets evaluate every one. */
+        doc /* The one mode vocabulary of the tug: the flight modes of the mode machine
+             * (TethysModes::TugModes), the rows of the mode × subsystem table
+             * (TethysModes::TugModeTable), the modes the operations centre commands
+             * (TethysOperations::SetMode) and the modes the budgets evaluate every unit in. */
         enum launch;
         enum earlyOperations;
-        enum thrusting;
-        enum coasting;
+        enum coast;
+        enum thrust;
+        enum approach;
         enum proximityOperations;
+        enum retreat;
         enum capture;
         enum despin;
+        enum stackCoast;
+        enum stackThrust;
         enum droHold;
+        enum dockedPassive;
+        enum disposal;
         enum safe;
+        enum abortHold;
     }
 
-    attribute allFlightModes : TugMode[*] = (TugMode::earlyOperations, TugMode::thrusting,
-        TugMode::coasting, TugMode::proximityOperations, TugMode::capture, TugMode::despin,
-        TugMode::droHold, TugMode::safe) {
+    attribute thrustingModes : TugMode[*] = (TugMode::thrust, TugMode::approach, TugMode::stackThrust,
+        TugMode::disposal) {
+        doc /* Modes with the SEP string firing, alone or with the body attached. */
+    }
+    attribute coastingModes : TugMode[*] = (TugMode::coast, TugMode::stackCoast, TugMode::dockedPassive) {
+        doc /* Cruise modes with the string off, alone, with the body or docked. */
+    }
+    attribute proximityModes : TugMode[*] = (TugMode::proximityOperations, TugMode::retreat) {
+        doc /* Modes flown within a few hundred metres of the target before capture. */
+    }
+    attribute safeModes : TugMode[*] = (TugMode::safe, TugMode::abortHold) {
+        doc /* Load-shed modes: safe mode and the abort hold. */
+    }
+    attribute allFlightModes : TugMode[*] = (TugMode::earlyOperations, thrustingModes, coastingModes,
+        proximityModes, TugMode::capture, TugMode::despin, TugMode::droHold, safeModes) {
         doc /* Every mode after separation: the modes a bus unit is powered in. */
     }
-    attribute attitudeModes : TugMode[*] = (TugMode::earlyOperations, TugMode::coasting,
-        TugMode::proximityOperations, TugMode::capture, TugMode::despin, TugMode::droHold,
-        TugMode::safe) {
+    attribute attitudeModes : TugMode[*] = (TugMode::earlyOperations, coastingModes, proximityModes,
+        TugMode::capture, TugMode::despin, TugMode::droHold, safeModes) {
         doc /* Modes in which the wheels, not the gimballed thrusters, hold attitude. */
     }
-    attribute targetModes : TugMode[*] = (TugMode::proximityOperations, TugMode::capture,
-        TugMode::despin) {
+    attribute targetModes : TugMode[*] = (proximityModes, TugMode::capture, TugMode::despin) {
         doc /* Modes flown within a few hundred metres of the target. */
     }
-    attribute heaterModes : TugMode[*] = (TugMode::coasting, TugMode::droHold, TugMode::safe) {
+    attribute heaterModes : TugMode[*] = (coastingModes, TugMode::droHold, safeModes) {
         doc /* Cold modes: no PPU heat, heaters at full survival power. */
     }
-    attribute warmModes : TugMode[*] = (TugMode::earlyOperations, TugMode::thrusting,
-        TugMode::proximityOperations, TugMode::capture, TugMode::despin) {
+    attribute warmModes : TugMode[*] = (TugMode::earlyOperations, thrustingModes, proximityModes,
+        TugMode::capture, TugMode::despin) {
         doc /* Modes with internal dissipation enough to keep heaters at trickle power. */
     }
 
@@ -200,7 +219,7 @@ package TethysTugStructure {
         attribute :>> maturity = Maturity::modified;
         attribute :>> required = 1;
         attribute :>> operatingPower = 12 [W];
-        attribute :>> operatingModes = (TugMode::proximityOperations);
+        attribute :>> operatingModes = (proximityModes);
         attribute :>> failureRate = 3.0e-11 [Hz];
         attribute separationSpeed : SpeedValue = 0.05 ['m/s'];
     }
@@ -286,10 +305,10 @@ package TethysTugStructure {
         attribute :>> poweredShare = 0.5;
         attribute :>> operatingPower = 70 [W];
         attribute :>> standbyPower = 20 [W];
-        attribute :>> operatingModes = (TugMode::thrusting);
-        attribute :>> standbyModes = (TugMode::earlyOperations, TugMode::coasting,
-            TugMode::proximityOperations, TugMode::capture, TugMode::despin, TugMode::droHold,
-            TugMode::safe);
+        attribute :>> operatingModes = (thrustingModes);
+        attribute :>> standbyModes = (TugMode::earlyOperations, coastingModes,
+            proximityModes, TugMode::capture, TugMode::despin, TugMode::droHold,
+            safeModes);
         attribute :>> failureRate = 8.0e-11 [Hz];
     }
     part def LoopPlumbing :> PassiveUnit {
@@ -384,7 +403,7 @@ package TethysTugStructure {
         attribute :>> required = 1;
         attribute :>> operatingPower = 90 [W];
         attribute :>> standbyPower = 10 [W];
-        attribute :>> operatingModes = (TugMode::thrusting);
+        attribute :>> operatingModes = (thrustingModes);
         attribute :>> standbyModes = attitudeModes;
         attribute :>> failureRate = 7.0e-11 [Hz];
         attribute busVoltage : ElectricPotentialValue = 300 [V];
@@ -563,7 +582,7 @@ package TethysTugStructure {
         attribute :>> operatingPower = 25 [W];
         attribute :>> standbyPower = 5 [W];
         attribute :>> operatingModes = attitudeModes;
-        attribute :>> standbyModes = (TugMode::thrusting);
+        attribute :>> standbyModes = (thrustingModes);
         attribute :>> failureRate = 1.2e-11 [Hz];
         attribute :>> magneticMoment = 0.4 ['A⋅m²'];
         attribute momentumCapacity : AngularMomentumValue = 75 ['N⋅m⋅s'];
@@ -575,7 +594,7 @@ package TethysTugStructure {
         attribute :>> maturity = Maturity::modified;
         attribute :>> required = 1;
         attribute :>> operatingPower = 11 [W];
-        attribute :>> operatingModes = (TugMode::coasting, TugMode::proximityOperations,
+        attribute :>> operatingModes = (coastingModes, proximityModes,
             TugMode::capture, TugMode::despin);
         attribute :>> failureRate = 5.0e-11 [Hz];
         attribute :>> dataRate = 8.0e6 ['bit/s'];
@@ -589,7 +608,7 @@ package TethysTugStructure {
         attribute :>> required = 1;
         attribute :>> poweredShare = 0.5;
         attribute :>> operatingPower = 45 [W];
-        attribute :>> operatingModes = (TugMode::proximityOperations, TugMode::capture);
+        attribute :>> operatingModes = (proximityModes, TugMode::capture);
         attribute :>> failureRate = 9.0e-11 [Hz];
         attribute :>> dataRate = 1.2e6 ['bit/s'];
         attribute maximumRange : LengthValue = 5000 [m];
@@ -618,7 +637,7 @@ package TethysTugStructure {
         attribute :>> required = 3;
         attribute :>> poweredShare = 0.75;
         attribute :>> operatingPower = 11 [kW];
-        attribute :>> operatingModes = (TugMode::thrusting);
+        attribute :>> operatingModes = (thrustingModes);
         attribute :>> heatFraction = 0.08;
         attribute :>> minOperatingTemperature = 200 [K];
         attribute :>> maxOperatingTemperature = 600 [K];
@@ -640,7 +659,7 @@ package TethysTugStructure {
         attribute :>> required = 3;
         attribute :>> poweredShare = 0.75;
         attribute :>> operatingPower = 580 [W];
-        attribute :>> operatingModes = (TugMode::thrusting);
+        attribute :>> operatingModes = (thrustingModes);
         attribute :>> failureRate = 1.0e-11 [Hz];
         attribute efficiency : Real = 0.95;
     }
@@ -665,7 +684,7 @@ package TethysTugStructure {
         attribute :>> required = 3;
         attribute :>> poweredShare = 0.75;
         attribute :>> operatingPower = 8 [W];
-        attribute :>> operatingModes = (TugMode::thrusting);
+        attribute :>> operatingModes = (thrustingModes);
         attribute :>> failureRate = 3.0e-11 [Hz];
     }
     part def ThrusterGimbal :> ElectronicUnit {
@@ -676,7 +695,7 @@ package TethysTugStructure {
         attribute :>> required = 3;
         attribute :>> poweredShare = 0.75;
         attribute :>> operatingPower = 12 [W];
-        attribute :>> operatingModes = (TugMode::thrusting);
+        attribute :>> operatingModes = (thrustingModes);
         attribute :>> failureRate = 6.0e-11 [Hz];
         attribute range : AngularMeasureValue = 15.0 ['°'];
     }
@@ -686,7 +705,7 @@ package TethysTugStructure {
         attribute :>> maturity = Maturity::modified;
         attribute :>> required = 1;
         attribute :>> operatingPower = 6 [W];
-        attribute :>> operatingModes = (TugMode::thrusting);
+        attribute :>> operatingModes = (thrustingModes);
         attribute :>> failureRate = 3.0e-11 [Hz];
     }
 
@@ -719,8 +738,8 @@ package TethysTugStructure {
         attribute :>> operatingPower = 10 [W];
         attribute :>> standbyPower = 3 [W];
         attribute :>> operatingModes = targetModes;
-        attribute :>> standbyModes = (TugMode::earlyOperations, TugMode::thrusting,
-            TugMode::coasting, TugMode::droHold, TugMode::safe);
+        attribute :>> standbyModes = (TugMode::earlyOperations, thrustingModes,
+            coastingModes, TugMode::droHold, safeModes);
         attribute :>> minOperatingTemperature = 280 [K];
         attribute :>> maxOperatingTemperature = 400 [K];
         attribute :>> predictedHotTemperature = 330 [K];
@@ -852,7 +871,7 @@ package TethysTugStructure {
         attribute :>> maturity = Maturity::modified;
         attribute :>> required = 1;
         attribute :>> operatingPower = 14 [W];
-        attribute :>> operatingModes = (TugMode::coasting, TugMode::proximityOperations,
+        attribute :>> operatingModes = (coastingModes, proximityModes,
             TugMode::capture);
         attribute :>> failureRate = 5.0e-11 [Hz];
         attribute :>> dataRate = 6.0e6 ['bit/s'];

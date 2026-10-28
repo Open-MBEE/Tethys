@@ -11,7 +11,7 @@ One row per requirement. The verification cases that close each row are added by
 | Id | Name | Statement | Tier |
 | --- | --- | --- | --- |
 | TR-001 | retrieval | The mission shall deliver the target body 2031 QX, intact and with a mass of at<br>least 100 t, into the designated lunar distant retrograde orbit. | mission |
-| TR-002 | missionDuration | The mission shall complete the insertion of the target into the distant<br>retrograde orbit within 1 300 days of launch. | mission |
+| TR-002 | missionDuration | The mission shall complete the insertion of the target into the distant<br>retrograde orbit within 2 200 days of launch (TethysMission::tethys.nominalDuration). | mission |
 | TR-003 | characterisation | Before committing to capture, the mission shall determine the target's shape,<br>mass to within 10 % and spin state, and shall confirm that each lies within the<br>capture system's design envelope. | mission |
 | TR-004 | launchCompatibility | The flight system shall be compatible with the Arcturus-5H launch vehicle and its<br>direct injection to an Earth-escape trajectory. | mission |
 | TR-005 | groundCompatibility | The flight system shall communicate through the Meridian deep-space network at<br>every Earth range of the mission. | mission |

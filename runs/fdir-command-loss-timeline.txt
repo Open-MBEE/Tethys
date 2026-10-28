@@ -66,6 +66,7 @@ warning: TethysFdir::commandLossScenario: materialization is bounded; not every 
   Waiting on the clock:
     t=2592000.0: state machine FdirSupervisor of object #4, time -> expired
   standing: value (observed: 1 run under reverse)
+run timeline: note: t=0 choice step 1: tokens 1@providePower, 2@processPower, 3@generateThrust, 4@feedXenon, 5@determineAttitude, 6@controlAttitude, 7@navigateRelative, 8@captureBody, 9@despinBody, 10@characteriseTarget, 11@handleData, 12@communicate, 13@rejectHeat (unordered; took 13@rejectHeat first; order-dependent: attitude, carrier, contactLoad, heat, highVoltage, loss, lowVoltage, products, relativeState, telemetry, thrust, thrustCommand, thrusterPower, xenon)
 run - timeline rendering (the trace of a run to t = 2.16e+06)
 
 TethysFdir::commandLossScenario.tug.fdir
@@ -122,3 +123,6 @@ TethysFdir::commandLossScenario.tug.modes
     t=2.0736e+06 choice on accept SafeModeExit: next safe(exit), off(exit), lowGain(exit), thrusters(exit) (unordered; took safe(exit) first; independent)
     t=2.0736e+06 choice on accept SafeModeExit: next off(exit), lowGain(exit), thrusters(exit) (unordered; took off(exit) first; independent)
     t=2.0736e+06 choice on accept SafeModeExit: next lowGain(exit), thrusters(exit) (unordered; took lowGain(exit) first; independent)
+
+not represented:
+  - t=0 choice step 1: tokens 1@providePower, 2@processPower, 3@generateThrust, 4@feedXenon, 5@determineAttitude, 6@controlAttitude, 7@navigateRelative, 8@captureBody, 9@despinBody, 10@characteriseTarget, 11@handleData, 12@communicate, 13@rejectHeat (unordered; took 13@rejectHeat first; order-dependent: attitude, carrier, contactLoad, heat, highVoltage, loss, lowVoltage, products, relativeState, telemetry, thrust, thrustCommand, thrusterPower, xenon)
