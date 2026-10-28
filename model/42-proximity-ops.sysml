@@ -16,6 +16,7 @@ package TethysProximityOps {
     private import TethysTarget::SpinState;
     private import TethysInspectorDetail::*;
     private import TethysCaptureSystem::*;
+    private import TethysBudgets::captureCommitEnvelope;
 
     part def ProximityDataHandler {
         doc /* The tug-side end of the proximity link: where Wren's frames, echoes and the
@@ -92,11 +93,14 @@ package TethysProximityOps {
         out characterisation : TargetCharacterisation;
     }
     action def CommitDecision {
-        doc /* The go/no-go: the characterisation held against the mechanism's envelope. */
+        doc /* The go/no-go: the characterisation held against the mechanism's envelope and
+             * against the return envelope (TethysBudgets::captureCommitEnvelope), so a body
+             * the bag could hold but the xenon could not bring home is refused. */
         in characterisation : TargetCharacterisation;
         in mechanism : CaptureMechanism;
         out go : Boolean = characterisation.meanDiameter <= mechanism.maximumBodyDiameter
             and characterisation.mass <= mechanism.maximumBodyMass
+            and characterisation.mass <= captureCommitEnvelope.maximumBodyMass
             and characterisation.rotationPeriod >= mechanism.minimumRotationPeriod
             and characterisation.spinState == SpinState::principalAxis;
     }

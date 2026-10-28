@@ -58,14 +58,85 @@
 [trace] eval feature FlightCampaign::envelope -> instance#4
 [trace] eval feature FlightCampaign::outboundArcPlan -> 3
 [trace] eval feature FlightCampaign::returnArcPlan -> 4
-[trace]   eval literal 6600.0 -> 6600.0
-[trace] eval index -> 6600.0 [kg]
-[trace]   eval literal 300.0 -> 300.0
-[trace] eval index -> 300.0 [kg]
-[trace] materialize: TimeInstantValue #5
+[trace] materialize: propellantBudget #5
+[trace] materialize: argentDesign #6
+[trace] start: performed action functions of #6
+[trace] materialize: TugFunctions #7
+[trace] materialize: structure #8
+[trace] start: performed action captureBody of #8
+[trace] materialize: CaptureBody #9
+[trace]       eval feature structure -> instance#8
+[trace] materialize: thermal #10
+[trace] start: performed action rejectHeat of #10
+[trace] materialize: RejectHeat #11
+[trace]       eval feature thermal -> instance#10
+[trace] materialize: eps #12
+[trace] start: performed action providePower of #12
+[trace] materialize: ProvidePower #13
+[trace]       eval feature eps -> instance#12
+[trace] materialize: cdh #14
+[trace] start: performed action handleData of #14
+[trace] materialize: HandleData #15
+[trace]       eval feature cdh -> instance#14
+[trace] materialize: telecom #16
+[trace] start: performed action communicate of #16
+[trace] materialize: Communicate #17
+[trace]       eval feature telecom -> instance#16
+[trace] materialize: gnc #18
+[trace] start: performed action determineAttitude of #18
+[trace] materialize: DetermineAttitude #19
+[trace] start: performed action controlAttitude of #18
+[trace] materialize: ControlAttitude #20
+[trace] start: performed action navigateRelative of #18
+[trace] materialize: NavigateRelative #21
+[trace]       eval feature gnc -> instance#18
+[trace] materialize: sep #22
+[trace] start: performed action processPower of #22
+[trace] materialize: ProcessPower #23
+[trace] start: performed action generateThrust of #22
+[trace] materialize: GenerateThrust #24
+[trace] start: performed action feedXenon of #22
+[trace] materialize: FeedXenon #25
+[trace]       eval feature sep -> instance#22
+[trace] materialize: rcs #26
+[trace] start: performed action despinBody of #26
+[trace] materialize: DespinBody #27
+[trace]       eval feature rcs -> instance#26
+[trace] materialize: captureSystem #28
+[trace]       eval feature captureSystem -> instance#28
+[trace] materialize: sensors #29
+[trace] start: performed action characteriseTarget of #29
+[trace] materialize: CharacteriseTarget #30
+[trace]       eval feature sensors -> instance#29
+[trace]     eval sequence of 10 -> (instance#8, instance#10, instance#12, instance#14, instance#16, instance#18, instance#22, instance#26, instance#28, instance#29)
+[trace]       eval feature structure -> instance#8
+[trace]       eval feature thermal -> instance#10
+[trace]       eval feature eps -> instance#12
+[trace]       eval feature cdh -> instance#14
+[trace]       eval feature telecom -> instance#16
+[trace]       eval feature gnc -> instance#18
+[trace]       eval feature sep -> instance#22
+[trace]       eval feature rcs -> instance#26
+[trace]       eval feature captureSystem -> instance#28
+[trace]       eval feature sensors -> instance#29
+[trace]     eval sequence of 10 -> (instance#8, instance#10, instance#12, instance#14, instance#16, instance#18, instance#22, instance#26, instance#28, instance#29)
+[trace] materialize: argent #31
+[trace] materialize: sep #32
+[trace]         eval literal 6600.0 -> 6600.0
+[trace]       eval index -> 6600.0 [kg]
+[trace]     eval chain xenonMass -> 6600.0 [kg]
+[trace]   eval chain xenonMass -> 6600.0 [kg]
+[trace] eval chain loaded -> 6600.0 [kg]
+[trace]   eval chain loaded -> 6600.0 [kg]
+[trace]   eval chain residualFraction -> 0.02
+[trace] eval operator * -> 132.0 [kg]
+[trace] materialize: TimeInstantValue #33
 [trace] eval literal false -> false
 [trace] eval literal false -> false
 [trace] eval literal "" -> ""
+[trace] run: performed action functions of #6
+[trace] choice step 1: tokens 1@providePower, 2@processPower, 3@generateThrust, 4@feedXenon, 5@determineAttitude, 6@controlAttitude, 7@navigateRelative, 8@captureBody, 9@despinBody, 10@characteriseTarget, 11@handleData, 12@communicate, 13@rejectHeat (unordered; took 13@rejectHeat first; order-dependent: attitude, carrier, contactLoad, heat, highVoltage, loss, lowVoltage, products, relativeState, telemetry, thrust, thrustCommand, thrusterPower, xenon)
+[trace] step 1: no active tokens
 [trace] run: performed action mission of #1
 [trace] step 1: token 1@launchAndEarlyOperations
 [trace]   eval literal 3.0 -> 3.0
@@ -73,30 +144,464 @@
 ✓ Created instance of TethysSequence::nominalCampaign
   ID: 1
   Use %features TethysSequence::nominalCampaign to inspect
-[trace]   eval literal 6.8 -> 6.8
-[trace] eval index -> 6.8 [m]
-[trace]   eval literal 362.0e3 -> 362000.0
-[trace] eval index -> 362000.0 [kg]
-[trace]   eval literal 1000.0e3 -> 1000000.0
-[trace] eval index -> 1000000.0 [kg]
-[trace]   eval literal 10.0 -> 10.0
-[trace] eval index -> 10.0 [m]
-[trace] materialize: launchAndEarlyOperations #6
-[trace] materialize: sepCommissioning #7
-[trace] materialize: farFieldApproach #8
-[trace] materialize: rendezvous #9
-[trace] materialize: inspectorRelease #10
+[trace] materialize: targetCases #34
+[trace] materialize: nominal #35
+[trace] materialize: amaranth #36
+[trace]       eval literal 6.8 -> 6.8
+[trace]     eval index -> 6.8 [m]
+[trace]   eval chain meanDiameter -> 6.8 [m]
+[trace] eval chain meanDiameter -> 6.8 [m]
+[trace]       eval literal 362.0e3 -> 362000.0
+[trace]     eval index -> 362000.0 [kg]
+[trace]   eval chain mass -> 362000.0 [kg]
+[trace] eval chain mass -> 362000.0 [kg]
+[trace] materialize: captureCommitEnvelope #37
+[trace]               eval feature loaded -> 6600.0 [kg]
+[trace]                 eval literal 1.0 -> 1.0
+[trace]                 eval feature residualFraction -> 0.02
+[trace]               eval operator - -> 0.98
+[trace]             eval operator * -> 6468.0 [kg]
+[trace]           eval feature usable -> 6468.0 [kg]
+[trace] materialize: pdrPolicy #38
+[trace]               eval feature pdrPolicy -> instance#38
+[trace]             eval feature activePolicy -> instance#38
+[trace]           eval chain systemMargin -> 0.15
+[trace] materialize: transferBook #39
+[trace]                         eval literal 2800.0 -> 2800.0
+[trace]                       eval index -> 2800.0 ['m/s']
+[trace]                     eval chain deltaVOutbound -> 2800.0 ['m/s']
+[trace]                       eval literal 1 -> 1
+[trace]                     eval index -> 1 ['m/s']
+[trace]                   eval operator / -> 2800.0
+[trace]                 eval feature deltaVOutbound -> 2800.0
+[trace] materialize: massBudget #40
+[trace]                                   eval literal 5600.0 -> 5600.0
+[trace]                                 eval index -> 5600.0 [kg]
+[trace]                               eval chain dryMass -> 5600.0 [kg]
+[trace]                             eval feature dryAllocation -> 5600.0 [kg]
+[trace]                               eval chain xenonMass -> 6600.0 [kg]
+[trace]                             eval feature xenon -> 6600.0 [kg]
+[trace]                           eval operator + -> 12200.0 [kg]
+[trace] materialize: rcs #41
+[trace]                                   eval literal 400.0 -> 400.0
+[trace]                                 eval index -> 400.0 [kg]
+[trace]                               eval chain hydrazineMass -> 400.0 [kg]
+[trace]                             eval chain hydrazineMass -> 400.0 [kg]
+[trace]                           eval feature hydrazine -> 400.0 [kg]
+[trace]                         eval operator + -> 12600.0 [kg]
+[trace] materialize: wren #42
+[trace]                               eval literal 24.0 -> 24.0
+[trace]                             eval index -> 24.0 [kg]
+[trace]                           eval chain wetMass -> 24.0 [kg]
+[trace]                         eval feature inspector -> 24.0 [kg]
+[trace]                       eval operator + -> 12624.0 [kg]
+[trace]                     eval chain launchMass -> 12624.0 [kg]
+[trace]                             eval feature structure -> instance#8
+[trace] materialize: PrimaryStructure #43
+[trace]                               eval feature primaryStructure -> instance#43
+[trace] materialize: LaunchAdapterRing #44
+[trace]                               eval feature launchAdapterRing -> instance#44
+[trace] materialize: InspectorDispenser #45
+[trace]                               eval feature inspectorDispenser -> instance#45
+[trace] materialize: ArrayDeploymentMechanism #46
+[trace] materialize: ArrayDeploymentMechanism #47
+[trace]                               eval feature arrayDeploymentMechanisms -> (instance#46, instance#47)
+[trace] materialize: RadiatorDeploymentMechanism #48
+[trace]                               eval feature radiatorDeploymentMechanism -> instance#48
+[trace] materialize: DockingMechanism #49
+[trace]                               eval feature dockingMechanism -> instance#49
+[trace] materialize: Harness #50
+[trace]                               eval feature harness -> instance#50
+[trace]                             eval sequence of 7 -> (instance#43, instance#44, instance#45, instance#46, instance#47, instance#48, instance#49, instance#50)
+[trace]                           eval chain units -> (instance#43, instance#44, instance#45, instance#46, instance#47, instance#48, instance#49, instance#50)
+[trace]                             eval feature thermal -> instance#10
+[trace] materialize: InsulationBlankets #51
+[trace]                               eval feature insulation -> instance#51
+[trace] materialize: RadiatorPanel #52
+[trace] materialize: RadiatorPanel #53
+[trace]                               eval feature radiators -> (instance#52, instance#53)
+[trace] materialize: CoolantPump #54
+[trace] materialize: CoolantPump #55
+[trace]                               eval feature coolantPumps -> (instance#54, instance#55)
+[trace] materialize: LoopPlumbing #56
+[trace]                               eval feature loopPlumbing -> instance#56
+[trace] materialize: HeaterSet #57
+[trace]                               eval feature heaters -> instance#57
+[trace] materialize: ThermalSensors #58
+[trace]                               eval feature sensors -> instance#58
+[trace]                             eval sequence of 6 -> (instance#51, instance#52, instance#53, instance#54, instance#55, instance#56, instance#57, instance#58)
+[trace]                           eval chain units -> (instance#51, instance#52, instance#53, instance#54, instance#55, instance#56, instance#57, instance#58)
+[trace]                             eval feature eps -> instance#12
+[trace] materialize: SolarArrayWing #59
+[trace] materialize: SolarArrayWing #60
+[trace]                               eval feature arrayWings -> (instance#59, instance#60)
+[trace] materialize: ArrayDriveMechanism #61
+[trace] materialize: ArrayDriveMechanism #62
+[trace]                               eval feature arrayDrives -> (instance#61, instance#62)
+[trace] materialize: Battery #63
+[trace] materialize: Battery #64
+[trace]                               eval feature batteries -> (instance#63, instance#64)
+[trace] materialize: PowerConditioningUnit #65
+[trace]                               eval feature powerConditioning -> instance#65
+[trace] materialize: HighVoltageSwitchUnit #66
+[trace]                               eval feature highVoltageSwitching -> instance#66
+[trace]                             eval sequence of 5 -> (instance#59, instance#60, instance#61, instance#62, instance#63, instance#64, instance#65, instance#66)
+[trace]                           eval chain units -> (instance#59, instance#60, instance#61, instance#62, instance#63, instance#64, instance#65, instance#66)
+[trace]                             eval feature cdh -> instance#14
+[trace] materialize: FlightComputer #67
+[trace] materialize: FlightComputer #68
+[trace]                               eval feature flightComputers -> (instance#67, instance#68)
+[trace] materialize: MassMemory #69
+[trace] materialize: MassMemory #70
+[trace]                               eval feature massMemories -> (instance#69, instance#70)
+[trace] materialize: RemoteInterfaceUnit #71
+[trace] materialize: RemoteInterfaceUnit #72
+[trace]                               eval feature remoteInterfaceUnits -> (instance#71, instance#72)
+[trace]                             eval sequence of 3 -> (instance#67, instance#68, instance#69, instance#70, instance#71, instance#72)
+[trace]                           eval chain units -> (instance#67, instance#68, instance#69, instance#70, instance#71, instance#72)
+[trace]                             eval feature telecom -> instance#16
+[trace] materialize: DeepSpaceTransponder #73
+[trace] materialize: DeepSpaceTransponder #74
+[trace]                               eval feature transponders -> (instance#73, instance#74)
+[trace] materialize: TravellingWaveTubeAmplifier #75
+[trace] materialize: TravellingWaveTubeAmplifier #76
+[trace]                               eval feature amplifiers -> (instance#75, instance#76)
+[trace] materialize: HighGainAntenna #77
+[trace]                               eval feature highGainAntenna -> instance#77
+[trace] materialize: AntennaPointingMechanism #78
+[trace]                               eval feature antennaPointing -> instance#78
+[trace] materialize: LowGainAntenna #79
+[trace] materialize: LowGainAntenna #80
+[trace]                               eval feature lowGainAntennas -> (instance#79, instance#80)
+[trace] materialize: ProximityTransceiver #81
+[trace] materialize: ProximityTransceiver #82
+[trace]                               eval feature proximityTransceivers -> (instance#81, instance#82)
+[trace]                             eval sequence of 6 -> (instance#73, instance#74, instance#75, instance#76, instance#77, instance#78, instance#79, instance#80, instance#81, instance#82)
+[trace]                           eval chain units -> (instance#73, instance#74, instance#75, instance#76, instance#77, instance#78, instance#79, instance#80, instance#81, instance#82)
+[trace]                             eval feature gnc -> instance#18
+[trace] materialize: StarTracker #83
+[trace] materialize: StarTracker #84
+[trace]                               eval feature starTrackers -> (instance#83, instance#84)
+[trace] materialize: InertialMeasurementUnit #85
+[trace] materialize: InertialMeasurementUnit #86
+[trace]                               eval feature inertialUnits -> (instance#85, instance#86)
+[trace] materialize: SunSensor #87
+[trace] materialize: SunSensor #88
+[trace] materialize: SunSensor #89
+[trace] materialize: SunSensor #90
+[trace]                               eval feature sunSensors -> (instance#87, instance#88, instance#89, instance#90)
+[trace] materialize: ReactionWheel #91
+[trace] materialize: ReactionWheel #92
+[trace] materialize: ReactionWheel #93
+[trace] materialize: ReactionWheel #94
+[trace]                               eval feature reactionWheels -> (instance#91, instance#92, instance#93, instance#94)
+[trace] materialize: NavigationCamera #95
+[trace] materialize: NavigationCamera #96
+[trace]                               eval feature navigationCameras -> (instance#95, instance#96)
+[trace] materialize: Lidar #97
+[trace] materialize: Lidar #98
+[trace]                               eval feature lidars -> (instance#97, instance#98)
+[trace]                             eval sequence of 6 -> (instance#83, instance#84, instance#85, instance#86, instance#87, instance#88, instance#89, instance#90, instance#91, instance#92, instance#93, instance#94, instance#95, instance#96, instance#97, instance#98)
+[trace]                           eval chain units -> (instance#83, instance#84, instance#85, instance#86, instance#87, instance#88, instance#89, instance#90, instance#91, instance#92, instance#93, instance#94, instance#95, instance#96, instance#97, instance#98)
+[trace]                             eval feature sep -> instance#22
+[trace] materialize: HallThruster #99
+[trace] materialize: HallThruster #100
+[trace] materialize: HallThruster #101
+[trace] materialize: HallThruster #102
+[trace]                               eval feature thrusters -> (instance#99, instance#100, instance#101, instance#102)
+[trace] materialize: PowerProcessingUnit #103
+[trace] materialize: PowerProcessingUnit #104
+[trace] materialize: PowerProcessingUnit #105
+[trace] materialize: PowerProcessingUnit #106
+[trace]                               eval feature powerProcessingUnits -> (instance#103, instance#104, instance#105, instance#106)
+[trace] materialize: XenonTank #107
+[trace] materialize: XenonTank #108
+[trace]                               eval feature xenonTanks -> (instance#107, instance#108)
+[trace] materialize: XenonFlowController #109
+[trace] materialize: XenonFlowController #110
+[trace] materialize: XenonFlowController #111
+[trace] materialize: XenonFlowController #112
+[trace]                               eval feature flowControllers -> (instance#109, instance#110, instance#111, instance#112)
+[trace] materialize: ThrusterGimbal #113
+[trace] materialize: ThrusterGimbal #114
+[trace] materialize: ThrusterGimbal #115
+[trace] materialize: ThrusterGimbal #116
+[trace]                               eval feature gimbals -> (instance#113, instance#114, instance#115, instance#116)
+[trace] materialize: PropellantManagementAssembly #117
+[trace]                               eval feature propellantManagement -> instance#117
+[trace]                             eval sequence of 6 -> (instance#99, instance#100, instance#101, instance#102, instance#103, instance#104, instance#105, instance#106, instance#107, instance#108, instance#109, instance#110, instance#111, instance#112, instance#113, instance#114, instance#115, instance#116, instance#117)
+[trace]                           eval chain units -> (instance#99, instance#100, instance#101, instance#102, instance#103, instance#104, instance#105, instance#106, instance#107, instance#108, instance#109, instance#110, instance#111, instance#112, instance#113, instance#114, instance#115, instance#116, instance#117)
+[trace]                             eval feature rcs -> instance#26
+[trace] materialize: HydrazineThruster #118
+[trace] materialize: HydrazineThruster #119
+[trace] materialize: HydrazineThruster #120
+[trace] materialize: HydrazineThruster #121
+[trace] materialize: HydrazineThruster #122
+[trace] materialize: HydrazineThruster #123
+[trace] materialize: HydrazineThruster #124
+[trace] materialize: HydrazineThruster #125
+[trace] materialize: HydrazineThruster #126
+[trace] materialize: HydrazineThruster #127
+[trace] materialize: HydrazineThruster #128
+[trace] materialize: HydrazineThruster #129
+[trace] materialize: HydrazineThruster #130
+[trace] materialize: HydrazineThruster #131
+[trace] materialize: HydrazineThruster #132
+[trace] materialize: HydrazineThruster #133
+[trace]                               eval feature thrusters -> (instance#118, instance#119, instance#120, instance#121, instance#122, instance#123, instance#124, instance#125, instance#126, instance#127, instance#128, instance#129, instance#130, instance#131, instance#132, instance#133)
+[trace] materialize: HydrazineTank #134
+[trace] materialize: HydrazineTank #135
+[trace]                               eval feature tanks -> (instance#134, instance#135)
+[trace] materialize: RcsFeedAssembly #136
+[trace]                               eval feature feed -> instance#136
+[trace]                             eval sequence of 3 -> (instance#118, instance#119, instance#120, instance#121, instance#122, instance#123, instance#124, instance#125, instance#126, instance#127, instance#128, instance#129, instance#130, instance#131, instance#132, instance#133, instance#134, instance#135, instance#136)
+[trace]                           eval chain units -> (instance#118, instance#119, instance#120, instance#121, instance#122, instance#123, instance#124, instance#125, instance#126, instance#127, instance#128, instance#129, instance#130, instance#131, instance#132, instance#133, instance#134, instance#135, instance#136)
+[trace]                             eval feature captureSystem -> instance#28
+[trace] materialize: CaptureBag #137
+[trace]                               eval feature bag -> instance#137
+[trace] materialize: InflatableBoom #138
+[trace] materialize: InflatableBoom #139
+[trace] materialize: InflatableBoom #140
+[trace] materialize: InflatableBoom #141
+[trace] materialize: InflatableBoom #142
+[trace] materialize: InflatableBoom #143
+[trace]                               eval feature booms -> (instance#138, instance#139, instance#140, instance#141, instance#142, instance#143)
+[trace] materialize: CinchWinch #144
+[trace] materialize: CinchWinch #145
+[trace] materialize: CinchWinch #146
+[trace]                               eval feature winches -> (instance#144, instance#145, instance#146)
+[trace] materialize: InflationSystem #147
+[trace]                               eval feature inflation -> instance#147
+[trace] materialize: ContactSensorSet #148
+[trace]                               eval feature contactSensors -> instance#148
+[trace] materialize: BagReleaseMechanism #149
+[trace]                               eval feature release -> instance#149
+[trace]                             eval sequence of 6 -> (instance#137, instance#138, instance#139, instance#140, instance#141, instance#142, instance#143, instance#144, instance#145, instance#146, instance#147, instance#148, instance#149)
+[trace]                           eval chain units -> (instance#137, instance#138, instance#139, instance#140, instance#141, instance#142, instance#143, instance#144, instance#145, instance#146, instance#147, instance#148, instance#149)
+[trace]                             eval feature sensors -> instance#29
+[trace] materialize: NarrowAngleCamera #150
+[trace]                               eval feature narrowAngleCamera -> instance#150
+[trace] materialize: WideAngleCamera #151
+[trace]                               eval feature wideAngleCamera -> instance#151
+[trace] materialize: ThermalImager #152
+[trace]                               eval feature thermalImager -> instance#152
+[trace]                             eval sequence of 3 -> (instance#150, instance#151, instance#152)
+[trace]                           eval chain units -> (instance#150, instance#151, instance#152)
+[trace]                         eval sequence of 10 -> (instance#43, instance#44, instance#45, instance#46, instance#47, instance#48, instance#49, instance#50, instance#51, instance#52, instance#53, instance#54, instance#55, instance#56, instance#57, instance#58, instance#59, instance#60, instance#61, instance#62, instance#63, instance#64, instance#65, instance#66, instance#67, instance#68, instance#69, instance#70, instance#71, instance#72, instance#73, instance#74, instance#75, instance#76, instance#77, instance#78, instance#79, instance#80, instance#81, instance#82, instance#83, instance#84, instance#85, instance#86, instance#87, instance#88, instance#89, instance#90, instance#91, instance#92, instance#93, instance#94, instance#95, instance#96, instance#97, instance#98, instance#99, instance#100, instance#101, instance#102, instance#103, instance#104, instance#105, instance#106, instance#107, instance#108, instance#109, instance#110, instance#111, instance#112, instance#113, instance#114, instance#115, instance#116, instance#117, instance#118, instance#119, instance#120, instance#121, instance#122, instance#123, instance#124, instance#125, instance#126, instance#127, instance#128, instance#129, instance#130, instance#131, instance#132, instance#133, instance#134, instance#135, instance#136, instance#137, instance#138, instance#139, instance#140, instance#141, instance#142, instance#143, instance#144, instance#145, instance#146, instance#147, instance#148, instance#149, instance#150, instance#151, instance#152)
+[trace]                           eval literal 115 -> 115
+[trace]                         eval index -> 115 [kg]
+[trace]                       eval chain mass -> 115 [kg]
+[trace]                     eval chain adapterSeparated -> 115 [kg]
+[trace]                   eval operator - -> 12509.0 [kg]
+[trace]                 eval feature launchMass -> 12509.0 [kg]
+[trace]                       enter calc SequenceFunctions::head
+[trace]                           eval feature thrusters -> (instance#99, instance#100, instance#101, instance#102)
+[trace]                             eval literal 2900 -> 2900
+[trace]                           eval index -> 2900 [s]
+[trace]                             eval literal 2900 -> 2900
+[trace]                           eval index -> 2900 [s]
+[trace]                             eval literal 2900 -> 2900
+[trace]                           eval index -> 2900 [s]
+[trace]                             eval literal 2900 -> 2900
+[trace]                           eval index -> 2900 [s]
+[trace]                         eval chain specificImpulse -> (2900 [s], 2900 [s], 2900 [s], 2900 [s])
+[trace]                         bind seq = (2900 [s], 2900 [s], 2900 [s], 2900 [s]) [argument]
+[trace]                       exit calc SequenceFunctions::head -> 2900 [s]
+[trace]                     eval invoke head -> 2900 [s]
+[trace]                   eval chain specificImpulse -> 2900 [s]
+[trace]                 eval feature isp -> 2900 [s]
+[trace]                 enter calc TethysBudgets::PropellantFor
+[trace]                   bind deltaVMPerS = 2800.0 [argument]
+[trace]                   bind initialMass = 12509.0 [kg] [argument]
+[trace]                   bind specificImpulse = 2900 [s] [argument]
+[trace]                   stmt return
+[trace]                       eval feature initialMass -> 12509.0 [kg]
+[trace]                         eval literal 1.0 -> 1.0
+[trace]                             eval feature deltaVMPerS -> 2800.0
+[trace]                                 eval feature specificImpulse -> 2900 [s]
+[trace]                                   eval literal 1 -> 1
+[trace]                                 eval index -> 1 [s]
+[trace]                               eval operator / -> 2900.0
+[trace]                                       eval literal 9.80665 -> 9.80665
+[trace]                                     eval index -> 9.80665 ['m⋅s⁻²']
+[trace]                                   eval feature standardGravity -> 9.80665 ['m⋅s⁻²']
+[trace]                                     eval literal 1 -> 1
+[trace]                                   eval index -> 1 ['m⋅s⁻²']
+[trace]                                 eval operator / -> 9.80665
+[trace]                               eval feature standardGravityMPerS2 -> 9.80665
+[trace]                             eval operator * -> 28439.285
+[trace]                           eval operator / -> 0.09845535849442066
+[trace]                           enter calc TethysBudgets::ExpNeg
+[trace]                             bind x = 0.09845535849442066 [argument]
+[trace]                             stmt return
+[trace]                                 eval literal 2.718281828459045 -> 2.718281828459045
+[trace]                                   eval feature x -> 0.09845535849442066
+[trace]                                 eval operator - -> -0.09845535849442066
+[trace]                               eval operator ** -> 0.9062361474573144
+[trace]                           exit calc TethysBudgets::ExpNeg -> (0.9062361474573144)
+[trace]                         eval invoke ExpNeg -> (0.9062361474573144)
+[trace]                       eval operator - -> 0.0937638525426856
+[trace]                     eval operator * -> 1172.892031456454 [kg]
+[trace]                 exit calc TethysBudgets::PropellantFor -> (1172.892031456454 [kg])
+[trace]               eval invoke PropellantFor -> (1172.892031456454 [kg])
+[trace]             eval feature outboundAlone -> 1172.892031456454 [kg]
+[trace]                         eval literal 150.0 -> 150.0
+[trace]                       eval index -> 150.0 ['m/s']
+[trace]                     eval chain deltaVRendezvous -> 150.0 ['m/s']
+[trace]                       eval literal 1 -> 1
+[trace]                     eval index -> 1 ['m/s']
+[trace]                   eval operator / -> 150.0
+[trace]                 eval feature deltaVRendezvous -> 150.0
+[trace]                   eval feature launchMass -> 12509.0 [kg]
+[trace]                   eval feature outboundAlone -> 1172.892031456454 [kg]
+[trace]                 eval operator - -> 11336.107968543545 [kg]
+[trace]                 eval feature isp -> 2900 [s]
+[trace]                 enter calc TethysBudgets::PropellantFor
+[trace]                   bind deltaVMPerS = 150.0 [argument]
+[trace]                   bind initialMass = 11336.107968543545 [kg] [argument]
+[trace]                   bind specificImpulse = 2900 [s] [argument]
+[trace]                   stmt return
+[trace]                       eval feature initialMass -> 11336.107968543545 [kg]
+[trace]                         eval literal 1.0 -> 1.0
+[trace]                             eval feature deltaVMPerS -> 150.0
+[trace]                                 eval feature specificImpulse -> 2900 [s]
+[trace]                                   eval literal 1 -> 1
+[trace]                                 eval index -> 1 [s]
+[trace]                               eval operator / -> 2900.0
+[trace]                                       eval literal 9.80665 -> 9.80665
+[trace]                                     eval index -> 9.80665 ['m⋅s⁻²']
+[trace]                                   eval feature standardGravity -> 9.80665 ['m⋅s⁻²']
+[trace]                                     eval literal 1 -> 1
+[trace]                                   eval index -> 1 ['m⋅s⁻²']
+[trace]                                 eval operator / -> 9.80665
+[trace]                               eval feature standardGravityMPerS2 -> 9.80665
+[trace]                             eval operator * -> 28439.285
+[trace]                           eval operator / -> 0.00527439420505825
+[trace]                           enter calc TethysBudgets::ExpNeg
+[trace]                             bind x = 0.00527439420505825 [argument]
+[trace]                             stmt return
+[trace]                                 eval literal 2.718281828459045 -> 2.718281828459045
+[trace]                                   eval feature x -> 0.00527439420505825
+[trace]                                 eval operator - -> -0.00527439420505825
+[trace]                               eval operator ** -> 0.9947394909893346
+[trace]                           exit calc TethysBudgets::ExpNeg -> (0.9947394909893346)
+[trace]                         eval invoke ExpNeg -> (0.9947394909893346)
+[trace]                       eval operator - -> 0.005260509010665437
+[trace]                     eval operator * -> 59.633698114399586 [kg]
+[trace]                 exit calc TethysBudgets::PropellantFor -> (59.633698114399586 [kg])
+[trace]               eval invoke PropellantFor -> (59.633698114399586 [kg])
+[trace]             eval feature rendezvousAlone -> 59.633698114399586 [kg]
+[trace]           eval operator + -> 1232.5257295708536 [kg]
+[trace]                   eval feature launchMass -> 12509.0 [kg]
+[trace]                   eval feature outboundAlone -> 1172.892031456454 [kg]
+[trace]                 eval operator - -> 11336.107968543545 [kg]
+[trace]                 eval feature rendezvousAlone -> 59.633698114399586 [kg]
+[trace]               eval operator - -> 11276.474270429146 [kg]
+[trace]               eval chain wetMass -> 24.0 [kg]
+[trace]             eval operator - -> 11252.474270429146 [kg]
+[trace]           eval feature tugMassAtTarget -> 11252.474270429146 [kg]
+[trace]           enter calc TethysBudgets::ReturnableBodyMass
+[trace]             bind xenonAvailable = 6468.0 [kg] [argument]
+[trace]             bind systemMargin = 0.15 [argument]
+[trace]             bind tugAloneXenon = 1232.5257295708536 [kg] [argument]
+[trace]             bind tugMassAtTarget = 11252.474270429146 [kg] [argument]
+[trace]             stmt declare isp
+[trace]               eval chain specificImpulse -> 2900 [s]
+[trace]             stmt declare returnFraction
+[trace]                 eval literal 1.0 -> 1.0
+[trace]                               eval literal 160.0 -> 160.0
+[trace]                             eval index -> 160.0 ['m/s']
+[trace]                           eval chain deltaVReturn -> 160.0 ['m/s']
+[trace]                             eval literal 1 -> 1
+[trace]                           eval index -> 1 ['m/s']
+[trace]                         eval operator / -> 160.0
+[trace]                       eval feature deltaVReturn -> 160.0
+[trace]                               eval literal 40.0 -> 40.0
+[trace]                             eval index -> 40.0 ['m/s']
+[trace]                           eval chain deltaVInsertion -> 40.0 ['m/s']
+[trace]                             eval literal 1 -> 1
+[trace]                           eval index -> 1 ['m/s']
+[trace]                         eval operator / -> 40.0
+[trace]                       eval feature deltaVInsertion -> 40.0
+[trace]                     eval operator + -> 200.0
+[trace]                         eval feature isp -> 2900 [s]
+[trace]                           eval literal 1 -> 1
+[trace]                         eval index -> 1 [s]
+[trace]                       eval operator / -> 2900.0
+[trace]                               eval literal 9.80665 -> 9.80665
+[trace]                             eval index -> 9.80665 ['m⋅s⁻²']
+[trace]                           eval feature standardGravity -> 9.80665 ['m⋅s⁻²']
+[trace]                             eval literal 1 -> 1
+[trace]                           eval index -> 1 ['m⋅s⁻²']
+[trace]                         eval operator / -> 9.80665
+[trace]                       eval feature standardGravityMPerS2 -> 9.80665
+[trace]                     eval operator * -> 28439.285
+[trace]                   eval operator / -> 0.007032525606744333
+[trace]                   enter calc TethysBudgets::ExpNeg
+[trace]                     bind x = 0.007032525606744333 [argument]
+[trace]                     stmt return
+[trace]                         eval literal 2.718281828459045 -> 2.718281828459045
+[trace]                           eval feature x -> 0.007032525606744333
+[trace]                         eval operator - -> -0.007032525606744333
+[trace]                       eval operator ** -> 0.9929921447359787
+[trace]                   exit calc TethysBudgets::ExpNeg -> (0.9929921447359787)
+[trace]                 eval invoke ExpNeg -> (0.9929921447359787)
+[trace]               eval operator - -> 0.007007855264021257
+[trace]             stmt declare forReturnArcs
+[trace]                   eval feature xenonAvailable -> 6468.0 [kg]
+[trace]                     eval literal 1.0 -> 1.0
+[trace]                     eval feature systemMargin -> 0.15
+[trace]                   eval operator + -> 1.15
+[trace]                 eval operator / -> 5624.347826086957 [kg]
+[trace]                   eval feature tugAloneXenon -> 1232.5257295708536 [kg]
+[trace]                     eval literal 1.0 -> 1.0
+[trace]                       eval chain missedThrustMargin -> 0.1
+[trace]                     eval feature missedThrustMargin -> 0.1
+[trace]                   eval operator + -> 1.1
+[trace]                 eval operator * -> 1355.778302527939 [kg]
+[trace]               eval operator - -> 4268.569523559017 [kg]
+[trace]             stmt return
+[trace]                   eval feature forReturnArcs -> 4268.569523559017 [kg]
+[trace]                       eval literal 1.0 -> 1.0
+[trace]                         eval chain missedThrustMargin -> 0.1
+[trace]                       eval feature missedThrustMargin -> 0.1
+[trace]                     eval operator + -> 1.1
+[trace]                     eval feature returnFraction -> 0.007007855264021257
+[trace]                   eval operator * -> 0.007708640790423383
+[trace]                 eval operator / -> 553738.2840386021 [kg]
+[trace]                 eval feature tugMassAtTarget -> 11252.474270429146 [kg]
+[trace]               eval operator - -> 542485.809768173 [kg]
+[trace]           exit calc TethysBudgets::ReturnableBodyMass -> (542485.809768173 [kg])
+[trace]         eval invoke ReturnableBodyMass -> (542485.809768173 [kg])
+[trace]       eval chain returnableBodyMass -> 542485.809768173 [kg]
+[trace] materialize: captureSystem #153
+[trace]           eval literal 1000.0e3 -> 1000000.0
+[trace]         eval index -> 1000000.0 [kg]
+[trace]       eval chain maximumBodyMass -> 1000000.0 [kg]
+[trace]     eval operator < -> true
+[trace]     eval chain returnableBodyMass -> 542485.809768173 [kg]
+[trace]   eval operator if -> 542485.809768173 [kg]
+[trace] eval chain maximumBodyMass -> 542485.809768173 [kg]
+[trace]       eval literal 10.0 -> 10.0
+[trace]     eval index -> 10.0 [m]
+[trace]   eval chain maximumBodyDiameter -> 10.0 [m]
+[trace] eval chain maximumBodyDiameter -> 10.0 [m]
+[trace] materialize: launchAndEarlyOperations #154
+[trace] materialize: sepCommissioning #155
+[trace] materialize: farFieldApproach #156
+[trace] materialize: rendezvous #157
+[trace] materialize: inspectorRelease #158
 [trace] eval literal true -> true
 [trace] eval literal true -> true
 [trace] eval literal false -> false
 [trace] eval literal "" -> ""
-[trace] materialize: inspectorCharacterisation #11
-[trace] materialize: tugStationKeeping #12
-[trace] materialize: retreatHold #13
-[trace] materialize: captureAndDespin #14
-[trace] materialize: scheduleLunarAssist #15
-[trace] materialize: lunarGravityAssist #16
-[trace] materialize: droInsertion #17
+[trace] materialize: inspectorCharacterisation #159
+[trace] materialize: tugStationKeeping #160
+[trace] materialize: retreatHold #161
+[trace] materialize: captureAndDespin #162
+[trace] materialize: scheduleLunarAssist #163
+[trace] materialize: lunarGravityAssist #164
+[trace] materialize: droInsertion #165
 [trace]   eval literal 1200.0 -> 1200.0
 [trace] eval index -> 1200.0 [km]
 [trace]   eval literal 5000.0 -> 5000.0
@@ -105,7 +610,7 @@
 [trace] eval index -> 20.0 [d]
 [trace] eval literal false -> false
 [trace] eval literal "" -> ""
-[trace] materialize: droCheckout #18
+[trace] materialize: droCheckout #166
 [trace]   eval literal 180.0 -> 180.0
 [trace] eval index -> 180.0 [km]
 [trace]   eval literal 10.0 -> 10.0
@@ -117,11 +622,11 @@
 [trace] eval literal 0 -> 0
 [trace]   eval literal 0.0 -> 0.0
 [trace] eval index -> 0.0 [kg]
-[trace] materialize: droCheckoutHold #19
-[trace] materialize: visitingVehicleDocking #20
-[trace] materialize: utilisation #21
-[trace] materialize: tugSeparation #22
-[trace] materialize: disposalBurn #23
+[trace] materialize: droCheckoutHold #167
+[trace] materialize: visitingVehicleDocking #168
+[trace] materialize: utilisation #169
+[trace] materialize: tugSeparation #170
+[trace] materialize: disposalBurn #171
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
@@ -259,7 +764,7 @@
 [trace]       eval feature target -> (instance#3)
 [trace]     eval chain estimatedMass -> (362000.0 [kg])
 [trace]       eval feature envelope -> (instance#4)
-[trace]     eval chain maximumBodyMass -> (1000000.0 [kg])
+[trace]     eval chain maximumBodyMass -> (542485.809768173 [kg])
 [trace]   eval operator <= -> true
 [trace]       eval feature target -> (instance#3)
 [trace]     eval chain estimatedDiameter -> (6.8 [m])
@@ -460,11 +965,11 @@
 [trace] step 18: token 7@if
 [trace] stmt if
 [trace]     eval feature xenonRemaining -> 955.0 [kg]
-[trace]     eval feature xenonReserve -> 300.0 [kg]
+[trace]     eval feature xenonReserve -> 132.0 [kg]
 [trace]   eval operator < -> false
 [trace] step 19: token 7@scheduleLunarAssist
 [trace] stmt assign lunarAssistAt
-[trace] materialize: universalClock #24
+[trace] materialize: universalClock #172
 [trace]     eval chain currentTime -> 9979200.0 [s]
 [trace]       eval literal 20.0 -> 20.0
 [trace]     eval index -> 20.0 [d]
@@ -682,5 +1187,5 @@ note: object #1 of "TethysSequence::nominalCampaign" already performs "TethysSeq
     returnArcs = 4
     target = [Instance(ID: 3)]
     xenonRemaining = 955.0 [kg]
-    xenonReserve = 300.0 [kg]
+    xenonReserve = 132.0 [kg]
   standing: value (observed: 1 run under reverse)

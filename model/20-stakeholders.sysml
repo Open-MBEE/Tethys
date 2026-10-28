@@ -615,60 +615,11 @@ package TethysStakeholders {
 
     // ---- Assumptions and constraints: the target cases -------------------------------------
 
-    part targetCases {
-        doc /* The assumed bodies the system is sized against. Ground-based knowledge of Amaranth
-             * spans a factor of two in diameter (albedo unknown), 1 200 to 3 500 kg/m3 in density
-             * and 100 s to 600 s in spin period; mass follows from SphereMass so the cases stay
-             * consistent with TethysEnvironment. Requirements read these parts; TargetCase offers
-             * the same bodies as a variation for configuration selection. */
-        part small : SmallBody {
-            doc /* High-albedo small case: 4.0 m, low density, slow spin. Below 100 t whatever the
-                 * tug does, so outside the TR-001 envelope (covered by minimum success). */
-            attribute :>> meanDiameter = 4.0 [m];
-            attribute :>> bulkDensity = 1200.0 [kg/m^3];
-            attribute :>> mass = TethysEnvironment::SphereMass(4.0, 1200.0) [kg];
-            attribute :>> rotationPeriod = 600.0 [s];
-        }
-        part nominal : SmallBody {
-            doc /* The nominal case: TethysEnvironment::amaranth. */
-            attribute :>> meanDiameter = TethysEnvironment::amaranth.meanDiameter;
-            attribute :>> bulkDensity = TethysEnvironment::amaranth.bulkDensity;
-            attribute :>> mass = TethysEnvironment::amaranth.mass;
-            attribute :>> rotationPeriod = TethysEnvironment::amaranth.rotationPeriod;
-        }
-        part large : SmallBody {
-            doc /* Low-albedo large case: 9.5 m at the nominal density, fast spin; it bounds the
-                 * capture bag and the despin budget. */
-            attribute :>> meanDiameter = 9.5 [m];
-            attribute :>> bulkDensity = 2200.0 [kg/m^3];
-            attribute :>> mass = TethysEnvironment::SphereMass(9.5, 2200.0) [kg];
-            attribute :>> rotationPeriod = 100.0 [s];
-        }
-        part dense : SmallBody {
-            doc /* Nominal size at the top of the density range (a stony-iron body); it bounds the
-                 * return propellant and the stack inertia. */
-            attribute :>> meanDiameter = TethysEnvironment::amaranth.meanDiameter;
-            attribute :>> bulkDensity = 3500.0 [kg/m^3];
-            attribute :>> mass = TethysEnvironment::SphereMass(6.8, 3500.0) [kg];
-            attribute :>> rotationPeriod = TethysEnvironment::amaranth.rotationPeriod;
-        }
-    }
-
-    variation part def TargetCase :> SmallBody {
-        doc /* The target-uncertainty cases as a variation: a configuration of the mission selects
-             * one variant, each of which is one of the assumed bodies in targetCases. */
-        variant part small :> targetCases.small {
-            doc /* The small case. */
-        }
-        variant part nominal :> targetCases.nominal {
-            doc /* The nominal case. */
-        }
-        variant part large :> targetCases.large {
-            doc /* The large case. */
-        }
-        variant part dense :> targetCases.dense {
-            doc /* The dense case. */
-        }
+    alias targetCases for TethysTarget::targetCases {
+        doc /* The assumed bodies the system is sized against: the one target-case table in
+             * TethysTarget. The requirements read its knowledge bounds (`lightest`, `largest`,
+             * `densest`) and its nominal case; TethysTarget::CaptureTargetCase offers the same
+             * bodies as a variation for configuration selection. */
     }
 
     part def ProgrammeAssumptions {

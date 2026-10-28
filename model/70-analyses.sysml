@@ -14,8 +14,14 @@ package TethysAnalyses {
     private import TethysEnvironment::*;
     private import TethysTug::*;
     private import TethysTarget::SmallBody;
+    private import TethysTarget::targetCases;
     private import TethysMission::tethys;
+    private import TethysMission::transferBook;
+    private import TethysInspector::wren;
+    private import TethysBudgets::massBudget;
+    private import TethysBudgets::propellantBudget;
     private import TethysRequirements::*;
+    private import TethysMarginPolicy::activePolicy;
 
     metadata def CredibilityAssessment {
         doc /* The eight modelling-and-simulation credibility factors of NASA-STD-7009B
@@ -38,53 +44,10 @@ package TethysAnalyses {
     metadata CredibilityAssessment about ExternalTransferAnalysis { verificationFactor = 2; validation = 2; inputPedigree = 2; resultsUncertainty = 1; resultsRobustness = 2; useHistory = 1; managementProcess = 2; peopleQualification = 3; }
 
     // ---- Target cases ------------------------------------------------------------------------
-
-    part def TargetCaseBody :> SmallBody {
-        doc /* A pre-arrival design case for the target body: its mass is never typed in but
-             * follows from the diameter and bulk density through SphereMass, so a case is two
-             * numbers and the rest derives. */
-        attribute :>> mass = SphereMass(meanDiameter / 1 [m], bulkDensity / 1 ['kg⋅m⁻³']) [kg];
-    }
-
-    part smallTarget : TargetCaseBody {
-        doc /* Small case: 5.9 m at 2 000 kg/m³, about 215 t — the bottom of the S-type density
-             * range at the small end of the size estimate; the return Δv driver is easiest, the
-             * delivered-mass requirement (TR-001) hardest. */
-        attribute :>> meanDiameter = 5.9 [m];
-        attribute :>> bulkDensity = 2000.0 ['kg⋅m⁻³'];
-        attribute :>> rotationPeriod = 252.0 [s];
-    }
-    part nominalTarget : TargetCaseBody {
-        doc /* Nominal case: the TethysEnvironment estimate, 6.8 m at 2 200 kg/m³, about 362 t,
-             * 252 s rotation. */
-        attribute :>> meanDiameter = amaranth.meanDiameter;
-        attribute :>> bulkDensity = amaranth.bulkDensity;
-        attribute :>> rotationPeriod = amaranth.rotationPeriod;
-    }
-    part largeTarget : TargetCaseBody {
-        doc /* Large case: 7.6 m at 2 800 kg/m³, about 644 t — a dense monolith at the top of
-             * the size estimate; the thrust-time and return-Δv driver. */
-        attribute :>> meanDiameter = 7.6 [m];
-        attribute :>> bulkDensity = 2800.0 ['kg⋅m⁻³'];
-        attribute :>> rotationPeriod = 252.0 [s];
-    }
-    part fastSpinTarget : TargetCaseBody {
-        doc /* Fast-spin case: the nominal body rotating in 120 s — the despin propellant and
-             * contact-speed driver. */
-        attribute :>> meanDiameter = amaranth.meanDiameter;
-        attribute :>> bulkDensity = amaranth.bulkDensity;
-        attribute :>> rotationPeriod = 120.0 [s];
-    }
-
-    variation part def TargetCase :> SmallBody {
-        doc /* The target-uncertainty table as a variation: one variant per design case, each
-             * bound to the case above so a configuration selects a case by name
-             * (`part :>> target = TargetCase::large`). */
-        variant part small : TargetCaseBody = smallTarget;
-        variant part nominal : TargetCaseBody = nominalTarget;
-        variant part large : TargetCaseBody = largeTarget;
-        variant part fastSpin : TargetCaseBody = fastSpinTarget;
-    }
+    // The analyses run over the design cases of the one target-case table,
+    // TethysTarget::targetCases; `TargetCase` is its variation under the name the analysis
+    // configurations select by (`part :>> target = TargetCase::large`).
+    alias TargetCase for TethysTarget::CaptureTargetCase;
 
     // ---- Solar-electric transfer and return --------------------------------------------------
 
@@ -130,12 +93,12 @@ package TethysAnalyses {
              * thrusting time of the whole mission shall fit the thrust-arc allowance of the
              * mission timeline. */
         subject tug : Tug;
-        in attribute returnDeltaVMPerS : Real;
-        in attribute requiredReturnDeltaVMPerS : Real;
-        in attribute totalThrustDays : Real;
-        in attribute thrustDayAllowance : Real;
-        require constraint { returnDeltaVMPerS >= requiredReturnDeltaVMPerS }
-        require constraint { totalThrustDays <= thrustDayAllowance }
+        in attribute returnDeltaV : SpeedValue;
+        in attribute requiredReturnDeltaV : SpeedValue;
+        in attribute totalThrustTime : DurationValue;
+        in attribute thrustTimeAllowance : DurationValue;
+        require constraint { returnDeltaV >= requiredReturnDeltaV }
+        require constraint { totalThrustTime <= thrustTimeAllowance }
     }
 
     analysis def LowThrustTransferAnalysis {
@@ -145,50 +108,84 @@ package TethysAnalyses {
              * to spend. The target case is the input the mission is most sensitive to. */
         subject tug : Tug;
         in part target : SmallBody;
-        in attribute outboundDeltaVMPerS : Real default = 2000.0 {
-            doc /* Edelbaum circular-coplanar estimate 0.69 km/s for 1 → 1.034 AU, about 0.70 km/s
-                 * for the 0.030 eccentricity, 0.49 km/s for the 0.6° plane change, rounded up for
-                 * phasing and the launcher's v∞ disposal. */
+        in attribute outboundDeltaVMPerS : Real default = transferBook.deltaVOutbound / 1 ['m/s'] {
+            doc /* The outbound allocation of the transfer book (TethysMission::transferBook) in
+                 * m/s; the Edelbaum circular-coplanar estimate of about 0.7 km/s for 1 → 1.034 AU
+                 * with the plane change and phasing sits well inside it. A plain Real, not a
+                 * SpeedValue, because the sweep runner writes bare numbers to the parameter it
+                 * sweeps (finding F-F08). */
         }
-        in attribute requiredReturnDeltaVMPerS : Real default = 350.0 {
-            doc /* Return leg shaped onto the lunar gravity assist plus the distant-retrograde-orbit
-                 * insertion (invented allocation). */
+        in attribute rendezvousDeltaV : SpeedValue default = transferBook.deltaVRendezvous {
+            doc /* Approach, station-keeping and capture manoeuvres, from the transfer book. */
         }
-        in attribute xenonReserveKg : Real default = 300.0;
-        in attribute thrustDayAllowance : Real default = 1930.0 {
-            doc /* Nominal duration 2 200 d less the non-thrusting phases: early operations 30 d,
-                 * characterisation 120 d, capture and despin 60 d, insertion and checkout 60 d. */
+        in attribute requiredReturnDeltaV : SpeedValue default = transferBook.deltaVRequiredReturn {
+            doc /* Return leg to the lunar gravity assist plus the distant-retrograde-orbit
+                 * insertion: the book's return and insertion allocations together. */
         }
-        in attribute thrusterEfficiency : Real default = 0.65;
+        in attribute missedThrustMargin : Real default = transferBook.missedThrustMargin {
+            doc /* Unplanned-coast allowance held back on every arc, from the transfer book. */
+        }
+        in attribute systemMargin : Real default = activePolicy.systemMargin {
+            doc /* The system margin of the active margin policy, held back from the usable xenon
+                 * exactly as TethysBudgets::propellantBudget closes it, so this book and the
+                 * budget agree on which bodies return. */
+        }
+        in attribute thrustTimeAllowance : DurationValue default = transferBook.thrustingTimeAllowed {
+            doc /* Thrusting time the timeline allows, from the transfer book. */
+        }
+        in attribute thrust : ForceValue default = propellantBudget.thrustAtAphelion {
+            doc /* Thrust at the target's aphelion from the propellant budget's SEP string model:
+                 * array power less the bus, through the PPUs, at the budget's thruster efficiency. */
+        }
 
-        attribute thrustN : Real = SepThrust(tug.sep.maximumPower / 1 [W], tug.sep.specificImpulse / 1 [s], thrusterEfficiency);
-        attribute massFlowKgPerS : Real = MassFlowRate(thrustN, tug.sep.specificImpulse / 1 [s]);
-        attribute outboundXenonKg : Real = PropellantForDeltaV(outboundDeltaVMPerS, tug.wetMass / 1 [kg], tug.sep.specificImpulse / 1 [s]);
-        attribute returnXenonKg : Real = tug.sep.xenonMass / 1 [kg] - outboundXenonKg - xenonReserveKg;
-        attribute stackMassKg : Real = tug.wetMass / 1 [kg] - outboundXenonKg + target.mass / 1 [kg];
-        return returnDeltaVMPerS : Real =
-            RocketEquationDeltaV(tug.sep.specificImpulse / 1 [s], stackMassKg, stackMassKg - returnXenonKg);
-        out outboundThrustDays : Real = ThrustDays(outboundXenonKg, massFlowKgPerS);
-        out returnThrustDays : Real = ThrustDays(returnXenonKg, massFlowKgPerS);
-        out totalThrustDays : Real = outboundThrustDays + returnThrustDays;
+        attribute ispS : Real = tug.sep.specificImpulse / 1 [s] {
+            doc /* The specific impulse in seconds for the Real-valued rocket-equation helpers. */
+        }
+        attribute massFlow : MassFlowRateValue = MassFlowRate(thrust / 1 [N], ispS) ['kg⋅s⁻¹'];
+        attribute startMass : MassValue = massBudget.launchMass - massBudget.adapterSeparated;
+        attribute usableXenon : MassValue = propellantBudget.usable;
+        attribute outboundXenon : MassValue =
+            PropellantForDeltaV(outboundDeltaVMPerS, startMass / 1 [kg], ispS) [kg];
+        attribute rendezvousXenon : MassValue =
+            PropellantForDeltaV(rendezvousDeltaV / 1 ['m/s'], (startMass - outboundXenon) / 1 [kg], ispS) [kg];
+        attribute returnXenon : MassValue =
+            usableXenon / ((1.0 + systemMargin) * (1.0 + missedThrustMargin)) - outboundXenon - rendezvousXenon {
+            doc /* Xenon the stack may spend coming home: the usable load less the policy's system
+                 * margin, the missed-thrust allowance and the two arcs flown alone. */
+        }
+        attribute stackMass : MassValue = startMass - outboundXenon - rendezvousXenon - wren.wetMass + target.mass;
+        return returnDeltaV : SpeedValue =
+            RocketEquationDeltaV(ispS, stackMass / 1 [kg], (stackMass - returnXenon) / 1 [kg]) ['m/s'];
+        out outboundThrustTime : DurationValue = ThrustDays(
+            ((outboundXenon + rendezvousXenon) / 1 [kg]) * (1.0 + missedThrustMargin), massFlow / 1 ['kg⋅s⁻¹']) [d];
+        out returnThrustTime : DurationValue = ThrustDays(
+            PropellantForDeltaV(requiredReturnDeltaV / 1 ['m/s'], stackMass / 1 [kg], ispS) * (1.0 + missedThrustMargin),
+            massFlow / 1 ['kg⋅s⁻¹']) [d];
+        out totalThrustTime : DurationValue = outboundThrustTime + returnThrustTime;
 
         objective canReturn : ReturnCapability {
             doc /* The return capability this case must show. */
             subject :>> tug = tug;
-            in returnDeltaVMPerS = returnDeltaVMPerS;
-            in requiredReturnDeltaVMPerS = requiredReturnDeltaVMPerS;
-            in totalThrustDays = totalThrustDays;
-            in thrustDayAllowance = thrustDayAllowance;
+            in returnDeltaV = returnDeltaV;
+            in requiredReturnDeltaV = requiredReturnDeltaV;
+            in totalThrustTime = totalThrustTime;
+            in thrustTimeAllowance = thrustTimeAllowance;
         }
     }
 
     analysis transferNominal : LowThrustTransferAnalysis {
         doc /* Argent against the nominal target. */
         subject :>> tug = argent;
-        in :>> target = nominalTarget;
+        in :>> target = targetCases.nominal;
     }
-    analysis transferSmall : LowThrustTransferAnalysis { subject :>> tug = argent; in :>> target = smallTarget; }
-    analysis transferLarge : LowThrustTransferAnalysis { subject :>> tug = argent; in :>> target = largeTarget; }
+    analysis transferSmall : LowThrustTransferAnalysis { subject :>> tug = argent; in :>> target = targetCases.small; }
+    analysis transferLarge : LowThrustTransferAnalysis { subject :>> tug = argent; in :>> target = targetCases.large; }
+    analysis transferDensest : LowThrustTransferAnalysis {
+        doc /* Argent against the densest knowledge bound (576 t): over the return envelope with
+             * the margin policy, which is why the commit gate refuses it. */
+        subject :>> tug = argent;
+        in :>> target = targetCases.densest;
+    }
 
     // ---- Capture and despin ------------------------------------------------------------------
 
@@ -197,16 +194,16 @@ package TethysAnalyses {
              * with an equatorial surface speed the bag can absorb, and with a despin that the
              * hydrazine allocated to it can pay for. */
         subject tug : Tug;
-        in attribute bodyDiameterM : Real;
-        in attribute bodyMassKg : Real;
-        in attribute surfaceSpeedMPerS : Real;
-        in attribute despinHydrazineKg : Real;
-        in attribute maximumSurfaceSpeedMPerS : Real;
-        in attribute despinHydrazineAllocationKg : Real;
-        require constraint { bodyDiameterM <= tug.captureSystem.maximumBodyDiameter / 1 [m] }
-        require constraint { bodyMassKg <= tug.captureSystem.maximumBodyMass / 1 [kg] }
-        require constraint { surfaceSpeedMPerS <= maximumSurfaceSpeedMPerS }
-        require constraint { despinHydrazineKg <= despinHydrazineAllocationKg }
+        in attribute bodyDiameter : LengthValue;
+        in attribute bodyMass : MassValue;
+        in attribute surfaceSpeed : SpeedValue;
+        in attribute despinHydrazine : MassValue;
+        in attribute maximumSurfaceSpeed : SpeedValue;
+        in attribute despinHydrazineAllocation : MassValue;
+        require constraint { bodyDiameter <= tug.captureSystem.maximumBodyDiameter }
+        require constraint { bodyMass <= tug.captureSystem.maximumBodyMass }
+        require constraint { surfaceSpeed <= maximumSurfaceSpeed }
+        require constraint { despinHydrazine <= despinHydrazineAllocation }
     }
 
     analysis def CaptureDynamicsAnalysis {
@@ -216,39 +213,43 @@ package TethysAnalyses {
              * propellant the despin takes. */
         subject tug : Tug;
         in part target : SmallBody;
-        in attribute rcsThrusterForceN : Real default = 22.0;
+        in attribute rcsThrusterForce : ForceValue default = 22.0 [N];
         in attribute rcsThrusterCount : Natural default = 2;
-        in attribute leverArmM : Real default = 3.0;
-        in attribute rcsSpecificImpulseS : Real default = 220.0;
-        in attribute maximumSurfaceSpeedMPerS : Real default = 0.10;
-        in attribute despinHydrazineAllocationKg : Real default = 40.0;
+        in attribute leverArm : LengthValue default = 3.0 [m];
+        in attribute rcsSpecificImpulse : DurationValue default = 220.0 [s];
+        in attribute maximumSurfaceSpeed : SpeedValue default = 0.10 ['m/s'];
+        in attribute despinHydrazineAllocation : MassValue default = 40.0 [kg];
 
         attribute diameterM : Real = target.meanDiameter / 1 [m];
-        attribute massKg : Real = target.mass / 1 [kg];
-        attribute angularRateRadPerS : Real = 2.0 * pi / (target.rotationPeriod / 1 [s]);
-        attribute surfaceSpeedMPerS : Real = angularRateRadPerS * diameterM / 2.0;
-        attribute momentOfInertiaKgM2 : Real = 0.4 * massKg * (diameterM / 2.0) ** 2;
-        return angularMomentumNMS : Real = momentOfInertiaKgM2 * angularRateRadPerS;
-        attribute despinTorqueNM : Real = rcsThrusterForceN * rcsThrusterCount * leverArmM;
-        out despinTimeS : Real = angularMomentumNMS / despinTorqueNM;
-        out despinHydrazineKg : Real =
-            rcsThrusterForceN * rcsThrusterCount * despinTimeS / (rcsSpecificImpulseS * standardGravityMPerS2);
+        attribute angularRate : AngularVelocityValue =
+            (2.0 * pi / (target.rotationPeriod / 1 [s])) ['rad⋅s⁻¹'];
+        attribute surfaceSpeed : SpeedValue = ((angularRate / 1 ['rad⋅s⁻¹']) * diameterM / 2.0) ['m/s'];
+        attribute momentOfInertia : MomentOfInertiaValue =
+            (0.4 * (target.mass / 1 [kg]) * (diameterM / 2.0) ** 2) ['kg⋅m²'];
+        return angularMomentum : AngularMomentumValue =
+            ((momentOfInertia / 1 ['kg⋅m²']) * (angularRate / 1 ['rad⋅s⁻¹'])) ['N⋅m⋅s'];
+        attribute despinTorque : TorqueValue =
+            ((rcsThrusterForce / 1 [N]) * rcsThrusterCount * (leverArm / 1 [m])) ['N⋅m'];
+        out despinTime : DurationValue = ((angularMomentum / 1 ['N⋅m⋅s']) / (despinTorque / 1 ['N⋅m'])) [s];
+        out despinHydrazine : MassValue =
+            ((rcsThrusterForce / 1 [N]) * rcsThrusterCount * (despinTime / 1 [s])
+                / ((rcsSpecificImpulse / 1 [s]) * standardGravityMPerS2)) [kg];
 
         objective fitsEnvelope : CaptureEnvelope {
             doc /* The capture envelope this case checks the target against. */
             subject :>> tug = tug;
-            in bodyDiameterM = diameterM;
-            in bodyMassKg = massKg;
-            in surfaceSpeedMPerS = surfaceSpeedMPerS;
-            in despinHydrazineKg = despinHydrazineKg;
-            in maximumSurfaceSpeedMPerS = maximumSurfaceSpeedMPerS;
-            in despinHydrazineAllocationKg = despinHydrazineAllocationKg;
+            in bodyDiameter = target.meanDiameter;
+            in bodyMass = target.mass;
+            in surfaceSpeed = surfaceSpeed;
+            in despinHydrazine = despinHydrazine;
+            in maximumSurfaceSpeed = maximumSurfaceSpeed;
+            in despinHydrazineAllocation = despinHydrazineAllocation;
         }
     }
 
-    analysis captureNominal : CaptureDynamicsAnalysis { subject :>> tug = argent; in :>> target = nominalTarget; }
-    analysis captureLarge : CaptureDynamicsAnalysis { subject :>> tug = argent; in :>> target = largeTarget; }
-    analysis captureFastSpin : CaptureDynamicsAnalysis { subject :>> tug = argent; in :>> target = fastSpinTarget; }
+    analysis captureNominal : CaptureDynamicsAnalysis { subject :>> tug = argent; in :>> target = targetCases.nominal; }
+    analysis captureLarge : CaptureDynamicsAnalysis { subject :>> tug = argent; in :>> target = targetCases.large; }
+    analysis captureFastSpin : CaptureDynamicsAnalysis { subject :>> tug = argent; in :>> target = targetCases.fastSpin; }
 
     // ---- External trajectory tool ------------------------------------------------------------
 
@@ -275,9 +276,9 @@ package TethysAnalyses {
     requirement def TransferAllowance {
         doc /* The outbound thrust arc shall fit its allowance in days. */
         subject tug : Tug;
-        in attribute thrustDays : Real;
-        in attribute allowanceDays : Real;
-        require constraint { thrustDays <= allowanceDays }
+        in attribute thrustTime : DurationValue;
+        in attribute allowance : DurationValue;
+        require constraint { thrustTime <= allowance }
     }
 
     analysis def ExternalTransferAnalysis {
@@ -286,7 +287,7 @@ package TethysAnalyses {
              * thrusting days; the objective checks the days against the outbound allowance. */
         subject tug : Tug;
         in attribute thrusterEfficiency : Real default = 0.65;
-        in attribute outboundAllowanceDays : Real default = 260.0;
+        in attribute outboundAllowance : DurationValue default = 260.0 [d];
         action solve : SolveThrustArc {
             in startAu = 1.0;
             in endAu = amaranth.orbit.semiMajorAxisAu;
@@ -295,14 +296,14 @@ package TethysAnalyses {
             in thrustN = SepThrust(tug.sep.maximumPower / 1 [W], tug.sep.specificImpulse / 1 [s], thrusterEfficiency);
             in specificImpulseS = tug.sep.specificImpulse / 1 [s];
         }
-        return thrustDays : Real = solve.thrustDays;
-        out deltaVMPerS : Real = solve.deltaVMPerS;
-        out propellantKg : Real = solve.propellantKg;
+        return thrustTime : DurationValue = solve.thrustDays [d];
+        out deltaV : SpeedValue = solve.deltaVMPerS ['m/s'];
+        out propellant : MassValue = solve.propellantKg [kg];
         objective fitsAllowance : TransferAllowance {
             doc /* The outbound thrust-arc allowance the tool result is checked against. */
             subject :>> tug = tug;
-            in thrustDays = solve.thrustDays;
-            in allowanceDays = outboundAllowanceDays;
+            in thrustTime = thrustTime;
+            in allowance = outboundAllowance;
         }
     }
 
@@ -327,9 +328,9 @@ package TethysAnalyses {
             in :>> target = target;
         }
         return verdict : VerdictKind =
-            PassIf(transfer.totalThrustDays + nonThrustDays <= tethys.nominalDuration / 1 [d]);
+            PassIf(transfer.totalThrustTime / 1 [d] + nonThrustDays <= tethys.nominalDuration / 1 [d]);
     }
 
-    verification verifyDurationNominal : MissionDurationByAnalysis { subject :>> tug = argent; in :>> target = nominalTarget; }
-    verification verifyDurationLarge : MissionDurationByAnalysis { subject :>> tug = argent; in :>> target = largeTarget; }
+    verification verifyDurationNominal : MissionDurationByAnalysis { subject :>> tug = argent; in :>> target = targetCases.nominal; }
+    verification verifyDurationLarge : MissionDurationByAnalysis { subject :>> tug = argent; in :>> target = targetCases.large; }
 }

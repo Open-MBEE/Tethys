@@ -54,6 +54,10 @@
   standing: holds (observed: 1 run under reverse)
 ✓ Constraint TethysSafety::envelopeCases::largeCaseFits passed
   standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysSafety::envelopeCases::largeCaseFactorMet passed
+  standing: holds (observed: 1 run under reverse)
+✓ Constraint TethysBudgets::propellantBudget::largeCaseReturns passed
+  standing: holds (observed: 1 run under reverse)
 ✓ Constraint TethysSafety::endOfLifeSafety::disposalPropellantSufficient passed
   standing: holds (observed: 1 run under reverse)
 ✓ Constraint TethysSafety::groundSafetyData::twoInhibits passed

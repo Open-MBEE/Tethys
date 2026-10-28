@@ -14,6 +14,12 @@ package TethysMonteCarlo {
     private import TethysEnvironment::*;
     private import TethysTug::*;
     private import TethysAnalyses::*;
+    private import TethysTarget::targetCases;
+    private import TethysMission::transferBook;
+    private import TethysInspector::wren;
+    private import TethysBudgets::massBudget;
+    private import TethysBudgets::propellantBudget;
+    private import TethysMarginPolicy::activePolicy;
 
     // ---- Return against the target mass ------------------------------------------------------
 
@@ -22,27 +28,45 @@ package TethysMonteCarlo {
              * as a drawn input instead of a design case: the dispersion that sizes the xenon
              * reserve and bounds the capturable body. */
         subject tug : Tug;
-        in attribute bodyMassKg : Real default = nominalTarget.mass / 1 [kg];
-        in attribute outboundDeltaVMPerS : Real default = 2000.0;
-        in attribute requiredReturnDeltaVMPerS : Real default = 350.0;
-        in attribute xenonReserveKg : Real default = 300.0;
-        in attribute thrustDayAllowance : Real default = 1930.0;
+        in attribute bodyMassKg : Real default = targetCases.nominal.mass / 1 [kg] {
+            doc /* The drawn target mass in kg: a plain Real, not a MassValue, because the sampler
+                 * and the sweep runner write bare numbers to the parameter they draw
+                 * (finding F-F08). */
+        }
+        in attribute outboundDeltaV : SpeedValue default = transferBook.deltaVOutbound;
+        in attribute rendezvousDeltaV : SpeedValue default = transferBook.deltaVRendezvous;
+        in attribute requiredReturnDeltaV : SpeedValue default = transferBook.deltaVRequiredReturn;
+        in attribute missedThrustMargin : Real default = transferBook.missedThrustMargin;
+        in attribute thrustTimeAllowance : DurationValue default = transferBook.thrustingTimeAllowed;
+        in attribute thrust : ForceValue default = propellantBudget.thrustAtAphelion;
 
         attribute ispS : Real = tug.sep.specificImpulse / 1 [s];
-        attribute massFlowKgPerS : Real = MassFlowRate(SepThrust(tug.sep.maximumPower / 1 [W], ispS, 0.65), ispS);
-        attribute outboundXenonKg : Real = PropellantForDeltaV(outboundDeltaVMPerS, tug.wetMass / 1 [kg], ispS);
-        attribute returnXenonKg : Real = tug.sep.xenonMass / 1 [kg] - outboundXenonKg - xenonReserveKg;
-        attribute stackMassKg : Real = tug.wetMass / 1 [kg] - outboundXenonKg + bodyMassKg;
-        return returnDeltaVMPerS : Real = RocketEquationDeltaV(ispS, stackMassKg, stackMassKg - returnXenonKg);
-        out totalThrustDays : Real = ThrustDays(outboundXenonKg + returnXenonKg, massFlowKgPerS);
+        attribute massFlow : MassFlowRateValue = MassFlowRate(thrust / 1 [N], ispS) ['kg⋅s⁻¹'];
+        attribute startMass : MassValue = massBudget.launchMass - massBudget.adapterSeparated;
+        attribute outboundXenon : MassValue =
+            PropellantForDeltaV(outboundDeltaV / 1 ['m/s'], startMass / 1 [kg], ispS) [kg];
+        attribute rendezvousXenon : MassValue =
+            PropellantForDeltaV(rendezvousDeltaV / 1 ['m/s'], (startMass - outboundXenon) / 1 [kg], ispS) [kg];
+        attribute returnXenon : MassValue =
+            propellantBudget.usable / ((1.0 + activePolicy.systemMargin) * (1.0 + missedThrustMargin))
+            - outboundXenon - rendezvousXenon;
+        attribute stackMass : MassValue =
+            startMass - outboundXenon - rendezvousXenon - wren.wetMass + bodyMassKg [kg];
+        return returnDeltaV : SpeedValue =
+            RocketEquationDeltaV(ispS, stackMass / 1 [kg], (stackMass - returnXenon) / 1 [kg]) ['m/s'];
+        out totalThrustTime : DurationValue = ThrustDays(
+            ((outboundXenon + rendezvousXenon) / 1 [kg]
+                + PropellantForDeltaV(requiredReturnDeltaV / 1 ['m/s'], stackMass / 1 [kg], ispS))
+                * (1.0 + missedThrustMargin),
+            massFlow / 1 ['kg⋅s⁻¹']) [d];
 
         objective canReturn : ReturnCapability {
             doc /* The return capability this case must show. */
             subject :>> tug = tug;
-            in returnDeltaVMPerS = returnDeltaVMPerS;
-            in requiredReturnDeltaVMPerS = requiredReturnDeltaVMPerS;
-            in totalThrustDays = totalThrustDays;
-            in thrustDayAllowance = thrustDayAllowance;
+            in returnDeltaV = returnDeltaV;
+            in requiredReturnDeltaV = requiredReturnDeltaV;
+            in totalThrustTime = totalThrustTime;
+            in thrustTimeAllowance = thrustTimeAllowance;
         }
     }
     analysis returnDispersion : ReturnDispersion {
@@ -59,29 +83,37 @@ package TethysMonteCarlo {
              * drawn: the mass follows from SphereMass, and the envelope verdict counts the draws
              * the capture system cannot take. */
         subject tug : Tug;
-        in attribute diameterM : Real default = amaranth.meanDiameter / 1 [m];
-        in attribute densityKgPerM3 : Real default = amaranth.bulkDensity / 1 ['kg⋅m⁻³'];
+        in attribute diameterM : Real default = amaranth.meanDiameter / 1 [m] {
+            doc /* The drawn diameter in m and the drawn rotation period in s are plain Reals, not
+                 * LengthValue and DurationValue, because the sampler writes bare numbers to the
+                 * parameters it draws (finding F-F08). */
+        }
+        in attribute density : MassDensityValue default = amaranth.bulkDensity;
         in attribute rotationPeriodS : Real default = amaranth.rotationPeriod / 1 [s];
-        in attribute rcsThrusterForceN : Real default = 22.0;
-        in attribute leverArmM : Real default = 3.0;
-        in attribute rcsSpecificImpulseS : Real default = 220.0;
+        in attribute rcsThrusterForce : ForceValue default = 22.0 [N];
+        in attribute leverArm : LengthValue default = 3.0 [m];
+        in attribute rcsSpecificImpulse : DurationValue default = 220.0 [s];
 
-        attribute massKg : Real = SphereMass(diameterM, densityKgPerM3);
-        attribute angularRateRadPerS : Real = 2.0 * pi / rotationPeriodS;
-        attribute surfaceSpeedMPerS : Real = angularRateRadPerS * diameterM / 2.0;
-        return angularMomentumNMS : Real = 0.4 * massKg * (diameterM / 2.0) ** 2 * angularRateRadPerS;
-        attribute despinTimeS : Real = angularMomentumNMS / (2.0 * rcsThrusterForceN * leverArmM);
-        out despinHydrazineKg : Real = 2.0 * rcsThrusterForceN * despinTimeS / (rcsSpecificImpulseS * standardGravityMPerS2);
+        attribute mass : MassValue = SphereMass(diameterM, density / 1 ['kg⋅m⁻³']) [kg];
+        attribute angularRate : AngularVelocityValue = (2.0 * pi / rotationPeriodS) ['rad⋅s⁻¹'];
+        attribute surfaceSpeed : SpeedValue = ((angularRate / 1 ['rad⋅s⁻¹']) * diameterM / 2.0) ['m/s'];
+        return angularMomentum : AngularMomentumValue =
+            (0.4 * (mass / 1 [kg]) * (diameterM / 2.0) ** 2 * (angularRate / 1 ['rad⋅s⁻¹'])) ['N⋅m⋅s'];
+        attribute despinTime : DurationValue =
+            ((angularMomentum / 1 ['N⋅m⋅s']) / (2.0 * (rcsThrusterForce / 1 [N]) * (leverArm / 1 [m]))) [s];
+        out despinHydrazine : MassValue =
+            (2.0 * (rcsThrusterForce / 1 [N]) * (despinTime / 1 [s])
+                / ((rcsSpecificImpulse / 1 [s]) * standardGravityMPerS2)) [kg];
 
         objective fitsEnvelope : CaptureEnvelope {
             doc /* The capture envelope this case checks the target against. */
             subject :>> tug = tug;
-            in bodyDiameterM = diameterM;
-            in bodyMassKg = massKg;
-            in surfaceSpeedMPerS = surfaceSpeedMPerS;
-            in despinHydrazineKg = despinHydrazineKg;
-            in maximumSurfaceSpeedMPerS = 0.10;
-            in despinHydrazineAllocationKg = 40.0;
+            in bodyDiameter = diameterM [m];
+            in bodyMass = mass;
+            in surfaceSpeed = surfaceSpeed;
+            in despinHydrazine = despinHydrazine;
+            in maximumSurfaceSpeed = 0.10 ['m/s'];
+            in despinHydrazineAllocation = 40.0 [kg];
         }
     }
     analysis captureDispersion : CaptureDispersion {
@@ -96,9 +128,9 @@ package TethysMonteCarlo {
         doc /* The mission duration, with the unplanned coast of safe-mode recoveries added to the
              * thrust arcs, shall stay within the nominal duration. */
         subject tug : Tug;
-        in attribute missionDays : Real;
-        in attribute nominalDurationDays : Real;
-        require constraint { missionDays <= nominalDurationDays }
+        in attribute missionTime : DurationValue;
+        in attribute nominalDuration : DurationValue;
+        require constraint { missionTime <= nominalDuration }
     }
 
     analysis def MissedThrustDispersion {
@@ -106,17 +138,24 @@ package TethysMonteCarlo {
              * the thrust arc, and the days are added to the mission; the dispersion shows how many
              * safe-mode events of what length the duration margin absorbs. */
         subject tug : Tug;
-        in attribute coastDaysPerEvent : Real default = 7.0;
+        in attribute coastDaysPerEvent : Real default = 7.0 {
+            doc /* The drawn coast in days per event and the drawn event count are plain Reals
+                 * because the sampler writes bare numbers to the parameters it draws (finding
+                 * F-F08). */
+        }
         in attribute safeModeEvents : Real default = 2.0;
-        in attribute recoveryDaysPerEvent : Real default = 3.0;
-        in attribute thrustDays : Real default = 1134.0;
-        in attribute nonThrustDays : Real default = 270.0;
-        return missionDays : Real = thrustDays + nonThrustDays + safeModeEvents * (coastDaysPerEvent + recoveryDaysPerEvent);
+        in attribute recoveryPerEvent : DurationValue default = 3.0 [d];
+        in attribute thrustTime : DurationValue default = propellantBudget.thrustingTimeNominal {
+            doc /* The nominal case's thrusting time from the propellant budget. */
+        }
+        in attribute nonThrustTime : DurationValue default = 270.0 [d];
+        return missionTime : DurationValue =
+            thrustTime + nonThrustTime + safeModeEvents * (coastDaysPerEvent [d] + recoveryPerEvent);
         objective fitsDuration : DurationMargin {
             doc /* The duration margin the drawn coasts are checked against. */
             subject :>> tug = tug;
-            in missionDays = missionDays;
-            in nominalDurationDays = TethysMission::tethys.nominalDuration / 1 [d];
+            in missionTime = missionTime;
+            in nominalDuration = TethysMission::tethys.nominalDuration;
         }
     }
     analysis missedThrustDispersion : MissedThrustDispersion {
@@ -141,9 +180,9 @@ package TethysMonteCarlo {
         doc /* The xenon reserve shall cover the insertion Δv the lunar flyby leaves to the tug,
              * with the insertion error added. */
         subject tug : Tug;
-        in attribute insertionDeltaVMPerS : Real;
-        in attribute reserveDeltaVMPerS : Real;
-        require constraint { insertionDeltaVMPerS <= reserveDeltaVMPerS }
+        in attribute insertionDeltaV : SpeedValue;
+        in attribute reserveDeltaV : SpeedValue;
+        require constraint { insertionDeltaV <= reserveDeltaV }
     }
 
     analysis def InsertionDispersion {
@@ -153,28 +192,35 @@ package TethysMonteCarlo {
              * off that speed, and the tug's xenon reserve on the stack must pay whatever is left
              * above the local escape speed, the orbit shaping and the error. */
         subject tug : Tug;
-        in attribute vInfinityKmPerS : Real default = 0.8;
+        in attribute vInfinityKmPerS : Real default = 0.8 {
+            doc /* The drawn v∞ in km/s and the drawn insertion error in m/s are plain Reals
+                 * because the sampler writes bare numbers to the parameters it draws (finding
+                 * F-F08). */
+        }
         in attribute insertionErrorMPerS : Real default = 5.0;
-        in attribute periapsisAltitudeKm : Real default = 100.0;
-        in attribute shapingDeltaVMPerS : Real default = 10.0;
-        in attribute stackMassKg : Real default = 364000.0;
-        in attribute xenonReserveKg : Real default = 300.0;
+        in attribute periapsisAltitude : LengthValue default = 100.0 [km];
+        in attribute shapingDeltaV : SpeedValue default = 10.0 ['m/s'];
+        in attribute stackMass : MassValue default = 364000.0 [kg];
+        in attribute xenonReserve : MassValue default = (PropellantForDeltaV(transferBook.deltaVInsertion / 1 ['m/s'], stackMass / 1 [kg], tug.sep.specificImpulse / 1 [s])) [kg] {
+            doc /* The insertion allocation of the transfer book, as xenon on the stack. */
+        }
         attribute lunarDistanceKm : Real = lunarOrbit.semiMajorAxis / 1 [km];
         attribute moonSpeedKmPerS : Real = CircularSpeed(earth.gravitationalParameterKm3PerS2, lunarDistanceKm);
         attribute escapeAtMoonKmPerS : Real = EscapeSpeed(earth.gravitationalParameterKm3PerS2, lunarDistanceKm);
         attribute approachSpeedKmPerS : Real = sqrt(vInfinityKmPerS ** 2 + escapeAtMoonKmPerS ** 2);
         attribute moonRelativeKmPerS : Real = approachSpeedKmPerS - moonSpeedKmPerS;
         attribute flybyDeltaVKmPerS : Real =
-            FlybyDeltaV(moon.gravitationalParameterKm3PerS2, moon.equatorialRadius / 1 [km] + periapsisAltitudeKm, moonRelativeKmPerS);
+            FlybyDeltaV(moon.gravitationalParameterKm3PerS2, moon.equatorialRadius / 1 [km] + periapsisAltitude / 1 [km], moonRelativeKmPerS);
         attribute unboundKmPerS : Real = max(approachSpeedKmPerS - flybyDeltaVKmPerS - escapeAtMoonKmPerS, 0.0);
-        return insertionDeltaVMPerS : Real = 1000.0 * unboundKmPerS + shapingDeltaVMPerS + insertionErrorMPerS;
-        out reserveDeltaVMPerS : Real =
-            RocketEquationDeltaV(tug.sep.specificImpulse / 1 [s], stackMassKg, stackMassKg - xenonReserveKg);
+        return insertionDeltaV : SpeedValue =
+            (1000.0 * unboundKmPerS + shapingDeltaV / 1 ['m/s'] + insertionErrorMPerS) ['m/s'];
+        out reserveDeltaV : SpeedValue = RocketEquationDeltaV(tug.sep.specificImpulse / 1 [s],
+            stackMass / 1 [kg], (stackMass - xenonReserve) / 1 [kg]) ['m/s'];
         objective reserveCovers : InsertionReserve {
             doc /* The insertion reserve the drawn end game is checked against. */
             subject :>> tug = tug;
-            in insertionDeltaVMPerS = insertionDeltaVMPerS;
-            in reserveDeltaVMPerS = reserveDeltaVMPerS;
+            in insertionDeltaV = insertionDeltaV;
+            in reserveDeltaV = reserveDeltaV;
         }
     }
     analysis insertionDispersion : InsertionDispersion {

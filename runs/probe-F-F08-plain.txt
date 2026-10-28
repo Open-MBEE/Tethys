@@ -1,0 +1,8 @@
+✓ package TethysSweepQuantityProbe
+sweep TethysSweepQuantityProbe::plain — 3 run(s)
+speedMPerS | doubledMPerS
+-----------+--------------
+1.0        | [2.0]
+2.0        | [4.0]
+3.0        | [6.0]
+  standing: table (observed: 3 rows)

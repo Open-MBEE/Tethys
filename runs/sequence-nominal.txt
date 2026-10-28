@@ -95,5 +95,5 @@ note: object #1 of "TethysSequence::nominalCampaign" already performs "TethysSeq
     returnArcs = 4
     target = [Instance(ID: 3)]
     xenonRemaining = 955.0 [kg]
-    xenonReserve = 300.0 [kg]
+    xenonReserve = 132.0 [kg]
   standing: value (observed: 1 run under reverse)

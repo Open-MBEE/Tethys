@@ -75,7 +75,7 @@ object TethysOperations::scenario.tug : tug
 messages:
   TethysOperations::scenario.moc => TethysOperations::scenario.tug: t=0 DisableRelay (apid = 5, length = 16.0 [B], sequenceCount = 1)
   TethysOperations::scenario.tug => TethysOperations::scenario.moc: t=0 CommandAcknowledge (acceptedOpcode = "DISABLE_RELAY")
-  TethysOperations::scenario.moc => TethysOperations::scenario.tug: t=0 SetMode (apid = 1, length = 17.0 [B], mode = CommandedMode::thrust, sequenceCount = 2)
+  TethysOperations::scenario.moc => TethysOperations::scenario.tug: t=0 SetMode (apid = 1, length = 17.0 [B], mode = TugMode::thrust, sequenceCount = 2)
   TethysOperations::scenario.tug => TethysOperations::scenario.moc: t=0 CommandAcknowledge (acceptedOpcode = "SET_MODE")
   TethysOperations::scenario.moc => TethysOperations::scenario.tug: t=0 StartThrustArc (apid = 3, arcDuration = 48.0 [h], length = 24.0 [B], sequenceCount = 3, throttle = 0.9)
   TethysOperations::scenario.tug => TethysOperations::scenario.moc: t=0 CommandAcknowledge (acceptedOpcode = "START_THRUST_ARC")

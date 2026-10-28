@@ -9,7 +9,12 @@ package TethysModes {
     private import SI::*;
     private import TethysInterfaces::*;
     private import TethysTug::Tug;
+    private import TethysTugStructure::TugMode;
+    private import TethysBudgets::TugPowerInMode;
     private import TethysInspector::Inspector;
+    private import TethysTarget::targetCases;
+    private import TethysBudgets::CaptureCommitEnvelope;
+    private import TethysBudgets::captureCommitEnvelope;
 
     // ---- 1. Command and event vocabulary ------------------------------------------------
     item def GroundCommand :> Telecommand {
@@ -31,7 +36,8 @@ package TethysModes {
     }
     item def CaptureGo :> GroundCommand {
         doc /* Commit to capture with the characterised target estimate; the mode machine
-             * refuses it when the estimate exceeds the capture-system envelope. */
+             * refuses it when the estimate exceeds the capture-commit envelope (the bag and the
+             * return propellant, TethysBudgets::captureCommitEnvelope). */
         attribute estimatedMass : MassValue;
         attribute estimatedDiameter : LengthValue;
     }
@@ -116,15 +122,10 @@ package TethysModes {
     }
 
     // ---- 2. Modes and the mode × subsystem configuration table --------------------------
-    enum def TugMode {
-        doc /* The tug's flight modes. Free-flight modes before capture, stacked modes after
-             * it, and safe mode reachable from every operating mode. */
-        launch; coast; thrust; approach; proximityOperations; retreat; capture;
-        despin; stackCoast; stackThrust; droHold; dockedPassive; disposal; safe; abortHold;
-    }
     attribute def SubsystemConfiguration {
         doc /* One row of the mode × subsystem matrix: what each subsystem does in a mode and
-             * the bus load it draws. */
+             * the load it draws — the per-unit rollup of TethysBudgets::TugPowerInMode, the
+             * same table the power budget closes, so the two cannot drift. */
         attribute mode : TugMode;
         attribute sepThrusting : Boolean;
         attribute highVoltageBusOn : Boolean;
@@ -133,86 +134,92 @@ package TethysModes {
         attribute wheelControl : Boolean;
         attribute captureSystemArmed : Boolean;
         attribute sensorsOn : Boolean;
-        attribute busLoad : PowerValue;
+        attribute busLoad : PowerValue default = TugPowerInMode(mode);
     }
     part def TugModeTable {
-        doc /* The mode × subsystem configuration matrix of the Argent tug. */
+        doc /* The mode × subsystem configuration matrix of the Argent tug, one row per
+             * TethysTugStructure::TugMode literal; each row's load is the budget's rollup. */
         attribute launch : SubsystemConfiguration {
             :>> mode = TugMode::launch; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = false; :>> proximityLinkOn = false; :>> wheelControl = false;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 0.9 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
+        }
+        attribute earlyOperations : SubsystemConfiguration {
+            :>> mode = TugMode::earlyOperations; :>> sepThrusting = false; :>> highVoltageBusOn = false;
+            :>> highGainAntennaOn = false; :>> proximityLinkOn = false; :>> wheelControl = true;
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute coast : SubsystemConfiguration {
             :>> mode = TugMode::coast; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 1.6 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute thrust : SubsystemConfiguration {
             :>> mode = TugMode::thrust; :>> sepThrusting = true; :>> highVoltageBusOn = true;
             :>> highGainAntennaOn = false; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 41.5 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute approach : SubsystemConfiguration {
             :>> mode = TugMode::approach; :>> sepThrusting = true; :>> highVoltageBusOn = true;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = true; :>> busLoad = 42.3 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = true;
         }
         attribute proximityOperations : SubsystemConfiguration {
             :>> mode = TugMode::proximityOperations; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = true; :>> wheelControl = false;
-            :>> captureSystemArmed = false; :>> sensorsOn = true; :>> busLoad = 2.4 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = true;
         }
         attribute retreat : SubsystemConfiguration {
             :>> mode = TugMode::retreat; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = true; :>> wheelControl = false;
-            :>> captureSystemArmed = false; :>> sensorsOn = true; :>> busLoad = 2.2 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = true;
         }
         attribute capture : SubsystemConfiguration {
             :>> mode = TugMode::capture; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = false; :>> proximityLinkOn = true; :>> wheelControl = false;
-            :>> captureSystemArmed = true; :>> sensorsOn = true; :>> busLoad = 2.9 [kW];
+            :>> captureSystemArmed = true; :>> sensorsOn = true;
         }
         attribute despin : SubsystemConfiguration {
             :>> mode = TugMode::despin; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = false; :>> proximityLinkOn = false; :>> wheelControl = false;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 2.0 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute stackCoast : SubsystemConfiguration {
             :>> mode = TugMode::stackCoast; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 1.7 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute stackThrust : SubsystemConfiguration {
             :>> mode = TugMode::stackThrust; :>> sepThrusting = true; :>> highVoltageBusOn = true;
             :>> highGainAntennaOn = false; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 41.6 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute droHold : SubsystemConfiguration {
             :>> mode = TugMode::droHold; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 1.5 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute dockedPassive : SubsystemConfiguration {
             :>> mode = TugMode::dockedPassive; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = true; :>> wheelControl = false;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 1.3 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute disposal : SubsystemConfiguration {
             :>> mode = TugMode::disposal; :>> sepThrusting = true; :>> highVoltageBusOn = true;
             :>> highGainAntennaOn = false; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 41.5 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute safe : SubsystemConfiguration {
             :>> mode = TugMode::safe; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = false; :>> proximityLinkOn = false; :>> wheelControl = false;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 1.1 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
         attribute abortHold : SubsystemConfiguration {
             :>> mode = TugMode::abortHold; :>> sepThrusting = false; :>> highVoltageBusOn = false;
             :>> highGainAntennaOn = true; :>> proximityLinkOn = false; :>> wheelControl = true;
-            :>> captureSystemArmed = false; :>> sensorsOn = false; :>> busLoad = 1.6 [kW];
+            :>> captureSystemArmed = false; :>> sensorsOn = false;
         }
-        attribute rows : SubsystemConfiguration[15] = (launch, coast, thrust, approach,
+        attribute rows : SubsystemConfiguration[16] = (launch, earlyOperations, coast, thrust, approach,
             proximityOperations, retreat, capture, despin, stackCoast, stackThrust, droHold,
             dockedPassive, disposal, safe, abortHold);
         assert constraint safeModeShedsLoads {
@@ -234,13 +241,6 @@ package TethysModes {
     }
 
     // ---- 3. Tug mode machine with subsystem regions -------------------------------------
-    attribute def CaptureEnvelope {
-        doc /* The capture-system envelope the CaptureGo guard checks the target estimate
-             * against; Argent's values are those of its capture system (TethysTug::argent). */
-        attribute maximumBodyMass : MassValue;
-        attribute maximumBodyDiameter : LengthValue;
-    }
-
     state def TugModes parallel {
         doc /* The Argent mode machine. Region `flightMode` is the mode of the vehicle as a
              * whole — free-flight modes before capture, stacked modes after, safe mode from
@@ -251,9 +251,9 @@ package TethysModes {
              * and AbortReturn are raised on board (TethysFdir) and accepted from the tug
              * itself, not from the port. */
         port command : CommandPort;
-        attribute envelope : CaptureEnvelope {
-            :>> maximumBodyMass = 1000.0e3 [kg];
-            :>> maximumBodyDiameter = 10.0 [m];
+        attribute envelope : CaptureCommitEnvelope {
+            :>> maximumBodyMass = captureCommitEnvelope.maximumBodyMass;
+            :>> maximumBodyDiameter = captureCommitEnvelope.maximumBodyDiameter;
         }
         attribute rendezvousRange : LengthValue = 50.0 [km];
         attribute arraysDeploymentTimeout : DurationValue = 2.0 [h];
@@ -474,26 +474,32 @@ package TethysModes {
     }
 
     attribute def TargetEstimate {
-        doc /* A characterised target estimate as delivered to CaptureGo: one of the small,
-             * nominal and large cases of the pre-arrival uncertainty (domain list §7). */
+        doc /* A characterised target estimate as delivered to CaptureGo: the mass and diameter
+             * of one case of the target-case table (TethysTarget::targetCases). */
         attribute estimatedDiameter : LengthValue;
         attribute estimatedMass : MassValue;
     }
     attribute smallTarget : TargetEstimate {
-        doc /* Small case: 4.5 m, about 105 t at the nominal bulk density. */
-        :>> estimatedDiameter = 4.5 [m];
-        :>> estimatedMass = 105.0e3 [kg];
+        doc /* The small design case: 5.7 m, about 213 t. */
+        :>> estimatedDiameter = targetCases.small.meanDiameter;
+        :>> estimatedMass = targetCases.small.mass;
     }
     attribute nominalTarget : TargetEstimate {
-        doc /* Nominal case: Amaranth as catalogued, 6.8 m and 362 t. */
-        :>> estimatedDiameter = 6.8 [m];
-        :>> estimatedMass = 362.0e3 [kg];
+        doc /* The nominal case: Amaranth as catalogued, 6.8 m and 362 t. */
+        :>> estimatedDiameter = targetCases.nominal.meanDiameter;
+        :>> estimatedMass = targetCases.nominal.mass;
     }
     attribute largeTarget : TargetEstimate {
-        doc /* Large case: 10.5 m, about 1 335 t — over the capture envelope in both
-             * dimensions, so the mode machine refuses CaptureGo and retreats. */
-        :>> estimatedDiameter = 10.5 [m];
-        :>> estimatedMass = 1335.0e3 [kg];
+        doc /* The large design case: 7.6 m, about 506 t — inside the commit envelope, so the
+             * mode machine accepts CaptureGo. */
+        :>> estimatedDiameter = targetCases.large.meanDiameter;
+        :>> estimatedMass = targetCases.large.mass;
+    }
+    attribute denseTarget : TargetEstimate {
+        doc /* The densest knowledge bound: 6.8 m, about 576 t — inside the bag but over the
+             * return envelope, so the mode machine refuses CaptureGo and retreats. */
+        :>> estimatedDiameter = targetCases.densest.meanDiameter;
+        :>> estimatedMass = targetCases.densest.mass;
     }
 
     part def OperationsCentre {
@@ -503,9 +509,9 @@ package TethysModes {
         port tugUplink : ~CommandPort;
         port inspectorUplink : ~CommandPort;
         attribute target : TargetEstimate;
-        attribute envelope : CaptureEnvelope {
-            :>> maximumBodyMass = 1000.0e3 [kg];
-            :>> maximumBodyDiameter = 10.0 [m];
+        attribute envelope : CaptureCommitEnvelope {
+            :>> maximumBodyMass = captureCommitEnvelope.maximumBodyMass;
+            :>> maximumBodyDiameter = captureCommitEnvelope.maximumBodyDiameter;
         }
 
         perform action nominalCampaign {
@@ -577,9 +583,9 @@ package TethysModes {
         doc /* The nominal campaign against the nominal target estimate: capture is accepted. */
         part :>> operations { attribute :>> target = nominalTarget; }
     }
-    part largeTargetFlight : FlightScenario {
-        doc /* The same campaign against the large target estimate: CaptureGo is refused and
-             * the tug retreats; the stacked modes are never entered. */
-        part :>> operations { attribute :>> target = largeTarget; }
+    part denseTargetFlight : FlightScenario {
+        doc /* The same campaign against the densest target estimate: CaptureGo is refused on
+             * the return envelope and the tug retreats; the stacked modes are never entered. */
+        part :>> operations { attribute :>> target = denseTarget; }
     }
 }

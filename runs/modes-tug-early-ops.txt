@@ -94,23 +94,17 @@
   Use %features TethysModes::nominalFlight to inspect
 [trace] materialize: nominalTarget #9
 [trace] eval feature nominalTarget -> instance#9
-[trace]   eval literal 6.8 -> 6.8
-[trace] eval index -> 6.8 [m]
-[trace]   eval literal 362.0e3 -> 362000.0
-[trace] eval index -> 362000.0 [kg]
-[trace] materialize: CommandPort #10
-[trace] materialize: GroundCommand #11
-[trace]   enter calc SequenceFunctions::isEmpty
-[trace]     eval feature voids -> ()
-[trace]     bind seq = () [argument]
-[trace]   exit calc SequenceFunctions::isEmpty -> true
-[trace] eval invoke isEmpty -> true
-[trace] materialize: OnBoardEvent #12
-[trace]   enter calc SequenceFunctions::isEmpty
-[trace]     eval feature voids -> ()
-[trace]     bind seq = () [argument]
-[trace]   exit calc SequenceFunctions::isEmpty -> true
-[trace] eval invoke isEmpty -> true
+[trace] materialize: targetCases #10
+[trace] materialize: nominal #11
+[trace] materialize: amaranth #12
+[trace]       eval literal 6.8 -> 6.8
+[trace]     eval index -> 6.8 [m]
+[trace]   eval chain meanDiameter -> 6.8 [m]
+[trace] eval chain meanDiameter -> 6.8 [m]
+[trace]       eval literal 362.0e3 -> 362000.0
+[trace]     eval index -> 362000.0 [kg]
+[trace]   eval chain mass -> 362000.0 [kg]
+[trace] eval chain mass -> 362000.0 [kg]
 [trace] materialize: CommandPort #13
 [trace] materialize: GroundCommand #14
 [trace]   enter calc SequenceFunctions::isEmpty
@@ -124,208 +118,670 @@
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: envelope #16
-[trace]   eval literal 1000.0e3 -> 1000000.0
-[trace] eval index -> 1000000.0 [kg]
-[trace]   eval literal 10.0 -> 10.0
-[trace] eval index -> 10.0 [m]
-[trace] materialize: toSeparation #17
-[trace] materialize: separation #18
-[trace] materialize: toDeployment #19
-[trace] materialize: deployment #20
-[trace] materialize: commissioning #21
-[trace] materialize: arc1 #22
-[trace] materialize: arc1Run #23
-[trace] materialize: arc1End #24
-[trace] materialize: opNav #25
-[trace] materialize: arc2 #26
-[trace] materialize: arc2Run #27
-[trace] materialize: arc2End #28
-[trace] materialize: farFieldHold #29
-[trace] materialize: approachGo #30
-[trace] materialize: approachRun #31
-[trace] materialize: rendezvous #32
-[trace] materialize: inspectorCheckout #33
-[trace] materialize: checkoutRun #34
-[trace] materialize: inspectorRelease #35
-[trace] materialize: relayOn #36
-[trace] materialize: imaging #37
-[trace] materialize: characterisation #38
-[trace] materialize: inspectorRetire #39
-[trace] materialize: relayOff #40
-[trace] materialize: captureCommit #41
-[trace] materialize: retreatHold #42
-[trace] materialize: captureRun #43
-[trace] materialize: captureDone #44
-[trace] materialize: despinRun #45
-[trace] materialize: despinDone #46
-[trace] materialize: returnArc #47
-[trace] materialize: returnArcRun #48
-[trace] materialize: returnArcEnd #49
-[trace] materialize: lunarAssistAndInsertion #50
-[trace] materialize: droHold #51
-[trace] materialize: checkout #52
-[trace] materialize: docking #53
-[trace] materialize: utilisation #54
-[trace] materialize: disposal #55
+[trace] materialize: CommandPort #16
+[trace] materialize: GroundCommand #17
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: CommandPort #56
-[trace] materialize: GroundCommand #57
+[trace] materialize: OnBoardEvent #18
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: OnBoardEvent #58
+[trace] materialize: envelope #19
+[trace] materialize: captureCommitEnvelope #20
+[trace] materialize: propellantBudget #21
+[trace] materialize: argentDesign #22
+[trace] start: performed action functions of #22
+[trace] materialize: TugFunctions #23
+[trace] materialize: structure #24
+[trace] start: performed action captureBody of #24
+[trace] materialize: CaptureBody #25
+[trace]                     eval feature structure -> instance#24
+[trace] materialize: thermal #26
+[trace] start: performed action rejectHeat of #26
+[trace] materialize: RejectHeat #27
+[trace]                     eval feature thermal -> instance#26
+[trace] materialize: eps #28
+[trace] start: performed action providePower of #28
+[trace] materialize: ProvidePower #29
+[trace]                     eval feature eps -> instance#28
+[trace] materialize: cdh #30
+[trace] start: performed action handleData of #30
+[trace] materialize: HandleData #31
+[trace]                     eval feature cdh -> instance#30
+[trace] materialize: telecom #32
+[trace] start: performed action communicate of #32
+[trace] materialize: Communicate #33
+[trace]                     eval feature telecom -> instance#32
+[trace] materialize: gnc #34
+[trace] start: performed action determineAttitude of #34
+[trace] materialize: DetermineAttitude #35
+[trace] start: performed action controlAttitude of #34
+[trace] materialize: ControlAttitude #36
+[trace] start: performed action navigateRelative of #34
+[trace] materialize: NavigateRelative #37
+[trace]                     eval feature gnc -> instance#34
+[trace] materialize: sep #38
+[trace] start: performed action processPower of #38
+[trace] materialize: ProcessPower #39
+[trace] start: performed action generateThrust of #38
+[trace] materialize: GenerateThrust #40
+[trace] start: performed action feedXenon of #38
+[trace] materialize: FeedXenon #41
+[trace]                     eval feature sep -> instance#38
+[trace] materialize: rcs #42
+[trace] start: performed action despinBody of #42
+[trace] materialize: DespinBody #43
+[trace]                     eval feature rcs -> instance#42
+[trace] materialize: captureSystem #44
+[trace]                     eval feature captureSystem -> instance#44
+[trace] materialize: sensors #45
+[trace] start: performed action characteriseTarget of #45
+[trace] materialize: CharacteriseTarget #46
+[trace]                     eval feature sensors -> instance#45
+[trace]                   eval sequence of 10 -> (instance#24, instance#26, instance#28, instance#30, instance#32, instance#34, instance#38, instance#42, instance#44, instance#45)
+[trace]                     eval feature structure -> instance#24
+[trace]                     eval feature thermal -> instance#26
+[trace]                     eval feature eps -> instance#28
+[trace]                     eval feature cdh -> instance#30
+[trace]                     eval feature telecom -> instance#32
+[trace]                     eval feature gnc -> instance#34
+[trace]                     eval feature sep -> instance#38
+[trace]                     eval feature rcs -> instance#42
+[trace]                     eval feature captureSystem -> instance#44
+[trace]                     eval feature sensors -> instance#45
+[trace]                   eval sequence of 10 -> (instance#24, instance#26, instance#28, instance#30, instance#32, instance#34, instance#38, instance#42, instance#44, instance#45)
+[trace] run: performed action functions of #22
+[trace] choice step 1: tokens 1@providePower, 2@processPower, 3@generateThrust, 4@feedXenon, 5@determineAttitude, 6@controlAttitude, 7@navigateRelative, 8@captureBody, 9@despinBody, 10@characteriseTarget, 11@handleData, 12@communicate, 13@rejectHeat (unordered; took 13@rejectHeat first; order-dependent: attitude, carrier, contactLoad, heat, highVoltage, loss, lowVoltage, products, relativeState, telemetry, thrust, thrustCommand, thrusterPower, xenon)
+[trace] step 1: no active tokens
+[trace] materialize: argent #47
+[trace] materialize: sep #48
+[trace]                       eval literal 6600.0 -> 6600.0
+[trace]                     eval index -> 6600.0 [kg]
+[trace]                   eval chain xenonMass -> 6600.0 [kg]
+[trace]                 eval chain xenonMass -> 6600.0 [kg]
+[trace]               eval feature loaded -> 6600.0 [kg]
+[trace]                 eval literal 1.0 -> 1.0
+[trace]                 eval feature residualFraction -> 0.02
+[trace]               eval operator - -> 0.98
+[trace]             eval operator * -> 6468.0 [kg]
+[trace]           eval feature usable -> 6468.0 [kg]
+[trace] materialize: pdrPolicy #49
+[trace]               eval feature pdrPolicy -> instance#49
+[trace]             eval feature activePolicy -> instance#49
+[trace]           eval chain systemMargin -> 0.15
+[trace] materialize: transferBook #50
+[trace]                         eval literal 2800.0 -> 2800.0
+[trace]                       eval index -> 2800.0 ['m/s']
+[trace]                     eval chain deltaVOutbound -> 2800.0 ['m/s']
+[trace]                       eval literal 1 -> 1
+[trace]                     eval index -> 1 ['m/s']
+[trace]                   eval operator / -> 2800.0
+[trace]                 eval feature deltaVOutbound -> 2800.0
+[trace] materialize: massBudget #51
+[trace]                                   eval literal 5600.0 -> 5600.0
+[trace]                                 eval index -> 5600.0 [kg]
+[trace]                               eval chain dryMass -> 5600.0 [kg]
+[trace]                             eval feature dryAllocation -> 5600.0 [kg]
+[trace]                               eval chain xenonMass -> 6600.0 [kg]
+[trace]                             eval feature xenon -> 6600.0 [kg]
+[trace]                           eval operator + -> 12200.0 [kg]
+[trace] materialize: rcs #52
+[trace]                                   eval literal 400.0 -> 400.0
+[trace]                                 eval index -> 400.0 [kg]
+[trace]                               eval chain hydrazineMass -> 400.0 [kg]
+[trace]                             eval chain hydrazineMass -> 400.0 [kg]
+[trace]                           eval feature hydrazine -> 400.0 [kg]
+[trace]                         eval operator + -> 12600.0 [kg]
+[trace] materialize: wren #53
+[trace]                               eval literal 24.0 -> 24.0
+[trace]                             eval index -> 24.0 [kg]
+[trace]                           eval chain wetMass -> 24.0 [kg]
+[trace]                         eval feature inspector -> 24.0 [kg]
+[trace]                       eval operator + -> 12624.0 [kg]
+[trace]                     eval chain launchMass -> 12624.0 [kg]
+[trace]                             eval feature structure -> instance#24
+[trace] materialize: PrimaryStructure #54
+[trace]                               eval feature primaryStructure -> instance#54
+[trace] materialize: LaunchAdapterRing #55
+[trace]                               eval feature launchAdapterRing -> instance#55
+[trace] materialize: InspectorDispenser #56
+[trace]                               eval feature inspectorDispenser -> instance#56
+[trace] materialize: ArrayDeploymentMechanism #57
+[trace] materialize: ArrayDeploymentMechanism #58
+[trace]                               eval feature arrayDeploymentMechanisms -> (instance#57, instance#58)
+[trace] materialize: RadiatorDeploymentMechanism #59
+[trace]                               eval feature radiatorDeploymentMechanism -> instance#59
+[trace] materialize: DockingMechanism #60
+[trace]                               eval feature dockingMechanism -> instance#60
+[trace] materialize: Harness #61
+[trace]                               eval feature harness -> instance#61
+[trace]                             eval sequence of 7 -> (instance#54, instance#55, instance#56, instance#57, instance#58, instance#59, instance#60, instance#61)
+[trace]                           eval chain units -> (instance#54, instance#55, instance#56, instance#57, instance#58, instance#59, instance#60, instance#61)
+[trace]                             eval feature thermal -> instance#26
+[trace] materialize: InsulationBlankets #62
+[trace]                               eval feature insulation -> instance#62
+[trace] materialize: RadiatorPanel #63
+[trace] materialize: RadiatorPanel #64
+[trace]                               eval feature radiators -> (instance#63, instance#64)
+[trace] materialize: CoolantPump #65
+[trace] materialize: CoolantPump #66
+[trace]                               eval feature coolantPumps -> (instance#65, instance#66)
+[trace] materialize: LoopPlumbing #67
+[trace]                               eval feature loopPlumbing -> instance#67
+[trace] materialize: HeaterSet #68
+[trace]                               eval feature heaters -> instance#68
+[trace] materialize: ThermalSensors #69
+[trace]                               eval feature sensors -> instance#69
+[trace]                             eval sequence of 6 -> (instance#62, instance#63, instance#64, instance#65, instance#66, instance#67, instance#68, instance#69)
+[trace]                           eval chain units -> (instance#62, instance#63, instance#64, instance#65, instance#66, instance#67, instance#68, instance#69)
+[trace]                             eval feature eps -> instance#28
+[trace] materialize: SolarArrayWing #70
+[trace] materialize: SolarArrayWing #71
+[trace]                               eval feature arrayWings -> (instance#70, instance#71)
+[trace] materialize: ArrayDriveMechanism #72
+[trace] materialize: ArrayDriveMechanism #73
+[trace]                               eval feature arrayDrives -> (instance#72, instance#73)
+[trace] materialize: Battery #74
+[trace] materialize: Battery #75
+[trace]                               eval feature batteries -> (instance#74, instance#75)
+[trace] materialize: PowerConditioningUnit #76
+[trace]                               eval feature powerConditioning -> instance#76
+[trace] materialize: HighVoltageSwitchUnit #77
+[trace]                               eval feature highVoltageSwitching -> instance#77
+[trace]                             eval sequence of 5 -> (instance#70, instance#71, instance#72, instance#73, instance#74, instance#75, instance#76, instance#77)
+[trace]                           eval chain units -> (instance#70, instance#71, instance#72, instance#73, instance#74, instance#75, instance#76, instance#77)
+[trace]                             eval feature cdh -> instance#30
+[trace] materialize: FlightComputer #78
+[trace] materialize: FlightComputer #79
+[trace]                               eval feature flightComputers -> (instance#78, instance#79)
+[trace] materialize: MassMemory #80
+[trace] materialize: MassMemory #81
+[trace]                               eval feature massMemories -> (instance#80, instance#81)
+[trace] materialize: RemoteInterfaceUnit #82
+[trace] materialize: RemoteInterfaceUnit #83
+[trace]                               eval feature remoteInterfaceUnits -> (instance#82, instance#83)
+[trace]                             eval sequence of 3 -> (instance#78, instance#79, instance#80, instance#81, instance#82, instance#83)
+[trace]                           eval chain units -> (instance#78, instance#79, instance#80, instance#81, instance#82, instance#83)
+[trace]                             eval feature telecom -> instance#32
+[trace] materialize: DeepSpaceTransponder #84
+[trace] materialize: DeepSpaceTransponder #85
+[trace]                               eval feature transponders -> (instance#84, instance#85)
+[trace] materialize: TravellingWaveTubeAmplifier #86
+[trace] materialize: TravellingWaveTubeAmplifier #87
+[trace]                               eval feature amplifiers -> (instance#86, instance#87)
+[trace] materialize: HighGainAntenna #88
+[trace]                               eval feature highGainAntenna -> instance#88
+[trace] materialize: AntennaPointingMechanism #89
+[trace]                               eval feature antennaPointing -> instance#89
+[trace] materialize: LowGainAntenna #90
+[trace] materialize: LowGainAntenna #91
+[trace]                               eval feature lowGainAntennas -> (instance#90, instance#91)
+[trace] materialize: ProximityTransceiver #92
+[trace] materialize: ProximityTransceiver #93
+[trace]                               eval feature proximityTransceivers -> (instance#92, instance#93)
+[trace]                             eval sequence of 6 -> (instance#84, instance#85, instance#86, instance#87, instance#88, instance#89, instance#90, instance#91, instance#92, instance#93)
+[trace]                           eval chain units -> (instance#84, instance#85, instance#86, instance#87, instance#88, instance#89, instance#90, instance#91, instance#92, instance#93)
+[trace]                             eval feature gnc -> instance#34
+[trace] materialize: StarTracker #94
+[trace] materialize: StarTracker #95
+[trace]                               eval feature starTrackers -> (instance#94, instance#95)
+[trace] materialize: InertialMeasurementUnit #96
+[trace] materialize: InertialMeasurementUnit #97
+[trace]                               eval feature inertialUnits -> (instance#96, instance#97)
+[trace] materialize: SunSensor #98
+[trace] materialize: SunSensor #99
+[trace] materialize: SunSensor #100
+[trace] materialize: SunSensor #101
+[trace]                               eval feature sunSensors -> (instance#98, instance#99, instance#100, instance#101)
+[trace] materialize: ReactionWheel #102
+[trace] materialize: ReactionWheel #103
+[trace] materialize: ReactionWheel #104
+[trace] materialize: ReactionWheel #105
+[trace]                               eval feature reactionWheels -> (instance#102, instance#103, instance#104, instance#105)
+[trace] materialize: NavigationCamera #106
+[trace] materialize: NavigationCamera #107
+[trace]                               eval feature navigationCameras -> (instance#106, instance#107)
+[trace] materialize: Lidar #108
+[trace] materialize: Lidar #109
+[trace]                               eval feature lidars -> (instance#108, instance#109)
+[trace]                             eval sequence of 6 -> (instance#94, instance#95, instance#96, instance#97, instance#98, instance#99, instance#100, instance#101, instance#102, instance#103, instance#104, instance#105, instance#106, instance#107, instance#108, instance#109)
+[trace]                           eval chain units -> (instance#94, instance#95, instance#96, instance#97, instance#98, instance#99, instance#100, instance#101, instance#102, instance#103, instance#104, instance#105, instance#106, instance#107, instance#108, instance#109)
+[trace]                             eval feature sep -> instance#38
+[trace] materialize: HallThruster #110
+[trace] materialize: HallThruster #111
+[trace] materialize: HallThruster #112
+[trace] materialize: HallThruster #113
+[trace]                               eval feature thrusters -> (instance#110, instance#111, instance#112, instance#113)
+[trace] materialize: PowerProcessingUnit #114
+[trace] materialize: PowerProcessingUnit #115
+[trace] materialize: PowerProcessingUnit #116
+[trace] materialize: PowerProcessingUnit #117
+[trace]                               eval feature powerProcessingUnits -> (instance#114, instance#115, instance#116, instance#117)
+[trace] materialize: XenonTank #118
+[trace] materialize: XenonTank #119
+[trace]                               eval feature xenonTanks -> (instance#118, instance#119)
+[trace] materialize: XenonFlowController #120
+[trace] materialize: XenonFlowController #121
+[trace] materialize: XenonFlowController #122
+[trace] materialize: XenonFlowController #123
+[trace]                               eval feature flowControllers -> (instance#120, instance#121, instance#122, instance#123)
+[trace] materialize: ThrusterGimbal #124
+[trace] materialize: ThrusterGimbal #125
+[trace] materialize: ThrusterGimbal #126
+[trace] materialize: ThrusterGimbal #127
+[trace]                               eval feature gimbals -> (instance#124, instance#125, instance#126, instance#127)
+[trace] materialize: PropellantManagementAssembly #128
+[trace]                               eval feature propellantManagement -> instance#128
+[trace]                             eval sequence of 6 -> (instance#110, instance#111, instance#112, instance#113, instance#114, instance#115, instance#116, instance#117, instance#118, instance#119, instance#120, instance#121, instance#122, instance#123, instance#124, instance#125, instance#126, instance#127, instance#128)
+[trace]                           eval chain units -> (instance#110, instance#111, instance#112, instance#113, instance#114, instance#115, instance#116, instance#117, instance#118, instance#119, instance#120, instance#121, instance#122, instance#123, instance#124, instance#125, instance#126, instance#127, instance#128)
+[trace]                             eval feature rcs -> instance#42
+[trace] materialize: HydrazineThruster #129
+[trace] materialize: HydrazineThruster #130
+[trace] materialize: HydrazineThruster #131
+[trace] materialize: HydrazineThruster #132
+[trace] materialize: HydrazineThruster #133
+[trace] materialize: HydrazineThruster #134
+[trace] materialize: HydrazineThruster #135
+[trace] materialize: HydrazineThruster #136
+[trace] materialize: HydrazineThruster #137
+[trace] materialize: HydrazineThruster #138
+[trace] materialize: HydrazineThruster #139
+[trace] materialize: HydrazineThruster #140
+[trace] materialize: HydrazineThruster #141
+[trace] materialize: HydrazineThruster #142
+[trace] materialize: HydrazineThruster #143
+[trace] materialize: HydrazineThruster #144
+[trace]                               eval feature thrusters -> (instance#129, instance#130, instance#131, instance#132, instance#133, instance#134, instance#135, instance#136, instance#137, instance#138, instance#139, instance#140, instance#141, instance#142, instance#143, instance#144)
+[trace] materialize: HydrazineTank #145
+[trace] materialize: HydrazineTank #146
+[trace]                               eval feature tanks -> (instance#145, instance#146)
+[trace] materialize: RcsFeedAssembly #147
+[trace]                               eval feature feed -> instance#147
+[trace]                             eval sequence of 3 -> (instance#129, instance#130, instance#131, instance#132, instance#133, instance#134, instance#135, instance#136, instance#137, instance#138, instance#139, instance#140, instance#141, instance#142, instance#143, instance#144, instance#145, instance#146, instance#147)
+[trace]                           eval chain units -> (instance#129, instance#130, instance#131, instance#132, instance#133, instance#134, instance#135, instance#136, instance#137, instance#138, instance#139, instance#140, instance#141, instance#142, instance#143, instance#144, instance#145, instance#146, instance#147)
+[trace]                             eval feature captureSystem -> instance#44
+[trace] materialize: CaptureBag #148
+[trace]                               eval feature bag -> instance#148
+[trace] materialize: InflatableBoom #149
+[trace] materialize: InflatableBoom #150
+[trace] materialize: InflatableBoom #151
+[trace] materialize: InflatableBoom #152
+[trace] materialize: InflatableBoom #153
+[trace] materialize: InflatableBoom #154
+[trace]                               eval feature booms -> (instance#149, instance#150, instance#151, instance#152, instance#153, instance#154)
+[trace] materialize: CinchWinch #155
+[trace] materialize: CinchWinch #156
+[trace] materialize: CinchWinch #157
+[trace]                               eval feature winches -> (instance#155, instance#156, instance#157)
+[trace] materialize: InflationSystem #158
+[trace]                               eval feature inflation -> instance#158
+[trace] materialize: ContactSensorSet #159
+[trace]                               eval feature contactSensors -> instance#159
+[trace] materialize: BagReleaseMechanism #160
+[trace]                               eval feature release -> instance#160
+[trace]                             eval sequence of 6 -> (instance#148, instance#149, instance#150, instance#151, instance#152, instance#153, instance#154, instance#155, instance#156, instance#157, instance#158, instance#159, instance#160)
+[trace]                           eval chain units -> (instance#148, instance#149, instance#150, instance#151, instance#152, instance#153, instance#154, instance#155, instance#156, instance#157, instance#158, instance#159, instance#160)
+[trace]                             eval feature sensors -> instance#45
+[trace] materialize: NarrowAngleCamera #161
+[trace]                               eval feature narrowAngleCamera -> instance#161
+[trace] materialize: WideAngleCamera #162
+[trace]                               eval feature wideAngleCamera -> instance#162
+[trace] materialize: ThermalImager #163
+[trace]                               eval feature thermalImager -> instance#163
+[trace]                             eval sequence of 3 -> (instance#161, instance#162, instance#163)
+[trace]                           eval chain units -> (instance#161, instance#162, instance#163)
+[trace]                         eval sequence of 10 -> (instance#54, instance#55, instance#56, instance#57, instance#58, instance#59, instance#60, instance#61, instance#62, instance#63, instance#64, instance#65, instance#66, instance#67, instance#68, instance#69, instance#70, instance#71, instance#72, instance#73, instance#74, instance#75, instance#76, instance#77, instance#78, instance#79, instance#80, instance#81, instance#82, instance#83, instance#84, instance#85, instance#86, instance#87, instance#88, instance#89, instance#90, instance#91, instance#92, instance#93, instance#94, instance#95, instance#96, instance#97, instance#98, instance#99, instance#100, instance#101, instance#102, instance#103, instance#104, instance#105, instance#106, instance#107, instance#108, instance#109, instance#110, instance#111, instance#112, instance#113, instance#114, instance#115, instance#116, instance#117, instance#118, instance#119, instance#120, instance#121, instance#122, instance#123, instance#124, instance#125, instance#126, instance#127, instance#128, instance#129, instance#130, instance#131, instance#132, instance#133, instance#134, instance#135, instance#136, instance#137, instance#138, instance#139, instance#140, instance#141, instance#142, instance#143, instance#144, instance#145, instance#146, instance#147, instance#148, instance#149, instance#150, instance#151, instance#152, instance#153, instance#154, instance#155, instance#156, instance#157, instance#158, instance#159, instance#160, instance#161, instance#162, instance#163)
+[trace]                           eval literal 115 -> 115
+[trace]                         eval index -> 115 [kg]
+[trace]                       eval chain mass -> 115 [kg]
+[trace]                     eval chain adapterSeparated -> 115 [kg]
+[trace]                   eval operator - -> 12509.0 [kg]
+[trace]                 eval feature launchMass -> 12509.0 [kg]
+[trace]                       enter calc SequenceFunctions::head
+[trace]                           eval feature thrusters -> (instance#110, instance#111, instance#112, instance#113)
+[trace]                             eval literal 2900 -> 2900
+[trace]                           eval index -> 2900 [s]
+[trace]                             eval literal 2900 -> 2900
+[trace]                           eval index -> 2900 [s]
+[trace]                             eval literal 2900 -> 2900
+[trace]                           eval index -> 2900 [s]
+[trace]                             eval literal 2900 -> 2900
+[trace]                           eval index -> 2900 [s]
+[trace]                         eval chain specificImpulse -> (2900 [s], 2900 [s], 2900 [s], 2900 [s])
+[trace]                         bind seq = (2900 [s], 2900 [s], 2900 [s], 2900 [s]) [argument]
+[trace]                       exit calc SequenceFunctions::head -> 2900 [s]
+[trace]                     eval invoke head -> 2900 [s]
+[trace]                   eval chain specificImpulse -> 2900 [s]
+[trace]                 eval feature isp -> 2900 [s]
+[trace]                 enter calc TethysBudgets::PropellantFor
+[trace]                   bind deltaVMPerS = 2800.0 [argument]
+[trace]                   bind initialMass = 12509.0 [kg] [argument]
+[trace]                   bind specificImpulse = 2900 [s] [argument]
+[trace]                   stmt return
+[trace]                       eval feature initialMass -> 12509.0 [kg]
+[trace]                         eval literal 1.0 -> 1.0
+[trace]                             eval feature deltaVMPerS -> 2800.0
+[trace]                                 eval feature specificImpulse -> 2900 [s]
+[trace]                                   eval literal 1 -> 1
+[trace]                                 eval index -> 1 [s]
+[trace]                               eval operator / -> 2900.0
+[trace]                                       eval literal 9.80665 -> 9.80665
+[trace]                                     eval index -> 9.80665 ['m⋅s⁻²']
+[trace]                                   eval feature standardGravity -> 9.80665 ['m⋅s⁻²']
+[trace]                                     eval literal 1 -> 1
+[trace]                                   eval index -> 1 ['m⋅s⁻²']
+[trace]                                 eval operator / -> 9.80665
+[trace]                               eval feature standardGravityMPerS2 -> 9.80665
+[trace]                             eval operator * -> 28439.285
+[trace]                           eval operator / -> 0.09845535849442066
+[trace]                           enter calc TethysBudgets::ExpNeg
+[trace]                             bind x = 0.09845535849442066 [argument]
+[trace]                             stmt return
+[trace]                                 eval literal 2.718281828459045 -> 2.718281828459045
+[trace]                                   eval feature x -> 0.09845535849442066
+[trace]                                 eval operator - -> -0.09845535849442066
+[trace]                               eval operator ** -> 0.9062361474573144
+[trace]                           exit calc TethysBudgets::ExpNeg -> (0.9062361474573144)
+[trace]                         eval invoke ExpNeg -> (0.9062361474573144)
+[trace]                       eval operator - -> 0.0937638525426856
+[trace]                     eval operator * -> 1172.892031456454 [kg]
+[trace]                 exit calc TethysBudgets::PropellantFor -> (1172.892031456454 [kg])
+[trace]               eval invoke PropellantFor -> (1172.892031456454 [kg])
+[trace]             eval feature outboundAlone -> 1172.892031456454 [kg]
+[trace]                         eval literal 150.0 -> 150.0
+[trace]                       eval index -> 150.0 ['m/s']
+[trace]                     eval chain deltaVRendezvous -> 150.0 ['m/s']
+[trace]                       eval literal 1 -> 1
+[trace]                     eval index -> 1 ['m/s']
+[trace]                   eval operator / -> 150.0
+[trace]                 eval feature deltaVRendezvous -> 150.0
+[trace]                   eval feature launchMass -> 12509.0 [kg]
+[trace]                   eval feature outboundAlone -> 1172.892031456454 [kg]
+[trace]                 eval operator - -> 11336.107968543545 [kg]
+[trace]                 eval feature isp -> 2900 [s]
+[trace]                 enter calc TethysBudgets::PropellantFor
+[trace]                   bind deltaVMPerS = 150.0 [argument]
+[trace]                   bind initialMass = 11336.107968543545 [kg] [argument]
+[trace]                   bind specificImpulse = 2900 [s] [argument]
+[trace]                   stmt return
+[trace]                       eval feature initialMass -> 11336.107968543545 [kg]
+[trace]                         eval literal 1.0 -> 1.0
+[trace]                             eval feature deltaVMPerS -> 150.0
+[trace]                                 eval feature specificImpulse -> 2900 [s]
+[trace]                                   eval literal 1 -> 1
+[trace]                                 eval index -> 1 [s]
+[trace]                               eval operator / -> 2900.0
+[trace]                                       eval literal 9.80665 -> 9.80665
+[trace]                                     eval index -> 9.80665 ['m⋅s⁻²']
+[trace]                                   eval feature standardGravity -> 9.80665 ['m⋅s⁻²']
+[trace]                                     eval literal 1 -> 1
+[trace]                                   eval index -> 1 ['m⋅s⁻²']
+[trace]                                 eval operator / -> 9.80665
+[trace]                               eval feature standardGravityMPerS2 -> 9.80665
+[trace]                             eval operator * -> 28439.285
+[trace]                           eval operator / -> 0.00527439420505825
+[trace]                           enter calc TethysBudgets::ExpNeg
+[trace]                             bind x = 0.00527439420505825 [argument]
+[trace]                             stmt return
+[trace]                                 eval literal 2.718281828459045 -> 2.718281828459045
+[trace]                                   eval feature x -> 0.00527439420505825
+[trace]                                 eval operator - -> -0.00527439420505825
+[trace]                               eval operator ** -> 0.9947394909893346
+[trace]                           exit calc TethysBudgets::ExpNeg -> (0.9947394909893346)
+[trace]                         eval invoke ExpNeg -> (0.9947394909893346)
+[trace]                       eval operator - -> 0.005260509010665437
+[trace]                     eval operator * -> 59.633698114399586 [kg]
+[trace]                 exit calc TethysBudgets::PropellantFor -> (59.633698114399586 [kg])
+[trace]               eval invoke PropellantFor -> (59.633698114399586 [kg])
+[trace]             eval feature rendezvousAlone -> 59.633698114399586 [kg]
+[trace]           eval operator + -> 1232.5257295708536 [kg]
+[trace]                   eval feature launchMass -> 12509.0 [kg]
+[trace]                   eval feature outboundAlone -> 1172.892031456454 [kg]
+[trace]                 eval operator - -> 11336.107968543545 [kg]
+[trace]                 eval feature rendezvousAlone -> 59.633698114399586 [kg]
+[trace]               eval operator - -> 11276.474270429146 [kg]
+[trace]               eval chain wetMass -> 24.0 [kg]
+[trace]             eval operator - -> 11252.474270429146 [kg]
+[trace]           eval feature tugMassAtTarget -> 11252.474270429146 [kg]
+[trace]           enter calc TethysBudgets::ReturnableBodyMass
+[trace]             bind xenonAvailable = 6468.0 [kg] [argument]
+[trace]             bind systemMargin = 0.15 [argument]
+[trace]             bind tugAloneXenon = 1232.5257295708536 [kg] [argument]
+[trace]             bind tugMassAtTarget = 11252.474270429146 [kg] [argument]
+[trace]             stmt declare isp
+[trace]               eval chain specificImpulse -> 2900 [s]
+[trace]             stmt declare returnFraction
+[trace]                 eval literal 1.0 -> 1.0
+[trace]                               eval literal 160.0 -> 160.0
+[trace]                             eval index -> 160.0 ['m/s']
+[trace]                           eval chain deltaVReturn -> 160.0 ['m/s']
+[trace]                             eval literal 1 -> 1
+[trace]                           eval index -> 1 ['m/s']
+[trace]                         eval operator / -> 160.0
+[trace]                       eval feature deltaVReturn -> 160.0
+[trace]                               eval literal 40.0 -> 40.0
+[trace]                             eval index -> 40.0 ['m/s']
+[trace]                           eval chain deltaVInsertion -> 40.0 ['m/s']
+[trace]                             eval literal 1 -> 1
+[trace]                           eval index -> 1 ['m/s']
+[trace]                         eval operator / -> 40.0
+[trace]                       eval feature deltaVInsertion -> 40.0
+[trace]                     eval operator + -> 200.0
+[trace]                         eval feature isp -> 2900 [s]
+[trace]                           eval literal 1 -> 1
+[trace]                         eval index -> 1 [s]
+[trace]                       eval operator / -> 2900.0
+[trace]                               eval literal 9.80665 -> 9.80665
+[trace]                             eval index -> 9.80665 ['m⋅s⁻²']
+[trace]                           eval feature standardGravity -> 9.80665 ['m⋅s⁻²']
+[trace]                             eval literal 1 -> 1
+[trace]                           eval index -> 1 ['m⋅s⁻²']
+[trace]                         eval operator / -> 9.80665
+[trace]                       eval feature standardGravityMPerS2 -> 9.80665
+[trace]                     eval operator * -> 28439.285
+[trace]                   eval operator / -> 0.007032525606744333
+[trace]                   enter calc TethysBudgets::ExpNeg
+[trace]                     bind x = 0.007032525606744333 [argument]
+[trace]                     stmt return
+[trace]                         eval literal 2.718281828459045 -> 2.718281828459045
+[trace]                           eval feature x -> 0.007032525606744333
+[trace]                         eval operator - -> -0.007032525606744333
+[trace]                       eval operator ** -> 0.9929921447359787
+[trace]                   exit calc TethysBudgets::ExpNeg -> (0.9929921447359787)
+[trace]                 eval invoke ExpNeg -> (0.9929921447359787)
+[trace]               eval operator - -> 0.007007855264021257
+[trace]             stmt declare forReturnArcs
+[trace]                   eval feature xenonAvailable -> 6468.0 [kg]
+[trace]                     eval literal 1.0 -> 1.0
+[trace]                     eval feature systemMargin -> 0.15
+[trace]                   eval operator + -> 1.15
+[trace]                 eval operator / -> 5624.347826086957 [kg]
+[trace]                   eval feature tugAloneXenon -> 1232.5257295708536 [kg]
+[trace]                     eval literal 1.0 -> 1.0
+[trace]                       eval chain missedThrustMargin -> 0.1
+[trace]                     eval feature missedThrustMargin -> 0.1
+[trace]                   eval operator + -> 1.1
+[trace]                 eval operator * -> 1355.778302527939 [kg]
+[trace]               eval operator - -> 4268.569523559017 [kg]
+[trace]             stmt return
+[trace]                   eval feature forReturnArcs -> 4268.569523559017 [kg]
+[trace]                       eval literal 1.0 -> 1.0
+[trace]                         eval chain missedThrustMargin -> 0.1
+[trace]                       eval feature missedThrustMargin -> 0.1
+[trace]                     eval operator + -> 1.1
+[trace]                     eval feature returnFraction -> 0.007007855264021257
+[trace]                   eval operator * -> 0.007708640790423383
+[trace]                 eval operator / -> 553738.2840386021 [kg]
+[trace]                 eval feature tugMassAtTarget -> 11252.474270429146 [kg]
+[trace]               eval operator - -> 542485.809768173 [kg]
+[trace]           exit calc TethysBudgets::ReturnableBodyMass -> (542485.809768173 [kg])
+[trace]         eval invoke ReturnableBodyMass -> (542485.809768173 [kg])
+[trace]       eval chain returnableBodyMass -> 542485.809768173 [kg]
+[trace] materialize: captureSystem #164
+[trace]           eval literal 1000.0e3 -> 1000000.0
+[trace]         eval index -> 1000000.0 [kg]
+[trace]       eval chain maximumBodyMass -> 1000000.0 [kg]
+[trace]     eval operator < -> true
+[trace]     eval chain returnableBodyMass -> 542485.809768173 [kg]
+[trace]   eval operator if -> 542485.809768173 [kg]
+[trace] eval chain maximumBodyMass -> 542485.809768173 [kg]
+[trace]       eval literal 10.0 -> 10.0
+[trace]     eval index -> 10.0 [m]
+[trace]   eval chain maximumBodyDiameter -> 10.0 [m]
+[trace] eval chain maximumBodyDiameter -> 10.0 [m]
+[trace] materialize: toSeparation #165
+[trace] materialize: separation #166
+[trace] materialize: toDeployment #167
+[trace] materialize: deployment #168
+[trace] materialize: commissioning #169
+[trace] materialize: arc1 #170
+[trace] materialize: arc1Run #171
+[trace] materialize: arc1End #172
+[trace] materialize: opNav #173
+[trace] materialize: arc2 #174
+[trace] materialize: arc2Run #175
+[trace] materialize: arc2End #176
+[trace] materialize: farFieldHold #177
+[trace] materialize: approachGo #178
+[trace] materialize: approachRun #179
+[trace] materialize: rendezvous #180
+[trace] materialize: inspectorCheckout #181
+[trace] materialize: checkoutRun #182
+[trace] materialize: inspectorRelease #183
+[trace] materialize: relayOn #184
+[trace] materialize: imaging #185
+[trace] materialize: characterisation #186
+[trace] materialize: inspectorRetire #187
+[trace] materialize: relayOff #188
+[trace] materialize: captureCommit #189
+[trace] materialize: retreatHold #190
+[trace] materialize: captureRun #191
+[trace] materialize: captureDone #192
+[trace] materialize: despinRun #193
+[trace] materialize: despinDone #194
+[trace] materialize: returnArc #195
+[trace] materialize: returnArcRun #196
+[trace] materialize: returnArcEnd #197
+[trace] materialize: lunarAssistAndInsertion #198
+[trace] materialize: droHold #199
+[trace] materialize: checkout #200
+[trace] materialize: docking #201
+[trace] materialize: utilisation #202
+[trace] materialize: disposal #203
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: CommandPort #59
-[trace] materialize: GroundCommand #60
+[trace] materialize: CommandPort #204
+[trace] materialize: GroundCommand #205
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: OnBoardEvent #61
+[trace] materialize: OnBoardEvent #206
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace]   eval literal 1000.0e3 -> 1000000.0
-[trace] eval index -> 1000000.0 [kg]
-[trace]   eval literal 10.0 -> 10.0
-[trace] eval index -> 10.0 [m]
-[trace] materialize: flightMode #62
-[trace] materialize: sepString #63
-[trace] materialize: telecom #64
-[trace] materialize: attitudeControl #65
-[trace] materialize: captureMechanism #66
-[trace] materialize: entryAction #67
-[trace] materialize: Action #68
-[trace] materialize: Action #69
-[trace] materialize: MassValue #70
-[trace] materialize: MassValue #71
-[trace] materialize: StructureAndMechanisms #72
-[trace] materialize: MechanicalPort #73
-[trace] materialize: MechanicalLoad #74
-[trace] materialize: AccelerationValue #75
-[trace] materialize: ForceValue #76
+[trace] materialize: CommandPort #207
+[trace] materialize: GroundCommand #208
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: Boolean #77
-[trace] materialize: MechanicalPort #78
-[trace] materialize: MechanicalLoad #79
-[trace] materialize: AccelerationValue #80
-[trace] materialize: ForceValue #81
+[trace] materialize: OnBoardEvent #209
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: Boolean #82
-[trace] materialize: DockingPort #83
-[trace] materialize: MechanicalLoad #84
-[trace] materialize: AccelerationValue #85
-[trace] materialize: ForceValue #86
+[trace] eval chain maximumBodyMass -> 542485.809768173 [kg]
+[trace] eval chain maximumBodyDiameter -> 10.0 [m]
+[trace] materialize: flightMode #210
+[trace] materialize: sepString #211
+[trace] materialize: telecom #212
+[trace] materialize: attitudeControl #213
+[trace] materialize: captureMechanism #214
+[trace] materialize: entryAction #215
+[trace] materialize: Action #216
+[trace] materialize: Action #217
+[trace] materialize: MassValue #218
+[trace] materialize: MassValue #219
+[trace] materialize: StructureAndMechanisms #220
+[trace] materialize: MechanicalPort #221
+[trace] materialize: MechanicalLoad #222
+[trace] materialize: AccelerationValue #223
+[trace] materialize: ForceValue #224
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: ElectricalPower #87
-[trace] materialize: ElectricPotentialValue #88
-[trace] materialize: PowerValue #89
+[trace] materialize: Boolean #225
+[trace] materialize: MechanicalPort #226
+[trace] materialize: MechanicalLoad #227
+[trace] materialize: AccelerationValue #228
+[trace] materialize: ForceValue #229
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: Telemetry #90
-[trace] materialize: Real #91
-[trace] materialize: Real #92
+[trace] materialize: Boolean #230
+[trace] materialize: DockingPort #231
+[trace] materialize: MechanicalLoad #232
+[trace] materialize: AccelerationValue #233
+[trace] materialize: ForceValue #234
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: MassValue #93
-[trace] materialize: PowerOutlet #94
-[trace] materialize: ElectricalPower #95
-[trace] materialize: ElectricPotentialValue #96
-[trace] materialize: PowerValue #97
+[trace] materialize: ElectricalPower #235
+[trace] materialize: ElectricPotentialValue #236
+[trace] materialize: PowerValue #237
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: DataBusPort #98
-[trace] materialize: Telemetry #99
-[trace] materialize: Real #100
-[trace] materialize: Real #101
+[trace] materialize: Telemetry #238
+[trace] materialize: Real #239
+[trace] materialize: Real #240
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: Telecommand #102
+[trace] materialize: MassValue #241
+[trace] materialize: PowerOutlet #242
+[trace] materialize: ElectricalPower #243
+[trace] materialize: ElectricPotentialValue #244
+[trace] materialize: PowerValue #245
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
+[trace] materialize: DataBusPort #246
+[trace] materialize: Telemetry #247
+[trace] materialize: Real #248
+[trace] materialize: Real #249
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: ThermalControl #103
-[trace] materialize: ThermalPort #104
-[trace] materialize: Heat #105
-[trace] materialize: PowerValue #106
-[trace]   enter calc SequenceFunctions::isEmpty
-[trace]     eval feature voids -> ()
-[trace]     bind seq = () [argument]
-[trace]   exit calc SequenceFunctions::isEmpty -> true
-[trace] eval invoke isEmpty -> true
-[trace] materialize: ThermalPort #107
-[trace] materialize: Heat #108
-[trace] materialize: PowerValue #109
-[trace]   enter calc SequenceFunctions::isEmpty
-[trace]     eval feature voids -> ()
-[trace]     bind seq = () [argument]
-[trace]   exit calc SequenceFunctions::isEmpty -> true
-[trace] eval invoke isEmpty -> true
-[trace] materialize: MassValue #110
-[trace] materialize: PowerOutlet #111
-[trace] materialize: ElectricalPower #112
-[trace] materialize: ElectricPotentialValue #113
-[trace] materialize: PowerValue #114
-[trace]   enter calc SequenceFunctions::isEmpty
-[trace]     eval feature voids -> ()
-[trace]     bind seq = () [argument]
-[trace]   exit calc SequenceFunctions::isEmpty -> true
-[trace] eval invoke isEmpty -> true
-[trace] materialize: DataBusPort #115
-[trace] materialize: Telemetry #116
-[trace] materialize: Real #117
-[trace] materialize: Real #118
-[trace]   enter calc SequenceFunctions::isEmpty
-[trace]     eval feature voids -> ()
-[trace]     bind seq = () [argument]
-[trace]   exit calc SequenceFunctions::isEmpty -> true
-[trace] eval invoke isEmpty -> true
-[trace] materialize: Telecommand #119
+[trace] materialize: Telecommand #250
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
@@ -336,63 +792,43 @@
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: ElectricalPowerSystem #120
-[trace] materialize: PowerValue #121
-[trace] materialize: PowerOutlet #122
-[trace] materialize: ElectricalPower #123
-[trace] materialize: ElectricPotentialValue #124
-[trace] materialize: PowerValue #125
+[trace] materialize: ThermalControl #251
+[trace] materialize: ThermalPort #252
+[trace] materialize: Heat #253
+[trace] materialize: PowerValue #254
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: PowerOutlet #126
-[trace] materialize: ElectricalPower #127
-[trace] materialize: ElectricPotentialValue #128
-[trace] materialize: PowerValue #129
+[trace] materialize: ThermalPort #255
+[trace] materialize: Heat #256
+[trace] materialize: PowerValue #257
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: UmbilicalPort #130
-[trace] materialize: ElectricalPower #131
-[trace] materialize: ElectricPotentialValue #132
-[trace] materialize: PowerValue #133
+[trace] materialize: MassValue #258
+[trace] materialize: PowerOutlet #259
+[trace] materialize: ElectricalPower #260
+[trace] materialize: ElectricPotentialValue #261
+[trace] materialize: PowerValue #262
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: Telemetry #134
-[trace] materialize: Real #135
-[trace] materialize: Real #136
+[trace] materialize: DataBusPort #263
+[trace] materialize: Telemetry #264
+[trace] materialize: Real #265
+[trace] materialize: Real #266
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: MassValue #137
-[trace] materialize: PowerOutlet #138
-[trace] materialize: ElectricalPower #139
-[trace] materialize: ElectricPotentialValue #140
-[trace] materialize: PowerValue #141
-[trace]   enter calc SequenceFunctions::isEmpty
-[trace]     eval feature voids -> ()
-[trace]     bind seq = () [argument]
-[trace]   exit calc SequenceFunctions::isEmpty -> true
-[trace] eval invoke isEmpty -> true
-[trace] materialize: DataBusPort #142
-[trace] materialize: Telemetry #143
-[trace] materialize: Real #144
-[trace] materialize: Real #145
-[trace]   enter calc SequenceFunctions::isEmpty
-[trace]     eval feature voids -> ()
-[trace]     bind seq = () [argument]
-[trace]   exit calc SequenceFunctions::isEmpty -> true
-[trace] eval invoke isEmpty -> true
-[trace] materialize: Telecommand #146
+[trace] materialize: Telecommand #267
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
@@ -403,91 +839,63 @@
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: CommandAndDataHandling #147
-[trace] materialize: DataBusPort #148
-[trace] materialize: Telemetry #149
-[trace] materialize: Real #150
-[trace] materialize: Real #151
+[trace] materialize: ElectricalPowerSystem #268
+[trace] materialize: PowerValue #269
+[trace] materialize: PowerOutlet #270
+[trace] materialize: ElectricalPower #271
+[trace] materialize: ElectricPotentialValue #272
+[trace] materialize: PowerValue #273
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: Telecommand #152
+[trace] materialize: PowerOutlet #274
+[trace] materialize: ElectricalPower #275
+[trace] materialize: ElectricPotentialValue #276
+[trace] materialize: PowerValue #277
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: MassValue #153
-[trace] materialize: PowerOutlet #154
-[trace] materialize: ElectricalPower #155
-[trace] materialize: ElectricPotentialValue #156
-[trace] materialize: PowerValue #157
+[trace] materialize: UmbilicalPort #278
+[trace] materialize: ElectricalPower #279
+[trace] materialize: ElectricPotentialValue #280
+[trace] materialize: PowerValue #281
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: DataBusPort #158
-[trace] materialize: Telemetry #159
-[trace] materialize: Real #160
-[trace] materialize: Real #161
+[trace] materialize: Telemetry #282
+[trace] materialize: Real #283
+[trace] materialize: Real #284
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: Telecommand #162
+[trace] materialize: MassValue #285
+[trace] materialize: PowerOutlet #286
+[trace] materialize: ElectricalPower #287
+[trace] materialize: ElectricPotentialValue #288
+[trace] materialize: PowerValue #289
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
+[trace] materialize: DataBusPort #290
+[trace] materialize: Telemetry #291
+[trace] materialize: Real #292
+[trace] materialize: Real #293
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: Telecommunications #163
-[trace] materialize: RfPort #164
-[trace] materialize: RfCarrier #165
-[trace] materialize: FrequencyValue #166
-[trace] materialize: PowerValue #167
-[trace]   enter calc SequenceFunctions::isEmpty
-[trace]     eval feature voids -> ()
-[trace]     bind seq = () [argument]
-[trace]   exit calc SequenceFunctions::isEmpty -> true
-[trace] eval invoke isEmpty -> true
-[trace] materialize: RfPort #168
-[trace] materialize: RfCarrier #169
-[trace] materialize: FrequencyValue #170
-[trace] materialize: PowerValue #171
-[trace]   enter calc SequenceFunctions::isEmpty
-[trace]     eval feature voids -> ()
-[trace]     bind seq = () [argument]
-[trace]   exit calc SequenceFunctions::isEmpty -> true
-[trace] eval invoke isEmpty -> true
-[trace] materialize: MassValue #172
-[trace] materialize: PowerOutlet #173
-[trace] materialize: ElectricalPower #174
-[trace] materialize: ElectricPotentialValue #175
-[trace] materialize: PowerValue #176
-[trace]   enter calc SequenceFunctions::isEmpty
-[trace]     eval feature voids -> ()
-[trace]     bind seq = () [argument]
-[trace]   exit calc SequenceFunctions::isEmpty -> true
-[trace] eval invoke isEmpty -> true
-[trace] materialize: DataBusPort #177
-[trace] materialize: Telemetry #178
-[trace] materialize: Real #179
-[trace] materialize: Real #180
-[trace]   enter calc SequenceFunctions::isEmpty
-[trace]     eval feature voids -> ()
-[trace]     bind seq = () [argument]
-[trace]   exit calc SequenceFunctions::isEmpty -> true
-[trace] eval invoke isEmpty -> true
-[trace] materialize: Telecommand #181
+[trace] materialize: Telecommand #294
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
@@ -498,71 +906,42 @@
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: GuidanceNavigationControl #182
-[trace] materialize: MassValue #183
-[trace] materialize: PowerOutlet #184
-[trace] materialize: ElectricalPower #185
-[trace] materialize: ElectricPotentialValue #186
-[trace] materialize: PowerValue #187
+[trace] materialize: CommandAndDataHandling #295
+[trace] materialize: DataBusPort #296
+[trace] materialize: Telemetry #297
+[trace] materialize: Real #298
+[trace] materialize: Real #299
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: DataBusPort #188
-[trace] materialize: Telemetry #189
-[trace] materialize: Real #190
-[trace] materialize: Real #191
+[trace] materialize: Telecommand #300
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: Telecommand #192
+[trace] materialize: MassValue #301
+[trace] materialize: PowerOutlet #302
+[trace] materialize: ElectricalPower #303
+[trace] materialize: ElectricPotentialValue #304
+[trace] materialize: PowerValue #305
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
+[trace] materialize: DataBusPort #306
+[trace] materialize: Telemetry #307
+[trace] materialize: Real #308
+[trace] materialize: Real #309
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: SolarElectricPropulsion #193
-[trace] materialize: MassValue #194
-[trace] materialize: Natural #195
-[trace] materialize: Natural #196
-[trace] materialize: DurationValue #197
-[trace] materialize: PowerValue #198
-[trace] materialize: FluidPort #199
-[trace] materialize: Propellant #200
-[trace] materialize: MassValue #201
-[trace]   enter calc SequenceFunctions::isEmpty
-[trace]     eval feature voids -> ()
-[trace]     bind seq = () [argument]
-[trace]   exit calc SequenceFunctions::isEmpty -> true
-[trace] eval invoke isEmpty -> true
-[trace] materialize: MassValue #202
-[trace] materialize: PowerOutlet #203
-[trace] materialize: ElectricalPower #204
-[trace] materialize: ElectricPotentialValue #205
-[trace] materialize: PowerValue #206
-[trace]   enter calc SequenceFunctions::isEmpty
-[trace]     eval feature voids -> ()
-[trace]     bind seq = () [argument]
-[trace]   exit calc SequenceFunctions::isEmpty -> true
-[trace] eval invoke isEmpty -> true
-[trace] materialize: DataBusPort #207
-[trace] materialize: Telemetry #208
-[trace] materialize: Real #209
-[trace] materialize: Real #210
-[trace]   enter calc SequenceFunctions::isEmpty
-[trace]     eval feature voids -> ()
-[trace]     bind seq = () [argument]
-[trace]   exit calc SequenceFunctions::isEmpty -> true
-[trace] eval invoke isEmpty -> true
-[trace] materialize: Telecommand #211
+[trace] materialize: Telecommand #310
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
@@ -573,41 +952,165 @@
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: ReactionControl #212
-[trace] materialize: MassValue #213
-[trace] materialize: FluidPort #214
-[trace] materialize: Propellant #215
-[trace] materialize: MassValue #216
+[trace] materialize: Telecommunications #311
+[trace] materialize: RfPort #312
+[trace] materialize: RfCarrier #313
+[trace] materialize: FrequencyValue #314
+[trace] materialize: PowerValue #315
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: MassValue #217
-[trace] materialize: PowerOutlet #218
-[trace] materialize: ElectricalPower #219
-[trace] materialize: ElectricPotentialValue #220
-[trace] materialize: PowerValue #221
+[trace] materialize: RfPort #316
+[trace] materialize: RfCarrier #317
+[trace] materialize: FrequencyValue #318
+[trace] materialize: PowerValue #319
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: DataBusPort #222
-[trace] materialize: Telemetry #223
-[trace] materialize: Real #224
-[trace] materialize: Real #225
+[trace] materialize: MassValue #320
+[trace] materialize: PowerOutlet #321
+[trace] materialize: ElectricalPower #322
+[trace] materialize: ElectricPotentialValue #323
+[trace] materialize: PowerValue #324
 [trace]   enter calc SequenceFunctions::isEmpty
 [trace]     eval feature voids -> ()
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: Telecommand #226
+[trace] materialize: DataBusPort #325
+[trace] materialize: Telemetry #326
+[trace] materialize: Real #327
+[trace] materialize: Real #328
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telecommand #329
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: GuidanceNavigationControl #330
+[trace] materialize: MassValue #331
+[trace] materialize: PowerOutlet #332
+[trace] materialize: ElectricalPower #333
+[trace] materialize: ElectricPotentialValue #334
+[trace] materialize: PowerValue #335
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: DataBusPort #336
+[trace] materialize: Telemetry #337
+[trace] materialize: Real #338
+[trace] materialize: Real #339
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telecommand #340
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: SolarElectricPropulsion #341
+[trace] materialize: MassValue #342
+[trace] materialize: Natural #343
+[trace] materialize: Natural #344
+[trace] materialize: DurationValue #345
+[trace] materialize: PowerValue #346
+[trace] materialize: FluidPort #347
+[trace] materialize: Propellant #348
+[trace] materialize: MassValue #349
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: MassValue #350
+[trace] materialize: PowerOutlet #351
+[trace] materialize: ElectricalPower #352
+[trace] materialize: ElectricPotentialValue #353
+[trace] materialize: PowerValue #354
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: DataBusPort #355
+[trace] materialize: Telemetry #356
+[trace] materialize: Real #357
+[trace] materialize: Real #358
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telecommand #359
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: ReactionControl #360
+[trace] materialize: MassValue #361
+[trace] materialize: FluidPort #362
+[trace] materialize: Propellant #363
+[trace] materialize: MassValue #364
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: MassValue #365
+[trace] materialize: PowerOutlet #366
+[trace] materialize: ElectricalPower #367
+[trace] materialize: ElectricPotentialValue #368
+[trace] materialize: PowerValue #369
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: DataBusPort #370
+[trace] materialize: Telemetry #371
+[trace] materialize: Real #372
+[trace] materialize: Real #373
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] materialize: Telecommand #374
 warning: TethysModes::nominalFlight: materialization is bounded; not every feature value was checked
 [trace] run: performed action nominalCampaign of #2
 [trace] step 2: token 1@separation
 [trace] stmt send
-[trace] materialize: SeparationConfirmed #227
+[trace] materialize: SeparationConfirmed #375
 [trace] step 3: token 1@toDeployment
 [trace]   eval literal 0.05 -> 0.05
 [trace] eval index -> 0.05 [d]
@@ -619,7 +1122,7 @@ warning: TethysModes::nominalFlight: materialization is bounded; not every featu
 [trace] run: performed action nominalCampaign of #2
 [trace] step 4: token 1@deployment
 [trace] stmt send
-[trace] materialize: ArraysDeployed #228
+[trace] materialize: ArraysDeployed #376
 [trace] step 5: token 1@commissioning
 [trace]   eval literal 30.0 -> 30.0
 [trace] eval index -> 30.0 [d]

@@ -106,7 +106,11 @@ package TethysTug {
 
     part argent : Tug {
         doc /* The flight tug as sized at the start of Phase B: 5 600 kg dry, 6 600 kg xenon,
-             * 400 kg hydrazine (about 1 100 days of thrust at 1.8 N: ~650 kg outbound, ~5 100 kg to bring 370 t home); 48 kW at 1 AU; four thrusters, three operating, Isp 2 900 s. */
+             * 400 kg hydrazine; 48 kW at 1 AU; four thrusters, three operating, Isp 2 900 s.
+             * By the transfer book (TethysMission::transferBook) the xenon buys about 1 230 kg of
+             * outbound and rendezvous arcs, then the return of a 362 t body for about 4 230 kg in
+             * all, or 507 t for about 5 350 kg, in about 1 040 days of thrust at the 1.7 N the
+             * array gives at the target's aphelion. */
         attribute :>> dryMass = 5600.0 [kg];
         attribute :>> wetMass = 12600.0 [kg];
         part :>> eps { attribute :>> arrayPowerAtOneAu = 48.0 [kW]; }

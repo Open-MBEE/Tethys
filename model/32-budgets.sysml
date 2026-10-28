@@ -12,47 +12,21 @@ package TethysBudgets {
     private import RealFunctions::sqrt;
     private import TethysEnvironment::*;
     private import TethysMission::tethys;
+    private import TethysMission::transferBook;
     private import TethysLaunch::arcturus5H;
     private import TethysInspector::wren;
     private import TethysTug::argent;
+    private import TethysTarget::SmallBody;
+    private import TethysTarget::targetCases;
     private import TethysTugStructure::*;
     private import TethysMarginPolicy::*;
     private import TethysRequirements::*;
     private import VerificationCases::VerificationMethodKind;
 
     // ---- target cases: the design driver ------------------------------------------------------
-    attribute def TargetCase {
-        doc /* One pre-arrival case of the target: the mass the return budgets carry and the
-             * spin that sizes the despin. */
-        attribute label : String;
-        attribute bodyMass : MassValue;
-        attribute meanDiameter : LengthValue;
-        attribute rotationPeriod : DurationValue;
-    }
-    attribute smallTarget : TargetCase {
-        doc /* −40 % on the nominal mass: the light, fast case. */
-        attribute :>> label = "small";
-        attribute :>> bodyMass = 217.0e3 [kg];
-        attribute :>> meanDiameter = 5.7 [m];
-        attribute :>> rotationPeriod = 180.0 [s];
-    }
-    attribute nominalTarget : TargetCase {
-        doc /* The backbone estimate of 2031 QX. */
-        attribute :>> label = "nominal";
-        attribute :>> bodyMass = amaranth.mass;
-        attribute :>> meanDiameter = amaranth.meanDiameter;
-        attribute :>> rotationPeriod = amaranth.rotationPeriod;
-    }
-    attribute largeTarget : TargetCase {
-        doc /* +40 % on the nominal mass: the heavy case that sizes the return. */
-        attribute :>> label = "large";
-        attribute :>> bodyMass = 507.0e3 [kg];
-        attribute :>> meanDiameter = 7.6 [m];
-        attribute :>> rotationPeriod = 252.0 [s];
-    }
-    attribute targetCases : TargetCase[*] = (smallTarget, nominalTarget, largeTarget) {
-        doc /* The three cases in the order the budget tables report them. */
-    }
+    // The budgets close on the design cases of the one target-case table,
+    // TethysTarget::targetCases (small 213 t, nominal 362 t, large 506 t); nothing here carries
+    // a body of its own.
 
     // ---- shared physics -----------------------------------------------------------------------
     calc def ArrayPower {
@@ -270,14 +244,14 @@ package TethysBudgets {
         attribute arrayAtPerihelionBol : PowerValue =
             ArrayPower(argentDesign.eps.arrayPowerAtOneAu, perihelionAu, 1.0, cosineLoss);
         attribute demandEarlyOperations : PowerValue = TugPowerInMode(TugMode::earlyOperations);
-        attribute demandThrusting : PowerValue = TugPowerInMode(TugMode::thrusting);
-        attribute demandCoasting : PowerValue = TugPowerInMode(TugMode::coasting);
+        attribute demandThrusting : PowerValue = TugPowerInMode(TugMode::thrust);
+        attribute demandCoasting : PowerValue = TugPowerInMode(TugMode::coast);
         attribute demandProximityOperations : PowerValue = TugPowerInMode(TugMode::proximityOperations);
         attribute demandCapture : PowerValue = TugPowerInMode(TugMode::capture);
         attribute demandDespin : PowerValue = TugPowerInMode(TugMode::despin);
         attribute demandDroHold : PowerValue = TugPowerInMode(TugMode::droHold);
         attribute demandSafe : PowerValue = TugPowerInMode(TugMode::safe);
-        attribute busDemandThrusting : PowerValue = BusPowerInMode(TugMode::thrusting);
+        attribute busDemandThrusting : PowerValue = BusPowerInMode(TugMode::thrust);
         attribute availableForPropulsion : PowerValue = arrayAtAphelionEol - busDemandThrusting;
         attribute thrustingMargin : Real = MarginFraction(arrayAtAphelionEol, demandThrusting);
         assert constraint earlyOperationsClose : ClosesWithMargin {
@@ -384,39 +358,55 @@ package TethysBudgets {
     }
 
     // ---- Δv, xenon and the SEP string ----------------------------------------------------------
+    calc def ReturnableBodyMass {
+        doc /* The heaviest body the xenon brings home under a margin policy: the rocket equation
+             * of XenonForMission inverted. The return and insertion arcs together take the
+             * fraction 1 − e^(−(Δv_return + Δv_insertion)/(Isp g₀)) of the stack, so with the
+             * missed-thrust allowance on every arc and the policy's system margin on the total,
+             *   stack = (usable / (1 + margin) − tugAlone (1 + missedThrust)) / ((1 + missedThrust) f)
+             * and the body is that stack less the tug's mass at the target. */
+        in xenonAvailable : MassValue;
+        in systemMargin : Real;
+        in tugAloneXenon : MassValue;
+        in tugMassAtTarget : MassValue;
+        attribute isp : DurationValue = argentDesign.sep.specificImpulse;
+        attribute returnFraction : Real =
+            1.0 - ExpNeg((deltaVReturn + deltaVInsertion) / ((isp / (1 [s])) * standardGravityMPerS2));
+        attribute forReturnArcs : MassValue =
+            xenonAvailable / (1.0 + systemMargin) - tugAloneXenon * (1.0 + missedThrustMargin);
+        return body : MassValue = forReturnArcs / ((1.0 + missedThrustMargin) * returnFraction) - tugMassAtTarget;
+    }
     calc def XenonForMission {
         doc /* Xenon for the four low-thrust arcs with the target of the given case attached
              * on the return: outbound and rendezvous on the tug alone, return and insertion
              * on the stack, each arc from the mass the previous one left. */
-        in body : TargetCase;
+        in body : SmallBody;
         attribute isp : DurationValue = argentDesign.sep.specificImpulse;
         attribute launchMass : MassValue = massBudget.launchMass - massBudget.adapterSeparated;
         attribute outbound : MassValue = PropellantFor(deltaVOutbound, launchMass, isp);
         attribute afterOutbound : MassValue = launchMass - outbound;
         attribute rendezvous : MassValue = PropellantFor(deltaVRendezvous, afterOutbound, isp);
         attribute afterRendezvous : MassValue = afterOutbound - rendezvous - wren.wetMass;
-        attribute stack : MassValue = afterRendezvous + body.bodyMass;
+        attribute stack : MassValue = afterRendezvous + body.mass;
         attribute returnLeg : MassValue = PropellantFor(deltaVReturn, stack, isp);
         attribute insertion : MassValue = PropellantFor(deltaVInsertion, stack - returnLeg, isp);
         return xenon : MassValue = (outbound + rendezvous + returnLeg + insertion) * (1.0 + missedThrustMargin);
     }
-    attribute deltaVOutbound : Real = 2800.0 {
-        doc /* Low-thrust Δv in m/s from the escape asymptote to the target's orbit. */
+    attribute deltaVOutbound : Real = transferBook.deltaVOutbound / (1 ['m/s']) {
+        doc /* Outbound Δv in m/s, read from the mission's transfer book (TethysMission::transferBook),
+             * the one place the arc allocations are defined. */
     }
-    attribute deltaVRendezvous : Real = 150.0 {
-        doc /* Δv in m/s for the approach, station-keeping and the capture manoeuvres. */
+    attribute deltaVRendezvous : Real = transferBook.deltaVRendezvous / (1 ['m/s']) {
+        doc /* Rendezvous Δv in m/s, from the transfer book. */
     }
-    attribute deltaVReturn : Real = 160.0 {
-        doc /* Low-thrust Δv in m/s from the target's orbit to the lunar gravity assist: the
-             * allocation the xenon left after rendezvous can give the heaviest stack, which the
-             * return trajectory design (TethysAnalyses) must meet with the Earth-like orbit's
-             * small relative velocity and the gravity assist. */
+    attribute deltaVReturn : Real = transferBook.deltaVReturn / (1 ['m/s']) {
+        doc /* Return Δv in m/s, from the transfer book. */
     }
-    attribute deltaVInsertion : Real = 40.0 {
-        doc /* Δv in m/s from the gravity assist into the distant retrograde orbit. */
+    attribute deltaVInsertion : Real = transferBook.deltaVInsertion / (1 ['m/s']) {
+        doc /* Insertion Δv in m/s, from the transfer book. */
     }
-    attribute missedThrustMargin : Real = 0.10 {
-        doc /* Unplanned coast allowance on every arc. */
+    attribute missedThrustMargin : Real = transferBook.missedThrustMargin {
+        doc /* Unplanned coast allowance on every arc, from the transfer book. */
     }
 
     part def PropellantBudget {
@@ -427,23 +417,51 @@ package TethysBudgets {
         attribute loaded : MassValue = argentDesign.sep.xenonMass;
         attribute residualFraction : Real = 0.02;
         attribute usable : MassValue = loaded * (1.0 - residualFraction);
-        attribute xenonSmall : MassValue = XenonForMission(smallTarget);
-        attribute xenonNominal : MassValue = XenonForMission(nominalTarget);
-        attribute xenonLarge : MassValue = XenonForMission(largeTarget);
+        attribute xenonSmall : MassValue = XenonForMission(targetCases.small);
+        attribute xenonNominal : MassValue = XenonForMission(targetCases.nominal);
+        attribute xenonLarge : MassValue = XenonForMission(targetCases.large);
         attribute xenonMargin : Real = MarginFraction(usable, xenonLarge);
+        attribute isp : DurationValue = argentDesign.sep.specificImpulse;
+        attribute launchMass : MassValue = massBudget.launchMass - massBudget.adapterSeparated;
+        attribute outboundAlone : MassValue = PropellantFor(deltaVOutbound, launchMass, isp);
+        attribute rendezvousAlone : MassValue = PropellantFor(deltaVRendezvous, launchMass - outboundAlone, isp);
+        attribute tugMassAtTarget : MassValue = launchMass - outboundAlone - rendezvousAlone - wren.wetMass {
+            doc /* The tug alone at the target after the outbound and rendezvous arcs and the
+                 * inspector's release: the start of the stack. */
+        }
+        attribute returnableBodyMass : MassValue =
+            ReturnableBodyMass(usable, activePolicy.systemMargin, outboundAlone + rendezvousAlone, tugMassAtTarget) {
+            doc /* The return envelope: the heaviest body that closes with the active margin
+                 * policy, about 542 t at 15 %. The capture-commit gate reads it through
+                 * captureCommitEnvelope. */
+        }
+        attribute returnableBodyMassNoMargin : MassValue =
+            ReturnableBodyMass(usable, 0.0, outboundAlone + rendezvousAlone, tugMassAtTarget) {
+            doc /* The same with no margin at all, about 652 t: what the propellant can do, not
+                 * what the policy allows. */
+        }
         attribute tankCapacity : MassValue = argentDesign.sep.xenonCapacity;
         attribute throughputPerThruster : MassValue = xenonLarge / argentDesign.sep.operatingThrusters;
         attribute throughputLife : MassValue = head(argentDesign.sep.thrusters.xenonThroughputLife);
         attribute sepPowerAtAphelion : PowerValue = powerBudget.availableForPropulsion;
         attribute ppuEfficiency : Real = head(argentDesign.sep.powerProcessingUnits.efficiency);
-        attribute thrustAtAphelion : Real = SepThrust((sepPowerAtAphelion / (1 [W])) * ppuEfficiency,
-            argentDesign.sep.specificImpulse / (1 [s]), head(argentDesign.sep.thrusters.efficiency));
-        attribute thrustAtFullPower : Real = SepThrust((argentDesign.sep.maximumPower / (1 [W])) * ppuEfficiency,
-            argentDesign.sep.specificImpulse / (1 [s]), head(argentDesign.sep.thrusters.efficiency));
-        attribute massFlowAtAphelion : Real = MassFlowRate(thrustAtAphelion, argentDesign.sep.specificImpulse / (1 [s]));
-        attribute thrustingTimeLarge : DurationValue = (xenonLarge / (1 [kg])) / massFlowAtAphelion * (1 [s]);
-        attribute thrustingTimeAllowed : DurationValue = 1400.0 [d];
-        attribute stackAccelerationLarge : Real = thrustAtAphelion / ((massBudget.launchMass + largeTarget.bodyMass) / (1 [kg]));
+        attribute thrustAtAphelion : ForceValue = SepThrust((sepPowerAtAphelion / (1 [W])) * ppuEfficiency,
+            argentDesign.sep.specificImpulse / (1 [s]), head(argentDesign.sep.thrusters.efficiency)) [N];
+        attribute thrustAtFullPower : ForceValue = SepThrust((argentDesign.sep.maximumPower / (1 [W])) * ppuEfficiency,
+            argentDesign.sep.specificImpulse / (1 [s]), head(argentDesign.sep.thrusters.efficiency)) [N];
+        attribute massFlowAtAphelion : MassFlowRateValue = MassFlowRate(thrustAtAphelion / (1 [N]),
+            argentDesign.sep.specificImpulse / (1 [s])) ['kg⋅s⁻¹'];
+        attribute thrustingTimeNominal : DurationValue =
+            ((xenonNominal / (1 [kg])) / (massFlowAtAphelion / (1 ['kg⋅s⁻¹']))) [s];
+        attribute thrustingTimeLarge : DurationValue =
+            ((xenonLarge / (1 [kg])) / (massFlowAtAphelion / (1 ['kg⋅s⁻¹']))) [s];
+        attribute thrustingTimeAllowed : DurationValue = transferBook.thrustingTimeAllowed;
+        attribute stackAccelerationLarge : AccelerationValue =
+            ((thrustAtAphelion / (1 [N])) / ((massBudget.launchMass + targetCases.large.mass) / (1 [kg]))) ['m⋅s⁻²'];
+        assert constraint largeCaseReturns {
+            doc /* The heaviest design case is inside the return envelope: the two books agree. */
+            targetCases.large.mass <= returnableBodyMass
+        }
         assert constraint xenonClosesLarge : ClosesWithMargin {
             in capability = usable; in demand = xenonLarge; in policy = activePolicy;
         }
@@ -469,15 +487,33 @@ package TethysBudgets {
         doc /* Hydrazine to remove the angular momentum of a uniform sphere of the case's mass,
              * diameter and spin period with thrusters on the given arm:
              * H = 0.4 m r² ω, m = H / (arm · Isp · g₀). */
-        in body : TargetCase;
+        in body : SmallBody;
         in momentArm : LengthValue;
         in specificImpulse : DurationValue;
         attribute radius : Real = (body.meanDiameter / (1 [m])) / 2.0;
         attribute spinRate : Real = 2.0 * pi / (body.rotationPeriod / (1 [s]));
-        attribute angularMomentum : Real = 0.4 * (body.bodyMass / (1 [kg])) * radius ** 2 * spinRate;
+        attribute angularMomentum : Real = 0.4 * (body.mass / (1 [kg])) * radius ** 2 * spinRate;
         return propellant : MassValue =
             angularMomentum / ((momentArm / (1 [m])) * (specificImpulse / (1 [s])) * standardGravityMPerS2) * (1 [kg]);
     }
+    attribute def CaptureCommitEnvelope {
+        doc /* What the capture-commit gate holds the characterised estimate against: the body
+             * must fit the bag and the propellant must bring it home. */
+        attribute maximumBodyMass : MassValue;
+        attribute maximumBodyDiameter : LengthValue;
+    }
+    attribute captureCommitEnvelope : CaptureCommitEnvelope {
+        doc /* The one commit envelope of the mission, read by the mode machine (TethysModes),
+             * the flight sequence (TethysSequence) and the proximity-operations commit decision
+             * (TethysProximityOps). The mass limit is the smaller of the capture system's and
+             * the return envelope under the active margin policy, so a body the bag could hold
+             * but the xenon could not return is refused before contact. */
+        attribute :>> maximumBodyDiameter = argent.captureSystem.maximumBodyDiameter;
+        attribute :>> maximumBodyMass =
+            if propellantBudget.returnableBodyMass < argent.captureSystem.maximumBodyMass ?
+                propellantBudget.returnableBodyMass else argent.captureSystem.maximumBodyMass;
+    }
+
     part def HydrazineBudget {
         doc /* Hydrazine for proximity operations, the despin of each target case and the
              * attitude control of the stack through the return, against the load. */
@@ -487,11 +523,14 @@ package TethysBudgets {
         attribute isp : DurationValue = head(argentDesign.rcs.thrusters.specificImpulse);
         attribute momentArm : LengthValue = head(argentDesign.rcs.thrusters.momentArm);
         attribute proximityDeltaV : Real = 30.0;
-        attribute tugMassAtTarget : MassValue = massBudget.launchMass - massBudget.adapterSeparated - 700.0 [kg];
+        attribute tugMassAtTarget : MassValue = propellantBudget.tugMassAtTarget {
+            doc /* The tug alone at the target, from the propellant budget: launch mass less the
+                 * adapter, the outbound and rendezvous xenon and the released inspector. */
+        }
         attribute proximityOperations : MassValue = PropellantFor(proximityDeltaV, tugMassAtTarget, isp);
-        attribute despinSmall : MassValue = DespinPropellant(smallTarget, momentArm, isp);
-        attribute despinNominal : MassValue = DespinPropellant(nominalTarget, momentArm, isp);
-        attribute despinLarge : MassValue = DespinPropellant(largeTarget, momentArm, isp);
+        attribute despinSmall : MassValue = DespinPropellant(targetCases.small, momentArm, isp);
+        attribute despinNominal : MassValue = DespinPropellant(targetCases.nominal, momentArm, isp);
+        attribute despinLarge : MassValue = DespinPropellant(targetCases.large, momentArm, isp);
         attribute stackAttitudeControl : MassValue = 95.0 [kg];
         attribute wheelDesaturation : MassValue = 25.0 [kg];
         attribute demandLarge : MassValue = proximityOperations + despinLarge + stackAttitudeControl + wheelDesaturation;
@@ -555,11 +594,18 @@ package TethysBudgets {
              * the radiators at their hot-case temperature. Cold case: coasting at aphelion,
              * heater power within its power-budget allocation. Every unit's predicted
              * temperatures within its limits in both cases. */
-        attribute hotCaseHeat : PowerValue = TugHeatInMode(TugMode::thrusting) * 1.22;
+        attribute hotCaseSolarFactor : Real = SolarFlux(amaranth.orbit.perihelionAu) / SolarFlux(amaranth.orbit.aphelionAu) {
+            doc /* Perihelion over aphelion solar flux, (1.065/1.003)², about 1.13: the string
+                 * processes the array's output, so its dissipation in the thrust mode scales
+                 * with the flux the budget's aphelion unit powers are rated at. */
+        }
+        attribute hotCaseHeat : PowerValue = TugHeatInMode(TugMode::thrust) * hotCaseSolarFactor {
+            doc /* The thrust-mode dissipation of every unit, scaled to the target's perihelion. */
+        }
         attribute radiatorTemperature : ThermodynamicTemperatureValue = head(argentDesign.thermal.radiators.predictedHotTemperature);
         attribute radiatorCapacity : PowerValue = RadiatorRejection(argentDesign.thermal.radiatorArea,
             head(argentDesign.thermal.radiators.emissivity), radiatorTemperature);
-        attribute coldCaseHeaterPower : PowerValue = UnitsPowerInMode(argentDesign.thermal.heaters, TugMode::coasting);
+        attribute coldCaseHeaterPower : PowerValue = UnitsPowerInMode(argentDesign.thermal.heaters, TugMode::coast);
         attribute heaterAllocation : PowerValue = 320.0 [W];
         attribute hotUnitsWithinLimits : Boolean = argentDesign.units->forAll { in u : Unit;
             u.predictedHotTemperature <= u.maxOperatingTemperature };
@@ -584,9 +630,9 @@ package TethysBudgets {
              * through the booms, each against the capture system's capacity. */
         attribute contactSpeed : SpeedValue = 0.085 ['m/s'];
         attribute arrestTime : DurationValue = 3.0 [s];
-        attribute contactForceLarge : ForceValue = largeTarget.bodyMass * contactSpeed / arrestTime;
+        attribute contactForceLarge : ForceValue = targetCases.large.mass * contactSpeed / arrestTime;
         attribute cinchPreload : ForceValue = sum(argentDesign.captureSystem.winches.lineTension);
-        attribute thrustLoad : ForceValue = propellantBudget.thrustAtFullPower * (1 [N]);
+        attribute thrustLoad : ForceValue = propellantBudget.thrustAtFullPower;
         attribute loadCapacity : ForceValue = argentDesign.captureSystem.bag.cinchLoadCapacity;
         assert constraint contactCloses : ClosesWithMargin {
             in capability = loadCapacity; in demand = contactForceLarge; in policy = activePolicy;

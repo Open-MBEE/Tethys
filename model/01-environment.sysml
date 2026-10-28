@@ -128,7 +128,7 @@ package TethysEnvironment {
 
     attribute heliocentricRange : RangeEnvelope {
         doc /* Sun distance over the mission, from the target's perihelion to its aphelion:
-             * solar flux 1049 to 1462 W/m² (SolarFlux). */
+             * solar flux 1 200 to 1 353 W/m² (SolarFlux at 1.065 and 1.003 AU). */
         attribute :>> minimum = 150.0e6 [km];
         attribute :>> maximum = 159.3e6 [km];
     }
@@ -143,15 +143,28 @@ package TethysEnvironment {
 
     attribute destinationDro : DistantRetrogradeOrbit {
         doc /* The selected DRO: about 70 000 km from the Moon, two-week period, stable for well
-             * over a century (invented selection; the stability is what TethysAnalyses must
-             * show). */
+             * over a century (invented selection; the stability is what TethysDynamics must
+             * show). The period is the propagated one: 3.2047 Earth–Moon time units of
+             * 375 190 s, 13.9155 days (TethysDynamics::droStability checks the propagation
+             * against it). */
         attribute :>> radiusAboutMoon = 70000.0 [km];
-        attribute :>> period = 13.9 [d];
+        attribute :>> period = 13.9155 [d];
         attribute :>> stabilityHorizon = 36525.0 [d];
     }
 
-    attribute speedOfLightKmPerS : Real = 299792.458;
-    attribute standardGravityMPerS2 : Real = 9.80665;
+    attribute speedOfLight : SpeedValue = 299792458.0 ['m/s'] {
+        doc /* The defining constant c, as an ISQ speed. */
+    }
+    attribute standardGravity : AccelerationValue = 9.80665 ['m⋅s⁻²'] {
+        doc /* Standard gravity g₀, as an ISQ acceleration: the Isp-to-exhaust-speed factor. */
+    }
+    attribute speedOfLightKmPerS : Real = speedOfLight / (1 ['m/s']) / 1000.0 {
+        doc /* c in km/s for the Real-valued orbital helpers below (sqrt and ** are defined
+             * on Real only in the Kernel Function Library). */
+    }
+    attribute standardGravityMPerS2 : Real = standardGravity / (1 ['m⋅s⁻²']) {
+        doc /* g₀ in m/s² for the Real-valued rocket-equation helpers below. */
+    }
     attribute pi : Real = 3.14159265358979;
 
     calc def SolarFlux {

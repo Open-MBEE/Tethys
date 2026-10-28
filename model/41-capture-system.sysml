@@ -179,7 +179,7 @@ package TethysCaptureSystem {
         doc /* A target is capturable when it fits the bag, weighs no more than the return
              * trajectory and the load path take, rotates slowly enough for the despin budget
              * and does so about a principal axis. */
-        in body : CaptureTargetCase;
+        in body : SmallBody;
         in system : CaptureMechanism;
         body.meanDiameter <= system.maximumBodyDiameter
             and body.mass <= system.maximumBodyMass
@@ -188,37 +188,53 @@ package TethysCaptureSystem {
     }
 
     part def EnvelopeCase {
-        doc /* One target case held against the mechanism's envelope. */
-        part target : CaptureTargetCase;
+        doc /* One target case held against the mechanism's envelope. The cases are read as the
+             * plain parts of TethysTarget::targetCases, not through the CaptureTargetCase variants
+             * (finding F-F02). */
+        part target : SmallBody;
         part mechanism : CaptureMechanism;
     }
     part smallTargetCase : EnvelopeCase {
         doc /* The small body: inside the envelope. */
-        part :>> target = CaptureTargetCase::small;
+        part :>> target = targetCases.small;
         part :>> mechanism = captureMechanism;
         assert constraint fits : CaptureEnvelope { in body = target; in system = mechanism; }
     }
     part nominalTargetCase : EnvelopeCase {
         doc /* The nominal body: inside the envelope. */
-        part :>> target = CaptureTargetCase::nominal;
+        part :>> target = targetCases.nominal;
         part :>> mechanism = captureMechanism;
         assert constraint fits : CaptureEnvelope { in body = target; in system = mechanism; }
     }
     part largeTargetCase : EnvelopeCase {
-        doc /* The large body: outside the envelope on mass. */
-        part :>> target = CaptureTargetCase::large;
+        doc /* The large design body (506 t): inside the envelope. */
+        part :>> target = targetCases.large;
+        part :>> mechanism = captureMechanism;
+        assert constraint fits : CaptureEnvelope { in body = target; in system = mechanism; }
+    }
+    part densestTargetCase : EnvelopeCase {
+        doc /* The densest body (576 t): inside the mechanism's envelope — it is the return
+             * envelope (TethysBudgets::captureCommitEnvelope), not the bag, that refuses it. */
+        part :>> target = targetCases.densest;
+        part :>> mechanism = captureMechanism;
+        assert constraint fits : CaptureEnvelope { in body = target; in system = mechanism; }
+    }
+    part largestTargetCase : EnvelopeCase {
+        doc /* The largest body (9.5 m, 987 t, 100 s): inside the bag on diameter and mass,
+             * outside the envelope on rotation period. */
+        part :>> target = targetCases.largest;
         part :>> mechanism = captureMechanism;
         assert not constraint fits : CaptureEnvelope { in body = target; in system = mechanism; }
     }
     part fastSpinTargetCase : EnvelopeCase {
         doc /* The fast-spinning body: outside the envelope on rotation period. */
-        part :>> target = CaptureTargetCase::fastSpin;
+        part :>> target = targetCases.fastSpin;
         part :>> mechanism = captureMechanism;
         assert not constraint fits : CaptureEnvelope { in body = target; in system = mechanism; }
     }
     part tumblingTargetCase : EnvelopeCase {
         doc /* The tumbling body: outside the envelope on spin state. */
-        part :>> target = CaptureTargetCase::tumbling;
+        part :>> target = targetCases.tumbling;
         part :>> mechanism = captureMechanism;
         assert not constraint fits : CaptureEnvelope { in body = target; in system = mechanism; }
     }
