@@ -1,0 +1,7 @@
+calc TethysLinkBudgets::FreeSpaceLossDb(rangeM, frequencyHz) kind=real tol=1e-09 relative
+  grid: 1 AU, lunar distance, proximity link
+  c: does-not-compile-at-pin: sysml: not compilable: in calc TethysLinkBudgets::FreeSpaceLossDb: reference to pi, which is not a parameter, body-local attribute or compiled library constant
+  go: does-not-compile-at-pin: sysml: not compilable: in calc TethysLinkBudgets::FreeSpaceLossDb: reference to pi, which is not a parameter, body-local attribute or compiled library constant
+  (rangeM=150000000000.0, frequencyHz=8400000000.0) model=274.45519412398414
+  (rangeM=400000000.0, frequencyHz=8400000000.0) model=222.97456876966308
+  (rangeM=20000.0, frequencyHz=2200000000.0) model=125.31683675160716

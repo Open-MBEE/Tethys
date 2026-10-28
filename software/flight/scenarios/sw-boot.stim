@@ -1,0 +1,10 @@
+# derived from runs/sw-boot.txt and the TethysFlightBehaviour::bootScenario scenario; horizon 3000 s
+t=30 item ImageVerify 
+t=630 item ImageSegment 4e+06 0
+t=690 item ImageSegment 4e+06 4e+06
+t=750 item ImageSegment 4e+06 8e+06
+t=810 item ImageVerify 
+t=870 item ImageActivate 
+t=1470 item ImageRollback 
+t=1500 item ImageVerify 
+t=3000 expect BootUpdateManager=running

@@ -1,0 +1,6 @@
+calc TethysBudgets::BusPowerInMode(mode) kind=real tol=1e-09 relative
+  grid: two tug modes
+  c: does-not-compile-at-pin: sysml: not compilable: in calc TethysBudgets::BusPowerInMode: power: type ISQMechanics::PowerValue is not Integer, Real, Boolean, String or an enumeration
+  go: does-not-compile-at-pin: sysml: not compilable: in calc TethysBudgets::BusPowerInMode: power: type ISQMechanics::PowerValue is not Integer, Real, Boolean, String or an enumeration
+  (mode=TugMode::safe) model=832 [W]
+  (mode=TugMode::proximityOperations) model=908 [W]

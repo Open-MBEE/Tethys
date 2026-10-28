@@ -1,0 +1,7 @@
+calc TethysGroundSoftware::OrbitDetermination(singlePassUncertainty, passesInArc) kind=real tol=1e-09 relative
+  grid: 1 km per pass over 1, 4, 9 passes
+  c: does-not-compile-at-pin: sysml: not compilable: in calc TethysGroundSoftware::OrbitDetermination: singlePassUncertainty: type ISQBase::LengthValue is not Integer, Real, Boolean, String or an enumeration
+  go: does-not-compile-at-pin: sysml: not compilable: in calc TethysGroundSoftware::OrbitDetermination: singlePassUncertainty: type ISQBase::LengthValue is not Integer, Real, Boolean, String or an enumeration
+  (singlePassUncertainty=1000.0 [SI::m], passesInArc=1) model=1000 [SI::m]
+  (singlePassUncertainty=1000.0 [SI::m], passesInArc=4) model=500 [SI::m]
+  (singlePassUncertainty=1000.0 [SI::m], passesInArc=9) model=333.333 [SI::m]

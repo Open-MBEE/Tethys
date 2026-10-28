@@ -1,0 +1,18 @@
+run sw-capture-controller-inhibited: scenario TethysFlightBehaviour::capturePrematureContact, machine TethysFlightBehaviour::CaptureControlSoftware::controller on TethysFlightBehaviour::capturePrematureContact.captureControl, horizon 20000 s
+host: 112 traced frames, 7 skips, 0 events, 0 commands, final mode launch, rc 0
+model: 14 trace events, 0 dropped, final time 20000 s, states visited 4
+machine SepStringController: host-only (1 changes; the model scenario does not run it)
+machine PowerManager: host-only (1 changes; the model scenario does not run it)
+machine ThermalController: host-only (1 changes; the model scenario does not run it)
+machine TelecomManager: host-only (1 changes; the model scenario does not run it)
+machine InspectorHandler: host-only (1 changes; the model scenario does not run it)
+machine CaptureController: agree (3 changes, 3 model transitions, 2 model accepts)
+  t=0 characterising
+  t=60 armed
+  t=120 inhibited
+machine RedundancyManager: host-only (4 changes; the model scenario does not run it)
+machine BootUpdateManager: host-only (3 changes; the model scenario does not run it)
+machine TugModes: host-only (1 changes; the model scenario does not run it)
+machine ModeManagementDispatcher: host-only (1 changes; the model scenario does not run it)
+machine FdirSupervisor: host-only (1 changes; the model scenario does not run it)
+machine FdirResponseRelay: host-only (1 changes; the model scenario does not run it)

@@ -1,0 +1,9 @@
+calc TethysGroundSoftware::CheckLimits(value, lowLimit, highLimit, warningBand) kind=enum exact
+  grid: nominal, both warning bands, both limits exactly, both violations, band edge
+  (value=5.0, lowLimit=0.0, highLimit=10.0, warningBand=1.0) model=AlarmSeverity::nominal c=AlarmSeverity::nominal go=AlarmSeverity::nominal
+  (value=9.5, lowLimit=0.0, highLimit=10.0, warningBand=1.0) model=AlarmSeverity::warning c=AlarmSeverity::warning go=AlarmSeverity::warning
+  (value=0.5, lowLimit=0.0, highLimit=10.0, warningBand=1.0) model=AlarmSeverity::warning c=AlarmSeverity::warning go=AlarmSeverity::warning
+  (value=10.0, lowLimit=0.0, highLimit=10.0, warningBand=1.0) model=AlarmSeverity::warning c=AlarmSeverity::warning go=AlarmSeverity::warning
+  (value=10.5, lowLimit=0.0, highLimit=10.0, warningBand=1.0) model=AlarmSeverity::violation c=AlarmSeverity::violation go=AlarmSeverity::violation
+  (value=-0.1, lowLimit=0.0, highLimit=10.0, warningBand=1.0) model=AlarmSeverity::violation c=AlarmSeverity::violation go=AlarmSeverity::violation
+  (value=9.0, lowLimit=0.0, highLimit=10.0, warningBand=1.0) model=AlarmSeverity::nominal c=AlarmSeverity::nominal go=AlarmSeverity::nominal

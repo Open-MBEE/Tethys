@@ -1,0 +1,6 @@
+calc TethysBudgets::Survival(failureRate, duration) kind=real tol=1e-09 relative
+  grid: unit failure rate over an hour and zero
+  c: does-not-compile-at-pin: sysml: not compilable: in calc TethysBudgets::Survival: failureRate: type ISQSpaceTime::FrequencyValue is not Integer, Real, Boolean, String or an enumeration
+  go: does-not-compile-at-pin: sysml: not compilable: in calc TethysBudgets::Survival: failureRate: type ISQSpaceTime::FrequencyValue is not Integer, Real, Boolean, String or an enumeration
+  (failureRate=1.0e-6 [SI::Hz], duration=3600.0 [SI::s]) model=0.9964064722309932
+  (failureRate=1.0e-6 [SI::Hz], duration=0.0 [SI::s]) model=1.0

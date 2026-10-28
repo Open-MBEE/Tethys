@@ -1,0 +1,2 @@
+calc TethysBudgets::RootSumSquareDegrees(contributors) kind=real tol=1e-09 relative
+  not-driveable: contributors is a sequence of AngularMeasureValue

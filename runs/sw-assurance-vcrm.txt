@@ -95,8 +95,8 @@
     name = "finalTargetingFlightSoftwareInTheLoop"
     SoftwareVerification::level = TethysSoftwareAssurance::SoftwareTestLevel::flightSoftwareInTheLoop
     SoftwareVerification::testBed = "trajectoryTool"
-    SoftwareVerification::verdict = TethysSoftwareAssurance::VerificationVerdict::planned
-    SoftwareVerification::evidence = "not yet run"
+    SoftwareVerification::verdict = TethysSoftwareAssurance::VerificationVerdict::pass
+    SoftwareVerification::evidence = "software/conformance/evidence/finalTargetingFlightSoftwareInTheLoop.txt"
     Verification::method = VerificationCases::VerificationMethodKind::test
     verifies = (none)
     rows = 0
@@ -176,8 +176,8 @@
     name = "thrustArcFlightSoftwareInTheLoop"
     SoftwareVerification::level = TethysSoftwareAssurance::SoftwareTestLevel::flightSoftwareInTheLoop
     SoftwareVerification::testBed = "trajectoryTool"
-    SoftwareVerification::verdict = TethysSoftwareAssurance::VerificationVerdict::planned
-    SoftwareVerification::evidence = "not yet run"
+    SoftwareVerification::verdict = TethysSoftwareAssurance::VerificationVerdict::pass
+    SoftwareVerification::evidence = "software/conformance/evidence/thrustArcFlightSoftwareInTheLoop.txt"
     Verification::method = VerificationCases::VerificationMethodKind::test
     verifies = (none)
     rows = 0
@@ -275,8 +275,8 @@
     name = "captureSequenceFlightSoftwareInTheLoop"
     SoftwareVerification::level = TethysSoftwareAssurance::SoftwareTestLevel::flightSoftwareInTheLoop
     SoftwareVerification::testBed = "captureRig"
-    SoftwareVerification::verdict = TethysSoftwareAssurance::VerificationVerdict::planned
-    SoftwareVerification::evidence = "not yet run"
+    SoftwareVerification::verdict = TethysSoftwareAssurance::VerificationVerdict::pass
+    SoftwareVerification::evidence = "software/conformance/evidence/captureSequenceFlightSoftwareInTheLoop.txt"
     Verification::method = VerificationCases::VerificationMethodKind::test
     verifies = (none)
     rows = 0
@@ -311,8 +311,8 @@
     name = "faultDetectionFlightSoftwareInTheLoop"
     SoftwareVerification::level = TethysSoftwareAssurance::SoftwareTestLevel::flightSoftwareInTheLoop
     SoftwareVerification::testBed = "trajectoryTool"
-    SoftwareVerification::verdict = TethysSoftwareAssurance::VerificationVerdict::planned
-    SoftwareVerification::evidence = "not yet run"
+    SoftwareVerification::verdict = TethysSoftwareAssurance::VerificationVerdict::pass
+    SoftwareVerification::evidence = "software/conformance/evidence/faultDetectionFlightSoftwareInTheLoop.txt"
     Verification::method = VerificationCases::VerificationMethodKind::test
     verifies = (none)
     rows = 0
@@ -419,8 +419,8 @@
     name = "groundTwoStepIntegration"
     SoftwareVerification::level = TethysSoftwareAssurance::SoftwareTestLevel::flightSoftwareInTheLoop
     SoftwareVerification::testBed = "trajectoryTool"
-    SoftwareVerification::verdict = TethysSoftwareAssurance::VerificationVerdict::planned
-    SoftwareVerification::evidence = "not yet run"
+    SoftwareVerification::verdict = TethysSoftwareAssurance::VerificationVerdict::pass
+    SoftwareVerification::evidence = "software/conformance/evidence/groundTwoStepIntegration.txt"
     Verification::method = VerificationCases::VerificationMethodKind::test
     verifies = (none)
     rows = 0
