@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Argent flight software interface control volume</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysSoftwareDocumentsTooling::SoftwareInterfaceControlVolume">
+<h1 class="sysml-title">Argent flight software interface control volume</h1>
+<p class="sysml-paragraph" data-content="paragraph" data-name="scope">This volume collects the software interface control documents of TethysSoftwareIcdDocuments: <a class="sysml-ref" href="TethysSoftwareIcdDocuments-MessageCatalogueDocument.html#topics" data-document="TethysSoftwareIcdDocuments::MessageCatalogueDocument">Topics and ICD attachments</a>, the on-board bus protocol <a class="sysml-ref" href="TethysSoftwareIcdDocuments-BusProtocolIcdDocument.html#ends" data-document="TethysSoftwareIcdDocuments::BusProtocolIcdDocument">Interface ends</a>, the space link profile <a class="sysml-ref" href="TethysSoftwareIcdDocuments-SpaceLinkProfileIcdDocument.html#rateSets" data-document="TethysSoftwareIcdDocuments::SpaceLinkProfileIcdDocument">Rate sets per tug mode</a>, the inspector relay profile <a class="sysml-ref" href="TethysSoftwareIcdDocuments-InspectorRelayProfileIcdDocument.html#ends" data-document="TethysSoftwareIcdDocuments::InspectorRelayProfileIcdDocument">Interface ends</a> and the register maps <a class="sysml-ref" href="TethysSoftwareIcdDocuments-RegisterMapIcdDocument.html#parameters" data-document="TethysSoftwareIcdDocuments::RegisterMapIcdDocument">Register access parameters</a>; the system-level interface register is <a class="sysml-ref" href="TethysIcdDocuments-IcdRegisterDocument.html#classes" data-document="TethysIcdDocuments::IcdRegisterDocument">ICD classes</a>.</p>
+<section class="sysml-section" id="catalogue" data-content="section" data-name="catalogue">
+<h2>Inter-application message catalogue</h2>
+<table class="sysml-table" data-content="table" data-name="messages" data-query="TethysSoftwareIcdDocuments::Messages">
+<caption class="sysml-caption">Message types</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::TelemetryMessage" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TelemetryMessage</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A bus message carrying state or housekeeping from one component to its subscribers: a space packet on the software bus that is also telemetry, so it can be routed to the ground unchanged (a TelemetryPacket on the bus).</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::CommandMessage" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">CommandMessage</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A bus message that directs a component: a space packet on the software bus that is also a telecommand, so a routed ground command and an on-board request share one shape (a CommandPacket on the bus).</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::AttitudeStateMessage" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">AttitudeStateMessage</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Estimated attitude quaternion, body rates and attitude-control status, published by the guidance, navigation and control application at 10 Hz for the autonomy application and the electric-propulsion control application.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::NavigationStateMessage" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">NavigationStateMessage</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Position and velocity relative to the target or the Moon and the current ephemeris epoch, published by the guidance, navigation and control application at 1 Hz for the autonomy and inspector-handling applications.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThrusterStatusMessage" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ThrusterStatusMessage</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Discharge current, anode voltage, flow-controller state and accumulated impulse of each Hall thruster, published by the electric-propulsion control application at 1 Hz for the power-management and fault-protection applications.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::PowerStateMessage" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PowerStateMessage</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Bus voltage, array current, battery state of charge and load-switch states, published by the power-management application at 1 Hz for the mode-management, thermal-control and fault-protection applications.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalStateMessage" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ThermalStateMessage</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Zone temperatures, heater duty cycles and limit flags, published by the thermal-control application every 10 s for the power-management and fault-protection applications.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::LinkStatusMessage" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">LinkStatusMessage</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Carrier lock, received signal level, current virtual-channel rate set and frame-count, published by the telecom application at 1 Hz for the mode-management and fault-protection applications.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::CaptureStateMessage" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">CaptureStateMessage</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Capture-mechanism arm positions, contact-force readings and the despin phase, published by the capture-control application at 10 Hz for the guidance, navigation and control and autonomy applications.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::RelayStatusMessage" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">RelayStatusMessage</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Relay link state with Wren, store-and-forward backlog and the last inspector event, published by the inspector-handling application at 1 Hz for the autonomy and telecom applications.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::FaultReportMessage" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">FaultReportMessage</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A detected fault with its level and the response the fault-protection application has chosen, published on detection (no period) for the mode-management and autonomy applications.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ModeChangeMessage" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ModeChangeMessage</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The commanded tug mode and the time it takes effect, published by the mode-management application on each transition for every application.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SequenceStepMessage" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SequenceStepMessage</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">One step of a stored sequence released by the autonomy application to the application that executes it: guidance, electric propulsion or capture control.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::TimeTickMessage" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TimeTickMessage</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The one-second tick with the correlated spacecraft time, published by the time service for every component.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MessageCatalogue" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MessageCatalogue</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The catalogue of inter-application messages: one item per message type, the bus figures they must fit, and the checks that every application identifier lies in the bus topic range above the identifiers the space-link profile reserves and that no message exceeds the bus maximum.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::FanoutTopic" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">FanoutTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">One message type from its publisher to two subscribers: a three-ended interface, which the standard permits for any interface not typed by BinaryInterface.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::BroadcastTopic" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">BroadcastTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">One message type from its publisher to three subscribers: a four-ended interface.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::OnBoardBusProtocolIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">OnBoardBusProtocolIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The AABP-1 protocol between the software bus controller in the board support package and each remote terminal on the on-board data bus: frame layout, addressing, the time-slot schedule within one polling period and the handling of check failures. The bus electrical and rate figures are those of TI-013.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SpaceLinkProfileIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The MLS-2 profile of the TI-010 packet interface between the telecom application and the Meridian packet gateway: CCSDS Space Packets with a time-code secondary header, carried in fixed-length transfer frames on eight virtual channels, with a rate set per tug mode and a safe rate set that every mode falls back to. The RF carrier beneath it is TI-003.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::InspectorRelaySoftwareIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InspectorRelaySoftwareIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The software profile of the proximity relay between the inspector-handling application and Wren: AABP-1 frames tunnelled over the TI-004 GMSK link, the identifier block the relayed inspector packets use, the store-and-forward depth on the tug and the acknowledgement rules.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::RegisterMap" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">RegisterMap</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The register map of one remote interface unit: the address space and the data width every register respects.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ThermalPropulsionRiuRegisterMap</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The register map of the remote interface unit that gathers the thermistors and drives the heaters and the propellant valves.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MechanismRiuRegisterMap</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The register map of the remote interface unit that drives the capture mechanism, the dispenser and the docking ring and reads their position and force sensors.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::RemoteInterfaceUnitRegisterIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">RemoteInterfaceUnitRegisterIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The register-level ICD between the remote-interface-unit driver of the board support package and each remote interface unit: the register access frame AABP-1 carries, the address and data widths, and the two register maps.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::BusRemoteInterfaceUnit" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">BusRemoteInterfaceUnit</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A remote interface unit seen from the bus: the unit of the tug structure with its remote-terminal port on the on-board data bus.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MeridianPacketGateway" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MeridianPacketGateway</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The Meridian ground entry point of the packet interface: where transfer frames from the stations become space packets for the operations centre and commands become frames.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::WrenRelayEndpoint" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">WrenRelayEndpoint</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Wren&#39;s end of the relay profile: its software bus node behind the proximity transceiver.</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="topics" data-query="TethysSoftwareIcdDocuments::Topics">
+<caption class="sysml-caption">Topics: publisher and subscribers</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::attitudeStateTopic" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">attitudeStateTopic</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::FanoutTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Guidance publishes the attitude state to autonomy and electric propulsion.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::navigationStateTopic" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">navigationStateTopic</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::FanoutTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Guidance publishes the navigation state to autonomy and inspector handling.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::thrusterStatusTopic" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thrusterStatusTopic</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::FanoutTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Electric propulsion publishes thruster status to power management and fault protection.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::powerStateTopic" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">powerStateTopic</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::BroadcastTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Power management publishes the power state to mode management, thermal control and fault protection.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::thermalStateTopic" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thermalStateTopic</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::FanoutTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Thermal control publishes the thermal state to power management and fault protection.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::linkStatusTopic" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">linkStatusTopic</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::FanoutTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Telecom publishes link status to mode management and fault protection.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::captureStateTopic" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureStateTopic</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::FanoutTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Capture control publishes the capture state to guidance and autonomy.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::relayStatusTopic" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">relayStatusTopic</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::FanoutTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Inspector handling publishes relay status to autonomy and telecom.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::faultReportTopic" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">faultReportTopic</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::FanoutTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Fault protection publishes fault reports to mode management and autonomy.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::modeChangeTopic" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">modeChangeTopic</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::BroadcastTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Mode management publishes mode changes; guidance, electric propulsion and telecom are the subscribers that change their rate sets.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::sequenceStepTopic" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sequenceStepTopic</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::BroadcastTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Autonomy releases sequence steps to guidance, electric propulsion and capture control.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::timeTickTopic" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">timeTickTopic</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::FanoutTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The time service publishes the tick; command and data handling stamps packets with it and housekeeping paces its sampling.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::thermalPropulsionRiuBus" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thermalPropulsionRiuBus</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::OnBoardBusProtocolIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">AABP-1 between the bus controller and the thermal and propulsion remote interface unit.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::mechanismRiuBus" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">mechanismRiuBus</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::OnBoardBusProtocolIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">AABP-1 between the bus controller and the mechanism remote interface unit.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::thermalPropulsionRiuRegisters" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thermalPropulsionRiuRegisters</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::RemoteInterfaceUnitRegisterIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Register access to the thermal and propulsion remote interface unit.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::mechanismRiuRegisters" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">mechanismRiuRegisters</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::RemoteInterfaceUnitRegisterIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Register access to the mechanism remote interface unit.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::spaceLinkProfile" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">spaceLinkProfile</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::SpaceLinkProfileIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MLS-2 between the telecom application and the Meridian packet gateway.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::argentSoftwareIcds::inspectorRelayProfile" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorRelayProfile</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::InspectorRelaySoftwareIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The relay profile between inspector handling and Wren.</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="spaceLink" data-content="section" data-name="spaceLink">
+<h2>Space link profile rate sets</h2>
+<table class="sysml-table" data-content="table" data-name="rateSets" data-query="TethysSoftwareIcdDocuments::RateSets">
+<caption class="sysml-caption">Rate sets per mode</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="mode">mode</th>
+<th scope="col" data-column="downlinkRate">downlinkRate</th>
+<th scope="col" data-column="uplinkRate">uplinkRate</th>
+<th scope="col" data-column="housekeepingPeriod">housekeepingPeriod</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::safeRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">safeRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::safe" data-element-kind="enumUsage">safe</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="60" data-unit="s">60 [s]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::launchRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">launchRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::launch" data-element-kind="enumUsage">launch</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="10" data-unit="s">10 [s]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::earlyOperationsRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">earlyOperationsRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::earlyOperations" data-element-kind="enumUsage">earlyOperations</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="100000" data-unit="bit/s">100000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="s">1 [s]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::coastRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">coastRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::coast" data-element-kind="enumUsage">coast</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="32000" data-unit="bit/s">32000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="10" data-unit="s">10 [s]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::thrustRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thrustRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::thrust" data-element-kind="enumUsage">thrust</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="32000" data-unit="bit/s">32000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="10" data-unit="s">10 [s]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::approachRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">approachRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::approach" data-element-kind="enumUsage">approach</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="256000" data-unit="bit/s">256000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="s">1 [s]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::proximityOperationsRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">proximityOperationsRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::proximityOperations" data-element-kind="enumUsage">proximityOperations</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="4000000" data-unit="bit/s">4000000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="s">1 [s]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::retreatRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">retreatRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::retreat" data-element-kind="enumUsage">retreat</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="256000" data-unit="bit/s">256000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="s">1 [s]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::captureRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::capture" data-element-kind="enumUsage">capture</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="4000000" data-unit="bit/s">4000000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="s">1 [s]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::despinRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">despinRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::despin" data-element-kind="enumUsage">despin</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="256000" data-unit="bit/s">256000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="1" data-unit="s">1 [s]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::stackCoastRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">stackCoastRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::stackCoast" data-element-kind="enumUsage">stackCoast</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="32000" data-unit="bit/s">32000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="10" data-unit="s">10 [s]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::stackThrustRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">stackThrustRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::stackThrust" data-element-kind="enumUsage">stackThrust</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="32000" data-unit="bit/s">32000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="10" data-unit="s">10 [s]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::droHoldRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">droHoldRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::droHold" data-element-kind="enumUsage">droHold</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="100000" data-unit="bit/s">100000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="10" data-unit="s">10 [s]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::dockedPassiveRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dockedPassiveRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::dockedPassive" data-element-kind="enumUsage">dockedPassive</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="32000" data-unit="bit/s">32000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="60" data-unit="s">60 [s]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::disposalRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">disposalRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::disposal" data-element-kind="enumUsage">disposal</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="8000" data-unit="bit/s">8000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="60" data-unit="s">60 [s]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd::abortHoldRates" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">abortHoldRates</span></td>
+<td class="sysml-cell" data-column="mode" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::abortHold" data-element-kind="enumUsage">abortHold</span></td>
+<td class="sysml-cell" data-column="downlinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="uplinkRate" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2000" data-unit="bit/s">2000 [bit/s]</span></td>
+<td class="sysml-cell" data-column="housekeepingPeriod" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="60" data-unit="s">60 [s]</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="registers" data-content="section" data-name="registers">
+<h2>Remote interface unit register maps</h2>
+<table class="sysml-table" data-content="table" data-name="thermalPropulsion" data-query="TethysSoftwareIcdDocuments::Registers">
+<caption class="sysml-caption">Thermal and propulsion remote interface unit registers</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="address">address</th>
+<th scope="col" data-column="width">width</th>
+<th scope="col" data-column="meaning">meaning</th>
+<th scope="col" data-column="access">access</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::status" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">status</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">0</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">unit status and fault flags</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::control" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">control</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">unit control: reset, self-test, watchdog enable</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readWrite" data-element-kind="enumUsage">readWrite</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::thermistorBank" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thermistorBank</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">first of 64 thermistor readings, one register each</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::heaterEnable" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">heaterEnable</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">96</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">heater enable bits, one per heater circuit</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readWrite" data-element-kind="enumUsage">readWrite</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::heaterDuty" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">heaterDuty</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">97</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">first of 16 heater duty-cycle settings</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readWrite" data-element-kind="enumUsage">readWrite</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::valveCommand" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">valveCommand</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">128</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">latch-valve open and close pulses</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::writeOnly" data-element-kind="enumUsage">writeOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::valvePosition" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">valvePosition</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">129</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">latch-valve position indicators</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::tankPressure" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">tankPressure</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">130</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">xenon tank pressure transducer reading</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="mechanism" data-query="TethysSoftwareIcdDocuments::Registers">
+<caption class="sysml-caption">Mechanism remote interface unit registers</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="address">address</th>
+<th scope="col" data-column="width">width</th>
+<th scope="col" data-column="meaning">meaning</th>
+<th scope="col" data-column="access">access</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::status" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">status</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">0</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">unit status and fault flags</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::control" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">control</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">unit control: reset, self-test, watchdog enable</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readWrite" data-element-kind="enumUsage">readWrite</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::armMotorCommand" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">armMotorCommand</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">32</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">first of 4 capture-arm motor rate commands</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readWrite" data-element-kind="enumUsage">readWrite</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::armPosition" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">armPosition</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">36</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">first of 4 capture-arm resolver positions</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::contactForce" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">contactForce</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">40</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">first of 4 contact-pad force readings</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::dispenserCommand" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dispenserCommand</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">64</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dispenser release and retention pulses</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::writeOnly" data-element-kind="enumUsage">writeOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::dockingRingCommand" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dockingRingCommand</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">80</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">docking ring extend, retract and latch</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readWrite" data-element-kind="enumUsage">readWrite</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::dockingRingStatus" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dockingRingStatus</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">81</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">docking ring position and latch indicators</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+</article>
+</body>
+</html>

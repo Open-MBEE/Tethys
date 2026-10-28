@@ -1,0 +1,12 @@
+✓ package F_SW802
+✓ Created instance of F_SW802::reg
+  ID: 1
+  Use %features F_SW802::reg to inspect
+error: feature value reg.v2: unbound parameter: verification F_SW802::u2 parameter "m" has no argument and no default
+error: feature value reg.verdicts: unbound parameter: verification F_SW802::u2 parameter "m" has no argument and no default
+✓ F_SW802::reg.n
+  = 1
+✓ F_SW802::reg.v1
+  = V::planned
+sysml: F_SW802::reg.v2: evaluation failed: feature value reg.v2: unbound parameter: verification F_SW802::u2 parameter "m" has no argument and no default
+exit 2

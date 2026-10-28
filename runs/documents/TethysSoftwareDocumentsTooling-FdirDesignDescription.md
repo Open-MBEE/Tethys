@@ -1,0 +1,264 @@
+# Fault protection application design description
+
+## Purpose
+
+*Application definition*
+
+| name | type | documentation |
+| --- | --- | --- |
+| FdirApplication |  | Fault detection, isolation and recovery: the system-level supervisor of the FDIR<br>model realised in software, taking the fault events the event service forwards<br>and issuing the responses of the fault vocabulary. |
+
+*Behavioural specialisation*
+
+| name | type | documentation |
+| --- | --- | --- |
+| FdirSoftware |  | The FDIR application exhibiting the system supervisor: the monitor regions of<br>TethysFdir::FdirSupervisor run in software against the limit table the<br>application holds (to be read from TethysFlightDictionary at integration). |
+
+## Ports
+
+*Ports of the application*
+
+| name | type | documentation |
+| --- | --- | --- |
+| faults | TethysFlightSoftware::FaultPort |  |
+
+*Ports added by the behavioural specialisation*
+
+| name | type | documentation |
+| --- | --- | --- |
+| command | TethysModes::CommandPort |  |
+| supervisorRequests | TethysModes::CommandPort |  |
+
+## State machine
+
+*Exhibited state machines*
+
+| name | type | documentation |
+| --- | --- | --- |
+| supervisor | TethysFdir::FdirSupervisor |  |
+| responseRelay |  | The supervisor raises its requests on the application itself; the relay<br>forwards each one to the mode manager over the request link. |
+
+*States*
+
+| name | type | documentation |
+| --- | --- | --- |
+| commandLossTimer |  | Re-armed by every ground contact (the telecom subsystem reports one per<br>pass); on expiry the supervisor calls safe mode (sun-pointed, low-gain<br>omni), where the ground can reach the tug again. |
+| thrusterHealth |  | Flameout recovery: restart the thruster up to the retry limit, then switch<br>to the spare; with the spare used and another string lost, the operating set<br>cannot be met and the supervisor calls safe mode. |
+| ppuHealth |  | PPU trip recovery: cross-strap the thruster to the redundant PPU on the<br>first trip; a second trip leaves the string on the remaining PPU and calls<br>safe mode for the ground to replan the thrust profile. |
+| powerHealth |  | Battery monitor: below the load-shed fraction the supervisor sheds loads<br>through safe mode; the ground clears it with SafeModeExit. |
+| attitudeHealth |  | Attitude monitor: loss of attitude knowledge or control goes straight to<br>safe mode's sun acquisition on thrusters. |
+| earthImpactExclusion |  | The Earth-impact exclusion monitor: every trajectory update is checked<br>against the exclusion sphere and the impact-probability limit; a violation<br>aborts the return (AbortReturn → TugModes abortHold, thrust inhibited). |
+
+## Parameter table
+
+*Parameters: id, value, range, unit*
+
+| parameterId | value | minimum | maximum | unitSymbol | inRange |
+| --- | --- | --- | --- | --- | --- |
+| 37 | 604800 | 3600 | 2.592e+06 | s | true |
+| 38 | 2 | 0 | 5 | 1 | true |
+| 39 | 0.3 | 0.1 | 0.6 | 1 | true |
+| 40 | 0.0001 | 1e-07 | 0.001 | 1 | true |
+
+## Rate, worst-case execution time and deadline
+
+*Scheduled task*
+
+| name | period | wcet | deadline | utilisation | activeModes |
+| --- | --- | --- | --- | --- | --- |
+| fdirTask | 0.0625 \[s\] | 0.003 \[s\] | 0.0625 \[s\] | 0.048 | earlyOperations, thrust, approach, stackThrust, disposal, coast, stackCoast, dockedPassive, proximityOperations, retreat, capture, despin, droHold, safe, abortHold |
+
+## Commands, telemetry, events and packets owned
+
+*Commands*
+
+| mnemonic | opcodeNumber | criticality | hazardous | documentation |
+| --- | --- | --- | --- | --- |
+| FDR\_ENABLE\_MONITOR | 2561 | critical | false | Enable a fault monitor. |
+| FDR\_DISABLE\_MONITOR | 2562 | critical | true | Disable a fault monitor. |
+| FDR\_SET\_LIMIT | 2563 | critical | false | Set the red and yellow limits of a monitored point. |
+| FDR\_RESET\_LIMIT | 2564 | routine | false | Return a monitored point to its table limits. |
+| FDR\_CLEAR\_FAULT | 2565 | critical | false | Clear a latched fault. |
+| FDR\_ACKNOWLEDGE\_FAULT | 2566 | routine | false | Acknowledge a fault so its response may re-arm. |
+| FDR\_MASK\_RESPONSE | 2567 | critical | true | Mask a fault response. |
+| FDR\_UNMASK\_RESPONSE | 2568 | critical | false | Unmask a fault response. |
+| FDR\_FORCE\_SAFE\_MODE | 2569 | critical | true | Command safe mode directly. |
+| FDR\_SET\_COMMAND\_LOSS\_TIMER | 2570 | critical | false | Set the command-loss timer that calls safe mode when no command arrives. |
+| FDR\_RESET\_COMMAND\_LOSS\_TIMER | 2571 | routine | false | Restart the command-loss timer. |
+| FDR\_ABORT\_TO\_RETREAT | 2572 | critical | true | Abort proximity operations and retreat to the hold point. |
+| FDR\_SET\_FLAMEOUT\_RETRIES | 2573 | critical | false | Set the thruster restarts tried before a switchover. |
+| FDR\_SET\_BATTERY\_LOW\_FRACTION | 2574 | critical | false | Set the state of charge at which load shedding starts. |
+| FDR\_SET\_IMPACT\_PROBABILITY\_LIMIT | 2575 | critical | false | Set the Earth impact probability above which the supervisor aborts. |
+| FDR\_SET\_EXCLUSION\_RADIUS | 2576 | critical | false | Set the Earth exclusion radius. |
+| FDR\_MONITOR\_RESPONSE\_01 | 2577 | critical | false | Set the response of monitor 1. |
+| FDR\_MONITOR\_RESPONSE\_02 | 2578 | critical | false | Set the response of monitor 2. |
+| FDR\_MONITOR\_RESPONSE\_03 | 2579 | critical | false | Set the response of monitor 3. |
+| FDR\_MONITOR\_RESPONSE\_04 | 2580 | critical | false | Set the response of monitor 4. |
+| FDR\_MONITOR\_RESPONSE\_05 | 2581 | critical | false | Set the response of monitor 5. |
+| FDR\_MONITOR\_RESPONSE\_06 | 2582 | critical | false | Set the response of monitor 6. |
+| FDR\_MONITOR\_RESPONSE\_07 | 2583 | critical | false | Set the response of monitor 7. |
+| FDR\_MONITOR\_RESPONSE\_08 | 2584 | critical | false | Set the response of monitor 8. |
+| FDR\_MONITOR\_RESPONSE\_09 | 2585 | critical | false | Set the response of monitor 9. |
+| FDR\_MONITOR\_RESPONSE\_10 | 2586 | critical | false | Set the response of monitor 10. |
+| FDR\_MONITOR\_RESPONSE\_11 | 2587 | critical | false | Set the response of monitor 11. |
+| FDR\_MONITOR\_RESPONSE\_12 | 2588 | critical | false | Set the response of monitor 12. |
+
+*Telemetry points*
+
+| mnemonic | pointId | kind | rate | unitSymbol |
+| --- | --- | --- | --- | --- |
+| FDR\_MON\_STATE\_01 | 10001 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_02 | 10002 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_03 | 10003 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_04 | 10004 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_05 | 10005 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_06 | 10006 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_07 | 10007 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_08 | 10008 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_09 | 10009 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_10 | 10010 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_11 | 10011 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_12 | 10012 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_13 | 10013 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_14 | 10014 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_15 | 10015 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_16 | 10016 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_17 | 10017 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_18 | 10018 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_19 | 10019 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_20 | 10020 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_21 | 10021 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_22 | 10022 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_23 | 10023 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_24 | 10024 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_25 | 10025 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_26 | 10026 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_27 | 10027 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_28 | 10028 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_29 | 10029 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_30 | 10030 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_31 | 10031 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_32 | 10032 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_33 | 10033 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_34 | 10034 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_35 | 10035 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_36 | 10036 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_37 | 10037 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_38 | 10038 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_39 | 10039 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_40 | 10040 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_41 | 10041 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_42 | 10042 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_43 | 10043 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_44 | 10044 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_45 | 10045 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_46 | 10046 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_47 | 10047 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_STATE\_48 | 10048 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_01 | 10049 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_02 | 10050 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_03 | 10051 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_04 | 10052 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_05 | 10053 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_06 | 10054 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_07 | 10055 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_08 | 10056 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_09 | 10057 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_10 | 10058 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_11 | 10059 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_12 | 10060 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_13 | 10061 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_14 | 10062 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_15 | 10063 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_16 | 10064 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_17 | 10065 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_18 | 10066 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_19 | 10067 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_20 | 10068 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_21 | 10069 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_22 | 10070 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_23 | 10071 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_24 | 10072 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_25 | 10073 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_26 | 10074 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_27 | 10075 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_28 | 10076 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_29 | 10077 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_30 | 10078 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_31 | 10079 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_32 | 10080 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_33 | 10081 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_34 | 10082 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_35 | 10083 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_36 | 10084 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_37 | 10085 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_38 | 10086 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_39 | 10087 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_40 | 10088 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_41 | 10089 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_42 | 10090 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_43 | 10091 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_44 | 10092 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_45 | 10093 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_46 | 10094 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_47 | 10095 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_MON\_TRIP\_COUNT\_48 | 10096 | engineering | 0.1 \[Hz\] | 1 |
+| FDR\_FAULT\_COUNT | 10097 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_LAST\_FAULT\_ID | 10098 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_SAFE\_MODE\_COUNT | 10099 | housekeeping | 0.1 \[Hz\] | 1 |
+| FDR\_CMD\_LOSS\_TIMER | 10100 | housekeeping | 1 \[Hz\] | s |
+| FDR\_RESPONSE\_MASK | 10101 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_FLAMEOUT\_RETRIES | 10102 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_RESPONSE\_STATE | 10103 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_ACTIVE\_FAULTS | 10104 | housekeeping | 1 \[Hz\] | 1 |
+| FDR\_IMPACT\_PROBABILITY | 10105 | housekeeping | 0.1 \[Hz\] | 1 |
+| FDR\_EARTH\_RANGE | 10106 | housekeeping | 0.1 \[Hz\] | m |
+
+*Events (the fault-relevant ones are the fault-protection interface)*
+
+| mnemonic | eventId | severity | fdirRelevant | text |
+| --- | --- | --- | --- | --- |
+| FDR\_EVT\_STARTED | 1001 | info | false | application started |
+| FDR\_EVT\_STOPPED | 1002 | warning | false | application stopped |
+| FDR\_EVT\_CMD\_ACCEPTED | 1003 | info | false | command accepted |
+| FDR\_EVT\_CMD\_REJECTED | 1004 | warning | false | command rejected |
+| FDR\_EVT\_TABLE\_LOADED | 1005 | info | false | parameter table loaded |
+| FDR\_EVT\_TABLE\_INVALID | 1006 | fault | true | parameter table failed validation |
+| FDR\_EVT\_WATCHDOG\_MISSED | 1007 | fault | true | application missed its watchdog window |
+| FDR\_EVT\_MODE\_CHANGE\_SEEN | 1008 | info | false | application applied a mode change |
+| FDR\_EVT\_MONITOR\_TRIP | 1009 | fault | true | monitor tripped |
+| FDR\_EVT\_RESPONSE\_TAKEN | 1010 | critical | true | fault response taken |
+| FDR\_EVT\_SAFE\_MODE\_ENTERED | 1011 | critical | true | safe mode entered |
+| FDR\_EVT\_COMMAND\_LOSS | 1012 | critical | true | command-loss timer expired |
+| FDR\_EVT\_ABORT\_RETREAT | 1013 | critical | true | abort to retreat commanded |
+| FDR\_EVT\_FAULT\_CLEARED | 1014 | info | false | fault cleared |
+| FDR\_EVT\_IMPACT\_PROBABILITY\_HIGH | 1015 | critical | true | Earth impact probability above limit |
+| FDR\_EVT\_EXCLUSION\_VIOLATION | 1016 | critical | true | trajectory enters Earth exclusion radius |
+
+*Packets*
+
+| mnemonic | apid | apidClass | rate | lengthOctets | layoutConsistent |
+| --- | --- | --- | --- | --- | --- |
+| FDR\_HK\_01 | 37 | housekeeping | 1 \[Hz\] | 36 | true |
+| FDR\_HK\_02 | 38 | housekeeping | 1 \[Hz\] | 36 | true |
+| FDR\_HK\_03 | 39 | housekeeping | 1 \[Hz\] | 47 | true |
+| FDR\_ENG\_01 | 40 | housekeeping | 0.1 \[Hz\] | 108 | true |
+| FDR\_ENG\_02 | 41 | housekeeping | 0.1 \[Hz\] | 108 | true |
+
+## Requirements satisfied
+
+*Software requirements satisfied*
+
+| name | satisfies | rows |
+| --- | --- | --- |
+| fdir | fdirApplication | 1 |
+
+## Assurance classification
+
+*Classification register row*
+
+| name | level | documentation |
+| --- | --- | --- |
+| fdir | levelA | The FDIR supervisor: safe mode, thruster switchover, the Earth-impact abort. |
+
+One volume per application of the Argent flight software, in the order of TethysFlightSoftware::ArgentFlightSoftware. Every table is a query over TethysFlightSoftware, TethysFlightBehaviour, TethysFlightTiming, TethysFlightDictionary, TethysSoftwareRequirements and TethysSoftwareAssurance.

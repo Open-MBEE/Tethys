@@ -1,0 +1,321 @@
+# Power management application design description
+
+## Purpose
+
+*Application definition*
+
+| name | type | documentation |
+| --- | --- | --- |
+| PowerManagementApplication |  | Power management: battery state of charge, array regulation and load shedding<br>below the battery threshold the fault application sets. |
+
+*Behavioural specialisation*
+
+| name | type | documentation |
+| --- | --- | --- |
+| PowerManagementSoftware |  | The power application exhibiting the load-shedding power manager. |
+
+## Ports
+
+*Ports of the application*
+
+| name | type | documentation |
+| --- | --- | --- |
+| powerUnits | TethysInterfaces::DataBusPort |  |
+
+*Ports added by the behavioural specialisation*
+
+| name | type | documentation |
+| --- | --- | --- |
+| command | TethysModes::CommandPort |  |
+
+## State machine
+
+*Exhibited state machines*
+
+| name | type | documentation |
+| --- | --- | --- |
+| manager | TethysFlightBehaviour::PowerManager |  |
+
+*States*
+
+| name | type | documentation |
+| --- | --- | --- |
+| nominal |  |  |
+| tierOne |  |  |
+| tierTwo |  |  |
+| survival |  |  |
+
+## Parameter table
+
+*Parameters: id, value, range, unit*
+
+| parameterId | value | minimum | maximum | unitSymbol | inRange |
+| --- | --- | --- | --- | --- | --- |
+| 13 | 33 | 28 | 33.6 | V | true |
+| 14 | 26 | 24 | 28 | V | true |
+| 15 | 30 | 28 | 32 | V | true |
+| 16 | 0.3 | 0.1 | 0.6 | 1 | true |
+
+## Rate, worst-case execution time and deadline
+
+*Scheduled task*
+
+| name | period | wcet | deadline | utilisation | activeModes |
+| --- | --- | --- | --- | --- | --- |
+| powerManagementTask | 0.125 \[s\] | 0.005 \[s\] | 0.125 \[s\] | 0.04 | earlyOperations, thrust, approach, stackThrust, disposal, coast, stackCoast, dockedPassive, proximityOperations, retreat, capture, despin, droHold, safe, abortHold |
+
+## Commands, telemetry, events and packets owned
+
+*Commands*
+
+| mnemonic | opcodeNumber | criticality | hazardous | documentation |
+| --- | --- | --- | --- | --- |
+| EPS\_SET\_BATTERY\_CHARGE\_LIMIT | 1025 | critical | false | Set the battery end-of-charge voltage. |
+| EPS\_SET\_LOAD\_SHED\_LEVEL | 1026 | critical | false | Set the load-shed tier the power manager applies at low state of charge. |
+| EPS\_SELECT\_BATTERY | 1027 | critical | false | Select the battery that carries the bus; the other floats. |
+| EPS\_SADA\_SET\_ANGLE | 1028 | critical | false | Drive a solar array drive to an angle. |
+| EPS\_SADA\_TRACK\_SUN | 1029 | routine | false | Return a solar array drive to sun tracking. |
+| EPS\_SADA\_HOLD | 1030 | routine | false | Hold a solar array drive at its current angle. |
+| EPS\_SET\_BUS\_VOLTAGE\_LIMITS | 1031 | critical | false | Set the regulated bus under- and over-voltage trips. |
+| EPS\_BALANCE\_CELLS | 1032 | routine | false | Start a cell balancing cycle on a battery. |
+| EPS\_RESET\_SWITCH\_TRIPS | 1033 | critical | false | Clear every latched over-current trip. |
+| EPS\_SET\_ARRAY\_STRING\_MASK | 1034 | critical | false | Mask solar array strings out of the regulator. |
+| EPS\_SWITCH\_ON\_01 | 1035 | critical | false | Close power switch 1. |
+| EPS\_SWITCH\_OFF\_01 | 1036 | critical | false | Open power switch 1. |
+| EPS\_SWITCH\_ON\_02 | 1037 | critical | false | Close power switch 2. |
+| EPS\_SWITCH\_OFF\_02 | 1038 | critical | false | Open power switch 2. |
+| EPS\_SWITCH\_ON\_03 | 1039 | critical | false | Close power switch 3. |
+| EPS\_SWITCH\_OFF\_03 | 1040 | critical | false | Open power switch 3. |
+| EPS\_SWITCH\_ON\_04 | 1041 | critical | false | Close power switch 4. |
+| EPS\_SWITCH\_OFF\_04 | 1042 | critical | false | Open power switch 4. |
+| EPS\_SWITCH\_ON\_05 | 1043 | critical | false | Close power switch 5. |
+| EPS\_SWITCH\_OFF\_05 | 1044 | critical | false | Open power switch 5. |
+| EPS\_SWITCH\_ON\_06 | 1045 | critical | false | Close power switch 6. |
+| EPS\_SWITCH\_OFF\_06 | 1046 | critical | false | Open power switch 6. |
+| EPS\_SWITCH\_ON\_07 | 1047 | critical | false | Close power switch 7. |
+| EPS\_SWITCH\_OFF\_07 | 1048 | critical | false | Open power switch 7. |
+| EPS\_SWITCH\_ON\_08 | 1049 | critical | false | Close power switch 8. |
+| EPS\_SWITCH\_OFF\_08 | 1050 | critical | false | Open power switch 8. |
+| EPS\_SWITCH\_ON\_09 | 1051 | critical | false | Close power switch 9. |
+| EPS\_SWITCH\_OFF\_09 | 1052 | critical | false | Open power switch 9. |
+| EPS\_SWITCH\_ON\_10 | 1053 | critical | false | Close power switch 10. |
+| EPS\_SWITCH\_OFF\_10 | 1054 | critical | false | Open power switch 10. |
+| EPS\_SWITCH\_ON\_11 | 1055 | critical | false | Close power switch 11. |
+| EPS\_SWITCH\_OFF\_11 | 1056 | critical | false | Open power switch 11. |
+| EPS\_SWITCH\_ON\_12 | 1057 | critical | false | Close power switch 12. |
+| EPS\_SWITCH\_OFF\_12 | 1058 | critical | false | Open power switch 12. |
+| EPS\_SWITCH\_ON\_13 | 1059 | critical | false | Close power switch 13. |
+| EPS\_SWITCH\_OFF\_13 | 1060 | critical | false | Open power switch 13. |
+| EPS\_SWITCH\_ON\_14 | 1061 | critical | false | Close power switch 14. |
+| EPS\_SWITCH\_OFF\_14 | 1062 | critical | false | Open power switch 14. |
+| EPS\_SWITCH\_ON\_15 | 1063 | critical | false | Close power switch 15. |
+| EPS\_SWITCH\_OFF\_15 | 1064 | critical | false | Open power switch 15. |
+| EPS\_SWITCH\_ON\_16 | 1065 | critical | false | Close power switch 16. |
+| EPS\_SWITCH\_OFF\_16 | 1066 | critical | false | Open power switch 16. |
+| EPS\_SWITCH\_ON\_17 | 1067 | critical | false | Close power switch 17. |
+| EPS\_SWITCH\_OFF\_17 | 1068 | critical | false | Open power switch 17. |
+| EPS\_SWITCH\_ON\_18 | 1069 | critical | false | Close power switch 18. |
+| EPS\_SWITCH\_OFF\_18 | 1070 | critical | false | Open power switch 18. |
+| EPS\_SWITCH\_ON\_19 | 1071 | critical | false | Close power switch 19. |
+| EPS\_SWITCH\_OFF\_19 | 1072 | critical | false | Open power switch 19. |
+| EPS\_SWITCH\_ON\_20 | 1073 | critical | false | Close power switch 20. |
+| EPS\_SWITCH\_OFF\_20 | 1074 | critical | false | Open power switch 20. |
+| EPS\_SWITCH\_ON\_21 | 1075 | critical | false | Close power switch 21. |
+| EPS\_SWITCH\_OFF\_21 | 1076 | critical | false | Open power switch 21. |
+| EPS\_SWITCH\_ON\_22 | 1077 | critical | false | Close power switch 22. |
+| EPS\_SWITCH\_OFF\_22 | 1078 | critical | false | Open power switch 22. |
+| EPS\_SWITCH\_ON\_23 | 1079 | critical | false | Close power switch 23. |
+| EPS\_SWITCH\_OFF\_23 | 1080 | critical | false | Open power switch 23. |
+| EPS\_SWITCH\_ON\_24 | 1081 | critical | false | Close power switch 24. |
+| EPS\_SWITCH\_OFF\_24 | 1082 | critical | false | Open power switch 24. |
+
+*Telemetry points*
+
+| mnemonic | pointId | kind | rate | unitSymbol |
+| --- | --- | --- | --- | --- |
+| EPS\_BATT\_CELL\_V\_01 | 4001 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_02 | 4002 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_03 | 4003 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_04 | 4004 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_05 | 4005 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_06 | 4006 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_07 | 4007 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_08 | 4008 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_09 | 4009 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_10 | 4010 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_11 | 4011 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_12 | 4012 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_13 | 4013 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_14 | 4014 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_15 | 4015 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_16 | 4016 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_17 | 4017 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_18 | 4018 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_19 | 4019 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_20 | 4020 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_21 | 4021 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_22 | 4022 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_23 | 4023 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_24 | 4024 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_25 | 4025 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_26 | 4026 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_27 | 4027 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_28 | 4028 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_29 | 4029 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_30 | 4030 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_31 | 4031 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_CELL\_V\_32 | 4032 | engineering | 0.1 \[Hz\] | V |
+| EPS\_BATT\_T\_01 | 4033 | housekeeping | 0.1 \[Hz\] | K |
+| EPS\_BATT\_T\_02 | 4034 | housekeeping | 0.1 \[Hz\] | K |
+| EPS\_BATT\_T\_03 | 4035 | housekeeping | 0.1 \[Hz\] | K |
+| EPS\_BATT\_T\_04 | 4036 | housekeeping | 0.1 \[Hz\] | K |
+| EPS\_BATT\_SOC\_01 | 4037 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_BATT\_SOC\_02 | 4038 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_BATT\_I\_01 | 4039 | housekeeping | 1 \[Hz\] | A |
+| EPS\_BATT\_I\_02 | 4040 | housekeeping | 1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_01 | 4041 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_02 | 4042 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_03 | 4043 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_04 | 4044 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_05 | 4045 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_06 | 4046 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_07 | 4047 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_08 | 4048 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_09 | 4049 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_10 | 4050 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_11 | 4051 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_12 | 4052 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_13 | 4053 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_14 | 4054 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_15 | 4055 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_16 | 4056 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_17 | 4057 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_18 | 4058 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_19 | 4059 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_20 | 4060 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_21 | 4061 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_22 | 4062 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_23 | 4063 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_STRING\_I\_24 | 4064 | engineering | 0.1 \[Hz\] | A |
+| EPS\_ARRAY\_T\_01 | 4065 | engineering | 0.1 \[Hz\] | K |
+| EPS\_ARRAY\_T\_02 | 4066 | engineering | 0.1 \[Hz\] | K |
+| EPS\_ARRAY\_T\_03 | 4067 | engineering | 0.1 \[Hz\] | K |
+| EPS\_ARRAY\_T\_04 | 4068 | engineering | 0.1 \[Hz\] | K |
+| EPS\_ARRAY\_T\_05 | 4069 | engineering | 0.1 \[Hz\] | K |
+| EPS\_ARRAY\_T\_06 | 4070 | engineering | 0.1 \[Hz\] | K |
+| EPS\_ARRAY\_T\_07 | 4071 | engineering | 0.1 \[Hz\] | K |
+| EPS\_ARRAY\_T\_08 | 4072 | engineering | 0.1 \[Hz\] | K |
+| EPS\_ARRAY\_V\_01 | 4073 | housekeeping | 1 \[Hz\] | V |
+| EPS\_ARRAY\_V\_02 | 4074 | housekeeping | 1 \[Hz\] | V |
+| EPS\_ARRAY\_V\_03 | 4075 | housekeeping | 1 \[Hz\] | V |
+| EPS\_ARRAY\_V\_04 | 4076 | housekeeping | 1 \[Hz\] | V |
+| EPS\_BUS\_V\_01 | 4077 | housekeeping | 1 \[Hz\] | V |
+| EPS\_BUS\_V\_02 | 4078 | housekeeping | 1 \[Hz\] | V |
+| EPS\_BUS\_I\_01 | 4079 | housekeeping | 1 \[Hz\] | A |
+| EPS\_BUS\_I\_02 | 4080 | housekeeping | 1 \[Hz\] | A |
+| EPS\_SW\_STATE\_01 | 4081 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_02 | 4082 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_03 | 4083 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_04 | 4084 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_05 | 4085 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_06 | 4086 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_07 | 4087 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_08 | 4088 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_09 | 4089 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_10 | 4090 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_11 | 4091 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_12 | 4092 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_13 | 4093 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_14 | 4094 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_15 | 4095 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_16 | 4096 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_17 | 4097 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_18 | 4098 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_19 | 4099 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_20 | 4100 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_21 | 4101 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_22 | 4102 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_23 | 4103 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_STATE\_24 | 4104 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_SW\_I\_01 | 4105 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_02 | 4106 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_03 | 4107 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_04 | 4108 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_05 | 4109 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_06 | 4110 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_07 | 4111 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_08 | 4112 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_09 | 4113 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_10 | 4114 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_11 | 4115 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_12 | 4116 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_13 | 4117 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_14 | 4118 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_15 | 4119 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_16 | 4120 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_17 | 4121 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_18 | 4122 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_19 | 4123 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_20 | 4124 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_21 | 4125 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_22 | 4126 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_23 | 4127 | engineering | 1 \[Hz\] | A |
+| EPS\_SW\_I\_24 | 4128 | engineering | 1 \[Hz\] | A |
+| EPS\_SADA\_ANGLE\_01 | 4129 | housekeeping | 1 \[Hz\] | rad |
+| EPS\_SADA\_ANGLE\_02 | 4130 | housekeeping | 1 \[Hz\] | rad |
+| EPS\_SADA\_RATE\_01 | 4131 | engineering | 1 \[Hz\] | rad/s |
+| EPS\_SADA\_RATE\_02 | 4132 | engineering | 1 \[Hz\] | rad/s |
+| EPS\_PCU\_T\_01 | 4133 | housekeeping | 0.1 \[Hz\] | K |
+| EPS\_PCU\_T\_02 | 4134 | housekeeping | 0.1 \[Hz\] | K |
+| EPS\_LOAD\_SHED\_LEVEL | 4135 | housekeeping | 1 \[Hz\] | 1 |
+| EPS\_TOTAL\_LOAD | 4136 | housekeeping | 1 \[Hz\] | W |
+| EPS\_ARRAY\_POWER | 4137 | housekeeping | 1 \[Hz\] | W |
+
+*Events (the fault-relevant ones are the fault-protection interface)*
+
+| mnemonic | eventId | severity | fdirRelevant | text |
+| --- | --- | --- | --- | --- |
+| EPS\_EVT\_STARTED | 401 | info | false | application started |
+| EPS\_EVT\_STOPPED | 402 | warning | false | application stopped |
+| EPS\_EVT\_CMD\_ACCEPTED | 403 | info | false | command accepted |
+| EPS\_EVT\_CMD\_REJECTED | 404 | warning | false | command rejected |
+| EPS\_EVT\_TABLE\_LOADED | 405 | info | false | parameter table loaded |
+| EPS\_EVT\_TABLE\_INVALID | 406 | fault | true | parameter table failed validation |
+| EPS\_EVT\_WATCHDOG\_MISSED | 407 | fault | true | application missed its watchdog window |
+| EPS\_EVT\_MODE\_CHANGE\_SEEN | 408 | info | false | application applied a mode change |
+| EPS\_EVT\_LOAD\_SHED | 409 | warning | false | load shed tier applied |
+| EPS\_EVT\_BATTERY\_LOW | 410 | fault | true | battery below low fraction |
+| EPS\_EVT\_BUS\_UNDERVOLTAGE | 411 | critical | true | bus under-voltage trip |
+| EPS\_EVT\_SWITCH\_TRIP | 412 | fault | true | power switch over-current trip |
+| EPS\_EVT\_ARRAY\_STRING\_LOST | 413 | warning | false | solar array string open |
+| EPS\_EVT\_SADA\_STALL | 414 | fault | true | solar array drive stalled |
+| EPS\_EVT\_CHARGE\_COMPLETE | 415 | info | false | battery charge complete |
+
+*Packets*
+
+| mnemonic | apid | apidClass | rate | lengthOctets | layoutConsistent |
+| --- | --- | --- | --- | --- | --- |
+| EPS\_HK\_01 | 19 | housekeeping | 1 \[Hz\] | 52 | true |
+| EPS\_HK\_02 | 20 | housekeeping | 1 \[Hz\] | 45 | true |
+| EPS\_ENG\_01 | 21 | housekeeping | 0.1 \[Hz\] | 60 | true |
+| EPS\_ENG\_02 | 22 | housekeeping | 0.1 \[Hz\] | 60 | true |
+| EPS\_ENG\_03 | 23 | housekeeping | 1 \[Hz\] | 60 | true |
+| EPS\_ENG\_04 | 24 | housekeeping | 1 \[Hz\] | 52 | true |
+
+## Requirements satisfied
+
+*Software requirements satisfied*
+
+| name | satisfies | rows |
+| --- | --- | --- |
+| powerManagement | powerManagementApplication | 1 |
+
+## Assurance classification
+
+*Classification register row*
+
+| name | level | documentation |
+| --- | --- | --- |
+| powerManagement | levelB | Battery and load management. |
+
+One volume per application of the Argent flight software, in the order of TethysFlightSoftware::ArgentFlightSoftware. Every table is a query over TethysFlightSoftware, TethysFlightBehaviour, TethysFlightTiming, TethysFlightDictionary, TethysSoftwareRequirements and TethysSoftwareAssurance.

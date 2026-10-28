@@ -24,7 +24,10 @@ package TethysIcds {
     }
 
     metadata def InterfaceControl {
-        doc /* Who controls an interface, which document records it and at what revision. */
+        doc /* Who controls an interface, which document records it and at what revision. Ids
+             * TI-001 to TI-014 are the system ICDs of this package; TI-020 to TI-029 are reserved
+             * for the software ICDs of TethysSoftwareIcds (bus protocol, link profile, relay
+             * profile, register maps). */
         attribute authority : String;
         attribute document : String;
         attribute revision : String;
@@ -46,11 +49,21 @@ package TethysIcds {
     }
 
     // ---- packets: the command/telemetry interface the dictionary is written against -----
+    attribute def PacketSecondaryHeader {
+        doc /* The packet secondary header: the on-board time code, seconds and 1/65 536 s
+             * fractions since the mission epoch, six octets. */
+        attribute coarseTime : Natural;
+        attribute fineTime : Natural;
+        attribute length : StorageCapacityValue default = 6.0 [B];
+    }
     item def SpacePacket {
-        doc /* A packet on the space link: application id, sequence count and length. */
+        doc /* A packet on the space link: the six-octet primary header's application id, sequence
+             * count and length, and the secondary header carrying the time code. */
         attribute apid : Natural;
         attribute sequenceCount : Natural;
         attribute length : StorageCapacityValue;
+        attribute primaryHeaderLength : StorageCapacityValue default = 6.0 [B];
+        attribute secondaryHeader : PacketSecondaryHeader;
     }
     item def TelemetryPacket :> SpacePacket, Telemetry {
         doc /* A telemetry packet: a space packet carrying housekeeping or payload data. */

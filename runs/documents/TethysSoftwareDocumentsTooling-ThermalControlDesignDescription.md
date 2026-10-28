@@ -1,0 +1,459 @@
+# Thermal control application design description
+
+## Purpose
+
+*Application definition*
+
+| name | type | documentation |
+| --- | --- | --- |
+| ThermalControlApplication |  | Thermal control: heater zones against their set points from the thermistors the<br>remote interface units gather. |
+
+*Behavioural specialisation*
+
+| name | type | documentation |
+| --- | --- | --- |
+| ThermalControlSoftware |  | The thermal application exhibiting one heater zone's control loop. |
+
+## Ports
+
+*Ports of the application*
+
+| name | type | documentation |
+| --- | --- | --- |
+| heaters | TethysInterfaces::DataBusPort |  |
+
+*Ports added by the behavioural specialisation*
+
+| name | type | documentation |
+| --- | --- | --- |
+| command | TethysModes::CommandPort |  |
+
+## State machine
+
+*Exhibited state machines*
+
+| name | type | documentation |
+| --- | --- | --- |
+| controller | TethysFlightBehaviour::ThermalController |  |
+
+*States*
+
+| name | type | documentation |
+| --- | --- | --- |
+| setpointSelection |  |  |
+| heaterLoop |  |  |
+
+## Parameter table
+
+*Parameters: id, value, range, unit*
+
+| parameterId | value | minimum | maximum | unitSymbol | inRange |
+| --- | --- | --- | --- | --- | --- |
+| 17 | 2 | 0.5 | 10 | K | true |
+| 18 | 243 | 233 | 283 | K | true |
+| 19 | 253 | 243 | 293 | K | true |
+| 20 | 800 | 50 | 900 | W | true |
+
+## Rate, worst-case execution time and deadline
+
+*Scheduled task*
+
+| name | period | wcet | deadline | utilisation | activeModes |
+| --- | --- | --- | --- | --- | --- |
+| thermalControlTask | 0.5 \[s\] | 0.006 \[s\] | 0.5 \[s\] | 0.012 | earlyOperations, thrust, approach, stackThrust, disposal, coast, stackCoast, dockedPassive, proximityOperations, retreat, capture, despin, droHold, safe, abortHold |
+
+## Commands, telemetry, events and packets owned
+
+*Commands*
+
+| mnemonic | opcodeNumber | criticality | hazardous | documentation |
+| --- | --- | --- | --- | --- |
+| THM\_SET\_CONTROL\_MODE | 1281 | critical | false | Select the heater control law: bang-bang, proportional or open loop. |
+| THM\_LOUVER\_SET | 1282 | routine | false | Set a radiator louver position. |
+| THM\_LOUVER\_AUTO | 1283 | routine | false | Return a radiator louver to passive control. |
+| THM\_SET\_SURVIVAL\_SETPOINTS | 1284 | critical | false | Set the survival heater set points applied in safe mode. |
+| THM\_SET\_DEADBAND | 1285 | routine | false | Set the control deadband of every zone. |
+| THM\_ENABLE\_ALL\_HEATERS | 1286 | critical | false | Enable every heater zone under its set point. |
+| THM\_DISABLE\_ALL\_HEATERS | 1287 | critical | true | Disable every heater zone; survival heaters stay on their thermostats. |
+| THM\_SET\_HEATER\_POWER\_CAP | 1288 | critical | false | Cap the total heater power the thermal application may draw. |
+| THM\_HEATER\_ENABLE\_01 | 1289 | routine | false | Enable heater zone 1. |
+| THM\_HEATER\_DISABLE\_01 | 1290 | routine | false | Disable heater zone 1. |
+| THM\_HEATER\_ENABLE\_02 | 1291 | routine | false | Enable heater zone 2. |
+| THM\_HEATER\_DISABLE\_02 | 1292 | routine | false | Disable heater zone 2. |
+| THM\_HEATER\_ENABLE\_03 | 1293 | routine | false | Enable heater zone 3. |
+| THM\_HEATER\_DISABLE\_03 | 1294 | routine | false | Disable heater zone 3. |
+| THM\_HEATER\_ENABLE\_04 | 1295 | routine | false | Enable heater zone 4. |
+| THM\_HEATER\_DISABLE\_04 | 1296 | routine | false | Disable heater zone 4. |
+| THM\_HEATER\_ENABLE\_05 | 1297 | routine | false | Enable heater zone 5. |
+| THM\_HEATER\_DISABLE\_05 | 1298 | routine | false | Disable heater zone 5. |
+| THM\_HEATER\_ENABLE\_06 | 1299 | routine | false | Enable heater zone 6. |
+| THM\_HEATER\_DISABLE\_06 | 1300 | routine | false | Disable heater zone 6. |
+| THM\_HEATER\_ENABLE\_07 | 1301 | routine | false | Enable heater zone 7. |
+| THM\_HEATER\_DISABLE\_07 | 1302 | routine | false | Disable heater zone 7. |
+| THM\_HEATER\_ENABLE\_08 | 1303 | routine | false | Enable heater zone 8. |
+| THM\_HEATER\_DISABLE\_08 | 1304 | routine | false | Disable heater zone 8. |
+| THM\_HEATER\_ENABLE\_09 | 1305 | routine | false | Enable heater zone 9. |
+| THM\_HEATER\_DISABLE\_09 | 1306 | routine | false | Disable heater zone 9. |
+| THM\_HEATER\_ENABLE\_10 | 1307 | routine | false | Enable heater zone 10. |
+| THM\_HEATER\_DISABLE\_10 | 1308 | routine | false | Disable heater zone 10. |
+| THM\_HEATER\_ENABLE\_11 | 1309 | routine | false | Enable heater zone 11. |
+| THM\_HEATER\_DISABLE\_11 | 1310 | routine | false | Disable heater zone 11. |
+| THM\_HEATER\_ENABLE\_12 | 1311 | routine | false | Enable heater zone 12. |
+| THM\_HEATER\_DISABLE\_12 | 1312 | routine | false | Disable heater zone 12. |
+| THM\_HEATER\_ENABLE\_13 | 1313 | routine | false | Enable heater zone 13. |
+| THM\_HEATER\_DISABLE\_13 | 1314 | routine | false | Disable heater zone 13. |
+| THM\_HEATER\_ENABLE\_14 | 1315 | routine | false | Enable heater zone 14. |
+| THM\_HEATER\_DISABLE\_14 | 1316 | routine | false | Disable heater zone 14. |
+| THM\_HEATER\_ENABLE\_15 | 1317 | routine | false | Enable heater zone 15. |
+| THM\_HEATER\_DISABLE\_15 | 1318 | routine | false | Disable heater zone 15. |
+| THM\_HEATER\_ENABLE\_16 | 1319 | routine | false | Enable heater zone 16. |
+| THM\_HEATER\_DISABLE\_16 | 1320 | routine | false | Disable heater zone 16. |
+| THM\_HEATER\_SETPOINT\_01 | 1321 | routine | false | Set the control set point of heater zone 1. |
+| THM\_HEATER\_SETPOINT\_02 | 1322 | routine | false | Set the control set point of heater zone 2. |
+| THM\_HEATER\_SETPOINT\_03 | 1323 | routine | false | Set the control set point of heater zone 3. |
+| THM\_HEATER\_SETPOINT\_04 | 1324 | routine | false | Set the control set point of heater zone 4. |
+| THM\_HEATER\_SETPOINT\_05 | 1325 | routine | false | Set the control set point of heater zone 5. |
+| THM\_HEATER\_SETPOINT\_06 | 1326 | routine | false | Set the control set point of heater zone 6. |
+| THM\_HEATER\_SETPOINT\_07 | 1327 | routine | false | Set the control set point of heater zone 7. |
+| THM\_HEATER\_SETPOINT\_08 | 1328 | routine | false | Set the control set point of heater zone 8. |
+| THM\_HEATER\_SETPOINT\_09 | 1329 | routine | false | Set the control set point of heater zone 9. |
+| THM\_HEATER\_SETPOINT\_10 | 1330 | routine | false | Set the control set point of heater zone 10. |
+| THM\_HEATER\_SETPOINT\_11 | 1331 | routine | false | Set the control set point of heater zone 11. |
+| THM\_HEATER\_SETPOINT\_12 | 1332 | routine | false | Set the control set point of heater zone 12. |
+| THM\_HEATER\_SETPOINT\_13 | 1333 | routine | false | Set the control set point of heater zone 13. |
+| THM\_HEATER\_SETPOINT\_14 | 1334 | routine | false | Set the control set point of heater zone 14. |
+| THM\_HEATER\_SETPOINT\_15 | 1335 | routine | false | Set the control set point of heater zone 15. |
+| THM\_HEATER\_SETPOINT\_16 | 1336 | routine | false | Set the control set point of heater zone 16. |
+
+*Telemetry points*
+
+| mnemonic | pointId | kind | rate | unitSymbol |
+| --- | --- | --- | --- | --- |
+| THM\_ZONE\_T\_01 | 5001 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_02 | 5002 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_03 | 5003 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_04 | 5004 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_05 | 5005 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_06 | 5006 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_07 | 5007 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_08 | 5008 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_09 | 5009 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_10 | 5010 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_11 | 5011 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_12 | 5012 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_13 | 5013 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_14 | 5014 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_15 | 5015 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_16 | 5016 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_17 | 5017 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_18 | 5018 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_19 | 5019 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_20 | 5020 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_21 | 5021 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_22 | 5022 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_23 | 5023 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_24 | 5024 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_25 | 5025 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_26 | 5026 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_27 | 5027 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_28 | 5028 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_29 | 5029 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_30 | 5030 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_31 | 5031 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_32 | 5032 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_33 | 5033 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_34 | 5034 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_35 | 5035 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_36 | 5036 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_37 | 5037 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_38 | 5038 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_39 | 5039 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_40 | 5040 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_41 | 5041 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_42 | 5042 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_43 | 5043 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_44 | 5044 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_45 | 5045 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_46 | 5046 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_47 | 5047 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_48 | 5048 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_49 | 5049 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_50 | 5050 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_51 | 5051 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_52 | 5052 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_53 | 5053 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_54 | 5054 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_55 | 5055 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_56 | 5056 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_57 | 5057 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_58 | 5058 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_59 | 5059 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_60 | 5060 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_61 | 5061 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_62 | 5062 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_63 | 5063 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_64 | 5064 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_65 | 5065 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_66 | 5066 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_67 | 5067 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_68 | 5068 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_69 | 5069 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_70 | 5070 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_71 | 5071 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_72 | 5072 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_73 | 5073 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_74 | 5074 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_75 | 5075 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_76 | 5076 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_77 | 5077 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_78 | 5078 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_79 | 5079 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_80 | 5080 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_81 | 5081 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_82 | 5082 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_83 | 5083 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_84 | 5084 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_85 | 5085 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_86 | 5086 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_87 | 5087 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_88 | 5088 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_89 | 5089 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_90 | 5090 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_91 | 5091 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_92 | 5092 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_93 | 5093 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_94 | 5094 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_95 | 5095 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_96 | 5096 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_97 | 5097 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_98 | 5098 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_99 | 5099 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_100 | 5100 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_101 | 5101 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_102 | 5102 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_103 | 5103 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_104 | 5104 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_105 | 5105 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_106 | 5106 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_107 | 5107 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_108 | 5108 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_109 | 5109 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_110 | 5110 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_111 | 5111 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_112 | 5112 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_113 | 5113 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_114 | 5114 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_115 | 5115 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_116 | 5116 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_117 | 5117 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_118 | 5118 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_119 | 5119 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_120 | 5120 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_121 | 5121 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_122 | 5122 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_123 | 5123 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_124 | 5124 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_125 | 5125 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_126 | 5126 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_127 | 5127 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_128 | 5128 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_129 | 5129 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_130 | 5130 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_131 | 5131 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_132 | 5132 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_133 | 5133 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_134 | 5134 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_135 | 5135 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_136 | 5136 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_137 | 5137 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_138 | 5138 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_139 | 5139 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_140 | 5140 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_141 | 5141 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_142 | 5142 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_143 | 5143 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_144 | 5144 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_145 | 5145 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_146 | 5146 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_147 | 5147 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_148 | 5148 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_149 | 5149 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_150 | 5150 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_151 | 5151 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_152 | 5152 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_153 | 5153 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_154 | 5154 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_155 | 5155 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_156 | 5156 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_157 | 5157 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_158 | 5158 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_159 | 5159 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_160 | 5160 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_161 | 5161 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_162 | 5162 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_163 | 5163 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_164 | 5164 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_165 | 5165 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_166 | 5166 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_167 | 5167 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_168 | 5168 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_169 | 5169 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_170 | 5170 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_171 | 5171 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_172 | 5172 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_173 | 5173 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_174 | 5174 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_175 | 5175 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_176 | 5176 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_177 | 5177 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_178 | 5178 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_179 | 5179 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_180 | 5180 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_181 | 5181 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_182 | 5182 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_183 | 5183 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_184 | 5184 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_185 | 5185 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_186 | 5186 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_187 | 5187 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_188 | 5188 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_189 | 5189 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_190 | 5190 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_191 | 5191 | engineering | 0.1 \[Hz\] | K |
+| THM\_ZONE\_T\_192 | 5192 | engineering | 0.1 \[Hz\] | K |
+| THM\_HTR\_STATE\_01 | 5193 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_STATE\_02 | 5194 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_STATE\_03 | 5195 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_STATE\_04 | 5196 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_STATE\_05 | 5197 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_STATE\_06 | 5198 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_STATE\_07 | 5199 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_STATE\_08 | 5200 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_STATE\_09 | 5201 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_STATE\_10 | 5202 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_STATE\_11 | 5203 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_STATE\_12 | 5204 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_STATE\_13 | 5205 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_STATE\_14 | 5206 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_STATE\_15 | 5207 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_STATE\_16 | 5208 | housekeeping | 1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_01 | 5209 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_02 | 5210 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_03 | 5211 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_04 | 5212 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_05 | 5213 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_06 | 5214 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_07 | 5215 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_08 | 5216 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_09 | 5217 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_10 | 5218 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_11 | 5219 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_12 | 5220 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_13 | 5221 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_14 | 5222 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_15 | 5223 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_DUTY\_16 | 5224 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HTR\_I\_01 | 5225 | engineering | 0.1 \[Hz\] | A |
+| THM\_HTR\_I\_02 | 5226 | engineering | 0.1 \[Hz\] | A |
+| THM\_HTR\_I\_03 | 5227 | engineering | 0.1 \[Hz\] | A |
+| THM\_HTR\_I\_04 | 5228 | engineering | 0.1 \[Hz\] | A |
+| THM\_HTR\_I\_05 | 5229 | engineering | 0.1 \[Hz\] | A |
+| THM\_HTR\_I\_06 | 5230 | engineering | 0.1 \[Hz\] | A |
+| THM\_HTR\_I\_07 | 5231 | engineering | 0.1 \[Hz\] | A |
+| THM\_HTR\_I\_08 | 5232 | engineering | 0.1 \[Hz\] | A |
+| THM\_HTR\_I\_09 | 5233 | engineering | 0.1 \[Hz\] | A |
+| THM\_HTR\_I\_10 | 5234 | engineering | 0.1 \[Hz\] | A |
+| THM\_HTR\_I\_11 | 5235 | engineering | 0.1 \[Hz\] | A |
+| THM\_HTR\_I\_12 | 5236 | engineering | 0.1 \[Hz\] | A |
+| THM\_HTR\_I\_13 | 5237 | engineering | 0.1 \[Hz\] | A |
+| THM\_HTR\_I\_14 | 5238 | engineering | 0.1 \[Hz\] | A |
+| THM\_HTR\_I\_15 | 5239 | engineering | 0.1 \[Hz\] | A |
+| THM\_HTR\_I\_16 | 5240 | engineering | 0.1 \[Hz\] | A |
+| THM\_SETPOINT\_01 | 5241 | engineering | 0.01 \[Hz\] | K |
+| THM\_SETPOINT\_02 | 5242 | engineering | 0.01 \[Hz\] | K |
+| THM\_SETPOINT\_03 | 5243 | engineering | 0.01 \[Hz\] | K |
+| THM\_SETPOINT\_04 | 5244 | engineering | 0.01 \[Hz\] | K |
+| THM\_SETPOINT\_05 | 5245 | engineering | 0.01 \[Hz\] | K |
+| THM\_SETPOINT\_06 | 5246 | engineering | 0.01 \[Hz\] | K |
+| THM\_SETPOINT\_07 | 5247 | engineering | 0.01 \[Hz\] | K |
+| THM\_SETPOINT\_08 | 5248 | engineering | 0.01 \[Hz\] | K |
+| THM\_SETPOINT\_09 | 5249 | engineering | 0.01 \[Hz\] | K |
+| THM\_SETPOINT\_10 | 5250 | engineering | 0.01 \[Hz\] | K |
+| THM\_SETPOINT\_11 | 5251 | engineering | 0.01 \[Hz\] | K |
+| THM\_SETPOINT\_12 | 5252 | engineering | 0.01 \[Hz\] | K |
+| THM\_SETPOINT\_13 | 5253 | engineering | 0.01 \[Hz\] | K |
+| THM\_SETPOINT\_14 | 5254 | engineering | 0.01 \[Hz\] | K |
+| THM\_SETPOINT\_15 | 5255 | engineering | 0.01 \[Hz\] | K |
+| THM\_SETPOINT\_16 | 5256 | engineering | 0.01 \[Hz\] | K |
+| THM\_LOUVER\_POS\_01 | 5257 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_LOUVER\_POS\_02 | 5258 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_LOUVER\_POS\_03 | 5259 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_LOUVER\_POS\_04 | 5260 | engineering | 0.1 \[Hz\] | 1 |
+| THM\_HEAT\_PIPE\_T\_01 | 5261 | engineering | 0.1 \[Hz\] | K |
+| THM\_HEAT\_PIPE\_T\_02 | 5262 | engineering | 0.1 \[Hz\] | K |
+| THM\_HEAT\_PIPE\_T\_03 | 5263 | engineering | 0.1 \[Hz\] | K |
+| THM\_HEAT\_PIPE\_T\_04 | 5264 | engineering | 0.1 \[Hz\] | K |
+| THM\_HEAT\_PIPE\_T\_05 | 5265 | engineering | 0.1 \[Hz\] | K |
+| THM\_HEAT\_PIPE\_T\_06 | 5266 | engineering | 0.1 \[Hz\] | K |
+| THM\_HEAT\_PIPE\_T\_07 | 5267 | engineering | 0.1 \[Hz\] | K |
+| THM\_HEAT\_PIPE\_T\_08 | 5268 | engineering | 0.1 \[Hz\] | K |
+| THM\_RADIATOR\_T\_01 | 5269 | housekeeping | 0.1 \[Hz\] | K |
+| THM\_RADIATOR\_T\_02 | 5270 | housekeeping | 0.1 \[Hz\] | K |
+| THM\_RADIATOR\_T\_03 | 5271 | housekeeping | 0.1 \[Hz\] | K |
+| THM\_RADIATOR\_T\_04 | 5272 | housekeeping | 0.1 \[Hz\] | K |
+| THM\_HTR\_POWER\_TOTAL | 5273 | housekeeping | 1 \[Hz\] | W |
+| THM\_CONTROL\_MODE | 5274 | housekeeping | 1 \[Hz\] | 1 |
+
+*Events (the fault-relevant ones are the fault-protection interface)*
+
+| mnemonic | eventId | severity | fdirRelevant | text |
+| --- | --- | --- | --- | --- |
+| THM\_EVT\_STARTED | 501 | info | false | application started |
+| THM\_EVT\_STOPPED | 502 | warning | false | application stopped |
+| THM\_EVT\_CMD\_ACCEPTED | 503 | info | false | command accepted |
+| THM\_EVT\_CMD\_REJECTED | 504 | warning | false | command rejected |
+| THM\_EVT\_TABLE\_LOADED | 505 | info | false | parameter table loaded |
+| THM\_EVT\_TABLE\_INVALID | 506 | fault | true | parameter table failed validation |
+| THM\_EVT\_WATCHDOG\_MISSED | 507 | fault | true | application missed its watchdog window |
+| THM\_EVT\_MODE\_CHANGE\_SEEN | 508 | info | false | application applied a mode change |
+| THM\_EVT\_ZONE\_COLD | 509 | warning | false | zone below yellow low |
+| THM\_EVT\_ZONE\_HOT | 510 | warning | false | zone above yellow high |
+| THM\_EVT\_ZONE\_RED | 511 | fault | true | zone outside red limits |
+| THM\_EVT\_HEATER\_FAILED | 512 | fault | true | heater did not raise its zone |
+| THM\_EVT\_SURVIVAL\_ACTIVE | 513 | warning | false | survival heaters active |
+| THM\_EVT\_POWER\_CAP\_HIT | 514 | warning | false | heater power cap reached |
+
+*Packets*
+
+| mnemonic | apid | apidClass | rate | lengthOctets | layoutConsistent |
+| --- | --- | --- | --- | --- | --- |
+| THM\_HK\_01 | 25 | housekeeping | 1 \[Hz\] | 39 | true |
+| THM\_ENG\_01 | 26 | housekeeping | 0.1 \[Hz\] | 60 | true |
+| THM\_ENG\_02 | 27 | housekeeping | 0.1 \[Hz\] | 60 | true |
+| THM\_ENG\_03 | 28 | housekeeping | 0.1 \[Hz\] | 60 | true |
+| THM\_ENG\_04 | 29 | housekeeping | 0.1 \[Hz\] | 60 | true |
+| THM\_ENG\_05 | 30 | housekeeping | 0.1 \[Hz\] | 60 | true |
+| THM\_ENG\_06 | 31 | housekeeping | 0.1 \[Hz\] | 60 | true |
+| THM\_ENG\_07 | 32 | housekeeping | 0.1 \[Hz\] | 60 | true |
+| THM\_ENG\_08 | 33 | housekeeping | 0.1 \[Hz\] | 60 | true |
+| THM\_ENG\_09 | 34 | housekeeping | 0.1 \[Hz\] | 60 | true |
+| THM\_ENG\_10 | 35 | housekeeping | 0.1 \[Hz\] | 60 | true |
+| THM\_ENG\_11 | 36 | housekeeping | 0.1 \[Hz\] | 36 | true |
+
+## Requirements satisfied
+
+*Software requirements satisfied*
+
+| name | satisfies | rows |
+| --- | --- | --- |
+| thermalControl | thermalControlApplication | 1 |
+
+## Assurance classification
+
+*Classification register row*
+
+| name | level | documentation |
+| --- | --- | --- |
+| thermalControl | levelC | Heater zones. |
+
+One volume per application of the Argent flight software, in the order of TethysFlightSoftware::ArgentFlightSoftware. Every table is a query over TethysFlightSoftware, TethysFlightBehaviour, TethysFlightTiming, TethysFlightDictionary, TethysSoftwareRequirements and TethysSoftwareAssurance.

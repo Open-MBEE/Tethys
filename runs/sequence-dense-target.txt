@@ -28,6 +28,16 @@
 ✓ package TethysModes
 ✓ package TethysSequence
 ✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
 ✓ package TethysAnalyses
 ✓ package TethysTrades
 ✓ package TethysMonteCarlo
@@ -40,10 +50,14 @@
 ✓ package TethysRisk
 ✓ package TethysAllocationQueries
 ✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
 ✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
 ✓ package TethysAsBuilt
 ✓ package TethysImportedData
 ✓ package TethysDisposal
@@ -69,6 +83,8 @@ note: object #1 of "TethysSequence::denseTargetCampaign" already performs "Tethy
     inspectorRelease.groundGo = [true]
     inspectorRelease.holdReason = [""]
     inspectorRelease.released = [true]
+    inspectorRelease.sequenceId = 3
+    inspectorRelease.timeTagged = true
     inspectorRelease.umbilicalDisconnected = true
     inspectorReleased = true
     lunarAssistAt = <unset>
@@ -77,7 +93,9 @@ note: object #1 of "TethysSequence::denseTargetCampaign" already performs "Tethy
     outcome = ["capture refused: target estimate outside the capture-commit envelope"]
     returnArcPlan = [4]
     returnArcs = 0
+    sequenceId = 6
     target = [Instance(ID: 3)]
+    timeTagged = true
     xenonRemaining = 5955.0 [kg]
     xenonReserve = 132.0 [kg]
   standing: value (observed: 1 run under reverse)

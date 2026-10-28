@@ -1,0 +1,106 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Query TethysSoftwareAssuranceTooling::PassedCases returned 10 rows
+  Columns: name, SoftwareVerification::level, SoftwareVerification::evidence
+  Row 1: TethysSoftwareAssurance::finalTargetingModel
+    name = "finalTargetingModel"
+    SoftwareVerification::level = TethysSoftwareAssurance::SoftwareTestLevel::modelInTheLoop
+    SoftwareVerification::evidence = "fdir-earth-impact-aborted, fdir-earth-impact-abort-hold pinned runs"
+  Row 2: TethysSoftwareAssurance::captureAbortModel
+    name = "captureAbortModel"
+    SoftwareVerification::level = TethysSoftwareAssurance::SoftwareTestLevel::modelInTheLoop
+    SoftwareVerification::evidence = "sw-autonomy-engine pinned run: storedSequences 1 to 6"
+  Row 3: TethysSoftwareAssurance::commandRoutingModel
+    name = "commandRoutingModel"
+    SoftwareVerification::level = TethysSoftwareAssurance::SoftwareTestLevel::modelInTheLoop
+    SoftwareVerification::evidence = "sw-failover pinned run, advanced 600 s"
+  Row 4: TethysSoftwareAssurance::thrustArcModel
+    name = "thrustArcModel"
+    SoftwareVerification::level = TethysSoftwareAssurance::SoftwareTestLevel::modelInTheLoop
+    SoftwareVerification::evidence = "sw-sep-string-restarting, fdir-thruster-string-lost, wpd-flight-rules pinned runs"
+  Row 5: TethysSoftwareAssurance::captureSequenceModel
+    name = "captureSequenceModel"
+    SoftwareVerification::level = TethysSoftwareAssurance::SoftwareTestLevel::modelInTheLoop
+    SoftwareVerification::evidence = "fdir-inhibit-chain-check, fdir-inhibit-chain-held, sw-capture-controller-check, sw-capture-controller-check-inhibited pinned runs"
+  Row 6: TethysSoftwareAssurance::faultDetectionModel
+    name = "faultDetectionModel"
+    SoftwareVerification::level = TethysSoftwareAssurance::SoftwareTestLevel::modelInTheLoop
+    SoftwareVerification::evidence = "fdir-command-loss-expired, fdir-command-loss-modes-safe, sw-fdir-command-loss-expired, sw-fdir-thruster-restarting pinned runs"
+  Row 7: TethysSoftwareAssurance::modeManagementModel
+    name = "modeManagementModel"
+    SoftwareVerification::level = TethysSoftwareAssurance::SoftwareTestLevel::modelInTheLoop
+    SoftwareVerification::evidence = "sw-mode-manager-safe, sw-mode-manager-recovered, sw-mode-manager-full-flight, modes-tug-full-flight pinned runs"
+  Row 8: TethysSoftwareAssurance::bootAndParameterModel
+    name = "bootAndParameterModel"
+    SoftwareVerification::level = TethysSoftwareAssurance::SoftwareTestLevel::modelInTheLoop
+    SoftwareVerification::evidence = "sw-boot, sw-boot-sequence pinned runs"
+  Row 9: TethysSoftwareAssurance::hazardousCommandInhibitModel
+    name = "hazardousCommandInhibitModel"
+    SoftwareVerification::level = TethysSoftwareAssurance::SoftwareTestLevel::modelInTheLoop
+    SoftwareVerification::evidence = "sw-assurance-coverage pinned run"
+  Row 10: TethysSoftwareAssurance::groundTwoStepModel
+    name = "groundTwoStepModel"
+    SoftwareVerification::level = TethysSoftwareAssurance::SoftwareTestLevel::modelInTheLoop
+    SoftwareVerification::evidence = "sw-ground-sequencer-check pinned run: verdict refused, reason FR-001"

@@ -1,0 +1,3 @@
+✓ package F_SW901
+sysml: document F_SW901::OneDoc content widgets query F_SW901::WidgetRows: query F_SW901::WidgetRows binding root has type element, expected ScalarValues::String
+exit 2

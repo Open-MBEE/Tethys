@@ -1,0 +1,184 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysGroundSoftware::nominalUplink
+  ID: 1
+  Use %features TethysGroundSoftware::nominalUplink to inspect
+✓ TethysGroundSoftware::nominalUplink.checker.check.verdict
+  = SequenceVerdict::cleared
+✓ TethysGroundSoftware::nominalUplink.checker.check.reason
+  = "cleared for uplink"
+✓ TethysGroundSoftware::nominalUplink.checker.released
+  = 1
+✓ TethysGroundSoftware::nominalUplink.flight.loadsAccepted
+  = 1
+✓ Debugging action "check" performed by object #2 of "TethysGroundSoftware::nominalUplink.checker"
+note: object #2 of "TethysGroundSoftware::nominalUplink.checker" already performs "TethysGroundSoftware::FlightRuleChecker::check", so this session attaches to that running performance rather than starting a second one (as `%action TethysGroundSoftware::FlightRuleChecker::check` would)
+  State: Completed
+  Tokens: 0
+✓ Advanced to 10.0 (0 event(s) processed)
+  Action state: Completed
+  Tokens: 0
+✓ Action completed
+  Results:
+    candidate = [Instance(ID: 4)]
+    load.loaded = [true]
+    load.sequenceId = [1]
+    load.storedSequences = [1, 2, 3, 4, 5, 6]
+    reason = "cleared for uplink"
+    stored = [1, 2, 3, 4, 5, 6]
+    verdict = SequenceVerdict::cleared
+  standing: value (observed: 1 run under reverse)
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Created instance of TethysGroundSoftware::relayConflictUplink
+  ID: 1
+  Use %features TethysGroundSoftware::relayConflictUplink to inspect
+✓ TethysGroundSoftware::relayConflictUplink.checker.check.verdict
+  = SequenceVerdict::refused
+✓ TethysGroundSoftware::relayConflictUplink.checker.check.reason
+  = "FR-001 thrust during a relay pass"
+✓ TethysGroundSoftware::relayConflictUplink.checker.released
+  = 0
+✓ TethysGroundSoftware::relayConflictUplink.flight.loadsAccepted
+  = 0
+✓ Debugging action "check" performed by object #2 of "TethysGroundSoftware::relayConflictUplink.checker"
+note: object #2 of "TethysGroundSoftware::relayConflictUplink.checker" already performs "TethysGroundSoftware::FlightRuleChecker::check", so this session attaches to that running performance rather than starting a second one (as `%action TethysGroundSoftware::FlightRuleChecker::check` would)
+  State: Completed
+  Tokens: 0
+✓ Advanced to 10.0 (0 event(s) processed)
+  Action state: Completed
+  Tokens: 0
+✓ Action completed
+  Results:
+    candidate = [Instance(ID: 4)]
+    load.loaded = [true]
+    load.sequenceId = [1]
+    load.storedSequences = [1, 2, 3, 4, 5, 6]
+    reason = "FR-001 thrust during a relay pass"
+    stored = [1, 2, 3, 4, 5, 6]
+    verdict = SequenceVerdict::refused
+  standing: value (observed: 1 run under reverse)

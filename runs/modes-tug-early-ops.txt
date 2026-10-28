@@ -28,6 +28,16 @@
 ✓ package TethysModes
 ✓ package TethysSequence
 ✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
 ✓ package TethysAnalyses
 ✓ package TethysTrades
 ✓ package TethysMonteCarlo
@@ -40,10 +50,14 @@
 ✓ package TethysRisk
 ✓ package TethysAllocationQueries
 ✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
 ✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
 ✓ package TethysAsBuilt
 ✓ package TethysImportedData
 ✓ package TethysDisposal
@@ -62,6 +76,7 @@
 [trace] eval index -> 2.0 [h]
 [trace]   eval literal 30.0 -> 30.0
 [trace] eval index -> 30.0 [d]
+[trace] eval literal "" -> ""
 [trace] eval literal "" -> ""
 [trace] choice entering TugModes: next launch(entry), off(entry), lowGain(entry), thrusters(entry), stowed(entry) (unordered; took launch(entry) first; independent)
 [trace] enter: launch

@@ -105,7 +105,7 @@ package TethysFdir {
              * supervisor's own requests are sent to the tug itself, where the mode machine
              * (TethysModes::TugModes) exhibited beside it takes them. */
         port command : CommandPort;
-        attribute limits : MonitorLimits = cruiseLimits;
+        attribute limits : MonitorLimits default = cruiseLimits;
         attribute healthyThrusters : Natural = 4;
         attribute operatingThrusters : Natural = 3;
         attribute flameoutRetries : Natural = 0;

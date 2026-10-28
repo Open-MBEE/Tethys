@@ -237,3 +237,68 @@ CLI, REPL and `-run-query` surfaces are exercised by every package through `scri
 ## 6. Status
 
 Filled in per row by the work packages as they land: `docs/coverage/<WP>.md` holds the owner's row → construct → proving command table; this file stays the index.
+
+## 7. Software rows by owner
+
+Rows from the software scope review (`SW-###`), covered package by package in
+`docs/coverage/WP-SW-*.md`.
+
+| Row | Owner | Status |
+| --- | --- | --- |
+| SW-001 board support package | WP-SW-1 flight software architecture | sat — `docs/coverage/WP-SW-1.md` |
+| SW-002 real-time executive | WP-SW-1 | sat |
+| SW-006 file and data management | WP-SW-1 | sat |
+| SW-012 partitioning / fault containment | WP-SW-1 | sat |
+| SW-004 event service: reports, severity, event-to-response hooks | WP-SW-3 | sat — `docs/coverage/WP-SW-3.md` |
+| SW-013 boot and software update | WP-SW-3 | sat |
+| SW-014 redundancy management | WP-SW-1 (structure), WP-SW-3 (fail-over behaviour) | sat |
+| SW-015–SW-026 application behaviour (C&DH, GN&C, SEP, power, thermal, telecom, inspector, capture, autonomy, FDIR, modes, safe mode) | WP-SW-3 | sat (SW-016 partial: GN&C laws stay in 73) |
+| SW-028 software update / patch | WP-SW-3 | sat |
+| SW-249 `TugModes` entry/exit actions name the applications; `SubsystemConfiguration` application activity | WP-SW-3 | sat |
+| SW-250 `FdirSupervisor` exhibited by the FDIR application; thresholds from a table | WP-SW-3 | sat (table local until WP-SW-2) |
+| SW-036 software-to-processor allocation | WP-SW-1 | sat |
+| SW-241 flight software attached to C&DH | WP-SW-1 | sat |
+| SW-245 `FlightComputer` image and bus ports | WP-SW-1 (WP-SW-4 binds the load figures) | sat — `TethysFlightTiming::TimedFlightComputer` binds `processorLoadMips`/`memoryAllocated` from the software budgets (WP-SW-4) |
+| SW-010 executive scheduler: rate groups, major/minor frame schedule, deadlines, jitter | WP-SW-4 | sat — `docs/coverage/WP-SW-4.md` |
+| SW-011 memory and CPU budgets per application and partition with reserve policy | WP-SW-4 | sat |
+| SW-037 bus allocation: AABP-1 slots per node per frame, bus utilisation budget | WP-SW-4 | sat — the all-streams bus budget does not close at the 50 % reserve (0.5625), kept visible |
+| SW-038 per-application rate/WCET/deadline/jitter; end-to-end latency chains | WP-SW-4 | sat |
+| SW-246 `ProcessorBudget` consumes per-application sums; `BusBudget`, `LatencyBudget` | WP-SW-4 | sat |
+| SW-252 `SoftwareDeployment` and new `SoftwareFunction` leaves | WP-SW-1 | sat |
+| SW-003 time service / time code | WP-SW-2 flight dictionary | sat — `docs/coverage/WP-SW-2.md` |
+| SW-005 table service | WP-SW-2 | sat |
+| SW-007 command ingest | WP-SW-2 (dispatch behaviour WP-SW-3) | sat |
+| SW-008 telemetry output | WP-SW-2 (packetisation behaviour WP-SW-3) | sat |
+| SW-009 housekeeping and limits | WP-SW-2 | sat |
+| SW-027 parameter management | WP-SW-2 | sat |
+| SW-030 complete command dictionary | WP-SW-2 | sat (findings F-SW188, F-SW201) |
+| SW-031 complete telemetry dictionary | WP-SW-2 | sat (finding F-SW194) |
+| SW-032 packet definitions | WP-SW-2 | sat (finding F-SW192) |
+| SW-033 event dictionary | WP-SW-2 | sat |
+| SW-247 `SpacePacket` secondary header | WP-SW-2 (WP-SW-6 adds the software ICDs) | sat for WP-SW-2 |
+| SW-248 `Dictionary` counts derived from 64, `TG-010` extended | WP-SW-2 | sat |
+| SW-039 inter-application message catalogue | WP-SW-6 software interface control | sat — `docs/coverage/WP-SW-6.md` |
+| SW-040 AABP-1 on-board bus protocol ICD | WP-SW-6 | sat |
+| SW-041 CCSDS Space Packet + MLS-2 link profile | WP-SW-6 | sat |
+| SW-042 software ICDs per interface (flight–ground, flight–Wren, app–app, app–RIU register maps) | WP-SW-6 | sat |
+| SW-064 flight-software interfaces, packet standard, time correlation, dictionary versioning | WP-SW-6 (WP-SW-2 rebinds the packet names) | sat |
+| SW-050 command generation from the dictionary, two-person rule | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat (finding F-SW701) |
+| SW-051 command validation against flight rules and mode | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-052 sequencing: checker, uplink product | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat (finding F-SW703) |
+| SW-053 telemetry decommutation by dictionary, EU conversion | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-054 ground alarms and limit monitoring | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-055 trending and consumables | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-056 flight dynamics: OD, ephemerides, manoeuvre design | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-057 pass planning and scheduling | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-058 link budget in operations, rate selection | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat (finding F-SW702) |
+| SW-059 data archive and distribution | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-060 anomaly response lifecycle and authority | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-061 proximity-operations and capture planning tools | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-062 simulators and test beds typing the `TestBed` parts | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-065 interfaces to ground elements (station↔MOC, MOC↔FDF, SDS↔archive) | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-067 operations roles mapped to software functions | WP-SW-7 ground software — `docs/coverage/WP-SW-7.md` | sat |
+| SW-189 four-level allocation chain, specialised end redefinitions | WP-SW-6 probe | sat (finding F-SW602) |
+| SW-193 interfaces with ≥ 3 ends | WP-SW-6 probe and in-model topics | sat (finding F-SW601) |
+| SW-247 TI-02x reservation and `IcdRegister` software rows | WP-SW-6 | sat |
+| SW-254 house rules: every application allocated | WP-SW-1 (WP-SW-2 and WP-SW-5 add theirs) | sat for WP-SW-1 and WP-SW-2 |
+| SW-255 coverage and findings files | each software package | sat for WP-SW-1, WP-SW-2, WP-SW-6, WP-SW-7 |

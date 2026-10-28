@@ -19,6 +19,9 @@ package TethysAllocations {
     private import TethysGround::*;
     private import TethysSystem::*;
     private import TethysRequirements::*;
+    private import TethysFlightSoftware::*;
+    private import TethysTugStructure::FlightComputer;
+    private import TethysTugStructure::argentDesign;
 
     // ---------------------------------------------------------------- functional architecture
 
@@ -120,6 +123,50 @@ package TethysAllocations {
             doc /* Archive and distribute characterisation and utilisation data. */
             attribute :>> description = "archive science data";
         }
+        action routeCommandsAndTelemetry : SoftwareFunction {
+            doc /* Route telecommands to their owners and packetise telemetry for the downlink. */
+            attribute :>> description = "route commands and telemetry";
+        }
+        action controlThrustArc : SoftwareFunction {
+            doc /* Start, throttle and stop the thrusters through a thrust arc. */
+            attribute :>> description = "control thrust arc";
+        }
+        action manageBatteryAndLoads : SoftwareFunction {
+            doc /* Keep the battery within its state-of-charge limits and shed loads below the threshold. */
+            attribute :>> description = "manage battery and loads";
+        }
+        action regulateHeaterZones : SoftwareFunction {
+            doc /* Hold every heater zone at its set point. */
+            attribute :>> description = "regulate heater zones";
+        }
+        action manageSpaceLink : SoftwareFunction {
+            doc /* Configure the transponder and run the frame layer of the space link. */
+            attribute :>> description = "manage space link";
+        }
+        action relayInspector : SoftwareFunction {
+            doc /* Check out, release, relay commands and telemetry for, and retire the inspector. */
+            attribute :>> description = "relay inspector";
+        }
+        action controlCaptureSequence : SoftwareFunction {
+            doc /* Run the enclosure, cinch and despin sequence behind the inhibit chain (TH-003). */
+            attribute :>> description = "control capture sequence";
+        }
+        action executeOnBoardSequences : SoftwareFunction {
+            doc /* Run the on-board sequences the ground loads. */
+            attribute :>> description = "execute on-board sequences";
+        }
+        action detectAndRecoverFaults : SoftwareFunction {
+            doc /* Detect, isolate and recover faults at system level; call safe mode when recovery is exhausted. */
+            attribute :>> description = "detect and recover faults";
+        }
+        action manageModes : SoftwareFunction {
+            doc /* Run the mode machine: mode transitions on command and event, safe-mode entry and exit. */
+            attribute :>> description = "manage modes";
+        }
+        action manageParametersAndImages : SoftwareFunction {
+            doc /* Load and dump parameter tables, receive software images and select the boot slot. */
+            attribute :>> description = "manage parameters and images";
+        }
     }
 
     // ---------------------------------------------------------------- allocation definitions
@@ -130,6 +177,26 @@ package TethysAllocations {
         end :>> target : Part;
     }
 
+    allocation def SoftwareDeployment {
+        doc /* The deployment of the flight software: a software function onto the application
+             * that realises it, an application onto the partition that hosts it, a partition
+             * onto the computer that runs it. The three steps are its specialisations. */
+    }
+    allocation def SoftwareHosting :> SoftwareDeployment {
+        doc /* A software function realised by one application. */
+        end :>> source : SoftwareFunction;
+        end :>> target : Application;
+    }
+    allocation def ApplicationDeployment :> SoftwareDeployment {
+        doc /* An application hosted in one partition of the executive. */
+        end :>> source : Application;
+        end :>> target : Partition;
+    }
+    allocation def PartitionPlacement :> SoftwareDeployment {
+        doc /* A partition placed on a flight computer; every partition is placed on both. */
+        end :>> source : Partition;
+        end :>> target : FlightComputer;
+    }
     allocation def RequirementAllocation {
         doc /* Allocation of a requirement to the component responsible for meeting it. */
         end :>> source : RequirementCheck;
@@ -163,6 +230,17 @@ package TethysAllocations {
         allocation relativeState : FunctionAllocation allocate missionFunctions.estimateRelativeState to argent.gnc;
         allocation finalTargeting : FunctionAllocation allocate missionFunctions.planFinalTargeting to argent.gnc;
         allocation abort : FunctionAllocation allocate missionFunctions.abortCapture to argent.cdh;
+        allocation routing : FunctionAllocation allocate missionFunctions.routeCommandsAndTelemetry to argent.cdh;
+        allocation thrustArc : FunctionAllocation allocate missionFunctions.controlThrustArc to argent.sep;
+        allocation battery : FunctionAllocation allocate missionFunctions.manageBatteryAndLoads to argent.eps;
+        allocation heaters : FunctionAllocation allocate missionFunctions.regulateHeaterZones to argent.thermal;
+        allocation spaceLink : FunctionAllocation allocate missionFunctions.manageSpaceLink to argent.telecom;
+        allocation inspectorRelay : FunctionAllocation allocate missionFunctions.relayInspector to argent.cdh;
+        allocation captureSequence : FunctionAllocation allocate missionFunctions.controlCaptureSequence to argent.captureSystem;
+        allocation sequences : FunctionAllocation allocate missionFunctions.executeOnBoardSequences to argent.cdh;
+        allocation faults : FunctionAllocation allocate missionFunctions.detectAndRecoverFaults to argent.cdh;
+        allocation modes : FunctionAllocation allocate missionFunctions.manageModes to argent.cdh;
+        allocation parameters : FunctionAllocation allocate missionFunctions.manageParametersAndImages to argent.cdh;
         allocation characterisation : FunctionAllocation allocate missionFunctions.characteriseTarget to argent.sensors;
         allocation survey : FunctionAllocation allocate missionFunctions.surveyTargetUpClose to wren.payload;
         allocation enclose : FunctionAllocation allocate missionFunctions.encloseTarget to argent.captureSystem;
@@ -229,6 +307,51 @@ package TethysAllocations {
 
     // ---------------------------------------------------------------- views
 
+    part softwareDeployment {
+        doc /* The deployment of the flight software of Argent: every software function to its
+             * application, every application to its partition, every partition to the prime
+             * and the redundant flight computer. The queries of TethysAllocationQueries prove
+             * no function, application or partition is left out. */
+        ref part avionics : CdhWithSoftware = argentSoftware.cdh;
+        ref part fsw : ArgentFlightSoftware = argentSoftware.cdh.software;
+        allocation hostRelativeState : SoftwareHosting allocate missionFunctions.estimateRelativeState to fsw.gnc;
+        allocation hostFinalTargeting : SoftwareHosting allocate missionFunctions.planFinalTargeting to fsw.gnc;
+        allocation hostAbort : SoftwareHosting allocate missionFunctions.abortCapture to fsw.autonomy;
+        allocation hostRouting : SoftwareHosting allocate missionFunctions.routeCommandsAndTelemetry to fsw.cdh;
+        allocation hostThrustArc : SoftwareHosting allocate missionFunctions.controlThrustArc to fsw.sepControl;
+        allocation hostBattery : SoftwareHosting allocate missionFunctions.manageBatteryAndLoads to fsw.powerManagement;
+        allocation hostHeaters : SoftwareHosting allocate missionFunctions.regulateHeaterZones to fsw.thermalControl;
+        allocation hostSpaceLink : SoftwareHosting allocate missionFunctions.manageSpaceLink to fsw.telecom;
+        allocation hostInspector : SoftwareHosting allocate missionFunctions.relayInspector to fsw.inspectorHandling;
+        allocation hostCapture : SoftwareHosting allocate missionFunctions.controlCaptureSequence to fsw.captureControl;
+        allocation hostSequences : SoftwareHosting allocate missionFunctions.executeOnBoardSequences to fsw.autonomy;
+        allocation hostFaults : SoftwareHosting allocate missionFunctions.detectAndRecoverFaults to fsw.fdir;
+        allocation hostModes : SoftwareHosting allocate missionFunctions.manageModes to fsw.modeManagement;
+        allocation hostParameters : SoftwareHosting allocate missionFunctions.manageParametersAndImages to fsw.parameterBootUpdate;
+        allocation deployCdh : ApplicationDeployment allocate fsw.cdh to fsw.executive.platformPartition;
+        allocation deployFdir : ApplicationDeployment allocate fsw.fdir to fsw.executive.platformPartition;
+        allocation deployModeManagement : ApplicationDeployment allocate fsw.modeManagement to fsw.executive.platformPartition;
+        allocation deployParameterBootUpdate : ApplicationDeployment allocate fsw.parameterBootUpdate to fsw.executive.platformPartition;
+        allocation deployGnc : ApplicationDeployment allocate fsw.gnc to fsw.executive.gncPartition;
+        allocation deploySepControl : ApplicationDeployment allocate fsw.sepControl to fsw.executive.subsystemPartition;
+        allocation deployPowerManagement : ApplicationDeployment allocate fsw.powerManagement to fsw.executive.subsystemPartition;
+        allocation deployThermalControl : ApplicationDeployment allocate fsw.thermalControl to fsw.executive.subsystemPartition;
+        allocation deployTelecom : ApplicationDeployment allocate fsw.telecom to fsw.executive.subsystemPartition;
+        allocation deployAutonomy : ApplicationDeployment allocate fsw.autonomy to fsw.executive.autonomyPartition;
+        allocation deployCaptureControl : ApplicationDeployment allocate fsw.captureControl to fsw.executive.autonomyPartition;
+        allocation deployInspectorHandling : ApplicationDeployment allocate fsw.inspectorHandling to fsw.executive.payloadPartition;
+        allocation placePlatformPartitionOnPrime : PartitionPlacement allocate fsw.executive.platformPartition to avionics.prime;
+        allocation placePlatformPartitionOnRedundant : PartitionPlacement allocate fsw.executive.platformPartition to avionics.redundant;
+        allocation placeGncPartitionOnPrime : PartitionPlacement allocate fsw.executive.gncPartition to avionics.prime;
+        allocation placeGncPartitionOnRedundant : PartitionPlacement allocate fsw.executive.gncPartition to avionics.redundant;
+        allocation placeSubsystemPartitionOnPrime : PartitionPlacement allocate fsw.executive.subsystemPartition to avionics.prime;
+        allocation placeSubsystemPartitionOnRedundant : PartitionPlacement allocate fsw.executive.subsystemPartition to avionics.redundant;
+        allocation placeAutonomyPartitionOnPrime : PartitionPlacement allocate fsw.executive.autonomyPartition to avionics.prime;
+        allocation placeAutonomyPartitionOnRedundant : PartitionPlacement allocate fsw.executive.autonomyPartition to avionics.redundant;
+        allocation placePayloadPartitionOnPrime : PartitionPlacement allocate fsw.executive.payloadPartition to avionics.prime;
+        allocation placePayloadPartitionOnRedundant : PartitionPlacement allocate fsw.executive.payloadPartition to avionics.redundant;
+    }
+
     view def AllocationMatrixView :> GridView {
         doc /* The allocation matrix: one row per allocated function or requirement, one column
              * per component. */
@@ -240,6 +363,10 @@ package TethysAllocations {
         expose functionAllocations::*;
     }
 
+    view softwareDeploymentMatrix : AllocationMatrixView {
+        doc /* Software function → application → partition → computer matrix. */
+        expose softwareDeployment::*;
+    }
     view requirementAllocationMatrix : AllocationMatrixView {
         doc /* Requirement → component matrix. */
         expose requirementAllocations::*;

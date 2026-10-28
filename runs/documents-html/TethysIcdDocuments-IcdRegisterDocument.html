@@ -9,7 +9,7 @@
 <body>
 <article class="sysml-document" data-document="TethysIcdDocuments::IcdRegisterDocument">
 <h1 class="sysml-title">Tethys Retrieval interface control document register</h1>
-<p class="sysml-paragraph" data-content="paragraph" data-name="scope">One interface control document per TethysInterfaces interface definition, each specialising its interface def with the parameters both sides must agree on, bound to both ends, under the control authority its InterfaceControl metadata names.</p>
+<p class="sysml-paragraph" data-content="paragraph" data-name="scope">One interface control document per TethysInterfaces interface definition, each specialising its interface def with the parameters both sides must agree on, bound to both ends, under the control authority its InterfaceControl metadata names; the software ICDs (TI-02x) of TethysSoftwareIcds profile the packet and data-bus interfaces down to message, frame and register level.</p>
 <section class="sysml-section" id="classes" data-content="section" data-name="classes">
 <h2>ICD classes</h2>
 <table class="sysml-table" data-content="table" data-name="register" data-query="TethysIcdDocuments::IcdRegister">
@@ -77,6 +77,30 @@
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PropellantFeedIcd</span></td>
 <td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tank ↔ ground fill-and-drain for xenon and hydrazine: fill pressure, flow rate and the mass loaded.</span></td>
 </tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::FanoutTopic" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">FanoutTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">One message type from its publisher to two subscribers: a three-ended interface, which the standard permits for any interface not typed by BinaryInterface.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::BroadcastTopic" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">BroadcastTopic</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">One message type from its publisher to three subscribers: a four-ended interface.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::OnBoardBusProtocolIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">OnBoardBusProtocolIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The AABP-1 protocol between the software bus controller in the board support package and each remote terminal on the on-board data bus: frame layout, addressing, the time-slot schedule within one polling period and the handling of check failures. The bus electrical and rate figures are those of TI-013.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::SpaceLinkProfileIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SpaceLinkProfileIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The MLS-2 profile of the TI-010 packet interface between the telecom application and the Meridian packet gateway: CCSDS Space Packets with a time-code secondary header, carried in fixed-length transfer frames on eight virtual channels, with a rate set per tug mode and a safe rate set that every mode falls back to. The RF carrier beneath it is TI-003.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::InspectorRelaySoftwareIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InspectorRelaySoftwareIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The software profile of the proximity relay between the inspector-handling application and Wren: AABP-1 frames tunnelled over the TI-004 GMSK link, the identifier block the relayed inspector packets use, the store-and-forward depth on the tug and the acknowledgement rules.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::RemoteInterfaceUnitRegisterIcd" data-element-kind="interfaceDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">RemoteInterfaceUnitRegisterIcd</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The register-level ICD between the remote-interface-unit driver of the board support package and each remote interface unit: the register access frame AABP-1 carries, the address and data widths, and the two register maps.</span></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -135,6 +159,22 @@
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">internalBusConformance</span></td>
 <td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Every subsystem shall meet ICD-011 to ICD-014 on its power, data and thermal interfaces.</span></td>
 </tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::busProtocolConformance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">busProtocolConformance</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The board support package and every remote terminal shall conform to SCD-020: AABP-1 frames of at most 1 024 B with an 8 B header and a 16-bit checksum, 32 addresses, 64 schedule slots per 125 ms polling period, two retries before a fault is raised.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::spaceLinkProfileConformance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">spaceLinkProfileConformance</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The telecom application and the Meridian packet gateway shall conform to SCD-021: CCSDS Space Packets with a 10 B time-code secondary header in 1 115 B transfer frames on eight virtual channels, the rate set of the current tug mode, and the 2 000 bit/s safe rate set in safe and abort-hold modes.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::relayProfileConformance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">relayProfileConformance</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The inspector-handling application and Wren shall conform to SCD-022: AABP-1 frames tunnelled over the proximity link, identifiers 128–159, acknowledgement within 2 s, three retries, 200 MB store-and-forward on the tug.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::registerMapConformance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">registerMapConformance</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The remote-interface-unit driver and both remote interface units shall conform to SCD-023: 8-bit register addresses, 16-bit data words, the register maps of the thermal and propulsion unit and of the mechanism unit.</span></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -192,6 +232,22 @@
 <tr class="sysml-row" data-element="TethysIcds::subsystemInterfaceTests" data-element-kind="verificationCaseUsage">
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">subsystemInterfaceTests</span></td>
 <td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Power, data-bus and thermal interface acceptance tests on each subsystem.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::busProtocolTest" data-element-kind="verificationCaseUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">busProtocolTest</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Bus protocol test on the avionics test bench with the flight bus controller and both remote interface units.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::spaceLinkProfileTest" data-element-kind="verificationCaseUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">spaceLinkProfileTest</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">End-to-end packet test through a Meridian station to the operations centre, running every rate set and the fallback to the safe rate set.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::relayProfileTest" data-element-kind="verificationCaseUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">relayProfileTest</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Relay profile test with flight Wren on the proximity link in the anechoic chamber, including a store-and-forward backlog.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::registerMapTest" data-element-kind="verificationCaseUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">registerMapTest</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Register read-back test of every mapped register on both remote interface units.</span></td>
 </tr>
 </tbody>
 </table>

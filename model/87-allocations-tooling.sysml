@@ -14,6 +14,39 @@ package TethysAllocationQueries {
                      relationshipKind = "allocation", direction = "outgoing", exists = false)
     }
 
+    calc def UnallocatedApplications :> Query {
+        doc /* Application usages under root with no outgoing allocation. Expected over
+             * TethysFlightSoftware::ArgentFlightSoftware: no rows. */
+        in root : Element;
+        WhereRelated(source = WhereType(source = Descendants(source = root), type = "Application"),
+                     relationshipKind = "allocation", direction = "outgoing", exists = false)
+    }
+
+    calc def AllocatedApplications :> Query {
+        doc /* Application usages under root with an outgoing allocation: the control that the
+             * query above is not vacuous. Expected over
+             * TethysFlightSoftware::ArgentFlightSoftware: the twelve applications. */
+        in root : Element;
+        WhereRelated(source = WhereType(source = Descendants(source = root), type = "Application"),
+                     relationshipKind = "allocation", direction = "outgoing", exists = true)
+    }
+
+    calc def UnallocatedPartitions :> Query {
+        doc /* Partition usages under root with no outgoing allocation. Expected over
+             * TethysFlightSoftware::ArgentFlightSoftware: no rows. */
+        in root : Element;
+        WhereRelated(source = WhereType(source = Descendants(source = root), type = "Partition"),
+                     relationshipKind = "allocation", direction = "outgoing", exists = false)
+    }
+
+    calc def AllocatedPartitions :> Query {
+        doc /* Partition usages under root with an outgoing allocation. Expected over
+             * TethysFlightSoftware::ArgentFlightSoftware: the five partitions. */
+        in root : Element;
+        WhereRelated(source = WhereType(source = Descendants(source = root), type = "Partition"),
+                     relationshipKind = "allocation", direction = "outgoing", exists = true)
+    }
+
     calc def UnallocatedRequirements :> Query {
         doc /* Requirement usages owned by root with no outgoing allocation. Expected over
              * TethysRequirements: no rows. */

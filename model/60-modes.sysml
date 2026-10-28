@@ -125,7 +125,9 @@ package TethysModes {
     attribute def SubsystemConfiguration {
         doc /* One row of the mode × subsystem matrix: what each subsystem does in a mode and
              * the load it draws — the per-unit rollup of TethysBudgets::TugPowerInMode, the
-             * same table the power budget closes, so the two cannot drift. */
+             * same table the power budget closes, so the two cannot drift — and which flight
+             * software applications the row keeps active, derived from the subsystem flags
+             * (TethysFlightSoftware names the applications). */
         attribute mode : TugMode;
         attribute sepThrusting : Boolean;
         attribute highVoltageBusOn : Boolean;
@@ -135,6 +137,11 @@ package TethysModes {
         attribute captureSystemArmed : Boolean;
         attribute sensorsOn : Boolean;
         attribute busLoad : PowerValue default = TugPowerInMode(mode);
+        attribute sepControlActive : Boolean default = sepThrusting or highVoltageBusOn;
+        attribute gncWheelControlActive : Boolean default = wheelControl;
+        attribute telecomHighGainActive : Boolean default = highGainAntennaOn;
+        attribute inspectorHandlingActive : Boolean default = proximityLinkOn;
+        attribute captureControlActive : Boolean default = captureSystemArmed;
     }
     part def TugModeTable {
         doc /* The mode × subsystem configuration matrix of the Argent tug, one row per
@@ -246,7 +253,9 @@ package TethysModes {
              * whole — free-flight modes before capture, stacked modes after, safe mode from
              * any operating mode and recovery back to the right family; the other regions are
              * the subsystem machines that follow the same commands (SEP string, telecom,
-             * attitude control, capture mechanism). Every command arrives on `command`, the
+             * attitude control, capture mechanism). The entry and exit actions of the modes
+             * name the flight software application each mode change commands
+             * (`lastApplicationCommand`, counted in `applicationCommands`). Every command arrives on `command`, the
              * exhibiting tug's port of the same name being the connected end; SafeModeRequest
              * and AbortReturn are raised on board (TethysFdir) and accepted from the tug
              * itself, not from the port. */
@@ -264,6 +273,8 @@ package TethysModes {
         attribute sunPointingCycles : Natural = 0;
         attribute abortEntries : Natural = 0;
         attribute lastSafeModeReason : String = "";
+        attribute applicationCommands : Natural = 0;
+        attribute lastApplicationCommand : String = "";
 
         state flightMode {
             entry; then launch;
@@ -284,12 +295,34 @@ package TethysModes {
                 entry; then coast;
                 state coast;
                 state thrust {
-                    entry assign thrustArcsStarted := thrustArcsStarted + 1;
+                    entry action startArc {
+                        assign thrustArcsStarted := thrustArcsStarted + 1;
+                        then assign lastApplicationCommand := "SepControlApplication: start thrust arc";
+                        then assign applicationCommands := applicationCommands + 1;
+                    }
+                    exit action endArc {
+                        assign lastApplicationCommand := "SepControlApplication: end thrust arc";
+                        then assign applicationCommands := applicationCommands + 1;
+                    }
                 }
                 state approach;
-                state proximityOperations;
+                state proximityOperations {
+                    entry action relayOn {
+                        assign lastApplicationCommand := "TelecomApplication, InspectorHandlingApplication: proximity relay on";
+                        then assign applicationCommands := applicationCommands + 1;
+                    }
+                }
                 state retreat;
-                state capture;
+                state capture {
+                    entry action armCapture {
+                        assign lastApplicationCommand := "CaptureControlApplication: arm";
+                        then assign applicationCommands := applicationCommands + 1;
+                    }
+                    exit action disarmCapture {
+                        assign lastApplicationCommand := "CaptureControlApplication: disarm";
+                        then assign applicationCommands := applicationCommands + 1;
+                    }
+                }
                 transition first coast accept ThrustArcGo via command then thrust;
                 transition first thrust accept ThrustArcEnd via command then coast;
                 transition first coast accept ProximityOperationsGo via command then approach;
@@ -311,7 +344,11 @@ package TethysModes {
                 state despin;
                 state stackCoast;
                 state stackThrust {
-                    entry assign thrustArcsStarted := thrustArcsStarted + 1;
+                    entry action startReturnArc {
+                        assign thrustArcsStarted := thrustArcsStarted + 1;
+                        then assign lastApplicationCommand := "SepControlApplication: start return arc";
+                        then assign applicationCommands := applicationCommands + 1;
+                    }
                 }
                 state droHold;
                 state dockedPassive;
@@ -328,7 +365,11 @@ package TethysModes {
                 doc /* Sun-pointed, low-gain, thrusters and high-voltage bus off, waiting for
                      * ground recovery; while in safe mode the sun-pointing hold is re-acquired
                      * every hour (the `do` behaviour). */
-                entry assign safeModeEntries := safeModeEntries + 1;
+                entry action shedToSafe {
+                    assign safeModeEntries := safeModeEntries + 1;
+                    then assign lastApplicationCommand := "PowerManagementApplication: shed loads; TelecomApplication: low-gain safe rate";
+                    then assign applicationCommands := applicationCommands + 1;
+                }
                 do action sunPointingHold {
                     first start;
                     then action reacquire accept after 1.0 [h];
@@ -339,7 +380,11 @@ package TethysModes {
             state abortHold {
                 doc /* Return aborted by the Earth-impact exclusion monitor: thrust inhibited,
                      * attitude held, high-gain link up, waiting for a replanned trajectory. */
-                entry assign abortEntries := abortEntries + 1;
+                entry action abortSequences {
+                    assign abortEntries := abortEntries + 1;
+                    then assign lastApplicationCommand := "AutonomyApplication: abort sequence; SepControlApplication: thrust inhibited";
+                    then assign applicationCommands := applicationCommands + 1;
+                }
             }
             transition first launch then freeFlight;
             transition first freeFlight if captured then stacked;
