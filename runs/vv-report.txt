@@ -177,7 +177,7 @@ Every requirement of the Tethys tree (L1 to L4, needs, objectives and success cr
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | TS-001 | captureEnvelope | test | system | qualification | CaptureEnvelopeTest, CaptureSequenceTest | 2 | argent |  |
 | TS-002 | deliveredMass | analyze | mission | inFlight | DeliveryAnalysis | 1 | flight |  |
-| TS-003 | transferDuration | analyze | mission | qualification | PowerAnalysis | 1 | flight |  |
+| TS-003 | transferDuration | analyze | mission | qualification | TransferTimelineByAnalysis | 1 | flight |  |
 | TS-004 | propellantCapacity | analyze | system | qualification | PropellantAnalysis | 1 | argent |  |
 | TS-005 | characterisationProducts | analyze | system | inFlight | CharacterisationAnalysis, InspectorRelayTest | 2 | flight |  |
 | TS-006 | launchCompatibility | inspect | system | preLaunch | MassBudgetAnalysis | 1 |  |  |

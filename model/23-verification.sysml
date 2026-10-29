@@ -126,7 +126,7 @@ package TethysVerification {
 
     // ---- Verification cases: test -----------------------------------------------------------
 
-    verification def CaptureEnvelopeTest {
+    verification def <'TV-001'> CaptureEnvelopeTest {
         doc /* Full-scale deployment, inflation and cinch of the capture bag around a rotating
              * mock body of the large case's diameter in vacuum. */
         subject tug : Tug;
@@ -141,7 +141,7 @@ package TethysVerification {
             and tug.captureSystem.maximumBodyMass >= targetCases.densest.mass)
     }
     metadata VerificationMethod about CaptureEnvelopeTest { kind = VerificationMethodKind::test; }
-    verification def ContactSpeedTest {
+    verification def <'TV-002'> ContactSpeedTest {
         doc /* Bag contact with a surface moving at the design contact speed on the capture rig. */
         subject tug : Tug;
         in attribute measuredToleratedSpeed : SpeedValue;
@@ -153,7 +153,7 @@ package TethysVerification {
         PassIf(measuredToleratedSpeed >= 3.14159265 * targetCases.largest.meanDiameter / targetCases.largest.rotationPeriod)
     }
     metadata VerificationMethod about ContactSpeedTest { kind = VerificationMethodKind::test; }
-    verification def SepHotFireTest {
+    verification def <'TV-003'> SepHotFireTest {
         doc /* Thrust-stand hot fire of one thruster string at its power share and a three-string
              * firing at maximum power. */
         subject tug : Tug;
@@ -168,7 +168,7 @@ package TethysVerification {
         PassIf(measuredThrust >= 1.8 [N] and measuredUnitThrust >= 0.6 [N])
     }
     metadata VerificationMethod about SepHotFireTest { kind = VerificationMethodKind::test; }
-    verification def LinkBudgetTest {
+    verification def <'TV-004'> LinkBudgetTest {
         doc /* Compatibility test of the flight transponder with a Meridian station emulator at
              * the design range attenuation. */
         subject tug : Tug;
@@ -183,7 +183,7 @@ package TethysVerification {
         PassIf(measuredEirp >= 1500.0 [W] and measuredMargin >= 3.0)
     }
     metadata VerificationMethod about LinkBudgetTest { kind = VerificationMethodKind::test; }
-    verification def FaultResponseTest {
+    verification def <'TV-005'> FaultResponseTest {
         doc /* Injected thrust-vector and contact faults on the flatsat, timing detection and the
              * safe configuration. */
         subject tug : Tug;
@@ -198,7 +198,7 @@ package TethysVerification {
         PassIf(measuredDetection <= 0.5 [s] and measuredResponse <= 2 [s])
     }
     metadata VerificationMethod about FaultResponseTest { kind = VerificationMethodKind::test; }
-    verification def AutonomyTest {
+    verification def <'TV-006'> AutonomyTest {
         doc /* Seven-day unattended run of the flatsat with simulated safe-mode entries. */
         subject tug : Tug;
         in attribute unattendedDuration : DurationValue;
@@ -209,7 +209,7 @@ package TethysVerification {
         PassIf(unattendedDuration >= 7 [d])
     }
     metadata VerificationMethod about AutonomyTest { kind = VerificationMethodKind::test; }
-    verification def InspectorAcceptanceTest {
+    verification def <'TV-007'> InspectorAcceptanceTest {
         doc /* Wren acceptance: mass properties, keep-alive power, proximity link, imaging
              * resolution and Doppler accuracy on the bench. */
         subject inspector : Inspector;
@@ -229,7 +229,7 @@ package TethysVerification {
             and measuredGsd <= 0.02 [m] and measuredDoppler <= 0.0001 [m/s])
     }
     metadata VerificationMethod about InspectorAcceptanceTest { kind = VerificationMethodKind::test; }
-    verification def SeparationTest {
+    verification def <'TV-008'> SeparationTest {
         doc /* Dispenser release test on the gravity-offload rig: separation speed and tip-off. */
         subject tug : Tug;
         in attribute measuredSeparationSpeed : SpeedValue;
@@ -241,21 +241,23 @@ package TethysVerification {
         PassIf(measuredSeparationSpeed >= 0.02 [m/s] and measuredSeparationSpeed <= 0.05 [m/s])
     }
     metadata VerificationMethod about SeparationTest { kind = VerificationMethodKind::test; }
-    verification def ProximityNavigationTest {
+    verification def <'TV-009'> ProximityNavigationTest {
         doc /* Closed-loop relative navigation on the dynamics simulator with flight GNC code,
              * and camera sensitivity on the optical bench. */
         subject tug : Tug;
         in attribute measuredPositionError : LengthValue;
+        in attribute measuredVelocityError : SpeedValue;
         in attribute measuredLimitingMagnitude : Real;
         objective {
-            doc /* Relative position to 0.1 m at 100 m; the camera reaches magnitude 12.5. */
+            doc /* Relative position to 0.1 m and velocity to 1 mm/s at 100 m; the camera reaches
+                 * magnitude 12.5. */
             verify relativeNavigation { doc /* Verified by this case. */ }
             verify narrowAngleCameraSensitivity { doc /* Verified by this case. */ }
         }
-        PassIf(measuredPositionError <= 0.1 [m] and measuredLimitingMagnitude >= 12.5)
+        PassIf(measuredPositionError <= 0.1 [m] and measuredVelocityError <= 0.001 [m/s] and measuredLimitingMagnitude >= 12.5)
     }
     metadata VerificationMethod about ProximityNavigationTest { kind = VerificationMethodKind::test; }
-    verification def ThermalBalanceTest {
+    verification def <'TV-010'> ThermalBalanceTest {
         doc /* Thermal-vacuum balance test at perihelion flux with the bag deployed. */
         subject tug : Tug;
         in attribute measuredRejection : PowerValue;
@@ -266,7 +268,7 @@ package TethysVerification {
         PassIf(measuredRejection >= 8.0 [kW])
     }
     metadata VerificationMethod about ThermalBalanceTest { kind = VerificationMethodKind::test; }
-    verification def CinchMotorTest {
+    verification def <'TV-011'> CinchMotorTest {
         doc /* Stall-torque test of a cinch motor at qualification temperature. */
         subject tug : Tug;
         in attribute measuredStallTorqueNm : Real;
@@ -280,7 +282,7 @@ package TethysVerification {
 
     // ---- Verification cases: analysis ---------------------------------------------------------
 
-    verification def PropellantAnalysis {
+    verification def <'TV-012'> PropellantAnalysis {
         doc /* Rocket-equation check of the outbound and return delta-v against the xenon load,
              * with the nominal and dense cases attached. */
         subject tug : Tug;
@@ -293,7 +295,7 @@ package TethysVerification {
             and TethysEnvironment::RocketEquationDeltaV(2900.0, (tug.wetMass - 1500 [kg] + targetCases.densest.mass) / 1 [kg], (tug.wetMass - 1500 [kg] + targetCases.densest.mass - (tug.sep.xenonMass - 1500 [kg])) / 1 [kg]) >= 240.0)
     }
     metadata VerificationMethod about PropellantAnalysis { kind = VerificationMethodKind::analyze; }
-    verification def DespinAnalysis {
+    verification def <'TV-013'> DespinAnalysis {
         doc /* Angular-momentum budget of the large-case despin against the hydrazine load and
              * the RCS torque. */
         subject tug : Tug;
@@ -306,18 +308,17 @@ package TethysVerification {
         PassIf(tug.rcs.hydrazineMass >= 4.0 * 60.0 [kg])
     }
     metadata VerificationMethod about DespinAnalysis { kind = VerificationMethodKind::analyze; }
-    verification def PowerAnalysis {
+    verification def <'TV-014'> PowerAnalysis {
         doc /* Array power at 1.034 AU against the SEP throttle point and bus load. */
         subject tug : Tug;
         objective {
             doc /* 38 kW plus 6 kW available at the target. */
             verify arrayPowerAtTarget { doc /* Verified by this case. */ }
-            verify transferDuration { doc /* Verified by this case. */ }
         }
         PassIf(tug.eps.arrayPowerAtOneAu * (TethysEnvironment::SolarFlux(1.034) / TethysEnvironment::SolarFlux(1.0)) >= 44.0 [kW])
     }
     metadata VerificationMethod about PowerAnalysis { kind = VerificationMethodKind::analyze; }
-    verification def MassBudgetAnalysis {
+    verification def <'TV-015'> MassBudgetAnalysis {
         doc /* Dry mass against allocation with the PDR margin; launch mass against the launcher. */
         subject tug : Tug;
         objective {
@@ -328,7 +329,7 @@ package TethysVerification {
         PassIf(tug.dryMass * 1.15 <= 7000 [kg] and tug.wetMass + wren.wetMass <= TethysLaunch::arcturus5H.performanceAtC3)
     }
     metadata VerificationMethod about MassBudgetAnalysis { kind = VerificationMethodKind::analyze; }
-    verification def ReturnSafetyAnalysis {
+    verification def <'TV-016'> ReturnSafetyAnalysis {
         doc /* Monte Carlo of thrust loss along the return on the trajectory tool: Earth-impact
              * probability and DRO stability horizon. */
         subject flight : TethysFlightSegment;
@@ -338,10 +339,10 @@ package TethysVerification {
             verify droStability { doc /* Verified by this case. */ }
             verify cislunarSafety { doc /* Verified by this case. */ }
         }
-        PassIf(missionMeasures.earthImpactProbability <= 1.0e-6 and TethysEnvironment::destinationDro.stabilityHorizon >= 36525.0 [d])
+        PassIf(missionMeasures.earthImpactProbability < 1.0e-6 and TethysEnvironment::destinationDro.stabilityHorizon >= 36525.0 [d])
     }
     metadata VerificationMethod about ReturnSafetyAnalysis { kind = VerificationMethodKind::analyze; }
-    verification def DeliveryAnalysis {
+    verification def <'TV-017'> DeliveryAnalysis {
         doc /* Delivered mass and schedule for the nominal case from the mission design. */
         subject flight : TethysFlightSegment;
         objective {
@@ -353,7 +354,7 @@ package TethysVerification {
         PassIf(0.99 * targetCases.nominal.mass >= 100.0e3 [kg] and 2200 [d] <= TethysMission::tethys.nominalDuration)
     }
     metadata VerificationMethod about DeliveryAnalysis { kind = VerificationMethodKind::analyze; }
-    verification def CharacterisationAnalysis {
+    verification def <'TV-018'> CharacterisationAnalysis {
         doc /* Covariance analysis of the mass, shape and spin products from the inspector and tug
              * measurements. */
         subject flight : TethysFlightSegment;
@@ -370,7 +371,7 @@ package TethysVerification {
         PassIf(missionMeasures.massEstimateUncertainty <= 0.10)
     }
     metadata VerificationMethod about CharacterisationAnalysis { kind = VerificationMethodKind::analyze; }
-    verification def DeflectionAnalysis {
+    verification def <'TV-019'> DeflectionAnalysis {
         doc /* Orbit-determination covariance over a 30 d slow-push arc with 2 m ranging. */
         subject flight : TethysFlightSegment;
         objective {
@@ -382,7 +383,7 @@ package TethysVerification {
         PassIf(missionMeasures.rangingAccuracy / (30 [d]) <= 0.001 [m/s])
     }
     metadata VerificationMethod about DeflectionAnalysis { kind = VerificationMethodKind::analyze; }
-    verification def DockingLoadsAnalysis {
+    verification def <'TV-020'> DockingLoadsAnalysis {
         doc /* Structural analysis of the docking load path into the cinched body. */
         subject tug : Tug;
         in attribute analysedCapability : ForceValue;
@@ -393,7 +394,7 @@ package TethysVerification {
         PassIf(analysedCapability >= 5000.0 [N])
     }
     metadata VerificationMethod about DockingLoadsAnalysis { kind = VerificationMethodKind::analyze; }
-    verification def ThrustModelValidation {
+    verification def <'TV-021'> ThrustModelValidation {
         doc /* Validation of the SepThrust model against the hot-fire measurement: the model must
              * match the thrust stand to 3 %. */
         subject tug : Tug;
@@ -408,7 +409,7 @@ package TethysVerification {
 
     // ---- Verification cases: inspection ------------------------------------------------------
 
-    verification def RedundancyInspection {
+    verification def <'TV-022'> RedundancyInspection {
         doc /* Inspection of the SEP string count and the fault tree against the single-point
              * failure list. */
         subject tug : Tug;
@@ -420,7 +421,7 @@ package TethysVerification {
         PassIf(tug.sep.thrusterCount - tug.sep.operatingThrusters >= 1)
     }
     metadata VerificationMethod about RedundancyInspection { kind = VerificationMethodKind::inspect; }
-    verification def DocumentInspection {
+    verification def <'TV-023'> DocumentInspection {
         doc /* Inspection of the requirement groups, ICDs and the interface requirement set at
              * the system PDR. */
         subject mission : TethysMission::Mission;
@@ -436,7 +437,7 @@ package TethysVerification {
         PassIf(true)
     }
     metadata VerificationMethod about DocumentInspection { kind = VerificationMethodKind::inspect; }
-    verification def InterfaceBaselineInspection {
+    verification def <'TV-024'> InterfaceBaselineInspection {
         doc /* Inspection of the launch and ground ICDs at the system PDR against the providers'
              * need and the L1 launch compatibility requirement. */
         subject mission : TethysMission::Mission;
@@ -449,7 +450,7 @@ package TethysVerification {
         PassIf(icdsBaselined >= 2)
     }
     metadata VerificationMethod about InterfaceBaselineInspection { kind = VerificationMethodKind::inspect; }
-    verification def GroundInspection {
+    verification def <'TV-025'> GroundInspection {
         doc /* Inspection of the station inventory and spacing. */
         subject ground : TethysGroundSegment;
         objective {
@@ -462,7 +463,7 @@ package TethysVerification {
 
     // ---- Verification cases: demonstration (ground and in flight) -----------------------------
 
-    verification def GroundReadinessDemo {
+    verification def <'TV-026'> GroundReadinessDemo {
         doc /* Operations readiness demonstration: passes from three stations, a 4 h sequence
              * turnaround, automated limit checking and the impact screening workflow. */
         subject ground : TethysGroundSegment;
@@ -479,24 +480,28 @@ package TethysVerification {
         PassIf(ground.network.stations->size() >= 3 and demonstratedTurnaround <= 4 [h] and demonstratedAutomation >= 0.95)
     }
     metadata VerificationMethod about GroundReadinessDemo { kind = VerificationMethodKind::demo; }
-    verification def GroundProceduresDemo {
+    verification def <'TV-027'> GroundProceduresDemo {
         doc /* Demonstration of the operations centre's and flight dynamics facility's
              * procedures: sequence turnaround, automated limit checks, impact screening and the
              * science archive hand-over. */
         subject ground : TethysGroundSegment;
         in attribute demonstratedTurnaround : DurationValue;
         in attribute demonstratedAutomation : Real;
+        in attribute demonstratedScreenedFraction : Real;
+        in attribute demonstratedArchiveLatency : DurationValue;
         objective {
-            doc /* Each procedure runs to its requirement. */
+            doc /* Each procedure runs to its requirement: turnaround, automated limit checks,
+                 * every released arc screened, products archived within 30 d. */
             verify sequenceTurnaround { doc /* Verified by this case. */ }
             verify monitoringAutomation { doc /* Verified by this case. */ }
             verify impactScreening { doc /* Verified by this case. */ }
             verify scienceArchive { doc /* Verified by this case. */ }
         }
-        PassIf(demonstratedTurnaround <= 4 [h] and demonstratedAutomation >= 0.95)
+        PassIf(demonstratedTurnaround <= 4 [h] and demonstratedAutomation >= 0.95
+            and demonstratedScreenedFraction == 1.0 and demonstratedArchiveLatency <= 30 [d])
     }
     metadata VerificationMethod about GroundProceduresDemo { kind = VerificationMethodKind::demo; }
-    verification def SepCommissioning {
+    verification def <'TV-028'> SepCommissioning {
         doc /* In-orbit commissioning of the SEP: conditioning, ignition, throttle and gimbal
              * sweeps on each string, then the first long firing (SE in-orbit verification). */
         subject tug : Tug;
@@ -509,7 +514,7 @@ package TethysVerification {
         PassIf(firedStrings == tug.sep.thrusterCount)
     }
     metadata VerificationMethod about SepCommissioning { kind = VerificationMethodKind::demo; }
-    verification def InspectorCommissioning {
+    verification def <'TV-029'> InspectorCommissioning {
         doc /* In-orbit checkout of Wren on the umbilical and after release: link, imaging,
              * Doppler. */
         subject inspector : Inspector;
@@ -522,7 +527,7 @@ package TethysVerification {
         PassIf(linkAcquired)
     }
     metadata VerificationMethod about InspectorCommissioning { kind = VerificationMethodKind::demo; }
-    verification def DockingDemo {
+    verification def <'TV-030'> DockingDemo {
         doc /* In-flight demonstration of attitude hold and the docking interface with Lantern. */
         subject flight : TethysFlightSegment;
         in attribute demonstratedAttitudeHold : AngularMeasureValue;
@@ -538,7 +543,7 @@ package TethysVerification {
 
     // ---- Validation of needs and success criteria -----------------------------------------
 
-    verification def MissionValidation {
+    verification def <'TV-031'> MissionValidation {
         doc /* Validation that the delivered mission meets the stakeholders' needs and the
              * success criteria, judged at the end-of-mission review on the as-flown record. */
         subject flight : TethysFlightSegment;
@@ -556,7 +561,7 @@ package TethysVerification {
         PassIf(deliveredBodyMass >= 100.0e3 [kg] and daysToDelivery <= 2200 [d])
     }
     metadata VerificationMethod about MissionValidation { kind = VerificationMethodKind::demo; }
-    verification def SuccessCriteriaValidation {
+    verification def <'TV-032'> SuccessCriteriaValidation {
         doc /* Validation of the minimum and full success criteria and the deflection objective
              * at the end-of-mission review. Objectives are kept under ten members
              * (docs/findings/WP-A.md F-A02). */
@@ -575,7 +580,7 @@ package TethysVerification {
         PassIf(criteriaMet == 4)
     }
     metadata VerificationMethod about SuccessCriteriaValidation { kind = VerificationMethodKind::demo; }
-    verification def ConOpsValidation {
+    verification def <'TV-033'> ConOpsValidation {
         doc /* Validation of the design reference mission use case by end-to-end simulation on
              * the dynamics simulator and flatsat with the operations team in the loop. */
         subject flight : TethysFlightSegment;
@@ -671,6 +676,7 @@ package TethysVerification {
         doc /* Closed-loop navigation on the dynamics simulator and camera bench. */
         subject tug = argent;
         in measuredPositionError = 0.07 [m];
+        in measuredVelocityError = 0.0007 [m/s];
         in measuredLimitingMagnitude = 13.1;
         @TestSpecification { procedure = "TP-GNC-003 relative navigation"; facility = "dynamicsSimulator"; report = "TR-GNC-003"; }
         @Verification { method = VerificationMethodKind::test; level = VerificationLevel::subsystem; stage = VerificationStage::qualification; }
@@ -846,6 +852,8 @@ package TethysVerification {
         subject ground = tethysSystem.ground;
         in demonstratedTurnaround = 3.2 [h];
         in demonstratedAutomation = 0.97;
+        in demonstratedScreenedFraction = 1.0;
+        in demonstratedArchiveLatency = 18 [d];
         @TestSpecification { procedure = "DM-OPS-002 procedures"; facility = "operations centre"; report = "DR-OPS-002"; }
         @Verification { method = VerificationMethodKind::demo; level = VerificationLevel::system; stage = VerificationStage::preLaunch; }
         @CampaignStep { campaignPhase = "operations readiness"; sequence = 12; }

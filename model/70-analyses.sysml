@@ -21,6 +21,7 @@ package TethysAnalyses {
     private import TethysBudgets::massBudget;
     private import TethysBudgets::propellantBudget;
     private import TethysRequirements::*;
+    private import TethysRequirementsL2::transferDuration;
     private import TethysMarginPolicy::activePolicy;
 
     metadata def CredibilityAssessment {
@@ -333,4 +334,29 @@ package TethysAnalyses {
 
     verification verifyDurationNominal : MissionDurationByAnalysis { subject :>> tug = argent; in :>> target = targetCases.nominal; }
     verification verifyDurationLarge : MissionDurationByAnalysis { subject :>> tug = argent; in :>> target = targetCases.large; }
+
+    verification def <'TV-034'> TransferTimelineByAnalysis {
+        doc /* TS-003 verified by analysis: the planned timeline (the transfer book's thrust allowance
+             * plus the coast, proximity-operations and reserve phases the requirement allots) fits the
+             * nominal duration, and the transfer analysis needs no more thrusting time than that
+             * allowance. */
+        subject tug : Tug;
+        in part target : SmallBody;
+        objective timelineObjective {
+            doc /* The system transfer-duration requirement this case verifies. */
+            verify transferDuration {
+                doc /* TS-003 as verified here. */
+            }
+        }
+        analysis transfer : LowThrustTransferAnalysis {
+            subject :>> tug = tug;
+            in :>> target = target;
+        }
+        return verdict : VerdictKind =
+            PassIf(transferDuration.total <= tethys.nominalDuration
+                and transfer.totalThrustTime <= transferDuration.thrustTime);
+    }
+
+    verification verifyTransferTimelineNominal : TransferTimelineByAnalysis { subject :>> tug = argent; in :>> target = targetCases.nominal; }
+    verification verifyTransferTimelineLarge : TransferTimelineByAnalysis { subject :>> tug = argent; in :>> target = targetCases.large; }
 }

@@ -169,7 +169,7 @@ package TethysRequirementsL2 {
         subject flight : TethysFlightSegment;
         attribute :>> hazard = "uncontrolled Earth re-entry of the body";
         attribute impactProbability : Real = missionMeasures.earthImpactProbability;
-        require constraint { impactProbability <= 1.0e-6 }
+        require constraint { impactProbability < 1.0e-6 }
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::mission; stage = VerificationStage::qualification; }
         @StatusInfo { owner = "cislunar safety board"; status = StatusKind::closed; }
         @DrivingRequirement { driver = "return trajectory biasing, navigation accuracy"; }

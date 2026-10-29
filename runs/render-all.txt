@@ -132,7 +132,7 @@ wrote build/runs/views/TethysVerification.VvMatrix.mmd (mermaid, 802 bytes)
 wrote build/runs/views/TethysVerification.l1Matrix.mmd (mermaid, 4309 bytes)
 wrote build/runs/views/TethysVerification.l2Matrix.mmd (mermaid, 340391 bytes)
 wrote build/runs/views/TethysVerification.l3l4Matrix.mmd (mermaid, 47786 bytes)
-wrote build/runs/views/TethysVerification.verificationCases.mmd (mermaid, 1488420 bytes)
+wrote build/runs/views/TethysVerification.verificationCases.mmd (mermaid, 1462863 bytes)
 wrote build/runs/views/TethysSoftwareIcdDocuments.messageTypes.md (markdown, 5868 bytes)
 TethysRisk::RiskRegisterView: note: renders empty
 wrote build/runs/views/TethysRisk.RiskRegisterView~1798bcd41eb23fe6.md (markdown, 128 bytes)

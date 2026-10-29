@@ -35,7 +35,7 @@
   needs a UUID.
 - **Naming.** Definitions `UpperCamel`, usages `lowerCamel`, packages `UpperCamel`, enum
   literals `lowerCamel`; requirement ids `TR-` (mission), `TS-` (system), `TA-`/`TW-`
-  (tug/inspector subsystem), `TG-` (ground), `TI-` (interface).
+  (tug/inspector subsystem), `TG-` (ground), `TI-` (interface); verification case ids `TV-`.
 - **Budgets close in the model.** Rollups are calculations over the part tree, margins are
   constraints, and a requirement asserts each budget; nothing is a typed-in total.
 - **Runs are pinned.** Every command a package's documentation names is in `scripts/runs.sh` and
