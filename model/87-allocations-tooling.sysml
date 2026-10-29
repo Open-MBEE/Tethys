@@ -63,7 +63,7 @@ package TethysAllocationQueries {
         Project(
             source = WhereMetadata(source = Descendants(source = root),
                                    'metadata' = "TethysSafety::SafetyCritical"),
-            properties = ("name", "documentation"))
+            properties = ("name", "SafetyCritical::rationale"))
     }
 
     calc def AllocationTargets :> Query {
