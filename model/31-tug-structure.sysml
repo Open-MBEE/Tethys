@@ -1047,9 +1047,7 @@ package TethysTugStructure {
         doc /* Argent with every subsystem refined to its units, the functions each performs,
              * and the typed flows on the backbone interfaces. Dry mass is the rollup over the
              * subsystems; the backbone's typed-in value is the allocation it is compared to. */
-        part :>> structure : ArgentStructure {
-            perform functions.captureBody;
-        }
+        part :>> structure : ArgentStructure;
         part :>> thermal : ArgentThermal {
             perform functions.rejectHeat;
         }
@@ -1075,7 +1073,9 @@ package TethysTugStructure {
         part :>> rcs : ArgentReactionControl {
             perform functions.despinBody;
         }
-        part :>> captureSystem : ArgentCapture;
+        part :>> captureSystem : ArgentCapture {
+            perform functions.captureBody;
+        }
         part :>> sensors : ArgentSensors {
             perform functions.characteriseTarget;
         }

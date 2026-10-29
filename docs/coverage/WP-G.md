@@ -227,9 +227,9 @@ only where a construct of the model happens to exercise them.
 | LANG-220 | must | Invariant — alternative using `inv` `true` | model/81-physics.kerml:SmallBodies::GrappleFollowable `inv true { spinPeriod >= 120.0 }` | `physics-strict` | satisfied |
 | LANG-221 | must | Invariant — alternative using `false` `inv` | model/81-physics.kerml:ElectricPropulsion::PropellantTank `inv false overfilled { remaining > capacity }` | `physics-strict` | satisfied |
 | LANG-222 | must | Interaction (rule; literals `interaction`) | model/81-physics.kerml:`interaction XenonTransfer :> Feeds` | `physics-strict` | satisfied |
-| LANG-223 | should | Flow (rule; literals `flow`) | model/81-physics.kerml:XenonTransfer `flow of Real from tank.remaining to thruster.inputPower;` | `physics-strict` | satisfied |
+| LANG-223 | should | Flow (rule; literals `flow`) | model/81-physics.kerml:XenonTransfer `flow of Real from tank.remaining to thruster.xenonIn;` | `physics-strict` | satisfied |
 | LANG-224 | should | SuccessionFlow (rule; literals `flow` `succession`) | model/81-physics.kerml:PropulsionString `succession flow xenonFeed of Real from tank.remaining to thruster.xenonIn;` | `physics-strict` | satisfied |
-| LANG-225 | must | FlowDeclaration (fragment; literals `all` `from` `of` `to`) | model/81-physics.kerml:XenonTransfer `flow of Real from tank.remaining to thruster.inputPower;` | `physics-strict` | satisfied |
+| LANG-225 | must | FlowDeclaration (fragment; literals `all` `from` `of` `to`) | model/81-physics.kerml:XenonTransfer `flow of Real from tank.remaining to thruster.xenonIn;` | `physics-strict` | satisfied |
 | LANG-226 | must | FlowDeclaration — alternative using `all` | model/81-physics.kerml:PropulsionString `flow all tank.remaining to thruster.xenonIn;` | `physics-strict` | satisfied |
 | LANG-229 | should | PayloadFeatureSpecializationPart (fragment; literals —) | model/81-physics.kerml:PropulsionString `succession flow xenonFeed of Real from tank.remaining to thruster.xenonIn;` | `physics-strict` | satisfied |
 | LANG-232 | should | FlowEndSubsetting (rule; literals `.`) | model/81-physics.kerml:PropulsionString `succession flow xenonFeed of Real from tank.remaining to thruster.xenonIn;` | `physics-strict` | satisfied |
@@ -293,8 +293,8 @@ only where a construct of the model happens to exercise them.
 | LANG-341 | should | NamedArgumentMember (rule; literals —) | model/82-notation-sweep.sysml:ReviewReadiness::firstWindow `new ReturnWindow(opens = 1900.0 [d], closes = 1960.0 [d])` | `notation-readiness` | satisfied |
 | LANG-342 | should | NamedArgument (rule; literals `=`) | model/82-notation-sweep.sysml:ReviewReadiness::firstWindow `new ReturnWindow(opens = 1900.0 [d], closes = 1960.0 [d])` | `notation-readiness` | satisfied |
 | LANG-345 | should | NullExpression (rule; literals `(` `)` `null`) | model/82-notation-sweep.sysml:ReviewReadiness::radarSpinPeriod `= null`; identityChecks `!== null` | `notation-readiness` | satisfied |
-| LANG-347 | should | LiteralBoolean (rule; literals —) | model/82-notation-sweep.sysml:ReturnWindow::marginal `= false`, windowIsOrdered `== true` | `notation-readiness` | satisfied |
-| LANG-348 | should | BooleanValue (rule; literals `false` `true`) | model/82-notation-sweep.sysml:ReturnWindow::marginal `= false`, windowIsOrdered `== true` | `notation-readiness` | satisfied |
+| LANG-347 | should | LiteralBoolean (rule; literals —) | model/82-notation-sweep.sysml:ReturnWindow::marginal `= false` | `notation-readiness` | satisfied |
+| LANG-348 | should | BooleanValue (rule; literals `false` `true`) | model/82-notation-sweep.sysml:ReturnWindow::marginal `= false` | `notation-readiness` | satisfied |
 | LANG-353 | should | LiteralInfinity (rule; literals `*`) | model/82-notation-sweep.sysml:ReviewReadiness::strings `Natural[2..*]`; model/81-physics.kerml:ThrottleTable `Real[1..*]` | `notation-readiness` | satisfied |
 | LANG-355 | must | GlobalQualification (rule; literals `$` `::`) | model/82-notation-sweep.sysml:ReviewReadiness::envelopeMass `$::TethysEnvironment::amaranth.mass` | `notation-readiness` | satisfied |
 | LANG-356 | should | Qualification (rule; literals `::`) | model/80-variants.sysml:`TethysLaunch::arcturus5H.performanceAtC3`, configurations `target::nominal` | `variants-configurations` | satisfied |

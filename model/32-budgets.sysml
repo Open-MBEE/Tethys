@@ -381,7 +381,7 @@ package TethysBudgets {
              * on the return: outbound and rendezvous on the tug alone, return and insertion
              * on the stack, each arc from the mass the previous one left. */
         in body : SmallBody;
-        attribute isp : DurationValue = argentDesign.sep.specificImpulse;
+        in isp : DurationValue;
         attribute launchMass : MassValue = massBudget.launchMass - massBudget.adapterSeparated;
         attribute outbound : MassValue = PropellantFor(deltaVOutbound, launchMass, isp);
         attribute afterOutbound : MassValue = launchMass - outbound;
@@ -417,9 +417,9 @@ package TethysBudgets {
         attribute loaded : MassValue = argentDesign.sep.xenonMass;
         attribute residualFraction : Real = 0.02;
         attribute usable : MassValue = loaded * (1.0 - residualFraction);
-        attribute xenonSmall : MassValue = XenonForMission(targetCases.small);
-        attribute xenonNominal : MassValue = XenonForMission(targetCases.nominal);
-        attribute xenonLarge : MassValue = XenonForMission(targetCases.large);
+        attribute xenonSmall : MassValue = XenonForMission(targetCases.small, isp);
+        attribute xenonNominal : MassValue = XenonForMission(targetCases.nominal, isp);
+        attribute xenonLarge : MassValue = XenonForMission(targetCases.large, isp);
         attribute xenonMargin : Real = MarginFraction(usable, xenonLarge);
         attribute isp : DurationValue = argentDesign.sep.specificImpulse;
         attribute launchMass : MassValue = massBudget.launchMass - massBudget.adapterSeparated;
