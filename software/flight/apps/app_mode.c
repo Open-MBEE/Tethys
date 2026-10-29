@@ -5,11 +5,11 @@
 #include <stdio.h>
 #include <string.h>
 
-#define MODES_RENDEZVOUS_RANGE_M 50000.0        /* TugModes::rendezvousRange = 50.0 [km] */
+#define MODES_RENDEZVOUS_RANGE_KM 50.0          /* TugModes::rendezvousRange = 50.0 [km]; RangeUpdate.range arrives in km, as the uplink renders it */
 #define MODES_MAX_BODY_MASS_KG 542485.809768173  /* TethysBudgets::captureCommitEnvelope.maximumBodyMass (returnable mass, runs/fdir-thruster-restarting.txt) */
 #define MODES_MAX_BODY_DIAMETER_M 10.0          /* CaptureSystem::maximumBodyDiameter = 10.0 [m] */
 
-static bool modes_g1(sm_instance_t *sm, const sm_event_t *ev) { (void)sm; return ev->arg[0] <= MODES_RENDEZVOUS_RANGE_M; }
+static bool modes_g1(sm_instance_t *sm, const sm_event_t *ev) { (void)sm; return ev->arg[0] <= MODES_RENDEZVOUS_RANGE_KM; }
 static bool modes_g2(sm_instance_t *sm, const sm_event_t *ev) { (void)sm; return ev->arg[1] <= MODES_MAX_BODY_MASS_KG && ev->arg[0] <= MODES_MAX_BODY_DIAMETER_M; /* args in message order: estimatedDiameter, estimatedMass */ }
 static bool modes_g3(sm_instance_t *sm, const sm_event_t *ev) { (void)sm; return !modes_g2(sm, ev); }
 static bool modes_g4(sm_instance_t *sm, const sm_event_t *ev) { argent_system_t *sys = sm->ctx; (void)ev; return sys->app.captured; }
@@ -37,6 +37,7 @@ static void modes_entry_abort(sm_instance_t *sm, int16_t s) { argent_system_t *s
 
 /* Dispatcher effects: each sends the model's application commands and counts the dispatch. */
 static void dispatch_report(argent_system_t *sys, const char *report) { app_raise(sys, "MOD_EVT_MODE_ENTERED", 0.0); (void)report; sys->app.dispatched++; }
+static bool disp_g1(sm_instance_t *sm, const sm_event_t *ev) { (void)sm; return ev->arg[0] <= MODES_RENDEZVOUS_RANGE_KM; }  /* u.range <= modes.rendezvousRange */
 static void disp_e1(sm_instance_t *sm, const sm_event_t *ev) { argent_system_t *sys = sm->ctx; (void)ev; app_send_to(sys, SM_SEP_STRING, "SepStandby", "command", 0, NULL); app_send_to(sys, SM_TELECOM_MANAGER, "HighGainSelect", "command", 0, NULL); app_send_to(sys, SM_POWER_MANAGER, "LoadRestore", "command", 0, NULL); dispatch_report(sys, "early operations"); }
 static void disp_e2(sm_instance_t *sm, const sm_event_t *ev) { argent_system_t *sys = sm->ctx; (void)ev; app_send_to(sys, SM_SEP_STRING, "SepThrust", "command", 0, NULL); app_send_to(sys, SM_TELECOM_MANAGER, "LowGainSelect", "command", 0, NULL); dispatch_report(sys, "thrust arc"); }
 static void disp_e3(sm_instance_t *sm, const sm_event_t *ev) { argent_system_t *sys = sm->ctx; (void)ev; app_send_to(sys, SM_SEP_STRING, "SepStandby", "command", 0, NULL); app_send_to(sys, SM_TELECOM_MANAGER, "HighGainSelect", "command", 0, NULL); dispatch_report(sys, "coast"); }
@@ -46,7 +47,7 @@ static void disp_e6(sm_instance_t *sm, const sm_event_t *ev) { argent_system_t *
 static void disp_e7(sm_instance_t *sm, const sm_event_t *ev) { argent_system_t *sys = sm->ctx; (void)ev; app_send_to(sys, SM_CAPTURE_CONTROLLER, "CaptureDisarm", "command", 0, NULL); app_send_to(sys, SM_TELECOM_MANAGER, "RelayDisable", "command", 0, NULL); dispatch_report(sys, "despin"); }
 static void disp_e8(sm_instance_t *sm, const sm_event_t *ev) { argent_system_t *sys = sm->ctx; (void)ev; app_send_to(sys, SM_SEP_STRING, "SepThrust", "command", 0, NULL); app_send_to(sys, SM_TELECOM_MANAGER, "LowGainSelect", "command", 0, NULL); dispatch_report(sys, "stack thrust"); }
 static void disp_e9(sm_instance_t *sm, const sm_event_t *ev) { argent_system_t *sys = sm->ctx; (void)ev; app_send_to(sys, SM_TELECOM_MANAGER, "RelayEnable", "command", 0, NULL); dispatch_report(sys, "docking"); }
-static void disp_e10(sm_instance_t *sm, const sm_event_t *ev) { argent_system_t *sys = sm->ctx; (void)ev; app_send_to(sys, SM_SEP_STRING, "SepThrust", "command", 0, NULL); app_send_to(sys, SM_TELECOM_MANAGER, "RelayDisable", "command", 0, NULL); dispatch_report(sys, "disposal"); }
+static void disp_e10(sm_instance_t *sm, const sm_event_t *ev) { argent_system_t *sys = sm->ctx; argent_us_t burn = 0; (void)ev; app_duration(sys, "disposalBurnDuration", &burn); app_send_to(sys, SM_SEP_STRING, "SepDisposalBurn", "command", (double)burn / 1.0e6, NULL); app_send_to(sys, SM_TELECOM_MANAGER, "RelayDisable", "command", 0, NULL); dispatch_report(sys, "disposal"); }
 static void disp_e11(sm_instance_t *sm, const sm_event_t *ev) { argent_system_t *sys = sm->ctx; (void)ev; app_send_to(sys, SM_INSPECTOR_HANDLER, "InspectorCheckoutGo", "command", 0, NULL); sys->app.dispatched++; }
 static void disp_e12(sm_instance_t *sm, const sm_event_t *ev) { argent_system_t *sys = sm->ctx; (void)ev; app_send_to(sys, SM_INSPECTOR_HANDLER, "InspectorReleaseGo", "command", 0, NULL); app_send_to(sys, SM_TELECOM_MANAGER, "RelayEnable", "command", 0, NULL); sys->app.dispatched++; }
 static void disp_e13(sm_instance_t *sm, const sm_event_t *ev) { argent_system_t *sys = sm->ctx; (void)ev; app_send_to(sys, SM_INSPECTOR_HANDLER, "InspectorRetireGo", "command", 0, NULL); app_send_to(sys, SM_TELECOM_MANAGER, "RelayDisable", "command", 0, NULL); sys->app.dispatched++; }
@@ -124,5 +125,6 @@ void app_mode_init(argent_system_t *sys)
     sm_register_entry(sm, "TethysModes::TugModes::flightMode::safe", modes_entry_safe);
     sm_register_entry(sm, "TethysModes::TugModes::flightMode::abortHold", modes_entry_abort);
     for (unsigned i = 0; i < 16u; i++) { snprintf(id, sizeof id, "MODE_MANAGEMENT_DISPATCHER_E%u", i + 1u); sm_register_effect(disp, id, disp_fns[i]); }
+    sm_register_guard(disp, "MODE_MANAGEMENT_DISPATCHER_G1", disp_g1);
     exec_bind_task(&sys->exec, "modeManagementTask", mode_task, sys);
 }

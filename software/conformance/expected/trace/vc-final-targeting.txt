@@ -1,6 +1,6 @@
 run vc-final-targeting: scenario TethysFdir::earthImpactScenario, machine TethysFdir::FdirTug::fdir on TethysFdir::earthImpactScenario.tug.fdir, horizon 2592000 s
 host: 320 traced frames, 20 skips, 20 events, 0 commands, final mode abortHold, rc 0
-model: 157 trace events, 0 dropped, final time 2592000 s, states visited 14
+model: 158 trace events, 0 dropped, final time 2592000 s, states visited 14
 machine SepStringController: host-only (6 changes; the model scenario does not run it)
 machine PowerManager: host-only (1 changes; the model scenario does not run it)
 machine ThermalController: host-only (1 changes; the model scenario does not run it)

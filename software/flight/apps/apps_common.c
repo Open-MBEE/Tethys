@@ -54,9 +54,12 @@ static const struct { const char *symbol; double seconds; } app_durations[] = {
     { "limits.thrusterRestartDelay", 2.0 * 3600.0 },/* FdirLimits::thrusterRestartDelay = 2.0 [h] */
 };
 
+/* Durations an item carried are the instance's own (model 65: SepDisposalBurn.duration, InspectorImagingGo.passDuration). */
 bool app_duration_resolver(sm_instance_t *sm, const char *symbol, argent_us_t *out)
 {
-    (void)sm;
+    argent_system_t *sys = sm != NULL ? sm->ctx : NULL;
+    if (sys != NULL && sm == &sys->sm[SM_SEP_STRING] && strcmp(symbol, "burnDuration") == 0) { *out = sys->app.sep_burn_duration_us; return true; }
+    if (sys != NULL && sm == &sys->sm[SM_INSPECTOR_HANDLER] && strcmp(symbol, "passDuration") == 0) { *out = sys->app.inspector_pass_duration_us; return true; }
     for (unsigned i = 0; i < sizeof app_durations / sizeof app_durations[0]; i++) {
         if (strcmp(app_durations[i].symbol, symbol) == 0) { *out = argent_s_to_us(app_durations[i].seconds); return true; }
     }

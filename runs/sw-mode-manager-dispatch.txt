@@ -66,8 +66,8 @@
   ID: 1
   Use %features TethysFlightBehaviour::softwareNominalFlight to inspect
 warning: TethysFlightBehaviour::softwareNominalFlight: materialization is bounded; not every feature value was checked
-✓ Debugging state machine "dispatcher" exhibited by object #49 of "TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement"
-note: object #49 of "TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement" already exhibits "TethysFlightBehaviour::ModeManagementSoftware::dispatcher", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement` would)
+✓ Debugging state machine "dispatcher" exhibited by object #51 of "TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement"
+note: object #51 of "TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement" already exhibits "TethysFlightBehaviour::ModeManagementSoftware::dispatcher", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement` would)
   Current state: dispatching
   Time: 0.0
   Events: 0
@@ -80,4 +80,4 @@ note: object #49 of "TethysFlightBehaviour::softwareNominalFlight.tug.cdh.softwa
   Action steps taken: 43
   InspectorReleaseGo was consumed by no transition: since it was sent, the state or the data its guards read had changed
   standing: value (observed: 1 run under reverse)
-wrote build/runs/sw-mode-manager-dispatch-sequence.txt (text, 25850 bytes)
+wrote build/runs/sw-mode-manager-dispatch-sequence.txt (text, 25878 bytes)

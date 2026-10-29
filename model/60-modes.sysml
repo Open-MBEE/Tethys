@@ -401,20 +401,24 @@ package TethysModes {
         state sepString {
             doc /* The solar-electric propulsion string: off until commissioning, standby
                  * between arcs, thrusting during one and during the approach until the
-                 * rendezvous range update; off in safe mode. */
+                 * rendezvous range update, burning the disposal arc until its duration
+                 * elapses and then off for good; off in safe mode. */
             entry; then off;
             state off;
             state standby;
             state thrusting;
+            state disposalBurn;
             transition first off accept ArraysDeployed via command then standby;
             transition first standby accept ThrustArcGo via command then thrusting;
             transition first standby accept ProximityOperationsGo via command then thrusting;
-            transition first thrusting accept RangeUpdate via command then standby;
+            transition first thrusting accept u : RangeUpdate via command if u.range <= rendezvousRange then standby;
             transition first standby accept ReturnThrustGo via command then thrusting;
-            transition first standby accept DisposalGo via command then thrusting;
+            transition first standby accept DisposalGo via command then disposalBurn;
+            transition first disposalBurn accept after disposalBurnDuration then off;
             transition first thrusting accept ThrustArcEnd via command then standby;
             transition first standby accept SafeModeRequest then off;
             transition first thrusting accept SafeModeRequest then off;
+            transition first disposalBurn accept SafeModeRequest then off;
             transition first thrusting accept AbortReturn then off;
             transition first off accept SafeModeExit via command then standby;
         }
@@ -457,7 +461,9 @@ package TethysModes {
             state deployed;
             state cinched;
             state released;
-            transition first stowed accept CaptureGo via command then deployed;
+            transition first stowed accept go : CaptureGo via command
+                if go.estimatedMass <= envelope.maximumBodyMass and go.estimatedDiameter <= envelope.maximumBodyDiameter
+                then deployed;
             transition first deployed accept CaptureComplete via command then cinched;
             transition first cinched accept DisposalGo via command then released;
         }
@@ -486,6 +492,7 @@ package TethysModes {
         attribute keepOutRadius : LengthValue = 200.0 [m];
         attribute checkoutDuration : DurationValue = 4.0 [h];
         attribute retreatDuration : DurationValue = 6.0 [h];
+        attribute passDuration : DurationValue = 8.0 [h];
         attribute checkedOut : Boolean = false;
         attribute imagingPasses : Natural = 0;
 
@@ -501,8 +508,8 @@ package TethysModes {
                 entry assign imagingPasses := imagingPasses + 1;
             }
             state retreat;
-            transition first stationKeeping accept InspectorImagingGo via command then imaging;
-            transition first imaging accept after 8.0 [h] then stationKeeping;
+            transition first stationKeeping accept go : InspectorImagingGo via command do assign passDuration := go.passDuration then imaging;
+            transition first imaging accept after passDuration then stationKeeping;
             transition first stationKeeping accept c : CollisionRisk via command if c.predictedMiss < keepOutRadius then retreat;
             transition first imaging accept c : CollisionRisk via command if c.predictedMiss < keepOutRadius then retreat;
             transition first retreat accept after retreatDuration then stationKeeping;

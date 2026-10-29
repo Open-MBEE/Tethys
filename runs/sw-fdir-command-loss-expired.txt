@@ -66,8 +66,8 @@
   ID: 1
   Use %features TethysFlightBehaviour::softwareCommandLoss to inspect
 warning: TethysFlightBehaviour::softwareCommandLoss: materialization is bounded; not every feature value was checked
-✓ Debugging state machine "supervisor" exhibited by object #46 of "TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.fdir"
-note: object #46 of "TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.fdir" already exhibits "TethysFlightBehaviour::FdirSoftware::supervisor", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.fdir` would)
+✓ Debugging state machine "supervisor" exhibited by object #48 of "TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.fdir"
+note: object #48 of "TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.fdir" already exhibits "TethysFlightBehaviour::FdirSoftware::supervisor", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.fdir` would)
   Current state: armed | nominal | nominal | nominal | nominal | monitoring
   Time: 0.0
   Events: 1

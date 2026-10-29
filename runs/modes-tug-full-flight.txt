@@ -70,10 +70,10 @@ warning: TethysModes::nominalFlight: materialization is bounded; not every featu
   Current state: onLauncher | off | lowGain | thrusters | stowed
   Time: 0.0
   Events: 0
-✓ Advanced to 129600000.0 (26 event(s) processed)
-  Current state: done | thrusting | highGain | wheels | released
+✓ Advanced to 129600000.0 (27 event(s) processed)
+  Current state: done | off | highGain | wheels | released
   Last event at: 100491840.0
   Remaining events: 0
-  21 choice points (20 independent); %trace on to see them
+  22 choice points (20 independent); %trace on to see them
   Action steps taken: 40
   standing: value (observed: 1 run under reverse)

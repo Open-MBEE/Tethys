@@ -15,6 +15,20 @@ static void sep_exit_thrusting(sm_instance_t *sm, int16_t state)
     argent_system_t *sys = sm->ctx; (void)state;
     sim_set_thrusting(&sys->sim, false);
 }
+/* The disposal burn thrusts like an arc but is not one of the counted arcs. */
+static void sep_entry_disposal_burn(sm_instance_t *sm, int16_t state)
+{
+    argent_system_t *sys = sm->ctx; (void)state;
+    sim_set_thrusting(&sys->sim, true);
+    command_set_inhibit(&sys->commands, INHIBIT_THRUSTER_HOLD, false);
+}
+static void sep_exit_disposal_burn(sm_instance_t *sm, int16_t state)
+{
+    argent_system_t *sys = sm->ctx; (void)state;
+    sim_set_thrusting(&sys->sim, false);
+}
+/* burnDuration := b.duration; the dispatcher sends the duration in seconds. */
+static void sep_e1(sm_instance_t *sm, const sm_event_t *ev) { argent_system_t *sys = sm->ctx; sys->app.sep_burn_duration_us = argent_s_to_us(ev->arg[0]); }
 static void sep_entry_restarting(sm_instance_t *sm, int16_t state)
 {
     argent_system_t *sys = sm->ctx; (void)state;
@@ -42,6 +56,9 @@ void app_sep_init(argent_system_t *sys)
     sm_instance_t *sm = &sys->sm[SM_SEP_STRING];
     sm_register_entry(sm, "TethysFlightBehaviour::SepStringController::thrusting", sep_entry_thrusting);
     sm_register_exit(sm, "TethysFlightBehaviour::SepStringController::thrusting", sep_exit_thrusting);
+    sm_register_entry(sm, "TethysFlightBehaviour::SepStringController::disposalBurn", sep_entry_disposal_burn);
+    sm_register_exit(sm, "TethysFlightBehaviour::SepStringController::disposalBurn", sep_exit_disposal_burn);
+    sm_register_effect(sm, "SEP_STRING_CONTROLLER_E1", sep_e1);
     sm_register_entry(sm, "TethysFlightBehaviour::SepStringController::restarting", sep_entry_restarting);
     sm_register_entry(sm, "TethysFlightBehaviour::SepStringController::off", sep_entry_off);
     exec_bind_task(&sys->exec, "sepControlTask", sep_task, sys);

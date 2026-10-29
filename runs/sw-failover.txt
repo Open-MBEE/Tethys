@@ -77,6 +77,6 @@ note: object #2 of "TethysFlightBehaviour::failoverScenario.cdh" already exhibit
   Remaining events: 0
   Action steps taken: 13
   Waiting on the clock:
-    t=604800.0: state machine FdirSupervisor of object #33, time -> expired
+    t=604800.0: state machine FdirSupervisor of object #35, time -> expired
   standing: value (observed: 1 run under reverse)
 wrote build/runs/sw-failover-sequence.txt (text, 753 bytes)

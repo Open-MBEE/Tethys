@@ -172,6 +172,7 @@ loaded 64 files:
 | off |  |  |
 | standby |  |  |
 | thrusting |  |  |
+| disposalBurn |  |  |
 | restarting |  |  |
 
 ## Parameter table

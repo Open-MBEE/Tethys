@@ -40,6 +40,10 @@ package TethysFlightBehaviour {
     item def SepOff :> ApplicationCommand {
         doc /* Thrusters and high-voltage bus off. To be redefined from TethysFlightDictionary. */
     }
+    item def SepDisposalBurn :> ApplicationCommand {
+        doc /* Burn for the disposal arc's duration, then leave the string off. */
+        attribute duration : DurationValue;
+    }
     item def HighGainSelect :> ApplicationCommand {
         doc /* Select the high-gain antenna and the nominal telemetry rate. To be redefined from
              * TethysFlightDictionary. */
@@ -172,9 +176,12 @@ package TethysFlightBehaviour {
     // ---- 3. Application state machines ------------------------------------------------------
     state def SepStringController {
         doc /* The SEP string as the propulsion application drives it: off, standby with the
-             * high-voltage bus on, thrusting, and a timed restart after a flameout. */
+             * high-voltage bus on, thrusting, a timed restart after a flameout, and the
+             * disposal burn that runs for the duration its command carries and then
+             * leaves the string off. */
         port command : CommandPort;
         attribute restartDelay : DurationValue = 2.0 [h];
+        attribute burnDuration : DurationValue;
         attribute arcsStarted : Natural = 0;
         attribute restarts : Natural = 0;
         entry; then off;
@@ -183,6 +190,7 @@ package TethysFlightBehaviour {
         state thrusting {
             entry assign arcsStarted := arcsStarted + 1;
         }
+        state disposalBurn;
         state restarting {
             entry assign restarts := restarts + 1;
         }
@@ -191,8 +199,12 @@ package TethysFlightBehaviour {
         transition first thrusting accept SepStandby via command then standby;
         transition first thrusting accept ThrusterFlameout via command then restarting;
         transition first restarting accept after restartDelay then thrusting;
+        transition first standby accept b : SepDisposalBurn via command do assign burnDuration := b.duration then disposalBurn;
+        transition first disposalBurn accept after burnDuration then off;
+        transition first disposalBurn accept ThrusterFlameout via command then restarting;
         transition first standby accept SepOff via command then off;
         transition first thrusting accept SepOff via command then off;
+        transition first disposalBurn accept SepOff via command then off;
         transition first restarting accept SepOff via command then off;
     }
     state def PowerManager {
@@ -297,9 +309,11 @@ package TethysFlightBehaviour {
     }
     state def InspectorHandler {
         doc /* Wren's handling from the tug's side: checkout in the cradle, release once checked
-             * out, imaging campaigns relayed to the ground, retirement. */
+             * out, imaging campaigns relayed to the ground for the pass length each imaging
+             * request carries, retirement. */
         port command : CommandPort;
         attribute checkoutDuration : DurationValue = 4.0 [h];
+        attribute passDuration : DurationValue;
         attribute checkedOut : Boolean = false;
         attribute imagingCampaigns : Natural = 0;
         entry; then stowed;
@@ -315,8 +329,8 @@ package TethysFlightBehaviour {
         transition first stowed accept InspectorCheckoutGo via command then checkout;
         transition first checkout accept after checkoutDuration then stowed;
         transition first stowed accept InspectorReleaseGo via command if checkedOut then released;
-        transition first released accept InspectorImagingGo via command then relayingImagery;
-        transition first relayingImagery accept after 8.0 [h] then released;
+        transition first released accept go : InspectorImagingGo via command do assign passDuration := go.passDuration then relayingImagery;
+        transition first relayingImagery accept after passDuration then released;
         transition first released accept InspectorRetireGo via command then retired;
         transition first relayingImagery accept InspectorRetireGo via command then retired;
     }
@@ -646,7 +660,7 @@ package TethysFlightBehaviour {
                 then send new ApplicationReport(application = "ModeManagementApplication", report = "approach") via events;
                 then assign dispatched := dispatched + 1;
             } then dispatching;
-            transition first dispatching accept RangeUpdate via dispatch do action proximityOperations {
+            transition first dispatching accept u : RangeUpdate via dispatch if u.range <= modes.rendezvousRange do action proximityOperations {
                 send new SepStandby() via sepCommands;
                 then send new RelayEnable() via telecomCommands;
                 then send new ApplicationReport(application = "ModeManagementApplication", report = "proximity operations") via events;
@@ -676,7 +690,7 @@ package TethysFlightBehaviour {
                 then assign dispatched := dispatched + 1;
             } then dispatching;
             transition first dispatching accept DisposalGo via dispatch do action disposal {
-                send new SepThrust() via sepCommands;
+                send new SepDisposalBurn(duration = modes.disposalBurnDuration) via sepCommands;
                 then send new RelayDisable() via telecomCommands;
                 then send new ApplicationReport(application = "ModeManagementApplication", report = "disposal") via events;
                 then assign dispatched := dispatched + 1;

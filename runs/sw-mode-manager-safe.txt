@@ -66,8 +66,8 @@
   ID: 1
   Use %features TethysFlightBehaviour::softwareCommandLoss to inspect
 warning: TethysFlightBehaviour::softwareCommandLoss: materialization is bounded; not every feature value was checked
-✓ Debugging state machine "modes" exhibited by object #49 of "TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement"
-note: object #49 of "TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement" already exhibits "TethysFlightBehaviour::ModeManagementSoftware::modes", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement` would)
+✓ Debugging state machine "modes" exhibited by object #51 of "TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement"
+note: object #51 of "TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement" already exhibits "TethysFlightBehaviour::ModeManagementSoftware::modes", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement` would)
   Current state: onLauncher | off | lowGain | thrusters | stowed
   Time: 0.0
   Events: 0
