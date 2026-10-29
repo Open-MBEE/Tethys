@@ -345,54 +345,6 @@
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Propellant</span></td>
 <td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Pressurised propellant: xenon for the electric thrusters, hydrazine for the reaction control thrusters, pressurant gas for either.</span></td>
 </tr>
-<tr class="sysml-row" data-element="TethysInterfaces::TugInspectorInterface" data-element-kind="interfaceDef">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TugInspectorInterface</span></td>
-<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ inspector before release, the electrical umbilical: keep-alive power, checkout data and the separation signal. The stowed stack&#39;s mechanical and thermal disciplines are InspectorDispenserInterface and InspectorThermalInterface, each a binary interface of its own so every usage stays a two-ended connect; the relay link takes over after release.</span></td>
-</tr>
-<tr class="sysml-row" data-element="TethysInterfaces::InspectorDispenserInterface" data-element-kind="interfaceDef">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InspectorDispenserInterface</span></td>
-<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ inspector mechanical while stowed: the dispenser rails and release mechanism carrying Wren&#39;s launch loads into the tug structure.</span></td>
-</tr>
-<tr class="sysml-row" data-element="TethysInterfaces::InspectorThermalInterface" data-element-kind="interfaceDef">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InspectorThermalInterface</span></td>
-<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ inspector thermal while stowed: heat conducted through the dispenser rails that keeps Wren&#39;s battery above its survival temperature.</span></td>
-</tr>
-<tr class="sysml-row" data-element="TethysInterfaces::PropellantFeedInterface" data-element-kind="interfaceDef">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PropellantFeedInterface</span></td>
-<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tank ↔ ground fill-and-drain: the xenon and hydrazine loading lines on the pad.</span></td>
-</tr>
-<tr class="sysml-row" data-element="TethysInterfaces::SpacecraftLauncherInterface" data-element-kind="interfaceDef">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SpacecraftLauncherInterface</span></td>
-<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Stack ↔ launcher: adapter, loads, umbilical and separation.</span></td>
-</tr>
-<tr class="sysml-row" data-element="TethysInterfaces::SpaceGroundLink" data-element-kind="interfaceDef">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SpaceGroundLink</span></td>
-<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ ground station: X/Ka-band telemetry, telecommand and ranging.</span></td>
-</tr>
-<tr class="sysml-row" data-element="TethysInterfaces::InspectorRelayLink" data-element-kind="interfaceDef">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InspectorRelayLink</span></td>
-<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Inspector ↔ tug proximity link: imagery and radar data up, commands down.</span></td>
-</tr>
-<tr class="sysml-row" data-element="TethysInterfaces::CaptureInterface" data-element-kind="interfaceDef">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">CaptureInterface</span></td>
-<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ target body: the contact loads through the capture mechanism during capture, despin and the return thrust arcs.</span></td>
-</tr>
-<tr class="sysml-row" data-element="TethysInterfaces::DockingInterface" data-element-kind="interfaceDef">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">DockingInterface</span></td>
-<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Tug ↔ visiting vehicle in the distant retrograde orbit.</span></td>
-</tr>
-<tr class="sysml-row" data-element="TethysInterfaces::PowerInterface" data-element-kind="interfaceDef">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PowerInterface</span></td>
-<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A unit on the power bus.</span></td>
-</tr>
-<tr class="sysml-row" data-element="TethysInterfaces::DataBusInterface" data-element-kind="interfaceDef">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">DataBusInterface</span></td>
-<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Two nodes on an on-board data bus.</span></td>
-</tr>
-<tr class="sysml-row" data-element="TethysInterfaces::ThermalInterface" data-element-kind="interfaceDef">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ThermalInterface</span></td>
-<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Two units coupled by a strap, a radiator or a mount.</span></td>
-</tr>
 </tbody>
 </table>
 </section>

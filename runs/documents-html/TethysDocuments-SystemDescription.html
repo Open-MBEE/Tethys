@@ -43,22 +43,6 @@
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">visitor</span></td>
 <td class="sysml-cell" data-column="documentation"></td>
 </tr>
-<tr class="sysml-row" data-element="TethysSystem::tethysSystem::launchAdapter" data-element-kind="interfaceUsage">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">launchAdapter</span></td>
-<td class="sysml-cell" data-column="documentation"></td>
-</tr>
-<tr class="sysml-row" data-element="TethysSystem::tethysSystem::deepSpaceLink" data-element-kind="interfaceUsage">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">deepSpaceLink</span></td>
-<td class="sysml-cell" data-column="documentation"></td>
-</tr>
-<tr class="sysml-row" data-element="TethysSystem::tethysSystem::capture" data-element-kind="interfaceUsage">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">capture</span></td>
-<td class="sysml-cell" data-column="documentation"></td>
-</tr>
-<tr class="sysml-row" data-element="TethysSystem::tethysSystem::visitorDocking" data-element-kind="interfaceUsage">
-<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">visitorDocking</span></td>
-<td class="sysml-cell" data-column="documentation"></td>
-</tr>
 </tbody>
 </table>
 <figure class="sysml-diagram" data-content="diagram" data-name="icd" data-view="TethysViews::segmentInterfaces" data-diagram-kind="interconnection">
@@ -261,21 +245,45 @@
 </tr>
 </thead>
 <tbody>
-<tr class="sysml-row" data-element="TethysTug::argent::eps" data-element-kind="partUsage">
+<tr class="sysml-row" data-element="TethysTug::Tug::structure" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">structure</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::StructureAndMechanisms</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTug::Tug::thermal" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thermal</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::ThermalControl</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTug::Tug::eps" data-element-kind="partUsage">
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">eps</span></td>
-<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::ElectricalPowerSystem</span></td>
 </tr>
-<tr class="sysml-row" data-element="TethysTug::argent::sep" data-element-kind="partUsage">
+<tr class="sysml-row" data-element="TethysTug::Tug::cdh" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">cdh</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::CommandAndDataHandling</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTug::Tug::telecom" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telecom</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::Telecommunications</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTug::Tug::gnc" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">gnc</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::GuidanceNavigationControl</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTug::Tug::sep" data-element-kind="partUsage">
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sep</span></td>
-<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::SolarElectricPropulsion</span></td>
 </tr>
-<tr class="sysml-row" data-element="TethysTug::argent::rcs" data-element-kind="partUsage">
+<tr class="sysml-row" data-element="TethysTug::Tug::rcs" data-element-kind="partUsage">
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">rcs</span></td>
-<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::ReactionControl</span></td>
 </tr>
-<tr class="sysml-row" data-element="TethysTug::argent::captureSystem" data-element-kind="partUsage">
+<tr class="sysml-row" data-element="TethysTug::Tug::captureSystem" data-element-kind="partUsage">
 <td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureSystem</span></td>
-<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::CaptureSystem</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysTug::Tug::sensors" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sensors</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysTug::CharacterisationSensors</span></td>
 </tr>
 </tbody>
 </table>

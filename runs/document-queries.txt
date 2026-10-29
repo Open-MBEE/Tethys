@@ -320,5 +320,23 @@
   Row 28: TethysMission::flightTimeline::disposal
     name = "disposal"
     type = "TethysMission::MissionPhase"
-✓ Query TethysDocuments::Risks returned 0 rows
+✓ Query TethysDocuments::Risks returned 6 rows
   Columns: name, documentation
+  Row 1: TethysRisk::riskRegister::earthImpactRisk
+    name = "earthImpactRisk"
+    documentation = "The returned body could be placed on an Earth-impact trajectory."
+  Row 2: TethysRisk::riskRegister::targetSizeRisk
+    name = "targetSizeRisk"
+    documentation = "The target may be larger, heavier or faster-spinning than the characterisation\nenvelope (the design driver of the mission)."
+  Row 3: TethysRisk::riskRegister::thrusterLifeRisk
+    name = "thrusterLifeRisk"
+    documentation = "The Hall thrusters may not reach the 20 000 h per-string life the return needs."
+  Row 4: TethysRisk::riskRegister::proximityOperationsRisk
+    name = "proximityOperationsRisk"
+    documentation = "Relative navigation at the target may be less robust than designed."
+  Row 5: TethysRisk::riskRegister::xenonMarginRisk
+    name = "xenonMarginRisk"
+    documentation = "The xenon margin may be consumed by target mass growth."
+  Row 6: TethysRisk::riskRegister::captureBagTechnology
+    name = "captureBagTechnology"
+    documentation = "The inflatable capture bag is the mission's least mature technology."

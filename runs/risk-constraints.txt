@@ -62,14 +62,17 @@
 ✓ package TethysImportedData
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
-✓ Constraint TethysRisk::riskRegister::noUnownedRedRisk passed
+✓ Created instance of TethysRisk::riskRegister
+  ID: 1
+  Use %features TethysRisk::riskRegister to inspect
+✓ Constraint TethysRisk::riskRegister::noUnownedRedRisk passed (on TethysRisk::riskRegister ID: 1)
   standing: holds (observed: 1 run under reverse)
 ? Constraint TethysRisk::burnDown::registerBurningDown could not be evaluated
-  Error: constraint registerBurningDown: assertion evaluation failed: no value: condition is undetermined: consequence has no value in the model
-  standing: not covered (constraint registerBurningDown: assertion evaluation failed: no value: condition is undetermined: consequence has no value in the model)
+  Error: constraint registerBurningDown: assertion evaluation failed: feature value atPdr.score: calc TethysRisk::Score: evaluating the returned expression: no value for feature consequence
+  standing: not covered (constraint registerBurningDown: assertion evaluation failed: feature value atPdr.score: calc TethysRisk::Score: evaluating the returned expression: no value for feature consequence)
 ? Constraint TethysRisk::burnDown::earthImpactBurningDown could not be evaluated
-  Error: constraint earthImpactBurningDown: assertion evaluation failed: no value: condition is undetermined: consequence has no value in the model
-  standing: not covered (constraint earthImpactBurningDown: assertion evaluation failed: no value: condition is undetermined: consequence has no value in the model)
+  Error: constraint earthImpactBurningDown: assertion evaluation failed: feature value atPdr.score: calc TethysRisk::Score: evaluating the returned expression: no value for feature consequence
+  standing: not covered (constraint earthImpactBurningDown: assertion evaluation failed: feature value atPdr.score: calc TethysRisk::Score: evaluating the returned expression: no value for feature consequence)
 ✓ Constraint TethysRisk::marginIndicators::xenonFlagMatchesRegister passed
   standing: holds (observed: 1 run under reverse)
 ✓ Constraint TethysRisk::technologyPlan::fallbackHoldsNominalTarget passed
