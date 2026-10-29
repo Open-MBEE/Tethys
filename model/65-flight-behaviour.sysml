@@ -178,7 +178,8 @@ package TethysFlightBehaviour {
         doc /* The SEP string as the propulsion application drives it: off, standby with the
              * high-voltage bus on, thrusting, a timed restart after a flameout, and the
              * disposal burn that runs for the duration its command carries and then
-             * leaves the string off. */
+             * leaves the string off. A flameout during the disposal burn restarts into the
+             * burn again, for its full duration, so the string still ends off. */
         port command : CommandPort;
         attribute restartDelay : DurationValue = 2.0 [h];
         attribute burnDuration : DurationValue;
@@ -194,6 +195,11 @@ package TethysFlightBehaviour {
         state restarting {
             entry assign restarts := restarts + 1;
         }
+        state restartingDisposal {
+            doc /* The restart delay after a flameout during the disposal burn; the burn
+                 * resumes for its full duration, so it stays bounded. */
+            entry assign restarts := restarts + 1;
+        }
         transition first off accept SepStandby via command then standby;
         transition first standby accept SepThrust via command then thrusting;
         transition first thrusting accept SepStandby via command then standby;
@@ -201,11 +207,13 @@ package TethysFlightBehaviour {
         transition first restarting accept after restartDelay then thrusting;
         transition first standby accept b : SepDisposalBurn via command do assign burnDuration := b.duration then disposalBurn;
         transition first disposalBurn accept after burnDuration then off;
-        transition first disposalBurn accept ThrusterFlameout via command then restarting;
+        transition first disposalBurn accept ThrusterFlameout via command then restartingDisposal;
+        transition first restartingDisposal accept after restartDelay then disposalBurn;
         transition first standby accept SepOff via command then off;
         transition first thrusting accept SepOff via command then off;
         transition first disposalBurn accept SepOff via command then off;
         transition first restarting accept SepOff via command then off;
+        transition first restartingDisposal accept SepOff via command then off;
     }
     state def PowerManager {
         doc /* Battery charge control as load-shedding tiers: the state of charge the power
@@ -816,6 +824,45 @@ package TethysFlightBehaviour {
     part softwareThrusterFault : SoftwareFaultScenario {
         doc /* The thruster-fault scenario of TethysFdir on the software. */
         part :>> injector : ThrusterFaultInjector;
+    }
+    part def DisposalFlameoutInjector :> FaultInjector {
+        doc /* The disposal burn under a flameout: the string is brought to standby and into a
+             * 30 d disposal burn directly, a flameout ten days in restarts it, and the burn
+             * must still end with the string off. */
+        perform action campaign {
+            first start;
+            then action toSeparation accept after 0.05 [d];
+            then action separation send new SeparationConfirmed() via uplink;
+            then action toDeployment accept after 0.05 [d];
+            then action deployment send new ArraysDeployed() via uplink;
+            then action commissioning accept after 5.0 [d];
+            then action pass0 send new GroundContact() via uplink;
+            then action disposal send new SepDisposalBurn(duration = 30.0 [d]) via uplink;
+            then action run1 accept after 5.0 [d];
+            then action pass1 send new GroundContact() via uplink;
+            then action run2 accept after 5.0 [d];
+            then action pass2 send new GroundContact() via uplink;
+            then action flameout send new ThrusterFlameout(level = FdirLevel::subsystem, thrusterId = 2) via uplink;
+            then action run3 accept after 5.0 [d];
+            then action pass3 send new GroundContact() via uplink;
+            then action run4 accept after 5.0 [d];
+            then action pass4 send new GroundContact() via uplink;
+            then action run5 accept after 5.0 [d];
+            then action pass5 send new GroundContact() via uplink;
+            then action run6 accept after 5.0 [d];
+            then action pass6 send new GroundContact() via uplink;
+            then action run7 accept after 5.0 [d];
+            then action pass7 send new GroundContact() via uplink;
+            then action run8 accept after 5.0 [d];
+            then action pass8 send new GroundContact() via uplink;
+            then action run9 accept after 5.0 [d];
+            then action pass9 send new GroundContact() via uplink;
+            then done;
+        }
+    }
+    part softwareDisposalFlameout : SoftwareFaultScenario {
+        doc /* A flameout during the disposal burn on the software. */
+        part :>> injector : DisposalFlameoutInjector;
     }
     part def CaptureConductor {
         doc /* A test conductor on the capture controller's command port. */

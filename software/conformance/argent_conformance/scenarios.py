@@ -43,6 +43,8 @@ RUNS = (
         "TethysFlightBehaviour::softwareThrusterFault.tug.cdh.software.fdir", 876960),
     Run("sw-sep-string-restarting", "TethysFlightBehaviour::softwareThrusterFault", "TethysFlightBehaviour::SepControlSoftware::controller",
         "TethysFlightBehaviour::softwareThrusterFault.tug.cdh.software.sepControl", 876960),
+    Run("sw-sep-string-disposal-restarting", "TethysFlightBehaviour::softwareDisposalFlameout", "TethysFlightBehaviour::SepControlSoftware::controller",
+        "TethysFlightBehaviour::softwareDisposalFlameout.tug.cdh.software.sepControl", 3920000),
     Run("sw-capture-controller", "TethysFlightBehaviour::captureNominal", "TethysFlightBehaviour::CaptureControlSoftware::controller",
         "TethysFlightBehaviour::captureNominal.captureControl", 20000),
     Run("sw-capture-controller-inhibited", "TethysFlightBehaviour::capturePrematureContact", "TethysFlightBehaviour::CaptureControlSoftware::controller",

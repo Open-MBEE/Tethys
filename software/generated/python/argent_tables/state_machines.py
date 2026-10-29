@@ -62,6 +62,7 @@ SEP_STRING_CONTROLLER = StateMachine(
         State('thrusting', 'TethysFlightBehaviour::SepStringController::thrusting', None, None, True, 'arcsStarted := arcsStarted + 1', ''),
         State('disposalBurn', 'TethysFlightBehaviour::SepStringController::disposalBurn', None, None, True, '', ''),
         State('restarting', 'TethysFlightBehaviour::SepStringController::restarting', None, None, True, 'restarts := restarts + 1', ''),
+        State('restartingDisposal', 'TethysFlightBehaviour::SepStringController::restartingDisposal', None, None, True, 'restarts := restarts + 1', ''),
     ),
     (
         Transition('TethysFlightBehaviour::SepStringController::off', 'TethysFlightBehaviour::SepStringController::standby', 'SepStandby', None, 'command', None, None, None),
@@ -71,11 +72,13 @@ SEP_STRING_CONTROLLER = StateMachine(
         Transition('TethysFlightBehaviour::SepStringController::restarting', 'TethysFlightBehaviour::SepStringController::thrusting', None, None, None, 'after restartDelay', None, None),
         Transition('TethysFlightBehaviour::SepStringController::standby', 'TethysFlightBehaviour::SepStringController::disposalBurn', 'SepDisposalBurn', 'b', 'command', None, None, 'SEP_STRING_CONTROLLER_E1'),
         Transition('TethysFlightBehaviour::SepStringController::disposalBurn', 'TethysFlightBehaviour::SepStringController::off', None, None, None, 'after burnDuration', None, None),
-        Transition('TethysFlightBehaviour::SepStringController::disposalBurn', 'TethysFlightBehaviour::SepStringController::restarting', 'ThrusterFlameout', None, 'command', None, None, None),
+        Transition('TethysFlightBehaviour::SepStringController::disposalBurn', 'TethysFlightBehaviour::SepStringController::restartingDisposal', 'ThrusterFlameout', None, 'command', None, None, None),
+        Transition('TethysFlightBehaviour::SepStringController::restartingDisposal', 'TethysFlightBehaviour::SepStringController::disposalBurn', None, None, None, 'after restartDelay', None, None),
         Transition('TethysFlightBehaviour::SepStringController::standby', 'TethysFlightBehaviour::SepStringController::off', 'SepOff', None, 'command', None, None, None),
         Transition('TethysFlightBehaviour::SepStringController::thrusting', 'TethysFlightBehaviour::SepStringController::off', 'SepOff', None, 'command', None, None, None),
         Transition('TethysFlightBehaviour::SepStringController::disposalBurn', 'TethysFlightBehaviour::SepStringController::off', 'SepOff', None, 'command', None, None, None),
         Transition('TethysFlightBehaviour::SepStringController::restarting', 'TethysFlightBehaviour::SepStringController::off', 'SepOff', None, 'command', None, None, None),
+        Transition('TethysFlightBehaviour::SepStringController::restartingDisposal', 'TethysFlightBehaviour::SepStringController::off', 'SepOff', None, 'command', None, None, None),
     ),
     (
     ),

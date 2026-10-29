@@ -79,20 +79,22 @@ typedef enum {
     ARGENT_SEP_STRING_CONTROLLER_STATE_THRUSTING = 2,
     ARGENT_SEP_STRING_CONTROLLER_STATE_DISPOSAL_BURN = 3,
     ARGENT_SEP_STRING_CONTROLLER_STATE_RESTARTING = 4,
-    ARGENT_SEP_STRING_CONTROLLER_STATE_COUNT = 5
+    ARGENT_SEP_STRING_CONTROLLER_STATE_RESTARTING_DISPOSAL = 5,
+    ARGENT_SEP_STRING_CONTROLLER_STATE_COUNT = 6
 } argent_sep_string_controller_state_t;
 
-#define ARGENT_SEP_STRING_CONTROLLER_TRANSITION_COUNT 12u
+#define ARGENT_SEP_STRING_CONTROLLER_TRANSITION_COUNT 14u
 
-static const argent_state_t argent_sep_string_controller_states[5] = {
+static const argent_state_t argent_sep_string_controller_states[6] = {
     { "off", "TethysFlightBehaviour::SepStringController::off", ARGENT_STATE_NONE, ARGENT_STATE_NONE, 1, "", "" },
     { "standby", "TethysFlightBehaviour::SepStringController::standby", ARGENT_STATE_NONE, ARGENT_STATE_NONE, 1, "", "" },
     { "thrusting", "TethysFlightBehaviour::SepStringController::thrusting", ARGENT_STATE_NONE, ARGENT_STATE_NONE, 1, "arcsStarted := arcsStarted + 1", "" },
     { "disposalBurn", "TethysFlightBehaviour::SepStringController::disposalBurn", ARGENT_STATE_NONE, ARGENT_STATE_NONE, 1, "", "" },
     { "restarting", "TethysFlightBehaviour::SepStringController::restarting", ARGENT_STATE_NONE, ARGENT_STATE_NONE, 1, "restarts := restarts + 1", "" },
+    { "restartingDisposal", "TethysFlightBehaviour::SepStringController::restartingDisposal", ARGENT_STATE_NONE, ARGENT_STATE_NONE, 1, "restarts := restarts + 1", "" },
 };
 
-static const argent_transition_t argent_sep_string_controller_transitions[12] = {
+static const argent_transition_t argent_sep_string_controller_transitions[14] = {
     { 0, 1, ARGENT_TRIGGER_EVENT, "SepStandby", "command", "", -1, -1 },
     { 1, 2, ARGENT_TRIGGER_EVENT, "SepThrust", "command", "", -1, -1 },
     { 2, 1, ARGENT_TRIGGER_EVENT, "SepStandby", "command", "", -1, -1 },
@@ -100,11 +102,13 @@ static const argent_transition_t argent_sep_string_controller_transitions[12] = 
     { 4, 2, ARGENT_TRIGGER_TIMED, "", "", "after restartDelay", -1, -1 },
     { 1, 3, ARGENT_TRIGGER_EVENT, "SepDisposalBurn", "command", "", -1, 0 },
     { 3, 0, ARGENT_TRIGGER_TIMED, "", "", "after burnDuration", -1, -1 },
-    { 3, 4, ARGENT_TRIGGER_EVENT, "ThrusterFlameout", "command", "", -1, -1 },
+    { 3, 5, ARGENT_TRIGGER_EVENT, "ThrusterFlameout", "command", "", -1, -1 },
+    { 5, 3, ARGENT_TRIGGER_TIMED, "", "", "after restartDelay", -1, -1 },
     { 1, 0, ARGENT_TRIGGER_EVENT, "SepOff", "command", "", -1, -1 },
     { 2, 0, ARGENT_TRIGGER_EVENT, "SepOff", "command", "", -1, -1 },
     { 3, 0, ARGENT_TRIGGER_EVENT, "SepOff", "command", "", -1, -1 },
     { 4, 0, ARGENT_TRIGGER_EVENT, "SepOff", "command", "", -1, -1 },
+    { 5, 0, ARGENT_TRIGGER_EVENT, "SepOff", "command", "", -1, -1 },
 };
 
 static const argent_named_expression_t argent_sep_string_controller_guards[1] = {
@@ -753,7 +757,7 @@ static const argent_named_expression_t argent_fdir_response_relay_effects[2] = {
 #define ARGENT_STATE_MACHINE_COUNT 12u
 
 static const argent_state_machine_t argent_state_machines[12] = {
-    { "SepStringController", "TethysFlightBehaviour::SepStringController", 0, argent_sep_string_controller_states, 5u, argent_sep_string_controller_transitions, 12u, argent_sep_string_controller_guards, 0u, argent_sep_string_controller_effects, 1u },
+    { "SepStringController", "TethysFlightBehaviour::SepStringController", 0, argent_sep_string_controller_states, 6u, argent_sep_string_controller_transitions, 14u, argent_sep_string_controller_guards, 0u, argent_sep_string_controller_effects, 1u },
     { "PowerManager", "TethysFlightBehaviour::PowerManager", 0, argent_power_manager_states, 4u, argent_power_manager_transitions, 9u, argent_power_manager_guards, 3u, argent_power_manager_effects, 0u },
     { "ThermalController", "TethysFlightBehaviour::ThermalController", ARGENT_STATE_NONE, argent_thermal_controller_states, 6u, argent_thermal_controller_transitions, 4u, argent_thermal_controller_guards, 2u, argent_thermal_controller_effects, 0u },
     { "TelecomManager", "TethysFlightBehaviour::TelecomManager", 0, argent_telecom_manager_states, 4u, argent_telecom_manager_transitions, 9u, argent_telecom_manager_guards, 0u, argent_telecom_manager_effects, 0u },

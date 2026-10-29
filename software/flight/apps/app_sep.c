@@ -60,6 +60,7 @@ void app_sep_init(argent_system_t *sys)
     sm_register_exit(sm, "TethysFlightBehaviour::SepStringController::disposalBurn", sep_exit_disposal_burn);
     sm_register_effect(sm, "SEP_STRING_CONTROLLER_E1", sep_e1);
     sm_register_entry(sm, "TethysFlightBehaviour::SepStringController::restarting", sep_entry_restarting);
+    sm_register_entry(sm, "TethysFlightBehaviour::SepStringController::restartingDisposal", sep_entry_restarting);
     sm_register_entry(sm, "TethysFlightBehaviour::SepStringController::off", sep_entry_off);
     exec_bind_task(&sys->exec, "sepControlTask", sep_task, sys);
 }
