@@ -313,8 +313,8 @@ package TethysAnalyses {
     // ---- Requirement closed by analysis ------------------------------------------------------
 
     verification def MissionDurationByAnalysis {
-        doc /* TR-002 and TS-003 verified by analysis: the thrusting time of the transfer and
-             * return plus the non-thrusting phases must fit the nominal duration. */
+        doc /* TR-002 verified by analysis: the thrusting time of the transfer and return plus the
+             * non-thrusting phases must fit the nominal duration. */
         subject tug : Tug;
         in part target : SmallBody;
         in attribute nonThrustDays : Real default = 270.0;
@@ -322,9 +322,6 @@ package TethysAnalyses {
             doc /* The mission duration requirement this case verifies. */
             verify missionDuration {
                 doc /* TR-002 as verified here. */
-            }
-            verify transferDuration {
-                doc /* TS-003: the planned timeline against the nominal duration. */
             }
         }
         analysis transfer : LowThrustTransferAnalysis {
@@ -337,4 +334,29 @@ package TethysAnalyses {
 
     verification verifyDurationNominal : MissionDurationByAnalysis { subject :>> tug = argent; in :>> target = targetCases.nominal; }
     verification verifyDurationLarge : MissionDurationByAnalysis { subject :>> tug = argent; in :>> target = targetCases.large; }
+
+    verification def <'TV-034'> TransferTimelineByAnalysis {
+        doc /* TS-003 verified by analysis: the planned timeline (the transfer book's thrust allowance
+             * plus the coast, proximity-operations and reserve phases the requirement allots) fits the
+             * nominal duration, and the transfer analysis needs no more thrusting time than that
+             * allowance. */
+        subject tug : Tug;
+        in part target : SmallBody;
+        objective timelineObjective {
+            doc /* The system transfer-duration requirement this case verifies. */
+            verify transferDuration {
+                doc /* TS-003 as verified here. */
+            }
+        }
+        analysis transfer : LowThrustTransferAnalysis {
+            subject :>> tug = tug;
+            in :>> target = target;
+        }
+        return verdict : VerdictKind =
+            PassIf(transferDuration.total <= tethys.nominalDuration
+                and transfer.totalThrustTime <= transferDuration.thrustTime);
+    }
+
+    verification verifyTransferTimelineNominal : TransferTimelineByAnalysis { subject :>> tug = argent; in :>> target = targetCases.nominal; }
+    verification verifyTransferTimelineLarge : TransferTimelineByAnalysis { subject :>> tug = argent; in :>> target = targetCases.large; }
 }

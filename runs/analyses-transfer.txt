@@ -100,4 +100,14 @@
   objective durationObjective: satisfied
   ✓ Verification TethysAnalyses::verifyDurationLarge verdict: pass
   standing: holds (observed: 1 run under reverse)
+✓ TethysAnalyses::verifyTransferTimelineNominal
+  verdict = [VerdictKind::pass]
+  objective timelineObjective: satisfied
+  ✓ Verification TethysAnalyses::verifyTransferTimelineNominal verdict: pass
+  standing: holds (observed: 1 run under reverse)
+✓ TethysAnalyses::verifyTransferTimelineLarge
+  verdict = [VerdictKind::pass]
+  objective timelineObjective: satisfied
+  ✓ Verification TethysAnalyses::verifyTransferTimelineLarge verdict: pass
+  standing: holds (observed: 1 run under reverse)
 exit 1

@@ -152,7 +152,7 @@ run fdir-command-loss-timeline $SYSML -quiet -instantiate TethysFdir::commandLos
 # tables so the output pins; the external tool manifest must live outside the working tree.
 runt() { name=$1; shift; "$@" 2>&1 | sed -E -e 's/ *\| *time$//' -e 's/\+-+$//' -e 's/ *\| *[0-9.]+(ms|µs|ns|s)$//' > "$out/$name.txt" || echo "exit $?" >> "$out/$name.txt"; }
 TOOLS="${TMPDIR:-/tmp}/tethys-tools"; rm -rf "$TOOLS"; cp -r scripts/tools/thrust-arc "$TOOLS"
-run analyses-transfer $SYSML -analysis TethysAnalyses::transferSmall -analysis TethysAnalyses::transferNominal -analysis TethysAnalyses::transferLarge -analysis TethysAnalyses::transferDensest -analysis TethysAnalyses::verifyDurationNominal -analysis TethysAnalyses::verifyDurationLarge $MODEL
+run analyses-transfer $SYSML -analysis TethysAnalyses::transferSmall -analysis TethysAnalyses::transferNominal -analysis TethysAnalyses::transferLarge -analysis TethysAnalyses::transferDensest -analysis TethysAnalyses::verifyDurationNominal -analysis TethysAnalyses::verifyDurationLarge -analysis TethysAnalyses::verifyTransferTimelineNominal -analysis TethysAnalyses::verifyTransferTimelineLarge $MODEL
 run analyses-capture $SYSML -analysis TethysAnalyses::captureNominal -analysis TethysAnalyses::captureLarge -analysis TethysAnalyses::captureFastSpin $MODEL
 run analyses-external-tool env OPENSYSML_TOOLS="$TOOLS" $SYSML -analysis TethysAnalyses::externalTransfer -record-run TethysAnalyses::externalTransfer -record-run TethysAnalyses::transferNominal $MODEL
 runt analyses-sweep $SYSML -analysis TethysAnalyses::transferNominal -sweep "outboundDeltaVMPerS=1500.0..3000.0:500.0" $MODEL

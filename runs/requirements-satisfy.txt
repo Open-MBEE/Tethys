@@ -73,8 +73,8 @@
 ✓ Verification TethysVerification::deliveryAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy transferDuration by tethysSystem.flight holds (on TethysSystem::tethysSystem.flight ID: 37)
-✓ Verification TethysAnalyses::verifyDurationNominal verdict: pass
-✓ Verification TethysAnalyses::verifyDurationLarge verdict: pass
+✓ Verification TethysAnalyses::verifyTransferTimelineNominal verdict: pass
+✓ Verification TethysAnalyses::verifyTransferTimelineLarge verdict: pass
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy propellantCapacity by TethysTug::argent holds (on TethysTug::argent ID: 1)
 ✓ Verification TethysVerification::propellantAnalysis verdict: pass
