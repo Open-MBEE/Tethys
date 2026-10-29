@@ -79,6 +79,17 @@
   Row 12: TethysRisk::riskRegister::proximityOperationsRisk::mitigationActions::hardwareInTheLoopCampaign
   Row 13: TethysRisk::riskRegister::xenonMarginRisk::mitigationActions::tankGrowthOption
   Row 14: TethysRisk::riskRegister::captureBagTechnology::mitigationActions::vacuumDeploymentTest
+✓ Query TethysAllocationQueries::SafetyCriticalFunctions returned 3 rows
+  Columns: name, documentation
+  Row 1: TethysSafety::safetyCriticalSoftware::finalTargetingGuidance
+    name = "finalTargetingGuidance"
+    documentation = (none)
+  Row 2: TethysSafety::safetyCriticalSoftware::captureAbortLogic
+    name = "captureAbortLogic"
+    documentation = (none)
+  Row 3: TethysSafety::safetyCriticalSoftware::highVoltageInhibitLogic
+    name = "highVoltageInhibitLogic"
+    documentation = (none)
 ✓ Query TethysAllocationQueries::AllocationTargets returned 1 row
   Row 1: TethysTug::argent::sep
 ✓ Query TethysAllocationQueries::AllocationTargets returned 2 rows

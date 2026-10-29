@@ -19,10 +19,6 @@ The mission is one system of five segment-level parts: the flight segment (tug a
 | ground |  |
 | target |  |
 | visitor |  |
-| launchAdapter |  |
-| deepSpaceLink |  |
-| capture |  |
-| visitorDocking |  |
 
 *Segment-level interface control (positioned by TethysLayout)*
 
@@ -222,10 +218,16 @@ The mission is one system of five segment-level parts: the flight segment (tug a
 
 | name | type |
 | --- | --- |
-| eps |  |
-| sep |  |
-| rcs |  |
-| captureSystem |  |
+| structure | TethysTug::StructureAndMechanisms |
+| thermal | TethysTug::ThermalControl |
+| eps | TethysTug::ElectricalPowerSystem |
+| cdh | TethysTug::CommandAndDataHandling |
+| telecom | TethysTug::Telecommunications |
+| gnc | TethysTug::GuidanceNavigationControl |
+| sep | TethysTug::SolarElectricPropulsion |
+| rcs | TethysTug::ReactionControl |
+| captureSystem | TethysTug::CaptureSystem |
+| sensors | TethysTug::CharacterisationSensors |
 
 *The power bus from the electrical power subsystem to every load*
 

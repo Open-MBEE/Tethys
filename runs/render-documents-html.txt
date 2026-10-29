@@ -127,9 +127,9 @@ loaded 64 files:
 ✓ package TethysImportedData
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
-wrote build/runs/documents-html/TethysDocuments-InterfaceControlDocuments.html (html, 46034 bytes)
-wrote build/runs/documents-html/TethysDocuments-RiskRegister.html (html, 1050 bytes)
-wrote build/runs/documents-html/TethysDocuments-SystemDescription.html (html, 36380 bytes)
+wrote build/runs/documents-html/TethysDocuments-InterfaceControlDocuments.html (html, 39948 bytes)
+wrote build/runs/documents-html/TethysDocuments-RiskRegister.html (html, 3948 bytes)
+wrote build/runs/documents-html/TethysDocuments-SystemDescription.html (html, 37918 bytes)
 wrote build/runs/documents-html/TethysDocuments-VerificationMatrix.html (html, 34171 bytes)
 wrote build/runs/documents-html/TethysFlightDictionaryDocuments-FlightDictionaryDocument.html (html, 2617626 bytes)
 wrote build/runs/documents-html/TethysIcdDocuments-CaptureIcdDocument.html (html, 6015 bytes)

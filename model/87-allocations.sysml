@@ -302,7 +302,9 @@ package TethysAllocations {
         attribute hostOfRelativeState : String = "GNC processor";
         attribute hostOfFinalTargeting : String = "GNC processor";
         attribute hostOfAbort : String = "command and data handling processor";
-        attribute safetyCriticalSoftwareFunctions : Natural = 2;
+        // The safety-critical functions are the ones carrying @SafetyCritical in
+        // TethysSafety::safetyCriticalSoftware; TethysAllocationQueries::SafetyCriticalFunctions
+        // lists them, so no count is kept here.
     }
 
     // ---------------------------------------------------------------- views
