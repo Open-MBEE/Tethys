@@ -66,8 +66,8 @@
   ID: 1
   Use %features TethysFlightBehaviour::softwareNominalFlight to inspect
 warning: TethysFlightBehaviour::softwareNominalFlight: materialization is bounded; not every feature value was checked
-✓ Debugging action "engine" performed by object #47 of "TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.autonomy"
-note: object #47 of "TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.autonomy" already performs "TethysFlightBehaviour::AutonomySoftware::engine", so this session attaches to that running performance rather than starting a second one (as `%action TethysFlightBehaviour::AutonomySoftware::engine` would)
+✓ Debugging action "engine" performed by object #46 of "TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.autonomy"
+note: object #46 of "TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.autonomy" already performs "TethysFlightBehaviour::AutonomySoftware::engine", so this session attaches to that running performance rather than starting a second one (as `%action TethysFlightBehaviour::AutonomySoftware::engine` would)
   State: Waiting
   Tokens: 1
 ✓ Advanced to 1000.0 (5 event(s) processed)
@@ -77,7 +77,7 @@ note: object #47 of "TethysFlightBehaviour::softwareNominalFlight.tug.cdh.softwa
   Waiting on the clock:
     t=4320.0: action nominalCampaign of object #2, accept after waiting since step 2 for the clock to reach t=4320.0
     t=604800.0: state machine FdirSupervisor of object #4, time -> expired
-    t=604800.0: state machine FdirSupervisor of object #49, time -> expired
+    t=604800.0: state machine FdirSupervisor of object #48, time -> expired
 ✓ Action completed
   Results:
     allowedModes = [TugMode::earlyOperations, TugMode::thrust, TugMode::approach, TugMode::stackThrust, TugMode::disposal, TugMode::coast, TugMode::stackCoast, TugMode::dockedPassive, TugMode::proximityOperations, TugMode::retreat, TugMode::capture, TugMode::despin, TugMode::droHold, TugMode::safe, TugMode::abortHold]

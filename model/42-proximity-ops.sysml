@@ -17,6 +17,7 @@ package TethysProximityOps {
     private import TethysInspectorDetail::*;
     private import TethysCaptureSystem::*;
     private import TethysBudgets::captureCommitEnvelope;
+    private import TethysBudgets::hydrazineBudget;
 
     part def ProximityDataHandler {
         doc /* The tug-side end of the proximity link: where Wren's frames, echoes and the
@@ -118,12 +119,20 @@ package TethysProximityOps {
     }
     action def Despin {
         doc /* React the body's angular momentum through the bag with the reaction control at a
-             * constant torque; the duration and propellant follow from the body's angular
-             * momentum (TethysCaptureSystem::DespinDuration, DespinPropellant) and so vary with
-             * the target case. */
+             * constant torque; the duration and propellant follow from the characterised body's
+             * angular momentum (TethysCaptureSystem::DespinDuration, DespinPropellant) and the
+             * thrusters' arm and Isp, and so vary with the target case. */
+        in characterisation : TargetCharacterisation;
+        in momentArm : LengthValue;
+        in specificImpulse : DurationValue;
         attribute torque : TorqueValue;
-        attribute duration : DurationValue;
-        attribute propellant : MassValue;
+        attribute angularMomentum : AngularMomentumValue =
+            AngularMomentum(SphereMomentOfInertia(characterisation.mass / (1 [kg]),
+                characterisation.meanDiameter / (1 [m])), characterisation.rotationPeriod / (1 [s])) ['N⋅m⋅s'];
+        attribute duration : DurationValue =
+            DespinDuration(angularMomentum / (1 ['N⋅m⋅s']), torque / (1 ['N⋅m'])) [s];
+        attribute propellant : MassValue =
+            DespinPropellant(angularMomentum / (1 ['N⋅m⋅s']), momentArm / (1 [m]), specificImpulse / (1 [s])) [kg];
     }
     action def Retreat {
         doc /* Back away to a hold range and wait for the ground. */
@@ -157,6 +166,9 @@ package TethysProximityOps {
             attribute :>> duration = 600.0 [s];
         }
         then action despin : Despin {
+            in characterisation = characterise.characterisation;
+            in momentArm = hydrazineBudget.momentArm;
+            in specificImpulse = hydrazineBudget.isp;
             attribute :>> torque = 120.0 ['N⋅m'];
         }
         then done;

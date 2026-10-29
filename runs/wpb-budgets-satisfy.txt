@@ -508,7 +508,7 @@
 ✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
 ✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy bootFallback by softwareNominalFlight.tug.cdh.software.parameterBootUpdate holds (on TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.parameterBootUpdate ID: 3286)
+✓ satisfy bootFallback by softwareNominalFlight.tug.cdh.software.parameterBootUpdate holds (on TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.parameterBootUpdate ID: 3285)
 ? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
 ? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
 ✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
@@ -597,7 +597,7 @@
 ? Verification TethysSoftwareAssurance::powerManagementFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::powerManagementFlatsat parameter "loadShedTrippedAtFloor" has no argument and no default
 ✓ Verification TethysSoftwareDocuments::groundReadinessDemoSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy redundancyManagement by argentSoftware.cdh holds (on TethysFlightSoftware::argentSoftware.cdh ID: 15)
+✓ satisfy redundancyManagement by argentSoftware.cdh holds (on TethysFlightSoftware::argentSoftware.cdh ID: 14)
 ? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
 ? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
 ✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
@@ -606,7 +606,7 @@
 ✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
 ✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy heartbeatFailover by softwareNominalFlight.tug.cdh holds (on TethysFlightBehaviour::softwareNominalFlight.tug.cdh ID: 3246)
+✓ satisfy heartbeatFailover by softwareNominalFlight.tug.cdh holds (on TethysFlightBehaviour::softwareNominalFlight.tug.cdh ID: 3245)
 ? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
 ? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
 ✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
@@ -821,6 +821,6 @@
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy passivation by argentAtEndOfLife.passivated holds (on TethysDisposal::argentAtEndOfLife.passivated ID: 4677)
   standing: holds (observed: 1 run under reverse)
-✓ satisfy separationSafety by argentFM.captureSystem holds (on TethysAsBuilt::argentFM.captureSystem ID: 4679)
+✓ satisfy separationSafety by argentFM.captureSystem holds (on TethysAsBuilt::argentFM.captureSystem ID: 4680)
   standing: holds (observed: 1 run under reverse)
 exit 2

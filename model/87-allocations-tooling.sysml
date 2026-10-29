@@ -55,6 +55,17 @@ package TethysAllocationQueries {
                      relationshipKind = "allocation", direction = "outgoing", exists = false)
     }
 
+    calc def SafetyCriticalFunctions :> Query {
+        doc /* The functions under root annotated @SafetyCritical, with the rationale each
+             * carries. Expected over TethysSafety::safetyCriticalSoftware: the three functions
+             * of the hazard analysis; the row count is the safety-critical software count. */
+        in root : Element;
+        Project(
+            source = WhereMetadata(source = Descendants(source = root),
+                                   'metadata' = "TethysSafety::SafetyCritical"),
+            properties = ("name", "SafetyCritical::rationale"))
+    }
+
     calc def AllocationTargets :> Query {
         doc /* The components an element is allocated to. */
         in origin : Element;

@@ -33,8 +33,11 @@ command below is a `run` line in `scripts/runs.sh` with its output under `runs/`
 | TOOL-058 `-import-dry-run` | all three files | `runs/import-dry-run.txt` | satisfied |
 | TOOL-152 `%import` (REPL) | `%import … map …` then `%calc`/`%eval` over the imported snapshot values | `runs/import-repl.txt` | satisfied |
 
-Target uncertainty: `separationSafety` evaluates the separation impulse against the 150 t,
-362 t and 620 t body cases and the as-characterised 438.8 t; `AmaranthAsCharacterised`
+Target uncertainty: `separationSafety` evaluates the separation impulse (an `ImpulseValue`)
+against `TethysTarget::targetCases.{small,nominal,large}.mass` (213 t, 362 t, 506 t) and the
+as-characterised `amaranthFM.postCapture.mass` (438.8 t), returning `SpeedValue`s
+(`runs/disposal-quantities.txt`); `passivation` requires its `passivationDelay` (23 d, from the
+`closeout` record) to lie in 0 d … 30 d; `AmaranthAsCharacterised`
 carries the pre-arrival estimate and the measured values as ordered snapshots, so
 `massEstimateRatio` (1.2155) is the realised uncertainty.
 

@@ -230,7 +230,7 @@
         }
         assert constraint windowIsOrdered {
             doc /* The window opens before it closes and is not marked marginal. */
-            (firstWindow.opens < firstWindow.closes) | firstWindow.marginal == true
+            (firstWindow.opens < firstWindow.closes) & not firstWindow.marginal
         }
         assert constraint identityChecks {
             doc /* The configuration's target is one of the declared cases, and its launcher is
