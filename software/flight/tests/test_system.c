@@ -24,7 +24,7 @@ static void test_machine_order_and_binding(void)
         guards += sys.sm[i].def->guard_count; effects += sys.sm[i].def->effect_count;
         states += sys.sm[i].def->state_count; transitions += sys.sm[i].def->transition_count;
     }
-    CHECK(states == 102u && transitions == 167u);   /* the generated totals */
+    CHECK(states == 103u && transitions == 169u);   /* the generated totals */
     printf("  %u guards, %u effects bound over %u states / %u transitions\n", guards, effects, states, transitions);
 }
 
@@ -187,6 +187,31 @@ static void pass_hours(argent_system_t *sys, double hours)
     }
 }
 
+/* A flameout during the disposal burn restarts into the burn again for its full duration (model 65 restartingDisposal). */
+static void test_disposal_burn_flameout_restarts_bounded(void)
+{
+    static argent_system_t sys;
+    double thruster[SM_MAX_EVENT_ARGS] = { 2.0 };   /* ThrusterFlameout(thrusterId = 2) */
+    uint32_t restarts;
+    system_init(&sys, NULL);
+    to_coast(&sys);
+    system_deliver_item(&sys, "DisposalGo", "command", NULL, NULL);
+    run_seconds(&sys, 1.0);
+    CHECK(in_state(&sys, SM_SEP_STRING, "disposalBurn") && sys.sim.sep_thrusting);
+    pass_days(&sys, 10.0);
+    restarts = sys.app.restarts;
+    system_deliver_item(&sys, "ThrusterFlameout", "command", thruster, NULL);
+    run_seconds(&sys, 1.0);
+    CHECK(in_state(&sys, SM_SEP_STRING, "restartingDisposal") && !sys.sim.sep_thrusting);
+    CHECK(sys.app.restarts == restarts + 1);
+    pass_days(&sys, 0.125);   /* 3 h: past the 2 h restartDelay */
+    CHECK(in_state(&sys, SM_SEP_STRING, "disposalBurn") && sys.sim.sep_thrusting);
+    pass_days(&sys, 29.0);    /* the burn runs its full 30 d again from the restart, not the 20 d that remained */
+    CHECK(in_state(&sys, SM_SEP_STRING, "disposalBurn") && sys.sim.sep_thrusting);
+    pass_days(&sys, 1.5);
+    CHECK(in_state(&sys, SM_SEP_STRING, "off") && !sys.sim.sep_thrusting);
+}
+
 static void test_inspector_relays_the_requested_pass(void)
 {
     static argent_system_t sys;
@@ -245,6 +270,7 @@ const test_case_t system_tests[] = {
     { "system: the six on-board sequences execute as data", "model 65 sequencing engine", test_sequences_run_as_data },
     { "system: a far-field RangeUpdate keeps the SEP controller thrusting; the rendezvous one stops it", "model 60/65 rendezvousRange gate", test_far_field_range_update_keeps_thrusting },
     { "system: the disposal burn leaves the SEP controller off after disposalBurnDuration", "model 60/65 disposal burn", test_disposal_burn_ends_off },
+    { "system: a flameout during the disposal burn restarts into a bounded burn that still ends off", "model 65 restartingDisposal", test_disposal_burn_flameout_restarts_bounded },
     { "system: the inspector handler relays for the pass each InspectorImagingGo carries", "model 65 passDuration", test_inspector_relays_the_requested_pass },
     { "system: two systems with the same stimulus produce the same trace state", "TF-021 determinism", test_deterministic },
 };

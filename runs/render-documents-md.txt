@@ -171,7 +171,7 @@ wrote build/runs/documents/TethysSoftwareDocumentsTooling-ParameterBootUpdateDes
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-PassPlannerDesignDescription.md (markdown, 1650 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-PowerManagementDesignDescription.md (markdown, 17565 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-ProximityPlannerDesignDescription.md (markdown, 1734 bytes)
-wrote build/runs/documents/TethysSoftwareDocumentsTooling-SepControlDesignDescription.md (markdown, 10621 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-SepControlDesignDescription.md (markdown, 10774 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-SequencerDesignDescription.md (markdown, 1637 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-SoftwareArchitectureDescription.md (markdown, 18909 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-SoftwareDocumentIndex.md (markdown, 2502 bytes)

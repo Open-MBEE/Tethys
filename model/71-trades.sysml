@@ -54,12 +54,12 @@ package TethysTrades {
              * aphelion, less the housekeeping load, and no more than the propulsion system's
              * maximum power — array beyond what the power processing accepts buys mass and
              * cost, not thrust. */
-        in powerAtOneAuW : Real;
-        in housekeepingW : Real;
-        in maximumSepPowerW : Real;
-        return sepPowerW : Real = RealFunctions::min(
-            powerAtOneAuW * SolarFlux(amaranth.orbit.aphelionAu) / SolarFlux(1.0) - housekeepingW,
-            maximumSepPowerW);
+        in powerAtOneAu : PowerValue;
+        in housekeeping : PowerValue;
+        in maximumSepPower : PowerValue;
+        return sepPower : PowerValue = RealFunctions::min(
+            powerAtOneAu / 1 [W] * SolarFlux(amaranth.orbit.aphelionAu) / SolarFlux(1.0) - housekeeping / 1 [W],
+            maximumSepPower / 1 [W]) [W];
     }
 
     analysis def ArrayPowerTrade :> TradeStudy {
@@ -78,8 +78,7 @@ package TethysTrades {
         calc :>> evaluationFunction {
             in part option :>> alternative : ArrayOption;
             attribute sepPower : PowerValue =
-                PowerAvailableToSep(option.powerAtOneAu / 1 [W], housekeeping / 1 [W],
-                    argent.sep.maximumPower / 1 [W]) [W];
+                PowerAvailableToSep(option.powerAtOneAu, housekeeping, argent.sep.maximumPower);
             attribute thrust : ForceValue = SepThrust(sepPower / 1 [W], argent.sep.specificImpulse / 1 [s], 0.65) [N];
             attribute thrustTime : DurationValue = ThrustDays(xenonToProcess / 1 [kg],
                 MassFlowRate(thrust / 1 [N], argent.sep.specificImpulse / 1 [s])) [d];

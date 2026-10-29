@@ -1,0 +1,16 @@
+# derived from runs/sw-sep-string-disposal-restarting.txt and the TethysFlightBehaviour::softwareDisposalFlameout scenario; horizon 3920000 s
+t=4320 item SeparationConfirmed 
+t=8640 item ArraysDeployed 
+t=440640 item GroundContact 
+t=440640 item SepDisposalBurn 2.592e+06
+t=872640 item GroundContact 
+t=1304640 item GroundContact 
+t=1304640 item ThrusterFlameout 2
+t=1736640 item GroundContact 
+t=2168640 item GroundContact 
+t=2600640 item GroundContact 
+t=3032640 item GroundContact 
+t=3464640 item GroundContact 
+t=3896640 item GroundContact 
+t=4328640 item GroundContact 
+t=3920000 expect SepStringController=off
