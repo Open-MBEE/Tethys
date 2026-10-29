@@ -66,8 +66,8 @@
   ID: 1
   Use %features TethysFlightBehaviour::softwareThrusterFault to inspect
 warning: TethysFlightBehaviour::softwareThrusterFault: materialization is bounded; not every feature value was checked
-✓ Debugging state machine "controller" exhibited by object #33 of "TethysFlightBehaviour::softwareThrusterFault.tug.cdh.software.sepControl"
-note: object #33 of "TethysFlightBehaviour::softwareThrusterFault.tug.cdh.software.sepControl" already exhibits "TethysFlightBehaviour::SepControlSoftware::controller", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysFlightBehaviour::softwareThrusterFault.tug.cdh.software.sepControl` would)
+✓ Debugging state machine "controller" exhibited by object #32 of "TethysFlightBehaviour::softwareThrusterFault.tug.cdh.software.sepControl"
+note: object #32 of "TethysFlightBehaviour::softwareThrusterFault.tug.cdh.software.sepControl" already exhibits "TethysFlightBehaviour::SepControlSoftware::controller", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysFlightBehaviour::softwareThrusterFault.tug.cdh.software.sepControl` would)
   Current state: off
   Time: 0.0
   Events: 0
@@ -79,9 +79,9 @@ note: object #33 of "TethysFlightBehaviour::softwareThrusterFault.tug.cdh.softwa
   Action steps taken: 13
   Waiting on the clock:
     t=879840.0: state machine FdirSupervisor of object #4, time -> nominal
-    t=879840.0: state machine SepStringController of object #33, time -> thrusting
-    t=879840.0: state machine FdirSupervisor of object #47, time -> nominal
+    t=879840.0: state machine SepStringController of object #32, time -> thrusting
+    t=879840.0: state machine FdirSupervisor of object #46, time -> nominal
     t=1304640.0: action campaign of object #2, accept after waiting since step 12 for the clock to reach t=1304640.0
     t=1477440.0: state machine FdirSupervisor of object #4, time -> expired
-    t=1477440.0: state machine FdirSupervisor of object #47, time -> expired
+    t=1477440.0: state machine FdirSupervisor of object #46, time -> expired
   standing: value (observed: 1 run under reverse)

@@ -47,18 +47,22 @@ package TethysTrades {
     calc def PowerAvailableToSep {
         doc /* Electric power the propulsion system can draw at the far end of the heliocentric
              * range: the array's 1 AU power scaled by the solar flux ratio at the target's
-             * aphelion, less the housekeeping load. */
+             * aphelion, less the housekeeping load, and no more than the propulsion system's
+             * maximum power — array beyond what the power processing accepts buys mass and
+             * cost, not thrust. */
         in powerAtOneAuW : Real;
         in housekeepingW : Real;
-        return sepPowerW : Real =
-            powerAtOneAuW * SolarFlux(amaranth.orbit.aphelionAu) / SolarFlux(1.0) - housekeepingW;
+        in maximumSepPowerW : Real;
+        return sepPowerW : Real = RealFunctions::min(
+            powerAtOneAuW * SolarFlux(amaranth.orbit.aphelionAu) / SolarFlux(1.0) - housekeepingW,
+            maximumSepPowerW);
     }
 
     analysis def ArrayPowerTrade :> TradeStudy {
         doc /* Trip time against array mass and cost: each option is scored by the days of
              * thrusting the mission's xenon takes at the power that option gives the thrusters at
-             * aphelion, plus a penalty in days per kilogram of wing and per cost unit; the least
-             * score wins. */
+             * aphelion (capped at the propulsion system's maximum power), plus a penalty in days
+             * per kilogram of wing and per cost unit; the least score wins. */
         subject :>> studyAlternatives : ArrayOption[1..*];
         in attribute xenonToProcess : MassValue default = 6300.0 [kg];
         in attribute housekeeping : PowerValue default = 2000.0 [W];
@@ -70,7 +74,8 @@ package TethysTrades {
         calc :>> evaluationFunction {
             in part option :>> alternative : ArrayOption;
             attribute sepPower : PowerValue =
-                PowerAvailableToSep(option.powerAtOneAu / 1 [W], housekeeping / 1 [W]) [W];
+                PowerAvailableToSep(option.powerAtOneAu / 1 [W], housekeeping / 1 [W],
+                    argent.sep.maximumPower / 1 [W]) [W];
             attribute thrust : ForceValue = SepThrust(sepPower / 1 [W], argent.sep.specificImpulse / 1 [s], 0.65) [N];
             attribute thrustTime : DurationValue = ThrustDays(xenonToProcess / 1 [kg],
                 MassFlowRate(thrust / 1 [N], argent.sep.specificImpulse / 1 [s])) [d];
@@ -83,7 +88,7 @@ package TethysTrades {
         subject :>> studyAlternatives = (array30kW, array48kW, array70kW);
     }
     metadata Rationale about arrayPowerTrade {
-        text = "48 kW selected: 30 kW cannot process the xenon inside the thrust-arc allowance, and 70 kW buys about 370 fewer days at a mass and cost the trade does not repay; argent.eps.arrayPowerAtOneAu carries the selection.";
+        text = "48 kW selected: 30 kW cannot process the xenon inside the thrust-arc allowance, and 70 kW buys no thrusting time once the propulsion system's maximum power caps the draw, only wing mass and cost; argent.eps.arrayPowerAtOneAu carries the selection.";
     }
 
     // ---- T4: specific impulse against thrust -------------------------------------------------

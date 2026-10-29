@@ -66,8 +66,8 @@
   selectedAlternative = [TethysTrades::array48kW (object #2)]
   objective tradeStudyObjective: satisfied
   TethysTrades::ArrayPowerTrade::evaluationFunction(TethysTrades::array30kW (object #1)) = 2305.4355478431394
-  TethysTrades::ArrayPowerTrade::evaluationFunction(TethysTrades::array48kW (object #2)) = 1815.1336039733928 [selected]
-  TethysTrades::ArrayPowerTrade::evaluationFunction(TethysTrades::array70kW (object #3)) = 1859.677043664133
+  TethysTrades::ArrayPowerTrade::evaluationFunction(TethysTrades::array48kW (object #2)) = 1824.1247033610925 [selected]
+  TethysTrades::ArrayPowerTrade::evaluationFunction(TethysTrades::array70kW (object #3)) = 2234.1247033610925
   standing: value (observed: 1 run under reverse)
 ✓ TethysTrades::specificImpulseTrade
   selectedAlternative = [TethysTrades::isp2000 (object #8)]
