@@ -364,7 +364,7 @@ package TethysModes {
             transition first off accept ArraysDeployed via command then standby;
             transition first standby accept ThrustArcGo via command then thrusting;
             transition first standby accept ProximityOperationsGo via command then thrusting;
-            transition first thrusting accept RangeUpdate via command then standby;
+            transition first thrusting accept u : RangeUpdate via command if u.range <= rendezvousRange then standby;
             transition first standby accept ReturnThrustGo via command then thrusting;
             transition first standby accept DisposalGo via command then thrusting;
             transition first thrusting accept ThrustArcEnd via command then standby;
