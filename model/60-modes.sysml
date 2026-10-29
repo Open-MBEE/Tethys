@@ -401,20 +401,24 @@ package TethysModes {
         state sepString {
             doc /* The solar-electric propulsion string: off until commissioning, standby
                  * between arcs, thrusting during one and during the approach until the
-                 * rendezvous range update; off in safe mode. */
+                 * rendezvous range update, burning the disposal arc until its duration
+                 * elapses and then off for good; off in safe mode. */
             entry; then off;
             state off;
             state standby;
             state thrusting;
+            state disposalBurn;
             transition first off accept ArraysDeployed via command then standby;
             transition first standby accept ThrustArcGo via command then thrusting;
             transition first standby accept ProximityOperationsGo via command then thrusting;
             transition first thrusting accept u : RangeUpdate via command if u.range <= rendezvousRange then standby;
             transition first standby accept ReturnThrustGo via command then thrusting;
-            transition first standby accept DisposalGo via command then thrusting;
+            transition first standby accept DisposalGo via command then disposalBurn;
+            transition first disposalBurn accept after disposalBurnDuration then off;
             transition first thrusting accept ThrustArcEnd via command then standby;
             transition first standby accept SafeModeRequest then off;
             transition first thrusting accept SafeModeRequest then off;
+            transition first disposalBurn accept SafeModeRequest then off;
             transition first thrusting accept AbortReturn then off;
             transition first off accept SafeModeExit via command then standby;
         }
