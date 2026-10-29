@@ -127,9 +127,9 @@ loaded 64 files:
 ✓ package TethysImportedData
 ✓ package TethysDisposal
 ✓ package TethysHouseRules
-wrote build/runs/documents/TethysDocuments-InterfaceControlDocuments.md (markdown, 12638 bytes)
-wrote build/runs/documents/TethysDocuments-RiskRegister.md (markdown, 228 bytes)
-wrote build/runs/documents/TethysDocuments-SystemDescription.md (markdown, 23394 bytes)
+wrote build/runs/documents/TethysDocuments-InterfaceControlDocuments.md (markdown, 11085 bytes)
+wrote build/runs/documents/TethysDocuments-RiskRegister.md (markdown, 838 bytes)
+wrote build/runs/documents/TethysDocuments-SystemDescription.md (markdown, 23705 bytes)
 wrote build/runs/documents/TethysDocuments-VerificationMatrix.md (markdown, 6207 bytes)
 wrote build/runs/documents/TethysFlightDictionaryDocuments-FlightDictionaryDocument.md (markdown, 168924 bytes)
 wrote build/runs/documents/TethysIcdDocuments-CaptureIcdDocument.md (markdown, 759 bytes)
@@ -166,12 +166,12 @@ wrote build/runs/documents/TethysSoftwareDocumentsTooling-FlightDynamicsToolDesi
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-GncDesignDescription.md (markdown, 13063 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-GroundComponentDesignDescription.md (markdown, 302 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-InspectorHandlingDesignDescription.md (markdown, 8054 bytes)
-wrote build/runs/documents/TethysSoftwareDocumentsTooling-ModeManagementDesignDescription.md (markdown, 7998 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-ModeManagementDesignDescription.md (markdown, 8076 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-ParameterBootUpdateDesignDescription.md (markdown, 9464 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-PassPlannerDesignDescription.md (markdown, 1650 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-PowerManagementDesignDescription.md (markdown, 17565 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-ProximityPlannerDesignDescription.md (markdown, 1734 bytes)
-wrote build/runs/documents/TethysSoftwareDocumentsTooling-SepControlDesignDescription.md (markdown, 10598 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-SepControlDesignDescription.md (markdown, 10621 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-SequencerDesignDescription.md (markdown, 1637 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-SoftwareArchitectureDescription.md (markdown, 18909 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-SoftwareDocumentIndex.md (markdown, 2502 bytes)

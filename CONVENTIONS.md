@@ -25,7 +25,9 @@
   planned mission. No real agency or program names.
 - **Units.** Every physical quantity is typed by an `ISQ` quantity and valued with an `SI` unit
   literal (`attribute mass : ISQ::MassValue = 1200 [SI::kg];`). No bare `Real` for a physical
-  quantity.
+  quantity. One declared exception: the KerML library `model/81-physics.kerml` takes and returns
+  SI base units as `Real`; the SysML packages attach the ISQ kind and unit literal at the point
+  of use.
 - **Documentation.** Every definition and every requirement carries a `doc` comment; rationale
   uses `ModelingMetadata::Rationale`; status uses `ModelingMetadata::StatusInfo`.
 - **Identity.** Requirements, interfaces, verification cases and risks carry a stable short id

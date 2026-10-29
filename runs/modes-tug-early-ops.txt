@@ -97,6 +97,8 @@
 [trace] eval index -> 4.0 [h]
 [trace]   eval literal 6.0 -> 6.0
 [trace] eval index -> 6.0 [h]
+[trace]   eval literal 8.0 -> 8.0
+[trace] eval index -> 8.0 [h]
 [trace] enter: stowed
 [trace] run: performed action nominalCampaign of #2
 [trace] step 1: token 1@toSeparation
@@ -152,64 +154,64 @@
 [trace] materialize: argentDesign #22
 [trace] start: performed action functions of #22
 [trace] materialize: TugFunctions #23
-[trace] materialize: structure #24
-[trace] start: performed action captureBody of #24
-[trace] materialize: CaptureBody #25
+[trace] materialize: ArgentStructure #24
 [trace]                     eval feature structure -> instance#24
-[trace] materialize: thermal #26
-[trace] start: performed action rejectHeat of #26
-[trace] materialize: RejectHeat #27
-[trace]                     eval feature thermal -> instance#26
-[trace] materialize: eps #28
-[trace] start: performed action providePower of #28
-[trace] materialize: ProvidePower #29
-[trace]                     eval feature eps -> instance#28
-[trace] materialize: cdh #30
-[trace] start: performed action handleData of #30
-[trace] materialize: HandleData #31
-[trace]                     eval feature cdh -> instance#30
-[trace] materialize: telecom #32
-[trace] start: performed action communicate of #32
-[trace] materialize: Communicate #33
-[trace]                     eval feature telecom -> instance#32
-[trace] materialize: gnc #34
-[trace] start: performed action determineAttitude of #34
-[trace] materialize: DetermineAttitude #35
-[trace] start: performed action controlAttitude of #34
-[trace] materialize: ControlAttitude #36
-[trace] start: performed action navigateRelative of #34
-[trace] materialize: NavigateRelative #37
-[trace]                     eval feature gnc -> instance#34
-[trace] materialize: sep #38
-[trace] start: performed action processPower of #38
-[trace] materialize: ProcessPower #39
-[trace] start: performed action generateThrust of #38
-[trace] materialize: GenerateThrust #40
-[trace] start: performed action feedXenon of #38
-[trace] materialize: FeedXenon #41
-[trace]                     eval feature sep -> instance#38
-[trace] materialize: rcs #42
-[trace] start: performed action despinBody of #42
-[trace] materialize: DespinBody #43
-[trace]                     eval feature rcs -> instance#42
-[trace] materialize: captureSystem #44
-[trace]                     eval feature captureSystem -> instance#44
+[trace] materialize: thermal #25
+[trace] start: performed action rejectHeat of #25
+[trace] materialize: RejectHeat #26
+[trace]                     eval feature thermal -> instance#25
+[trace] materialize: eps #27
+[trace] start: performed action providePower of #27
+[trace] materialize: ProvidePower #28
+[trace]                     eval feature eps -> instance#27
+[trace] materialize: cdh #29
+[trace] start: performed action handleData of #29
+[trace] materialize: HandleData #30
+[trace]                     eval feature cdh -> instance#29
+[trace] materialize: telecom #31
+[trace] start: performed action communicate of #31
+[trace] materialize: Communicate #32
+[trace]                     eval feature telecom -> instance#31
+[trace] materialize: gnc #33
+[trace] start: performed action determineAttitude of #33
+[trace] materialize: DetermineAttitude #34
+[trace] start: performed action controlAttitude of #33
+[trace] materialize: ControlAttitude #35
+[trace] start: performed action navigateRelative of #33
+[trace] materialize: NavigateRelative #36
+[trace]                     eval feature gnc -> instance#33
+[trace] materialize: sep #37
+[trace] start: performed action processPower of #37
+[trace] materialize: ProcessPower #38
+[trace] start: performed action generateThrust of #37
+[trace] materialize: GenerateThrust #39
+[trace] start: performed action feedXenon of #37
+[trace] materialize: FeedXenon #40
+[trace]                     eval feature sep -> instance#37
+[trace] materialize: rcs #41
+[trace] start: performed action despinBody of #41
+[trace] materialize: DespinBody #42
+[trace]                     eval feature rcs -> instance#41
+[trace] materialize: captureSystem #43
+[trace] start: performed action captureBody of #43
+[trace] materialize: CaptureBody #44
+[trace]                     eval feature captureSystem -> instance#43
 [trace] materialize: sensors #45
 [trace] start: performed action characteriseTarget of #45
 [trace] materialize: CharacteriseTarget #46
 [trace]                     eval feature sensors -> instance#45
-[trace]                   eval sequence of 10 -> (instance#24, instance#26, instance#28, instance#30, instance#32, instance#34, instance#38, instance#42, instance#44, instance#45)
+[trace]                   eval sequence of 10 -> (instance#24, instance#25, instance#27, instance#29, instance#31, instance#33, instance#37, instance#41, instance#43, instance#45)
 [trace]                     eval feature structure -> instance#24
-[trace]                     eval feature thermal -> instance#26
-[trace]                     eval feature eps -> instance#28
-[trace]                     eval feature cdh -> instance#30
-[trace]                     eval feature telecom -> instance#32
-[trace]                     eval feature gnc -> instance#34
-[trace]                     eval feature sep -> instance#38
-[trace]                     eval feature rcs -> instance#42
-[trace]                     eval feature captureSystem -> instance#44
+[trace]                     eval feature thermal -> instance#25
+[trace]                     eval feature eps -> instance#27
+[trace]                     eval feature cdh -> instance#29
+[trace]                     eval feature telecom -> instance#31
+[trace]                     eval feature gnc -> instance#33
+[trace]                     eval feature sep -> instance#37
+[trace]                     eval feature rcs -> instance#41
+[trace]                     eval feature captureSystem -> instance#43
 [trace]                     eval feature sensors -> instance#45
-[trace]                   eval sequence of 10 -> (instance#24, instance#26, instance#28, instance#30, instance#32, instance#34, instance#38, instance#42, instance#44, instance#45)
+[trace]                   eval sequence of 10 -> (instance#24, instance#25, instance#27, instance#29, instance#31, instance#33, instance#37, instance#41, instance#43, instance#45)
 [trace] run: performed action functions of #22
 [trace] choice step 1: tokens 1@providePower, 2@processPower, 3@generateThrust, 4@feedXenon, 5@determineAttitude, 6@controlAttitude, 7@navigateRelative, 8@captureBody, 9@despinBody, 10@characteriseTarget, 11@handleData, 12@communicate, 13@rejectHeat (unordered; took 13@rejectHeat first; order-dependent: attitude, carrier, contactLoad, heat, highVoltage, loss, lowVoltage, products, relativeState, telemetry, thrust, thrustCommand, thrusterPower, xenon)
 [trace] step 1: no active tokens
@@ -277,7 +279,7 @@
 [trace]                               eval feature harness -> instance#61
 [trace]                             eval sequence of 7 -> (instance#54, instance#55, instance#56, instance#57, instance#58, instance#59, instance#60, instance#61)
 [trace]                           eval chain units -> (instance#54, instance#55, instance#56, instance#57, instance#58, instance#59, instance#60, instance#61)
-[trace]                             eval feature thermal -> instance#26
+[trace]                             eval feature thermal -> instance#25
 [trace] materialize: InsulationBlankets #62
 [trace]                               eval feature insulation -> instance#62
 [trace] materialize: RadiatorPanel #63
@@ -294,7 +296,7 @@
 [trace]                               eval feature sensors -> instance#69
 [trace]                             eval sequence of 6 -> (instance#62, instance#63, instance#64, instance#65, instance#66, instance#67, instance#68, instance#69)
 [trace]                           eval chain units -> (instance#62, instance#63, instance#64, instance#65, instance#66, instance#67, instance#68, instance#69)
-[trace]                             eval feature eps -> instance#28
+[trace]                             eval feature eps -> instance#27
 [trace] materialize: SolarArrayWing #70
 [trace] materialize: SolarArrayWing #71
 [trace]                               eval feature arrayWings -> (instance#70, instance#71)
@@ -310,7 +312,7 @@
 [trace]                               eval feature highVoltageSwitching -> instance#77
 [trace]                             eval sequence of 5 -> (instance#70, instance#71, instance#72, instance#73, instance#74, instance#75, instance#76, instance#77)
 [trace]                           eval chain units -> (instance#70, instance#71, instance#72, instance#73, instance#74, instance#75, instance#76, instance#77)
-[trace]                             eval feature cdh -> instance#30
+[trace]                             eval feature cdh -> instance#29
 [trace] materialize: FlightComputer #78
 [trace] materialize: FlightComputer #79
 [trace]                               eval feature flightComputers -> (instance#78, instance#79)
@@ -322,7 +324,7 @@
 [trace]                               eval feature remoteInterfaceUnits -> (instance#82, instance#83)
 [trace]                             eval sequence of 3 -> (instance#78, instance#79, instance#80, instance#81, instance#82, instance#83)
 [trace]                           eval chain units -> (instance#78, instance#79, instance#80, instance#81, instance#82, instance#83)
-[trace]                             eval feature telecom -> instance#32
+[trace]                             eval feature telecom -> instance#31
 [trace] materialize: DeepSpaceTransponder #84
 [trace] materialize: DeepSpaceTransponder #85
 [trace]                               eval feature transponders -> (instance#84, instance#85)
@@ -341,7 +343,7 @@
 [trace]                               eval feature proximityTransceivers -> (instance#92, instance#93)
 [trace]                             eval sequence of 6 -> (instance#84, instance#85, instance#86, instance#87, instance#88, instance#89, instance#90, instance#91, instance#92, instance#93)
 [trace]                           eval chain units -> (instance#84, instance#85, instance#86, instance#87, instance#88, instance#89, instance#90, instance#91, instance#92, instance#93)
-[trace]                             eval feature gnc -> instance#34
+[trace]                             eval feature gnc -> instance#33
 [trace] materialize: StarTracker #94
 [trace] materialize: StarTracker #95
 [trace]                               eval feature starTrackers -> (instance#94, instance#95)
@@ -366,7 +368,7 @@
 [trace]                               eval feature lidars -> (instance#108, instance#109)
 [trace]                             eval sequence of 6 -> (instance#94, instance#95, instance#96, instance#97, instance#98, instance#99, instance#100, instance#101, instance#102, instance#103, instance#104, instance#105, instance#106, instance#107, instance#108, instance#109)
 [trace]                           eval chain units -> (instance#94, instance#95, instance#96, instance#97, instance#98, instance#99, instance#100, instance#101, instance#102, instance#103, instance#104, instance#105, instance#106, instance#107, instance#108, instance#109)
-[trace]                             eval feature sep -> instance#38
+[trace]                             eval feature sep -> instance#37
 [trace] materialize: HallThruster #110
 [trace] materialize: HallThruster #111
 [trace] materialize: HallThruster #112
@@ -394,7 +396,7 @@
 [trace]                               eval feature propellantManagement -> instance#128
 [trace]                             eval sequence of 6 -> (instance#110, instance#111, instance#112, instance#113, instance#114, instance#115, instance#116, instance#117, instance#118, instance#119, instance#120, instance#121, instance#122, instance#123, instance#124, instance#125, instance#126, instance#127, instance#128)
 [trace]                           eval chain units -> (instance#110, instance#111, instance#112, instance#113, instance#114, instance#115, instance#116, instance#117, instance#118, instance#119, instance#120, instance#121, instance#122, instance#123, instance#124, instance#125, instance#126, instance#127, instance#128)
-[trace]                             eval feature rcs -> instance#42
+[trace]                             eval feature rcs -> instance#41
 [trace] materialize: HydrazineThruster #129
 [trace] materialize: HydrazineThruster #130
 [trace] materialize: HydrazineThruster #131
@@ -419,7 +421,7 @@
 [trace]                               eval feature feed -> instance#147
 [trace]                             eval sequence of 3 -> (instance#129, instance#130, instance#131, instance#132, instance#133, instance#134, instance#135, instance#136, instance#137, instance#138, instance#139, instance#140, instance#141, instance#142, instance#143, instance#144, instance#145, instance#146, instance#147)
 [trace]                           eval chain units -> (instance#129, instance#130, instance#131, instance#132, instance#133, instance#134, instance#135, instance#136, instance#137, instance#138, instance#139, instance#140, instance#141, instance#142, instance#143, instance#144, instance#145, instance#146, instance#147)
-[trace]                             eval feature captureSystem -> instance#44
+[trace]                             eval feature captureSystem -> instance#43
 [trace] materialize: CaptureBag #148
 [trace]                               eval feature bag -> instance#148
 [trace] materialize: InflatableBoom #149

@@ -70,11 +70,11 @@ warning: TethysModes::nominalFlight: materialization is bounded; not every featu
   Current state: stowed
   Time: 0.0
   Events: 0
-✓ Advanced to 129600000.0 (26 event(s) processed)
+✓ Advanced to 129600000.0 (27 event(s) processed)
   Current state: done
   Last event at: 38888640.0
   Remaining events: 0
-  21 choice points (20 independent); %trace on to see them
+  22 choice points (20 independent); %trace on to see them
   Action steps taken: 40
 ✓ State machine completed (a transition reached `done`)
   standing: value (observed: 1 run under reverse)

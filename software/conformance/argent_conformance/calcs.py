@@ -41,7 +41,7 @@ CALCS = (
     Calc("TethysBudgets::TugHeatInMode", ("mode",), (("TugMode::safe",), ("TugMode::thrust",)), source="two tug modes"),
     Calc("TethysBudgets::UnitsDataRate", ("units",), (), skip="units is a sequence of Unit parts"),
     Calc("TethysBudgets::ReturnableBodyMass", ("xenonAvailable", "systemMargin", "tugAloneXenon", "tugMassAtTarget"), (), skip="body-local attributes read the mission design (forReturnArcs, returnFraction)"),
-    Calc("TethysBudgets::XenonForMission", ("body",), (), skip="body is a SmallBody part"),
+    Calc("TethysBudgets::XenonForMission", ("body", "isp"), (), skip="body is a SmallBody part"),
     Calc("TethysBudgets::DespinPropellant", ("body", "momentArm", "specificImpulse"), (), skip="body is a SmallBody part"),
     Calc("TethysBudgets::RadiatorRejection", ("area", "emissivity", "temperature"), (), skip="area is an AreaValue (unit literal m^2 not expressible on one line at the pin)"),
     # model 52 — link budgets

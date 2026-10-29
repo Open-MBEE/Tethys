@@ -146,18 +146,6 @@ Every boundary in the mission is controlled by one interface definition in `Teth
 | Heat | Conducted or radiated thermal power. |
 | MechanicalLoad | Quasi-static, sine, random, shock or contact load at a mechanical interface. |
 | Propellant | Pressurised propellant: xenon for the electric thrusters, hydrazine for the<br>reaction control thrusters, pressurant gas for either. |
-| TugInspectorInterface | Tug ↔ inspector before release, the electrical umbilical: keep-alive power,<br>checkout data and the separation signal. The stowed stack's mechanical and<br>thermal disciplines are InspectorDispenserInterface and InspectorThermalInterface,<br>each a binary interface of its own so every usage stays a two-ended connect; the<br>relay link takes over after release. |
-| InspectorDispenserInterface | Tug ↔ inspector mechanical while stowed: the dispenser rails and release<br>mechanism carrying Wren's launch loads into the tug structure. |
-| InspectorThermalInterface | Tug ↔ inspector thermal while stowed: heat conducted through the dispenser<br>rails that keeps Wren's battery above its survival temperature. |
-| PropellantFeedInterface | Tank ↔ ground fill-and-drain: the xenon and hydrazine loading lines on the pad. |
-| SpacecraftLauncherInterface | Stack ↔ launcher: adapter, loads, umbilical and separation. |
-| SpaceGroundLink | Tug ↔ ground station: X/Ka-band telemetry, telecommand and ranging. |
-| InspectorRelayLink | Inspector ↔ tug proximity link: imagery and radar data up, commands down. |
-| CaptureInterface | Tug ↔ target body: the contact loads through the capture mechanism during<br>capture, despin and the return thrust arcs. |
-| DockingInterface | Tug ↔ visiting vehicle in the distant retrograde orbit. |
-| PowerInterface | A unit on the power bus. |
-| DataBusInterface | Two nodes on an on-board data bus. |
-| ThermalInterface | Two units coupled by a strap, a radiator or a mount. |
 
 ## Flight segment interfaces
 

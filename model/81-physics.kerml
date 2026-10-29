@@ -350,7 +350,7 @@ library package TethysPhysics {
 
         interaction XenonTransfer :> Feeds {
             doc /* Xenon moving from a tank to a thruster over a feed line. */
-            flow of Real from tank.remaining to thruster.inputPower;
+            flow of Real from tank.remaining to thruster.xenonIn;
         }
 
         behavior ThrustArc {

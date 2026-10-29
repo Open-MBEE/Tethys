@@ -55,6 +55,7 @@ Stimulus file, one entry per line, `t=<seconds> <kind> ...`, times in simulated 
 | Kind | Form | Effect |
 | --- | --- | --- |
 | `item` | `t=60 item CaptureArm` / `t=180 item CaptureGo 6 400000` | An uplinked item (model `send new X(...) via uplink`), numeric arguments in the order the sequence render prints them. |
+|  |  | Arguments keep the unit the render shows: `RangeUpdate 20` is 20 km (the guards compare with `rendezvousRange` in km), `InspectorImagingGo 4` a 4 h pass; the `SepDisposalBurn` the dispatcher sends to the SEP controller carries its duration in seconds. |
 | `cmd` | `t=10 cmd CDH_NOOP` | A dictionary command by mnemonic through the command service (arguments as for `item`). |
 | `link` | `t=300 link up` / `link down` | MLS-2 link availability. |
 | `fault` | `t=400 fault PpuTrip` | An injected fault event raised through the event service into FDIR. |

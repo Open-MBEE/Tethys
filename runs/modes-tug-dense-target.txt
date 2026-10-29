@@ -71,9 +71,9 @@ warning: TethysModes::denseTargetFlight: materialization is bounded; not every f
   Time: 0.0
   Events: 0
 ✓ Advanced to 129600000.0 (16 event(s) processed)
-  Current state: retreat | standby | highGain | thrusters | deployed
+  Current state: retreat | standby | highGain | thrusters | stowed
   Last event at: 38888640.0
   Remaining events: 0
-  12 choice points (11 independent); %trace on to see them
+  11 choice points (10 independent); %trace on to see them
   Action steps taken: 28
   standing: value (observed: 1 run under reverse)

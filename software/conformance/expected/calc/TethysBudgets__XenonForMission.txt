@@ -1,2 +1,2 @@
-calc TethysBudgets::XenonForMission(body) kind=real tol=1e-09 relative
+calc TethysBudgets::XenonForMission(body, isp) kind=real tol=1e-09 relative
   not-driveable: body is a SmallBody part

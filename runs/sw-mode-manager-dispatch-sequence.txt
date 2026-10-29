@@ -141,6 +141,6 @@ messages:
   TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=9.789984e+07 DisposalGo
   TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement: t=9.789984e+07 DisposalGo
   TethysFlightBehaviour::softwareNominalFlight.operations => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.fdir: t=9.789984e+07 DisposalGo (not accepted)
-  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.sepControl: t=9.789984e+07 SepThrust (not accepted)
+  TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.sepControl: t=9.789984e+07 SepDisposalBurn (duration = 30.0 [d]) (not accepted)
   TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.telecom: t=9.789984e+07 RelayDisable (not accepted)
   TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.events: t=9.789984e+07 ApplicationReport (application = "ModeManagementApplication", report = "disposal") (not accepted)

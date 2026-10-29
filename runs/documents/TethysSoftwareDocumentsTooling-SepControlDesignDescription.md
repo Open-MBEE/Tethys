@@ -43,6 +43,7 @@
 | off |  |  |
 | standby |  |  |
 | thrusting |  |  |
+| disposalBurn |  |  |
 | restarting |  |  |
 
 ## Parameter table

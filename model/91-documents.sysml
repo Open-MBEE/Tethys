@@ -28,11 +28,17 @@ package TethysDocuments {
             properties = ("shortName", "documentation"))
     }
     calc def Segments :> Query {
-        doc /* The system's segment-level parts: name, type and description. */
+        doc /* The system's segment-level parts: name, type and description. An InterfaceUsage
+             * is a PartUsage (SysML v2.1 §8.3.12), so the system-level interfaces the system
+             * also owns are taken out again; SystemInterfaces lists them. */
         Project(
-            source = WhereType(
-                source = OwnedElements(source = Named(qualifiedName = "TethysSystem::tethysSystem")),
-                type = "PartUsage"),
+            source = Except(
+                source = WhereType(
+                    source = OwnedElements(source = Named(qualifiedName = "TethysSystem::tethysSystem")),
+                    type = "PartUsage"),
+                exclude = WhereType(
+                    source = OwnedElements(source = Named(qualifiedName = "TethysSystem::tethysSystem")),
+                    type = "InterfaceUsage")),
             properties = ("name", "documentation"))
     }
     calc def SystemInterfaces :> Query {
@@ -72,19 +78,30 @@ package TethysDocuments {
             properties = ("name", "documentation"))
     }
     calc def Items :> Query {
-        doc /* The items that flow across the interfaces. */
+        doc /* The items that flow across the interfaces. An InterfaceDefinition is a
+             * PartDefinition and so an ItemDefinition (SysML v2.1 §8.3.12), so the interface
+             * definitions of the package are taken out again; InterfaceDefinitions lists them. */
         Project(
-            source = WhereType(
-                source = OwnedElements(source = Named(qualifiedName = "TethysInterfaces")),
-                type = "ItemDefinition"),
+            source = Except(
+                source = WhereType(
+                    source = OwnedElements(source = Named(qualifiedName = "TethysInterfaces")),
+                    type = "ItemDefinition"),
+                exclude = WhereType(
+                    source = OwnedElements(source = Named(qualifiedName = "TethysInterfaces")),
+                    type = ("PartDefinition", "InterfaceDefinition"))),
             properties = ("name", "documentation"))
     }
     calc def TugSubsystems :> Query {
-        doc /* The tug's subsystems with their declared budget attributes. */
+        doc /* The tug's subsystems: the parts the Tug definition owns, less its interfaces,
+             * rather than the few the argent usage redefines. */
         Project(
-            source = WhereType(
-                source = OwnedElements(source = Named(qualifiedName = "TethysTug::argent")),
-                type = "PartUsage"),
+            source = Except(
+                source = WhereType(
+                    source = OwnedElements(source = Named(qualifiedName = "TethysTug::Tug")),
+                    type = "PartUsage"),
+                exclude = WhereType(
+                    source = OwnedElements(source = Named(qualifiedName = "TethysTug::Tug")),
+                    type = "InterfaceUsage")),
             properties = ("name", "type"))
     }
     calc def FlightPhases :> Query {
@@ -96,17 +113,11 @@ package TethysDocuments {
             properties = ("name", "type"))
     }
     calc def Risks :> Query {
-        doc /* Every element annotated as a risk anywhere under the Tethys packages (RiskMetadata),
-             * with its documentation. The register fills as the safety and risk package lands. */
+        doc /* Every element annotated as a risk (RiskMetadata) under the packages that own
+             * the risk register and the hazard log, with its documentation. */
         Project(
             source = WhereMetadata(
-                source = Union(
-                    source = Union(
-                        source = Descendants(source = Named(qualifiedName = "TethysTug")),
-                        other = Descendants(source = Named(qualifiedName = "TethysInspector"))),
-                    other = Union(
-                        source = Descendants(source = Named(qualifiedName = "TethysSystem")),
-                        other = Descendants(source = Named(qualifiedName = "TethysMission")))),
+                source = Descendants(source = Named(qualifiedName = ("TethysRisk", "TethysSafety"))),
                 'metadata' = "RiskMetadata::Risk"),
             properties = ("name", "documentation"))
     }

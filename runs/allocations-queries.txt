@@ -79,6 +79,17 @@
   Row 12: TethysRisk::riskRegister::proximityOperationsRisk::mitigationActions::hardwareInTheLoopCampaign
   Row 13: TethysRisk::riskRegister::xenonMarginRisk::mitigationActions::tankGrowthOption
   Row 14: TethysRisk::riskRegister::captureBagTechnology::mitigationActions::vacuumDeploymentTest
+✓ Query TethysAllocationQueries::SafetyCriticalFunctions returned 3 rows
+  Columns: name, SafetyCritical::rationale
+  Row 1: TethysSafety::safetyCriticalSoftware::finalTargetingGuidance
+    name = "finalTargetingGuidance"
+    SafetyCritical::rationale = "computes the lunar gravity-assist targeting burn (TH-001)"
+  Row 2: TethysSafety::safetyCriticalSoftware::captureAbortLogic
+    name = "captureAbortLogic"
+    SafetyCritical::rationale = "autonomous abort to the hold point (TH-002)"
+  Row 3: TethysSafety::safetyCriticalSoftware::highVoltageInhibitLogic
+    name = "highVoltageInhibitLogic"
+    SafetyCritical::rationale = "second inhibit on PPU high voltage (TH-006)"
 ✓ Query TethysAllocationQueries::AllocationTargets returned 1 row
   Row 1: TethysTug::argent::sep
 ✓ Query TethysAllocationQueries::AllocationTargets returned 2 rows

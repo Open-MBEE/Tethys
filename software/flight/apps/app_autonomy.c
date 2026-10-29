@@ -7,12 +7,12 @@
 #define AUTONOMY_POWER_MARGIN_FRACTION 0.1
 
 const system_sequence_t system_sequences[SYSTEM_SEQUENCE_COUNT] = {
-    { 1, "ThrustArc", 2, { "SepThrust", "SepStandby" }, { 0.0, 7.0 * 86400.0 } },
-    { 2, "DespinSequence", 2, { "DespinPulseTrain", "DespinComplete" }, { 0.0, 2.0 * 3600.0 } },
-    { 3, "InspectorReleaseSequence", 3, { "InspectorCheckoutGo", "InspectorReleaseGo", "InspectorImagingGo" }, { 0.0, 12.0 * 3600.0, 3600.0 } },
-    { 4, "DroInsertionSequence", 2, { "SepThrust", "DroHoldGo" }, { 0.0, 2.0 * 86400.0 } },
-    { 5, "DroStationKeeping", 1, { "StationKeepingTrim" }, { 0.0 } },
-    { 6, "MissionSequence", 1, { "SequenceStepReport" }, { 0.0 } },
+    { 1, "ThrustArc", 2, { "SepThrust", "SepStandby" }, { 0.0, 7.0 * 86400.0 }, { 0.0, 0.0 } },
+    { 2, "DespinSequence", 2, { "DespinPulseTrain", "DespinComplete" }, { 0.0, 2.0 * 3600.0 }, { 0.0, 0.0 } },
+    { 3, "InspectorReleaseSequence", 3, { "InspectorCheckoutGo", "InspectorReleaseGo", "InspectorImagingGo" }, { 0.0, 12.0 * 3600.0, 3600.0 }, { 0.0, 0.0, 8.0 } }, /* InspectorImagingGo(passDuration = 8.0 [h]) as the campaign of TethysModes sends it */
+    { 4, "DroInsertionSequence", 2, { "SepThrust", "DroHoldGo" }, { 0.0, 2.0 * 86400.0 }, { 0.0, 0.0 } },
+    { 5, "DroStationKeeping", 1, { "StationKeepingTrim" }, { 0.0 }, { 0.0 } },
+    { 6, "MissionSequence", 1, { "SequenceStepReport" }, { 0.0 }, { 0.0 } },
 };
 
 static bool sequence_loaded(uint16_t id) { for (unsigned i = 0; i < SYSTEM_SEQUENCE_COUNT; i++) if (system_sequences[i].id == id) return true; return false; }
@@ -53,7 +53,7 @@ static void autonomy_task(void *ctx, uint32_t minor_frame)
     if (sys->app.running_sequence == 0) return;
     for (unsigned i = 0; i < SYSTEM_SEQUENCE_COUNT; i++) if (system_sequences[i].id == sys->app.running_sequence) seq = &system_sequences[i];
     if (seq == NULL || hal_timer_now() < sys->app.sequence_next_us) return;
-    app_send(sys, seq->step_item[sys->app.sequence_step], "command", 0.0, NULL);
+    app_send(sys, seq->step_item[sys->app.sequence_step], "command", seq->step_arg0[sys->app.sequence_step], NULL);
     sys->app.steps_sent++;
     step_msg.sequence = seq->id; step_msg.step = sys->app.sequence_step; step_msg.sent = sys->app.steps_sent;
     bus_publish(&sys->bus, "sequenceStepTopic", &step_msg, sizeof step_msg);

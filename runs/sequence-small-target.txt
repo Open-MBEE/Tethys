@@ -73,7 +73,7 @@ note: object #1 of "TethysSequence::smallTargetCampaign" already performs "Tethy
   Action state: Completed
   Tokens: 0
   1 choice point (1 independent); %trace on to see them
-  Action steps taken: 30
+  Action steps taken: 36
 ✓ Action completed
   Results:
     captureAndDespin.despin.initialSpinPeriod = [900.0 [s]]
@@ -109,7 +109,7 @@ note: object #1 of "TethysSequence::smallTargetCampaign" already performs "Tethy
     inspectorRelease.timeTagged = true
     inspectorRelease.umbilicalDisconnected = true
     inspectorReleased = true
-    lunarAssistAt = 11707200.0 [s]
+    lunarAssistAt = 107611200.0 [s]
     outboundArcPlan = [3]
     outboundArcs = 3
     outcome = ["disposed after 6 thrust arcs"]

@@ -136,7 +136,7 @@ wrote build/runs/views/TethysVerification.verificationCases.mmd (mermaid, 146286
 wrote build/runs/views/TethysSoftwareIcdDocuments.messageTypes.md (markdown, 5868 bytes)
 TethysRisk::RiskRegisterView: note: renders empty
 wrote build/runs/views/TethysRisk.RiskRegisterView~1798bcd41eb23fe6.md (markdown, 128 bytes)
-wrote build/runs/views/TethysRisk.riskRegisterView~de4a5ee31ff27b8d.md (markdown, 10521 bytes)
+wrote build/runs/views/TethysRisk.riskRegisterView~de4a5ee31ff27b8d.md (markdown, 10578 bytes)
 TethysAllocations::AllocationMatrixView: note: renders empty
 wrote build/runs/views/TethysAllocations.AllocationMatrixView.md (markdown, 140 bytes)
 wrote build/runs/views/TethysAllocations.functionAllocationMatrix.md (markdown, 4406 bytes)
