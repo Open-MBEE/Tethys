@@ -1,7 +1,6 @@
 <!-- TethysRisk::riskRegisterView — table rendering (view def GridView) -->
 | Element | Kind | Type | Declared in |
 | --- | --- | --- | --- |
-| TethysRisk::riskRegister::items | part | RiskItem |  |
 | TethysRisk::riskRegister::earthImpactRisk | part | RiskItem |  |
 |  | metadata usage |  | TethysRisk::riskRegister::earthImpactRisk |
 | totalRisk | attribute | RiskLevel |  |

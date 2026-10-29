@@ -1,0 +1,42 @@
+run sw-sep-string-disposal-restarting: scenario TethysFlightBehaviour::softwareDisposalFlameout, machine TethysFlightBehaviour::SepControlSoftware::controller on TethysFlightBehaviour::softwareDisposalFlameout.tug.cdh.software.sepControl, horizon 3920000 s
+host: 304 traced frames, 19 skips, 2 events, 0 commands, final mode coast, rc 0
+model: 307 trace events, 0 dropped, final time 3920000 s, states visited 6
+machine SepStringController: agree (6 changes, 5 model transitions, 3 model accepts)
+  t=0 off
+  t=8640 standby
+  t=440640 disposalBurn
+  t=1304640 restartingDisposal
+  t=1311840 disposalBurn
+  t=3903840 off
+machine PowerManager: agree (1 changes, 0 model transitions, 0 model accepts)
+  t=0 nominal
+machine ThermalController: agree (1 changes, 0 model transitions, 0 model accepts)
+  t=0 operational | heaterOff
+machine TelecomManager: agree (2 changes, 1 model transitions, 1 model accepts)
+  t=0 safeRate
+  t=8640 highGainIdle
+machine InspectorHandler: agree (1 changes, 0 model transitions, 0 model accepts)
+  t=0 stowed
+machine CaptureController: agree (1 changes, 0 model transitions, 0 model accepts)
+  t=0 characterising
+machine RedundancyManager: agree (4 changes, 3 model transitions, 0 model accepts)
+  t=0 primeActive
+  t=60 switchingToRedundant
+  t=90 redundantActive
+  t=150 lastComputer
+machine BootUpdateManager: agree (3 changes, 2 model transitions, 0 model accepts)
+  t=0 bootRom
+  t=5 loadingImage
+  t=125 safeImage
+machine TugModes: agree (3 changes, 6 model transitions, 2 model accepts)
+  t=0 onLauncher | off | lowGain | thrusters | stowed
+  t=4320 deploying | off | lowGain | thrusters | stowed
+  t=8640 coast | standby | highGain | wheels | stowed
+machine ModeManagementDispatcher: agree (1 changes, 1 model transitions, 1 model accepts)
+  t=0 dispatching
+machine FdirSupervisor: agree (3 changes, 11 model transitions, 10 model accepts)
+  t=0 armed | nominal | nominal | nominal | nominal | monitoring
+  t=1304640 armed | restarting | nominal | nominal | nominal | monitoring
+  t=1311840 armed | nominal | nominal | nominal | nominal | monitoring
+machine FdirResponseRelay: agree (1 changes, 0 model transitions, 0 model accepts)
+  t=0 relaying

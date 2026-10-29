@@ -827,7 +827,8 @@ package TethysFlightBehaviour {
     }
     part def DisposalFlameoutInjector :> FaultInjector {
         doc /* The disposal burn under a flameout: the string is brought to standby and into a
-             * 30 d disposal burn directly, a flameout ten days in restarts it, and the burn
+             * 30 d disposal burn directly (the duration in seconds, as the dispatcher sends
+             * it), a flameout ten days in restarts it, and the burn
              * must still end with the string off. */
         perform action campaign {
             first start;
@@ -837,7 +838,7 @@ package TethysFlightBehaviour {
             then action deployment send new ArraysDeployed() via uplink;
             then action commissioning accept after 5.0 [d];
             then action pass0 send new GroundContact() via uplink;
-            then action disposal send new SepDisposalBurn(duration = 30.0 [d]) via uplink;
+            then action disposal send new SepDisposalBurn(duration = 2592000.0 [s]) via uplink;
             then action run1 accept after 5.0 [d];
             then action pass1 send new GroundContact() via uplink;
             then action run2 accept after 5.0 [d];

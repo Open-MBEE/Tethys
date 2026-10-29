@@ -2,7 +2,7 @@
 t=4320 item SeparationConfirmed 
 t=8640 item ArraysDeployed 
 t=440640 item GroundContact 
-t=440640 item SepDisposalBurn 30
+t=440640 item SepDisposalBurn 2.592e+06
 t=872640 item GroundContact 
 t=1304640 item GroundContact 
 t=1304640 item ThrusterFlameout 2

@@ -45,6 +45,7 @@
 | thrusting |  |  |
 | disposalBurn |  |  |
 | restarting |  |  |
+| restartingDisposal |  | The restart delay after a flameout during the disposal burn; the burn<br>resumes for its full duration, so it stays bounded. |
 
 ## Parameter table
 
