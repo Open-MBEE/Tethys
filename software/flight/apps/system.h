@@ -47,6 +47,7 @@ typedef struct {
     uint8_t step_count;
     const char *step_item[SYSTEM_SEQUENCE_STEPS];   /* application-command item sent per step */
     double step_delay_s[SYSTEM_SEQUENCE_STEPS];
+    double step_arg0[SYSTEM_SEQUENCE_STEPS];        /* first payload argument of the step item, in the unit the uplink item carries */
 } system_sequence_t;
 
 typedef struct {
@@ -81,6 +82,7 @@ typedef struct {
         uint8_t tier, active_slot;
         double setpoint, last_earth_closest_approach, last_impact_probability;
         uint16_t running_sequence; uint8_t sequence_step; argent_us_t sequence_next_us; uint32_t sequences_run, steps_sent;
+        argent_us_t sep_burn_duration_us, inspector_pass_duration_us;   /* durations the SepDisposalBurn / InspectorImagingGo items carried */
     } app;
 } argent_system_t;
 

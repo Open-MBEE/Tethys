@@ -24,7 +24,7 @@ static void test_machine_order_and_binding(void)
         guards += sys.sm[i].def->guard_count; effects += sys.sm[i].def->effect_count;
         states += sys.sm[i].def->state_count; transitions += sys.sm[i].def->transition_count;
     }
-    CHECK(states == 101u && transitions == 163u);   /* the generated totals */
+    CHECK(states == 102u && transitions == 167u);   /* the generated totals */
     printf("  %u guards, %u effects bound over %u states / %u transitions\n", guards, effects, states, transitions);
 }
 
@@ -117,6 +117,108 @@ static void test_sequences_run_as_data(void)
     }
 }
 
+static bool in_state(const argent_system_t *sys, unsigned machine, const char *name)
+{
+    return sm_is_active(&sys->sm[machine], sm_state_index(sys->sm[machine].def, name, ARGENT_STATE_NONE));
+}
+
+static void pass_days(argent_system_t *sys, double days)
+{
+    /* Advance in ground-pass steps so the 7 d command-loss timer (model 62) never forces safe mode. */
+    while (days > 0.0) {
+        double step = days < 5.0 ? days : 5.0;
+        hal_timer_advance(argent_s_to_us(step * 86400.0));
+        run_seconds(sys, 1.0);
+        system_deliver_item(sys, "GroundContact", "command", NULL, NULL);
+        run_seconds(sys, 1.0);
+        days -= step;
+    }
+}
+
+static void test_far_field_range_update_keeps_thrusting(void)
+{
+    static argent_system_t sys;
+    double range[SM_MAX_EVENT_ARGS] = { 500.0 };   /* RangeUpdate(range = 500.0 [km]) */
+    char buf[SM_CONFIG_LEN];
+    system_init(&sys, NULL);
+    to_coast(&sys);
+    system_deliver_item(&sys, "ProximityOperationsGo", "command", NULL, NULL);
+    run_seconds(&sys, 1.0);
+    CHECK(in_state(&sys, SM_SEP_STRING, "thrusting") && sys.sim.sep_thrusting);
+    system_deliver_item(&sys, "RangeUpdate", "command", range, NULL);
+    run_seconds(&sys, 1.0);
+    sm_config(&sys.sm[SM_TUG_MODES], buf, sizeof buf);
+    CHECK(strncmp(buf, "approach | thrusting", 20) == 0);
+    CHECK(in_state(&sys, SM_SEP_STRING, "thrusting") && sys.sim.sep_thrusting);
+    range[0] = 20.0;
+    system_deliver_item(&sys, "RangeUpdate", "command", range, NULL);
+    run_seconds(&sys, 1.0);
+    sm_config(&sys.sm[SM_TUG_MODES], buf, sizeof buf);
+    CHECK(strncmp(buf, "proximityOperations | standby", 29) == 0);
+    CHECK(in_state(&sys, SM_SEP_STRING, "standby") && !sys.sim.sep_thrusting);
+}
+
+static void test_disposal_burn_ends_off(void)
+{
+    static argent_system_t sys;
+    char buf[SM_CONFIG_LEN];
+    system_init(&sys, NULL);
+    to_coast(&sys);
+    system_deliver_item(&sys, "DisposalGo", "command", NULL, NULL);
+    run_seconds(&sys, 1.0);
+    CHECK(in_state(&sys, SM_SEP_STRING, "disposalBurn") && sys.sim.sep_thrusting);
+    CHECK(sys.app.sep_burn_duration_us == argent_s_to_us(30.0 * 86400.0));
+    pass_days(&sys, 29.0);
+    CHECK(in_state(&sys, SM_SEP_STRING, "disposalBurn") && sys.sim.sep_thrusting);
+    pass_days(&sys, 1.5);
+    sm_config(&sys.sm[SM_TUG_MODES], buf, sizeof buf);
+    CHECK(strstr(buf, " | off | ") != NULL);   /* the mode machine's sepString region left disposalBurn too */
+    CHECK(in_state(&sys, SM_SEP_STRING, "off") && !sys.sim.sep_thrusting);
+}
+
+/* Hour steps: the handler's checkout and pass timers and the sequence's step delays interleave as in flight. */
+static void pass_hours(argent_system_t *sys, double hours)
+{
+    while (hours > 0.0) {
+        double step = hours < 1.0 ? hours : 1.0;
+        hal_timer_advance(argent_s_to_us(step * 3600.0));
+        run_seconds(sys, 1.0);
+        hours -= step;
+    }
+}
+
+static void test_inspector_relays_the_requested_pass(void)
+{
+    static argent_system_t sys;
+    double range[SM_MAX_EVENT_ARGS] = { 20.0 };
+    double target[SM_MAX_EVENT_ARGS] = { 6.8, 362000.0 };   /* CaptureGo(estimatedDiameter, estimatedMass) */
+    double pass[SM_MAX_EVENT_ARGS] = { 4.0 };               /* InspectorImagingGo(passDuration = 4.0 [h]) */
+    system_init(&sys, NULL);
+    to_coast(&sys);
+    system_deliver_item(&sys, "ProximityOperationsGo", "command", NULL, NULL); run_seconds(&sys, 1.0);
+    system_deliver_item(&sys, "RangeUpdate", "command", range, NULL); run_seconds(&sys, 1.0);
+    system_deliver_item(&sys, "CaptureGo", "command", target, NULL); run_seconds(&sys, 1.0);   /* capture schedules the inspector task and starts sequence 3 */
+    hal_timer_advance(argent_s_to_us(600.0)); run_seconds(&sys, 1.0);
+    CHECK(in_state(&sys, SM_INSPECTOR_HANDLER, "checkout"));
+    pass_hours(&sys, 12.0);   /* the sequence's InspectorReleaseGo after the 4 h checkout */
+    CHECK(in_state(&sys, SM_INSPECTOR_HANDLER, "released") && sys.app.checked_out);
+    pass_hours(&sys, 1.0);
+    CHECK(in_state(&sys, SM_INSPECTOR_HANDLER, "relayingImagery"));
+    CHECK(sys.app.inspector_pass_duration_us == argent_s_to_us(8.0 * 3600.0));   /* the sequence's step carries the campaign's 8 h */
+    pass_hours(&sys, 7.9);
+    CHECK(in_state(&sys, SM_INSPECTOR_HANDLER, "relayingImagery"));
+    pass_hours(&sys, 0.2);
+    CHECK(in_state(&sys, SM_INSPECTOR_HANDLER, "released"));
+    system_deliver_item(&sys, "InspectorImagingGo", "command", pass, NULL);
+    run_seconds(&sys, 1.0);
+    CHECK(in_state(&sys, SM_INSPECTOR_HANDLER, "relayingImagery"));
+    pass_hours(&sys, 3.9);
+    CHECK(in_state(&sys, SM_INSPECTOR_HANDLER, "relayingImagery"));
+    pass_hours(&sys, 0.2);
+    CHECK(in_state(&sys, SM_INSPECTOR_HANDLER, "released"));
+    CHECK(sys.app.imaging_campaigns == 2u);
+}
+
 static void test_deterministic(void)
 {
     static argent_system_t sys;
@@ -141,6 +243,9 @@ const test_case_t system_tests[] = {
     { "system: twelve machines in table order, every guard/effect/entry/exit id bound", "TF-019", test_machine_order_and_binding },
     { "system: every generated state and transition reachable", "model 65 state machines", test_every_state_and_transition_reachable },
     { "system: the six on-board sequences execute as data", "model 65 sequencing engine", test_sequences_run_as_data },
+    { "system: a far-field RangeUpdate keeps the SEP controller thrusting; the rendezvous one stops it", "model 60/65 rendezvousRange gate", test_far_field_range_update_keeps_thrusting },
+    { "system: the disposal burn leaves the SEP controller off after disposalBurnDuration", "model 60/65 disposal burn", test_disposal_burn_ends_off },
+    { "system: the inspector handler relays for the pass each InspectorImagingGo carries", "model 65 passDuration", test_inspector_relays_the_requested_pass },
     { "system: two systems with the same stimulus produce the same trace state", "TF-021 determinism", test_deterministic },
 };
 const unsigned system_test_count = sizeof system_tests / sizeof system_tests[0];
