@@ -19,7 +19,19 @@ if [ "$(git -C build/opensysml-src rev-parse HEAD 2>/dev/null || true)" != "$OPE
   git -C build/opensysml-src checkout -q --detach FETCH_HEAD
   rm -f build/opensysml/sysml
 fi
-if [ ! -x build/opensysml/sysml ]; then
+# A binary left by an earlier install (or built from another checkout) is only kept when it
+# reports the pinned commit and Go toolchain, so a stale build never records a run.
+sysml_at_pin() {
+  [ -x build/opensysml/sysml ] || return 1
+  version=$(build/opensysml/sysml -version 2>/dev/null) || return 1
+  commit=$(printf '%s\n' "$version" | awk '/^ *Commit:/ { print $2 }')
+  go=$(printf '%s\n' "$version" | awk '/^ *Go version:/ { print $3 }')
+  [ -n "$commit" ] && [ "$go" = "$GOTOOLCHAIN" ] || return 1
+  case "$OPENSYSML_COMMIT" in "$commit"*) return 0 ;; esac
+  return 1
+}
+if ! sysml_at_pin; then
+  rm -f build/opensysml/sysml
   (cd build/opensysml-src && make build-sysml COMMIT="$OPENSYSML_COMMIT")
   cp build/opensysml-src/bin/sysml build/opensysml/sysml
 fi
