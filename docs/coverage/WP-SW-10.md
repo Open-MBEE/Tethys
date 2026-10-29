@@ -35,19 +35,19 @@ Files: `software/gen/` (generator), `software/generated/` (tables, manifest, C s
 
 | Machine | States | Transitions | Guards | Effects |
 | --- | --- | --- | --- | --- |
-| SepStringController | 4 | 8 | 0 | 0 |
+| SepStringController | 5 | 12 | 0 | 1 |
 | PowerManager | 4 | 9 | 3 | 0 |
 | ThermalController | 6 | 4 | 2 | 0 |
 | TelecomManager | 4 | 9 | 0 | 0 |
-| InspectorHandler | 5 | 7 | 1 | 0 |
+| InspectorHandler | 5 | 7 | 1 | 1 |
 | CaptureController | 7 | 13 | 2 | 6 |
 | RedundancyManager | 5 | 11 | 2 | 2 |
 | BootUpdateManager | 6 | 10 | 0 | 4 |
-| TugModes (5 regions) | 36 | 55 | 5 | 3 |
-| ModeManagementDispatcher | 1 | 16 | 0 | 16 |
+| TugModes (5 regions) | 37 | 57 | 5 | 3 |
+| ModeManagementDispatcher | 1 | 16 | 1 | 16 |
 | FdirSupervisor (6 regions) | 21 | 17 | 5 | 4 |
 | FdirResponseRelay | 1 | 2 | 0 | 2 |
-| **Total** | **100** | **161** | **20** | **37** |
+| **Total** | **102** | **167** | **21** | **39** |
 
 ## Gates
 

@@ -508,7 +508,7 @@
 ✓ Verification TethysSoftwareAssurance::modeManagementModel verdict: pass
 ✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy bootFallback by softwareNominalFlight.tug.cdh.software.parameterBootUpdate holds (on TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.parameterBootUpdate ID: 3284)
+✓ satisfy bootFallback by softwareNominalFlight.tug.cdh.software.parameterBootUpdate holds (on TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.parameterBootUpdate ID: 3286)
 ? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
 ? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
 ✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
@@ -620,7 +620,7 @@
 ✓ Verification TethysSoftwareDocuments::faultResponseTestSoftware verdict: pass
 ✓ Verification TethysSoftwareDocuments::autonomyTestSoftware verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ satisfy busMessaging by argentSoftware.cdh.software.softwareBus holds (on TethysFlightSoftware::argentSoftware.cdh.software.softwareBus ID: 3415)
+✓ satisfy busMessaging by argentSoftware.cdh.software.softwareBus holds (on TethysFlightSoftware::argentSoftware.cdh.software.softwareBus ID: 3417)
   standing: holds (observed: 1 run under reverse)
 ✓ satisfy dataStoreRetention by argentSoftware.cdh.software.dataStore holds (on TethysFlightSoftware::argentSoftware.cdh.software.dataStore ID: 3170)
 ? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
@@ -752,7 +752,7 @@
 ✓ Verification TethysSoftwareAssurance::groundTwoStepModel verdict: pass
 ? Verification TethysSoftwareAssurance::groundTwoStepIntegration verdict: error — unbound parameter: verification TethysSoftwareAssurance::groundTwoStepIntegration parameter "sequenceRefusedOnRuleViolation" has no argument and no default
   standing: holds (observed: 1 run under reverse)
-✓ satisfy sequenceClearance by nominalUplink holds (on TethysGroundSoftware::nominalUplink ID: 3429)
+✓ satisfy sequenceClearance by nominalUplink holds (on TethysGroundSoftware::nominalUplink ID: 3431)
 ? Verification TethysSoftwareAssurance::captureAbortUnit verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortUnit parameter "abortIssuedOnBreach" has no argument and no default
 ? Verification TethysSoftwareAssurance::captureAbortFlatsat verdict: error — unbound parameter: verification TethysSoftwareAssurance::captureAbortFlatsat parameter "abortIssuedOnBreach" has no argument and no default
 ✓ Verification TethysSoftwareAssurance::captureAbortModel verdict: pass
@@ -767,60 +767,60 @@
 ✓ satisfy plannedPassesFitTheLink by meridianOperationsSuite.moc.passPlanner holds (on TethysGroundSoftware::meridianOperationsSuite.moc.passPlanner ID: 73)
 ? Verification TethysSoftwareAssurance::passPlanningIntegration verdict: error — unbound parameter: verification TethysSoftwareAssurance::passPlanningIntegration parameter "plannedPassesFit" has no argument and no default
   standing: holds (observed: 1 run under reverse)
-✗ satisfy releaseReadiness by assurancePlan.levelA fails (on TethysSoftwareAssurance::assurancePlan.levelA ID: 3469)
+✗ satisfy releaseReadiness by assurancePlan.levelA fails (on TethysSoftwareAssurance::assurancePlan.levelA ID: 3471)
   Required condition evaluated to false: plan.allComplete
   standing: violated (witnessed: 1 run under reverse)
-✗ satisfy levelAHasIndependentVv by assurancePlan.levelA fails (on TethysSoftwareAssurance::assurancePlan.levelA ID: 3469)
+✗ satisfy levelAHasIndependentVv by assurancePlan.levelA fails (on TethysSoftwareAssurance::assurancePlan.levelA ID: 3471)
   Required condition evaluated to false: plan.allComplete
   standing: violated (witnessed: 1 run under reverse)
-? satisfy requirementsViewpoint could not be evaluated (on TethysViews::requirementsTree ID: 4645)
+? satisfy requirementsViewpoint could not be evaluated (on TethysViews::requirementsTree ID: 4647)
   Error: satisfaction satisfy requirementsViewpoint: no condition to evaluate
   standing: not covered (satisfaction satisfy requirementsViewpoint: no condition to evaluate)
-? satisfy requirementsViewpoint could not be evaluated (on TethysViews::requirementsTable ID: 4647)
+? satisfy requirementsViewpoint could not be evaluated (on TethysViews::requirementsTable ID: 4649)
   Error: satisfaction satisfy requirementsViewpoint: no condition to evaluate
   standing: not covered (satisfaction satisfy requirementsViewpoint: no condition to evaluate)
-? satisfy interfaceViewpoint could not be evaluated (on TethysViews::segmentInterfaces ID: 4649)
+? satisfy interfaceViewpoint could not be evaluated (on TethysViews::segmentInterfaces ID: 4651)
   Error: satisfaction satisfy interfaceViewpoint: no condition to evaluate
   standing: not covered (satisfaction satisfy interfaceViewpoint: no condition to evaluate)
-? satisfy interfaceViewpoint could not be evaluated (on TethysViews::flightSegmentWiring ID: 4651)
+? satisfy interfaceViewpoint could not be evaluated (on TethysViews::flightSegmentWiring ID: 4653)
   Error: satisfaction satisfy interfaceViewpoint: no condition to evaluate
   standing: not covered (satisfaction satisfy interfaceViewpoint: no condition to evaluate)
-? satisfy interfaceViewpoint could not be evaluated (on TethysViews::tugPowerBus ID: 4653)
+? satisfy interfaceViewpoint could not be evaluated (on TethysViews::tugPowerBus ID: 4655)
   Error: satisfaction satisfy interfaceViewpoint: no condition to evaluate
   standing: not covered (satisfaction satisfy interfaceViewpoint: no condition to evaluate)
-? satisfy interfaceViewpoint could not be evaluated (on TethysViews::interfaceDefinitions ID: 4655)
+? satisfy interfaceViewpoint could not be evaluated (on TethysViews::interfaceDefinitions ID: 4657)
   Error: satisfaction satisfy interfaceViewpoint: no condition to evaluate
   standing: not covered (satisfaction satisfy interfaceViewpoint: no condition to evaluate)
-? satisfy budgetViewpoint could not be evaluated (on TethysViews::massBudget ID: 4657)
+? satisfy budgetViewpoint could not be evaluated (on TethysViews::massBudget ID: 4659)
   Error: satisfaction satisfy budgetViewpoint: no condition to evaluate
   standing: not covered (satisfaction satisfy budgetViewpoint: no condition to evaluate)
-? satisfy operationsViewpoint could not be evaluated (on TethysViews::missionTimeline ID: 4659)
+? satisfy operationsViewpoint could not be evaluated (on TethysViews::missionTimeline ID: 4661)
   Error: satisfaction satisfy operationsViewpoint: no condition to evaluate
   standing: not covered (satisfaction satisfy operationsViewpoint: no condition to evaluate)
-? satisfy operationsViewpoint could not be evaluated (on TethysViews::projectLifecycle ID: 4662)
+? satisfy operationsViewpoint could not be evaluated (on TethysViews::projectLifecycle ID: 4664)
   Error: satisfaction satisfy operationsViewpoint: no condition to evaluate
   standing: not covered (satisfaction satisfy operationsViewpoint: no condition to evaluate)
-? satisfy operationsViewpoint could not be evaluated (on TethysViews::modeMachine ID: 4665)
+? satisfy operationsViewpoint could not be evaluated (on TethysViews::modeMachine ID: 4667)
   Error: satisfaction satisfy operationsViewpoint: no condition to evaluate
   standing: not covered (satisfaction satisfy operationsViewpoint: no condition to evaluate)
-? satisfy assuranceViewpoint could not be evaluated (on TethysViews::modeMachine ID: 4665)
+? satisfy assuranceViewpoint could not be evaluated (on TethysViews::modeMachine ID: 4667)
   Error: satisfaction satisfy assuranceViewpoint: no condition to evaluate
   standing: not covered (satisfaction satisfy assuranceViewpoint: no condition to evaluate)
-? satisfy TethysViews::interfaceViewpoint could not be evaluated (on TethysViewsTooling::systemOverview ID: 4667)
+? satisfy TethysViews::interfaceViewpoint could not be evaluated (on TethysViewsTooling::systemOverview ID: 4669)
   Error: satisfaction satisfy TethysViews::interfaceViewpoint: no condition to evaluate
   standing: not covered (satisfaction satisfy TethysViews::interfaceViewpoint: no condition to evaluate)
-? satisfy TethysViews::budgetViewpoint could not be evaluated (on TethysViewsTooling::systemOverview ID: 4667)
+? satisfy TethysViews::budgetViewpoint could not be evaluated (on TethysViewsTooling::systemOverview ID: 4669)
   Error: satisfaction satisfy TethysViews::budgetViewpoint: no condition to evaluate
   standing: not covered (satisfaction satisfy TethysViews::budgetViewpoint: no condition to evaluate)
-✓ satisfy argentMassWithinTolerance by argentFM holds (on TethysAsBuilt::argentFM ID: 4671)
+✓ satisfy argentMassWithinTolerance by argentFM holds (on TethysAsBuilt::argentFM ID: 4673)
   standing: holds (observed: 1 run under reverse)
-✗ satisfy wrenMassWithinTolerance by wrenFM fails (on TethysAsBuilt::wrenFM ID: 4672)
+✗ satisfy wrenMassWithinTolerance by wrenFM fails (on TethysAsBuilt::wrenFM ID: 4674)
   Required condition evaluated to false: unit.massDeviation <= unit.massTolerance and unit.massDeviation >= - unit.massTolerance
   standing: violated (witnessed: 1 run under reverse)
-✓ satisfy heliocentricDisposal by argentAtEndOfLife holds (on TethysDisposal::argentAtEndOfLife ID: 4673)
+✓ satisfy heliocentricDisposal by argentAtEndOfLife holds (on TethysDisposal::argentAtEndOfLife ID: 4675)
   standing: holds (observed: 1 run under reverse)
-✓ satisfy passivation by argentAtEndOfLife.passivated holds (on TethysDisposal::argentAtEndOfLife.passivated ID: 4675)
+✓ satisfy passivation by argentAtEndOfLife.passivated holds (on TethysDisposal::argentAtEndOfLife.passivated ID: 4677)
   standing: holds (observed: 1 run under reverse)
-✓ satisfy separationSafety by argentFM.captureSystem holds (on TethysAsBuilt::argentFM.captureSystem ID: 4677)
+✓ satisfy separationSafety by argentFM.captureSystem holds (on TethysAsBuilt::argentFM.captureSystem ID: 4679)
   standing: holds (observed: 1 run under reverse)
 exit 2

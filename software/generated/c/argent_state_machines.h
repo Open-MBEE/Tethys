@@ -77,28 +77,34 @@ typedef enum {
     ARGENT_SEP_STRING_CONTROLLER_STATE_OFF = 0,
     ARGENT_SEP_STRING_CONTROLLER_STATE_STANDBY = 1,
     ARGENT_SEP_STRING_CONTROLLER_STATE_THRUSTING = 2,
-    ARGENT_SEP_STRING_CONTROLLER_STATE_RESTARTING = 3,
-    ARGENT_SEP_STRING_CONTROLLER_STATE_COUNT = 4
+    ARGENT_SEP_STRING_CONTROLLER_STATE_DISPOSAL_BURN = 3,
+    ARGENT_SEP_STRING_CONTROLLER_STATE_RESTARTING = 4,
+    ARGENT_SEP_STRING_CONTROLLER_STATE_COUNT = 5
 } argent_sep_string_controller_state_t;
 
-#define ARGENT_SEP_STRING_CONTROLLER_TRANSITION_COUNT 8u
+#define ARGENT_SEP_STRING_CONTROLLER_TRANSITION_COUNT 12u
 
-static const argent_state_t argent_sep_string_controller_states[4] = {
+static const argent_state_t argent_sep_string_controller_states[5] = {
     { "off", "TethysFlightBehaviour::SepStringController::off", ARGENT_STATE_NONE, ARGENT_STATE_NONE, 1, "", "" },
     { "standby", "TethysFlightBehaviour::SepStringController::standby", ARGENT_STATE_NONE, ARGENT_STATE_NONE, 1, "", "" },
     { "thrusting", "TethysFlightBehaviour::SepStringController::thrusting", ARGENT_STATE_NONE, ARGENT_STATE_NONE, 1, "arcsStarted := arcsStarted + 1", "" },
+    { "disposalBurn", "TethysFlightBehaviour::SepStringController::disposalBurn", ARGENT_STATE_NONE, ARGENT_STATE_NONE, 1, "", "" },
     { "restarting", "TethysFlightBehaviour::SepStringController::restarting", ARGENT_STATE_NONE, ARGENT_STATE_NONE, 1, "restarts := restarts + 1", "" },
 };
 
-static const argent_transition_t argent_sep_string_controller_transitions[8] = {
+static const argent_transition_t argent_sep_string_controller_transitions[12] = {
     { 0, 1, ARGENT_TRIGGER_EVENT, "SepStandby", "command", "", -1, -1 },
     { 1, 2, ARGENT_TRIGGER_EVENT, "SepThrust", "command", "", -1, -1 },
     { 2, 1, ARGENT_TRIGGER_EVENT, "SepStandby", "command", "", -1, -1 },
-    { 2, 3, ARGENT_TRIGGER_EVENT, "ThrusterFlameout", "command", "", -1, -1 },
-    { 3, 2, ARGENT_TRIGGER_TIMED, "", "", "after restartDelay", -1, -1 },
+    { 2, 4, ARGENT_TRIGGER_EVENT, "ThrusterFlameout", "command", "", -1, -1 },
+    { 4, 2, ARGENT_TRIGGER_TIMED, "", "", "after restartDelay", -1, -1 },
+    { 1, 3, ARGENT_TRIGGER_EVENT, "SepDisposalBurn", "command", "", -1, 0 },
+    { 3, 0, ARGENT_TRIGGER_TIMED, "", "", "after burnDuration", -1, -1 },
+    { 3, 4, ARGENT_TRIGGER_EVENT, "ThrusterFlameout", "command", "", -1, -1 },
     { 1, 0, ARGENT_TRIGGER_EVENT, "SepOff", "command", "", -1, -1 },
     { 2, 0, ARGENT_TRIGGER_EVENT, "SepOff", "command", "", -1, -1 },
     { 3, 0, ARGENT_TRIGGER_EVENT, "SepOff", "command", "", -1, -1 },
+    { 4, 0, ARGENT_TRIGGER_EVENT, "SepOff", "command", "", -1, -1 },
 };
 
 static const argent_named_expression_t argent_sep_string_controller_guards[1] = {
@@ -106,7 +112,7 @@ static const argent_named_expression_t argent_sep_string_controller_guards[1] = 
 };
 
 static const argent_named_expression_t argent_sep_string_controller_effects[1] = {
-    { 0, 0 },
+    { "SEP_STRING_CONTROLLER_E1", "burnDuration := b.duration" },
 };
 
 
@@ -253,8 +259,8 @@ static const argent_transition_t argent_inspector_handler_transitions[7] = {
     { 0, 1, ARGENT_TRIGGER_EVENT, "InspectorCheckoutGo", "command", "", -1, -1 },
     { 1, 0, ARGENT_TRIGGER_TIMED, "", "", "after checkoutDuration", -1, -1 },
     { 0, 2, ARGENT_TRIGGER_EVENT, "InspectorReleaseGo", "command", "", 0, -1 },
-    { 2, 3, ARGENT_TRIGGER_EVENT, "InspectorImagingGo", "command", "", -1, -1 },
-    { 3, 2, ARGENT_TRIGGER_TIMED, "", "", "after 8.0 [h]", -1, -1 },
+    { 2, 3, ARGENT_TRIGGER_EVENT, "InspectorImagingGo", "command", "", -1, 0 },
+    { 3, 2, ARGENT_TRIGGER_TIMED, "", "", "after passDuration", -1, -1 },
     { 2, 4, ARGENT_TRIGGER_EVENT, "InspectorRetireGo", "command", "", -1, -1 },
     { 3, 4, ARGENT_TRIGGER_EVENT, "InspectorRetireGo", "command", "", -1, -1 },
 };
@@ -264,7 +270,7 @@ static const argent_named_expression_t argent_inspector_handler_guards[1] = {
 };
 
 static const argent_named_expression_t argent_inspector_handler_effects[1] = {
-    { 0, 0 },
+    { "INSPECTOR_HANDLER_E1", "passDuration := go.passDuration" },
 };
 
 
@@ -591,7 +597,7 @@ static const argent_transition_t argent_mode_management_dispatcher_transitions[1
     { 0, 0, ARGENT_TRIGGER_EVENT, "ThrustArcGo", "dispatch", "", -1, 1 },
     { 0, 0, ARGENT_TRIGGER_EVENT, "ThrustArcEnd", "dispatch", "", -1, 2 },
     { 0, 0, ARGENT_TRIGGER_EVENT, "ProximityOperationsGo", "dispatch", "", -1, 3 },
-    { 0, 0, ARGENT_TRIGGER_EVENT, "RangeUpdate", "dispatch", "", -1, 4 },
+    { 0, 0, ARGENT_TRIGGER_EVENT, "RangeUpdate", "dispatch", "", 0, 4 },
     { 0, 0, ARGENT_TRIGGER_EVENT, "CaptureGo", "dispatch", "", -1, 5 },
     { 0, 0, ARGENT_TRIGGER_EVENT, "CaptureComplete", "dispatch", "", -1, 6 },
     { 0, 0, ARGENT_TRIGGER_EVENT, "ReturnThrustGo", "dispatch", "", -1, 7 },
@@ -606,7 +612,7 @@ static const argent_transition_t argent_mode_management_dispatcher_transitions[1
 };
 
 static const argent_named_expression_t argent_mode_management_dispatcher_guards[1] = {
-    { 0, 0 },
+    { "MODE_MANAGEMENT_DISPATCHER_G1", "u.range <= modes.rendezvousRange" },
 };
 
 static const argent_named_expression_t argent_mode_management_dispatcher_effects[16] = {
@@ -619,7 +625,7 @@ static const argent_named_expression_t argent_mode_management_dispatcher_effects
     { "MODE_MANAGEMENT_DISPATCHER_E7", "despin: send new CaptureDisarm() via captureCommands; send new RelayDisable() via telecomCommands; send new ApplicationReport(application = \"ModeManagementApplication\", report = \"despin\") via events; dispatched := dispatched + 1" },
     { "MODE_MANAGEMENT_DISPATCHER_E8", "stackThrust: send new SepThrust() via sepCommands; send new LowGainSelect() via telecomCommands; send new ApplicationReport(application = \"ModeManagementApplication\", report = \"stack thrust\") via events; dispatched := dispatched + 1" },
     { "MODE_MANAGEMENT_DISPATCHER_E9", "docking: send new RelayEnable() via telecomCommands; send new ApplicationReport(application = \"ModeManagementApplication\", report = \"docking\") via events; dispatched := dispatched + 1" },
-    { "MODE_MANAGEMENT_DISPATCHER_E10", "disposal: send new SepThrust() via sepCommands; send new RelayDisable() via telecomCommands; send new ApplicationReport(application = \"ModeManagementApplication\", report = \"disposal\") via events; dispatched := dispatched + 1" },
+    { "MODE_MANAGEMENT_DISPATCHER_E10", "disposal: send new SepDisposalBurn(duration = modes.disposalBurnDuration) via sepCommands; send new RelayDisable() via telecomCommands; send new ApplicationReport(application = \"ModeManagementApplication\", report = \"disposal\") via events; dispatched := dispatched + 1" },
     { "MODE_MANAGEMENT_DISPATCHER_E11", "inspectorCheckout: send new InspectorCheckoutGo() via inspectorCommands; dispatched := dispatched + 1" },
     { "MODE_MANAGEMENT_DISPATCHER_E12", "inspectorRelease: send new InspectorReleaseGo() via inspectorCommands; send new RelayEnable() via telecomCommands; dispatched := dispatched + 1" },
     { "MODE_MANAGEMENT_DISPATCHER_E13", "inspectorRetire: send new InspectorRetireGo() via inspectorCommands; send new RelayDisable() via telecomCommands; dispatched := dispatched + 1" },
@@ -747,16 +753,16 @@ static const argent_named_expression_t argent_fdir_response_relay_effects[2] = {
 #define ARGENT_STATE_MACHINE_COUNT 12u
 
 static const argent_state_machine_t argent_state_machines[12] = {
-    { "SepStringController", "TethysFlightBehaviour::SepStringController", 0, argent_sep_string_controller_states, 4u, argent_sep_string_controller_transitions, 8u, argent_sep_string_controller_guards, 0u, argent_sep_string_controller_effects, 0u },
+    { "SepStringController", "TethysFlightBehaviour::SepStringController", 0, argent_sep_string_controller_states, 5u, argent_sep_string_controller_transitions, 12u, argent_sep_string_controller_guards, 0u, argent_sep_string_controller_effects, 1u },
     { "PowerManager", "TethysFlightBehaviour::PowerManager", 0, argent_power_manager_states, 4u, argent_power_manager_transitions, 9u, argent_power_manager_guards, 3u, argent_power_manager_effects, 0u },
     { "ThermalController", "TethysFlightBehaviour::ThermalController", ARGENT_STATE_NONE, argent_thermal_controller_states, 6u, argent_thermal_controller_transitions, 4u, argent_thermal_controller_guards, 2u, argent_thermal_controller_effects, 0u },
     { "TelecomManager", "TethysFlightBehaviour::TelecomManager", 0, argent_telecom_manager_states, 4u, argent_telecom_manager_transitions, 9u, argent_telecom_manager_guards, 0u, argent_telecom_manager_effects, 0u },
-    { "InspectorHandler", "TethysFlightBehaviour::InspectorHandler", 0, argent_inspector_handler_states, 5u, argent_inspector_handler_transitions, 7u, argent_inspector_handler_guards, 1u, argent_inspector_handler_effects, 0u },
+    { "InspectorHandler", "TethysFlightBehaviour::InspectorHandler", 0, argent_inspector_handler_states, 5u, argent_inspector_handler_transitions, 7u, argent_inspector_handler_guards, 1u, argent_inspector_handler_effects, 1u },
     { "CaptureController", "TethysFlightBehaviour::CaptureController", 0, argent_capture_controller_states, 7u, argent_capture_controller_transitions, 13u, argent_capture_controller_guards, 2u, argent_capture_controller_effects, 6u },
     { "RedundancyManager", "TethysFlightBehaviour::RedundancyManager", 0, argent_redundancy_manager_states, 5u, argent_redundancy_manager_transitions, 11u, argent_redundancy_manager_guards, 2u, argent_redundancy_manager_effects, 2u },
     { "BootUpdateManager", "TethysFlightBehaviour::BootUpdateManager", 0, argent_boot_update_manager_states, 6u, argent_boot_update_manager_transitions, 10u, argent_boot_update_manager_guards, 0u, argent_boot_update_manager_effects, 4u },
     { "TugModes", "TethysModes::TugModes", ARGENT_STATE_NONE, argent_tug_modes_states, 37u, argent_tug_modes_transitions, 57u, argent_tug_modes_guards, 5u, argent_tug_modes_effects, 3u },
-    { "ModeManagementDispatcher", "TethysFlightBehaviour::ModeManagementSoftware::dispatcher", 0, argent_mode_management_dispatcher_states, 1u, argent_mode_management_dispatcher_transitions, 16u, argent_mode_management_dispatcher_guards, 0u, argent_mode_management_dispatcher_effects, 16u },
+    { "ModeManagementDispatcher", "TethysFlightBehaviour::ModeManagementSoftware::dispatcher", 0, argent_mode_management_dispatcher_states, 1u, argent_mode_management_dispatcher_transitions, 16u, argent_mode_management_dispatcher_guards, 1u, argent_mode_management_dispatcher_effects, 16u },
     { "FdirSupervisor", "TethysFdir::FdirSupervisor", ARGENT_STATE_NONE, argent_fdir_supervisor_states, 21u, argent_fdir_supervisor_transitions, 17u, argent_fdir_supervisor_guards, 5u, argent_fdir_supervisor_effects, 4u },
     { "FdirResponseRelay", "TethysFlightBehaviour::FdirSoftware::responseRelay", 0, argent_fdir_response_relay_states, 1u, argent_fdir_response_relay_transitions, 2u, argent_fdir_response_relay_guards, 0u, argent_fdir_response_relay_effects, 2u },
 };

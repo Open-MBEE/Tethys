@@ -60,6 +60,7 @@ SEP_STRING_CONTROLLER = StateMachine(
         State('off', 'TethysFlightBehaviour::SepStringController::off', None, None, True, '', ''),
         State('standby', 'TethysFlightBehaviour::SepStringController::standby', None, None, True, '', ''),
         State('thrusting', 'TethysFlightBehaviour::SepStringController::thrusting', None, None, True, 'arcsStarted := arcsStarted + 1', ''),
+        State('disposalBurn', 'TethysFlightBehaviour::SepStringController::disposalBurn', None, None, True, '', ''),
         State('restarting', 'TethysFlightBehaviour::SepStringController::restarting', None, None, True, 'restarts := restarts + 1', ''),
     ),
     (
@@ -68,13 +69,18 @@ SEP_STRING_CONTROLLER = StateMachine(
         Transition('TethysFlightBehaviour::SepStringController::thrusting', 'TethysFlightBehaviour::SepStringController::standby', 'SepStandby', None, 'command', None, None, None),
         Transition('TethysFlightBehaviour::SepStringController::thrusting', 'TethysFlightBehaviour::SepStringController::restarting', 'ThrusterFlameout', None, 'command', None, None, None),
         Transition('TethysFlightBehaviour::SepStringController::restarting', 'TethysFlightBehaviour::SepStringController::thrusting', None, None, None, 'after restartDelay', None, None),
+        Transition('TethysFlightBehaviour::SepStringController::standby', 'TethysFlightBehaviour::SepStringController::disposalBurn', 'SepDisposalBurn', 'b', 'command', None, None, 'SEP_STRING_CONTROLLER_E1'),
+        Transition('TethysFlightBehaviour::SepStringController::disposalBurn', 'TethysFlightBehaviour::SepStringController::off', None, None, None, 'after burnDuration', None, None),
+        Transition('TethysFlightBehaviour::SepStringController::disposalBurn', 'TethysFlightBehaviour::SepStringController::restarting', 'ThrusterFlameout', None, 'command', None, None, None),
         Transition('TethysFlightBehaviour::SepStringController::standby', 'TethysFlightBehaviour::SepStringController::off', 'SepOff', None, 'command', None, None, None),
         Transition('TethysFlightBehaviour::SepStringController::thrusting', 'TethysFlightBehaviour::SepStringController::off', 'SepOff', None, 'command', None, None, None),
+        Transition('TethysFlightBehaviour::SepStringController::disposalBurn', 'TethysFlightBehaviour::SepStringController::off', 'SepOff', None, 'command', None, None, None),
         Transition('TethysFlightBehaviour::SepStringController::restarting', 'TethysFlightBehaviour::SepStringController::off', 'SepOff', None, 'command', None, None, None),
     ),
     (
     ),
     (
+        NamedExpression('SEP_STRING_CONTROLLER_E1', 'burnDuration := b.duration'),
     ),
 )
 
@@ -168,8 +174,8 @@ INSPECTOR_HANDLER = StateMachine(
         Transition('TethysFlightBehaviour::InspectorHandler::stowed', 'TethysFlightBehaviour::InspectorHandler::checkout', 'InspectorCheckoutGo', None, 'command', None, None, None),
         Transition('TethysFlightBehaviour::InspectorHandler::checkout', 'TethysFlightBehaviour::InspectorHandler::stowed', None, None, None, 'after checkoutDuration', None, None),
         Transition('TethysFlightBehaviour::InspectorHandler::stowed', 'TethysFlightBehaviour::InspectorHandler::released', 'InspectorReleaseGo', None, 'command', None, 'INSPECTOR_HANDLER_G1', None),
-        Transition('TethysFlightBehaviour::InspectorHandler::released', 'TethysFlightBehaviour::InspectorHandler::relayingImagery', 'InspectorImagingGo', None, 'command', None, None, None),
-        Transition('TethysFlightBehaviour::InspectorHandler::relayingImagery', 'TethysFlightBehaviour::InspectorHandler::released', None, None, None, 'after 8.0 [h]', None, None),
+        Transition('TethysFlightBehaviour::InspectorHandler::released', 'TethysFlightBehaviour::InspectorHandler::relayingImagery', 'InspectorImagingGo', 'go', 'command', None, None, 'INSPECTOR_HANDLER_E1'),
+        Transition('TethysFlightBehaviour::InspectorHandler::relayingImagery', 'TethysFlightBehaviour::InspectorHandler::released', None, None, None, 'after passDuration', None, None),
         Transition('TethysFlightBehaviour::InspectorHandler::released', 'TethysFlightBehaviour::InspectorHandler::retired', 'InspectorRetireGo', None, 'command', None, None, None),
         Transition('TethysFlightBehaviour::InspectorHandler::relayingImagery', 'TethysFlightBehaviour::InspectorHandler::retired', 'InspectorRetireGo', None, 'command', None, None, None),
     ),
@@ -177,6 +183,7 @@ INSPECTOR_HANDLER = StateMachine(
         NamedExpression('INSPECTOR_HANDLER_G1', 'checkedOut'),
     ),
     (
+        NamedExpression('INSPECTOR_HANDLER_E1', 'passDuration := go.passDuration'),
     ),
 )
 
@@ -408,7 +415,7 @@ MODE_MANAGEMENT_DISPATCHER = StateMachine(
         Transition('TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'ThrustArcGo', None, 'dispatch', None, None, 'MODE_MANAGEMENT_DISPATCHER_E2'),
         Transition('TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'ThrustArcEnd', None, 'dispatch', None, None, 'MODE_MANAGEMENT_DISPATCHER_E3'),
         Transition('TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'ProximityOperationsGo', None, 'dispatch', None, None, 'MODE_MANAGEMENT_DISPATCHER_E4'),
-        Transition('TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'RangeUpdate', None, 'dispatch', None, None, 'MODE_MANAGEMENT_DISPATCHER_E5'),
+        Transition('TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'RangeUpdate', 'u', 'dispatch', None, 'MODE_MANAGEMENT_DISPATCHER_G1', 'MODE_MANAGEMENT_DISPATCHER_E5'),
         Transition('TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'CaptureGo', None, 'dispatch', None, None, 'MODE_MANAGEMENT_DISPATCHER_E6'),
         Transition('TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'CaptureComplete', None, 'dispatch', None, None, 'MODE_MANAGEMENT_DISPATCHER_E7'),
         Transition('TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'ReturnThrustGo', None, 'dispatch', None, None, 'MODE_MANAGEMENT_DISPATCHER_E8'),
@@ -422,6 +429,7 @@ MODE_MANAGEMENT_DISPATCHER = StateMachine(
         Transition('TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'TethysFlightBehaviour::ModeManagementSoftware::dispatcher::dispatching', 'AbortReturn', 'a', 'fdirRequests', None, None, 'MODE_MANAGEMENT_DISPATCHER_E16'),
     ),
     (
+        NamedExpression('MODE_MANAGEMENT_DISPATCHER_G1', 'u.range <= modes.rendezvousRange'),
     ),
     (
         NamedExpression('MODE_MANAGEMENT_DISPATCHER_E1', 'earlyOperations: send new SepStandby() via sepCommands; send new HighGainSelect() via telecomCommands; send new LoadRestore() via powerCommands; send new ApplicationReport(application = "ModeManagementApplication", report = "early operations") via events; dispatched := dispatched + 1'),
@@ -433,7 +441,7 @@ MODE_MANAGEMENT_DISPATCHER = StateMachine(
         NamedExpression('MODE_MANAGEMENT_DISPATCHER_E7', 'despin: send new CaptureDisarm() via captureCommands; send new RelayDisable() via telecomCommands; send new ApplicationReport(application = "ModeManagementApplication", report = "despin") via events; dispatched := dispatched + 1'),
         NamedExpression('MODE_MANAGEMENT_DISPATCHER_E8', 'stackThrust: send new SepThrust() via sepCommands; send new LowGainSelect() via telecomCommands; send new ApplicationReport(application = "ModeManagementApplication", report = "stack thrust") via events; dispatched := dispatched + 1'),
         NamedExpression('MODE_MANAGEMENT_DISPATCHER_E9', 'docking: send new RelayEnable() via telecomCommands; send new ApplicationReport(application = "ModeManagementApplication", report = "docking") via events; dispatched := dispatched + 1'),
-        NamedExpression('MODE_MANAGEMENT_DISPATCHER_E10', 'disposal: send new SepThrust() via sepCommands; send new RelayDisable() via telecomCommands; send new ApplicationReport(application = "ModeManagementApplication", report = "disposal") via events; dispatched := dispatched + 1'),
+        NamedExpression('MODE_MANAGEMENT_DISPATCHER_E10', 'disposal: send new SepDisposalBurn(duration = modes.disposalBurnDuration) via sepCommands; send new RelayDisable() via telecomCommands; send new ApplicationReport(application = "ModeManagementApplication", report = "disposal") via events; dispatched := dispatched + 1'),
         NamedExpression('MODE_MANAGEMENT_DISPATCHER_E11', 'inspectorCheckout: send new InspectorCheckoutGo() via inspectorCommands; dispatched := dispatched + 1'),
         NamedExpression('MODE_MANAGEMENT_DISPATCHER_E12', 'inspectorRelease: send new InspectorReleaseGo() via inspectorCommands; send new RelayEnable() via telecomCommands; dispatched := dispatched + 1'),
         NamedExpression('MODE_MANAGEMENT_DISPATCHER_E13', 'inspectorRetire: send new InspectorRetireGo() via inspectorCommands; send new RelayDisable() via telecomCommands; dispatched := dispatched + 1'),
