@@ -45,6 +45,7 @@ run wpc-requirements $SYSML -requirement TethysInspectorDetail::circumnavigation
 run wpc-individuals $SYSML -instantiate TethysInspectorDetail::wrenFM -instantiate TethysProximityOps::amaranthFM -instantiate TethysProximityOps::proxStackFM $MODEL
 run wpc-prox-ops-modes $SYSML -instantiate TethysProximityOps::proximityOperations -state "TethysProximityOps::ProximityOpsModes TethysProximityOps::proximityOperations" -advance 10000 $MODEL
 run wpc-capture-sequence $SYSML -instantiate TethysProximityOps::captureOperation -action "TethysProximityOps::CaptureSequence TethysProximityOps::captureOperation" -advance 10000 $MODEL
+run wpc-despin-step $SYSML -e "TethysProximityOps::captureOperation.capture.despin.angularMomentum" -e "TethysProximityOps::captureOperation.capture.despin.duration" -e "TethysProximityOps::captureOperation.capture.despin.propellant" $MODEL
 run wpd-icd-matrix $SYSML -render "#matrix:TethysIcds::icdSystem" $MODEL
 run wpd-ground-matrix $SYSML -render "#matrix:TethysMeridian::MeridianNetwork" $MODEL
 run wpd-decibels $SYSML -calc "TethysLinkBudgets::Log10(1000.0)" -calc "TethysLinkBudgets::DecibelsFromRatio(2.0)" -calc "TethysLinkBudgets::RatioFromDecibels(30.0)" -calc "TethysLinkBudgets::FreeSpaceLossDb(60.0e9, 8.445e9)" -calc "TethysLinkBudgets::DishGainDbi(32.0, 8.445e9, 0.6)" -calc "TethysLinkBudgets::DishGainDbi(2.4, 32.05e9, 0.6)" -calc "TethysLinkBudgets::GainToNoiseTemperatureDbPerK(66.823, 25.0)" $MODEL
