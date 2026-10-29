@@ -137,11 +137,11 @@
   objective obj: satisfied
   ✓ Verification TethysVerification::massBudgetAnalysis verdict: pass
   standing: holds (observed: 1 run under reverse)
-✓ TethysVerification::returnSafetyAnalysis
-  result = [VerdictKind::pass]
+✗ TethysVerification::returnSafetyAnalysis
+  result = [VerdictKind::fail]
   objective obj: satisfied
-  ✓ Verification TethysVerification::returnSafetyAnalysis verdict: pass
-  standing: holds (observed: 1 run under reverse)
+  ✗ Verification TethysVerification::returnSafetyAnalysis verdict: fail
+  standing: violated (witnessed: 1 run under reverse)
 ✓ TethysVerification::deliveryAnalysis
   result = [VerdictKind::pass]
   objective obj: satisfied
@@ -227,3 +227,4 @@
   objective obj: satisfied
   ✓ Verification TethysVerification::conOpsValidation verdict: pass
   standing: holds (observed: 1 run under reverse)
+exit 1

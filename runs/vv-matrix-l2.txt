@@ -90,7 +90,7 @@
     Verification::method = VerificationCases::VerificationMethodKind::analyze
     Verification::level = TethysRequirements::VerificationLevel::mission
     Verification::stage = TethysRequirements::VerificationStage::qualification
-    verifiedBy = TethysVerification::PowerAnalysis
+    verifiedBy = TethysAnalyses::MissionDurationByAnalysis
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::flight
     derivedFrom = (none)

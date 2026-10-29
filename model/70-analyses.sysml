@@ -21,6 +21,7 @@ package TethysAnalyses {
     private import TethysBudgets::massBudget;
     private import TethysBudgets::propellantBudget;
     private import TethysRequirements::*;
+    private import TethysRequirementsL2::transferDuration;
     private import TethysMarginPolicy::activePolicy;
 
     metadata def CredibilityAssessment {
@@ -312,8 +313,8 @@ package TethysAnalyses {
     // ---- Requirement closed by analysis ------------------------------------------------------
 
     verification def MissionDurationByAnalysis {
-        doc /* TR-002 verified by analysis: the thrusting time of the transfer and return plus the
-             * non-thrusting phases must fit the nominal duration. */
+        doc /* TR-002 and TS-003 verified by analysis: the thrusting time of the transfer and
+             * return plus the non-thrusting phases must fit the nominal duration. */
         subject tug : Tug;
         in part target : SmallBody;
         in attribute nonThrustDays : Real default = 270.0;
@@ -321,6 +322,9 @@ package TethysAnalyses {
             doc /* The mission duration requirement this case verifies. */
             verify missionDuration {
                 doc /* TR-002 as verified here. */
+            }
+            verify transferDuration {
+                doc /* TS-003: the planned timeline against the nominal duration. */
             }
         }
         analysis transfer : LowThrustTransferAnalysis {
