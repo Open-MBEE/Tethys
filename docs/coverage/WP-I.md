@@ -36,8 +36,8 @@ command below is a `run` line in `scripts/runs.sh` with its output under `runs/`
 Target uncertainty: `separationSafety` evaluates the separation impulse (an `ImpulseValue`)
 against `TethysTarget::targetCases.{small,nominal,large}.mass` (213 t, 362 t, 506 t) and the
 as-characterised `amaranthFM.postCapture.mass` (438.8 t), returning `SpeedValue`s
-(`runs/disposal-quantities.txt`); `passivation` compares its `passivationDelay` (23 d, from the
-`closeout` record) with the 30 d deadline; `AmaranthAsCharacterised`
+(`runs/disposal-quantities.txt`); `passivation` requires its `passivationDelay` (23 d, from the
+`closeout` record) to lie in 0 d … 30 d; `AmaranthAsCharacterised`
 carries the pre-arrival estimate and the measured values as ordered snapshots, so
 `massEstimateRatio` (1.2155) is the realised uncertainty.
 

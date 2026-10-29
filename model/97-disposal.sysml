@@ -59,7 +59,8 @@ package TethysDisposal {
         @Verification { method = VerificationMethodKind::test; level = VerificationLevel::system; stage = VerificationStage::inFlight; }
         require constraint {
             xenonTankPressure <= 1.0e5 [Pa] and hydrazineResidual <= 2.0 [kg]
-                and batteryDisconnected and transmitterOff and passivationDelay <= deadline
+                and batteryDisconnected and transmitterOff
+                and passivationDelay >= 0.0 [d] and passivationDelay <= deadline
         }
     }
 
