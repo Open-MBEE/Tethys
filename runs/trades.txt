@@ -70,31 +70,31 @@
   TethysTrades::ArrayPowerTrade::evaluationFunction(TethysTrades::array70kW (object #3)) = 2234.1247033610925
   standing: value (observed: 1 run under reverse)
 ✓ TethysTrades::specificImpulseTrade
-  selectedAlternative = [TethysTrades::isp2000 (object #8)]
+  selectedAlternative = [TethysTrades::isp2900 (object #9)]
   objective tradeStudyObjective: satisfied
-  TethysTrades::SpecificImpulseTrade::evaluationFunction(TethysTrades::isp2000 (object #8)) = 1068.2784052713998 [selected]
-  TethysTrades::SpecificImpulseTrade::evaluationFunction(TethysTrades::isp2900 (object #9)) = 1080.2980096434244
-  TethysTrades::SpecificImpulseTrade::evaluationFunction(TethysTrades::isp3500 (object #10)) = 1124.916619955788
+  TethysTrades::SpecificImpulseTrade::evaluationFunction(TethysTrades::isp2000 (object #8)) = 11172.191787934209
+  TethysTrades::SpecificImpulseTrade::evaluationFunction(TethysTrades::isp2900 (object #9)) = 1185.3371039516942 [selected]
+  TethysTrades::SpecificImpulseTrade::evaluationFunction(TethysTrades::isp3500 (object #10)) = 1234.2766193305893
   standing: value (observed: 1 run under reverse)
 ✓ TethysTrades::departureTrade
-  selectedAlternative = [TethysTrades::directEscape (object #14)]
+  selectedAlternative = [TethysTrades::directEscape (object #154)]
   objective tradeStudyObjective: satisfied
-  TethysTrades::DepartureTrade::evaluationFunction(TethysTrades::directEscape (object #14)) = 180.5 [selected]
-  TethysTrades::DepartureTrade::evaluationFunction(TethysTrades::spiralOut (object #15)) = 240.0
+  TethysTrades::DepartureTrade::evaluationFunction(TethysTrades::directEscape (object #154)) = 180.5 [selected]
+  TethysTrades::DepartureTrade::evaluationFunction(TethysTrades::spiralOut (object #155)) = 240.0
   standing: value (observed: 1 run under reverse)
 ✓ TethysTrades::destinationOrbitTrade
-  selectedAlternative = [TethysTrades::distantRetrograde (object #16)]
+  selectedAlternative = [TethysTrades::distantRetrograde (object #156)]
   objective tradeStudyObjective: satisfied
-  TethysTrades::DestinationOrbitTrade::evaluationFunction(TethysTrades::distantRetrograde (object #16)) = 200.0 [selected]
-  TethysTrades::DestinationOrbitTrade::evaluationFunction(TethysTrades::nearRectilinearHalo (object #17)) = -347.5
-  TethysTrades::DestinationOrbitTrade::evaluationFunction(TethysTrades::librationHalo (object #18)) = -519.0
-  TethysTrades::DestinationOrbitTrade::evaluationFunction(TethysTrades::highEarthOrbit (object #19)) = -480.0
+  TethysTrades::DestinationOrbitTrade::evaluationFunction(TethysTrades::distantRetrograde (object #156)) = 200.0 [selected]
+  TethysTrades::DestinationOrbitTrade::evaluationFunction(TethysTrades::nearRectilinearHalo (object #157)) = -347.5
+  TethysTrades::DestinationOrbitTrade::evaluationFunction(TethysTrades::librationHalo (object #158)) = -519.0
+  TethysTrades::DestinationOrbitTrade::evaluationFunction(TethysTrades::highEarthOrbit (object #159)) = -480.0
   standing: value (observed: 1 run under reverse)
 ✓ TethysTrades::captureMechanismTrade
-  selectedAlternative = [TethysTrades::inflatableBag (object #20)]
+  selectedAlternative = [TethysTrades::inflatableBag (object #160)]
   objective tradeStudyObjective: satisfied
-  TethysTrades::CaptureMechanismTrade::evaluationFunction(TethysTrades::inflatableBag (object #20)) = 25.5 [selected]
-  TethysTrades::CaptureMechanismTrade::evaluationFunction(TethysTrades::rigidArms (object #21)) = 13.2
-  TethysTrades::CaptureMechanismTrade::evaluationFunction(TethysTrades::deployableNet (object #22)) = 20.8
-  TethysTrades::CaptureMechanismTrade::evaluationFunction(TethysTrades::harpoons (object #23)) = 13.5
+  TethysTrades::CaptureMechanismTrade::evaluationFunction(TethysTrades::inflatableBag (object #160)) = 25.5 [selected]
+  TethysTrades::CaptureMechanismTrade::evaluationFunction(TethysTrades::rigidArms (object #161)) = 13.2
+  TethysTrades::CaptureMechanismTrade::evaluationFunction(TethysTrades::deployableNet (object #162)) = 20.8
+  TethysTrades::CaptureMechanismTrade::evaluationFunction(TethysTrades::harpoons (object #163)) = 13.5
   standing: value (observed: 1 run under reverse)

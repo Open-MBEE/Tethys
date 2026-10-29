@@ -14,6 +14,10 @@ package TethysTrades {
     private import TethysAnalyses::*;
     private import TethysTarget::targetCases;
     private import TethysMission::transferBook;
+    private import TethysMarginPolicy::activePolicy;
+    private import TethysMarginPolicy::ClosesWithMargin;
+    private import TethysBudgets::propellantBudget;
+    private import TethysBudgets::XenonForMission;
 
     // ---- T3: array power against trip time ---------------------------------------------------
 
@@ -105,33 +109,26 @@ package TethysTrades {
 
     analysis def SpecificImpulseTrade :> TradeStudy {
         doc /* Xenon against thrusting time: each operating point is scored by the days needed to
-             * spend the xenon the outbound Δv on the tug and the return Δv on the nominal stack
-             * cost at that Isp, plus a penalty per kilogram of xenon; an option whose xenon
-             * exceeds the tank is penalised out. The least score wins. */
+             * spend the xenon the mission's own propellant book (TethysBudgets::XenonForMission,
+             * nominal target case) requires at that Isp, plus a penalty per kilogram of xenon; an
+             * option whose xenon does not close against the usable load with the active margin
+             * policy (TethysMarginPolicy::ClosesWithMargin, as the propellant budget asserts it)
+             * is penalised out. The least score wins. */
         subject :>> studyAlternatives : ThrusterOption[1..*];
-        in attribute outboundDeltaV : SpeedValue default = transferBook.deltaVOutbound + transferBook.deltaVRendezvous {
-            doc /* Outbound and rendezvous arcs of the transfer book (TethysMission::transferBook). */
-        }
-        in attribute returnDeltaV : SpeedValue default = transferBook.deltaVRequiredReturn {
-            doc /* Return and insertion arcs of the transfer book. */
-        }
         in attribute xenonPenaltyDaysPerKg : Real default = 0.1;
-        in attribute tankOverflowPenaltyDays : Real default = 10000.0;
+        in attribute closurePenaltyDays : Real default = 10000.0;
         objective :>> tradeStudyObjective : MinimizeObjective {
             doc /* The alternative with the least evaluation is selected. */
         }
         calc :>> evaluationFunction {
             in part option :>> alternative : ThrusterOption;
             attribute ispS : Real = option.specificImpulse / 1 [s];
-            attribute outboundXenon : MassValue =
-                PropellantForDeltaV(outboundDeltaV / 1 ['m/s'], argent.wetMass / 1 [kg], ispS) [kg];
-            attribute stack : MassValue = argent.wetMass - outboundXenon + targetCases.nominal.mass;
-            attribute returnXenon : MassValue = PropellantForDeltaV(returnDeltaV / 1 ['m/s'], stack / 1 [kg], ispS) [kg];
-            attribute xenon : MassValue = outboundXenon + returnXenon;
+            attribute xenon : MassValue = XenonForMission(targetCases.nominal, option.specificImpulse);
             attribute thrust : ForceValue = SepThrust(argent.sep.maximumPower / 1 [W], ispS, option.efficiency) [N];
             attribute thrustTime : DurationValue = ThrustDays(xenon / 1 [kg], MassFlowRate(thrust / 1 [N], ispS)) [d];
-            attribute overflow : Real = if xenon > argent.sep.xenonMass ? tankOverflowPenaltyDays else 0.0;
-            return :>> result : Real = thrustTime / 1 [d] + xenonPenaltyDaysPerKg * (xenon / 1 [kg]) + overflow;
+            attribute closes : Boolean = ClosesWithMargin(propellantBudget.usable, xenon, activePolicy);
+            attribute closure : Real = if closes ? 0.0 else closurePenaltyDays;
+            return :>> result : Real = thrustTime / 1 [d] + xenonPenaltyDaysPerKg * (xenon / 1 [kg]) + closure;
         }
         return part :>> selectedAlternative : ThrusterOption;
     }
@@ -139,7 +136,7 @@ package TethysTrades {
         subject :>> studyAlternatives = (isp2000, isp2900, isp3500);
     }
     metadata Rationale about specificImpulseTrade {
-        text = "2 900 s selected: 2 000 s needs more xenon than the tank holds, 3 500 s saves 900 kg of xenon but adds 150 days of thrusting; argent.sep.specificImpulse carries the selection.";
+        text = "2 900 s selected: 2 000 s needs about 6 080 kg of xenon for the nominal case, which does not close against the usable load with the active margin policy; 3 500 s saves 713 kg of xenon but adds 120 days of thrusting; argent.sep.specificImpulse carries the selection.";
     }
 
     // ---- T2: direct escape against spiral-out ------------------------------------------------
