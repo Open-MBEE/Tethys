@@ -96,41 +96,36 @@ package TethysLinkBudgets {
              * time at its far edge. */
         attribute phaseName : String;
         attribute range : RangeEnvelope;
-        attribute maximumOneWayLightTime : DurationValue;
+        attribute maximumOneWayLightTime : DurationValue = OneWayLightTime(range.maximum / 1 [km]) [s];
     }
 
     attribute launchAndEarlyOperationsRange : PhaseEarthRange {
         doc /* From separation to the first thrust arc: inside the lunar distance. */
         attribute :>> phaseName = "launch and early operations";
         attribute :>> range { attribute :>> minimum = 0.007e6 [km]; attribute :>> maximum = 0.4e6 [km]; }
-        attribute :>> maximumOneWayLightTime = 1.4 [s];
     }
     attribute outboundCruiseRange : PhaseEarthRange {
         doc /* The low-thrust spiral and drift to the target: the tug falls behind Earth to the
              * far edge of the envelope. */
         attribute :>> phaseName = "outbound cruise";
         attribute :>> range { attribute :>> minimum = 0.4e6 [km]; attribute :>> maximum = 60.0e6 [km]; }
-        attribute :>> maximumOneWayLightTime = 200.0 [s];
     }
     attribute proximityOperationsRange : PhaseEarthRange {
         doc /* Approach, characterisation and capture at the target: the Earth-like orbit keeps
              * the range between 10 and 45 million km over the stay. */
         attribute :>> phaseName = "approach, characterisation and capture";
         attribute :>> range { attribute :>> minimum = 10.0e6 [km]; attribute :>> maximum = 45.0e6 [km]; }
-        attribute :>> maximumOneWayLightTime = 150.0 [s];
     }
     attribute returnCruiseRange : PhaseEarthRange {
         doc /* The return with the body: from the target range back to the lunar gravity assist. */
         attribute :>> phaseName = "return cruise";
         attribute :>> range { attribute :>> minimum = 0.4e6 [km]; attribute :>> maximum = 60.0e6 [km]; }
-        attribute :>> maximumOneWayLightTime = 200.0 [s];
     }
     attribute droRange : PhaseEarthRange {
         doc /* Insertion, checkout, utilisation and extended mission in the DRO: lunar distance
              * plus or minus the DRO radius. */
         attribute :>> phaseName = "DRO operations";
         attribute :>> range { attribute :>> minimum = 0.29e6 [km]; attribute :>> maximum = 0.48e6 [km]; }
-        attribute :>> maximumOneWayLightTime = 1.6 [s];
     }
 
     // ---- the links --------------------------------------------------------------------------
