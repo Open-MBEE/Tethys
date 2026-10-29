@@ -1,0 +1,6 @@
+calc TethysLinkBudgets::DecibelsFromRatio(ratio) kind=real tol=1e-09 relative
+  grid: 0, 3, 10, -3 dB
+  (ratio=1.0) model=0.0 c=0.0 go=0.0
+  (ratio=2.0) model=3.0102999566398516 c=3.0102999566398516 go=3.0102999566398516
+  (ratio=10.0) model=10.000000000000142 c=10.000000000000142 go=10.000000000000142
+  (ratio=0.5) model=-3.0102999566398214 c=-3.0102999566398214 go=-3.0102999566398214

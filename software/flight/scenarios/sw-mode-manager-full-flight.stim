@@ -1,0 +1,20 @@
+# derived from runs/sw-mode-manager-full-flight.txt and the TethysFlightBehaviour::softwareNominalFlight scenario; horizon 129600000 s
+t=4320 item SeparationConfirmed 
+t=8640 item ArraysDeployed 
+t=2600640 item ThrustArcGo 200
+t=19880640 item ThrustArcEnd 
+t=21608640 item ThrustArcGo 150
+t=34568640 item ThrustArcEnd 
+t=35432640 item ProximityOperationsGo 
+t=37592640 item RangeUpdate 20
+t=37679040 item InspectorReleaseGo 
+t=38888640 item InspectorRetireGo 
+t=38888640 item CaptureGo 6.8 362000
+t=39147840 item CaptureComplete 
+t=40011840 item DespinComplete 
+t=40011840 item ReturnThrustGo 400
+t=74571840 item ThrustArcEnd 
+t=79755840 item DroHoldGo 
+t=82347840 item DockingGo 
+t=97899840 item DisposalGo 
+t=129600000 expect TugModes=safe | off | lowGain | thrusters | released

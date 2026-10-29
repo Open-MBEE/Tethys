@@ -1,0 +1,5 @@
+calc TethysLinkBudgets::RelayDaysRequired(volumeBits, rateBps, dailyWindowS) kind=real tol=1e-09 relative
+  grid: 1 Tbit at two rates and zero volume
+  (volumeBits=1000000000000.0, rateBps=1000000.0, dailyWindowS=3600.0) model=277.77777777777777 c=277.77777777777777 go=277.77777777777777
+  (volumeBits=1000000000000.0, rateBps=100000.0, dailyWindowS=7200.0) model=1388.888888888889 c=1388.888888888889 go=1388.888888888889
+  (volumeBits=0.0, rateBps=1000000.0, dailyWindowS=3600.0) model=0.0 c=0.0 go=0.0

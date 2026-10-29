@@ -1,0 +1,82 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Query TethysSoftwareDocumentsTooling::UnverifiedSoftwareRequirements returned 4 rows
+  Columns: shortName, name, documentation
+  Row 1: TethysSoftwareRequirements::processorMemoryReserve
+    shortName = "TF-010"
+    name = "processorMemoryReserve"
+    documentation = "The flight software's processor load and memory footprint shall close against the\nflight computer with the reserve the active software margin policy row\n(TethysMarginPolicy::activeSoftwarePolicy) prescribes. Rationale: the reserve is\nthe policy's, not this row's, so a policy change re-evaluates every budget at\nonce (TS-142)."
+  Row 2: TethysSoftwareRequirements::busReserve
+    shortName = "TF-011"
+    name = "busReserve"
+    documentation = "The AABP-1 bus schedule of the full modes (proximity operations, capture, despin)\nshall close against the frame with the reserve the active software margin policy\nrow prescribes. Rationale: the bus is the one shared resource every application\nuses; the schedule currently uses more slots than the reserve allows, so this row\nis open and its satisfaction fails until the maintainer resizes the schedule or\nthe policy (TS-143)."
+  Row 3: TethysSoftwareRequirements::busReserveCoast
+    shortName = "TF-012"
+    name = "busReserveCoast"
+    documentation = "The AABP-1 bus schedule of the coast mode shall close against the frame with the\nreserve the active software margin policy row prescribes. Rationale: coast is the\nmode the tug spends most of the mission in, so its reserve is the one the growth\nof the mission actually consumes (TS-143)."
+  Row 4: TethysSoftwareRequirements::busMessaging
+    shortName = "TF-023"
+    name = "busMessaging"
+    documentation = "The AABP-1 software bus shall provide a topic for every software component, a\nreceive queue of at least one message per topic and a maximum message no longer\nthan the largest command packet. Rationale: a component without a topic cannot\npublish, and a message longer than a packet cannot be relayed to the ground\n(TS-143)."

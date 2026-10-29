@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SCD-023 Remote interface unit register maps</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysSoftwareIcdDocuments::RegisterMapIcdDocument">
+<h1 class="sysml-title">SCD-023 Remote interface unit register maps</h1>
+<section class="sysml-section" id="ends" data-content="section" data-name="ends">
+<h2>Interface ends</h2>
+<table class="sysml-table" data-content="table" data-name="table" data-query="TethysIcdDocuments::IcdEnds">
+<caption class="sysml-caption">Ends and their port types</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysInterfaces::DataBusInterface::a" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">a</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::DataBusPort</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysInterfaces::DataBusInterface::b" data-element-kind="portUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">b</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysInterfaces::DataBusPort</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="parameters" data-content="section" data-name="parameters">
+<h2>Register access parameters</h2>
+<table class="sysml-table" data-content="table" data-name="table" data-query="TethysIcdDocuments::IcdParameters">
+<caption class="sysml-caption">Address and data widths, access frame and burst</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="valuation">valuation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::RemoteInterfaceUnitRegisterIcd::registerAddressWidth" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">registerAddressWidth</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ScalarValues::Natural</span></td>
+<td class="sysml-cell" data-column="valuation" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">8</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::RemoteInterfaceUnitRegisterIcd::registerDataWidth" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">registerDataWidth</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ScalarValues::Natural</span></td>
+<td class="sysml-cell" data-column="valuation" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::RemoteInterfaceUnitRegisterIcd::registerCount" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">registerCount</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ScalarValues::Natural</span></td>
+<td class="sysml-cell" data-column="valuation" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">256</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::RemoteInterfaceUnitRegisterIcd::accessFrameLength" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">accessFrameLength</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ISQInformation::StorageCapacityValue</span></td>
+<td class="sysml-cell" data-column="valuation" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="14" data-unit="B">14 [B]</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::RemoteInterfaceUnitRegisterIcd::burstLength" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">burstLength</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ScalarValues::Natural</span></td>
+<td class="sysml-cell" data-column="valuation" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">64</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="thermalPropulsion" data-content="section" data-name="thermalPropulsion">
+<h2>Thermal and propulsion unit</h2>
+<table class="sysml-table" data-content="table" data-name="table" data-query="TethysSoftwareIcdDocuments::Registers">
+<caption class="sysml-caption">Registers of the thermal and propulsion remote interface unit</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="address">address</th>
+<th scope="col" data-column="width">width</th>
+<th scope="col" data-column="meaning">meaning</th>
+<th scope="col" data-column="access">access</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::status" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">status</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">0</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">unit status and fault flags</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::control" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">control</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">unit control: reset, self-test, watchdog enable</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readWrite" data-element-kind="enumUsage">readWrite</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::thermistorBank" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thermistorBank</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">first of 64 thermistor readings, one register each</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::heaterEnable" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">heaterEnable</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">96</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">heater enable bits, one per heater circuit</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readWrite" data-element-kind="enumUsage">readWrite</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::heaterDuty" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">heaterDuty</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">97</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">first of 16 heater duty-cycle settings</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readWrite" data-element-kind="enumUsage">readWrite</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::valveCommand" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">valveCommand</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">128</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">latch-valve open and close pulses</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::writeOnly" data-element-kind="enumUsage">writeOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::valvePosition" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">valvePosition</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">129</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">latch-valve position indicators</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::ThermalPropulsionRiuRegisterMap::tankPressure" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">tankPressure</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">130</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">xenon tank pressure transducer reading</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="mechanism" data-content="section" data-name="mechanism">
+<h2>Mechanism unit</h2>
+<table class="sysml-table" data-content="table" data-name="table" data-query="TethysSoftwareIcdDocuments::Registers">
+<caption class="sysml-caption">Registers of the mechanism remote interface unit</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="address">address</th>
+<th scope="col" data-column="width">width</th>
+<th scope="col" data-column="meaning">meaning</th>
+<th scope="col" data-column="access">access</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::status" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">status</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">0</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">unit status and fault flags</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::control" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">control</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">unit control: reset, self-test, watchdog enable</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readWrite" data-element-kind="enumUsage">readWrite</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::armMotorCommand" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">armMotorCommand</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">32</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">first of 4 capture-arm motor rate commands</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readWrite" data-element-kind="enumUsage">readWrite</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::armPosition" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">armPosition</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">36</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">first of 4 capture-arm resolver positions</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::contactForce" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">contactForce</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">40</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">first of 4 contact-pad force readings</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::dispenserCommand" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dispenserCommand</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">64</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dispenser release and retention pulses</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::writeOnly" data-element-kind="enumUsage">writeOnly</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::dockingRingCommand" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dockingRingCommand</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">80</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">docking ring extend, retract and latch</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readWrite" data-element-kind="enumUsage">readWrite</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareIcds::MechanismRiuRegisterMap::dockingRingStatus" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dockingRingStatus</span></td>
+<td class="sysml-cell" data-column="address" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">81</span></td>
+<td class="sysml-cell" data-column="width" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">16</span></td>
+<td class="sysml-cell" data-column="meaning" data-value-kind="string"><span class="sysml-value" data-value-kind="string">docking ring position and latch indicators</span></td>
+<td class="sysml-cell" data-column="access" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysSoftwareIcds::RegisterAccess::readOnly" data-element-kind="enumUsage">readOnly</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+</article>
+</body>
+</html>

@@ -1,0 +1,16 @@
+✓ package FS03
+✓ Created instance of FS03::alone
+  ID: 1
+  Use %features FS03::alone to inspect
+✓ Debugging state machine "regions" exhibited by object #4 of "FS03::alone.host"
+note: object #4 of "FS03::alone.host" already exhibits "FS03::Alone::regions", so this session attaches to that running machine rather than starting a second performance of it (as `%state FS03::alone.host` would)
+  Current state: a | c
+  Time: 0.0
+  Events: 0
+✓ Advanced to 10.0 (1 event(s) processed)
+  Current state: b | d
+  Last event at: 1.0
+  Remaining events: 0
+  1 choice point (1 independent); %trace on to see them
+  Action steps taken: 3
+  standing: value (observed: 1 run under reverse)

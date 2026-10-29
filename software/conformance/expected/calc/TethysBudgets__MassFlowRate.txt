@@ -1,0 +1,7 @@
+calc TethysBudgets::MassFlowRate(thrustN, specificImpulseS) kind=real tol=1e-09 relative
+  grid: SEP thrust/Isp points
+  c: does-not-compile-at-pin: sysml: not compilable: in calc TethysBudgets::MassFlowRate: reference to standardGravityMPerS2, which is not a parameter, body-local attribute or compiled library constant
+  go: does-not-compile-at-pin: sysml: not compilable: in calc TethysBudgets::MassFlowRate: reference to standardGravityMPerS2, which is not a parameter, body-local attribute or compiled library constant
+  (thrustN=0.25, specificImpulseS=1600.0) model=1.5933065827780128e-05
+  (thrustN=0.1, specificImpulseS=3000.0) model=3.3990540432597613e-06
+  (thrustN=0.0, specificImpulseS=1600.0) model=0.0

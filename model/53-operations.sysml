@@ -28,12 +28,12 @@ package TethysOperations {
     attribute def ApidTable {
         doc /* The application ids assigned to each class; the dictionary check demands they
              * are distinct and in the 11-bit range. */
-        attribute housekeeping : Natural = 1;
-        attribute guidance : Natural = 2;
-        attribute propulsion : Natural = 3;
-        attribute capture : Natural = 4;
-        attribute relay : Natural = 5;
-        attribute imaging : Natural = 6;
+        attribute housekeeping : Natural default = 1;
+        attribute guidance : Natural default = 2;
+        attribute propulsion : Natural default = 3;
+        attribute capture : Natural default = 4;
+        attribute relay : Natural default = 5;
+        attribute imaging : Natural default = 6;
     }
 
     item def Command :> CommandPacket {
@@ -174,19 +174,32 @@ package TethysOperations {
     }
 
     part def Dictionary {
-        doc /* The dictionary as a whole, with the consistency checks run over it. */
+        doc /* The dictionary as a whole, with the consistency checks run over it. The counts and
+             * the consistency flags are bound by the flight dictionary that specialises this. */
         attribute apids : ApidTable;
         attribute apidMaximum : Natural = 2047;
-        attribute commandCount : Natural = 8;
-        attribute telemetryPointCount : Natural = 7;
-    }
-    part dictionary : Dictionary {
-        doc /* The Tethys dictionary at its current issue. */
+        attribute commandCount : Natural;
+        attribute telemetryPointCount : Natural;
+        attribute eventCount : Natural;
+        attribute packetCount : Natural;
+        attribute opcodesUnique : Boolean;
+        attribute mnemonicsUnique : Boolean;
+        attribute apidsUnique : Boolean;
+        attribute apidsWithinRange : Boolean;
+        attribute eventIdsUnique : Boolean;
+        attribute packetsSumToLength : Boolean;
+        attribute commandsHaveModePrecondition : Boolean;
+        attribute pointsHaveSource : Boolean;
+        attribute parametersInRange : Boolean;
+        attribute fdirThresholdsReadLimitTable : Boolean;
     }
 
     requirement <'TG-010'> dictionaryConsistent : SystemRequirement {
-        doc /* The dictionary shall assign distinct application ids within the 11-bit range and
-             * every telemetry point shall carry ordered limits. */
+        doc /* The dictionary shall assign distinct application ids within the 11-bit range, distinct
+             * opcodes, mnemonics and event ids; every command shall have an opcode and a mode
+             * precondition, every packet shall sum to its length, every telemetry point shall name
+             * its source application and carry ordered limits, and every fault-supervisor threshold
+             * shall read a limit-table row. */
         subject d : Dictionary;
         @Verification { method = VerificationMethodKind::inspect; level = VerificationLevel::system; stage = VerificationStage::preLaunch; }
         require constraint distinctApids {
@@ -199,9 +212,18 @@ package TethysOperations {
                 and d.apids.capture != d.apids.relay and d.apids.capture != d.apids.imaging
                 and d.apids.relay != d.apids.imaging
         }
-        require constraint apidsInRange { d.apids.imaging <= d.apidMaximum }
+        require constraint apidsInRange { d.apids.imaging <= d.apidMaximum and d.apidsWithinRange }
+        require constraint distinctOpcodes { d.opcodesUnique }
+        require constraint distinctMnemonics { d.mnemonicsUnique }
+        require constraint distinctAllocatedApids { d.apidsUnique }
+        require constraint distinctEventIds { d.eventIdsUnique }
+        require constraint commandsComplete { d.commandsHaveModePrecondition }
+        require constraint packetsSumToLength { d.packetsSumToLength }
+        require constraint pointsSourced { d.pointsHaveSource }
+        require constraint parametersInRange { d.parametersInRange }
+        require constraint thresholdsFromTable { d.fdirThresholdsReadLimitTable }
+        require constraint populated { d.commandCount > 0 and d.telemetryPointCount > 0 and d.eventCount > 0 and d.packetCount > 0 }
     }
-    satisfy dictionaryConsistent by dictionary { doc /* The current dictionary passes its checks. */ }
 
     // ---- flight rules ------------------------------------------------------------------------
     constraint def NoThrustDuringRelay {
@@ -352,6 +374,7 @@ package TethysOperations {
         attribute passDuration : DurationValue;
         attribute band : RfBand;
         attribute maximumElevation : AngularMeasureValue;
+        ref producedBy : GroundSoftwareComponent[0..1];
     }
 
     action def DownlinkActivity {
@@ -371,7 +394,10 @@ package TethysOperations {
 
     occurrence def DailyPassPlan {
         doc /* One day of the characterisation phase: three passes, one per station, 8 h each
-             * so the tug is tracked continuously, with the downlinks and tracking they carry. */
+             * so the tug is tracked continuously, with the downlinks and tracking they carry.
+             * A plan names the ground software component that produced it (the pass planner
+             * of TethysGroundSoftware); the baseline plan below is hand-built. */
+        ref producedBy : GroundSoftwareComponent[0..1];
         occurrence calderaPass : StationPass {
             ref :>> station = meridian.caldera;
             attribute :>> startTime = 0.0 [s];
@@ -544,13 +570,27 @@ package TethysOperations {
         attribute margin : Real = projected - floor;
     }
     part xenonTrend : ResourceTrend {
-        doc /* Xenon in kg at the start of the return cruise: about 5 235 kg aboard (6 468 kg usable less the
-             * 1 233 kg of the outbound and rendezvous arcs), 5.2 kg a day of thrust, 1 000 days
-             * to go, 300 kg reserve floor. */
+        doc /* Xenon in kg at the start of the return cruise, read from the propellant book
+             * (TethysBudgets::propellantBudget) so the trend and the budget cannot disagree:
+             * aboard is the usable load less the outbound and rendezvous arcs with their
+             * missed-thrust allowance spent (about 5 112 kg, the budget's case); the rate is the
+             * SEP string's mass flow at aphelion while thrusting (about 5.2 kg a day); the days to
+             * go are the thrusting days the nominal case's return and insertion arcs need with
+             * the same allowance (about 550, not the calendar length of the cruise, which is
+             * mostly coast); the floor is the 300 kg reserve. The projection is then the budget's
+             * usable load less its nominal-case xenon, above the floor. */
+        attribute returnArcsXenon : MassValue = TethysBudgets::propellantBudget.xenonNominal
+            - (TethysBudgets::propellantBudget.outboundAlone + TethysBudgets::propellantBudget.rendezvousAlone)
+                * (1.0 + TethysMission::transferBook.missedThrustMargin) {
+            doc /* Xenon the return and insertion arcs take for the nominal case, with the
+                 * missed-thrust allowance: the mission's xenon less the arcs already flown. */
+        }
         attribute :>> resourceName = "xenon (kg)";
-        attribute :>> current = 5235.0;
-        attribute :>> ratePerDay = -5.2;
-        attribute :>> daysRemaining = 1000.0;
+        attribute :>> current = (TethysBudgets::propellantBudget.usable
+            - (TethysBudgets::propellantBudget.outboundAlone + TethysBudgets::propellantBudget.rendezvousAlone)
+                * (1.0 + TethysMission::transferBook.missedThrustMargin)) / (1 [kg]);
+        attribute :>> ratePerDay = -(TethysBudgets::propellantBudget.massFlowAtAphelion / (1 ['kg⋅s⁻¹'])) * 86400.0;
+        attribute :>> daysRemaining = (returnArcsXenon / (1 [kg])) / (-ratePerDay);
         attribute :>> floor = 300.0;
     }
     part batteryCapacityTrend : ResourceTrend {

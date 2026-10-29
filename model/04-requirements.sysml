@@ -14,10 +14,12 @@ package TethysRequirements {
         enum system;
         enum subsystem;
         enum component;
+        enum software;
     }
     enum def VerificationLevel {
         doc /* The integration level a requirement is verified at. */
         enum unit;
+        enum software;
         enum subsystem;
         enum system;
         enum mission;
@@ -43,7 +45,7 @@ package TethysRequirements {
     }
     requirement def SystemRequirement {
         doc /* An L2 requirement on a segment or the flight system. */
-        attribute tier : RequirementTier = RequirementTier::system;
+        attribute tier : RequirementTier default = RequirementTier::system;
     }
     requirement def SubsystemRequirement {
         doc /* An L3 requirement on a subsystem. */

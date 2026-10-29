@@ -94,8 +94,9 @@ package TethysVerification {
         attribute fidelity : String;
         attribute readyBy : String;
     }
-    part testBeds {
-        doc /* The simulators and test beds. */
+    part def TestBedSet {
+        doc /* The simulators and test beds of the programme; TethysGroundSoftware retypes
+             * each by the simulator or test-bed software that runs it. */
         part flatsat : TestBed {
             doc /* Engineering-model avionics with flight software, used for fault-response and
                  * autonomy tests. */
@@ -118,6 +119,9 @@ package TethysVerification {
             attribute :>> fidelity = "n-body with SRP, validated";
             attribute :>> readyBy = "PDR";
         }
+    }
+    part testBeds : TestBedSet {
+        doc /* The simulators and test beds. */
     }
 
     // ---- Verification cases: test -----------------------------------------------------------
@@ -142,11 +146,11 @@ package TethysVerification {
         subject tug : Tug;
         in attribute measuredToleratedSpeed : SpeedValue;
         objective {
-            doc /* The bag survives contact at the large case's equatorial speed. */
+            doc /* The bag survives contact at the largest case's equatorial speed. */
             verify proximityContactEnvironment { doc /* Verified by this case. */ }
             verify contactSpeedTolerance { doc /* Verified by this case. */ }
         }
-        PassIf(measuredToleratedSpeed >= 3.14159265 * targetCases.largest.meanDiameter / targetCases.large.rotationPeriod)
+        PassIf(measuredToleratedSpeed >= 3.14159265 * targetCases.largest.meanDiameter / targetCases.largest.rotationPeriod)
     }
     metadata VerificationMethod about ContactSpeedTest { kind = VerificationMethodKind::test; }
     verification def SepHotFireTest {

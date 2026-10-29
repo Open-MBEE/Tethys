@@ -1,0 +1,6 @@
+calc TethysLinkBudgets::CharacterisationDataVolume(diameterM, groundSamplingM, coverageCount, bitsPerPixel) kind=real tol=1e-09 relative
+  grid: 500 m body, 6.8 m nominal target
+  c: does-not-compile-at-pin: sysml: not compilable: in calc TethysLinkBudgets::CharacterisationDataVolume: reference to pi, which is not a parameter, body-local attribute or compiled library constant
+  go: does-not-compile-at-pin: sysml: not compilable: in calc TethysLinkBudgets::CharacterisationDataVolume: reference to pi, which is not a parameter, body-local attribute or compiled library constant
+  (diameterM=500.0, groundSamplingM=0.5, coverageCount=2.0, bitsPerPixel=12.0) model=75398223.68615496
+  (diameterM=6.8, groundSamplingM=0.05, coverageCount=3.0, bitsPerPixel=12.0) model=2091848.3179486827

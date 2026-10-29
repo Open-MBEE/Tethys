@@ -1,0 +1,20 @@
+run sw-capture-controller: scenario TethysFlightBehaviour::captureNominal, machine TethysFlightBehaviour::CaptureControlSoftware::controller on TethysFlightBehaviour::captureNominal.captureControl, horizon 20000 s
+host: 160 traced frames, 10 skips, 0 events, 0 commands, final mode launch, rc 0
+model: 27 trace events, 0 dropped, final time 20000 s, states visited 7
+machine SepStringController: host-only (1 changes; the model scenario does not run it)
+machine PowerManager: host-only (1 changes; the model scenario does not run it)
+machine ThermalController: host-only (1 changes; the model scenario does not run it)
+machine TelecomManager: host-only (1 changes; the model scenario does not run it)
+machine InspectorHandler: host-only (1 changes; the model scenario does not run it)
+machine CaptureController: agree (5 changes, 6 model transitions, 4 model accepts)
+  t=0 characterising
+  t=60 armed
+  t=180 committed
+  t=3780 despinning
+  t=10980 captured
+machine RedundancyManager: host-only (4 changes; the model scenario does not run it)
+machine BootUpdateManager: host-only (3 changes; the model scenario does not run it)
+machine TugModes: host-only (3 changes; the model scenario does not run it)
+machine ModeManagementDispatcher: host-only (1 changes; the model scenario does not run it)
+machine FdirSupervisor: host-only (1 changes; the model scenario does not run it)
+machine FdirResponseRelay: host-only (1 changes; the model scenario does not run it)

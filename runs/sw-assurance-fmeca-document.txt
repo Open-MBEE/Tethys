@@ -1,0 +1,166 @@
+loaded 64 files:
+  model/00-tethys.sysml
+  model/01-environment.sysml
+  model/02-mission.sysml
+  model/03-interfaces.sysml
+  model/04-requirements.sysml
+  model/05-tug.sysml
+  model/06-inspector.sysml
+  model/07-target.sysml
+  model/08-launch.sysml
+  model/09-ground.sysml
+  model/10-system.sysml
+  model/20-stakeholders.sysml
+  model/21-requirements-l2.sysml
+  model/22-requirements-l3-l4.sysml
+  model/23-verification.sysml
+  model/24-verification-tooling.sysml
+  model/30-margin-policy.sysml
+  model/31-tug-structure.sysml
+  model/32-budgets.sysml
+  model/40-inspector.sysml
+  model/41-capture-system.sysml
+  model/42-proximity-ops.sysml
+  model/50-ground.sysml
+  model/51-icds.sysml
+  model/52-link-budgets.sysml
+  model/53-operations.sysml
+  model/54-icds-tooling.sysml
+  model/60-modes.sysml
+  model/61-sequence.sysml
+  model/62-fdir.sysml
+  model/63-flight-software.sysml
+  model/64-flight-dictionary-tooling.sysml
+  model/64-flight-dictionary.sysml
+  model/65-flight-behaviour.sysml
+  model/66-flight-timing.sysml
+  model/67-software-requirements-tooling.sysml
+  model/67-software-requirements.sysml
+  model/68-software-icds-tooling.sysml
+  model/68-software-icds.sysml
+  model/69-ground-software.sysml
+  model/70-analyses.sysml
+  model/71-trades.sysml
+  model/72-montecarlo.sysml
+  model/73-dynamics.sysml
+  model/74-analyses-tooling.sysml
+  model/80-variants.sysml
+  model/81-physics.kerml
+  model/82-notation-sweep.sysml
+  model/85-safety.sysml
+  model/86-risk.sysml
+  model/87-allocations-tooling.sysml
+  model/87-allocations.sysml
+  model/88-software-assurance-tooling.sysml
+  model/88-software-assurance.sysml
+  model/90-views.sysml
+  model/91-documents.sysml
+  model/92-layout.sysml
+  model/93-views-tooling.sysml
+  model/94-software-documents-tooling.sysml
+  model/94-software-documents.sysml
+  model/95-as-built.sysml
+  model/96-imported-data.sysml
+  model/97-disposal.sysml
+  model/99-house-rules.sysml
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+# Argent flight software FMECA
+
+One row per application and one for the executive: failure mode, local and end effect, detection, response and criticality, with the assurance level of the component.
+
+<a id="rows"></a>
+
+*Software failure modes*
+
+| shortName | name | failureMode | localEffect | endEffect | detection | response | criticality | level |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SFM-01 | executiveSchedulerStall | partition scheduler stall: a major frame is not released | every application misses its rate group | watchdog resets the computer; redundant computer takes over | builtInTest | switchover | major | levelA |
+| SFM-02 | cdhRoutingLoss | message bus queue overflow drops commands | commands not delivered to their application | loss of commandability until the command-loss timer safes the tug | telemetryLimit | safeMode | major | levelB |
+| SFM-03 | gncTargetingError | targeting solution from a stale ephemeris | burn vector inside the Earth corridor | Earth-impact trajectory unless the exclusion monitor aborts | navigationResidual | abortReturn | catastrophic | levelA |
+| SFM-04 | sepUncommandedThrust | thrust arc not terminated at its end time | thrust continues past the planned arc | trajectory error; on the final arc an Earth-corridor entry | telemetryLimit | safeMode | catastrophic | levelA |
+| SFM-05 | powerLoadShedMissed | battery floor comparison against a stale measurement | loads stay on below the floor | battery depth of discharge exceeded; FDIR safes the tug | telemetryLimit | loadShed | major | levelB |
+| SFM-06 | thermalSetpointError | setpoint table index off by one | one zone too cold or too warm | component out of its allowable range; trended by the ground | groundTrending | retry | minor | levelC |
+| SFM-07 | telecomTransmitterStuck | transmitter-off command lost at the arc start | transmitter on while thrusting | flight rule FR-001 violated; power margin consumed | telemetryLimit | retry | minor | levelB |
+| SFM-08 | inspectorRelayLoss | relay buffer overrun | survey frames lost | characterisation products delayed | groundTrending | retry | negligible | levelC |
+| SFM-09 | captureCinchWithInhibit | inhibit gate bypassed | cinch motor runs before the envelope check | bag torn on an over-envelope body | builtInTest | abortReturn | critical | levelA |
+| SFM-10 | autonomyAbortMissed | abort rule disabled by a parameter load | keep-out breach continues | collision with the target | navigationResidual | abortReturn | critical | levelA |
+| SFM-11 | fdirMonitorMasked | monitor mask left set after a test | fault not detected | no abort on an Earth-corridor entry | groundTrending | safeMode | catastrophic | levelA |
+| SFM-12 | modeManagerWrongMode | mode flag not cleared on exit | the capture-mode inhibit is removed | one of three cinch inhibits lost | telemetryLimit | safeMode | critical | levelA |
+| SFM-13 | bootImageCorrupt | image checksum mismatch after upload | boot falls back to the safe image | mission software reverted until reload | builtInTest | retry | minor | levelB |
+
+*Premature-cinch fault tree events*
+
+| name | probability |
+| --- | --- |
+| controllerFiresInhibited | 0.0001 |
+| modeFlagStuck | 0.001 |
+| groundEnableWithoutApproval | 0.001 |
+| driverSpuriousFire | 1e-06 |
+| allInhibitsLost |  |
+| cinchFiresPrematurely |  |
+| inhibitsLostGate |  |
+| topGate |  |
+| withinBudget |  |

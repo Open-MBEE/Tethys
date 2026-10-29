@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tethys software requirements</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysSoftwareRequirementsTooling::SoftwareRequirementsDocument">
+<h1 class="sysml-title">Tethys software requirements</h1>
+<p class="sysml-paragraph" data-content="paragraph" data-name="scope">The flight software requirements (TF-) on the Argent Flight Executive, its core services and applications, and the ground software requirements (TM-) on the Meridian Operations Suite; each row derives from the system rows it refines and names the software element that satisfies it; the verdicts of the constraints are the pinned satisfaction runs.</p>
+<table class="sysml-table sysml-table-landscape" data-content="table" data-name="rows" data-query="TethysSoftwareRequirementsTooling::SoftwareRequirementMatrix">
+<caption class="sysml-caption">Software requirements: derivation sources and satisfiers</caption>
+<thead>
+<tr>
+<th scope="col" data-column="shortName">shortName</th>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="Verification::method">Verification::method</th>
+<th scope="col" data-column="Verification::level">Verification::level</th>
+<th scope="col" data-column="derivedFrom">derivedFrom</th>
+<th scope="col" data-column="satisfiedBy">satisfiedBy</th>
+<th scope="col" data-column="satisfiers">satisfiers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::commandIngest" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-001</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">commandIngest</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::dictionaryConsistent" data-element-kind="requirementUsage">dictionaryConsistent</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::commandLatency" data-element-kind="requirementUsage">commandLatency</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::commandIngest" data-element-kind="partUsage">commandIngest</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::hazardousTwoStep" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-002</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">hazardousTwoStep</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::dictionaryConsistent" data-element-kind="requirementUsage">dictionaryConsistent</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::noThrustDuringRelay" data-element-kind="requirementUsage">noThrustDuringRelay</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::commandIngest" data-element-kind="partUsage">commandIngest</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::telemetryRatesByMode" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-003</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telemetryRatesByMode</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::deepSpaceLink" data-element-kind="requirementUsage">deepSpaceLink</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::groundCoverage" data-element-kind="requirementUsage">groundCoverage</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::telecom" data-element-kind="partUsage">telecom</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::eventLogging" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-004</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">eventLogging</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::autonomousSurvival" data-element-kind="requirementUsage">autonomousSurvival</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::faultDetectionLatency" data-element-kind="requirementUsage">faultDetectionLatency</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::events" data-element-kind="partUsage">events</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::parameterTables" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-005</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">parameterTables</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::dictionaryConsistent" data-element-kind="requirementUsage">dictionaryConsistent</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::fdirTaskPeriod" data-element-kind="requirementUsage">fdirTaskPeriod</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::tables" data-element-kind="partUsage">tables</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::timeCorrelation" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-006</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">timeCorrelation</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::deepSpaceLink" data-element-kind="requirementUsage">deepSpaceLink</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::rangingAccuracy" data-element-kind="requirementUsage">rangingAccuracy</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::time" data-element-kind="partUsage">time</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::imageIntegrity" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-007</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">imageIntegrity</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::autonomousSurvival" data-element-kind="requirementUsage">autonomousSurvival</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::bootUpdate" data-element-kind="partUsage">bootUpdate</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::bootFallback" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-008</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">bootFallback</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::autonomousSurvival" data-element-kind="requirementUsage">autonomousSurvival</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightBehaviour::BehaviouralFlightSoftware::parameterBootUpdate" data-element-kind="partUsage">parameterBootUpdate</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::partitionIsolation" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-009</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">partitionIsolation</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::faultResponse" data-element-kind="requirementUsage">faultResponse</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysBudgets::processorBudgetCloses" data-element-kind="requirementUsage">processorBudgetCloses</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::executive" data-element-kind="partUsage">executive</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::processorMemoryReserve" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-010</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">processorMemoryReserve</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysBudgets::processorBudgetCloses" data-element-kind="requirementUsage">processorBudgetCloses</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightTiming::softwareProcessorBudget" data-element-kind="partUsage">softwareProcessorBudget</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::busReserve" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-011</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">busReserve</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysBudgets::busBudgetCloses" data-element-kind="requirementUsage">busBudgetCloses</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightTiming::softwareBusBudget" data-element-kind="partUsage">softwareBusBudget</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::busReserveCoast" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-012</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">busReserveCoast</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysBudgets::busBudgetCloses" data-element-kind="requirementUsage">busBudgetCloses</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightTiming::softwareBusBudgetCoast" data-element-kind="partUsage">softwareBusBudgetCoast</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::faultDetectionChain" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-013</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">faultDetectionChain</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::faultDetectionLatency" data-element-kind="requirementUsage">faultDetectionLatency</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysBudgets::latencyBudgetCloses" data-element-kind="requirementUsage">latencyBudgetCloses</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightTiming::argentLatency::faultDetection" data-element-kind="partUsage">faultDetection</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::safeConfigurationLatency" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-014</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">safeConfigurationLatency</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::faultResponse" data-element-kind="requirementUsage">faultResponse</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysBudgets::latencyBudgetCloses" data-element-kind="requirementUsage">latencyBudgetCloses</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightTiming::argentLatency::safeConfiguration" data-element-kind="partUsage">safeConfiguration</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::fdirTaskRate" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-015</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">fdirTaskRate</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::fdirTaskPeriod" data-element-kind="requirementUsage">fdirTaskPeriod</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightTiming::argentTiming::platformSchedule::fdirTask" data-element-kind="partUsage">fdirTask</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::commandDispatchLatency" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-016</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">commandDispatchLatency</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::commandLatency" data-element-kind="requirementUsage">commandLatency</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysBudgets::latencyBudgetCloses" data-element-kind="requirementUsage">latencyBudgetCloses</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightTiming::argentLatency::commandDispatch" data-element-kind="partUsage">commandDispatch</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::telemetrySampleLatency" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-017</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telemetrySampleLatency</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::deepSpaceLink" data-element-kind="requirementUsage">deepSpaceLink</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysBudgets::latencyBudgetCloses" data-element-kind="requirementUsage">latencyBudgetCloses</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightTiming::argentLatency::telemetrySample" data-element-kind="partUsage">telemetrySample</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::safeModeEntry" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-018</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">safeModeEntry</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::autonomousSurvival" data-element-kind="requirementUsage">autonomousSurvival</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::faultResponse" data-element-kind="requirementUsage">faultResponse</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::modeManagement" data-element-kind="partUsage">modeManagement</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::modeTransitions" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-019</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">modeTransitions</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::autonomousSurvival" data-element-kind="requirementUsage">autonomousSurvival</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::modeManagement" data-element-kind="partUsage">modeManagement</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::sequencingEngine" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-020</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sequencingEngine</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::commandLatency" data-element-kind="requirementUsage">commandLatency</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::noThrustDuringRelay" data-element-kind="requirementUsage">noThrustDuringRelay</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::batteryDepthOfDischarge" data-element-kind="requirementUsage">batteryDepthOfDischarge</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::autonomy" data-element-kind="partUsage">autonomy</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::redundancyManagement" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-021</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">redundancyManagement</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::autonomousSurvival" data-element-kind="requirementUsage">autonomousSurvival</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::SoftwareTug::cdh" data-element-kind="partUsage">cdh</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::heartbeatFailover" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-022</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">heartbeatFailover</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::autonomousSurvival" data-element-kind="requirementUsage">autonomousSurvival</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::faultResponse" data-element-kind="requirementUsage">faultResponse</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightBehaviour::BehaviouralTug::cdh" data-element-kind="partUsage">cdh</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::busMessaging" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-023</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">busMessaging</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysBudgets::busBudgetCloses" data-element-kind="requirementUsage">busBudgetCloses</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::softwareBus" data-element-kind="partUsage">softwareBus</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::dataStoreRetention" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-024</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dataStoreRetention</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::deepSpaceLink" data-element-kind="requirementUsage">deepSpaceLink</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::autonomousSurvival" data-element-kind="requirementUsage">autonomousSurvival</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::dataStore" data-element-kind="partUsage">dataStore</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::telemetryOutput" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-025</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telemetryOutput</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::dictionaryConsistent" data-element-kind="requirementUsage">dictionaryConsistent</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::deepSpaceLink" data-element-kind="requirementUsage">deepSpaceLink</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::telemetryOutput" data-element-kind="partUsage">telemetryOutput</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::housekeepingSampling" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-026</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">housekeepingSampling</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::deepSpaceLink" data-element-kind="requirementUsage">deepSpaceLink</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::housekeeping" data-element-kind="partUsage">housekeeping</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::schedulerCapacity" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-027</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">schedulerCapacity</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::commandLatency" data-element-kind="requirementUsage">commandLatency</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::scheduler" data-element-kind="partUsage">scheduler</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::boardSupportWatchdog" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-028</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">boardSupportWatchdog</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::autonomousSurvival" data-element-kind="requirementUsage">autonomousSurvival</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::faultResponse" data-element-kind="requirementUsage">faultResponse</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::boardSupport" data-element-kind="partUsage">boardSupport</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::cdhApplication" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-030</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">cdhApplication</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::autonomousSurvival" data-element-kind="requirementUsage">autonomousSurvival</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::cdh" data-element-kind="partUsage">cdh</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::gncApplication" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-031</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">gncApplication</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::faultResponse" data-element-kind="requirementUsage">faultResponse</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::gnc" data-element-kind="partUsage">gnc</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::sepControlApplication" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-032</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sepControlApplication</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::noThrustDuringRelay" data-element-kind="requirementUsage">noThrustDuringRelay</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::sepControl" data-element-kind="partUsage">sepControl</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::powerManagementApplication" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-033</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">powerManagementApplication</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::batteryDepthOfDischarge" data-element-kind="requirementUsage">batteryDepthOfDischarge</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::powerManagement" data-element-kind="partUsage">powerManagement</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::thermalControlApplication" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-034</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thermalControlApplication</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::autonomousSurvival" data-element-kind="requirementUsage">autonomousSurvival</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::thermalControl" data-element-kind="partUsage">thermalControl</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::telecomApplication" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-035</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telecomApplication</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::deepSpaceLink" data-element-kind="requirementUsage">deepSpaceLink</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::telecom" data-element-kind="partUsage">telecom</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::inspectorHandlingApplication" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-036</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">inspectorHandlingApplication</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::proximityContactEnvironment" data-element-kind="requirementUsage">proximityContactEnvironment</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::inspectorHandling" data-element-kind="partUsage">inspectorHandling</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::captureControlApplication" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-037</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">captureControlApplication</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::faultResponse" data-element-kind="requirementUsage">faultResponse</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::proximityContactEnvironment" data-element-kind="requirementUsage">proximityContactEnvironment</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::captureControl" data-element-kind="partUsage">captureControl</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::autonomyApplication" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-038</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">autonomyApplication</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::commandLatency" data-element-kind="requirementUsage">commandLatency</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::autonomy" data-element-kind="partUsage">autonomy</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::fdirApplication" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-039</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">fdirApplication</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::faultDetectionLatency" data-element-kind="requirementUsage">faultDetectionLatency</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::fdirTaskPeriod" data-element-kind="requirementUsage">fdirTaskPeriod</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::fdir" data-element-kind="partUsage">fdir</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::modeManagementApplication" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-040</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">modeManagementApplication</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::faultResponse" data-element-kind="requirementUsage">faultResponse</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::modeManagement" data-element-kind="partUsage">modeManagement</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::parameterBootUpdateApplication" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TF-041</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">parameterBootUpdateApplication</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::autonomousSurvival" data-element-kind="requirementUsage">autonomousSurvival</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysFlightSoftware::ArgentFlightSoftware::parameterBootUpdate" data-element-kind="partUsage">parameterBootUpdate</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::commandValidation" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TM-001</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">commandValidation</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::commandValidation" data-element-kind="requirementUsage">commandValidation</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::dictionaryConsistent" data-element-kind="requirementUsage">dictionaryConsistent</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::commandLatency" data-element-kind="requirementUsage">commandLatency</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::SoftwareOperationsCentre::commandBuilder" data-element-kind="partUsage">commandBuilder</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::hazardousApproval" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TM-002</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">hazardousApproval</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::demo" data-element-kind="enumUsage">demo</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::commandValidation" data-element-kind="requirementUsage">commandValidation</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::noThrustDuringRelay" data-element-kind="requirementUsage">noThrustDuringRelay</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::operatorWorkload" data-element-kind="requirementUsage">operatorWorkload</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::SoftwareOperationsCentre::commandBuilder" data-element-kind="partUsage">commandBuilder</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::sequenceClearance" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TM-003</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sequenceClearance</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::demo" data-element-kind="enumUsage">demo</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::sequenceClearance" data-element-kind="requirementUsage">sequenceClearance</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::commandLatency" data-element-kind="requirementUsage">commandLatency</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::noThrustDuringRelay" data-element-kind="requirementUsage">noThrustDuringRelay</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::batteryDepthOfDischarge" data-element-kind="requirementUsage">batteryDepthOfDischarge</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::sequenceTurnaround" data-element-kind="requirementUsage">sequenceTurnaround</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::SoftwareOperationsCentre::sequencer" data-element-kind="partUsage">sequencer</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::telemetryDecommutation" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TM-004</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telemetryDecommutation</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::dictionaryDrivenTelemetry" data-element-kind="requirementUsage">dictionaryDrivenTelemetry</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::dictionaryConsistent" data-element-kind="requirementUsage">dictionaryConsistent</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::SoftwareOperationsCentre::telemetryServer" data-element-kind="partUsage">telemetryServer</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::limitAlarming" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TM-005</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">limitAlarming</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::dictionaryDrivenTelemetry" data-element-kind="requirementUsage">dictionaryDrivenTelemetry</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::batteryDepthOfDischarge" data-element-kind="requirementUsage">batteryDepthOfDischarge</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::monitoringAutomation" data-element-kind="requirementUsage">monitoringAutomation</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::SoftwareOperationsCentre::telemetryServer" data-element-kind="partUsage">telemetryServer</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::trendingAutomation" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TM-006</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">trendingAutomation</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::monitoringAutomation" data-element-kind="requirementUsage">monitoringAutomation</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::operatorWorkload" data-element-kind="requirementUsage">operatorWorkload</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::SoftwareOperationsCentre::telemetryServer" data-element-kind="partUsage">telemetryServer</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::flightDynamicsProducts" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TM-007</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">flightDynamicsProducts</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::autonomousSurvival" data-element-kind="requirementUsage">autonomousSurvival</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::rangingAccuracy" data-element-kind="requirementUsage">rangingAccuracy</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::impactScreening" data-element-kind="requirementUsage">impactScreening</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::SoftwareFlightDynamics::flightDynamicsTool" data-element-kind="partUsage">flightDynamicsTool</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::passPlanningVolume" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TM-008</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">passPlanningVolume</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::plannedPassesFitTheLink" data-element-kind="requirementUsage">plannedPassesFitTheLink</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::deepSpaceLink" data-element-kind="requirementUsage">deepSpaceLink</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::groundCoverage" data-element-kind="requirementUsage">groundCoverage</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::SoftwareOperationsCentre::passPlanner" data-element-kind="partUsage">passPlanner</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::archiveRetention" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TM-009</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">archiveRetention</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::analyze" data-element-kind="enumUsage">analyze</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL3L4::scienceArchive" data-element-kind="requirementUsage">scienceArchive</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::SoftwareScienceDataSystem::dataArchive" data-element-kind="partUsage">dataArchive</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::anomalyDisposition" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TM-010</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">anomalyDisposition</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::demo" data-element-kind="enumUsage">demo</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::operatorWorkload" data-element-kind="requirementUsage">operatorWorkload</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::operationsReadiness" data-element-kind="requirementUsage">operationsReadiness</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::SoftwareOperationsCentre::anomalyTracker" data-element-kind="partUsage">anomalyTracker</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::proximityGoNoGo" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TM-011</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">proximityGoNoGo</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::demo" data-element-kind="enumUsage">demo</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::approachKeepOut" data-element-kind="requirementUsage">approachKeepOut</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysOperations::sunExclusion" data-element-kind="requirementUsage">sunExclusion</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::proximityContactEnvironment" data-element-kind="requirementUsage">proximityContactEnvironment</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::SoftwareOperationsCentre::proximityPlanner" data-element-kind="partUsage">proximityPlanner</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSoftwareRequirements::simulatorFidelity" data-element-kind="requirementUsage">
+<td class="sysml-cell" data-column="shortName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TM-012</span></td>
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">simulatorFidelity</span></td>
+<td class="sysml-cell" data-column="Verification::method" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="VerificationCases::VerificationMethodKind::test" data-element-kind="enumUsage">test</span></td>
+<td class="sysml-cell" data-column="Verification::level" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirements::VerificationLevel::software" data-element-kind="enumUsage">software</span></td>
+<td class="sysml-cell" data-column="derivedFrom" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysRequirementsL2::captureQualification" data-element-kind="requirementUsage">captureQualification</span></td>
+<td class="sysml-cell" data-column="satisfiedBy" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::SimulatedTestBedSet::flatsat" data-element-kind="partUsage">flatsat</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::SimulatedTestBedSet::trajectoryTool" data-element-kind="partUsage">trajectoryTool</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::SimulatedTestBedSet::dynamicsSimulator" data-element-kind="partUsage">dynamicsSimulator</span><span class="sysml-separator">, </span><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::SimulatedTestBedSet::captureRig" data-element-kind="partUsage">captureRig</span></td>
+<td class="sysml-cell" data-column="satisfiers" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">4</span></td>
+</tr>
+</tbody>
+</table>
+<section class="sysml-section" id="gates" data-content="section" data-name="gates">
+<h2>Coverage gates</h2>
+<table class="sysml-table" data-content="table" data-name="underived" data-query="TethysSoftwareRequirementsTooling::UnderivedSoftwareRequirements">
+<caption class="sysml-caption">Software requirements without a derivation source (expected empty)</caption>
+<thead>
+<tr>
+<th scope="col" data-column="shortName">shortName</th>
+<th scope="col" data-column="name">name</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="unsatisfied" data-query="TethysSoftwareRequirementsTooling::UnsatisfiedSoftwareRequirements">
+<caption class="sysml-caption">Software requirements without a satisfier (expected empty)</caption>
+<thead>
+<tr>
+<th scope="col" data-column="shortName">shortName</th>
+<th scope="col" data-column="name">name</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="flight" data-query="TethysSoftwareRequirementsTooling::UncoveredFlightSoftware">
+<caption class="sysml-caption">Flight software elements satisfying no requirement (expected empty)</caption>
+<thead>
+<tr>
+<th scope="col" data-column="qualifiedName">qualifiedName</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="ground" data-query="TethysSoftwareRequirementsTooling::UncoveredGroundSoftware">
+<caption class="sysml-caption">Meridian suite elements satisfying no requirement (expected empty)</caption>
+<thead>
+<tr>
+<th scope="col" data-column="qualifiedName">qualifiedName</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+</article>
+</body>
+</html>

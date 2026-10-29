@@ -674,15 +674,51 @@ package TethysBudgets {
     }
 
     part def ProcessorBudget {
-        doc /* Flight computer processor and memory loads against capacity with the 50 %
-             * reserve the software margin policy demands at PDR. */
-        attribute reserve : Real = 0.50;
-        attribute capacityMips : Real = head(argentDesign.cdh.flightComputers.processorCapacityMips);
-        attribute loadMips : Real = head(argentDesign.cdh.flightComputers.processorLoadMips);
-        attribute memoryCapacity : StorageCapacityValue = head(argentDesign.cdh.flightComputers.memoryCapacity);
-        attribute memoryAllocated : StorageCapacityValue = head(argentDesign.cdh.flightComputers.memoryAllocated);
-        assert constraint processorCloses { loadMips <= capacityMips * (1.0 - reserve) }
-        assert constraint memoryCloses { memoryAllocated <= memoryCapacity * (1.0 - reserve) }
+        doc /* Flight computer processor and memory loads against capacity with the reserve the
+             * software margin policy demands. The defaults read the flight computer's own
+             * figures; the timing budgets bind the loads from the per-application sums. */
+        attribute reserve : Real default = activeSoftwarePolicy.processorReserve;
+        attribute memoryReserve : Real default = activeSoftwarePolicy.memoryReserve;
+        attribute capacityMips : Real =
+            head(argentDesign.cdh.flightComputers.processorCapacityMips);
+        attribute loadMips : Real default =
+            head(argentDesign.cdh.flightComputers.processorLoadMips);
+        attribute memoryCapacity : StorageCapacityValue =
+            head(argentDesign.cdh.flightComputers.memoryCapacity);
+        attribute memoryAllocated : StorageCapacityValue default =
+            head(argentDesign.cdh.flightComputers.memoryAllocated);
+        attribute processorUtilisation : Real = loadMips / capacityMips;
+        attribute memoryUtilisation : Real = memoryAllocated / memoryCapacity;
+        assert constraint processorCloses {
+            loadMips <= capacityMips * (1.0 - reserve)
+        }
+        assert constraint memoryCloses {
+            memoryAllocated <= memoryCapacity * (1.0 - memoryReserve)
+        }
+    }
+
+    part def BusBudget {
+        doc /* On-board data bus slots used in a frame against the slots the frame has, with
+             * the bus reserve the software margin policy demands. */
+        attribute reserve : Real default = activeSoftwarePolicy.busReserve;
+        attribute frameSlots : Natural;
+        attribute slotsUsed : Real;
+        attribute utilisation : Real = slotsUsed / frameSlots;
+        assert constraint busCloses {
+            utilisation <= 1.0 - reserve
+        }
+    }
+
+    part def LatencyBudget {
+        doc /* An end-to-end latency chain against the bound its requirement sets, with the
+             * latency margin the software margin policy demands. */
+        attribute margin : Real default = activeSoftwarePolicy.latencyMargin;
+        attribute latency : DurationValue;
+        attribute bound : DurationValue;
+        attribute utilisation : Real = latency / bound;
+        assert constraint latencyCloses {
+            utilisation <= 1.0 - margin
+        }
     }
     part processorBudget : ProcessorBudget {
         doc /* The Phase B processor budget of Argent. */
@@ -896,6 +932,21 @@ package TethysBudgets {
         @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::subsystem; stage = VerificationStage::qualification; }
         require budget.processorCloses;
         require budget.memoryCloses;
+    }
+
+    requirement <'TS-143'> busBudgetCloses : SystemRequirement {
+        doc /* On-board data bus slots used in a frame shall leave the reserve the software
+             * margin policy demands. */
+        subject budget : BusBudget;
+        @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::subsystem; stage = VerificationStage::qualification; }
+        require budget.busCloses;
+    }
+    requirement <'TS-144'> latencyBudgetCloses : SystemRequirement {
+        doc /* Every end-to-end latency chain shall keep the margin the software margin policy
+             * demands to the bound its requirement sets. */
+        subject budget : LatencyBudget;
+        @Verification { method = VerificationMethodKind::analyze; level = VerificationLevel::subsystem; stage = VerificationStage::qualification; }
+        require budget.latencyCloses;
     }
 
     assert satisfy massBudgetCloses by massBudget {
