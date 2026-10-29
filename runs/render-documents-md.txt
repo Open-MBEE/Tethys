@@ -166,7 +166,7 @@ wrote build/runs/documents/TethysSoftwareDocumentsTooling-FlightDynamicsToolDesi
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-GncDesignDescription.md (markdown, 13063 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-GroundComponentDesignDescription.md (markdown, 302 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-InspectorHandlingDesignDescription.md (markdown, 8054 bytes)
-wrote build/runs/documents/TethysSoftwareDocumentsTooling-ModeManagementDesignDescription.md (markdown, 7998 bytes)
+wrote build/runs/documents/TethysSoftwareDocumentsTooling-ModeManagementDesignDescription.md (markdown, 8076 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-ParameterBootUpdateDesignDescription.md (markdown, 9464 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-PassPlannerDesignDescription.md (markdown, 1650 bytes)
 wrote build/runs/documents/TethysSoftwareDocumentsTooling-PowerManagementDesignDescription.md (markdown, 17565 bytes)
