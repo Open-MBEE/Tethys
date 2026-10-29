@@ -11,6 +11,7 @@ package TethysRisk {
     private import ISQ::*;
     private import SI::*;
     private import RiskMetadata::*;
+    private import ControlFunctions::*;
     private import StandardViewDefinitions::*;
     private import TethysTug::*;
     private import TethysMission::*;
@@ -120,9 +121,11 @@ package TethysRisk {
     }
 
     part riskRegister {
-        doc /* The project risk register at the start of Phase B. Identifiers TK-nnn. */
+        doc /* The project risk register at the start of Phase B. Identifiers TK-nnn. Every
+             * entry subsets `items`, the collection the register-wide gates quantify over. */
+        part items : RiskItem[*];
 
-        part <'TK-001'> earthImpactRisk : RiskItem {
+        part <'TK-001'> earthImpactRisk : RiskItem :> items {
             doc /* The returned body could be placed on an Earth-impact trajectory. */
             @Risk { :>> totalRisk { :>> probability = 0.2; :>> impact = 1.0; } }
             attribute :>> statement = "A control failure on the final targeting arc places the body on an Earth-impact trajectory.";
@@ -155,7 +158,7 @@ package TethysRisk {
             }
         }
 
-        part <'TK-002'> targetSizeRisk : RiskItem {
+        part <'TK-002'> targetSizeRisk : RiskItem :> items {
             doc /* The target may be larger, heavier or faster-spinning than the characterisation
                  * envelope (the design driver of the mission). */
             @Risk { :>> totalRisk { :>> probability = 0.6; :>> impact = 0.8; } }
@@ -183,7 +186,7 @@ package TethysRisk {
             snapshot atPdr : RiskItem { attribute :>> likelihood = Likelihood::moderate; }
         }
 
-        part <'TK-003'> thrusterLifeRisk : RiskItem {
+        part <'TK-003'> thrusterLifeRisk : RiskItem :> items {
             doc /* The Hall thrusters may not reach the 20 000 h per-string life the return needs. */
             @Risk { :>> totalRisk { :>> probability = 0.4; :>> impact = 0.8; } }
             attribute :>> statement = "Thruster erosion life falls short of the return-cruise demand and the fourth thruster is consumed early.";
@@ -204,7 +207,7 @@ package TethysRisk {
             snapshot atPdr : RiskItem { attribute :>> likelihood = Likelihood::low; }
         }
 
-        part <'TK-004'> proximityOperationsRisk : RiskItem {
+        part <'TK-004'> proximityOperationsRisk : RiskItem :> items {
             doc /* Relative navigation at the target may be less robust than designed. */
             @Risk { :>> totalRisk { :>> probability = 0.4; :>> impact = 0.6; } }
             attribute :>> statement = "Relative navigation diverges during final approach and the capture attempt is aborted repeatedly.";
@@ -227,7 +230,7 @@ package TethysRisk {
             snapshot atPdr : RiskItem { attribute :>> likelihood = Likelihood::low; }
         }
 
-        part <'TK-005'> xenonMarginRisk : RiskItem {
+        part <'TK-005'> xenonMarginRisk : RiskItem :> items {
             doc /* The xenon margin may be consumed by target mass growth. */
             @Risk { :>> totalRisk { :>> probability = 0.6; :>> impact = 0.6; } }
             attribute :>> statement = "A large-case target consumes the xenon reserve and the return arc cannot be closed.";
@@ -247,7 +250,7 @@ package TethysRisk {
             snapshot atPdr : RiskItem { attribute :>> likelihood = Likelihood::moderate; }
         }
 
-        part <'TK-006'> captureBagTechnology : TechnologyRisk {
+        part <'TK-006'> captureBagTechnology : TechnologyRisk :> items {
             doc /* The inflatable capture bag is the mission's least mature technology. */
             @Risk { :>> totalRisk { :>> probability = 0.4; :>> impact = 0.8; } :>> technicalRisk { :>> probability = 0.6; :>> impact = 0.8; } :>> scheduleRisk { :>> probability = 0.6; :>> impact = 0.6; } }
             attribute :>> statement = "The inflatable bag does not reach flight readiness by CDR.";
@@ -272,8 +275,11 @@ package TethysRisk {
         }
 
         assert constraint noUnownedRedRisk {
-            doc /* Every red risk has a mitigation plan under way. */
-            not (earthImpactRisk.rating == Rating::red and earthImpactRisk.status == RiskStatus::open)
+            doc /* Every red risk has a mitigation plan under way: no entry of the register is
+                 * both rated red and still open. Quantified over `items`, so an entry added
+                 * later is checked without touching the gate. */
+            items->forAll { in risk : RiskItem;
+                not (risk.rating == Rating::red and risk.status == RiskStatus::open) }
         }
     }
 

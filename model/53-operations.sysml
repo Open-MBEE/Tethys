@@ -441,21 +441,30 @@ package TethysOperations {
              * one machine, so none of them overlaps; the relay window and the thrust arc are
              * never both active, which is how FR-001 is kept by construction. */
         attribute relayHours : Real := 0.0;
+        attribute dayLength : DurationValue = 1.0 [d];
+        attribute morningPassDuration : DurationValue = 7200 [s];
+        attribute relayWindowDuration : DurationValue = 7200 [s];
+        attribute middayPassDuration : DurationValue = 10800 [s];
+        attribute coastAndTrackDuration : DurationValue = 7200 [s];
+        attribute thrustArcDuration : DurationValue = 14400 [s];
+        attribute eveningPassDuration : DurationValue = dayLength
+            - (morningPassDuration + relayWindowDuration + middayPassDuration + coastAndTrackDuration + thrustArcDuration);
         exhibit state day {
             entry; then morningPass;
             state morningPass;
-            transition first morningPass accept after 7200 [s] then relayWindow;
+            transition first morningPass accept after morningPassDuration then relayWindow;
             state relayWindow {
                 entry action tally assign relayHours := relayHours + 2.0;
             }
-            transition first relayWindow accept after 7200 [s] then middayPass;
+            transition first relayWindow accept after relayWindowDuration then middayPass;
             state middayPass;
-            transition first middayPass accept after 10800 [s] then coastAndTrack;
+            transition first middayPass accept after middayPassDuration then coastAndTrack;
             state coastAndTrack;
-            transition first coastAndTrack accept after 7200 [s] then thrustArc;
+            transition first coastAndTrack accept after coastAndTrackDuration then thrustArc;
             state thrustArc;
-            transition first thrustArc accept after 14400 [s] then eveningPass;
+            transition first thrustArc accept after thrustArcDuration then eveningPass;
             state eveningPass;
+            transition first eveningPass accept after eveningPassDuration then done;
         }
     }
     part opsTimeline : OperationsTimeline {
