@@ -179,7 +179,7 @@ loaded 64 files:
 | name | type | documentation |
 | --- | --- | --- |
 | flightMode |  |  |
-| sepString |  | The solar-electric propulsion string: off until commissioning, standby<br>between arcs, thrusting during one and during the approach until the<br>rendezvous range update; off in safe mode. |
+| sepString |  | The solar-electric propulsion string: off until commissioning, standby<br>between arcs, thrusting during one and during the approach until the<br>rendezvous range update, burning the disposal arc until its duration<br>elapses and then off for good; off in safe mode. |
 | telecom |  | Deep-space link: low-gain omni from launch and in safe mode, high-gain<br>when pointed; the proximity relay is on with the inspector in flight. |
 | attitudeControl |  | Reaction wheels for cruise and thrust; hydrazine thrusters for proximity<br>operations, capture and despin, and for the sun-pointed safe mode. |
 | captureMechanism |  | Capture bag: stowed until CaptureGo, deployed during capture, cinched on<br>completion, released at disposal. |
