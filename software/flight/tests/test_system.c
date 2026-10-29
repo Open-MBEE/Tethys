@@ -24,7 +24,7 @@ static void test_machine_order_and_binding(void)
         guards += sys.sm[i].def->guard_count; effects += sys.sm[i].def->effect_count;
         states += sys.sm[i].def->state_count; transitions += sys.sm[i].def->transition_count;
     }
-    CHECK(states == 100u && transitions == 161u);   /* the generated totals */
+    CHECK(states == 101u && transitions == 163u);   /* the generated totals */
     printf("  %u guards, %u effects bound over %u states / %u transitions\n", guards, effects, states, transitions);
 }
 
