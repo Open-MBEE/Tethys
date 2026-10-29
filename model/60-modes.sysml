@@ -488,6 +488,7 @@ package TethysModes {
         attribute keepOutRadius : LengthValue = 200.0 [m];
         attribute checkoutDuration : DurationValue = 4.0 [h];
         attribute retreatDuration : DurationValue = 6.0 [h];
+        attribute passDuration : DurationValue = 8.0 [h];
         attribute checkedOut : Boolean = false;
         attribute imagingPasses : Natural = 0;
 
@@ -503,8 +504,8 @@ package TethysModes {
                 entry assign imagingPasses := imagingPasses + 1;
             }
             state retreat;
-            transition first stationKeeping accept InspectorImagingGo via command then imaging;
-            transition first imaging accept after 8.0 [h] then stationKeeping;
+            transition first stationKeeping accept go : InspectorImagingGo via command do assign passDuration := go.passDuration then imaging;
+            transition first imaging accept after passDuration then stationKeeping;
             transition first stationKeeping accept c : CollisionRisk via command if c.predictedMiss < keepOutRadius then retreat;
             transition first imaging accept c : CollisionRisk via command if c.predictedMiss < keepOutRadius then retreat;
             transition first retreat accept after retreatDuration then stationKeeping;

@@ -97,6 +97,8 @@
 [trace] eval index -> 4.0 [h]
 [trace]   eval literal 6.0 -> 6.0
 [trace] eval index -> 6.0 [h]
+[trace]   eval literal 8.0 -> 8.0
+[trace] eval index -> 8.0 [h]
 [trace] enter: stowed
 [trace] run: performed action nominalCampaign of #2
 [trace] step 1: token 1@toSeparation
