@@ -1,0 +1,9 @@
+calc conformance: model interpretation (Model.eval at the pin) vs compiled C and Go (sysml -compile at the pin); no Python target at the pin
+agree: 10 — ExpNeg, Log10, DecibelsFromRatio, RatioFromDecibels, GainToNoiseTemperatureDbPerK, LinkMarginDb, RelayDaysRequired, EngineeringUnits, CheckLimits, EnvelopeMargin
+disagree: 0
+does-not-compile-at-pin: 15 — MarginFraction, ArrayPower, PropellantFor, MassFlowRate, Survival, TugPowerInMode, BusPowerInMode, TugHeatInMode, Wavelength, DishGainDbi, FreeSpaceLossDb, CharacterisationDataVolume, OrbitDetermination, StationVisible, CheckFlightRules
+not-driveable: 22 — ContingencyFor, WithContingency, RootSumSquareDegrees, SetReliability, UnitSetReliability, UnitsDataRate, ReturnableBodyMass, XenonForMission, DespinPropellant, RadiatorRejection, MarginReport, TaskDemandInFrame, TasksDemandInFrame, Utilisation, TaskResponse, BusSlotsInMode, LoadInMode, FootprintOf, ValidateCommand, DecommutatePacket, ManoeuvreDesign, PassVolume
+budgets: model interpretation vs the generated tables, held against the policy
+  array power margin: model=0.11933663377687564 (11.9 %); policy >= 0.15 (the margin policy row the power budget is held to): FAIL; no generated table carries it
+  bus slots by mode: model=[0, 32, 32, 32, 32, 36, 32, 36, 36, 32, 32, 32, 32, 32, 32, 32] generated=[0, 32, 32, 32, 32, 36, 32, 36, 36, 32, 32, 32, 32, 32, 32, 32] identical; policy <= 32 of 64 in every mode (TF-011 reserve): FAIL (max 36)
+  processor load by mode: model=[0.0, 372.0, 372.0, 372.0, 372.0, 402.0, 372.0, 402.0, 402.0, 372.0, 372.0, 372.0, 372.0, 372.0, 372.0, 372.0]

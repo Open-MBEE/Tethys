@@ -1,0 +1,8 @@
+# derived from runs/sw-fdir-command-loss-expired.txt and the TethysFlightBehaviour::softwareCommandLoss scenario; horizon 1555200 s
+t=4320 item SeparationConfirmed 
+t=8640 item ArraysDeployed 
+t=432000 item GroundContact 
+t=864000 item GroundContact 
+t=1987200 item GroundContact 
+t=2073600 item SafeModeExit 
+t=1555200 expect FdirSupervisor=expired | nominal | nominal | nominal | nominal | monitoring

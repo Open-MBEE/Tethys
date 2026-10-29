@@ -70,6 +70,47 @@ package TethysMarginPolicy {
         doc /* The row every budget reads: the mission is in Phase B, so the PDR row. */
     }
 
+    attribute def SoftwareMarginPolicyRow {
+        doc /* The margin policy row for flight software resources: the share of processor,
+             * memory and bus capacity kept in reserve at a review gate, and the margin an
+             * end-to-end latency chain keeps to its requirement bound. */
+        attribute review : ReviewGate;
+        attribute processorReserve : Real;
+        attribute memoryReserve : Real;
+        attribute busReserve : Real;
+        attribute latencyMargin : Real;
+    }
+
+    attribute softwarePdrPolicy : SoftwareMarginPolicyRow {
+        doc /* Phase B close: half of every resource in reserve, a fifth of every latency bound. */
+        attribute :>> review = ReviewGate::pdr;
+        attribute :>> processorReserve = 0.50;
+        attribute :>> memoryReserve = 0.50;
+        attribute :>> busReserve = 0.50;
+        attribute :>> latencyMargin = 0.20;
+    }
+
+    attribute softwareCdrPolicy : SoftwareMarginPolicyRow {
+        doc /* Phase C close: a third of every resource in reserve, a tenth of every bound. */
+        attribute :>> review = ReviewGate::cdr;
+        attribute :>> processorReserve = 0.35;
+        attribute :>> memoryReserve = 0.35;
+        attribute :>> busReserve = 0.35;
+        attribute :>> latencyMargin = 0.10;
+    }
+
+    attribute activeSoftwarePolicy : SoftwareMarginPolicyRow = softwarePdrPolicy {
+        doc /* The row every software budget reads: the same gate as the active policy. */
+    }
+
+    constraint def HoldsReserve {
+        doc /* A software resource closes when its utilisation leaves the reserve the policy
+             * asks for: utilisation ≤ 1 − reserve. */
+        in utilisation : Real;
+        in reserve : Real;
+        utilisation <= 1.0 - reserve
+    }
+
     calc def ContingencyFor {
         doc /* The contingency fraction a policy row gives a unit of the stated maturity. */
         in maturity : Maturity;

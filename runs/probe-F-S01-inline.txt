@@ -1,0 +1,15 @@
+✓ package FS01
+✓ Created instance of FS01::viaPartPort
+  ID: 1
+  Use %features FS01::viaPartPort to inspect
+✓ Debugging state machine "m" exhibited by object #2 of "FS01::viaPartPort.a"
+note: object #2 of "FS01::viaPartPort.a" already exhibits "FS01::InlineSender::m", so this session attaches to that running machine rather than starting a second performance of it (as `%state FS01::viaPartPort.a` would)
+  Current state: idle
+  Time: 0.0
+  Events: 1
+✓ Advanced to 10.0 (2 event(s) processed)
+  Current state: pinged
+  Last event at: 1.0
+  Remaining events: 0
+  standing: value (observed: 1 run under reverse)
+wrote build/runs/probe-F-S01-sequence.txt (text, 326 bytes)

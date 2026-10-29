@@ -1,0 +1,4 @@
+# derived from runs/sw-capture-controller-inhibited.txt and the TethysFlightBehaviour::capturePrematureContact scenario; horizon 20000 s
+t=60 item CaptureArm 
+t=120 item ContactDetected 1200
+t=20000 expect CaptureController=inhibited

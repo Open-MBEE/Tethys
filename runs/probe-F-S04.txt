@@ -1,0 +1,15 @@
+✓ package FS04
+✓ Created instance of FS04::redefined
+  ID: 1
+  Use %features FS04::redefined to inspect
+✓ Debugging state machine "m" exhibited by object #2 of "FS04::redefined.vehicle"
+note: object #2 of "FS04::redefined.vehicle" already exhibits "FS04::Vehicle::m", so this session attaches to that running machine rather than starting a second performance of it (as `%state FS04::redefined.vehicle` would)
+  Current state: idle
+  Time: 0.0
+  Events: 0
+✓ Advanced to 10.0 (1 event(s) processed)
+  Current state: idle
+  Last event at: 0.0
+  Remaining events: 0
+  Action steps taken: 3
+  standing: value (observed: 1 run under reverse)

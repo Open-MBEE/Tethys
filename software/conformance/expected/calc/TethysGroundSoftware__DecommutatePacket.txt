@@ -1,0 +1,2 @@
+calc TethysGroundSoftware::DecommutatePacket(packet) kind=real tol=1e-09 relative
+  not-driveable: packet is a PacketDefinition part; software-ground-check compares the ground decom against it

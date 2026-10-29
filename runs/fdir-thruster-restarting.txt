@@ -28,6 +28,16 @@
 ✓ package TethysModes
 ✓ package TethysSequence
 ✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
 ✓ package TethysAnalyses
 ✓ package TethysTrades
 ✓ package TethysMonteCarlo
@@ -40,10 +50,14 @@
 ✓ package TethysRisk
 ✓ package TethysAllocationQueries
 ✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
 ✓ package TethysViews
 ✓ package TethysDocuments
 ✓ package TethysLayout
 ✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
 ✓ package TethysAsBuilt
 ✓ package TethysImportedData
 ✓ package TethysDisposal
@@ -83,6 +97,7 @@
 [trace] eval index -> 2.0 [h]
 [trace]   eval literal 30.0 -> 30.0
 [trace] eval index -> 30.0 [d]
+[trace] eval literal "" -> ""
 [trace] eval literal "" -> ""
 [trace] choice entering TugModes: next launch(entry), off(entry), lowGain(entry), thrusters(entry), stowed(entry) (unordered; took launch(entry) first; independent)
 [trace] enter: launch
@@ -1082,12 +1097,11 @@
 [trace]     bind seq = () [argument]
 [trace]   exit calc SequenceFunctions::isEmpty -> true
 [trace] eval invoke isEmpty -> true
-[trace] materialize: CaptureSystem #357
 warning: TethysFdir::thrusterFaultScenario: materialization is bounded; not every feature value was checked
 [trace] run: performed action campaign of #2
 [trace] step 2: token 1@separation
 [trace] stmt send
-[trace] materialize: SeparationConfirmed #358
+[trace] materialize: SeparationConfirmed #357
 [trace] step 3: token 1@toDeployment
 [trace]   eval literal 0.05 -> 0.05
 [trace] eval index -> 0.05 [d]
@@ -1099,7 +1113,7 @@ warning: TethysFdir::thrusterFaultScenario: materialization is bounded; not ever
 [trace] run: performed action campaign of #2
 [trace] step 4: token 1@deployment
 [trace] stmt send
-[trace] materialize: ArraysDeployed #359
+[trace] materialize: ArraysDeployed #358
 [trace] step 5: token 1@commissioning
 [trace]   eval literal 5.0 -> 5.0
 [trace] eval index -> 5.0 [d]
@@ -1127,24 +1141,33 @@ warning: TethysFdir::thrusterFaultScenario: materialization is bounded; not ever
 [trace] run: performed action campaign of #2
 [trace] step 6: token 1@pass0
 [trace] stmt send
-[trace] materialize: GroundContact #360
+[trace] materialize: GroundContact #359
 [trace] step 7: token 1@arc
 [trace] stmt send
 [trace]     eval literal 200.0 -> 200.0
 [trace]   eval index -> 200.0 [d]
-[trace] materialize: ThrustArcGo #361
+[trace] materialize: ThrustArcGo #360
 [trace] step 8: token 1@run1
 [trace]   eval literal 5.0 -> 5.0
 [trace] eval index -> 5.0 [d]
-[trace] choice at t=440640.0: due state machine FdirSupervisor of object #4, state machine TugModes of object #4 (unordered; ran state machine TugModes of object #4 first; order-dependent: abortEntries, captured, flameoutRetries, healthyThrusters, lastEarthClosestApproach, lastImpactProbability, lastSafeModeReason, ppuTrips, safeModeEntries, safeModeRequests, thrustArcsStarted)
+[trace] choice at t=440640.0: due state machine FdirSupervisor of object #4, state machine TugModes of object #4 (unordered; ran state machine TugModes of object #4 first; order-dependent: abortEntries, applicationCommands, captured, flameoutRetries, healthyThrusters, lastApplicationCommand, lastEarthClosestApproach, lastImpactProbability, lastSafeModeReason, ppuTrips, safeModeEntries, safeModeRequests, thrustArcsStarted)
 [trace] run: exhibited state machine modes of #4
 [trace] choice on accept ThrustArcGo: next coast(exit), standby(exit) (unordered; took coast(exit) first; independent)
 [trace] exit: coast
 [trace] enter: thrust (entry action)
-[trace] stmt assign thrustArcsStarted
-[trace]     eval feature thrustArcsStarted -> 0
-[trace]     eval literal 1 -> 1
-[trace]   eval operator + -> 1
+[trace] stmt action body
+[trace] enter action node: state behavior startArc
+[trace]   stmt assign thrustArcsStarted
+[trace]       eval feature thrustArcsStarted -> 0
+[trace]       eval literal 1 -> 1
+[trace]     eval operator + -> 1
+[trace]   stmt assign lastApplicationCommand
+[trace]     eval literal "SepControlApplication: start thrust arc" -> "SepControlApplication: start thrust arc"
+[trace]   stmt assign applicationCommands
+[trace]       eval feature applicationCommands -> 0
+[trace]       eval literal 1 -> 1
+[trace]     eval operator + -> 1
+[trace] leave action node: state behavior startArc
 [trace] transition: coast -> thrust (event: accept ThrustArcGo)
 [trace] exit: standby
 [trace] enter: thrusting
@@ -1158,12 +1181,12 @@ warning: TethysFdir::thrusterFaultScenario: materialization is bounded; not ever
 [trace] run: performed action campaign of #2
 [trace] step 9: token 1@pass1
 [trace] stmt send
-[trace] materialize: GroundContact #362
+[trace] materialize: GroundContact #361
 [trace] step 10: token 1@flameout1
 [trace] stmt send
 [trace]   eval feature FdirLevel::subsystem -> FdirLevel::subsystem
 [trace]   eval literal 2 -> 2
-[trace] materialize: ThrusterFlameout #363
+[trace] materialize: ThrusterFlameout #362
 [trace] step 11: token 1@run2
 [trace]   eval literal 5.0 -> 5.0
 [trace] eval index -> 5.0 [d]

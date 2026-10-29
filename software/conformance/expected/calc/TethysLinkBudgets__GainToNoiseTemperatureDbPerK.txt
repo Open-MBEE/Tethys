@@ -1,0 +1,5 @@
+calc TethysLinkBudgets::GainToNoiseTemperatureDbPerK(gainDbi, systemNoiseTemperatureK) kind=real tol=1e-09 relative
+  grid: station, tug, isotropic
+  (gainDbi=68.0, systemNoiseTemperatureK=25.0) model=54.02059991327959 c=54.02059991327959 go=54.02059991327959
+  (gainDbi=34.0, systemNoiseTemperatureK=200.0) model=10.989700043360155 c=10.989700043360155 go=10.989700043360155
+  (gainDbi=0.0, systemNoiseTemperatureK=290.0) model=-24.623979978989603 c=-24.623979978989603 go=-24.623979978989603

@@ -1,0 +1,11 @@
+case captureSequenceFlightSoftwareInTheLoop : CaptureSequenceTest
+level: flightSoftwareInTheLoop; test bed as planned: captureRig; run on: flight host (argent_host --trace), model (sysml-grpc ExecuteState trace, Model.eval) and the ground suite
+tool pin: OpenSysML 5cd37f288fef171d62737d6045f4caff772b6014
+criterion: PassIf(firedWhenArmed and heldWhenInhibited)
+inputs: sw-capture-controller (armed, every inhibit removed) and sw-capture-controller-inhibited (premature contact) scenarios
+  host  CaptureController: t=0 characterising; t=60 armed; t=180 committed; t=3780 despinning; t=10980 captured
+  model CaptureController: t=0 characterising; t=60 armed; t=180 committed; t=3780 despinning; t=10980 captured
+  host  CaptureController: t=0 characterising; t=60 armed; t=120 inhibited
+  model CaptureController: t=0 characterising; t=60 armed; t=120 inhibited
+  firedWhenArmed: true (final state captured on both sides); heldWhenInhibited: true (final state inhibited on both sides)
+verdict: pass

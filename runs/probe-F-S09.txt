@@ -1,0 +1,16 @@
+✓ package FS09
+✓ Created instance of FS09::scenario
+  ID: 1
+  Use %features FS09::scenario to inspect
+✓ Debugging state machine "supervisor" exhibited by object #4 of "FS09::scenario.host"
+note: object #4 of "FS09::scenario.host" already exhibits "FS09::Host::supervisor", so this session attaches to that running machine rather than starting a second performance of it (as `%state FS09::scenario.host` would)
+  Current state: nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal | nominal
+  Time: 0.0
+  Events: 20
+✓ Advanced to 90000.0 (67 event(s) processed)
+  Current state: tripped | tripped | tripped | tripped | tripped | tripped | tripped | tripped | tripped | tripped | tripped | tripped | tripped | tripped | tripped | tripped | tripped | tripped | tripped | tripped
+  Last event at: 86400.0
+  Remaining events: 0
+  68 choice points (23 independent); %trace on to see them
+  Action steps taken: 25
+  standing: value (observed: 1 run under reverse)

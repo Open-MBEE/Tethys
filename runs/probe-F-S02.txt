@@ -1,0 +1,38 @@
+✓ package FS02
+[trace] materialize: specialised #1
+[trace] start: exhibited state machine m of #1
+[trace] materialize: Specialised #2
+[trace] enter: one
+[trace]   eval literal 1.0 -> 1.0
+[trace] eval index -> 1.0 [s]
+[trace] run: exhibited state machine m of #1
+✓ Created instance of FS02::specialised
+  ID: 1
+  Use %features FS02::specialised to inspect
+[trace] materialize: two #3
+[trace] materialize: entryAction #4
+[trace] materialize: Action #5
+[trace] materialize: Action #6
+[trace]   enter calc SequenceFunctions::isEmpty
+[trace]     eval feature voids -> ()
+[trace]     bind seq = () [argument]
+[trace]   exit calc SequenceFunctions::isEmpty -> true
+[trace] eval invoke isEmpty -> true
+[trace] run: exhibited state machine m of #1
+[trace] exit: one
+[trace] stmt assign writes
+[trace]     eval feature writes -> 0
+[trace]     eval literal 1 -> 1
+[trace]   eval operator + -> 1
+[trace] enter: two
+[trace] transition: one -> two (event: time)
+✓ Debugging state machine "m" exhibited by object #1 of "FS02::specialised"
+note: object #1 of "FS02::specialised" already exhibits "FS02::SpecialisedHost::m", so this session attaches to that running machine rather than starting a second performance of it (as `%state FS02::specialised` would)
+  Current state: one
+  Time: 0.0
+  Events: 1
+✓ Advanced to 10.0 (1 event(s) processed)
+  Current state: two
+  Last event at: 1.0
+  Remaining events: 0
+  standing: value (observed: 1 run under reverse)

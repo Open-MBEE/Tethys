@@ -1,3 +1,5 @@
 build/
 *.pdf
 !docs/rendered/*.pdf
+__pycache__/
+*.pyc

@@ -1,0 +1,9 @@
+✓ package F_SW503
+✓ Query F_SW503::EightVerdicts returned 1 row
+  Columns: path, verdict
+  Row 1: satisfy directPositive by eight.direct on F_SW503::eight.direct: holds
+    path = "F_SW503::eight.direct"
+    verdict = "holds"
+✓ package F_SW503
+sysml: query F_SW503::TenVerdicts operation verdicts could not check every assertion about F_SW503::ten: objects nested beyond the depth the validation descends were not checked
+exit 2

@@ -1,0 +1,50 @@
+run - sequence rendering (the trace of a run to t = 1.5552e+06)
+
+object TethysFlightBehaviour::softwareCommandLoss.injector : CommandLossInjector
+object TethysFlightBehaviour::softwareCommandLoss.tug : BehaviouralTug
+object TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement : ModeManagementSoftware
+object TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.fdir : FdirSoftware
+object TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.sepControl : SepControlSoftware
+object TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.telecom : TelecomSoftware
+object TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.powerManagement : PowerManagementSoftware
+object TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.events : EventService
+object TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.thermalControl : ThermalControlSoftware
+object TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.captureControl : CaptureControlSoftware
+object TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.autonomy : AutonomySoftware
+
+messages:
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug: t=4320 SeparationConfirmed
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement: t=4320 SeparationConfirmed
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement: t=4320 SeparationConfirmed (not accepted)
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.fdir: t=4320 SeparationConfirmed (not accepted)
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.sepControl: t=4320 SeparationConfirmed (not accepted)
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug: t=8640 ArraysDeployed
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement: t=8640 ArraysDeployed
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement: t=8640 ArraysDeployed
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.fdir: t=8640 ArraysDeployed (not accepted)
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.sepControl: t=8640 ArraysDeployed (not accepted)
+  TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.sepControl: t=8640 SepStandby
+  TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.telecom: t=8640 HighGainSelect
+  TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.powerManagement: t=8640..1.4688e+06 LoadRestore
+  TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.events: t=8640 ApplicationReport (application = "ModeManagementApplication", report = "early operations") (not accepted)
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug: t=432000.00000000006 GroundContact
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement: t=432000.00000000006 GroundContact (not accepted)
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement: t=432000.00000000006 GroundContact (not accepted)
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.fdir: t=432000.00000000006 GroundContact
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.sepControl: t=432000.00000000006 GroundContact (not accepted)
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug: t=864000 GroundContact
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement: t=864000 GroundContact (not accepted)
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement: t=864000 GroundContact (not accepted)
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.fdir: t=864000 GroundContact
+  TethysFlightBehaviour::softwareCommandLoss.injector => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.sepControl: t=864000 GroundContact (not accepted)
+  TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.fdir => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.fdir: t=1.4688e+06 SafeModeRequest (reason = "command-loss timer expired")
+  TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.fdir => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement: t=1.4688e+06 SafeModeRequest (reason = "command-loss timer expired")
+  TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement: t=1.4688e+06 SafeModeRequest (reason = "command-loss timer expired")
+  TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.sepControl: t=1.4688e+06 SepOff
+  TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.telecom: t=1.4688e+06 LowGainSelect
+  TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.powerManagement: t=1.4688e+06 LoadShed
+  TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.thermalControl: t=1.4688e+06 LoadShed
+  TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.captureControl: t=1.4688e+06 CaptureDisarm (not accepted)
+  TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.autonomy: t=1.4688e+06 SequenceAbort (not accepted)
+  TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement => TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.events: t=1.4688e+06 ApplicationReport (application = "ModeManagementApplication", report = "safe mode") (not accepted)
+  TethysFlightBehaviour::softwareCommandLoss.tug => TethysFlightBehaviour::softwareCommandLoss.tug: t=1.4688e+06 SafeModeRequest (reason = "command-loss timer expired")

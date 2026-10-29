@@ -1,0 +1,156 @@
+✓ package Tethys
+✓ package TethysEnvironment
+✓ package TethysMission
+✓ package TethysInterfaces
+✓ package TethysRequirements
+✓ package TethysTug
+✓ package TethysInspector
+✓ package TethysTarget
+✓ package TethysLaunch
+✓ package TethysGround
+✓ package TethysSystem
+✓ package TethysStakeholders
+✓ package TethysRequirementsL2
+✓ package TethysRequirementsL3L4
+✓ package TethysVerification
+✓ package TethysVerificationTooling
+✓ package TethysMarginPolicy
+✓ package TethysTugStructure
+✓ package TethysBudgets
+✓ package TethysInspectorDetail
+✓ package TethysCaptureSystem
+✓ package TethysProximityOps
+✓ package TethysMeridian
+✓ package TethysIcds
+✓ package TethysLinkBudgets
+✓ package TethysOperations
+✓ package TethysIcdDocuments
+✓ package TethysModes
+✓ package TethysSequence
+✓ package TethysFdir
+✓ package TethysFlightSoftware
+✓ package TethysFlightDictionaryDocuments
+✓ package TethysFlightDictionary
+✓ package TethysFlightBehaviour
+✓ package TethysFlightTiming
+✓ package TethysSoftwareRequirementsTooling
+✓ package TethysSoftwareRequirements
+✓ package TethysSoftwareIcdDocuments
+✓ package TethysSoftwareIcds
+✓ package TethysGroundSoftware
+✓ package TethysAnalyses
+✓ package TethysTrades
+✓ package TethysMonteCarlo
+✓ package TethysDynamics
+✓ package TethysAnalysesTooling
+✓ package TethysVariants
+✓ package TethysPhysics
+✓ package TethysNotation
+✓ package TethysSafety
+✓ package TethysRisk
+✓ package TethysAllocationQueries
+✓ package TethysAllocations
+✓ package TethysSoftwareAssuranceTooling
+✓ package TethysSoftwareAssurance
+✓ package TethysViews
+✓ package TethysDocuments
+✓ package TethysLayout
+✓ package TethysViewsTooling
+✓ package TethysSoftwareDocumentsTooling
+✓ package TethysSoftwareDocuments
+✓ package TethysAsBuilt
+✓ package TethysImportedData
+✓ package TethysDisposal
+✓ package TethysHouseRules
+✓ Query TethysSoftwareDocumentsTooling::BudgetVerdicts returned 18 rows
+  Columns: path, kind, name, verdict
+  Row 1: assert constraint processorCloses on TethysFlightTiming::softwareProcessorBudget: holds
+    path = "TethysFlightTiming::softwareProcessorBudget"
+    kind = "constraint"
+    name = "processorCloses"
+    verdict = "holds"
+  Row 2: assert constraint memoryCloses on TethysFlightTiming::softwareProcessorBudget: holds
+    path = "TethysFlightTiming::softwareProcessorBudget"
+    kind = "constraint"
+    name = "memoryCloses"
+    verdict = "holds"
+  Row 3: satisfy processorBudgetCloses by softwareProcessorBudget on TethysFlightTiming::softwareProcessorBudget: holds
+    path = "TethysFlightTiming::softwareProcessorBudget"
+    kind = "satisfaction"
+    name = (none)
+    verdict = "holds"
+  Row 4: satisfy processorMemoryReserve by softwareProcessorBudget on TethysFlightTiming::softwareProcessorBudget: holds
+    path = "TethysFlightTiming::softwareProcessorBudget"
+    kind = "satisfaction"
+    name = (none)
+    verdict = "holds"
+  Row 5: assert constraint busCloses on TethysFlightTiming::softwareBusBudget: violated
+    path = "TethysFlightTiming::softwareBusBudget"
+    kind = "constraint"
+    name = "busCloses"
+    verdict = "violated"
+  Row 6: satisfy busBudgetCloses by softwareBusBudget on TethysFlightTiming::softwareBusBudget: violated
+    path = "TethysFlightTiming::softwareBusBudget"
+    kind = "satisfaction"
+    name = (none)
+    verdict = "violated"
+  Row 7: satisfy busReserve by softwareBusBudget on TethysFlightTiming::softwareBusBudget: violated
+    path = "TethysFlightTiming::softwareBusBudget"
+    kind = "satisfaction"
+    name = (none)
+    verdict = "violated"
+  Row 8: assert constraint busCloses on TethysFlightTiming::softwareBusBudgetCoast: holds
+    path = "TethysFlightTiming::softwareBusBudgetCoast"
+    kind = "constraint"
+    name = "busCloses"
+    verdict = "holds"
+  Row 9: satisfy busBudgetCloses by softwareBusBudgetCoast on TethysFlightTiming::softwareBusBudgetCoast: holds
+    path = "TethysFlightTiming::softwareBusBudgetCoast"
+    kind = "satisfaction"
+    name = (none)
+    verdict = "holds"
+  Row 10: satisfy busReserveCoast by softwareBusBudgetCoast on TethysFlightTiming::softwareBusBudgetCoast: holds
+    path = "TethysFlightTiming::softwareBusBudgetCoast"
+    kind = "satisfaction"
+    name = (none)
+    verdict = "holds"
+  Row 11: assert constraint latencyCloses on TethysFlightTiming::faultDetectionBudget: holds
+    path = "TethysFlightTiming::faultDetectionBudget"
+    kind = "constraint"
+    name = "latencyCloses"
+    verdict = "holds"
+  Row 12: satisfy latencyBudgetCloses by faultDetectionBudget on TethysFlightTiming::faultDetectionBudget: holds
+    path = "TethysFlightTiming::faultDetectionBudget"
+    kind = "satisfaction"
+    name = (none)
+    verdict = "holds"
+  Row 13: assert constraint latencyCloses on TethysFlightTiming::safeConfigurationBudget: holds
+    path = "TethysFlightTiming::safeConfigurationBudget"
+    kind = "constraint"
+    name = "latencyCloses"
+    verdict = "holds"
+  Row 14: satisfy latencyBudgetCloses by safeConfigurationBudget on TethysFlightTiming::safeConfigurationBudget: holds
+    path = "TethysFlightTiming::safeConfigurationBudget"
+    kind = "satisfaction"
+    name = (none)
+    verdict = "holds"
+  Row 15: assert constraint latencyCloses on TethysFlightTiming::commandDispatchBudget: holds
+    path = "TethysFlightTiming::commandDispatchBudget"
+    kind = "constraint"
+    name = "latencyCloses"
+    verdict = "holds"
+  Row 16: satisfy latencyBudgetCloses by commandDispatchBudget on TethysFlightTiming::commandDispatchBudget: holds
+    path = "TethysFlightTiming::commandDispatchBudget"
+    kind = "satisfaction"
+    name = (none)
+    verdict = "holds"
+  Row 17: assert constraint latencyCloses on TethysFlightTiming::telemetrySampleBudget: holds
+    path = "TethysFlightTiming::telemetrySampleBudget"
+    kind = "constraint"
+    name = "latencyCloses"
+    verdict = "holds"
+  Row 18: satisfy latencyBudgetCloses by telemetrySampleBudget on TethysFlightTiming::telemetrySampleBudget: holds
+    path = "TethysFlightTiming::telemetrySampleBudget"
+    kind = "satisfaction"
+    name = (none)
+    verdict = "holds"

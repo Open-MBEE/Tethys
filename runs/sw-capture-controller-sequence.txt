@@ -1,0 +1,10 @@
+run - sequence rendering (the trace of a run to t = 20000)
+
+object TethysFlightBehaviour::captureNominal.conductor : NominalCaptureConductor
+object TethysFlightBehaviour::captureNominal.captureControl : CaptureControlSoftware
+
+messages:
+  TethysFlightBehaviour::captureNominal.conductor => TethysFlightBehaviour::captureNominal.captureControl: t=60 CaptureArm
+  TethysFlightBehaviour::captureNominal.conductor => TethysFlightBehaviour::captureNominal.captureControl: t=120 GroundEnable
+  TethysFlightBehaviour::captureNominal.conductor => TethysFlightBehaviour::captureNominal.captureControl: t=180 CaptureGo (estimatedDiameter = 6.0 [m], estimatedMass = 400000.0 [kg])
+  TethysFlightBehaviour::captureNominal.conductor => TethysFlightBehaviour::captureNominal.captureControl: t=3780 ContactDetected (force = 1200.0 [N])

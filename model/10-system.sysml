@@ -18,7 +18,7 @@ package TethysSystem {
     part def TethysFlightSegment :> FlightSegment {
         doc /* The tug with Wren in its dispenser: the stack as launched. The two parts are
              * bound to the configured vehicles so the system instance carries their values. */
-        part tug : Tug = argent;
+        part tug : Tug default = argent;
         part inspector : Inspector = wren;
         interface inspectorCarrier : TugInspectorInterface
             connect tug.eps.inspectorKeepAlive to inspector.bus.umbilical;

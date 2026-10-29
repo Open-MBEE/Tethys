@@ -1,0 +1,2 @@
+calc TethysBudgets::DespinPropellant(body, momentArm, specificImpulse) kind=real tol=1e-09 relative
+  not-driveable: body is a SmallBody part

@@ -1,0 +1,6 @@
+calc TethysBudgets::PropellantFor(deltaVMPerS, initialMass, specificImpulse) kind=real tol=1e-09 relative
+  grid: rocket equation at 1 km/s and 0
+  c: does-not-compile-at-pin: sysml: not compilable: in calc TethysBudgets::PropellantFor: initialMass: type ISQBase::MassValue is not Integer, Real, Boolean, String or an enumeration
+  go: does-not-compile-at-pin: sysml: not compilable: in calc TethysBudgets::PropellantFor: initialMass: type ISQBase::MassValue is not Integer, Real, Boolean, String or an enumeration
+  (deltaVMPerS=1000.0, initialMass=5000.0 [SI::kg], specificImpulse=1600.0 [SI::s]) model=308.719 [SI::kg]
+  (deltaVMPerS=0.0, initialMass=5000.0 [SI::kg], specificImpulse=1600.0 [SI::s]) model=0 [SI::kg]

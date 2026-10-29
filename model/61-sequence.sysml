@@ -168,9 +168,17 @@ package TethysSequence {
     }
 
     // ---- 3. Thrust arcs, despin and the critical sequences ------------------------------
-    action def ThrustArc {
+    action def OnBoardSequence {
+        doc /* A sequence the autonomy application can load and dispatch: a numbered, stored
+             * behaviour whose steps are time-tagged relative to its start. Every sequence below
+             * specialises it; TethysFlightBehaviour's sequencing engine loads them by number. */
+        attribute sequenceId : Natural default = 0;
+        attribute timeTagged : Boolean default = true;
+    }
+    action def ThrustArc :> OnBoardSequence {
         doc /* One thrust arc: the SEP string thrusts for the arc's duration at the given
              * thrust and burns the xenon that duration implies; the result is the xenon left. */
+        attribute :>> sequenceId = 1;
         in arcDuration : DurationValue;
         in xenonPerArc : MassValue;
         in xenonBefore : MassValue;
@@ -180,10 +188,11 @@ package TethysSequence {
         then done;
     }
 
-    action def DespinSequence {
+    action def DespinSequence :> OnBoardSequence {
         doc /* Despin the captured stack with the hydrazine thrusters: each pulse train
              * lengthens the spin period by a fixed factor until the period is above the
              * threshold at which the wheels take over. */
+        attribute :>> sequenceId = 2;
         in initialSpinPeriod : DurationValue;
         in wheelTakeoverPeriod : DurationValue;
         attribute spinPeriod : DurationValue = initialSpinPeriod;
@@ -198,10 +207,11 @@ package TethysSequence {
         then done;
     }
 
-    action def InspectorReleaseSequence {
+    action def InspectorReleaseSequence :> OnBoardSequence {
         doc /* The inspector release as a timed go/no-go sequence: checkout, umbilical
              * disconnect, a hold for the ground go, then release — each step gated by the
              * state the previous one must have reached. */
+        attribute :>> sequenceId = 3;
         in checkoutPassed : Boolean;
         in groundGo : Boolean;
         attribute umbilicalDisconnected : Boolean = false;
@@ -224,12 +234,13 @@ package TethysSequence {
         then done;
     }
 
-    action def DroInsertionSequence {
+    action def DroInsertionSequence :> OnBoardSequence {
         doc /* The insertion into the distant retrograde orbit after the lunar assist: the
              * post-assist trajectory is checked against the insertion corridor, the
              * insertion arc is executed, and a miss leaves the stack in the backup
              * heliocentric loiter orbit rather than in cislunar space. The arc length is an
              * owned attribute, not a parameter: see docs/findings/WP-E.md F-E02. */
+        attribute :>> sequenceId = 4;
         in corridorError : LengthValue;
         in corridorHalfWidth : LengthValue;
         attribute insertionArcDuration : DurationValue = 20.0 [d];
@@ -250,10 +261,11 @@ package TethysSequence {
         then done;
     }
 
-    action def DroStationKeeping {
+    action def DroStationKeeping :> OnBoardSequence {
         doc /* The DRO checkout's station-keeping demonstration: hydrazine trims are repeated
              * until the along-track drift is inside the control box, then the three
              * demonstration cycles of the checkout plan are costed. */
+        attribute :>> sequenceId = 5;
         in initialDrift : LengthValue;
         in controlBox : LengthValue;
         in cyclesPlanned : Natural;
@@ -275,13 +287,14 @@ package TethysSequence {
     }
 
     // ---- 4. The mission as one action ---------------------------------------------------
-    action def MissionSequence {
+    action def MissionSequence :> OnBoardSequence {
         doc /* The flight from lift-off to disposal as an executable action over the phases
              * of TethysMission::flightTimeline. The clock runs in days; the thrust arcs are
              * loops counted against the arc plan; the capture commit is a decision over the
              * delivered target estimate and the capture envelope, and a refused commit ends
              * the mission in a retreat hold (`terminate`). The lunar assist is waited for as a
              * timed event (`accept at` a clock instant scheduled after the return arcs). */
+        attribute :>> sequenceId = 6;
         in target : TargetEstimate;
         in envelope : CaptureCommitEnvelope;
         in outboundArcPlan : Natural;

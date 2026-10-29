@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Argent flight software and Meridian Operations Suite operations handbook</title>
+<link rel="stylesheet" href="sysml-document.css">
+</head>
+<body>
+<article class="sysml-document" data-document="TethysSoftwareDocumentsTooling::SoftwareOperationsHandbook">
+<h1 class="sysml-title">Argent flight software and Meridian Operations Suite operations handbook</h1>
+<p class="sysml-paragraph" data-content="paragraph" data-name="scope">How the flight software is operated through the Meridian Operations Suite, as TethysModes, TethysSequence, TethysFdir, TethysOperations and TethysGroundSoftware define it.</p>
+<section class="sysml-section" id="modes" data-content="section" data-name="modes">
+<h2>Flight modes</h2>
+<table class="sysml-table" data-content="table" data-name="list" data-query="TethysSoftwareDocumentsTooling::FlightModes">
+<caption class="sysml-caption">Flight modes</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysModes::TugModes::flightMode::launch" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">launch</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">From lift-off to the end of early operations: separation, array deployment, sun acquisition.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModes::flightMode::freeFlight" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">freeFlight</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Modes before capture. Entered at coast; re-entered at coast after a safe-mode recovery.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModes::flightMode::stacked" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">stacked</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Modes with the target captured: despin, return thrust and coast, DRO hold, visiting-vehicle docking, disposal. Re-entered at stackCoast after a safe-mode recovery.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModes::flightMode::safe" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">safe</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Sun-pointed, low-gain, thrusters and high-voltage bus off, waiting for ground recovery; while in safe mode the sun-pointing hold is re-acquired every hour (the `do` behaviour).</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModes::flightMode::abortHold" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">abortHold</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Return aborted by the Earth-impact exclusion monitor: thrust inhibited, attitude held, high-gain link up, waiting for a replanned trajectory.</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table sysml-table-landscape" data-content="table" data-name="configurations" data-query="TethysSoftwareDocumentsTooling::ModeConfigurations">
+<caption class="sysml-caption">Subsystem configuration commanded in each mode</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="sepThrusting">sepThrusting</th>
+<th scope="col" data-column="highVoltageBusOn">highVoltageBusOn</th>
+<th scope="col" data-column="highGainAntennaOn">highGainAntennaOn</th>
+<th scope="col" data-column="proximityLinkOn">proximityLinkOn</th>
+<th scope="col" data-column="wheelControl">wheelControl</th>
+<th scope="col" data-column="captureSystemArmed">captureSystemArmed</th>
+<th scope="col" data-column="sensorsOn">sensorsOn</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::launch" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">launch</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::earlyOperations" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">earlyOperations</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::coast" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">coast</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::thrust" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thrust</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::approach" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">approach</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::proximityOperations" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">proximityOperations</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::retreat" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">retreat</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::capture" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">capture</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::despin" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">despin</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::stackCoast" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">stackCoast</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::stackThrust" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">stackThrust</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::droHold" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">droHold</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::dockedPassive" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dockedPassive</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::disposal" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">disposal</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::safe" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">safe</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::abortHold" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">abortHold</span></td>
+<td class="sysml-cell" data-column="sepThrusting" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highVoltageBusOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="highGainAntennaOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="proximityLinkOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="wheelControl" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="captureSystemArmed" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+<td class="sysml-cell" data-column="sensorsOn" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">false</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysModes::TugModeTable::rows" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">rows</span></td>
+<td class="sysml-cell" data-column="sepThrusting"></td>
+<td class="sysml-cell" data-column="highVoltageBusOn"></td>
+<td class="sysml-cell" data-column="highGainAntennaOn"></td>
+<td class="sysml-cell" data-column="proximityLinkOn"></td>
+<td class="sysml-cell" data-column="wheelControl"></td>
+<td class="sysml-cell" data-column="captureSystemArmed"></td>
+<td class="sysml-cell" data-column="sensorsOn"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="sequences" data-content="section" data-name="sequences">
+<h2>On-board sequences</h2>
+<table class="sysml-table" data-content="table" data-name="list" data-query="TethysSoftwareDocumentsTooling::OnBoardSequences">
+<caption class="sysml-caption">Sequences by number</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="sequenceId">sequenceId</th>
+<th scope="col" data-column="timeTagged">timeTagged</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysSequence::OnBoardSequence" data-element-kind="actionDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">OnBoardSequence</span></td>
+<td class="sysml-cell" data-column="sequenceId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">0</span></td>
+<td class="sysml-cell" data-column="timeTagged" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A sequence the autonomy application can load and dispatch: a numbered, stored behaviour whose steps are time-tagged relative to its start. Every sequence below specialises it; TethysFlightBehaviour&#39;s sequencing engine loads them by number.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSequence::ThrustArc" data-element-kind="actionDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ThrustArc</span></td>
+<td class="sysml-cell" data-column="sequenceId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+<td class="sysml-cell" data-column="timeTagged" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">One thrust arc: the SEP string thrusts for the arc&#39;s duration at the given thrust and burns the xenon that duration implies; the result is the xenon left.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSequence::DespinSequence" data-element-kind="actionDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">DespinSequence</span></td>
+<td class="sysml-cell" data-column="sequenceId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2</span></td>
+<td class="sysml-cell" data-column="timeTagged" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Despin the captured stack with the hydrazine thrusters: each pulse train lengthens the spin period by a fixed factor until the period is above the threshold at which the wheels take over.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSequence::InspectorReleaseSequence" data-element-kind="actionDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InspectorReleaseSequence</span></td>
+<td class="sysml-cell" data-column="sequenceId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">3</span></td>
+<td class="sysml-cell" data-column="timeTagged" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The inspector release as a timed go/no-go sequence: checkout, umbilical disconnect, a hold for the ground go, then release — each step gated by the state the previous one must have reached.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSequence::DroInsertionSequence" data-element-kind="actionDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">DroInsertionSequence</span></td>
+<td class="sysml-cell" data-column="sequenceId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">4</span></td>
+<td class="sysml-cell" data-column="timeTagged" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The insertion into the distant retrograde orbit after the lunar assist: the post-assist trajectory is checked against the insertion corridor, the insertion arc is executed, and a miss leaves the stack in the backup heliocentric loiter orbit rather than in cislunar space. The arc length is an owned attribute, not a parameter: see docs/findings/WP-E.md F-E02.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSequence::DroStationKeeping" data-element-kind="actionDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">DroStationKeeping</span></td>
+<td class="sysml-cell" data-column="sequenceId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">5</span></td>
+<td class="sysml-cell" data-column="timeTagged" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The DRO checkout&#39;s station-keeping demonstration: hydrazine trims are repeated until the along-track drift is inside the control box, then the three demonstration cycles of the checkout plan are costed.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysSequence::MissionSequence" data-element-kind="actionDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">MissionSequence</span></td>
+<td class="sysml-cell" data-column="sequenceId" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">6</span></td>
+<td class="sysml-cell" data-column="timeTagged" data-value-kind="boolean"><span class="sysml-value" data-value-kind="boolean">true</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The flight from lift-off to disposal as an executable action over the phases of TethysMission::flightTimeline. The clock runs in days; the thrust arcs are loops counted against the arc plan; the capture commit is a decision over the delivered target estimate and the capture envelope, and a refused commit ends the mission in a retreat hold (`terminate`). The lunar assist is waited for as a timed event (`accept at` a clock instant scheduled after the return arcs).</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="faultProtection" data-content="section" data-name="faultProtection">
+<h2>Fault protection</h2>
+<table class="sysml-table" data-content="table" data-name="events" data-query="TethysSoftwareDocumentsTooling::FaultEvents">
+<caption class="sysml-caption">Fault and on-board events</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFdir::FaultEvent" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">FaultEvent</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A detected fault, raised by a monitor with the level it was detected at.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::ThrusterFlameout" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ThrusterFlameout</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A thruster&#39;s discharge has extinguished (domain failure modes F1, F3).</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::PpuTrip" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PpuTrip</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A power processing unit has tripped on over-current (F2, F7).</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::AttitudeLoss" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">AttitudeLoss</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Attitude knowledge lost or rates above the control authority (F24).</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::BatteryLow" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">BatteryLow</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Battery state of charge below the load-shed threshold (F25).</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::ProcessorReset" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ProcessorReset</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The flight computer has rebooted (F27); the supervisor restarts its timers.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::GroundContact" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">GroundContact</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Any valid telecommand received: the command-loss timer is re-armed.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::TrajectoryUpdate" data-element-kind="itemDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TrajectoryUpdate</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A return-trajectory solution from navigation: the predicted Earth closest approach and the impact probability over the knowledge uncertainty.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::InhibitChain" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">InhibitChain</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The cinch inhibit chain as an object the checker runs with every input free.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::FdirTug" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">FdirTug</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The tug with its FDIR supervisor beside the mode machine.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::FaultInjector" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">FaultInjector</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A test conductor injecting faults and events into the tug&#39;s command port.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::CommandLossInjector" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">CommandLossInjector</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Brings the tug to coast, keeps contact with passes on days 5 and 10, then falls silent: the timer expires on day 17, the tug safes, and a contact on day 23 followed by SafeModeExit on day 24 recovers it to coast.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::ThrusterFaultInjector" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ThrusterFaultInjector</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">During the first thrust arc: two flameouts are restarted, the third switches to the spare, the fourth loses the string and safes the tug.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::EarthImpactInjector" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">EarthImpactInjector</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A stacked return on a compressed clock (a ground pass every five days): the capture is completed by injected events, the return arc starts, a nominal trajectory update is accepted, then a solution inside the exclusion sphere aborts the return.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::FaultScenario" data-element-kind="partDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">FaultScenario</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">One tug under one fault injector.</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="supervisor" data-query="TethysSoftwareDocumentsTooling::NamedStates">
+<caption class="sysml-caption">Supervisor monitors</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFdir::FdirSupervisor::commandLossTimer" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">commandLossTimer</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Re-armed by every ground contact (the telecom subsystem reports one per pass); on expiry the supervisor calls safe mode (sun-pointed, low-gain omni), where the ground can reach the tug again.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::FdirSupervisor::thrusterHealth" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thrusterHealth</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Flameout recovery: restart the thruster up to the retry limit, then switch to the spare; with the spare used and another string lost, the operating set cannot be met and the supervisor calls safe mode.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::FdirSupervisor::ppuHealth" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ppuHealth</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">PPU trip recovery: cross-strap the thruster to the redundant PPU on the first trip; a second trip leaves the string on the remaining PPU and calls safe mode for the ground to replan the thrust profile.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::FdirSupervisor::powerHealth" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">powerHealth</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Battery monitor: below the load-shed fraction the supervisor sheds loads through safe mode; the ground clears it with SafeModeExit.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::FdirSupervisor::attitudeHealth" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">attitudeHealth</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Attitude monitor: loss of attitude knowledge or control goes straight to safe mode&#39;s sun acquisition on thrusters.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::FdirSupervisor::earthImpactExclusion" data-element-kind="stateUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">earthImpactExclusion</span></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">The Earth-impact exclusion monitor: every trajectory update is checked against the exclusion sphere and the impact-probability limit; a violation aborts the return (AbortReturn → TugModes abortHold, thrust inhibited).</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table sysml-table-landscape" data-content="table" data-name="limits" data-query="TethysSoftwareDocumentsTooling::FdirLimits">
+<caption class="sysml-caption">Limit tables</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="commandLossTimeout">commandLossTimeout</th>
+<th scope="col" data-column="thrusterRestartDelay">thrusterRestartDelay</th>
+<th scope="col" data-column="maximumFlameoutRetries">maximumFlameoutRetries</th>
+<th scope="col" data-column="batteryLowFraction">batteryLowFraction</th>
+<th scope="col" data-column="earthExclusionRadius">earthExclusionRadius</th>
+<th scope="col" data-column="maximumImpactProbability">maximumImpactProbability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysFlightDictionary::flightLimitTable" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">flightLimitTable</span></td>
+<td class="sysml-cell" data-column="commandLossTimeout" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="7" data-unit="d">7 [d]</span></td>
+<td class="sysml-cell" data-column="thrusterRestartDelay" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2" data-unit="h">2 [h]</span></td>
+<td class="sysml-cell" data-column="maximumFlameoutRetries" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2</span></td>
+<td class="sysml-cell" data-column="batteryLowFraction" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0.3</span></td>
+<td class="sysml-cell" data-column="earthExclusionRadius" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="63781.37" data-unit="km">63781.37 [km]</span></td>
+<td class="sysml-cell" data-column="maximumImpactProbability" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0.0001</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysFdir::cruiseLimits" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">cruiseLimits</span></td>
+<td class="sysml-cell" data-column="commandLossTimeout" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="7" data-unit="d">7 [d]</span></td>
+<td class="sysml-cell" data-column="thrusterRestartDelay" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="2" data-unit="h">2 [h]</span></td>
+<td class="sysml-cell" data-column="maximumFlameoutRetries" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2</span></td>
+<td class="sysml-cell" data-column="batteryLowFraction" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0.3</span></td>
+<td class="sysml-cell" data-column="earthExclusionRadius" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="63781.37" data-unit="km">63781.37 [km]</span></td>
+<td class="sysml-cell" data-column="maximumImpactProbability" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0.0001</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="rules" data-content="section" data-name="rules">
+<h2>Flight rules and procedures</h2>
+<dl class="sysml-definitions" data-content="definitions" data-name="flightRules" data-query="TethysSoftwareDocumentsTooling::OperationsRequirements">
+<div class="sysml-entry" data-element="TethysOperations::dictionaryConsistent" data-element-kind="requirementUsage">
+<dt class="sysml-term">TG-010</dt>
+<dd class="sysml-description">The dictionary shall assign distinct application ids within the 11-bit range, distinct opcodes, mnemonics and event ids; every command shall have an opcode and a mode precondition, every packet shall sum to its length, every telemetry point shall name its source application and carry ordered limits, and every fault-supervisor threshold shall read a limit-table row.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysOperations::noThrustDuringRelay" data-element-kind="requirementUsage">
+<dt class="sysml-term">FR-001</dt>
+<dd class="sysml-description">The flight system shall not thrust while the proximity link is active.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysOperations::approachKeepOut" data-element-kind="requirementUsage">
+<dt class="sysml-term">FR-002</dt>
+<dd class="sysml-description">The tug shall remain outside the 500 m keep-out sphere until a capture sequence is loaded and authorised.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysOperations::sunExclusion" data-element-kind="requirementUsage">
+<dt class="sysml-term">FR-003</dt>
+<dd class="sysml-description">The imager boresight shall stay more than 25° from the Sun while its cover is open.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysOperations::batteryDepthOfDischarge" data-element-kind="requirementUsage">
+<dt class="sysml-term">FR-004</dt>
+<dd class="sysml-description">Battery state of charge shall not fall below 40 % in any planned activity.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysOperations::operationsReadiness" data-element-kind="requirementUsage">
+<dt class="sysml-term">TG-020</dt>
+<dd class="sysml-description">Operations shall be declared ready only with three stations committed, every procedure validated on the flatsat, at least two end-to-end rehearsals flown, every contingency procedure rehearsed and every position staffed.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysOperations::" data-element-kind="satisfyRequirementUsage">
+<dt class="sysml-term"></dt>
+<dd class="sysml-description">The presented status meets every criterion.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysOperations::resourceMarginPositive" data-element-kind="requirementUsage">
+<dt class="sysml-term">TG-021</dt>
+<dd class="sysml-description">Every trended resource shall project above its floor at the end of the nominal mission.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysOperations::" data-element-kind="satisfyRequirementUsage">
+<dt class="sysml-term"></dt>
+<dd class="sysml-description">Xenon projects above its reserve.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysOperations::" data-element-kind="satisfyRequirementUsage">
+<dt class="sysml-term"></dt>
+<dd class="sysml-description">Battery capacity projects above its floor.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysOperations::extendedMissionAffordable" data-element-kind="requirementUsage">
+<dt class="sysml-term">TG-022</dt>
+<dd class="sysml-description">An extended mission shall be proposed only if the xenon left covers its station keeping with the reserve intact.</dd>
+</div>
+<div class="sysml-entry" data-element="TethysOperations::" data-element-kind="satisfyRequirementUsage">
+<dt class="sysml-term"></dt>
+<dd class="sysml-description">The two-year proposal fits the xenon left.</dd>
+</div>
+</dl>
+<table class="sysml-table" data-content="table" data-name="procedures" data-query="TethysSoftwareDocumentsTooling::Procedures">
+<caption class="sysml-caption">Procedures and activities</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysOperations::CommandExecutiveCoverage" data-element-kind="actionDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">CommandExecutiveCoverage</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Every dictionary command is accepted by at least one executive behaviour: this action lists the acceptances the flight software offers.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysOperations::RelayThenThrustProcedure" data-element-kind="actionDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">RelayThenThrustProcedure</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Procedure OPS-014: a relay session followed by a thrust arc, with the FR-001 and FR-004 rules asserted at every step so a schedule that violates them is found.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysOperations::DownlinkActivity" data-element-kind="actionDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">DownlinkActivity</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A downlink activity allocated to a pass: what it returns and how much.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysOperations::TrackingActivity" data-element-kind="actionDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TrackingActivity</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Two-way Doppler and ranging over a pass for orbit determination.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysOperations::ContingencyProcedure" data-element-kind="actionDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ContingencyProcedure</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A ground response to a credible failure mode: the triggering telemetry, the failure mode from the domain list it answers, and the commands it sends.</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysOperations::LinearTrend" data-element-kind="calcDef">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">LinearTrend</span></td>
+<td class="sysml-cell" data-column="documentation" data-value-kind="string"><span class="sysml-value" data-value-kind="string">A value extrapolated linearly from its current value and rate of change.</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="meridian" data-content="section" data-name="meridian">
+<h2>Meridian command workflow</h2>
+<table class="sysml-table" data-content="table" data-name="uplink" data-query="TethysSoftwareDocumentsTooling::NamedParts">
+<caption class="sysml-caption">Uplink exchange: command builder, flight-rule checker, flight sequence store</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysGroundSoftware::UplinkExchange::checker" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">checker</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysGroundSoftware::FlightRuleChecker</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::UplinkExchange::flight" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">flight</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysGroundSoftware::SequenceStoreStandIn</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::UplinkExchange::link" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">link</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysSoftwareIcds::SpaceLinkProfileIcd</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="requests" data-query="TethysSoftwareDocumentsTooling::CommandRequests">
+<caption class="sysml-caption">Command requests checked by the command builder</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="mnemonic">mnemonic</th>
+<th scope="col" data-column="argumentValue">argumentValue</th>
+<th scope="col" data-column="modeAtExecution">modeAtExecution</th>
+<th scope="col" data-column="approvals">approvals</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysGroundSoftware::CommandBuilder::productName" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">productName</span></td>
+<td class="sysml-cell" data-column="mnemonic"></td>
+<td class="sysml-cell" data-column="argumentValue"></td>
+<td class="sysml-cell" data-column="modeAtExecution"></td>
+<td class="sysml-cell" data-column="approvals"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::CommandBuilder::version" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">version</span></td>
+<td class="sysml-cell" data-column="mnemonic"></td>
+<td class="sysml-cell" data-column="argumentValue"></td>
+<td class="sysml-cell" data-column="modeAtExecution"></td>
+<td class="sysml-cell" data-column="approvals"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::CommandBuilder::dictionaryCommandCount" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">dictionaryCommandCount</span></td>
+<td class="sysml-cell" data-column="mnemonic"></td>
+<td class="sysml-cell" data-column="argumentValue"></td>
+<td class="sysml-cell" data-column="modeAtExecution"></td>
+<td class="sysml-cell" data-column="approvals"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::CommandBuilder::hazardousCommandCount" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">hazardousCommandCount</span></td>
+<td class="sysml-cell" data-column="mnemonic"></td>
+<td class="sysml-cell" data-column="argumentValue"></td>
+<td class="sysml-cell" data-column="modeAtExecution"></td>
+<td class="sysml-cell" data-column="approvals"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::CommandBuilder::secondApprover" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">secondApprover</span></td>
+<td class="sysml-cell" data-column="mnemonic"></td>
+<td class="sysml-cell" data-column="argumentValue"></td>
+<td class="sysml-cell" data-column="modeAtExecution"></td>
+<td class="sysml-cell" data-column="approvals"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::CommandBuilder::thrustArcRequest" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thrustArcRequest</span></td>
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SEP_START_THRUST_ARC</span></td>
+<td class="sysml-cell" data-column="argumentValue" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0.8</span></td>
+<td class="sysml-cell" data-column="modeAtExecution" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::thrust" data-element-kind="enumUsage">thrust</span></td>
+<td class="sysml-cell" data-column="approvals" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::CommandBuilder::thrustArcInCoastRequest" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">thrustArcInCoastRequest</span></td>
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SEP_START_THRUST_ARC</span></td>
+<td class="sysml-cell" data-column="argumentValue" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0.8</span></td>
+<td class="sysml-cell" data-column="modeAtExecution" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::coast" data-element-kind="enumUsage">coast</span></td>
+<td class="sysml-cell" data-column="approvals" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::CommandBuilder::resetWithOneApproval" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">resetWithOneApproval</span></td>
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">CDH_RESET_PROCESSOR</span></td>
+<td class="sysml-cell" data-column="argumentValue" data-value-kind="real"><span class="sysml-value" data-value-kind="real">4660</span></td>
+<td class="sysml-cell" data-column="modeAtExecution" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::coast" data-element-kind="enumUsage">coast</span></td>
+<td class="sysml-cell" data-column="approvals" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">1</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::CommandBuilder::resetKeyOutOfRange" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">resetKeyOutOfRange</span></td>
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">CDH_RESET_PROCESSOR</span></td>
+<td class="sysml-cell" data-column="argumentValue" data-value-kind="real"><span class="sysml-value" data-value-kind="real">70000</span></td>
+<td class="sysml-cell" data-column="modeAtExecution" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::coast" data-element-kind="enumUsage">coast</span></td>
+<td class="sysml-cell" data-column="approvals" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::CommandBuilder::misspelledRequest" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">misspelledRequest</span></td>
+<td class="sysml-cell" data-column="mnemonic" data-value-kind="string"><span class="sysml-value" data-value-kind="string">SEP_START_THRUST</span></td>
+<td class="sysml-cell" data-column="argumentValue" data-value-kind="real"><span class="sysml-value" data-value-kind="real">0.8</span></td>
+<td class="sysml-cell" data-column="modeAtExecution" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysTugStructure::TugMode::thrust" data-element-kind="enumUsage">thrust</span></td>
+<td class="sysml-cell" data-column="approvals" data-value-kind="integer"><span class="sysml-value" data-value-kind="integer">2</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::CommandBuilder::verdictsAsPlanted" data-element-kind="attributeUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">verdictsAsPlanted</span></td>
+<td class="sysml-cell" data-column="mnemonic"></td>
+<td class="sysml-cell" data-column="argumentValue"></td>
+<td class="sysml-cell" data-column="modeAtExecution"></td>
+<td class="sysml-cell" data-column="approvals"></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="alarms" data-query="TethysSoftwareDocumentsTooling::TelemetryAlarms">
+<caption class="sysml-caption">Telemetry server limit checks</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="severity">severity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysGroundSoftware::TelemetryServer::busVoltageSample" data-element-kind="calcUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">busVoltageSample</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysGroundSoftware::EngineeringUnits</span></td>
+<td class="sysml-cell" data-column="severity"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::TelemetryServer::busVoltageAlarm" data-element-kind="calcUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">busVoltageAlarm</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysGroundSoftware::CheckLimits</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::AlarmSeverity::nominal" data-element-kind="enumUsage">nominal</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::TelemetryServer::lowBatteryAlarm" data-element-kind="calcUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">lowBatteryAlarm</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysGroundSoftware::CheckLimits</span></td>
+<td class="sysml-cell" data-column="severity" data-value-kind="element"><span class="sysml-value sysml-element" data-value-kind="element" data-element="TethysGroundSoftware::AlarmSeverity::violation" data-element-kind="enumUsage">violation</span></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::TelemetryServer::xenonTrend" data-element-kind="calcUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">xenonTrend</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysOperations::LinearTrend</span></td>
+<td class="sysml-cell" data-column="severity"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sysml-section" id="passes" data-content="section" data-name="passes">
+<h2>Pass planning</h2>
+<table class="sysml-table" data-content="table" data-name="planner" data-query="TethysSoftwareDocumentsTooling::PassPlannerFigures">
+<caption class="sysml-caption">Pass planner figures</caption>
+<thead>
+<tr>
+<th scope="col" data-column="productName">productName</th>
+<th scope="col" data-column="version">version</th>
+<th scope="col" data-column="visibilityHalfWidth">visibilityHalfWidth</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysGroundSoftware::PassPlanner" data-element-kind="partDef">
+<td class="sysml-cell" data-column="productName" data-value-kind="string"><span class="sysml-value" data-value-kind="string">Meridian Almanac</span></td>
+<td class="sysml-cell" data-column="version" data-value-kind="string"><span class="sysml-value" data-value-kind="string">1.9</span></td>
+<td class="sysml-cell" data-column="visibilityHalfWidth" data-value-kind="quantity"><span class="sysml-value" data-value-kind="quantity" data-magnitude="65" data-unit="&#39;°&#39;">65 [&#39;°&#39;]</span></td>
+</tr>
+</tbody>
+</table>
+<table class="sysml-table" data-content="table" data-name="operations" data-query="TethysSoftwareDocumentsTooling::NamedParts">
+<caption class="sysml-caption">Operations centre consoles and roles</caption>
+<thead>
+<tr>
+<th scope="col" data-column="name">name</th>
+<th scope="col" data-column="type">type</th>
+<th scope="col" data-column="documentation">documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sysml-row" data-element="TethysGroundSoftware::SoftwareOperationsCentre::commandBuilder" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">commandBuilder</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysGroundSoftware::CommandBuilder</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::SoftwareOperationsCentre::sequencer" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sequencer</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysGroundSoftware::FlightRuleChecker</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::SoftwareOperationsCentre::telemetryServer" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telemetryServer</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysGroundSoftware::TelemetryServer</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::SoftwareOperationsCentre::passPlanner" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">passPlanner</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysGroundSoftware::PassPlanner</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::SoftwareOperationsCentre::anomalyTracker" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">anomalyTracker</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysGroundSoftware::AnomalyTracker</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::SoftwareOperationsCentre::proximityPlanner" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">proximityPlanner</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysGroundSoftware::ProximityPlanner</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::SoftwareOperationsCentre::ace" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">ace</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysMeridian::OperationsRole</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::SoftwareOperationsCentre::gateway" data-element-kind="partUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">gateway</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysGroundSoftware::SuitePacketGateway</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::SoftwareOperationsCentre::telemetryRelay" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">telemetryRelay</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysGroundSoftware::GroundPacketRelay</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::SoftwareOperationsCentre::commandRelay" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">commandRelay</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysGroundSoftware::GroundPacketRelay</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::SoftwareOperationsCentre::sequenceRelay" data-element-kind="interfaceUsage">
+<td class="sysml-cell" data-column="name" data-value-kind="string"><span class="sysml-value" data-value-kind="string">sequenceRelay</span></td>
+<td class="sysml-cell" data-column="type" data-value-kind="string"><span class="sysml-value" data-value-kind="string">TethysGroundSoftware::GroundPacketRelay</span></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::SoftwareOperationsCentre::" data-element-kind="connectionUsage">
+<td class="sysml-cell" data-column="name"></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::SoftwareOperationsCentre::" data-element-kind="connectionUsage">
+<td class="sysml-cell" data-column="name"></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+<tr class="sysml-row" data-element="TethysGroundSoftware::SoftwareOperationsCentre::" data-element-kind="connectionUsage">
+<td class="sysml-cell" data-column="name"></td>
+<td class="sysml-cell" data-column="type"></td>
+<td class="sysml-cell" data-column="documentation"></td>
+</tr>
+</tbody>
+</table>
+</section>
+</article>
+</body>
+</html>

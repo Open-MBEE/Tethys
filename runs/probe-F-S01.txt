@@ -1,0 +1,12 @@
+✓ package FS01
+✓ Created instance of FS01::viaDefinitionPort
+  ID: 1
+  Use %features FS01::viaDefinitionPort to inspect
+✓ Debugging state machine "m" exhibited by object #2 of "FS01::viaDefinitionPort.a"
+note: object #2 of "FS01::viaDefinitionPort.a" already exhibits "FS01::DefinitionSender::m", so this session attaches to that running machine rather than starting a second performance of it (as `%state FS01::viaDefinitionPort.a` would)
+  Current state: idle
+  Time: 0.0
+  Events: 1
+sysml: advance failed: exhibited state machine m of object #2: process event: enter state: entry action: send reaches no receiving port: port "outbound" is joined to no port that can receive it
+  standing: not covered (advance failed: exhibited state machine m of object #2: process event: enter state: entry action: send reaches no receiving port: port "outbound" is joined to no port that can receive it)
+exit 2

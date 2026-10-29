@@ -1,0 +1,7 @@
+✓ package F_SW201
+✓ F_SW201::big
+  = 4294967295
+✓ F_SW201::bigProduct
+  = 4294967295
+✓ F_SW201::small
+  = 2147483647

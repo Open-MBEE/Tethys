@@ -1,0 +1,9 @@
+calc TethysGroundSoftware::StationVisible(stationLongitude, subPointLongitude, halfWidth) kind=boolean exact
+  grid: inside, both edges, both outside
+  c: does-not-compile-at-pin: sysml: not compilable: in calc TethysGroundSoftware::StationVisible: stationLongitude: type ISQSpaceTime::AngularMeasureValue is not Integer, Real, Boolean, String or an enumeration
+  go: does-not-compile-at-pin: sysml: not compilable: in calc TethysGroundSoftware::StationVisible: stationLongitude: type ISQSpaceTime::AngularMeasureValue is not Integer, Real, Boolean, String or an enumeration
+  (stationLongitude=10.0 ['°'], subPointLongitude=20.0 ['°'], halfWidth=60.0 ['°']) model=true
+  (stationLongitude=10.0 ['°'], subPointLongitude=70.0 ['°'], halfWidth=60.0 ['°']) model=true
+  (stationLongitude=10.0 ['°'], subPointLongitude=71.0 ['°'], halfWidth=60.0 ['°']) model=false
+  (stationLongitude=10.0 ['°'], subPointLongitude=-50.0 ['°'], halfWidth=60.0 ['°']) model=true
+  (stationLongitude=10.0 ['°'], subPointLongitude=-51.0 ['°'], halfWidth=60.0 ['°']) model=false

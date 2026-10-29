@@ -1,0 +1,9 @@
+✓ package F_SW901
+# Bound by literal
+
+*Widgets*
+
+| name | mass |
+| --- | --- |
+| w1 | 1 |
+| w2 | 2 |
