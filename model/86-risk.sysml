@@ -388,7 +388,7 @@ package TethysRisk {
 
     view def RiskRegisterView :> GridView {
         doc /* The register as a grid, one row per risk item. */
-        filter @SysML::PartUsage;
+        filter @Risk;
     }
 
     view riskRegisterView : RiskRegisterView {
