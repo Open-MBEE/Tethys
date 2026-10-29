@@ -233,7 +233,7 @@ package TethysMeridian {
         connect moc.toScience to sds.fromOperations;
         connect fdf.toScience to sds.fromFlightDynamics;
 
-        flow of RawFrames from caldera.backhaul.product to moc.stationFeed.product;
+        flow of RawFrames from stations.backhaul.product to moc.stationFeed.product;
         flow of TrackingData from moc.toFlightDynamics.product to fdf.fromOperations.product;
         flow of OrbitSolution from fdf.toScience.product to sds.fromFlightDynamics.product;
         flow of RawFrames from moc.toScience.product to sds.fromOperations.product;
