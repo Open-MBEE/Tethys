@@ -5,9 +5,10 @@ package TethysHouseRules {
     private import SequenceFunctions::*;
 
     constraint def definitionHasDocumentation {
-        doc /* Every definition carries a doc comment. */
+        doc /* Every definition carries a doc comment. A conjugated port definition (`~P`) is
+             * implied by its port def and cannot carry one, so it is exempt. */
         in d : SysML::Definition;
-        not d.documentation->isEmpty()
+        d istype SysML::ConjugatedPortDefinition or not d.documentation->isEmpty()
     }
 
     constraint def requirementHasDocumentation {

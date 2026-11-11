@@ -7,7 +7,7 @@
 | name | type |
 | --- | --- |
 | tugSide | TethysInterfaces::ThermalPort |
-| inspectorSide | TethysInterfaces::ThermalPort |
+| inspectorSide | TethysInterfaces::ThermalPort::~ThermalPort |
 
 ## Interface parameters
 

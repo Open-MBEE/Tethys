@@ -65,7 +65,6 @@
 ✓ Created instance of TethysSoftwareAssurance::softwareFmeca
   ID: 1
   Use %features TethysSoftwareAssurance::softwareFmeca to inspect
-warning: TethysSoftwareAssurance::softwareFmeca: materialization is bounded; not every feature value was checked
 ✓ TethysSoftwareAssurance::softwareFmeca.rowCount
   = 13
 ✓ TethysSoftwareAssurance::softwareFmeca.catastrophicRowCount

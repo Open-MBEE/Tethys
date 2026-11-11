@@ -2,7 +2,7 @@
 
 Files: `model/94-software-documents.sysml` (mission tier, `TethysSoftwareDocuments`: the document
 register), `model/94-software-documents-tooling.sysml` (tool tier, `TethysSoftwareDocumentsTooling`:
-the queries and the documents), plus the integration edits listed below. Tool: OpenSysML `5cd37f2`,
+the queries and the documents), plus the integration edits listed below. Tool: OpenSysML `98d8eca`,
 pilot 2026-08 / 0.62.0.
 
 ## Scope

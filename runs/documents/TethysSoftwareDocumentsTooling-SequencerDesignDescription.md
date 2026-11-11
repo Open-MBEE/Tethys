@@ -14,7 +14,7 @@
 
 | name | type | documentation |
 | --- | --- | --- |
-| uplinkQueue | TethysIcds::PacketPort |  |
+| uplinkQueue | TethysIcds::PacketPort::~PacketPort |  |
 
 ## Figures and tables
 

@@ -7,8 +7,8 @@
 # builds the binary is pinned too (GOTOOLCHAIN fetches it when the host's go differs).
 set -eu
 OPENSYSML_REPO=${OPENSYSML_REPO:-https://github.com/Open-MBEE/OpenSysML}
-OPENSYSML_COMMIT=${OPENSYSML_COMMIT:-5cd37f288fef171d62737d6045f4caff772b6014}
-export GOTOOLCHAIN=${GOTOOLCHAIN:-go1.25.11}
+OPENSYSML_COMMIT=${OPENSYSML_COMMIT:-98d8eca775de0c776a8f5f3eed8df81b318f48f1}
+export GOTOOLCHAIN=${GOTOOLCHAIN:-go1.27.3}
 mkdir -p build/opensysml
 if [ ! -d build/opensysml-src ]; then
   git init -q build/opensysml-src

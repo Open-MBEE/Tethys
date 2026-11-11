@@ -7,7 +7,7 @@
 | name | type |
 | --- | --- |
 | a | TethysInterfaces::DataBusPort |
-| b | TethysInterfaces::DataBusPort |
+| b | TethysInterfaces::DataBusPort::~DataBusPort |
 
 ## Interface parameters
 

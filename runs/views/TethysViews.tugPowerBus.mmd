@@ -20,6 +20,7 @@ config:
     clusterBkg: "#FFFFFF"
     clusterBorder: "#181818"
     edgeLabelBackground: "#FFFFFF"
+title: "«view» TethysViews::tugPowerBus : InterfaceView"
 ---
 %% TethysViews::tugPowerBus — interconnection rendering (view def InterconnectionView)
 flowchart LR
@@ -32,80 +33,80 @@ flowchart LR
     subgraph n3 ["`*«part»* **structure**`"]
       direction LR
       n4("`*«attribute»*
-**mass**`")
+**^mass**`")
     end
     subgraph n5 ["`*«part»* **thermal**`"]
       direction LR
-      n5.2["power"]
+      n5.2["^power"]
       n6("`*«attribute»*
-**mass**`")
+**^mass**`")
     end
     subgraph n7 ["`*«part»* **eps**`"]
       direction LR
-      n7.0["mainBus"]
-      n7.1["highVoltageBus"]
+      n7.0["^mainBus"]
+      n7.1["^highVoltageBus"]
       n8("`*«attribute»*
-**arrayPowerAtOneAu**`")
+**^arrayPowerAtOneAu**`")
       n9("`*«attribute»*
-**mass**`")
+**^mass**`")
     end
     subgraph n10 ["`*«part»* **cdh**`"]
       direction LR
-      n10.1["power"]
+      n10.1["^power"]
       n11("`*«attribute»*
-**mass**`")
+**^mass**`")
     end
     subgraph n12 ["`*«part»* **telecom**`"]
       direction LR
-      n12.2["power"]
+      n12.2["^power"]
       n13("`*«attribute»*
-**mass**`")
+**^mass**`")
     end
     subgraph n14 ["`*«part»* **gnc**`"]
       direction LR
-      n14.0["power"]
+      n14.0["^power"]
       n15("`*«attribute»*
-**mass**`")
+**^mass**`")
     end
     subgraph n16 ["`*«part»* **sep**`"]
       direction LR
-      n16.1["power"]
+      n16.1["^power"]
       n17("`*«attribute»*
-**xenonMass**`")
+**^xenonMass**`")
       n18("`*«attribute»*
-**thrusterCount**`")
+**^thrusterCount**`")
       n19("`*«attribute»*
-**operatingThrusters**`")
+**^operatingThrusters**`")
       n20("`*«attribute»*
-**specificImpulse**`")
+**^specificImpulse**`")
       n21("`*«attribute»*
-**maximumPower**`")
+**^maximumPower**`")
       n22("`*«attribute»*
-**mass**`")
+**^mass**`")
     end
     subgraph n23 ["`*«part»* **rcs**`"]
       direction LR
-      n23.1["power"]
+      n23.1["^power"]
       n24("`*«attribute»*
-**hydrazineMass**`")
+**^hydrazineMass**`")
       n25("`*«attribute»*
-**mass**`")
+**^mass**`")
     end
     subgraph n26 ["`*«part»* **captureSystem**`"]
       direction LR
-      n26.1["power"]
+      n26.1["^power"]
       n27("`*«attribute»*
-**maximumBodyDiameter**`")
+**^maximumBodyDiameter**`")
       n28("`*«attribute»*
-**maximumBodyMass**`")
+**^maximumBodyMass**`")
       n29("`*«attribute»*
-**mass**`")
+**^mass**`")
     end
     subgraph n30 ["`*«part»* **sensors**`"]
       direction LR
-      n30.0["power"]
+      n30.0["^power"]
       n31("`*«attribute»*
-**mass**`")
+**^mass**`")
     end
   end
   n7.0 === n10.1

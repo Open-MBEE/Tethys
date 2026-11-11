@@ -7,7 +7,7 @@
 | name | type |
 | --- | --- |
 | hot | TethysInterfaces::ThermalPort |
-| cold | TethysInterfaces::ThermalPort |
+| cold | TethysInterfaces::ThermalPort::~ThermalPort |
 
 ## Interface parameters
 

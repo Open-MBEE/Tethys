@@ -96,7 +96,7 @@ package TethysSoftwareAssuranceTooling {
     calc def SoftwareFmecaRows :> Query {
         doc /* The software FMECA table. */
         Project(
-            source = WhereFeature(source = WhereType(source = Descendants(source = Named(qualifiedName = "TethysSoftwareAssurance::softwareFmeca"), maxDepth = 1), type = "OccurrenceUsage"), 'feature' = "failureMode", operator = "!=", value = ""),
+            source = WhereFeature(source = WhereType(source = Descendants(source = Named(qualifiedName = "TethysSoftwareAssurance::softwareFmeca"), maxDepth = 1), type = "OccurrenceUsage"), 'feature' = "failureMode", operator = "!=", value = "", tolerate = true),
             properties = ("shortName", "name", "failureMode", "localEffect", "endEffect", "detection", "response", "criticality", "level")
         )
     }
@@ -105,7 +105,7 @@ package TethysSoftwareAssuranceTooling {
         doc /* The premature-cinch fault tree: its basic and intermediate events with probabilities. */
         Project(
             source = WhereType(source = Descendants(source = Named(qualifiedName = "TethysSoftwareAssurance::prematureCinchTree"), maxDepth = 1), type = "OccurrenceUsage"),
-            properties = ("name", "probability")
+            properties = ("name", "probability"), tolerate = true
         )
     }
 

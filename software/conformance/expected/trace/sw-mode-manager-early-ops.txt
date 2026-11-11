@@ -1,6 +1,6 @@
 run sw-mode-manager-early-ops: scenario TethysFlightBehaviour::softwareNominalFlight, machine TethysFlightBehaviour::ModeManagementSoftware::modes on TethysFlightBehaviour::softwareNominalFlight.tug.cdh.software.modeManagement, horizon 17280 s
 host: 128 traced frames, 8 skips, 2 events, 0 commands, final mode coast, rc 0
-model: 148 trace events, 0 dropped, final time 17280 s, states visited 13
+model: 226 trace events, 0 dropped, final time 17280 s, states visited 13
 machine SepStringController: agree (2 changes, 1 model transitions, 1 model accepts)
   t=0 off
   t=8640 standby

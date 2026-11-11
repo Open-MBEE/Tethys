@@ -1,0 +1,8 @@
+✓ package 'F-I04-perform-action-is-reference'
+✓ model/probes/F-I04-perform-action-is-reference.sysml: no errors
+model/probes/F-I04-perform-action-is-reference.sysml:13:9: error[self-check-rule]: SysMLValidation::validateEventOccurrenceUsageIsReference fails for F-I04-perform-action-is-reference::Tug::warmUp
+model/probes/F-I04-perform-action-is-reference.sysml:14:9: error[self-check-rule]: SysMLValidation::validateEventOccurrenceUsageIsReference fails for F-I04-perform-action-is-reference::Tug::burn
+model/probes/F-I04-perform-action-is-reference.sysml:15:9: error[self-check-rule]: SysMLValidation::validateEventOccurrenceUsageIsReference fails for F-I04-perform-action-is-reference::Tug::coast
+model/probes/F-I04-perform-action-is-reference.sysml:16:9: error[self-check-rule]: SysMLValidation::validateEventOccurrenceUsageIsReference fails for F-I04-perform-action-is-reference::Tug::safe
+Self-model check: 15 elements, 141 checks, 4 violations, 0 unevaluated
+exit 1

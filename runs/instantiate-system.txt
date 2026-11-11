@@ -65,4 +65,3 @@
 ✓ Created instance of TethysSystem::tethysSystem
   ID: 1
   Use %features TethysSystem::tethysSystem to inspect
-warning: TethysSystem::tethysSystem: materialization is bounded; not every feature value was checked

@@ -8,8 +8,8 @@ note: object #2 of "FS04::redefined.vehicle" already exhibits "FS04::Vehicle::m"
   Time: 0.0
   Events: 0
 ✓ Advanced to 10.0 (1 event(s) processed)
-  Current state: idle
-  Last event at: 0.0
+  Current state: gone
+  Last event at: 1.0
   Remaining events: 0
   Action steps taken: 3
   standing: value (observed: 1 run under reverse)

@@ -1,6 +1,6 @@
 run sw-failover: scenario TethysFlightBehaviour::failoverScenario, machine TethysFlightBehaviour::BehaviouralCdh::redundancy on TethysFlightBehaviour::failoverScenario.cdh, horizon 600 s
 host: 144 traced frames, 9 skips, 0 events, 0 commands, final mode launch, rc 0
-model: 65 trace events, 0 dropped, final time 600 s, states visited 7
+model: 105 trace events, 0 dropped, final time 600 s, states visited 7
 machine SepStringController: agree (1 changes, 0 model transitions, 0 model accepts)
   t=0 off
 machine PowerManager: agree (1 changes, 0 model transitions, 0 model accepts)

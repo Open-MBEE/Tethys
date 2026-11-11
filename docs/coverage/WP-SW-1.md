@@ -4,7 +4,7 @@ Files: `model/63-flight-software.sysml` (`TethysFlightSoftware`, mission tier); 
 additions in `model/10-system.sysml`, `model/31-tug-structure.sysml`,
 `model/87-allocations.sysml` (`TethysAllocations`), `model/87-allocations-tooling.sysml`
 (`TethysAllocationQueries`) and `model/99-house-rules.sysml`. Runs recorded with the pinned
-OpenSysML `5cd37f288` (`runs/tool-version.txt`); every command below is a `run` line in
+OpenSysML `98d8eca77` (`runs/tool-version.txt`); every command below is a `run` line in
 `scripts/runs.sh` and its output is in `runs/<name>.txt`. No OpenSysML or pilot defect was hit
 in this package, so there is no `docs/findings/WP-SW-1.md` and no probe.
 
