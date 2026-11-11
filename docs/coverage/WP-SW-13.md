@@ -7,7 +7,7 @@ CI job, one paragraph in `software/README.md`. Flight-side edits the comparison 
 `software/flight/host/argent_host.c` (F-SW1302, F-SW1306), `software/flight/tests/compare_runs.py` and the
 regenerated `software/flight/scenarios/*.stim` (F-SW1303). Model edit: five `TethysSoftwareAssurance` cases
 `planned` → `pass` with their evidence paths (below). Nothing under `software/ground/`, `software/gen/` or
-`software/generated/` is edited. Tool: the pinned OpenSysML `5cd37f288` (`sysml`, `sysml-grpc`, Python client).
+`software/generated/` is edited. Tool: the pinned OpenSysML `98d8eca77` (`sysml`, `sysml-grpc`, Python client).
 
 ## Trace tier — machines × scenarios
 

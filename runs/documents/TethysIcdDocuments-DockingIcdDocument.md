@@ -7,7 +7,7 @@
 | name | type |
 | --- | --- |
 | tugSide | TethysInterfaces::DockingPort |
-| visitorSide | TethysInterfaces::DockingPort |
+| visitorSide | TethysInterfaces::DockingPort::~DockingPort |
 
 ## Interface parameters
 

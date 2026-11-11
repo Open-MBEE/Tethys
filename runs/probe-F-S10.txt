@@ -13,7 +13,7 @@ note: object #1 of "FS10::host" already performs "FS10::Host::parameterised", so
   Action steps taken: 6
 ✓ Action completed
   Results:
-    finished = [true]
+    finished = [true] (order-dependent; 1 choice point — explore shows the set)
     howLong = [10.0 [s]]
   standing: value (observed: 1 run under reverse)
 ✓ Debugging action "literal" performed by object #1 of "FS10::host"
@@ -24,5 +24,5 @@ note: object #1 of "FS10::host" already performs "FS10::Host::literal", so this 
   Tokens: 0
 ✓ Action completed
   Results:
-    finished = [true]
+    finished = [true] (order-dependent; 1 choice point — explore shows the set)
   standing: value (observed: 1 run under reverse)

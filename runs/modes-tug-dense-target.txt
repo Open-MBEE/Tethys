@@ -65,7 +65,6 @@
 ✓ Created instance of TethysModes::denseTargetFlight
   ID: 1
   Use %features TethysModes::denseTargetFlight to inspect
-warning: TethysModes::denseTargetFlight: materialization is bounded; not every feature value was checked
 ✓ Debugging state machine "modes" exhibited by object #4 of "TethysModes::denseTargetFlight.tug"
   Current state: onLauncher | off | lowGain | thrusters | stowed
   Time: 0.0

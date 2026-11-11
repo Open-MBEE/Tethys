@@ -67,4 +67,12 @@
   Use %features TethysFlightBehaviour::capturePrematureContact to inspect
 ✓ State machine TethysFlightBehaviour::CaptureControlSoftware::controller: no violation, exhaustive up to t=20000.0 (11 states, 11 moves, depth 8)
   outcome: finalState inhibited; visits characterising, armed, cinching, inhibited; armCommanded = true; cinchAttempts = 1; despinDuration = 2.0 [h]; fired = false; groundEnable = false; inCaptureMode = false; this.activeModes = [TugMode::proximityOperations, TugMode::capture, TugMode::despin]; this.codeSize = 1000000.0 [B]; this.criticality = SoftwareCriticality::safetyCritical; this.dataSize = 4000000.0 [B]; this.isSolid = true; this.layer = SoftwareLayer::application; this.priority = 7; this.processorLoadMips = 30.0; this.rate = 16.0 [Hz]
+  coverage over all schedules: 4 states entered, 3 transitions taken
+    state TethysFlightBehaviour::capturePrematureContact#1.captureControl.CaptureController: characterising (TethysFlightBehaviour::CaptureController::characterising): 2 schedules
+    state TethysFlightBehaviour::capturePrematureContact#1.captureControl.controller: armed (TethysFlightBehaviour::CaptureController::armed): 2 schedules
+    state TethysFlightBehaviour::capturePrematureContact#1.captureControl.controller: cinching (TethysFlightBehaviour::CaptureController::cinching): 2 schedules
+    state TethysFlightBehaviour::capturePrematureContact#1.captureControl.controller: inhibited (TethysFlightBehaviour::CaptureController::inhibited): 2 schedules
+    transition TethysFlightBehaviour::capturePrematureContact#1.captureControl.controller: armed -> cinching (event: accept ContactDetected) (TethysFlightBehaviour::CaptureController::armed -> cinching (event: accept ContactDetected)): 2 schedules
+    transition TethysFlightBehaviour::capturePrematureContact#1.captureControl.controller: characterising -> armed (event: accept CaptureArm) (TethysFlightBehaviour::CaptureController::characterising -> armed (event: accept CaptureArm)): 2 schedules
+    transition TethysFlightBehaviour::capturePrematureContact#1.captureControl.controller: cinching -> inhibited (TethysFlightBehaviour::CaptureController::cinching -> inhibited): 2 schedules
   standing: holds (bounded over schedules: 11 states, 11 moves searched)

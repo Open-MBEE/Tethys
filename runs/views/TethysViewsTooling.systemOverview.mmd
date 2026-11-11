@@ -20,8 +20,10 @@ config:
     clusterBkg: "#FFFFFF"
     clusterBorder: "#181818"
     edgeLabelBackground: "#FFFFFF"
+title: "«view» TethysViewsTooling::systemOverview"
 ---
 %% TethysViewsTooling::systemOverview — mixed rendering (render asMixedDiagram)
+%% not represented: 1 style field(s) not represented
 %% layout: n1 x=370 y=60 w=220 h=120 collapsed
 %% layout: n2 x=40 y=60 w=220 h=120 collapsed
 %% layout: n3 x=370 y=340 w=220 h=120 collapsed
@@ -42,11 +44,11 @@ flowchart TD
 **ground**`")
     subgraph n4 ["`*«part»* **target**`"]
       direction TD
-      n4.0["surface"]
+      n4.0["^surface"]
     end
     subgraph n5 ["`*«part»* **visitor**`"]
       direction TD
-      n5.0["docking"]
+      n5.0["^docking"]
     end
   end
   n1 === n2

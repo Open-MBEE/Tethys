@@ -14,7 +14,7 @@ from . import OUT, ROOT, SYSML
 from .calcs import BUDGETS, CALCS
 
 MODEL_FILES = sorted(os.path.join(ROOT, "model", f) for f in os.listdir(os.path.join(ROOT, "model")) if f.endswith((".kerml", ".sysml")))
-GOTOOLCHAIN = os.environ.get("GOTOOLCHAIN", "go1.25.11")
+GOTOOLCHAIN = os.environ.get("GOTOOLCHAIN", "go1.27.3")
 
 
 def literal(v) -> str:

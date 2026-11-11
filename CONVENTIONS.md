@@ -28,7 +28,8 @@
   quantity. One declared exception: the KerML library `model/81-physics.kerml` takes and returns
   SI base units as `Real`; the SysML packages attach the ISQ kind and unit literal at the point
   of use.
-- **Documentation.** Every definition and every requirement carries a `doc` comment; rationale
+- **Documentation.** Every definition and every requirement carries a `doc` comment (the implied
+  conjugated port definition `~P` of a port def is exempt, as it cannot); rationale
   uses `ModelingMetadata::Rationale`; status uses `ModelingMetadata::StatusInfo`.
 - **Identity.** Requirements, interfaces, verification cases and risks carry a stable short id
   (`<'TR-0120'>` style) and a `IdentityMetadata` annotation where a document or an external system

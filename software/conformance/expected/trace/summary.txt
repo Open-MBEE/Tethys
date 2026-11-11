@@ -16,4 +16,4 @@ sw-capture-controller: 1 machines compared, 1 agree, 0 diverge, 11 host-only, 5 
 sw-capture-controller-inhibited: 1 machines compared, 1 agree, 0 diverge, 11 host-only, 3 configuration changes
 sw-boot: 1 machines compared, 1 agree, 0 diverge, 11 host-only, 11 configuration changes
 sw-failover: 12 machines compared, 12 agree, 0 diverge, 0 host-only, 17 configuration changes
-total: 161 machine-runs compared, 158 agree, 3 diverge, 43 host-only, 375 configuration changes, 463 model transitions, 299 model accepts
+total: 161 machine-runs compared, 158 agree, 3 diverge, 43 host-only, 375 configuration changes, 470 model transitions, 300 model accepts

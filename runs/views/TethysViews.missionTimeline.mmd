@@ -20,146 +20,149 @@ config:
     clusterBkg: "#FFFFFF"
     clusterBorder: "#181818"
     edgeLabelBackground: "#FFFFFF"
+title: "«view» TethysViews::missionTimeline : TimelineView"
 ---
 %% TethysViews::missionTimeline — tree rendering
 flowchart TD
   n0("`*«occurrence»*
 **flightTimeline**`")
-    n1("`*«occurrence»*
+    n1("`*«event occurrence»*
 **liftOff**`")
-  n0 --- n1
-    n2("`*«occurrence»*
+    n2("`*«event occurrence»*
 **separationFromLauncher**`")
-  n0 --- n2
-    n3("`*«occurrence»*
+    n3("`*«event occurrence»*
 **arraysDeployed**`")
-  n0 --- n3
-    n4("`*«occurrence»*
+    n4("`*«event occurrence»*
 **firstThrustArc**`")
-  n0 --- n4
-    n5("`*«occurrence»*
+    n5("`*«event occurrence»*
 **rendezvous**`")
-  n0 --- n5
-    n6("`*«occurrence»*
+    n6("`*«event occurrence»*
 **inspectorRelease**`")
-  n0 --- n6
-    n7("`*«occurrence»*
+    n7("`*«event occurrence»*
 **captureCommit**`")
-  n0 --- n7
-    n8("`*«occurrence»*
+    n8("`*«event occurrence»*
 **captureComplete**`")
-  n0 --- n8
-    n9("`*«occurrence»*
+    n9("`*«event occurrence»*
 **despinComplete**`")
-  n0 --- n9
-    n10("`*«occurrence»*
+    n10("`*«event occurrence»*
 **inspectorRetirement**`")
-  n0 --- n10
-    n11("`*«occurrence»*
+    n11("`*«event occurrence»*
 **departureFromTarget**`")
-  n0 --- n11
-    n12("`*«occurrence»*
+    n12("`*«event occurrence»*
 **lunarGravityAssist**`")
-  n0 --- n12
-    n13("`*«occurrence»*
+    n13("`*«event occurrence»*
 **droInsertion**`")
-  n0 --- n13
-    n14("`*«occurrence»*
+    n14("`*«event occurrence»*
 **visitingVehicleDocking**`")
-  n0 --- n14
-    n15("`*«occurrence»*
+    n15("`*«event occurrence»*
 **tugSeparation**`")
-  n0 --- n15
-    n16("`*«occurrence»*
+    n16("`*«event occurrence»*
 **tugDisposalBurn**`")
-  n0 --- n16
     n17("`*«occurrence»*
 **integrationAndTest**`")
-  n0 --- n17
     n18("`*«occurrence»*
 **launchAndEarlyOperations**`")
-  n0 --- n18
     n19("`*«occurrence»*
 **sepCommissioning**`")
-  n0 --- n19
     n20("`*«occurrence»*
 **outboundCruise**`")
-  n0 --- n20
     n21("`*«occurrence»*
 **approachAndRendezvous**`")
-  n0 --- n21
     n22("`*«occurrence»*
 **characterisation**`")
-  n0 --- n22
     n23("`*«occurrence»*
 **capture**`")
-  n0 --- n23
     n24("`*«occurrence»*
 **returnCruise**`")
-  n0 --- n24
     n25("`*«occurrence»*
 **droInsertionAndCheckout**`")
-  n0 --- n25
     n26("`*«occurrence»*
 **utilisation**`")
-  n0 --- n26
     n27("`*«occurrence»*
 **extendedMission**`")
-  n0 --- n27
     n28("`*«occurrence»*
 **disposal**`")
-  n0 --- n28
-    n29("`**succession**`")
+    n29("`**first integrationAndTest then liftOff**`")
   n0 --- n29
-    n30("`**succession**`")
+    n30("`**first liftOff then launchAndEarlyOperations**`")
   n0 --- n30
-    n31("`**succession**`")
+    n31("`**first launchAndEarlyOperations then separationFromLauncher**`")
   n0 --- n31
-    n32("`**succession**`")
+    n32("`**first separationFromLauncher then arraysDeployed**`")
   n0 --- n32
-    n33("`**succession**`")
+    n33("`**first arraysDeployed then sepCommissioning**`")
   n0 --- n33
-    n34("`**succession**`")
+    n34("`**first sepCommissioning then outboundCruise**`")
   n0 --- n34
-    n35("`**succession**`")
+    n35("`**first outboundCruise then firstThrustArc**`")
   n0 --- n35
-    n36("`**succession**`")
+    n36("`**first firstThrustArc then approachAndRendezvous**`")
   n0 --- n36
-    n37("`**succession**`")
+    n37("`**first approachAndRendezvous then rendezvous**`")
   n0 --- n37
-    n38("`**succession**`")
+    n38("`**first rendezvous then characterisation**`")
   n0 --- n38
-    n39("`**succession**`")
+    n39("`**first characterisation then inspectorRelease**`")
   n0 --- n39
-    n40("`**succession**`")
+    n40("`**first inspectorRelease then captureCommit**`")
   n0 --- n40
-    n41("`**succession**`")
+    n41("`**first captureCommit then capture**`")
   n0 --- n41
-    n42("`**succession**`")
+    n42("`**first capture then captureComplete**`")
   n0 --- n42
-    n43("`**succession**`")
+    n43("`**first captureComplete then despinComplete**`")
   n0 --- n43
-    n44("`**succession**`")
+    n44("`**first despinComplete then inspectorRetirement**`")
   n0 --- n44
-    n45("`**succession**`")
+    n45("`**first inspectorRetirement then departureFromTarget**`")
   n0 --- n45
-    n46("`**succession**`")
+    n46("`**first departureFromTarget then returnCruise**`")
   n0 --- n46
-    n47("`**succession**`")
+    n47("`**first returnCruise then lunarGravityAssist**`")
   n0 --- n47
-    n48("`**succession**`")
+    n48("`**first lunarGravityAssist then droInsertion**`")
   n0 --- n48
-    n49("`**succession**`")
+    n49("`**first droInsertion then droInsertionAndCheckout**`")
   n0 --- n49
-    n50("`**succession**`")
+    n50("`**first droInsertionAndCheckout then utilisation**`")
   n0 --- n50
-    n51("`**succession**`")
+    n51("`**first utilisation then visitingVehicleDocking**`")
   n0 --- n51
-    n52("`**succession**`")
+    n52("`**first visitingVehicleDocking then extendedMission**`")
   n0 --- n52
-    n53("`**succession**`")
+    n53("`**first extendedMission then tugSeparation**`")
   n0 --- n53
-    n54("`**succession**`")
+    n54("`**first tugSeparation then disposal**`")
   n0 --- n54
-    n55("`**succession**`")
+    n55("`**first disposal then tugDisposalBurn**`")
   n0 --- n55
+    n56@{ shape: notch-rect, label: "«doc»<br>The flight from integration and test through lift-off to disposal: the phases<br>every requirement, budget and mode in the model refers to, and the events that<br>bound them. The launcher injects<br>the stack directly onto an Earth-escape trajectory#59; the tug thrusts in arcs to the<br>target, station-keeps while Wren characterises it, captures and despins it, and<br>returns through a lunar gravity assist into the distant retrograde orbit." }
+  n0 -->|"event"| n1
+  n0 -->|"event"| n2
+  n0 -->|"event"| n3
+  n0 -->|"event"| n4
+  n0 -->|"event"| n5
+  n0 -->|"event"| n6
+  n0 -->|"event"| n7
+  n0 -->|"event"| n8
+  n0 -->|"event"| n9
+  n0 -->|"event"| n10
+  n0 -->|"event"| n11
+  n0 -->|"event"| n12
+  n0 -->|"event"| n13
+  n0 -->|"event"| n14
+  n0 -->|"event"| n15
+  n0 -->|"event"| n16
+  n0 ---|"◆"| n17
+  n0 ---|"◆"| n18
+  n0 ---|"◆"| n19
+  n0 ---|"◆"| n20
+  n0 ---|"◆"| n21
+  n0 ---|"◆"| n22
+  n0 ---|"◆"| n23
+  n0 ---|"◆"| n24
+  n0 ---|"◆"| n25
+  n0 ---|"◆"| n26
+  n0 ---|"◆"| n27
+  n0 ---|"◆"| n28
+  n56 -.- n0

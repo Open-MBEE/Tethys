@@ -65,7 +65,6 @@
 ✓ Created instance of TethysSoftwareAssurance::hazardousCommandInhibitRegister
   ID: 1
   Use %features TethysSoftwareAssurance::hazardousCommandInhibitRegister to inspect
-warning: TethysSoftwareAssurance::hazardousCommandInhibitRegister: materialization is bounded; not every feature value was checked
 ✓ TethysSoftwareAssurance::hazardousCommandInhibitRegister.testedCount
   = 51
 ✓ TethysSoftwareAssurance::hazardousCommandInhibitRegister.allTestedAreHazardous

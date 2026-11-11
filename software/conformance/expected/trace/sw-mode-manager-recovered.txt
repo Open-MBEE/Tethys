@@ -1,6 +1,6 @@
 run sw-mode-manager-recovered: scenario TethysFlightBehaviour::softwareCommandLoss, machine TethysFlightBehaviour::ModeManagementSoftware::modes on TethysFlightBehaviour::softwareCommandLoss.tug.cdh.software.modeManagement, horizon 2160000 s
 host: 208 traced frames, 13 skips, 8 events, 0 commands, final mode coast, rc 0
-model: 346 trace events, 0 dropped, final time 2160000 s, states visited 22
+model: 490 trace events, 0 dropped, final time 2160000 s, states visited 22
 machine SepStringController: agree (4 changes, 3 model transitions, 3 model accepts)
   t=0 off
   t=8640 standby

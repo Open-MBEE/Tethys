@@ -1,0 +1,5 @@
+✓ package 'F-I05-conjugated-port-definition'
+✓ model/probes/F-I05-conjugated-port-definition.sysml: no errors
+model/probes/F-I05-conjugated-port-definition.sysml:10:5: error[self-check-rule]: F-I05-conjugated-port-definition::Rules::definitionHasDocumentation fails for F-I05-conjugated-port-definition::PacketPort::~PacketPort
+Self-model check: 9 elements, 51 checks, 1 violations, 0 unevaluated
+exit 1

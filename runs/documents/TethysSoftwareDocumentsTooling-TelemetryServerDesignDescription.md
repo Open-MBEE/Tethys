@@ -14,7 +14,7 @@
 
 | name | type | documentation |
 | --- | --- | --- |
-| frames | TethysIcds::PacketPort |  |
+| frames | TethysIcds::PacketPort::~PacketPort |  |
 | products | TethysMeridian::ProductPort |  |
 
 ## Figures and tables

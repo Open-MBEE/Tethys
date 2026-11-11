@@ -1,6 +1,6 @@
 run sw-fdir-thruster-restarting: scenario TethysFlightBehaviour::softwareThrusterFault, machine TethysFlightBehaviour::FdirSoftware::supervisor on TethysFlightBehaviour::softwareThrusterFault.tug.cdh.software.fdir, horizon 876960 s
 host: 160 traced frames, 10 skips, 5 events, 0 commands, final mode thrust, rc 0
-model: 234 trace events, 0 dropped, final time 876960 s, states visited 9
+model: 337 trace events, 0 dropped, final time 876960 s, states visited 9
 machine SepStringController: agree (4 changes, 3 model transitions, 3 model accepts)
   t=0 off
   t=8640 standby

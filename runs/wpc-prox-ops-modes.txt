@@ -65,7 +65,6 @@
 ✓ Created instance of TethysProximityOps::proximityOperations
   ID: 1
   Use %features TethysProximityOps::proximityOperations to inspect
-warning: TethysProximityOps::proximityOperations: materialization is bounded; not every feature value was checked
 ✓ Debugging state machine "modes" exhibited by object #1 of "TethysProximityOps::proximityOperations"
 note: object #1 of "TethysProximityOps::proximityOperations" already exhibits "TethysProximityOps::ProximityOpsModes", so this session attaches to that running machine rather than starting a second performance of it (as `%state TethysProximityOps::proximityOperations` would)
   Current state: cinched

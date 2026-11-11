@@ -27,7 +27,7 @@
 | name | type | documentation |
 | --- | --- | --- |
 | command | TethysModes::CommandPort |  |
-| supervisorRequests | TethysModes::CommandPort |  |
+| supervisorRequests | TethysModes::CommandPort::~CommandPort |  |
 
 ## State machine
 

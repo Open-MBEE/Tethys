@@ -350,7 +350,7 @@ loaded 64 files:
 | name | type |
 | --- | --- |
 | a | TethysInterfaces::DataBusPort |
-| b | TethysInterfaces::DataBusPort |
+| b | TethysInterfaces::DataBusPort::~DataBusPort |
 
 ## Protocol parameters
 
@@ -512,7 +512,7 @@ loaded 64 files:
 | name | type |
 | --- | --- |
 | flightSide | TethysIcds::PacketPort |
-| groundSide | TethysIcds::PacketPort |
+| groundSide | TethysIcds::PacketPort::~PacketPort |
 
 ## Profile parameters
 
@@ -719,7 +719,7 @@ loaded 64 files:
 | name | type |
 | --- | --- |
 | a | TethysInterfaces::DataBusPort |
-| b | TethysInterfaces::DataBusPort |
+| b | TethysInterfaces::DataBusPort::~DataBusPort |
 
 ## Profile parameters
 
@@ -874,7 +874,7 @@ loaded 64 files:
 | name | type |
 | --- | --- |
 | a | TethysInterfaces::DataBusPort |
-| b | TethysInterfaces::DataBusPort |
+| b | TethysInterfaces::DataBusPort::~DataBusPort |
 
 <a id="parameters"></a>
 
