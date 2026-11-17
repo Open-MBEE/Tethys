@@ -7,7 +7,7 @@
 | name | type |
 | --- | --- |
 | tugSide | TethysInterfaces::MechanicalPort |
-| inspectorSide | TethysInterfaces::MechanicalPort |
+| inspectorSide | TethysInterfaces::MechanicalPort::~MechanicalPort |
 
 ## Interface parameters
 

@@ -20,7 +20,7 @@
 
 | name | type | documentation |
 | --- | --- | --- |
-| inspectorCommands | TethysModes::CommandPort |  |
+| inspectorCommands | TethysModes::CommandPort::~CommandPort |  |
 | relay | TethysInterfaces::DataBusPort |  |
 
 *Ports added by the behavioural specialisation*

@@ -136,7 +136,7 @@ loaded 64 files:
 | name | type |
 | --- | --- |
 | spacecraftSide | TethysInterfaces::RfPort |
-| groundSide | TethysInterfaces::RfPort |
+| groundSide | TethysInterfaces::RfPort::~RfPort |
 
 ## Interface parameters
 

@@ -1,6 +1,6 @@
 {
  "format": "meridian-packet-fixtures/1",
- "model_tool_commit": "5cd37f288fef171d62737d6045f4caff772b6014",
+ "model_tool_commit": "98d8eca775de0c776a8f5f3eed8df81b318f48f1",
  "packets": [
   {
    "apid": 16,

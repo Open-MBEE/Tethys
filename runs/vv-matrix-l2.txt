@@ -73,7 +73,7 @@
     verifiedBy = [TethysVerification::CaptureEnvelopeTest, TethysSoftwareAssurance::CaptureSequenceTest]
     cases = 2
     satisfiedBy = TethysTug::argent
-    derivedFrom = (none)
+    derivedFrom = [TethysRequirements::retrieval, TethysRequirements::characterisation]
   Row 2: TethysRequirementsL2::deliveredMass
     shortName = "TS-002"
     name = "deliveredMass"
@@ -83,7 +83,7 @@
     verifiedBy = TethysVerification::DeliveryAnalysis
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::flight
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::retrieval
   Row 3: TethysRequirementsL2::transferDuration
     shortName = "TS-003"
     name = "transferDuration"
@@ -93,7 +93,7 @@
     verifiedBy = TethysAnalyses::TransferTimelineByAnalysis
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::flight
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::missionDuration
   Row 4: TethysRequirementsL2::propellantCapacity
     shortName = "TS-004"
     name = "propellantCapacity"
@@ -103,7 +103,7 @@
     verifiedBy = TethysVerification::PropellantAnalysis
     cases = 1
     satisfiedBy = TethysTug::argent
-    derivedFrom = (none)
+    derivedFrom = [TethysRequirements::retrieval, TethysRequirements::missionDuration]
   Row 5: TethysRequirementsL2::characterisationProducts
     shortName = "TS-005"
     name = "characterisationProducts"
@@ -113,7 +113,7 @@
     verifiedBy = [TethysVerification::CharacterisationAnalysis, TethysSoftwareAssurance::InspectorRelayTest]
     cases = 2
     satisfiedBy = TethysSystem::tethysSystem::flight
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::characterisation
   Row 6: TethysRequirementsL2::launchCompatibility
     shortName = "TS-006"
     name = "launchCompatibility"
@@ -123,7 +123,7 @@
     verifiedBy = TethysVerification::MassBudgetAnalysis
     cases = 1
     satisfiedBy = (none)
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::launchCompatibility
   Row 7: TethysRequirementsL2::deepSpaceLink
     shortName = "TS-007"
     name = "deepSpaceLink"
@@ -133,7 +133,7 @@
     verifiedBy = [TethysVerification::LinkBudgetTest, TethysSoftwareAssurance::SpaceLinkTest]
     cases = 2
     satisfiedBy = (none)
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::groundCompatibility
   Row 8: TethysRequirementsL2::earthImpactExclusion
     shortName = "TS-008"
     name = "earthImpactExclusion"
@@ -143,7 +143,7 @@
     verifiedBy = [TethysVerification::ReturnSafetyAnalysis, TethysSoftwareAssurance::FinalTargetingTest]
     cases = 2
     satisfiedBy = TethysSystem::tethysSystem::flight
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::cislunarSafety
   Row 9: TethysRequirementsL2::droStability
     shortName = "TS-009"
     name = "droStability"
@@ -153,7 +153,7 @@
     verifiedBy = TethysVerification::ReturnSafetyAnalysis
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::flight
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::cislunarSafety
   Row 10: TethysRequirementsL2::thrustRedundancy
     shortName = "TS-010"
     name = "thrustRedundancy"
@@ -163,7 +163,7 @@
     verifiedBy = [TethysVerification::RedundancyInspection, TethysVerification::SepCommissioning, TethysSoftwareAssurance::ThrustArcControlTest]
     cases = 3
     satisfiedBy = TethysTug::argent
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::missionClass
   Row 11: TethysRequirementsL2::deflectionMeasurement
     shortName = "TS-011"
     name = "deflectionMeasurement"
@@ -173,7 +173,7 @@
     verifiedBy = TethysVerification::DeflectionAnalysis
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::flight
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::deflectionDemonstration
   Row 12: TethysRequirementsL2::visitorDocking
     shortName = "TS-012"
     name = "visitorDocking"
@@ -183,7 +183,7 @@
     verifiedBy = TethysVerification::DockingDemo
     cases = 1
     satisfiedBy = (none)
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::utilisationAccess
   Row 13: TethysRequirementsL2::autonomousSurvival
     shortName = "TS-013"
     name = "autonomousSurvival"
@@ -193,7 +193,7 @@
     verifiedBy = [TethysVerification::AutonomyTest, TethysSoftwareAssurance::CaptureAbortTest, TethysSoftwareAssurance::ModeManagementTest]
     cases = 3
     satisfiedBy = TethysSystem::tethysSystem::flight
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::missionClass
   Row 14: TethysRequirementsL2::proximityContactEnvironment
     shortName = "TS-014"
     name = "proximityContactEnvironment"
@@ -203,7 +203,7 @@
     verifiedBy = TethysVerification::ContactSpeedTest
     cases = 1
     satisfiedBy = TethysTug::argent
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::missionClass
   Row 15: TethysRequirementsL2::faultResponse
     shortName = "TS-015"
     name = "faultResponse"
@@ -213,7 +213,7 @@
     verifiedBy = [TethysVerification::FaultResponseTest, TethysSoftwareAssurance::FaultDetectionTest]
     cases = 2
     satisfiedBy = TethysSystem::tethysSystem::flight
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::missionClass
   Row 16: TethysRequirementsL2::massBudget
     shortName = "TS-016"
     name = "massBudget"
@@ -223,7 +223,7 @@
     verifiedBy = TethysVerification::MassBudgetAnalysis
     cases = 1
     satisfiedBy = TethysTug::argent
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::launchCompatibility
   Row 17: TethysRequirementsL2::captureQualification
     shortName = "TS-017"
     name = "captureQualification"
@@ -233,7 +233,7 @@
     verifiedBy = [TethysVerification::CaptureEnvelopeTest, TethysSoftwareAssurance::CaptureSequenceTest]
     cases = 2
     satisfiedBy = (none)
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::missionClass
   Row 18: TethysRequirementsL2::inspectorDeployment
     shortName = "TS-018"
     name = "inspectorDeployment"
@@ -243,7 +243,7 @@
     verifiedBy = TethysVerification::SeparationTest
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::flight
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::characterisation
   Row 19: TethysRequirementsL2::despinCapacity
     shortName = "TS-019"
     name = "despinCapacity"
@@ -253,7 +253,7 @@
     verifiedBy = TethysVerification::DespinAnalysis
     cases = 1
     satisfiedBy = TethysTug::argent
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::retrieval
   Row 20: TethysRequirementsL2::groundCoverage
     shortName = "TS-020"
     name = "groundCoverage"
@@ -263,7 +263,7 @@
     verifiedBy = TethysVerification::GroundReadinessDemo
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::ground
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::groundCompatibility
   Row 21: TethysRequirementsL2::commandLatency
     shortName = "TS-021"
     name = "commandLatency"
@@ -273,7 +273,7 @@
     verifiedBy = [TethysVerification::GroundReadinessDemo, TethysSoftwareAssurance::CommandRoutingTest]
     cases = 2
     satisfiedBy = TethysSystem::tethysSystem::ground
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::groundCompatibility
   Row 22: TethysRequirementsL2::operatorWorkload
     shortName = "TS-022"
     name = "operatorWorkload"
@@ -283,7 +283,7 @@
     verifiedBy = TethysVerification::GroundReadinessDemo
     cases = 1
     satisfiedBy = TethysSystem::tethysSystem::ground
-    derivedFrom = (none)
+    derivedFrom = TethysRequirements::missionClass
   Row 23: TethysRequirementsL2::flightPerformanceRequirements
     shortName = (none)
     name = "flightPerformanceRequirements"

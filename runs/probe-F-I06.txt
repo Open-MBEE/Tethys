@@ -1,0 +1,5 @@
+✓ package 'F-I06-require-constraint-parameter-sequence'
+? satisfy budgetCloses by budget could not be evaluated (on 'F-I06-require-constraint-parameter-sequence'::budget ID: 1)
+  Error: satisfaction satisfy budgetCloses by budget: require condition evaluation failed: type mismatch: operator '*' is not defined for a sequence and a Rational
+  standing: not covered (satisfaction satisfy budgetCloses by budget: require condition evaluation failed: type mismatch: operator '*' is not defined for a sequence and a Rational)
+exit 2

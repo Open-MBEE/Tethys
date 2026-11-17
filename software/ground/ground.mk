@@ -9,7 +9,7 @@ SYSML_GRPC ?= build/opensysml/sysml-grpc
 .PHONY: software-ground-test software-ground-go software-ground-check
 
 $(SYSML_GRPC): build/opensysml-src/go.mod
-	cd build/opensysml-src && GOTOOLCHAIN=$${GOTOOLCHAIN:-go1.25.11} go build -o bin/sysml-grpc ./cmd/sysml-grpc
+	cd build/opensysml-src && GOTOOLCHAIN=$${GOTOOLCHAIN:-go1.27.3} go build -o bin/sysml-grpc ./cmd/sysml-grpc
 	cp build/opensysml-src/bin/sysml-grpc $(SYSML_GRPC)
 
 software-ground-test: $(SOFTWARE_PY) $(SYSML_GRPC)

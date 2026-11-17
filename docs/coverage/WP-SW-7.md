@@ -5,7 +5,7 @@ File: `model/69-ground-software.sysml` (`TethysGroundSoftware`, mission tier). B
 `MeridianFlightDynamics`, `MeridianScienceDataSystem` gain component parts that 69 retypes),
 `model/53-operations.sysml` (`StationPass::producedBy`, `DailyPassPlan::producedBy`) and
 `model/23-verification.sysml` (`TestBedSet` definition behind the `testBeds` part, so 69 can
-retype its four test beds). Runs recorded with the pinned OpenSysML `5cd37f288`
+retype its four test beds). Runs recorded with the pinned OpenSysML `98d8eca77`
 (`runs/tool-version.txt`); every command below is a `run` line in `scripts/runs.sh` and its output
 is in `runs/<name>.txt`. Findings and probes: `docs/findings/WP-SW-7.md` (F-SW701 to F-SW704),
 `model/probes/F-SW701-quantity-typed-argument-bounds.sysml`,

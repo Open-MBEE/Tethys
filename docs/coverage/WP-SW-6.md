@@ -4,7 +4,7 @@ Files: `model/68-software-icds.sysml` (`TethysSoftwareIcds`, mission tier) and
 `model/68-software-icds-tooling.sysml` (`TethysSoftwareIcdDocuments`, tool tier: `DocumentQueries`);
 backbone edits in `model/51-icds.sysml` (the TI-02x reservation in the `InterfaceControl` doc) and
 `model/54-icds-tooling.sysml` (`IcdRegister`, `IcdRequirements`, `IcdVerifications` read
-`TethysSoftwareIcds` beside `TethysIcds`). Runs recorded with the pinned OpenSysML `5cd37f288`
+`TethysSoftwareIcds` beside `TethysIcds`). Runs recorded with the pinned OpenSysML `98d8eca77`
 (`runs/tool-version.txt`); every command below is a `run` line in `scripts/runs.sh` and its output
 is in `runs/<name>.txt`. Findings and probes: `docs/findings/WP-SW-6.md` (F-SW601, F-SW602),
 `model/probes/F-SW601-three-end-interface.sysml`, `model/probes/F-SW602-allocation-chain-ends.sysml`.

@@ -65,8 +65,6 @@
 ✓ Created instance of TethysProximityOps::captureOperation
   ID: 1
   Use %features TethysProximityOps::captureOperation to inspect
-error: in capture: feature value commit.go: type mismatch: operator '<=' is not defined for a quantity and a sequence; DataFunctions::'<=' takes one DataValue per operand
-warning: TethysProximityOps::captureOperation: materialization is bounded; not every feature value was checked
 ✓ Debugging action "capture" performed by object #1 of "TethysProximityOps::captureOperation"
 note: object #1 of "TethysProximityOps::captureOperation" already performs "TethysProximityOps::CaptureSequence", so this session attaches to that running performance rather than starting a second one (as `%action TethysProximityOps::CaptureSequence` would)
   State: Waiting

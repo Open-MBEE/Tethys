@@ -15,7 +15,7 @@ package TethysFlightDictionaryDocuments {
         Project(
             source = OrderBy(source = WhereFeature(
                     source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysFlightDictionary")), type = "ItemUsage"),
-                    'feature' = "opcodeNumber", operator = ">=", value = "0"), property = "opcodeNumber", direction = "ascending", missing = "last", multiple = "first"),
+                    'feature' = "opcodeNumber", operator = ">=", value = "0", tolerate = true), property = "opcodeNumber", direction = "ascending", missing = "last", multiple = "first"),
             properties = ("mnemonic", "opcodeNumber", "application", "criticality", "hazardous", "argumentCount", "documentation")
         )
     }
@@ -25,7 +25,7 @@ package TethysFlightDictionaryDocuments {
         Project(
             source = OrderBy(source = WhereFeature(
                     source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysFlightDictionary")), type = "ItemUsage"),
-                    'feature' = "pointId", operator = ">=", value = "0"), property = "pointId", direction = "ascending", missing = "last", multiple = "first"),
+                    'feature' = "pointId", operator = ">=", value = "0", tolerate = true), property = "pointId", direction = "ascending", missing = "last", multiple = "first"),
             properties = ("mnemonic", "pointId", "source", "kind", "redLow", "yellowLow", "yellowHigh", "redHigh", "unitSymbol", "rate")
         )
     }
@@ -35,7 +35,7 @@ package TethysFlightDictionaryDocuments {
         Project(
             source = OrderBy(source = WhereFeature(
                     source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysFlightDictionary")), type = "ItemUsage"),
-                    'feature' = "eventId", operator = ">=", value = "0"), property = "eventId", direction = "ascending", missing = "last", multiple = "first"),
+                    'feature' = "eventId", operator = ">=", value = "0", tolerate = true), property = "eventId", direction = "ascending", missing = "last", multiple = "first"),
             properties = ("mnemonic", "eventId", "source", "severity", "fdirRelevant", "text")
         )
     }
@@ -45,7 +45,7 @@ package TethysFlightDictionaryDocuments {
         Project(
             source = OrderBy(source = WhereFeature(
                     source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysFlightDictionary")), type = "ItemUsage"),
-                    'feature' = "packetId", operator = ">=", value = "0"), property = "apid", direction = "ascending", missing = "last", multiple = "first"),
+                    'feature' = "packetId", operator = ">=", value = "0", tolerate = true), property = "apid", direction = "ascending", missing = "last", multiple = "first"),
             properties = ("mnemonic", "apid", "apidClass", "source", "rate", "fieldCount", "headerBits", "payloadBits", "lengthOctets", "layoutConsistent")
         )
     }

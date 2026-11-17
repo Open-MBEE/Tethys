@@ -65,7 +65,6 @@
 ✓ Created instance of TethysSoftwareAssurance::softwareHazardAnalysis
   ID: 1
   Use %features TethysSoftwareAssurance::softwareHazardAnalysis to inspect
-warning: TethysSoftwareAssurance::softwareHazardAnalysis: materialization is bounded; not every feature value was checked
 ✓ TethysSoftwareAssurance::softwareHazardAnalysis.hazardCount
   = 7
 ✓ TethysSoftwareAssurance::softwareHazardAnalysis.softwareCauseCount

@@ -1,5 +1,3 @@
 ✓ package 'F-J02-snapshot-inherited-values'
-? Constraint 'F-J02-snapshot-inherited-values'::reader::snapshotProduct could not be evaluated
-  Error: constraint snapshotProduct: assertion evaluation failed: no value: condition is undetermined: width has no value in the model
-  standing: not covered (constraint snapshotProduct: assertion evaluation failed: no value: condition is undetermined: width has no value in the model)
-exit 2
+✓ Constraint 'F-J02-snapshot-inherited-values'::reader::snapshotProduct passed
+  standing: holds (observed: 1 run under reverse)

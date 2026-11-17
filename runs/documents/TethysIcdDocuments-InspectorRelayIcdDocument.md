@@ -7,7 +7,7 @@
 | name | type |
 | --- | --- |
 | inspectorSide | TethysInterfaces::RfPort |
-| tugSide | TethysInterfaces::RfPort |
+| tugSide | TethysInterfaces::RfPort::~RfPort |
 
 ## Interface parameters
 

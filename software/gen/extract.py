@@ -492,9 +492,10 @@ def action_text(rd, eid) -> str:
         tt = target.text if target is not None and target.text else qname((target.get("referent") if target else "") or "").rsplit("::", 1)[-1]
         return f"{tt} := {rd.text_of(e.get('value'))}"
     if e.type == "SendActionUsage":
-        payload = rd.text_of(f"{eid}_ppayload")
-        receiver = rd.text_of(f"{eid}_preceiver")
-        return f"send {payload}" + (f" via {receiver}" if receiver else "")
+        payload = rd.text_of(e.get("payloadArgument") or "")
+        sender = rd.text_of(e.get("senderArgument") or "")
+        receiver = rd.text_of(e.get("receiverArgument") or "")
+        return f"send {payload}" + (f" via {sender}" if sender else "") + (f" to {receiver}" if receiver else "")
     steps = [action_text(rd, k.id) for k in rd.kids(eid) if k.type.endswith("ActionUsage")]
     steps = [s for s in steps if s]
     if e.name and steps:

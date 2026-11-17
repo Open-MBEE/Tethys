@@ -7,7 +7,7 @@
 | name | type |
 | --- | --- |
 | spacecraftSide | TethysInterfaces::MechanicalPort |
-| launcherSide | TethysInterfaces::MechanicalPort |
+| launcherSide | TethysInterfaces::MechanicalPort::~MechanicalPort |
 
 ## Interface parameters
 

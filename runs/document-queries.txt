@@ -145,7 +145,7 @@
   Row 2: TethysInterfaces::TugInspectorInterface::inspectorSide
     owner = "TethysInterfaces::TugInspectorInterface"
     name = "inspectorSide"
-    type = "TethysInterfaces::UmbilicalPort"
+    type = "TethysInterfaces::UmbilicalPort::~UmbilicalPort"
   Row 3: TethysInterfaces::InspectorDispenserInterface::tugSide
     owner = "TethysInterfaces::InspectorDispenserInterface"
     name = "tugSide"
@@ -153,7 +153,7 @@
   Row 4: TethysInterfaces::InspectorDispenserInterface::inspectorSide
     owner = "TethysInterfaces::InspectorDispenserInterface"
     name = "inspectorSide"
-    type = "TethysInterfaces::MechanicalPort"
+    type = "TethysInterfaces::MechanicalPort::~MechanicalPort"
   Row 5: TethysInterfaces::InspectorThermalInterface::tugSide
     owner = "TethysInterfaces::InspectorThermalInterface"
     name = "tugSide"
@@ -161,7 +161,7 @@
   Row 6: TethysInterfaces::InspectorThermalInterface::inspectorSide
     owner = "TethysInterfaces::InspectorThermalInterface"
     name = "inspectorSide"
-    type = "TethysInterfaces::ThermalPort"
+    type = "TethysInterfaces::ThermalPort::~ThermalPort"
   Row 7: TethysInterfaces::PropellantFeedInterface::tankSide
     owner = "TethysInterfaces::PropellantFeedInterface"
     name = "tankSide"
@@ -169,7 +169,7 @@
   Row 8: TethysInterfaces::PropellantFeedInterface::groundSide
     owner = "TethysInterfaces::PropellantFeedInterface"
     name = "groundSide"
-    type = "TethysInterfaces::FluidPort"
+    type = "TethysInterfaces::FluidPort::~FluidPort"
   Row 9: TethysInterfaces::SpacecraftLauncherInterface::spacecraftSide
     owner = "TethysInterfaces::SpacecraftLauncherInterface"
     name = "spacecraftSide"
@@ -177,7 +177,7 @@
   Row 10: TethysInterfaces::SpacecraftLauncherInterface::launcherSide
     owner = "TethysInterfaces::SpacecraftLauncherInterface"
     name = "launcherSide"
-    type = "TethysInterfaces::MechanicalPort"
+    type = "TethysInterfaces::MechanicalPort::~MechanicalPort"
   Row 11: TethysInterfaces::SpaceGroundLink::spacecraftSide
     owner = "TethysInterfaces::SpaceGroundLink"
     name = "spacecraftSide"
@@ -185,7 +185,7 @@
   Row 12: TethysInterfaces::SpaceGroundLink::groundSide
     owner = "TethysInterfaces::SpaceGroundLink"
     name = "groundSide"
-    type = "TethysInterfaces::RfPort"
+    type = "TethysInterfaces::RfPort::~RfPort"
   Row 13: TethysInterfaces::InspectorRelayLink::inspectorSide
     owner = "TethysInterfaces::InspectorRelayLink"
     name = "inspectorSide"
@@ -193,7 +193,7 @@
   Row 14: TethysInterfaces::InspectorRelayLink::tugSide
     owner = "TethysInterfaces::InspectorRelayLink"
     name = "tugSide"
-    type = "TethysInterfaces::RfPort"
+    type = "TethysInterfaces::RfPort::~RfPort"
   Row 15: TethysInterfaces::CaptureInterface::tugSide
     owner = "TethysInterfaces::CaptureInterface"
     name = "tugSide"
@@ -201,7 +201,7 @@
   Row 16: TethysInterfaces::CaptureInterface::bodySide
     owner = "TethysInterfaces::CaptureInterface"
     name = "bodySide"
-    type = "TethysInterfaces::MechanicalPort"
+    type = "TethysInterfaces::MechanicalPort::~MechanicalPort"
   Row 17: TethysInterfaces::DockingInterface::tugSide
     owner = "TethysInterfaces::DockingInterface"
     name = "tugSide"
@@ -209,7 +209,7 @@
   Row 18: TethysInterfaces::DockingInterface::visitorSide
     owner = "TethysInterfaces::DockingInterface"
     name = "visitorSide"
-    type = "TethysInterfaces::DockingPort"
+    type = "TethysInterfaces::DockingPort::~DockingPort"
   Row 19: TethysInterfaces::PowerInterface::source
     owner = "TethysInterfaces::PowerInterface"
     name = "source"
@@ -217,7 +217,7 @@
   Row 20: TethysInterfaces::PowerInterface::load
     owner = "TethysInterfaces::PowerInterface"
     name = "load"
-    type = "TethysInterfaces::PowerOutlet"
+    type = "TethysInterfaces::PowerOutlet::~PowerOutlet"
   Row 21: TethysInterfaces::DataBusInterface::a
     owner = "TethysInterfaces::DataBusInterface"
     name = "a"
@@ -225,7 +225,7 @@
   Row 22: TethysInterfaces::DataBusInterface::b
     owner = "TethysInterfaces::DataBusInterface"
     name = "b"
-    type = "TethysInterfaces::DataBusPort"
+    type = "TethysInterfaces::DataBusPort::~DataBusPort"
   Row 23: TethysInterfaces::ThermalInterface::hot
     owner = "TethysInterfaces::ThermalInterface"
     name = "hot"
@@ -233,7 +233,7 @@
   Row 24: TethysInterfaces::ThermalInterface::cold
     owner = "TethysInterfaces::ThermalInterface"
     name = "cold"
-    type = "TethysInterfaces::ThermalPort"
+    type = "TethysInterfaces::ThermalPort::~ThermalPort"
 ✓ Query TethysDocuments::FlightPhases returned 28 rows
   Columns: name, type
   Row 1: TethysMission::flightTimeline::liftOff

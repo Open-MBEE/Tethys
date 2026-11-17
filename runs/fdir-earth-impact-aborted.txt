@@ -65,7 +65,6 @@
 ✓ Created instance of TethysFdir::earthImpactScenario
   ID: 1
   Use %features TethysFdir::earthImpactScenario to inspect
-warning: TethysFdir::earthImpactScenario: materialization is bounded; not every feature value was checked
 ✓ Debugging state machine "fdir" exhibited by object #4 of "TethysFdir::earthImpactScenario.tug"
   Current state: armed | nominal | nominal | nominal | nominal | monitoring
   Time: 0.0

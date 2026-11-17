@@ -1,6 +1,6 @@
 run sw-boot: scenario TethysFlightBehaviour::bootScenario, machine TethysFlightBehaviour::ParameterBootUpdateSoftware::manager on TethysFlightBehaviour::bootScenario.bootUpdate, horizon 3000 s
 host: 256 traced frames, 16 skips, 0 events, 0 commands, final mode launch, rc 0
-model: 53 trace events, 0 dropped, final time 3000 s, states visited 13
+model: 84 trace events, 0 dropped, final time 3000 s, states visited 13
 machine SepStringController: host-only (1 changes; the model scenario does not run it)
 machine PowerManager: host-only (1 changes; the model scenario does not run it)
 machine ThermalController: host-only (1 changes; the model scenario does not run it)

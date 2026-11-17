@@ -7,7 +7,7 @@
 | name | type |
 | --- | --- |
 | spacecraftSide | TethysInterfaces::RfPort |
-| groundSide | TethysInterfaces::RfPort |
+| groundSide | TethysInterfaces::RfPort::~RfPort |
 
 ## Interface parameters
 

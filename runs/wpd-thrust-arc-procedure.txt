@@ -74,12 +74,12 @@ note: object #2 of "TethysOperations::scenario.moc" already performs "TethysOper
   Tokens: 0
 ✓ Action completed
   Results:
-    a1 = [Instance(ID: 7)]
-    a2 = [Instance(ID: 9)]
-    a3 = [Instance(ID: 11)]
-    ackArc.a3 = [Instance(ID: 11)]
-    ackMode.a2 = [Instance(ID: 9)]
-    ackRelay.a1 = [Instance(ID: 7)]
+    a1 = [Instance(ID: 8)]
+    a2 = [Instance(ID: 12)]
+    a3 = [Instance(ID: 16)]
+    ackArc.a3 = [Instance(ID: 16)]
+    ackMode.a2 = [Instance(ID: 12)]
+    ackRelay.a1 = [Instance(ID: 8)]
   standing: value (observed: 1 run under reverse)
 run - sequence rendering (the trace of a run to t = 10)
 

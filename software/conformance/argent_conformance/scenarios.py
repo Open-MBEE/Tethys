@@ -84,8 +84,8 @@ HOST_MACHINES = ("SepStringController", "PowerManager", "ThermalController", "Te
 
 # Divergences adjudicated in docs/findings/WP-SW-13.md; keyed by (run name or "*", host machine).
 ADJUDICATED: dict[tuple[str, str], str] = {
-    ("vc-final-targeting", "TugModes"): "F-SW1305: the pinned run instantiates a second FdirSupervisor for the scenario's general "
-                                        "`tug` part that no uplink reaches; its command-loss timer requests safe mode at t=604800",
+    ("vc-final-targeting", "TugModes"): "F-SW1304: the host's on-board sequence 3 releases the inspector and enables the relay "
+                                        "(TelecomManager relaying at t=916440); the model's sequence sends nothing",
     ("*", "InspectorHandler"): "F-SW1304: the host's on-board sequence 3 sends InspectorCheckoutGo/InspectorReleaseGo/"
                                "InspectorImagingGo as step items; the model's InspectorReleaseSequence (61) sends nothing",
 }

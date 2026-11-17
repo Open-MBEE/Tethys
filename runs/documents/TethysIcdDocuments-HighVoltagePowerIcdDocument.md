@@ -7,7 +7,7 @@
 | name | type |
 | --- | --- |
 | source | TethysInterfaces::PowerOutlet |
-| load | TethysInterfaces::PowerOutlet |
+| load | TethysInterfaces::PowerOutlet::~PowerOutlet |
 
 ## Interface parameters
 

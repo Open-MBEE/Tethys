@@ -7,7 +7,7 @@
 | name | type |
 | --- | --- |
 | flightSide | TethysIcds::PacketPort |
-| groundSide | TethysIcds::PacketPort |
+| groundSide | TethysIcds::PacketPort::~PacketPort |
 
 ## Interface parameters
 

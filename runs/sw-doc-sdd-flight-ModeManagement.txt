@@ -157,13 +157,13 @@ loaded 64 files:
 | --- | --- | --- |
 | dispatch | TethysModes::CommandPort |  |
 | fdirRequests | TethysModes::CommandPort |  |
-| sepCommands | TethysModes::CommandPort |  |
-| telecomCommands | TethysModes::CommandPort |  |
-| powerCommands | TethysModes::CommandPort |  |
-| thermalCommands | TethysModes::CommandPort |  |
-| captureCommands | TethysModes::CommandPort |  |
-| inspectorCommands | TethysModes::CommandPort |  |
-| autonomyCommands | TethysModes::CommandPort |  |
+| sepCommands | TethysModes::CommandPort::~CommandPort |  |
+| telecomCommands | TethysModes::CommandPort::~CommandPort |  |
+| powerCommands | TethysModes::CommandPort::~CommandPort |  |
+| thermalCommands | TethysModes::CommandPort::~CommandPort |  |
+| captureCommands | TethysModes::CommandPort::~CommandPort |  |
+| inspectorCommands | TethysModes::CommandPort::~CommandPort |  |
+| autonomyCommands | TethysModes::CommandPort::~CommandPort |  |
 
 ## State machine
 

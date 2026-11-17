@@ -67,4 +67,17 @@
   Use %features TethysFlightBehaviour::captureNominal to inspect
 ✓ State machine TethysFlightBehaviour::CaptureControlSoftware::controller: no violation, exhaustive up to t=20000.0 (18 states, 18 moves, depth 15)
   outcome: finalState captured; visits characterising, armed, armed, committed, cinching, despinning, captured; armCommanded = true; cinchAttempts = 1; despinDuration = 2.0 [h]; fired = true; groundEnable = true; inCaptureMode = true; this.activeModes = [TugMode::proximityOperations, TugMode::capture, TugMode::despin]; this.codeSize = 1000000.0 [B]; this.criticality = SoftwareCriticality::safetyCritical; this.dataSize = 4000000.0 [B]; this.isSolid = true; this.layer = SoftwareLayer::application; this.priority = 7; this.processorLoadMips = 30.0; this.rate = 16.0 [Hz]
+  coverage over all schedules: 6 states entered, 6 transitions taken
+    state TethysFlightBehaviour::captureNominal#1.captureControl.CaptureController: characterising (TethysFlightBehaviour::CaptureController::characterising): 2 schedules
+    state TethysFlightBehaviour::captureNominal#1.captureControl.controller: armed (TethysFlightBehaviour::CaptureController::armed): 2 schedules
+    state TethysFlightBehaviour::captureNominal#1.captureControl.controller: captured (TethysFlightBehaviour::CaptureController::captured): 1 schedule
+    state TethysFlightBehaviour::captureNominal#1.captureControl.controller: cinching (TethysFlightBehaviour::CaptureController::cinching): 2 schedules
+    state TethysFlightBehaviour::captureNominal#1.captureControl.controller: committed (TethysFlightBehaviour::CaptureController::committed): 2 schedules
+    state TethysFlightBehaviour::captureNominal#1.captureControl.controller: despinning (TethysFlightBehaviour::CaptureController::despinning): 2 schedules
+    transition TethysFlightBehaviour::captureNominal#1.captureControl.controller: armed -> armed (event: accept GroundEnable) (TethysFlightBehaviour::CaptureController::armed -> armed (event: accept GroundEnable)): 2 schedules
+    transition TethysFlightBehaviour::captureNominal#1.captureControl.controller: armed -> committed (event: accept CaptureGo) (TethysFlightBehaviour::CaptureController::armed -> committed (event: accept CaptureGo)): 2 schedules
+    transition TethysFlightBehaviour::captureNominal#1.captureControl.controller: characterising -> armed (event: accept CaptureArm) (TethysFlightBehaviour::CaptureController::characterising -> armed (event: accept CaptureArm)): 2 schedules
+    transition TethysFlightBehaviour::captureNominal#1.captureControl.controller: cinching -> despinning (TethysFlightBehaviour::CaptureController::cinching -> despinning): 2 schedules
+    transition TethysFlightBehaviour::captureNominal#1.captureControl.controller: committed -> cinching (event: accept ContactDetected) (TethysFlightBehaviour::CaptureController::committed -> cinching (event: accept ContactDetected)): 2 schedules
+    transition TethysFlightBehaviour::captureNominal#1.captureControl.controller: despinning -> captured (event: time) (TethysFlightBehaviour::CaptureController::despinning -> captured (event: time)): 1 schedule
   standing: holds (bounded over schedules: 18 states, 18 moves searched)

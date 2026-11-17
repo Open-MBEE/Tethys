@@ -7,7 +7,7 @@
 | name | type |
 | --- | --- |
 | tugSide | TethysInterfaces::UmbilicalPort |
-| inspectorSide | TethysInterfaces::UmbilicalPort |
+| inspectorSide | TethysInterfaces::UmbilicalPort::~UmbilicalPort |
 
 ## Interface parameters
 

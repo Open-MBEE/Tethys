@@ -18,7 +18,7 @@ KEEP_KEYS = (
     "@type", "@id", "declaredName", "declaredShortName", "sysx:sourceLine", "sysx:memberIndex", "owner",
     "value", "referent", "operator", "argument", "redefines", "source", "target",
     "triggerAction", "guardExpression", "effectAction", "payloadParameter", "payloadArgument",
-    "receiverArgument", "succession", "isVariant", "direction", "typedFeature", "type",
+    "receiverArgument", "senderArgument", "succession", "isVariant", "direction", "typedFeature", "type",
     "kind", "targetFeature", "sysx:sourceMember", "body", "sysx:sourceText", "general",
     "specific", "subclassifier", "superclassifier", "connectorEnd", "referencedFeature",
     "referencingFeature", "ownedMemberElement", "memberElement", "importedNamespace",

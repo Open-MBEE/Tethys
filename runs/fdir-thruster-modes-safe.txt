@@ -65,7 +65,6 @@
 ✓ Created instance of TethysFdir::thrusterFaultScenario
   ID: 1
   Use %features TethysFdir::thrusterFaultScenario to inspect
-warning: TethysFdir::thrusterFaultScenario: materialization is bounded; not every feature value was checked
 ✓ Debugging state machine "modes" exhibited by object #4 of "TethysFdir::thrusterFaultScenario.tug"
   Current state: onLauncher | off | lowGain | thrusters | stowed
   Time: 0.0

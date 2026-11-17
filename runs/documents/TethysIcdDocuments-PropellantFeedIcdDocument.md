@@ -7,7 +7,7 @@
 | name | type |
 | --- | --- |
 | tankSide | TethysInterfaces::FluidPort |
-| groundSide | TethysInterfaces::FluidPort |
+| groundSide | TethysInterfaces::FluidPort::~FluidPort |
 
 ## Interface parameters
 

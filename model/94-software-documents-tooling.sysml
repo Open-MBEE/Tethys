@@ -99,13 +99,13 @@ package TethysSoftwareDocumentsTooling {
         doc /* Every component of the Argent flight software (board support, executive, bus, the
              * nine core services and the twelve applications) with its layer, load and footprint. */
         Project(source = FlightSoftwareElements(),
-            properties = ("name", "type", "layer", "processorLoadMips", "codeSize", "dataSize", "criticality"))
+            properties = ("name", "type", "layer", "processorLoadMips", "codeSize", "dataSize", "criticality"), tolerate = true)
     }
 
     calc def FlightApplications :> Query {
         doc /* The twelve applications with their rate, priority and the modes they are active in:
              * the modes-by-application activity table. */
-        Project(source = WhereFeature(source = FlightSoftwareElements(), 'feature' = "layer", operator = "==", value = "application"),
+        Project(source = WhereFeature(source = FlightSoftwareElements(), 'feature' = "layer", operator = "==", value = "application", tolerate = true),
             properties = ("name", "type", "rate", "priority", "activeModes"))
     }
 
@@ -127,7 +127,7 @@ package TethysSoftwareDocumentsTooling {
         doc /* The rate groups of the flight timing with their rate, period and activations per
              * major frame. */
         Project(source = WhereFeature(source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysFlightTiming::FlightTiming")), type = "PartUsage"),
-                'feature' = "rate", operator = ">=", value = "0"),
+                'feature' = "rate", operator = ">=", value = "0", tolerate = true),
             properties = ("name", "rate", "period", "activationsPerMajorFrame"))
     }
 
@@ -135,7 +135,7 @@ package TethysSoftwareDocumentsTooling {
         doc /* Every scheduled task of the five partition schedules with its period, worst-case
              * execution time, deadline, utilisation and the modes it runs in. */
         Project(source = WhereFeature(source = WhereType(source = Descendants(source = Named(qualifiedName = "TethysFlightTiming::argentTiming"), maxDepth = 3), type = "PartUsage"),
-                'feature' = "wcet", operator = ">=", value = "0"),
+                'feature' = "wcet", operator = ">=", value = "0", tolerate = true),
             properties = ("name", "period", "wcet", "deadline", "utilisation", "activeModes"))
     }
 
@@ -149,7 +149,7 @@ package TethysSoftwareDocumentsTooling {
         doc /* The processor and bus demand records per mode of the software budgets; the figures
              * are computed on instantiation, so the table names the modes the budgets are closed in. */
         Project(source = WhereFeature(source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysFlightTiming::SoftwareBudgets")), type = "AttributeUsage"),
-                'feature' = "mode", operator = "!=", value = ""),
+                'feature' = "mode", operator = "!=", value = "", tolerate = true),
             properties = ("name", "mode", "documentation"))
     }
 
@@ -171,7 +171,7 @@ package TethysSoftwareDocumentsTooling {
         Project(source = WhereType(source = OwnedElements(source = Named(qualifiedName = (
                 "TethysGroundSoftware::SoftwareOperationsCentre", "TethysGroundSoftware::SoftwareFlightDynamics",
                 "TethysGroundSoftware::SoftwareScienceDataSystem", "TethysGroundSoftware::SimulatedTestBedSet"))), type = "PartUsage"),
-            properties = ("name", "type", "productName", "version", "documentation"))
+            properties = ("name", "type", "productName", "version", "documentation"), tolerate = true)
     }
 
     // ---- verification cross-references ----------------------------------------------------------
@@ -240,7 +240,7 @@ package TethysSoftwareDocumentsTooling {
         doc /* The commands an application owns: mnemonic, opcode, criticality and hazard flag. */
         in application : String;
         Project(source = WhereFeature(source = WhereFeature(source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysFlightDictionary")), type = "ItemUsage"),
-                    'feature' = "opcodeNumber", operator = ">=", value = "0"), 'feature' = "application", operator = "==", value = application),
+                    'feature' = "opcodeNumber", operator = ">=", value = "0", tolerate = true), 'feature' = "application", operator = "==", value = application),
             properties = ("mnemonic", "opcodeNumber", "criticality", "hazardous", "documentation"))
     }
 
@@ -249,7 +249,7 @@ package TethysSoftwareDocumentsTooling {
              * unit. */
         in application : String;
         Project(source = WhereFeature(source = WhereFeature(source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysFlightDictionary")), type = "ItemUsage"),
-                    'feature' = "pointId", operator = ">=", value = "0"), 'feature' = "source", operator = "==", value = application),
+                    'feature' = "pointId", operator = ">=", value = "0", tolerate = true), 'feature' = "source", operator = "==", value = application),
             properties = ("mnemonic", "pointId", "kind", "rate", "unitSymbol"))
     }
 
@@ -258,7 +258,7 @@ package TethysSoftwareDocumentsTooling {
              * application acts on it. */
         in application : String;
         Project(source = WhereFeature(source = WhereFeature(source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysFlightDictionary")), type = "ItemUsage"),
-                    'feature' = "eventId", operator = ">=", value = "0"), 'feature' = "source", operator = "==", value = application),
+                    'feature' = "eventId", operator = ">=", value = "0", tolerate = true), 'feature' = "source", operator = "==", value = application),
             properties = ("mnemonic", "eventId", "severity", "fdirRelevant", "text"))
     }
 
@@ -266,7 +266,7 @@ package TethysSoftwareDocumentsTooling {
         doc /* The packets an application is the source of: application id, class, rate and length. */
         in application : String;
         Project(source = WhereFeature(source = WhereFeature(source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysFlightDictionary")), type = "ItemUsage"),
-                    'feature' = "apid", operator = ">=", value = "0"), 'feature' = "source", operator = "==", value = application),
+                    'feature' = "apid", operator = ">=", value = "0", tolerate = true), 'feature' = "source", operator = "==", value = application, tolerate = true),
             properties = ("mnemonic", "apid", "apidClass", "rate", "lengthOctets", "layoutConsistent"))
     }
 
@@ -312,13 +312,13 @@ package TethysSoftwareDocumentsTooling {
         doc /* The command requests the command builder checks: mnemonic, argument, the mode at
              * execution and the approvals attached. */
         Project(source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysGroundSoftware::CommandBuilder")), type = "AttributeUsage"),
-            properties = ("name", "mnemonic", "argumentValue", "modeAtExecution", "approvals"))
+            properties = ("name", "mnemonic", "argumentValue", "modeAtExecution", "approvals"), tolerate = true)
     }
 
     calc def TelemetryAlarms :> Query {
         doc /* The limit checks of the telemetry server and the severity each raises. */
         Project(source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysGroundSoftware::TelemetryServer")), type = "CalculationUsage"),
-            properties = ("name", "type", "severity"))
+            properties = ("name", "type", "severity"), tolerate = true)
     }
 
     calc def PassPlannerFigures :> Query {
@@ -331,7 +331,7 @@ package TethysSoftwareDocumentsTooling {
         doc /* The register of the document set with identifier, version, status, volumes, render
              * target and source packages. */
         Project(source = WhereFeature(source = WhereType(source = OwnedElements(source = Named(qualifiedName = "TethysSoftwareDocuments::SoftwareDocumentSet")), type = "AttributeUsage"),
-                'feature' = "volumes", operator = ">=", value = "1"),
+                'feature' = "volumes", operator = ">=", value = "1", tolerate = true),
             properties = ("id", "title", "version", "status", "volumes", "renderTarget", "sourcePackages"))
     }
 

@@ -30,84 +30,84 @@ Every boundary in the mission is controlled by one interface definition in `Teth
 | owner | name | type |
 | --- | --- | --- |
 | TethysInterfaces::TugInspectorInterface | tugSide | TethysInterfaces::UmbilicalPort |
-| TethysInterfaces::TugInspectorInterface | inspectorSide | TethysInterfaces::UmbilicalPort |
+| TethysInterfaces::TugInspectorInterface | inspectorSide | TethysInterfaces::UmbilicalPort::~UmbilicalPort |
 
 **owner: TethysInterfaces::InspectorDispenserInterface**
 
 | owner | name | type |
 | --- | --- | --- |
 | TethysInterfaces::InspectorDispenserInterface | tugSide | TethysInterfaces::MechanicalPort |
-| TethysInterfaces::InspectorDispenserInterface | inspectorSide | TethysInterfaces::MechanicalPort |
+| TethysInterfaces::InspectorDispenserInterface | inspectorSide | TethysInterfaces::MechanicalPort::~MechanicalPort |
 
 **owner: TethysInterfaces::InspectorThermalInterface**
 
 | owner | name | type |
 | --- | --- | --- |
 | TethysInterfaces::InspectorThermalInterface | tugSide | TethysInterfaces::ThermalPort |
-| TethysInterfaces::InspectorThermalInterface | inspectorSide | TethysInterfaces::ThermalPort |
+| TethysInterfaces::InspectorThermalInterface | inspectorSide | TethysInterfaces::ThermalPort::~ThermalPort |
 
 **owner: TethysInterfaces::PropellantFeedInterface**
 
 | owner | name | type |
 | --- | --- | --- |
 | TethysInterfaces::PropellantFeedInterface | tankSide | TethysInterfaces::FluidPort |
-| TethysInterfaces::PropellantFeedInterface | groundSide | TethysInterfaces::FluidPort |
+| TethysInterfaces::PropellantFeedInterface | groundSide | TethysInterfaces::FluidPort::~FluidPort |
 
 **owner: TethysInterfaces::SpacecraftLauncherInterface**
 
 | owner | name | type |
 | --- | --- | --- |
 | TethysInterfaces::SpacecraftLauncherInterface | spacecraftSide | TethysInterfaces::MechanicalPort |
-| TethysInterfaces::SpacecraftLauncherInterface | launcherSide | TethysInterfaces::MechanicalPort |
+| TethysInterfaces::SpacecraftLauncherInterface | launcherSide | TethysInterfaces::MechanicalPort::~MechanicalPort |
 
 **owner: TethysInterfaces::SpaceGroundLink**
 
 | owner | name | type |
 | --- | --- | --- |
 | TethysInterfaces::SpaceGroundLink | spacecraftSide | TethysInterfaces::RfPort |
-| TethysInterfaces::SpaceGroundLink | groundSide | TethysInterfaces::RfPort |
+| TethysInterfaces::SpaceGroundLink | groundSide | TethysInterfaces::RfPort::~RfPort |
 
 **owner: TethysInterfaces::InspectorRelayLink**
 
 | owner | name | type |
 | --- | --- | --- |
 | TethysInterfaces::InspectorRelayLink | inspectorSide | TethysInterfaces::RfPort |
-| TethysInterfaces::InspectorRelayLink | tugSide | TethysInterfaces::RfPort |
+| TethysInterfaces::InspectorRelayLink | tugSide | TethysInterfaces::RfPort::~RfPort |
 
 **owner: TethysInterfaces::CaptureInterface**
 
 | owner | name | type |
 | --- | --- | --- |
 | TethysInterfaces::CaptureInterface | tugSide | TethysInterfaces::MechanicalPort |
-| TethysInterfaces::CaptureInterface | bodySide | TethysInterfaces::MechanicalPort |
+| TethysInterfaces::CaptureInterface | bodySide | TethysInterfaces::MechanicalPort::~MechanicalPort |
 
 **owner: TethysInterfaces::DockingInterface**
 
 | owner | name | type |
 | --- | --- | --- |
 | TethysInterfaces::DockingInterface | tugSide | TethysInterfaces::DockingPort |
-| TethysInterfaces::DockingInterface | visitorSide | TethysInterfaces::DockingPort |
+| TethysInterfaces::DockingInterface | visitorSide | TethysInterfaces::DockingPort::~DockingPort |
 
 **owner: TethysInterfaces::PowerInterface**
 
 | owner | name | type |
 | --- | --- | --- |
 | TethysInterfaces::PowerInterface | source | TethysInterfaces::PowerOutlet |
-| TethysInterfaces::PowerInterface | load | TethysInterfaces::PowerOutlet |
+| TethysInterfaces::PowerInterface | load | TethysInterfaces::PowerOutlet::~PowerOutlet |
 
 **owner: TethysInterfaces::DataBusInterface**
 
 | owner | name | type |
 | --- | --- | --- |
 | TethysInterfaces::DataBusInterface | a | TethysInterfaces::DataBusPort |
-| TethysInterfaces::DataBusInterface | b | TethysInterfaces::DataBusPort |
+| TethysInterfaces::DataBusInterface | b | TethysInterfaces::DataBusPort::~DataBusPort |
 
 **owner: TethysInterfaces::ThermalInterface**
 
 | owner | name | type |
 | --- | --- | --- |
 | TethysInterfaces::ThermalInterface | hot | TethysInterfaces::ThermalPort |
-| TethysInterfaces::ThermalInterface | cold | TethysInterfaces::ThermalPort |
+| TethysInterfaces::ThermalInterface | cold | TethysInterfaces::ThermalPort::~ThermalPort |
 
 *System-level interface usages*
 
@@ -174,6 +174,7 @@ config:
     clusterBkg: "#FFFFFF"
     clusterBorder: "#181818"
     edgeLabelBackground: "#FFFFFF"
+title: "«view» TethysViews::flightSegmentWiring : InterfaceView"
 ---
 %% TethysViews::flightSegmentWiring — interconnection rendering (view def InterconnectionView)
 flowchart LR
@@ -182,116 +183,116 @@ flowchart LR
     subgraph n1 ["`*«part»* **tug**`"]
       direction LR
       n2("`*«attribute»*
-**dryMass**`")
+**^dryMass**`")
       n3("`*«attribute»*
-**wetMass**`")
-      subgraph n4 ["`*«part»* **structure**`"]
+**^wetMass**`")
+      subgraph n4 ["`*«part»* **^structure**`"]
         direction LR
-        n4.1["inspectorAttachment"]
+        n4.1["^inspectorAttachment"]
         n5("`*«attribute»*
-**mass**`")
+**^mass**`")
       end
-      subgraph n6 ["`*«part»* **thermal**`"]
+      subgraph n6 ["`*«part»* **^thermal**`"]
         direction LR
-        n6.1["inspectorThermal"]
-        n6.2["power"]
+        n6.1["^inspectorThermal"]
+        n6.2["^power"]
         n7("`*«attribute»*
-**mass**`")
+**^mass**`")
       end
-      subgraph n8 ["`*«part»* **eps**`"]
+      subgraph n8 ["`*«part»* **^eps**`"]
         direction LR
-        n8.0["mainBus"]
-        n8.1["highVoltageBus"]
-        n8.2["inspectorKeepAlive"]
+        n8.0["^mainBus"]
+        n8.1["^highVoltageBus"]
+        n8.2["^inspectorKeepAlive"]
         n9("`*«attribute»*
-**arrayPowerAtOneAu**`")
+**^arrayPowerAtOneAu**`")
         n10("`*«attribute»*
-**mass**`")
+**^mass**`")
       end
-      subgraph n11 ["`*«part»* **cdh**`"]
+      subgraph n11 ["`*«part»* **^cdh**`"]
         direction LR
-        n11.1["power"]
+        n11.1["^power"]
         n12("`*«attribute»*
-**mass**`")
+**^mass**`")
       end
-      subgraph n13 ["`*«part»* **telecom**`"]
+      subgraph n13 ["`*«part»* **^telecom**`"]
         direction LR
-        n13.1["proximity"]
-        n13.2["power"]
+        n13.1["^proximity"]
+        n13.2["^power"]
         n14("`*«attribute»*
-**mass**`")
+**^mass**`")
       end
-      subgraph n15 ["`*«part»* **gnc**`"]
+      subgraph n15 ["`*«part»* **^gnc**`"]
         direction LR
-        n15.0["power"]
+        n15.0["^power"]
         n16("`*«attribute»*
-**mass**`")
+**^mass**`")
       end
-      subgraph n17 ["`*«part»* **sep**`"]
+      subgraph n17 ["`*«part»* **^sep**`"]
         direction LR
-        n17.1["power"]
+        n17.1["^power"]
         n18("`*«attribute»*
-**xenonMass**`")
+**^xenonMass**`")
         n19("`*«attribute»*
-**thrusterCount**`")
+**^thrusterCount**`")
         n20("`*«attribute»*
-**operatingThrusters**`")
+**^operatingThrusters**`")
         n21("`*«attribute»*
-**specificImpulse**`")
+**^specificImpulse**`")
         n22("`*«attribute»*
-**maximumPower**`")
+**^maximumPower**`")
         n23("`*«attribute»*
-**mass**`")
+**^mass**`")
       end
-      subgraph n24 ["`*«part»* **rcs**`"]
+      subgraph n24 ["`*«part»* **^rcs**`"]
         direction LR
-        n24.1["power"]
+        n24.1["^power"]
         n25("`*«attribute»*
-**hydrazineMass**`")
+**^hydrazineMass**`")
         n26("`*«attribute»*
-**mass**`")
+**^mass**`")
       end
-      subgraph n27 ["`*«part»* **captureSystem**`"]
+      subgraph n27 ["`*«part»* **^captureSystem**`"]
         direction LR
-        n27.1["power"]
+        n27.1["^power"]
         n28("`*«attribute»*
-**maximumBodyDiameter**`")
+**^maximumBodyDiameter**`")
         n29("`*«attribute»*
-**maximumBodyMass**`")
+**^maximumBodyMass**`")
         n30("`*«attribute»*
-**mass**`")
+**^mass**`")
       end
-      subgraph n31 ["`*«part»* **sensors**`"]
+      subgraph n31 ["`*«part»* **^sensors**`"]
         direction LR
-        n31.0["power"]
+        n31.0["^power"]
         n32("`*«attribute»*
-**mass**`")
+**^mass**`")
       end
     end
     subgraph n33 ["`*«part»* **inspector**`"]
       direction LR
-      n33.0["carrierAttachment"]
-      n33.1["stowedThermal"]
+      n33.0["^carrierAttachment"]
+      n33.1["^stowedThermal"]
       n34("`*«attribute»*
-**wetMass**`")
-      subgraph n35 ["`*«part»* **bus**`"]
+**^wetMass**`")
+      subgraph n35 ["`*«part»* **^bus**`"]
         direction LR
-        n35.0["proximity"]
-        n35.1["umbilical"]
+        n35.0["^proximity"]
+        n35.1["^umbilical"]
         n36("`*«attribute»*
-**mass**`")
+**^mass**`")
       end
-      subgraph n37 ["`*«part»* **payload**`"]
+      subgraph n37 ["`*«part»* **^payload**`"]
         direction LR
         n38("`*«attribute»*
-**mass**`")
+**^mass**`")
       end
-      subgraph n39 ["`*«part»* **propulsion**`"]
+      subgraph n39 ["`*«part»* **^propulsion**`"]
         direction LR
         n40("`*«attribute»*
-**mass**`")
+**^mass**`")
         n41("`*«attribute»*
-**propellantMass**`")
+**^propellantMass**`")
       end
     end
   end

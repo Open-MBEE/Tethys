@@ -270,4 +270,8 @@ run sw-doc-probe-query-binding $SYSML -render-document F_SW901::OneDoc model/pro
 run sw-doc-probe-query-binding-literal $SYSML -render-document F_SW901::BoundByLiteral model/probes/F-SW901-query-binding-from-attribute.sysml
 run sw-doc-probe-same-named-verify $SYSML -validate -strict -warnings-as-errors model/probes/F-SW902-same-named-verify-members.sysml
 run sw-doc-probe-inherited-order $SYSML -render-document F_SW903::Volume model/probes/F-SW903-inherited-blocks-render-last.sysml
+# Integration — pin 98d8eca77 (docs/findings/integration.md F-I04, F-I05, F-I06)
+run probe-F-I04 $SYSML -validate -self-check model/probes/F-I04-perform-action-is-reference.sysml
+run probe-F-I05 $SYSML -validate -self-check-package "'F-I05-conjugated-port-definition'::Rules" model/probes/F-I05-conjugated-port-definition.sysml
+run probe-F-I06 $SYSML -satisfy model/probes/F-I06-require-constraint-parameter-sequence.sysml
 if [ "$mode" = record ]; then rm -rf runs; cp -r "$out" runs; else diff -ru runs "$out"; fi

@@ -1,6 +1,6 @@
 run sw-sep-string-disposal-restarting: scenario TethysFlightBehaviour::softwareDisposalFlameout, machine TethysFlightBehaviour::SepControlSoftware::controller on TethysFlightBehaviour::softwareDisposalFlameout.tug.cdh.software.sepControl, horizon 3920000 s
 host: 304 traced frames, 19 skips, 2 events, 0 commands, final mode coast, rc 0
-model: 307 trace events, 0 dropped, final time 3920000 s, states visited 6
+model: 414 trace events, 0 dropped, final time 3920000 s, states visited 6
 machine SepStringController: agree (6 changes, 5 model transitions, 3 model accepts)
   t=0 off
   t=8640 standby

@@ -66,8 +66,8 @@
   ID: 1
   Use %features TethysRisk::riskRegister to inspect
 ✓ Created instance of TethysRisk::marginIndicators
-  ID: 102
+  ID: 42
   Use %features TethysRisk::marginIndicators to inspect
 ✓ Created instance of TethysRisk::lessonsLearned
-  ID: 109
+  ID: 49
   Use %features TethysRisk::lessonsLearned to inspect

@@ -4,7 +4,7 @@ Files: `software/ground/meridian/` (Python package), `software/ground/go/` (Go m
 `software/ground/tests/` (pytest), `software/ground/fixtures/packets.json`, `software/ground/README.md`,
 `software/ground/ground.mk` and the `software-ground-check` CI job; additive generator changes in
 `software/gen/` (`emit_go.py`, the `ground` table) with the regenerated `software/generated/`. No model
-file is edited. Tool: the pinned OpenSysML `5cd37f288`; the Python client is the one `make software-venv`
+file is edited. Tool: the pinned OpenSysML `98d8eca77`; the Python client is the one `make software-venv`
 installs from the pinned checkout, and model evaluations run against `build/opensysml/sysml-grpc` built
 from that checkout. Findings: `docs/findings/WP-SW-11.md` (F-SW1101 … F-SW1109).
 

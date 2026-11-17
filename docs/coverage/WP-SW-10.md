@@ -2,7 +2,7 @@
 
 Files: `software/gen/` (generator), `software/generated/` (tables, manifest, C self-test),
 `software/tests/` (pytest), `software/README.md`, the `software-*` Makefile targets and the
-`software-check` CI job. No model file is edited. Tool: the pinned OpenSysML `5cd37f288`
+`software-check` CI job. No model file is edited. Tool: the pinned OpenSysML `98d8eca77`
 (`runs/tool-version.txt`); the Python client is installed from the same checkout
 (`build/opensysml-src/client/python`) into `build/software/venv`. Findings: `docs/findings/WP-SW-10.md`
 (F-SW1001 … F-SW1009).

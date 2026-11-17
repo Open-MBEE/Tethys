@@ -5,7 +5,7 @@ the pinned pilot) and `model/88-software-assurance-tooling.sysml` (`TethysSoftwa
 tool tier, the `DocumentQueries` queries and documents). No backbone file is edited: the software
 causes, controls and the fault tree bind into `TethysSafety` by `#cause`/`#effect` occurrences and
 `connect` links to the hazards' own cause events, so `85` did not need a software cause type.
-Runs recorded with the pinned OpenSysML `5cd37f288` (`runs/tool-version.txt`); every command below
+Runs recorded with the pinned OpenSysML `98d8eca77` (`runs/tool-version.txt`); every command below
 is a `run` line in `scripts/runs.sh` and its output is in `runs/<name>.txt`. Findings and probes:
 `docs/findings/WP-SW-8.md` (F-SW801, F-SW802),
 `model/probes/F-SW801-reference-subsetting-value.sysml`,

@@ -178,6 +178,6 @@ def test_c_selftest_binary_when_built():
 
 
 def test_package_metadata():
-    assert tables.MODEL_TOOL_VERSION == "5cd37f2"
-    assert tables.MODEL_TOOL_COMMIT == "5cd37f288fef171d62737d6045f4caff772b6014"
+    assert tables.MODEL_TOOL_VERSION == "98d8eca"
+    assert tables.MODEL_TOOL_COMMIT == "98d8eca775de0c776a8f5f3eed8df81b318f48f1"
     assert tables.GENERATOR_VERSION

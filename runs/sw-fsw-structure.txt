@@ -65,7 +65,6 @@
 ✓ Created instance of TethysFlightSoftware::ArgentFlightSoftware
   ID: 1
   Use %features TethysFlightSoftware::ArgentFlightSoftware to inspect
-warning: TethysFlightSoftware::ArgentFlightSoftware: materialization is bounded; not every feature value was checked
 ✓ size(TethysFlightSoftware::argentSoftware.cdh.software.components)
   = 23
 ✓ TethysFlightSoftware::argentSoftware.cdh.software.processorLoadMips

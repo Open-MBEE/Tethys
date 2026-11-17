@@ -41,29 +41,29 @@
 | transfer | item | ElectricalPower | TethysInterfaces::DockingPort |
 | data | item | Telemetry | TethysInterfaces::DockingPort |
 | TethysInterfaces::TugInspectorInterface | interface def |  |  |
-| tugSide | port | UmbilicalPort | TethysInterfaces::TugInspectorInterface |
-| inspectorSide | port | ~UmbilicalPort | TethysInterfaces::TugInspectorInterface |
+| tugSide | end port | UmbilicalPort | TethysInterfaces::TugInspectorInterface |
+| inspectorSide | end port | ~UmbilicalPort | TethysInterfaces::TugInspectorInterface |
 | TethysInterfaces::InspectorDispenserInterface | interface def |  |  |
-| tugSide | port | MechanicalPort | TethysInterfaces::InspectorDispenserInterface |
-| inspectorSide | port | ~MechanicalPort | TethysInterfaces::InspectorDispenserInterface |
+| tugSide | end port | MechanicalPort | TethysInterfaces::InspectorDispenserInterface |
+| inspectorSide | end port | ~MechanicalPort | TethysInterfaces::InspectorDispenserInterface |
 | TethysInterfaces::InspectorThermalInterface | interface def |  |  |
-| tugSide | port | ThermalPort | TethysInterfaces::InspectorThermalInterface |
-| inspectorSide | port | ~ThermalPort | TethysInterfaces::InspectorThermalInterface |
+| tugSide | end port | ThermalPort | TethysInterfaces::InspectorThermalInterface |
+| inspectorSide | end port | ~ThermalPort | TethysInterfaces::InspectorThermalInterface |
 | TethysInterfaces::PropellantFeedInterface | interface def |  |  |
-| tankSide | port | FluidPort | TethysInterfaces::PropellantFeedInterface |
-| groundSide | port | ~FluidPort | TethysInterfaces::PropellantFeedInterface |
+| tankSide | end port | FluidPort | TethysInterfaces::PropellantFeedInterface |
+| groundSide | end port | ~FluidPort | TethysInterfaces::PropellantFeedInterface |
 | TethysInterfaces::SpacecraftLauncherInterface | interface def |  |  |
-| spacecraftSide | port | MechanicalPort | TethysInterfaces::SpacecraftLauncherInterface |
-| launcherSide | port | ~MechanicalPort | TethysInterfaces::SpacecraftLauncherInterface |
+| spacecraftSide | end port | MechanicalPort | TethysInterfaces::SpacecraftLauncherInterface |
+| launcherSide | end port | ~MechanicalPort | TethysInterfaces::SpacecraftLauncherInterface |
 | TethysInterfaces::SpaceGroundLink | interface def |  |  |
-| spacecraftSide | port | RfPort | TethysInterfaces::SpaceGroundLink |
-| groundSide | port | ~RfPort | TethysInterfaces::SpaceGroundLink |
+| spacecraftSide | end port | RfPort | TethysInterfaces::SpaceGroundLink |
+| groundSide | end port | ~RfPort | TethysInterfaces::SpaceGroundLink |
 | TethysInterfaces::InspectorRelayLink | interface def |  |  |
-| inspectorSide | port | RfPort | TethysInterfaces::InspectorRelayLink |
-| tugSide | port | ~RfPort | TethysInterfaces::InspectorRelayLink |
+| inspectorSide | end port | RfPort | TethysInterfaces::InspectorRelayLink |
+| tugSide | end port | ~RfPort | TethysInterfaces::InspectorRelayLink |
 | TethysInterfaces::CaptureInterface | interface def |  |  |
-| tugSide | port | MechanicalPort | TethysInterfaces::CaptureInterface |
-| bodySide | port | ~MechanicalPort | TethysInterfaces::CaptureInterface |
+| tugSide | end port | MechanicalPort | TethysInterfaces::CaptureInterface |
+| bodySide | end port | ~MechanicalPort | TethysInterfaces::CaptureInterface |
 | contactSpeedLimit | attribute | SpeedValue | TethysInterfaces::CaptureInterface |
 | cinchPreload | attribute | ForceValue | TethysInterfaces::CaptureInterface |
 | maximumDespinTorque | attribute | TorqueValue | TethysInterfaces::CaptureInterface |
@@ -71,14 +71,14 @@
 | minimumTemperature | attribute | ThermodynamicTemperatureValue | TethysInterfaces::CaptureInterface |
 | maximumTemperature | attribute | ThermodynamicTemperatureValue | TethysInterfaces::CaptureInterface |
 | TethysInterfaces::DockingInterface | interface def |  |  |
-| tugSide | port | DockingPort | TethysInterfaces::DockingInterface |
-| visitorSide | port | ~DockingPort | TethysInterfaces::DockingInterface |
+| tugSide | end port | DockingPort | TethysInterfaces::DockingInterface |
+| visitorSide | end port | ~DockingPort | TethysInterfaces::DockingInterface |
 | TethysInterfaces::PowerInterface | interface def |  |  |
-| source | port | PowerOutlet | TethysInterfaces::PowerInterface |
-| load | port | ~PowerOutlet | TethysInterfaces::PowerInterface |
+| source | end port | PowerOutlet | TethysInterfaces::PowerInterface |
+| load | end port | ~PowerOutlet | TethysInterfaces::PowerInterface |
 | TethysInterfaces::DataBusInterface | interface def |  |  |
-| a | port | DataBusPort | TethysInterfaces::DataBusInterface |
-| b | port | ~DataBusPort | TethysInterfaces::DataBusInterface |
+| a | end port | DataBusPort | TethysInterfaces::DataBusInterface |
+| b | end port | ~DataBusPort | TethysInterfaces::DataBusInterface |
 | TethysInterfaces::ThermalInterface | interface def |  |  |
-| hot | port | ThermalPort | TethysInterfaces::ThermalInterface |
-| cold | port | ~ThermalPort | TethysInterfaces::ThermalInterface |
+| hot | end port | ThermalPort | TethysInterfaces::ThermalInterface |
+| cold | end port | ~ThermalPort | TethysInterfaces::ThermalInterface |
